@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="5926" MadCap:lastWidth="672">
+    <head>
+    </head>
+    <body>
+        <h1>Storing Static Fields</h1>
+        <p>By default db4o does not persist static fields. This is not necessary because static values are set for a class, not for an object. However you can set up db4o to store static fields if you want to implement constants or enumeration: <MadCap:xref href="../../../configuration/objectclass/persist_static_fields.htm" target="" title="" alt="">See "Persist Static Fields"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../../CodeExamples/configuration/objectconfig/ObjectConfigurationExamples-Persist-also-the-static-fields.all.flsnp" />
+        <p>When this setting is enabled, all non-primitive-typed static fields are stored the first time an instance of the class is stored. The values are restored every time a database file is opened afterwards, after the class meta information is loaded for this class (when the class objects are retrieved with a query, for example).</p>
+        <p>Use this option with caution. This option means that static fields are stored in the database. When you change the value of this field, you need to store it explicitly again. Furthermore, db4o will replace the static value at runtime, which can lead to very subtle bugs in your application.</p>
+        <p>This option does not have any effect on primitive types like ints, longs, floats etc.</p>
+        <h2>Enum Class Use case</h2>
+        <p style="font-weight: normal;">One of the use-cases is when you have an enumeration class which you want to store.
+		<span MadCap:conditions="Primary.Java">In fact, Java enums implement this enumeration class idiom and db4o 			persist the static fields or all enums.</span> For example we have a color class, which also has some static colors.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/strategies/storingstatic/Color-Class-as-enumeration.all.flsnp" />
+        <p style="font-weight: normal;">We want to ensure reference equality on colors so that you easily can check for a certain color. But when we load the colors from the database you get new instances and not the same instance as in the static field. This means that comparing the references will fail.   <![CDATA[ ]]></p>
+        <MadCap:snippetBlock src="../../../CodeExamples/strategies/storingstatic/StoringStaticFields-Compare-by-reference.all.flsnp" />
+        <p style="font-weight: normal;">When you enable the persist static fields option, the static fields are stored. This means that the object referenced in the static fields are loaded from the database and therefore the same instance. And the comparing the references works again.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/strategies/storingstatic/StoringStaticFields-Enable-storing-static-fields-for-our-color-class.all.flsnp" />
+    </body>
+</html>

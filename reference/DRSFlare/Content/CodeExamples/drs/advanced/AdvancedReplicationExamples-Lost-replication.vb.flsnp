@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> serverDatabase <span style="color:Blue;">As</span> IObjectServer = OpenDatabaseServer(DesktopDatabaseName)
+<span style="color:Blue;">Dim</span> mobileDatabase <span style="color:Blue;">As</span> IObjectContainer = OpenDatabase(MobileDatabaseName)
+
+<span style="color:Blue;">If</span> <span style="color:Blue;">True</span> <span style="color:Blue;">Then</span>
+    <span style="color:Blue;">Dim</span> serverDbConnection <span style="color:Blue;">As</span> IObjectContainer = _
+        Db4oClientServer.OpenClient(Host, Port, UserName, UserName)
+    serverDbConnection.Store(<span style="color:Blue;">New</span> Pilot(<span style="color:#A31515;">&quot;Pilot 1&quot;</span>))
+    serverDbConnection.Commit()
+
+    <span style="color:Green;">' The replication starts here</span>
+    <span style="color:Blue;">Dim</span> connectionForReplication <span style="color:Blue;">As</span> IObjectContainer = _
+        Db4oClientServer.OpenClient(Host, Port, UserName, UserName)
+    <span style="color:Blue;">Dim</span> replicationSession <span style="color:Blue;">As</span> IReplicationSession = _
+        Replication.Begin(connectionForReplication, mobileDatabase)
+    <span style="color:Blue;">Dim</span> changesOnDesktop <span style="color:Blue;">As</span> IObjectSet = _
+        replicationSession.ProviderA().ObjectsChangedSinceLastReplication()
+
+    <span style="color:Green;">' during the replication other clients store data on the server</span>
+    serverDbConnection.Store(<span style="color:Blue;">New</span> Pilot(<span style="color:#A31515;">&quot;Pilot 2&quot;</span>))
+    serverDbConnection.Commit()
+
+    <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> changedObjectOnDesktop <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> <span style="color:Blue;">In</span> changesOnDesktop
+        replicationSession.Replicate(changedObjectOnDesktop)
+    <span style="color:Blue;">Next</span>
+
+    replicationSession.Commit()
+
+    serverDbConnection.Store(<span style="color:Blue;">New</span> Pilot(<span style="color:#A31515;">&quot;Pilot 3&quot;</span>))
+    serverDbConnection.Commit()
+<span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+
+<span style="color:Green;">' Pilot 2 is not replicated</span>
+PrintPilots(mobileDatabase)
+
+
+<span style="color:Blue;">If</span> <span style="color:Blue;">True</span> <span style="color:Blue;">Then</span>
+    <span style="color:Blue;">Dim</span> connectionForReplication <span style="color:Blue;">As</span> IObjectContainer = _
+        Db4oClientServer.OpenClient(Host, Port, UserName, UserName)
+    <span style="color:Blue;">Dim</span> replicationSession <span style="color:Blue;">As</span> IReplicationSession = _
+        Replication.Begin(connectionForReplication, mobileDatabase)
+    <span style="color:Blue;">Dim</span> changesOnDesktop <span style="color:Blue;">As</span> IObjectSet = _
+        replicationSession.ProviderA().ObjectsChangedSinceLastReplication()
+
+    <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> changedOnDesktop <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> <span style="color:Blue;">In</span> changesOnDesktop
+        replicationSession.Replicate(changedOnDesktop)
+    <span style="color:Blue;">Next</span>
+    replicationSession.Commit()
+<span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+
+<span style="color:Green;">' Pilot 2 is still not replicated</span>
+PrintPilots(mobileDatabase)</pre>
+		<div class="codesnippet-meta">
+			AdvancedReplicationExamples.vb: Lost replication
+			<div class="codedownload">
+				<a href="Example-drs-advanced-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.db4o</groupId>
+  <artifactId>db4o-full-java1.2</artifactId>
+  <version>@VERSION@</version>
+  <packaging>jar</packaging>
+  <name>db4o full java 1.2</name>
+  <description>db4o all-in-one for JDK 1.2 - 1.4</description>
+  <url>http://www.db4o.com</url>
+  <licenses>
+    <license>
+      <name>GNU General Public License</name>
+      <url>http://www.db4o.com/about/company/legalpolicies/gpl.aspx</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://source.db4o.com/db4o/trunk</url>
+  </scm>
+
+</project>

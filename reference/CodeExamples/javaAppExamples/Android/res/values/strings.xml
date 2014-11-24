@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Compare Persistence</string>
+    <string name="info">Db4o vs SQLite</string>
+    <string name="db4o_info"></string>
+    <string name="sqlite_info"></string>
+</resources>

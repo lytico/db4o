@@ -1,0 +1,5 @@
+-methodMapping com.db4o.foundation.JdkCollectionIterator4.JdkCollectionIterator4 ""
+-typeMapping java.util.Set<> Db4objects.Db4o.Collections.ISet
+-propertyMapping java.util.Collection.isEmpty IsEmpty
+
+-fullyQualify ISet

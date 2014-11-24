@@ -1,0 +1,106 @@
+.n
+.a Encryption ..
+.0 Encryption ..
+
+db4o provides built-in encryption functionality. This feature is ._
+easy to turn on or off, and must be configured before opening a ._
+database file.
+
+db4o currently provides two different encryption algorithms, in ._
+in addition to providing the ability for you to plug in your own ._
+encrypting IO Adapters.
+
+.1 eXtended Tiny Encryption Algorithm ..
+
+The first included encryption algorithm is XTEA (eXtended Tiny ._
+Encryption Algorithm). We have choosen XTEA because this block ._
+cipher operates on a 64-bit block size with a 128-bit key. This ._
+is an extremely tiny but very fast (with cycles less than 32 rounds) ._
+encryption algorithm. It is supposed to be as secure as DES or IDEA. ._
+Since cryptography is beyond the scope of this tutorial you can find ._
+further information about XTEA here:
+
+.l http://en.wikipedia.org/wiki/XTEA ..
+	
+In order to encipher your data just perform the following steps:
+
+1)	Ensure you have downloaded at least db4o Version 5.1. This is the ._
+first version which includes the XTeaEncryptionFileAdapter (the encryption ._
+IoAdapter plug-in for db4o file IO that realizes XTEA).
+
+2)	Configure db4o to add this encryption mechanism:
+.c Db4o.configure ().io(new XTeaEncryptionFileAdapter(�password�)); ..
+This is the simplest way to add the encryption adapter. But the ._
+XTEAEncryptionFileAdapter can also wrap other custom IoAdapters to use:
+.c Db4o.configure ().io(new XTeaEncryptionFileAdapter(new myIoAdapter(),"password")); ..
+
+3)	Choose your own password and number of cycles. The security of XTEA ._
+can be enhanced by increasing the number of iterations. There are four ._
+possible values: 
+- 8 rounds guarantee highest speed of db4o and lowest security ._
+(iterations = XTEA.ITERATIONS8).
+- 16 rounds assure high speed of db4o and sufficient security in the same ._
+time (iterations = XTEA.ITERATIONS16).
+- 32 rounds are ample for most applications, this is the default value ._
+(iterations = XTEA.ITERATIONS32).
+- 64 rounds achieve the best security but db4o will be about 20 per cent ._
+slower then without encryption (iterations = XTEA.ITERATIONS64).
+.c Db4o.configure ().io(new XTeaEncryptionFileAdapter( �password�, iteraions) ); ..
+Or, if you wish to use your own IoAdapter:
+.c Db4o.configure ().io(new XTeaEncryptionFileAdapter(new myIoAdapter(), �password�, iteraions) ); ..
+
+Keep in mind that all configurations must be set before opening the ObjectContainer.
+
+Note that there are some limitations you should keep in mind:
+There is no possibility of changing the password on an existing file. You will not ._
+be able to access your data if you lose the password. Thus please keep your key! ._
+And make sure that you always use the same password when subsequently opening your ._
+encrypted files. You can, however open a new file with a different password and ._
+.l Replication replicate ..  (or .l Defragment defragment .. ) your ._
+objects from one database to the other.
+
+Feel free to use XTeaEncryptionFileAdapter for your own purposes. You may modify the ._
+class XTEA (which implement the XTEA encryption algorithm) and KeyGenerator (for key ._
+generation), and replace them with other algorithms if you like. Feel free to post ._
+your own IoAdapters to the .l http://forums.db4o.com/forums db4o Community Fourm .. .
+
+
+.1 Built-In Simple Encryption ..
+
+The other encryption methods built-into db4o, is called simple ._
+encryption. To use it, the following two methods have to be called, ._
+before a database file is created: 
+.c Db4o.configure().encrypt(true);
+Db4o.configure().password("yourEncryptionPasswordHere"); ..
+
+The security standard of the built-in encryption functionality ._
+is not very high, not much more advanced than ._
+"substract 5 from every byte". This is great for systems with limited ._
+resources, or where the encryption needs to be done as quickly as possible.
+
+.1 Custom Encryption Adapters ..
+
+db4o still provides a solution for high-security encryption by ._
+allowing any user to choose his own encryption mechanism that ._
+he thinks he needs. The db4o file IO mechanism is pluggable and any fixed-length ._
+encryption mechanism can be added. All that needs ._
+to be done is to write an IoAdapter plugin for db4o file IO.
+
+This is a lot easier than it sounds. Simply:
+- take the sources of com.db4o.io.RandomAccessFileAdapter as an example
+- write your own IoAdapter implementation that delegates raw file ._
+access to another adapter using the GoF decorator pattern.
+- Implement the #read() and #write() methods to encrypt and decrypt ._
+when bytes are being exchanged with the file
+- plug your adapter into db4o with the following method:
+.c Db4o.configure().io(new MyEncryptionAdapter()); ..
+
+However, you'll have to keep in mind that db4o will write partial udates. ._
+For example, it may write a full object and then only modify one field ._
+entry later one. Therefore it is not sufficient to en-/decrypt each access ._
+in isolation. You'll rather have to make up a tiling structure that defines ._
+the data chunks that have to be en-/decrypted together.
+
+Another method to inject encryption capabilities into db4o for instances ._
+of specific classes only is to implement and configure an en-/decrypting ._
+translator.

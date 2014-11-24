@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="464" MadCap:lastWidth="586">
+  <head />
+  <body>
+    <h1>Immediate Queries</h1>
+    <p>This is the default query mode:
+the whole query result is evaluated upon query execution and an object IDs list is
+produced as a result. </p>
+    <p>Obviously evaluation
+takes some time and in a case of big result sets you will have to wait for a long
+time before the first result will be returned. This is especially unpleasant in
+a client-server setup, when query processing can block the server for seconds.</p>
+    <p>This mode makes the whole
+objects result set available at once. An result list is built based on the committed
+state in the database. As soon as a result is delivered it won't be changed
+neither by changes in current transaction neither by committed changes from
+another transactions. </p>
+    <p>Note that the result set contains
+only references to objects you were querying for, which means that if an
+object field has changed by the time of the actual object retrieval from the
+object set - you will get the new field value:</p>
+    <h2>Advantages</h2>
+    <ul>
+      <li>If the query is intended to iterate through the entire resulting ObjectSet, this mode will be slightly faster than the
+others.</li>
+      <li>The query will process without intermediate
+side effects from changed objects (by the caller or by other transactions).</li>
+    </ul>
+    <h2>Disadvantages</h2>
+    <ul>
+      <li>Query processing can block the server for a long time.</li>
+      <li>In comparison to the other modes it will take longest until the first
+results are returned.</li>
+      <li>The ObjectSet will require a considerate amount of memory to hold the
+IDs of all found objects.</li>
+    </ul>
+  </body>
+</html>

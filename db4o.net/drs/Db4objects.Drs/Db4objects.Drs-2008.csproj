@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B8BF0B55-AB4E-4335-80D1-DEDAD410FAD6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4objects.Drs</RootNamespace>
+    <AssemblyName>Db4objects.Drs</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SignAssembly>true</SignAssembly>
+<AssemblyOriginatorKeyFile>../../db4objects.snk</AssemblyOriginatorKeyFile>
+</PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Db4objects.Drs.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Db4objects.Drs.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+  </ItemGroup>
+  <ItemGroup>
+<Compile Include="Db4objects.Drs\Db4o\Db4oClientServerReplicationProvider.cs"/>
+<Compile Include="Db4objects.Drs\Db4o\Db4oEmbeddedReplicationProvider.cs"/>
+<Compile Include="Db4objects.Drs\Db4o\Db4oProviderFactory.cs"/>
+<Compile Include="Db4objects.Drs\Db4o\Db4oReplicationProviderSignature.cs"/>
+<Compile Include="Db4objects.Drs\Db4o\Db4oReplicationReferenceImpl.cs"/>
+<Compile Include="Db4objects.Drs\Db4o\Db4oSignatureMap.cs"/>
+<Compile Include="Db4objects.Drs\Db4o\IDb4oReplicationProvider.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\DrsUUIDImpl.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\IDrsUUID.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\LinePrinter.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\Logger4.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\Logger4Support.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\Signature.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\Signatures.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\StackAnalyzer.cs"/>
+<Compile Include="Db4objects.Drs\Foundation\TimeStamps.cs"/>
+<Compile Include="Db4objects.Drs\IObjectState.cs"/>
+<Compile Include="Db4objects.Drs\IReplicationEvent.cs"/>
+<Compile Include="Db4objects.Drs\IReplicationEventListener.cs"/>
+<Compile Include="Db4objects.Drs\IReplicationProvider.cs"/>
+<Compile Include="Db4objects.Drs\IReplicationSession.cs"/>
+<Compile Include="Db4objects.Drs\Inside\CollectionHandlerImpl.cs"/>
+<Compile Include="Db4objects.Drs\Inside\DefaultReplicationEventListener.cs"/>
+<Compile Include="Db4objects.Drs\Inside\DrsDebug.cs"/>
+<Compile Include="Db4objects.Drs\Inside\GenericReplicationSession.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ICollectionHandler.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ICollectionSource.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ICounterpartFinder.cs"/>
+<Compile Include="Db4objects.Drs\Inside\IReadonlyReplicationProviderSignature.cs"/>
+<Compile Include="Db4objects.Drs\Inside\IReplicationProviderInside.cs"/>
+<Compile Include="Db4objects.Drs\Inside\IReplicationReference.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ISimpleObjectContainer.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ITestableReplicationProvider.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ITestableReplicationProviderInside.cs"/>
+<Compile Include="Db4objects.Drs\Inside\InstanceReplicationPreparer.cs"/>
+<Compile Include="Db4objects.Drs\Inside\MapHandler.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ObjectStateImpl.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ReplicationEventImpl.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ReplicationReferenceImpl.cs"/>
+<Compile Include="Db4objects.Drs\Inside\ReplicationReflector.cs"/>
+<Compile Include="Db4objects.Drs\Inside\Traversal\FieldIterators.cs"/>
+<Compile Include="Db4objects.Drs\Inside\Traversal\GenericTraverser.cs"/>
+<Compile Include="Db4objects.Drs\Inside\Traversal\ICollectionFlattener.cs"/>
+<Compile Include="Db4objects.Drs\Inside\Traversal\ICollectionTraverser.cs"/>
+<Compile Include="Db4objects.Drs\Inside\Traversal\ITraverser.cs"/>
+<Compile Include="Db4objects.Drs\Inside\Traversal\IVisitor.cs"/>
+<Compile Include="Db4objects.Drs\Replication.cs"/>
+<Compile Include="Db4objects.Drs\ReplicationConflictException.cs"/>
+<Compile Include="Properties\AssemblyInfo.cs"/>
+<Compile Include="native\Db4objects.Drs\Foundation\ObjectSetAbstractFacade.cs"/>
+<Compile Include="native\Db4objects.Drs\Foundation\ObjectSetCollection4Facade.cs"/>
+<Compile Include="native\Db4objects.Drs\Inside\ReplicationPlatform.cs"/>
+</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Db4objects.Db4o.CS\Db4objects.Db4o.CS-2008.csproj">
+      <Project>{9FA8178A-3E77-42C5-A252-6690EA9BA257}</Project>
+      <Name>Db4objects.Db4o.CS-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o\Db4objects.Db4o-2008.csproj">
+      <Project>{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}</Project>
+      <Name>Db4objects.Db4o-2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

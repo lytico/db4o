@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">SQLiteDatabase db = database();
+db.execSQL(<span style="color:#A31515;">&quot;INSERT INTO REG_RECORDS (id,year) VALUES ('A1', DATETIME('NOW'))&quot;</span>);
+
+ContentValues updateValues = <span style="color:Blue;">new</span> ContentValues();
+updateValues.put(<span style="color:#A31515;">&quot;reg_record&quot;</span>, <span style="color:#A31515;">&quot;A1&quot;</span>);
+<span style="color:Blue;">int</span> count = db.update(DB_TABLE_CAR, updateValues,
+		<span style="color:#A31515;">&quot;pilot IN (SELECT id FROM &quot;</span> + DB_TABLE_PILOT
+				+ <span style="color:#A31515;">&quot; WHERE points = 15)&quot;</span>, <span style="color:Blue;">null</span>);
+<span style="color:Blue;">if</span> (count == 0) {
+	logToConsole(0, <span style="color:#A31515;">&quot;Car not found, refill the database to continue.&quot;</span>,
+			<span style="color:Blue;">false</span>);
+} <span style="color:Blue;">else</span> {
+	Cursor c = db.rawQuery(<span style="color:#A31515;">&quot;SELECT c.model, r.id, r.year from car c, &quot;</span>
+			+ <span style="color:#A31515;">&quot;REG_RECORDS r, pilot p where c.reg_record = r.id &quot;</span>
+			+ <span style="color:#A31515;">&quot;AND c.pilot = p.id AND p.points = 15;&quot;</span>, <span style="color:Blue;">null</span>);
+	<span style="color:Blue;">if</span> (c.getCount() == 0) {
+		logToConsole(0,
+				<span style="color:#A31515;">&quot;Car not found, refill the database to continue.&quot;</span>,
+				<span style="color:Blue;">false</span>);
+		<span style="color:Blue;">return</span>;
+	}
+	c.moveToFirst();
+	String date = c.getString(2);
+	
+	Date dt = parseDate(date);
+	RegistrationRecord record = <span style="color:Blue;">new</span> RegistrationRecord(c.getString(1),dt);
+	
+	Car car = <span style="color:Blue;">new</span> Car();
+	car.setModel(c.getString(0));
+	car.setRegistration(record);
+	logToConsole(startTime, <span style="color:#A31515;">&quot;Updated Car (&quot;</span> + car + <span style="color:#A31515;">&quot;): &quot;</span>, <span style="color:Blue;">true</span>);
+}</pre>
+		<div class="codesnippet-meta">
+			SqlExample.java: update a car with SQLite
+			<div class="codedownload">
+				<a href="Example-db4odoc-android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

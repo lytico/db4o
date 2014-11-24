@@ -1,0 +1,50 @@
+package decaf.collections;
+
+import java.lang.*;
+import java.util.*;
+
+class MyIterable implements com.db4o.foundation.IterableBase {
+	public Iterator iterator() {
+		return new ArrayList().iterator();
+	}
+}
+
+class IterableMapping {
+	public void test() {
+		justIterate(com.db4o.foundation.IterableBaseFactory.coerce(new ArrayList()));		
+		justIterateGeneric(com.db4o.foundation.IterableBaseFactory.coerce(new ArrayList()));
+		justIterate(com.db4o.foundation.IterableBaseFactory.coerce(new MyIterable()));
+		doCast(com.db4o.foundation.IterableBaseFactory.coerce(new ArrayList()));
+	}
+	
+	private void justIterate(com.db4o.foundation.IterableBase iterable) {
+		for (java.util.Iterator vIter = iterable.iterator(); vIter.hasNext();) {
+			final int v = ((Integer) vIter.next()).intValue();
+			System.out.println(v);
+		}
+	}
+	
+	private void justIterateGeneric(com.db4o.foundation.IterableBase iterable) {
+		for (java.util.Iterator vIter = iterable.iterator(); vIter.hasNext();) {
+			final Object v = vIter.next();
+			System.out.println("First Pass: " + v);
+		}
+	
+		for (java.util.Iterator v2Iter = iterable.iterator(); v2Iter.hasNext();) {
+			final Object v2 = v2Iter.next();
+			System.out.println("Second Pass: " + v2);
+		}
+	}
+
+	private com.db4o.foundation.IterableBase doCast(com.db4o.foundation.IterableBase iterable) {
+		List list = (List)com.db4o.foundation.IterableBaseFactory.unwrap(iterable);
+		com.db4o.foundation.IterableBase iterable2 = com.db4o.foundation.IterableBaseFactory.coerce(list);
+		com.db4o.foundation.IterableBase iterable3 = com.db4o.foundation.IterableBaseFactory.coerce(null);
+		iterable3 = com.db4o.foundation.IterableBaseFactory.coerce(list);
+		
+		return com.db4o.foundation.IterableBaseFactory.coerce(list);
+	}
+	
+	private static final com.db4o.foundation.IterableBase fieldTest = com.db4o.foundation.IterableBaseFactory.coerce(new ArrayList());
+	
+}

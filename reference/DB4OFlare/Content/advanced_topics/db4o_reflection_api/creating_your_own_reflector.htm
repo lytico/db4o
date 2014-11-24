@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3867" MadCap:lastWidth="609">
+  <head />
+  <body>
+    <h1>Creating your own reflector</h1>
+    <p>By default db4o uses the <span MadCap:conditions="Primary.Java">JdkReflector </span><span MadCap:conditions="Primary..NET">NetReflector</span>. As alternative you can create your own reflector and use it with db4o. In order to do so you need to implement the <span MadCap:conditions="Primary..NET">I</span>Reflector interface. And then pass an instance of your implementation to db4o.</p>
+    <p>Here's an example of a  logging reflector. Its only difference from standard reflector is that information about loaded classes is outputted to console:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/reflection/ReflectorExamples-Logging-reflector.all.flsnp" />
+  </body>
+</html>

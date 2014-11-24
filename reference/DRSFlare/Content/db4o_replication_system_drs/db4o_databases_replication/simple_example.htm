@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2245" MadCap:lastWidth="679">
+    <head><title>Simple Example	of db4o to db4o Replication</title>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Replication:Simple Example;dRS:Simple Example;Replication:Unidirectional;dRS:Unidirectional Replication" />Simple Example</h1>
+        <p>A db4o-to-db4o replication is easy to use and easy to set up. There are only two steps required to get the replication started.</p>
+        <p>First ensure that you have added the dRS-<MadCap:variable name="Primary.Artefact"></MadCap:variable> to your project. <MadCap:xref href="../getting_started.htm" target="" title="" alt="">See "Getting Started" </MadCap:xref></p>
+        <p>The replication process needs two things. An UUID for each object to identify it across multiple databases. Furthermore every object needs a version-number to detect updates.  By default db4o doesn't generate a UUID nor keeps timestamps. So you need to configure this explicitly:                   <![CDATA[ ]]></p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Configure-db4o-to-generate-UUIDs-and-commit-timestamps.all.flsnp" />
+        <p>After this preparation you can store, retrieve and update normally. To start the replication-process open the two databases which take part in the replication. Then create an replication-session by passing the replication partners to the replication factory.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Prepare-unidirectional-replication.all.flsnp" />
+        <p>Now the system is ready for replication. First request all changes from a replication partner. The replication session will return all objects which have been created or updated since the last replication. Then iterate over the returned objects and replicate object by object.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-One-direction-replication.all.flsnp" />
+        <p>To complete the replication, call commit on the replication session. This commit stores all changes in replication partners and finishes the running transactions. Furthermore it marks the objects as replicated to ensure that future replications only include the new changes. Without the commit call the replication-changes will be discarded! </p>
+    </body>
+</html>

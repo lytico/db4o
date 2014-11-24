@@ -1,0 +1,4 @@
+%_topdir @rpmtopdir@
+%_signature gpg
+%_gpg_name @gpguser@
+%_gpgbin /usr/bin/gpg

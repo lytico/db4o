@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">SQLiteDatabase db = database();
+Cursor cursor = db.rawQuery(
+		<span style="color:#A31515;">&quot;SELECT c.model, p.name, p.points, r.id, r.year&quot;</span> + <span style="color:#A31515;">&quot; FROM &quot;</span>
+				+ DB_TABLE_CAR + <span style="color:#A31515;">&quot; c, &quot;</span> + DB_TABLE_PILOT + <span style="color:#A31515;">&quot; p &quot;</span>
+				+ <span style="color:#A31515;">&quot;WHERE c.pilot = p.id AND p.points = ?;&quot;</span>,
+		<span style="color:Blue;">new</span> String[] { <span style="color:#A31515;">&quot;15&quot;</span> });
+cursor.moveToFirst();
+
+Pilot pilot = <span style="color:Blue;">new</span> Pilot();
+pilot.setName(cursor.getString(1));
+pilot.setPoints(cursor.getInt(2));
+
+Car car = <span style="color:Blue;">new</span> Car();
+car.setModel(cursor.getString(0));
+car.setPilot(pilot);</pre>
+		<div class="codesnippet-meta">
+			SqlExample.java: select a car from SQLite
+			<div class="codedownload">
+				<a href="Example-db4odoc-android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

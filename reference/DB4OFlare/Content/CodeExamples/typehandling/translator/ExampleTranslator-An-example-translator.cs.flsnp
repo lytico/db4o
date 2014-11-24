@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">internal</span> <span style="color:Blue;">class</span> ExampleTranslator : IObjectConstructor
+{
+    <span style="color:Green;">// This is called to store the object</span>
+    <span style="color:Blue;">public</span> <span style="color:Blue;">object</span> OnStore(IObjectContainer objectContainer, <span style="color:Blue;">object</span> objToStore)
+    {
+        NonStorableType notStorable = (NonStorableType) objToStore;
+        <span style="color:Blue;">return</span> notStorable.Data;
+    }
+
+    <span style="color:Green;">// This is called when the object is activated</span>
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> OnActivate(IObjectContainer objectContainer, <span style="color:Blue;">object</span> targetObject, <span style="color:Blue;">object</span> storedObject)
+    {
+        NonStorableType notStorable = (NonStorableType) targetObject;
+        notStorable.Data = (String) storedObject;
+    }
+
+    <span style="color:Green;">// Tell db4o which type we use to store the data</span>
+    <span style="color:Blue;">public</span> Type StoredClass()
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">typeof</span> (String);
+    }
+
+    <span style="color:Green;">// This method is called when a new instance is needed</span>
+    <span style="color:Blue;">public</span> <span style="color:Blue;">object</span> OnInstantiate(IObjectContainer objectContainer, <span style="color:Blue;">object</span> storedObject)
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> NonStorableType(<span style="color:#A31515;">&quot;&quot;</span>);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			ExampleTranslator.cs: An example translator
+			<div class="codedownload">
+				<a href="Example-typehandling-translator-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

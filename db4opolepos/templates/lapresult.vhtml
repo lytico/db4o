@@ -1,0 +1,51 @@
+#set($circuit=$graph.circuit())
+#set($lap=$graph.lap())
+<h3>$circuit.name() : $lap.name()</h3>
+<dd>$!circuit.description()</dd><br><br><br>
+<table border="0" bgcolor="#000000" align="center" width="754" cellpadding="3" cellspacing="2">
+<tr>
+	<th align="right" bgcolor="#c0c0c0">t [time in ms]</th>
+#foreach($setup in $graph.setups())
+	<th align="left" bgcolor="#c0c0c0">
+#foreach($property in $setup.properties())
+		$property.name():$property.value()<br>
+#end
+	</th>
+#end
+</tr>
+#foreach($teamcar in $graph.teamCars())
+<tr>
+	<th align="right" bgcolor="#c0c0c0"><strong>#if($teamcar.website())<a href="$teamcar.website()" target="_blank">#end $teamcar.name()#if($teamcar.website())</a>#end</th>
+#foreach($setup in $graph.setups())
+	<td align="right" bgcolor="#ffffff">$graph.timeFor($teamcar,$setup)</td>
+#end
+</tr>
+#end
+</table>
+<p align="center">
+<img src="${fileprefix}_time.jpg" border="2" bordercolor="#000000"/>
+</p>
+
+<table border="0" bgcolor="#000000" align="center" width="754" cellpadding="3" cellspacing="2">
+<tr>
+	<th align="right" bgcolor="#c0c0c0">m [memory in byte]</th>
+#foreach($setup in $graph.setups())
+	<th align="left" bgcolor="#c0c0c0">
+#foreach($property in $setup.properties())
+		$property.name():$property.value()<br>
+#end
+	</th>
+#end
+</tr>
+#foreach($teamcar in $graph.teamCars())
+<tr>
+	<th align="right" bgcolor="#c0c0c0"><strong>#if($teamcar.website())<a href="$teamcar.website()" target="_blank">#end $teamcar.name()#if($teamcar.website())</a>#end</th>
+#foreach($setup in $graph.setups())
+	<td align="right" bgcolor="#ffffff">$graph.memoryFor($teamcar,$setup)</td>
+#end
+</tr>
+#end
+</table>
+<p align="center">
+<img src="${fileprefix}_memory.jpg" border="2" bordercolor="#000000"/>
+</p>

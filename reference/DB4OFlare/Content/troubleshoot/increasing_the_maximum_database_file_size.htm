@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="681" MadCap:lastWidth="539">
+    <head />
+    <body>
+        <h1>Increasing the Maximum Database File Size</h1>
+        <p>To increase the database size you need to increase the block size. This configuration setting has only an effect when you create a new database or when you defragment an existing database. <MadCap:xref href="../configuration/file/block_size.htm" target="" title="" alt="">See "Block Size"</MadCap:xref></p>
+        <p>When you want to know what contributes to the <a href="database_size.htm">database file size see here</a>.</p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/file/FileConfiguration-Increase-block-size-for-larger-databases.all.flsnp" />
+        <h2>Advantage</h2>
+        <p>Increasing the block size from the default of one to a higher value permits you to store more data in a db4o database.</p>
+        <h2>Effect</h2>
+        <p>By
+default db4o databases can have a maximum size of 2GB. By
+increasing the block size, the upper
+limit for database files sizes can be raised to multiples of 2GB. Any
+value between 1 byte (2GB) to 127 bytes (254GB) can be chosen as the
+block size.</p>
+        <p>Because of possible padding for objects that are not
+exact multiples in length of the block size, database files will
+naturally tend to be bigger when a higher value is chosen. It may also leads to more file cache misses and therefore can decrease performance.</p>
+        <p>A very good choice for this value is 8, because that corresponds to the slot length of the pointers
+(address + length) that db4o internally uses.</p>
+    </body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">long</span> moneyInOurAccounts = 0;
+<span style="color:Blue;">var</span> bankAccounts = <span style="color:Blue;">from</span> BankAccount b <span style="color:Blue;">in</span> container <span style="color:Blue;">select</span> b;
+<span style="color:Blue;">foreach</span> (BankAccount account <span style="color:Blue;">in</span> bankAccounts)
+{
+    Console.WriteLine(<span style="color:#A31515;">&quot;This account has &quot;</span> + account.Money);
+    moneyInOurAccounts += account.Money;
+    MoveMoneyTransactionFinishes();
+}
+<span style="color:Green;">// We get the wrong answer here</span>
+Console.WriteLine(<span style="color:#A31515;">&quot;The money total is {0}. Expected is {1}&quot;</span>,
+                  moneyInOurAccounts, InitialMoneyOnOneAccount*bankAccounts.Count());</pre>
+		<div class="codesnippet-meta">
+			InconsistentStateRead.cs: We list the bank accounts and sum up the money
+			<div class="codedownload">
+				<a href="Example-Code-transactions-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+
+
+  <type name="Db4objects.Db4o.TA.TransparentActivationSupport">
+    <doc>
+	 <summary>
+	 Configuration item that enables Transparent Activation Mode for this
+	 session.
+	 </summary>
+	 <remarks>
+	 Configuration item that enables Transparent Activation Mode for this
+	 session. TA mode should be switched on explicitly for manual TA implementation:
+	 <br /><br />
+	 commonConfiguration.Add(new TransparentActivationSupport());
+	 </remarks>
+	 <seealso cref="Db4objects.Db4o.TA.TransparentPersistenceSupport"></seealso>
+	
+
+    </doc>
+  </type>
+

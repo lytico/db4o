@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/objectmanager-api"/>
+	<classpathentry kind="lib" path="lib/db4o-sql.jar"/>
+	<classpathentry kind="lib" path="lib/forms-1.0.7.jar"/>
+	<classpathentry kind="lib" path="lib/looks-2.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/xpp3_min-1.1.3.4.O.jar"/>
+	<classpathentry kind="lib" path="lib/xstream-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/objectmanager-api/lib/db4o-java1.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

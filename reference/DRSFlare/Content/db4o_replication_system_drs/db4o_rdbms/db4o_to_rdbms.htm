@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="817" MadCap:lastWidth="665">
+    <head>
+    </head>
+    <body>
+        <h1>Replicate From db4o To Hibernate</h1>
+        <p>After <a href="getting_started.htm">setting up</a> Hibernate you can start replicating objects. First you need to configure Hibernate to support the replication system. Additionally you need to enable UUIDs and version numbers on the db4o side.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/rdms/Db4oRDBMSReplicationExamples-Prepare-the-Hibernate-configuration.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/drs/rdms/Db4oRDBMSReplicationExamples-Configure-db4o-to-generate-UUIDs-and-commit-timestamps.all.flsnp" />
+        <h2>Start The Replication</h2>
+        <p>After configuring Hibernate and db4o, the system is ready for replication. Like the <a href="../db4o_databases_replication/simple_example.htm">db4o to db4o</a> replication you start by creating a replication-session. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/rdms/Db4oRDBMSReplicationExamples-Prepare-replication.all.flsnp" />
+        <p>After that you can request for the changed objects and replicate object by object to Hibernate:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/rdms/Db4oRDBMSReplicationExamples-Replicate-from-db4o-to-hibernate.all.flsnp" />
+    </body>
+</html>

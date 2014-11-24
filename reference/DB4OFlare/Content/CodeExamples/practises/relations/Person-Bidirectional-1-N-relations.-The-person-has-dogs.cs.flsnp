@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> ICollection&lt;Dog&gt; owns = <span style="color:Blue;">new</span> HashSet&lt;Dog&gt;();
+
+<span style="color:Green;">// The add and remove method ensure that the relations is always consistent</span>
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> AddOwnerShipOf(Dog dog)
+{
+    owns.Add(dog);
+    dog.Owner = <span style="color:Blue;">this</span>;
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> RemoveOwnerShipOf(Dog dog)
+{
+    owns.Remove(dog);
+    dog.Owner = <span style="color:Blue;">null</span>;
+}
+
+<span style="color:Blue;">public</span> IEnumerable&lt;Dog&gt; OwnedDogs
+{
+    <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> owns; }
+}</pre>
+		<div class="codesnippet-meta">
+			Person.cs: Bidirectional 1-N relations. The person has dogs
+			<div class="codedownload">
+				<a href="Example-practises-relations-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

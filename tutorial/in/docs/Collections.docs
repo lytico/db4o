@@ -1,0 +1,111 @@
+.n
+.a Collections ..
+.0 Collections and Arrays ..
+
+We will slowly move towards real-time data processing now ._
+by installing sensors to our car and collecting their output.
+
+.s com.db4odoc.f1.chapter4.SensorReadout ..
+
+A car may produce its current sensor readout when requested and keep ._
+a list of readouts collected during a race.
+
+.s com.db4odoc.f1.chapter4.Car ..
+
+We will constrain ourselves to rather static data at the moment and add ._
+flexibility during the next chapters.
+
+.1 Storing ..
+
+This should be familiar by now.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#storeFirstCar -out ..
+
+The second car will take two snapshots immediately at startup.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#storeSecondCar -out ..
+
+.1 Retrieving ..
+
+.2 QBE ..
+
+First let us verify that we indeed have taken snapshots.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveAllSensorReadout ..
+
+As a prototype for an array, we provide an array of the same type, ._
+containing only the values we expect the result to contain.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveSensorReadoutQBE ..
+
+Note that the actual position of the given elements in the prototype ._
+array is irrelevant.
+
+To retrieve a car by its stored sensor readouts, we install ._
+a history containing the sought-after values.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveCarQBE ..
+
+We can also query for the collections themselves, since they are ._
+first class objects.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveCollections ..
+
+This doesn't work with arrays, though.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveArrays ..
+
+.2 Native Queries ..
+
+If we want to use Native Queries to find SensorReadouts with matching ._
+values, we simply write this as if we would check every single instance:
+
+.? net .s com.db4odoc.f1.chapter4.CollectionsExample#retrieveSensorReadoutPredicate +{} -run ..s  ..?
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveSensorReadoutNative ..s
+
+And here's how we find Cars with matching readout values:
+
+.? net .s com.db4odoc.f1.chapter4.CollectionsExample#retrieveCarPredicate +{} -run ..s  ..?
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveCarNative ..s
+
+.2 Query API ..
+
+Handling of arrays and collections is analogous to the previous ._
+example. First, lets retrieve only the SensorReadouts with specific values:
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveSensorReadoutQuery ..
+
+Then let's get some Cars with matching Readout values:
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#retrieveCarQuery ..
+
+.1 Updating and deleting ..
+
+This should be familiar, we just have to remember to take care of ._
+the update depth.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#updateCar ..
+
+There's nothing special about deleting arrays and collections, too.
+
+Deleting an object from a collection is an update, too, of course.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#updateCollection ..
+
+(This example also shows that with db4o it is quite easy to access object ._
+internals we were never meant to see. Please keep this always in mind ._
+and be careful.)
+
+We will delete all cars from the database again to prepare for the next chapter.
+
+.s com.db4odoc.f1.chapter4.CollectionsExample#deleteAll -out ..
+
+.1 Conclusion ..
+
+Ok, collections are just objects. But why did we have to specify the concrete ._
+ArrayList type all the way? Was that necessary? How does db4o handle inheritance? ._
+We will cover that in the  .l Inheritance next chapter ..l.
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter4.CollectionsExample ..

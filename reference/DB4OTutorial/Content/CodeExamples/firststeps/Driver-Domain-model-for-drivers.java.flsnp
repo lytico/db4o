@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Driver {
+    <span style="color:Blue;">private</span> String name;
+    <span style="color:Blue;">private</span> Car mostLovedCar;
+
+    <span style="color:Blue;">public</span> Driver(String name) {
+        <span style="color:Blue;">this</span>.name = name;
+    }
+
+    <span style="color:Blue;">public</span> Driver(String name, Car mostLovedCar) {
+        <span style="color:Blue;">this</span>.name = name;
+        <span style="color:Blue;">this</span>.mostLovedCar = mostLovedCar;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> setName(String name) {
+        <span style="color:Blue;">this</span>.name = name;
+    }
+
+    <span style="color:Blue;">public</span> String getName() {
+        <span style="color:Blue;">return</span> name;
+    }
+
+    <span style="color:Blue;">public</span> Car getMostLovedCar() {
+        <span style="color:Blue;">return</span> mostLovedCar;
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Driver.java: Domain model for drivers
+			<div class="codedownload">
+				<a href="Example-tutorial-firststeps-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

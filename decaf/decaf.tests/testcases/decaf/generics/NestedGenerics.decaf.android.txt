@@ -1,0 +1,19 @@
+package decaf.generics;
+
+class NestedGenerics<T> {
+
+	public T field;
+	
+	public T get() {
+		return field;
+	}
+	
+	static void main() {
+		NestedGenerics<NestedGenerics<String>> nested = new NestedGenerics<NestedGenerics<String>>();
+		System.out.println(nested.field.field);
+		System.out.println(nested.get().get());
+		nested.get().get();
+		System.out.println((nested.field).field);
+		System.out.println((nested).field.field);
+	}
+}

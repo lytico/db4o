@@ -1,0 +1,16 @@
+bin
+build
+dist
+*~
+.nbintdb
+data
+mckoi.conf
+velocity.log
+derby.log
+poleposition-0.10
+poleposition-0.10.zip
+openaccess.jdolog
+openaccess.jdoperf
+versant.sql
+poleposition-0.20
+poleposition-0.20.zip

@@ -1,0 +1,18 @@
+.0 Welcome ..
+This documentation introduces the db4o Replication System (dRS).
+
+dRS provides replication functionality to periodically synchronize ._
+databases that work disconnected from each other, such as remote autonomous servers ._
+or handheld devices synchronizing with central servers.
+
+dRS supports synchronizing objects between db4o, Versant Object Database (VOD) and ._
+relational databases through Hibernate.
+
+Before you start, please make sure that you have downloaded the latest ._
+dRS distribution from the  .l http://developer.db4o.com/Files/ download area ..  of ._
+the  .l http://www.db4o.com db4objects website .. .
+
+We invite you to join the db4o community in the public ._
+.l http://developer.db4o.com/forums/ db4o forums ..  to ask for help at any time. You may also ._
+find the  .l http://developer.db4o.com/Resources/kb.aspx db4o knowledgebase .. ._
+helpful for keyword searches.

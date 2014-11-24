@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo PUBLIC '-//Sun Microsystems, Inc.//DTD Java Data Objects Metadata 2.2//EN' 'http://java.sun.com/dtd/jdo_2_2.dtd'>
+<jdo>
+    <package name="drs.vod.example.model">
+    	<class name="drs.vod.example.model.Book"/>
+    	<class name="drs.vod.example.model.Customer"/>
+    	<class name="drs.vod.example.model.Order"/>
+    </package>    
+</jdo>    
+

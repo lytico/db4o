@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">static</span> <span style="color:Blue;">class</span> DiagnosticFilter <span style="color:Blue;">implements</span> DiagnosticListener{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">final</span> Set&lt;Class&gt; filterFor;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">final</span> DiagnosticListener delegate;
+
+    <span style="color:Blue;">private</span> DiagnosticFilter(DiagnosticListener delegate,Class&lt;? <span style="color:Blue;">extends</span> Diagnostic&gt;...filterFor) {
+        <span style="color:Blue;">this</span>.delegate = delegate;
+        <span style="color:Blue;">this</span>.filterFor = <span style="color:Blue;">new</span> HashSet&lt;Class&gt;(Arrays.asList(filterFor));
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onDiagnostic(Diagnostic diagnostic) {
+        Class&lt;?&gt; type = diagnostic.getClass();
+        <span style="color:Blue;">if</span>(filterFor.contains(type)){
+            delegate.onDiagnostic(diagnostic);
+        }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			DiagnosticsExamples.java: A simple message filter
+			<div class="codedownload">
+				<a href="Example-tuning-diagnostics-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

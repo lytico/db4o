@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="839" MadCap:lastWidth="602">
+  <head />
+  <body>
+    <h1>Allow Version Updates</h1>
+    <p>The db4o database file format is a subject to change to
+allow progress for performance and additional features.  
+ 
+db4o does not support downgrades back to previous versions of database files.  
+ 
+In order to prevent accidental upgrades when using different db4o versions, db4o does not upgrade databases by default.  
+ 
+Database upgrading can be turned on with the following configuration switch: </p>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Update-the-database-format.all.flsnp" />
+    <p style="mc-redacted: none;">Please note that, once the database file version is updated, there is no way to
+get back to the older version.  
+ 
+When a database file is opened successfully with the new db4o version, the
+upgrade of the file will take place automatically. You can simply upgrade
+database files by opening and closing a db4o database once.  <![CDATA[ ]]></p>Recommendations for upgrading:  <ul><li>Backup your database file to be able to switch back. </li><li><a href="../../advanced_topics/defragment.htm">Defragmenting</a> a database file with the new db4o version
+after upgrading can make the database more efficient.
+
+</li></ul></body>
+</html>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="549" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Monitor Reference System</h1>
+        <p>You can monitor the <a href="../../basics/indentity_concept/reference_cache.htm">reference-system</a> to find out more about the runtime behavior of your application. The reference-system ensures that each object has only one in memory representation.</p>
+        <h2>Configure the Reference System Monitoring Support</h2>
+        <p>First you need to add the monitoring support to the db4o configuration.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tuning/monitoring/ReferenceSystemMonitoring-Add-reference-system-monitoring.all.flsnp" />
+        <h2>The Freespace Statistics</h2>
+        <p><strong MadCap:conditions="Primary.Java">ObjectReferenceCount</strong><strong MadCap:conditions="Primary..NET">number of object references</strong>: Tells you how many references are currently hold in the reference-system. By default db4o uses weak references to objects. If this count is very high, you might hold unnecessary references to persisted objects in your application.</p>
+    </body>
+</html>

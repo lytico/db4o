@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Class</span> LoggingBin
+    <span style="color:Blue;">Inherits</span> BinDecorator
+    <span style="color:Blue;">Implements</span> IBin
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>(bin <span style="color:Blue;">As</span> IBin)
+        <span style="color:Blue;">MyBase</span>.<span style="color:Blue;">New</span>(bin)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Sub</span> Close()
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Close()&quot;</span>)
+        <span style="color:Blue;">MyBase</span>.Close()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> Length() <span style="color:Blue;">As</span> <span style="color:Blue;">Long</span>
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Length()&quot;</span>)
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">MyBase</span>.Length()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> Read(position <span style="color:Blue;">As</span> <span style="color:Blue;">Long</span>, bytes <span style="color:Blue;">As</span> <span style="color:Blue;">Byte</span>(), bytesToRead <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>) <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Read(&quot;</span> &amp; position &amp; <span style="color:#A31515;">&quot;, ...,&quot;</span> &amp; bytesToRead &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">MyBase</span>.Read(position, bytes, bytesToRead)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Sub</span> Sync()
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Sync()&quot;</span>)
+        <span style="color:Blue;">MyBase</span>.Sync()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> SyncRead(position <span style="color:Blue;">As</span> <span style="color:Blue;">Long</span>, bytes <span style="color:Blue;">As</span> <span style="color:Blue;">Byte</span>(), bytesToRead <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>) <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.SyncRead(&quot;</span> &amp; position &amp; <span style="color:#A31515;">&quot;, ...,&quot;</span> &amp; bytesToRead &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">MyBase</span>.SyncRead(position, bytes, bytesToRead)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Sub</span> Write(position <span style="color:Blue;">As</span> <span style="color:Blue;">Long</span>, bytes <span style="color:Blue;">As</span> <span style="color:Blue;">Byte</span>(), bytesToWrite <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>)
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Write(&quot;</span> &amp; position &amp; <span style="color:#A31515;">&quot;, ...,&quot;</span> &amp; bytesToWrite &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">MyBase</span>.Write(position, bytes, bytesToWrite)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Sub</span> Sync(runnable <span style="color:Blue;">As</span> IRunnable)
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Sync(&quot;</span> &amp; Convert.ToString(runnable) &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">MyBase</span>.Sync(runnable)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			LoggingBin.vb: A logging bin decorator
+			<div class="codedownload">
+				<a href="Example-configuration-io-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

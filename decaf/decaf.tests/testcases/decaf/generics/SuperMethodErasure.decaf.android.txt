@@ -1,0 +1,22 @@
+package decaf.generics;
+
+class SuperMethodErasure {
+
+	static class Super {
+		public <T> T retrieveOnlyInstance(Class<T> clazz) {
+			return null;
+		}
+	}
+	
+	static class Subject extends Super {
+	
+		static class Item<T> {
+		}
+		
+		public void test() {
+			Item<Integer> item1 = retrieveOnlyInstance(Item.class);
+			Item<Integer> item2 = null;
+			item2 = retrieveOnlyInstance(item1.getClass());
+		}
+	}
+}

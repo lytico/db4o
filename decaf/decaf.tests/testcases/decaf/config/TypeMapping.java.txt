@@ -1,0 +1,33 @@
+package decaf.config;
+
+class TypeMappingTest {
+	private static final SourceMappedType ttbm = getIt(new SourceMappedType());
+	private static final SourceGenericType<Integer> sgt = getIt(new SourceGenericType<Integer>());
+	
+	private static SourceMappedType getIt(final SourceMappedType ttbm) {
+		SourceMappedType smt = ttbm;
+		SourceMappedType smt1;
+		
+		smt1 = getIt(new SourceMappedType());
+		
+		return smt1;
+	}
+	
+	private static SourceGenericType<Integer> getIt(final SourceGenericType<Integer> arg) {
+		SourceGenericType<Integer> smt = arg;
+		SourceGenericType<Integer> smt1;
+		
+		smt1 = getIt(new SourceGenericType<Integer>());
+		
+		return smt1;
+	}
+}
+
+class SourceMappedType {
+}
+
+class TargetMappedType {
+}
+
+class SourceGenericType<T> {
+}

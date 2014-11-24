@@ -1,0 +1,18 @@
+public class Clone1 : System.ICloneable
+{
+	/// <exception cref="System.Exception"></exception>
+	public virtual Clone1 copy1()
+	{
+		return (Clone1)MemberwiseClone();
+	}
+
+	public static Clone1 copy2(Clone1 o)
+	{
+		return (Clone1)o.MemberwiseClone();
+	}
+
+	object System.ICloneable.Clone()
+	{
+		return MemberwiseClone();
+	}
+}

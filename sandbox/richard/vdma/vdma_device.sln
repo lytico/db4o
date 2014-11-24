@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vdma_device", "vdma_device\vdma_device.vcproj", "{7106B7C0-B135-4D38-9515-0FCAC272E255}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Pocket PC 2003 (ARMV4) = Debug|Pocket PC 2003 (ARMV4)
+		Debug|Win32 = Debug|Win32
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Pocket PC 2003 (ARMV4) = Release|Pocket PC 2003 (ARMV4)
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Debug|Mixed Platforms.ActiveCfg = Debug|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Debug|Mixed Platforms.Build.0 = Debug|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Debug|Mixed Platforms.Deploy.0 = Debug|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Debug|Pocket PC 2003 (ARMV4).ActiveCfg = Debug|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Debug|Pocket PC 2003 (ARMV4).Build.0 = Debug|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Debug|Pocket PC 2003 (ARMV4).Deploy.0 = Debug|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Debug|Win32.ActiveCfg = Debug|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Release|Mixed Platforms.ActiveCfg = Release|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Release|Mixed Platforms.Build.0 = Release|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Release|Mixed Platforms.Deploy.0 = Release|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Release|Pocket PC 2003 (ARMV4).ActiveCfg = Release|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Release|Pocket PC 2003 (ARMV4).Build.0 = Release|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Release|Pocket PC 2003 (ARMV4).Deploy.0 = Release|Pocket PC 2003 (ARMV4)
+		{7106B7C0-B135-4D38-9515-0FCAC272E255}.Release|Win32.ActiveCfg = Release|Pocket PC 2003 (ARMV4)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

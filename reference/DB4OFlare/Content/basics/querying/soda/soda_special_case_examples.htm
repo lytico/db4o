@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="4202" MadCap:lastWidth="455">
+    <head>
+    </head>
+    <body>
+        <h1>SODA Special Cases Examples</h1>
+        <p>This topic contains a examples which demonstrate special behavior for some types in SODA. Take also a look at the other <a href="soda_example_catelog.htm">SODA examples</a>.</p>
+        <h2><a name="ContainsOnCollections"></a>
+            <MadCap:keyword term="SODA:Collections" />Contains on Collections and Arrays</h2>
+        <p>Collections and arrays have a special behavior in SODA to make them easier to query. For example you can simple use a constrain directly on a collection-field to check if it contains that value.</p>
+        <MadCap:snippetBlock src="../../../Snippets/no_index_therefore_slow.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Collection-contains-constrain.all.flsnp" />
+        <h2><a name="ConstrainsOnCollectionMembers"></a>Constrains on Collection Members</h2>
+        <p>When you have a collection or array field, you can simply descend further to the collection-member fields. This allows you query for a object, which has a collection and certain objects in that collection.</p>
+        <MadCap:snippetBlock src="../../../Snippets/no_index_therefore_slow.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Descend-into-collection-members.all.flsnp" />
+        <h2><a name="ContainsKeyOnMaps"></a>Contains Key on <MadCap:variable name="Primary.Map" />s</h2>
+        <p>You can check a dictionary if it contains a certain key. Similar to collections, you just can directly use a constrain on the collection field. This will compare the value with the keys of the <MadCap:variable name="Primary.Map" />.</p>
+        <MadCap:snippetBlock src="../../../Snippets/no_index_therefore_slow.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Map-contains-a-key-constrain.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Dictionary-contains-a-key-constrain.all.flsnp" />
+        <h2><a name="FieldObjects"></a>Return the Objects of a Field</h2>
+        <p>With SODA you can navigate to a field and return the objects of that field. Note that this only works for reference objects and not for value objects like strings and numbers.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Return-the-object-of-a-field.all.flsnp" />
+        <h2><a name="MixQueryByExample"></a>Mixing With Query By Example</h2>
+        <p>When you have a reference type field, you can also use a <a href="../query_by_example.htm">query by example</a> constrain for that field. Pass a new object as an example  for this.</p>
+        <p>Note that when you pass a persisted object, it will compare it by object identity and not use it as example. You can force this behavior by adding an explicit by example constrain.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Mix-with-query-by-example.all.flsnp" />
+        <h2><a name="DynamicTypedNature"></a>Dynamically Typed</h2>
+        <p>SODA is a dynamically query language. By default SODA acts like a filter on all stored objects. You just add constrains which filters the objects to the desired output. </p>
+        <p>An example for this behavior: You just add an field-constraint without any <a href="soda_example_catelog.htm#TypeConstraint">type-constrain</a> on the object. This will return all objects which have such a field and match the constrain.</p>
+        <p>Note that such queries do not utilize any index  and therefore show bad performance.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Pure-field-constrains.all.flsnp" />
+        <p>This also means that you can query for not existing fields. SODA will not complain if a field doesn't exist. Instead it won't return any object, because no object could satisfy the constrain.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Using-not-existing-fields-excludes-objects.all.flsnp" />
+    </body>
+</html>

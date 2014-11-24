@@ -1,0 +1,6 @@
+.1 db4o Object Manager ..
+
+db4o ObjectManager is a GUI tool to browse and query the contents of any ._
+db4o database file. ObjectManager has to be downloaded seperately from ._
+the main db4o distributions. Please visit the  .l http://www.db4o.com/community/ontheroad/downloadcenter/ db4o Download Center ..  ._
+and choose the installation appropriate for your system.

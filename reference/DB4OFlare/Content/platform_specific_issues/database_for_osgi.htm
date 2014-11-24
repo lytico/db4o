@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1149" MadCap:lastWidth="644" MadCap:conditions="Primary.Java,Primary.All languages">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="OSGi" />OSGi</h1>
+    <p>db4o can run in an OSGi environment. db4o jars have a OSGi manifest so that you can use them in your project. </p>
+    <h2>Using db4o with OSGi</h2>
+    <p>In principal you can use db4o in OSGi without any special configuration, as long as the stored objects and db4o are loaded with the same OSGi classloader.</p>
+    <p> However as soon as you're using multiple bundles, and therefore multiple classloaders, you need to configure db4o. You can <a href="../configuration/common/reflector.htm">specify the class-loader explicitly</a> for db4o, or even use multiple class-loaders. This way you can lookup in multiple class-loaders for your class. First write an implementation of the JdkLoader interface:</p>
+    <MadCap:snippetBlock src="../CodeExamples/osgi/UsingDb4oDirectly-Load-classes-from-multiple-bundles.all.flsnp" />
+    <p>After that you can use your implementation to load classes for db4o:</p>
+    <MadCap:snippetBlock src="../CodeExamples/osgi/UsingDb4oDirectly-Db4o-with-a-special-OSGi-loader.all.flsnp" />
+    <p>Note also that some db4o jars have a dependency on Ant and need an Ant bundle in your OSGi application to use all features.</p>
+    <h2>Using the db4o OSGi package</h2>
+    <p>An alternative is to use the db4o OSGi package, which is in the db4o--X.XX-osgi.jar and includes all dependencies. <MadCap:xref href="../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref>. This provides a OSGi service which creates a db4o instance for you. It configures db4o in such a way that classes are loaded from the requesting OSGi service. </p>
+    <MadCap:snippetBlock src="../CodeExamples/osgi/UsingDb4oViaService-Get-db4o-osgi-service.all.flsnp" />
+    <p> </p>
+    <p> </p>
+  </body>
+</html>

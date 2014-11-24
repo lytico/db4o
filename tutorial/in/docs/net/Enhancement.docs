@@ -1,0 +1,218 @@
+.n
+.a Enhancement ..
+.0 Enhancement ..
+
+As we have seen both  .l TransparentActivation Transparent Activation ..  and ._
+ .l NativeQueries Native Queries ..  will produce correct results out-of-the-box.
+ 
+To get your application to run as fast as possible with db4o, you will want ._
+to make sure that only required objects are loaded from the database ._
+and that Native Queries are optimized to use field indexes where this is possible.
+
+Theoretically you could write all the necessary code by hand but you will save ._
+yourself a lot of time if you use automatic enhancement. Using the db4o enhancer ._
+tools you can automatically add code to your assemblies to ._
+make them work even better with db4o.
+
+There are two possible strategies to enhance your assemblies:
+.l EnhancementMSBuild Enhancement with MSBuild ..
+.l EnhancementDb4oTool Enhancement using Db4oTool ..
+
+.1 Required Libraries ..
+
+The db4o enhancer requires the following assemblies in order to work:
+
+.b Cecil.FlowAnalysis.dll ..
+IL code flow analysis
+
+.b Db4objects.Db4o.dll ..
+db4o core engine
+
+.b Db4objects.Db4o.Instrumentation.dll ..
+IL code instrumentation
+
+.b Db4objects.Db4o.NativeQueries.dll ..
+Native Query Analyzer
+
+.b Db4oTool.exe ..
+commandline tool
+
+.b Db4oTool.MSBuild.dll ..
+MSBuild tasks   
+
+.b Mono.Cecil.dll ..
+IL code handling
+
+.b Mono.GetOptions.dll ..   
+helper library for Cecil
+
+.a EnhancementMSBuild ..
+.1 Enhancement with MSBuild ..
+
+When csc (or Visual Studio, calling csc) compiles your assemblies, it uses the ._
+instructions in your csproj project files to know what to do. The "code" in csproj ._
+files is plain XML, it is very well readable and you can ._
+add your own tasks to the build by editing the files with your favourite ._
+(XML) editor.
+
+If you want the produced assemblies to be enhanced for db4o, you can add ._
+the db4o enhancer build task to your csproj files as an "AfterBuild" task.
+
+Db4oTool.MSBuild.dll contains the main MSBuild enhancer task:
+Db4oTool.MSBuild.Db4oEnhancerMSBuildTask
+
+For all possibilities of using this task see ._
+the  .l http://developer.db4o.com/Documentation.aspx  topics on transparent activation ..  in ._
+the reference documentation.
+
+The simplest enhancer task does both: It optimizes Native Queries ._
+and it adds the IActivatable interface to your classes, making sure ._
+a persistent object is activated whenever any field is read. ._
+Here is a simple example of how such an addition to MSBuild task could look like:
+
+.c <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--
+    Normal build code here   
+  -->
+  
+  <UsingTask AssemblyFile="$(OutputPath)\Db4oTool.MSBuild.dll" TaskName="Db4oTool.MSBuild.Db4oEnhancerMSBuildTask" />
+  <ItemGroup>
+    <Db4oEnhance Include="$(TargetPath)" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Db4oEnhancerMSBuildTask Assemblies="@(Db4oEnhance)" />
+  </Target>
+  
+</Project> .. 
+
+.a EnhancementDb4oTool ..
+.1 Enhancement using Db4oTool ..
+
+Db4oTool.exe is a top level command line interface to all enhancement tasks. ._
+You can either add it to your own build setup or you can directly ._
+integrate it from within Visual Studio.
+
+To get you an idea on how you can set things up, here is a step-by-step example ._
+how you could integrate Db4oTool.exe from Visual Studio.NET 2005 to do it's ._
+post-build tasks for a CompactFramework 2.0 project:
+
+- In Visual Studio, right click on the project you want to enable Native Query optimization for
+- Select  .b 'Properties' ..
+- In the Properties Page select the  .b Build Events ..  tab
+- In the  .b Post-build event command line ..  text box insert the following text:
+.b <path-to-your-db4o-installation>/bin/Db4oTool.exe -ta -nq $(TargetPath) .. ._
+(replace <path-to-your-db4o-installation> with the correct path for your system)
+
+Db4oTool.exe offers different command line options for different setups. You can ._
+get a list of options directly from Db4oTool.exe by calling
+.c Db4oTool.exe -help .. 
+
+Options may be grouped into 4 categories:
+
+.l EnhancementModes Enhancement Modes ..
+.l TargetTypeSpecification Target types (classes) specification ..
+.l OutputMode Output related options ..
+.l MiscOptions Misc Options ..
+
+.a EnhancementModes ..
+.2 Enhancement Modes ..
+
+With the options in this group you can specify which type of instrumentation you want to apply ._
+(either  .l TransparentActivation Transparent Activation  .. or  .l NQOptimization Native Queries Optimization ..  or both)
+
+     -ta : Add Transparent Activation Support
+     -nq : Optimize Native Queries
+	 -instrumentation:PARAM : Use your own instrumentation type 
+
+
+.a TargetTypeSpecification ..
+.2 Target types (classes) specification ..
+
+When enhancing an assembly it's possible to enhance all or some of its types through the following options:
+
+     -by-attribute:PARAM	Filter types to be instrumented by attribute
+     -by-filter:PARAM		Custom type filter
+     -by-name:PARAM			Filter types by name (with regular expression syntax)
+     -not					Negates the last filter
+
+Note that these filters specifies which types should be included in the enhancement ._
+process. enhanced. If you want to filter out (i.e, to not enhance some types) you ._
+can specify  .b -not  .. option.
+
+.b -by-name  .. filter expects a regular expression and will include each type whose fully qualified name ._
+matches this regular expression. 
+
+.a OutputMode ..
+.2 Output related options ..	 
+
+Output related options
+
+     -debug                  Preserve debugging information
+     -fake                   Fake operation mode, assembly won't be written
+
+
+.a MiscOptions ..
+.2 Misc Options ..
+
+     -case-sensitive         Case sensitive queries
+     -? -help                Show this help list
+     -usage                  Show usage syntax and exit
+  -v -verbose                Verbose operation mode
+  -V -version                Display version and licensing information
+     -vv                     Pretty verbose operation mode
+
+.a NQOptimization ..
+.1 Native Query Optimization ..
+
+The Native Query optimizer is still under development to eventually ._
+"understand" all valid C# constructs. Current optimization supports ._
+the following constructs well:
+
+- compile-time constants
+- simple member access
+- primitive comparisons
+- equality operator
+- #Contains()/#StartsWith()/#EndsWith() for Strings
+- boolean expressions
+- arbitrary method calls (including property accessors) on predicate fields (without any arguments)
+- candidate methods composed of the above
+- chained combinations of the above
+
+Note that the current implementation does not support polymorphism yet.
+
+If optimization is turned off or not possible for some reason, ._
+a Native Query will be executed by instantiating all objects, ._
+using  .l Evaluations SODA Evaluations .. . Naturally performance ._
+will not be as good in this case, but queries will still deliver ._
+correct results.
+
+.2 Native Query Optimization on CompactFramework 2.0 ..
+
+Due to some platform limitations, CompactFramework 2.0 users using the ._
+convenient delegate based Native Query syntax that want their queries ._
+to be optimized are required to run the Db4oTool.exe ._
+command line utility on their assemblies prior to deploying them. 
+
+The Db4oTool.exe utility, which can be found in the /bin folder of this ._
+distribution is required because the CompactFramework API does not expose ._
+any of the delegate metadata needed by the Native Query optimizer.
+
+The tool can be easily integrated inside Visual Studio.NET 2005 as a Post Build tool ._
+by following the simple steps below:
+
+- Right click the project you want to enable Native Query optimization for
+- Select .b 'Properties' ..
+- In the Properties Page select the .b 'Build Events' .. tab
+- In the .b 'Post-build event command line' .. text box insert the following text ._
+.b "<path-to-your-db4o-installation>/bin/Db4oTool.exe -nq $(TargetPath)" .. ._
+without the quotes and replacing <path-to-your-db4o-installation> to the correct ._
+value for your system.
+
+.2 Monitoring optimization ..
+
+To monitor optimization you can attach event handlers to the IObjectContainer:
+
+.c NativeQueryHandler handler = ((ObjectContainerBase)container).GetNativeQueryHandler();
+handler.QueryExecution += OnQueryExecution;
+handler.QueryOptimizationFailure += OnQueryOptimizationFailure; ..c

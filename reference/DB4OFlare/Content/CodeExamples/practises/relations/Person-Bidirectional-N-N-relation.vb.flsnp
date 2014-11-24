@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> memberIn <span style="color:Blue;">As</span> ICollection(Of Club) = <span style="color:Blue;">New</span> HashSet(Of Club)()
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">Join</span>(club <span style="color:Blue;">As</span> Club)
+    <span style="color:Blue;">If</span> <span style="color:Blue;">Not</span> memberIn.Contains(club) <span style="color:Blue;">Then</span>
+        memberIn.Add(club)
+        club.AddMember(<span style="color:Blue;">Me</span>)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Leave(club <span style="color:Blue;">As</span> Club)
+    <span style="color:Blue;">If</span> memberIn.Contains(club) <span style="color:Blue;">Then</span>
+        memberIn.Remove(club)
+        club.RemoveMember(<span style="color:Blue;">Me</span>)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">ReadOnly</span> <span style="color:Blue;">Property</span> MemberOf() <span style="color:Blue;">As</span> IEnumerable(Of Club)
+    <span style="color:Blue;">Get</span>
+        <span style="color:Blue;">Return</span> memberIn
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Get</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Property</span></pre>
+		<div class="codesnippet-meta">
+			Person.vb: Bidirectional N-N relation
+			<div class="codedownload">
+				<a href="Example-practises-relations-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

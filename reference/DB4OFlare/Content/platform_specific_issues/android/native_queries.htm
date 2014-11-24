@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Primary.Java" MadCap:lastBlockDepth="8" MadCap:lastHeight="2651" MadCap:lastWidth="635">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Android:Native Queries" />Native Queries</h1>
+        <p>Native Queries also work on Android. However there's a limitation. Android uses a special Java Virtual machine, which prevents <a href="../../basics/querying/native_queries/native_query_optimization.htm">optimizing Native Queries</a> at runtime. The solution is to optimize the queries as build-time. <MadCap:xref href="../../advanced_topics/enhancement_tools.htm" target="" title="" alt="">See "Enhancement Tools"</MadCap:xref></p>
+        <h2>Example Build Time Enhancement for Android</h2>
+        <p>This example is based on the <a href="../../advanced_topics/enhancement_tools/enhancement_for_java/build_time_enhancement.htm">build time enhancements</a>. This example only shows the important steps for optimizing the native queries for Android.</p>
+        <p>First define the enhancing task. It's important to also include the Android-platform libraries, otherwise some classes cannot be found. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/android-nq-optimisation-Define-the-task-for-the-enhancement-.all.flsnp" />
+        <p>Then define the target which enhances the classes. This example only activates the Native Query optimization. However you can also activate TA or TP support if you like. <MadCap:xref href="../../basics/update_concept/transparent_persistence.htm" target="" title="" alt="">See "Transparent Persistence"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/android-nq-optimisation-Define-a-target-which-runs-the-task-.all.flsnp" />
+        <p style="font-weight: bold;">The next step is to integrate this Ant-task in Eclipse. Right click on the project and then select 'Properties'. There switch to the 'Builders'-tab. Add a new 'Ant Builder'.</p>
+        <p> On the 'Main'-tab select the enhancement-script:</p>
+        <p>
+            <img src="ant-main.PNG" />
+        </p>
+        <p>Then go to the 'Properties'-tab. There add a new property 'android.platform' which points to the right Android-platform and version-path. You can find the platforms in you Android-SDK. The platforms are in the folder 'platforms' in the Android SDK. For example when your using the API-level 7 the platform is in the folder 'AndroidSDK/platforms/android-7'</p>
+        <p>
+            <img src="ant-propeties.PNG" />
+        </p>
+        <p>Apply all settings. The last step is to place the new created builder between the 'Java Builder' and the 'Android Package Builder':</p>
+        <p>
+            <img src="builders.PNG" />
+        </p>
+        <h2>Integrating in the Regular Build</h2>
+        <p>You simply can include the enhancer step into the regular Android build. For that include the enhancer Ant script in the build.xml and let it run during the compilation phase:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/Android/build-Run-the-enhancer-step-during-the-build.all.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

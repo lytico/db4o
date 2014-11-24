@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">final</span> EventRegistry events = EventRegistryFactory.forObjectContainer(container);
+events.deleting().addListener(<span style="color:Blue;">new</span> EventListener4&lt;CancellableObjectEventArgs&gt;() {
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onEvent(Event4&lt;CancellableObjectEventArgs&gt; events,
+                        CancellableObjectEventArgs eventArgs) {
+        <span style="color:Blue;">final</span> Object toDelete = eventArgs.object();
+        <span style="color:Blue;">if</span>(toDelete <span style="color:Blue;">instanceof</span> Pilot){
+            <span style="color:Blue;">final</span> ObjectContainer container = eventArgs.objectContainer();
+            <span style="color:Blue;">final</span> ObjectSet&lt;Car&gt; cars = container.query(<span style="color:Blue;">new</span> Predicate&lt;Car&gt;() {
+                @Override
+                <span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> match(Car car) {
+                    <span style="color:Blue;">return</span> car.getPilot() == toDelete;
+                }
+            });
+            <span style="color:Blue;">if</span>(cars.size()&gt;0){
+                eventArgs.cancel();
+            }
+        }
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			CallbackExamples.java: Referential integrity
+			<div class="codedownload">
+				<a href="Example-callbacks-examples-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

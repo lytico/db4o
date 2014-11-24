@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">SQLiteDatabase db = database();
+db.delete(DB_TABLE_CAR,
+		<span style="color:#A31515;">&quot;pilot in (select id from pilot where points = ?)&quot;</span>,
+		<span style="color:Blue;">new</span> String[]{<span style="color:#A31515;">&quot;5&quot;</span>});</pre>
+		<div class="codesnippet-meta">
+			SqlExample.java: delete a car with SQLite
+			<div class="codedownload">
+				<a href="Example-db4odoc-android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="773" MadCap:lastWidth="496">
+    <head>
+    </head>
+    <body>
+        <h1>Monitor Freespace</h1>
+        <p>You can monitor the freespace-manager to find out more about the runtime behavior of your application.</p>
+        <h2>Configure the Freespace Monitoring Support</h2>
+        <p>To monitor the freespace manager you need to add the monitoring support to the db4o configuration.
+		 	 </p>
+        <MadCap:snippetBlock src="../../CodeExamples/tuning/monitoring/FreespaceMonitoring-Monitor-the-free-space-system.all.flsnp" />
+        <h2>The Freespace Statistics</h2>
+        <p><strong MadCap:conditions="Primary.Java">AverageSlotSize</strong><strong MadCap:conditions="Primary..NET">average freespace slot size</strong>: Tells you how big the average slot is. When you store larger objects, they need larger slots to fit it. </p>
+        <p><strong MadCap:conditions="Primary.Java">ReusedSlotsPerSecond</strong><strong MadCap:conditions="Primary..NET">reused freespace slots/sec</strong>: Tells you how many slots can be reused. When an object is deleted or modified, its old slot is released and can be reused. If you modify and delete a lot of objects, but the slots cannot be reused, then the database-file will fragment. </p>
+        <p>When this number is low but the free-space increases and increases then you have a fragmentation issue. <a href="../../advanced_topics/defragment.htm">Defragment</a> your database. Use the <a href="../../configuration/id_system.htm">btree-id-system.</a></p>
+        <p><strong MadCap:conditions="Primary.Java">SlotCount</strong><strong MadCap:conditions="Primary..NET">number of freespace slots</strong>: Tells you how many slots are used by the database. As more and more objects are stored, the slot count will increase.</p>
+        <p><strong MadCap:conditions="Primary.Java">TotalFreespace</strong><strong MadCap:conditions="Primary..NET">total freespace</strong>: Tells you how much freespace there is in the database-file.A hight free-space number  with a low reused slots number indicates database fragmentation. <a href="../../advanced_topics/defragment.htm">Defragment</a> your database. Use the <a href="../../configuration/id_system.htm">btree-id-system.</a></p>
+        <p>&#160;</p>
+    </body>
+</html>

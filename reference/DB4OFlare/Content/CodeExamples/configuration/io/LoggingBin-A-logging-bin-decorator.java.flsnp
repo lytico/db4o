@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> LoggingBin <span style="color:Blue;">extends</span> BinDecorator <span style="color:Blue;">implements</span> Bin{
+    <span style="color:Blue;">public</span> LoggingBin(Bin bin) {
+        <span style="color:Blue;">super</span>(bin);
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> close() {
+        System.out.println(<span style="color:#A31515;">&quot;Called LoggingBin.close()&quot;</span>);
+        <span style="color:Blue;">super</span>.close();
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">long</span> length() {
+        System.out.println(<span style="color:#A31515;">&quot;Called LoggingBin.length()&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">super</span>.length();
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> read(<span style="color:Blue;">long</span> position, <span style="color:Blue;">byte</span>[] bytes, <span style="color:Blue;">int</span> bytesToRead) {
+        System.out.println(<span style="color:#A31515;">&quot;Called LoggingBin.read(&quot;</span>+position+<span style="color:#A31515;">&quot;, ...,&quot;</span>+bytesToRead+<span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">super</span>.read(position, bytes, bytesToRead);
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> sync() {
+        System.out.println(<span style="color:#A31515;">&quot;Called LoggingBin.sync()&quot;</span>);
+        <span style="color:Blue;">super</span>.sync();
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> syncRead(<span style="color:Blue;">long</span> position, <span style="color:Blue;">byte</span>[] bytes, <span style="color:Blue;">int</span> bytesToRead) {
+        System.out.println(<span style="color:#A31515;">&quot;Called LoggingBin.syncRead(&quot;</span>+position+<span style="color:#A31515;">&quot;, ...,&quot;</span>+bytesToRead+<span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">super</span>.syncRead(position, bytes, bytesToRead);
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> write(<span style="color:Blue;">long</span> position, <span style="color:Blue;">byte</span>[] bytes, <span style="color:Blue;">int</span> bytesToWrite) {
+        System.out.println(<span style="color:#A31515;">&quot;Called LoggingBin.write(&quot;</span>+position+<span style="color:#A31515;">&quot;, ...,&quot;</span>+bytesToWrite+<span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">super</span>.write(position, bytes, bytesToWrite);
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> sync(Runnable runnable) {
+        System.out.println(<span style="color:#A31515;">&quot;Called LoggingBin.sync(&quot;</span>+runnable+<span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">super</span>.sync(runnable);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			LoggingBin.java: A logging bin decorator
+			<div class="codedownload">
+				<a href="Example-configuration-io-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

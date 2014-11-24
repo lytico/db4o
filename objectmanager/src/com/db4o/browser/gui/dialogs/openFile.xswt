@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+    </import>
+    <x:children>
+        <composite>
+            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            <layout x:class="gridLayout" marginHeight="0" marginWidth="0" numColumns="3"/>
+            <x:children>
+            	<label x:id="HelpArea" x:style="CENTER">
+            		<layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="3"/>
+            	</label>
+            	<label text="File name:"/>
+            	<text x:id="FileName" x:style="BORDER">
+            		<layoutData x:class="gridData" minimumWidth="200" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+            	</text>
+            	<button x:id="BrowseButton" text="Browse..."/>
+            	<label text="Password:"/>
+            	<text x:id="Password" x:style="BORDER|PASSWORD">
+            		<layoutData x:class="gridData" minimumWidth="200" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="2"/>
+            	</text>
+            	<label text=""/>
+            	<label text="(Leave empty if not encrypted)">
+					<layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="2"/>
+            	</label>
+             	<label text="Read only:"/>
+            	<button x:id="ReadOnly" x:style="CHECK" />
+            </x:children>
+        </composite>
+    </x:children>
+</xswt>

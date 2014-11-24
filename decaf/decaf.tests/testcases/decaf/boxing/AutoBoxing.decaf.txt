@@ -1,0 +1,40 @@
+package decaf.boxing;
+
+class AutoUnboxing {
+
+	public Byte box(byte b) {
+		return new Byte(b);
+	}
+	
+	public Short box(short s) {
+		return new Short(s);
+	}
+	
+	public Integer box(int i) {
+		return new Integer(i);
+	}
+	
+	public Long box(long l) {
+		return new Long(l);
+	}
+	
+	public Float box(float f) {
+		return new Float(f);
+	}
+	
+	public Double box(double d) {
+		return new Double(d);
+	} 
+	
+	public Character box(char c) {
+		return new Character(c);
+	}
+	
+	public Boolean box(boolean b) {
+		return new Boolean(b);
+	}
+	
+	public void boxObject() {
+		Object obj = new Integer(42);
+	}
+}

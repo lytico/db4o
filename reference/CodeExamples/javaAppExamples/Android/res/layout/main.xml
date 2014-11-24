@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent" 
+                android:layout_height="wrap_content">
+                
+            
+ <TextView android:id="@+id/console"
+		android:text="@string/info" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+	<TextView android:id="@+id/db4o_console"
+		android:text="@string/db4o_info" 
+		android:paddingBottom="10px"
+		android:layout_width="fill_parent"
+		android:layout_height="50px"
+		android:layout_below="@id/console"/>
+	<TextView android:id="@+id/sqlite_console"
+		android:layout_width="fill_parent"
+		android:layout_height="50px"
+		android:paddingBottom="10px"
+		android:text="@string/sqlite_info"
+		android:layout_below="@id/db4o_console" />
+	<Button android:id="@+id/open_button" 
+	  		android:text="Open DB"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:layout_below="@id/sqlite_console"
+            android:layout_alignParentLeft="true"/>
+	<Button android:id="@+id/store_button" 
+	  		android:text="Store"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:layout_below="@id/sqlite_console"
+			android:layout_toRightOf="@+id/open_button"/>
+	<Button android:id="@+id/retrieve_button" 
+	  		android:text="Retrieve and Update"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@+id/store_button"
+			android:layout_below="@id/sqlite_console"/>
+	<Button android:id="@+id/close_button" 
+	  		android:text="Close"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" 
+			android:layout_below="@+id/retrieve_button"/>
+</RelativeLayout>

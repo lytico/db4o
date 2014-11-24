@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">config.common().objectClass(UniqueId.<span style="color:Blue;">class</span>).objectField(<span style="color:#A31515;">&quot;id&quot;</span>).indexed(<span style="color:Blue;">true</span>);
+config.common().add(<span style="color:Blue;">new</span> UniqueFieldValueConstraint(UniqueId.<span style="color:Blue;">class</span>, <span style="color:#A31515;">&quot;id&quot;</span>));</pre>
+		<div class="codesnippet-meta">
+			UniqueConstrainExample.java: Add the index the field and then the unique constrain
+			<div class="codedownload">
+				<a href="Example-features-uniqueconstrain-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

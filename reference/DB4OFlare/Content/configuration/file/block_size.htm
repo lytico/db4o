@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="555" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Block Size</h1>
+        <p>The block-size determines how how large a database can be. This value can be between 1 and 127. The default is 1. The resulting maximum database file size
+will be a multiple of 2GB. For example a a block-size of 8 allows a database-size up to 16 G. With the largest possible setting, 127, the database can grow up to 254 GB. A recommended setting for large database
+files is 8, since internal pointers have this length.</p>
+        <p> This configuration-setting has to be set the first time the database is created. You cannot change it for an existing database. If you want to change it, you need to <a href="../../troubleshoot/increasing_the_maximum_database_file_size.htm">deframent the database</a>.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/file/FileConfiguration-Increase-block-size-for-larger-databases.all.flsnp" />
+        <h2>Advantages and Disadvantages</h2>
+        <p>A larger value allows a larger database. However, since objects are aligned to the block size, a larger value will result in less efficient storage space usage. Furthermore a larger value may decrease the performance, because it causes more cache misses.</p>
+    </body>
+</html>

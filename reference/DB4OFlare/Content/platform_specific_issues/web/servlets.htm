@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="1381" MadCap:lastWidth="644" MadCap:conditions="Primary.Java,Primary.All languages">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Web:Servlets" />Servlets</h1>
+    <p MadCap:conditions="Primary.Java,Primary.All languages">
+      <p>Running db4o as the persistence layer of a Java web application is easy. There is no installation procedure - db4o is just another library in your application. There are only two issues that make web applications distinct from standalone programs from db4o's point of view. One is the more complex classloader environment - db4o needs to know itself  and the classes to be persisted. </p>
+      <p>The other issue is configuring, starting and shutting down the db4o correctly. This can be done at the Servlet API layer or within the web application framework you are using.</p>
+      <p>On the Servlet API layer, you could bind db4o server handling to the Servlet. </p>
+      <p>You can implement the ServletContextListener-interface, open the database when the web application starts and close when it ends.</p>
+      <MadCap:snippetBlock src="../../CodeExamples/WebAppJava/src/main/java/com/db4odoc/servlet/Db4oServletListener-db4o-instance-for-the-web-application.all.flsnp" />
+      <p>Additionally you can implement the ServletRequestListener-interface and open a <a href="web_isolation.htm">db4o-session</a> on each request.</p>
+      <MadCap:snippetBlock src="../../CodeExamples/WebAppJava/src/main/java/com/db4odoc/servlet/Db4oServletListener-a-db4o-session-for-each-request.all.flsnp" />
+      <p>This listener has to be registered in the web.xml.</p>
+      <MadCap:snippetBlock src="../../CodeExamples/WebAppJava/src/main/webapp/WEB-INF/web-register-the-listener-for-the-web-application.all.flsnp" />
+      <p>Now db4o should be available to your application classes. Each request has it own object-container. You can get the instance via its key, like this:</p>
+      <MadCap:snippetBlock src="../../CodeExamples/WebAppJava/src/main/java/com/db4odoc/servlet/ServletExample-Get-the-session-container.all.flsnp" />
+      <p>However, We strongly suggest that you use the features provided by your framework and that you consider not exposing db4o directly to your application logic. (There is nothing db4o-specific about these recommendentations, we would vote for this in the presence of any persistence layer.)</p>
+    </p>
+  </body>
+</html>

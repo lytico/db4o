@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2985" MadCap:lastWidth="567">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Transactions" />db4o Transactions</h1>
+        <p>All db4o operations are transactional and there's always a transaction running. Each object container has its own transaction running. The transaction is started implicitly. </p>
+        <p>You can commit the transaction at any time.&#160;When the commit-call returns, all changes are made persistent. </p>
+        <h2>Commit A Transactions</h2>
+        <p>In order to commit a transaction, you need to call the commit-method. This will make all changes of the current transaction persistent. When the commit call is finished, everything is safely stored. If something goes wrong during the commit-operation or the commit-operation is interrupted (power-off, crash etc) the database has the state of either before or after the commit-call. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/transactions/Transactions-Commit-changes.all.flsnp" />
+        <h2>
+            <MadCap:keyword term="Rollback" />Rollback a Transaction</h2>
+        <p>Of course you also can rollback a transaction. Just call rollback on the object container. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/transactions/Transactions-Rollback-changes.all.flsnp" />
+        <p>Note that when you rollback the changes, db4o won't rollback the objects in memory. All objects in memory will keep the state. If you want to make sure that objects in memory have the same state as in the database, you need to refresh the objects.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/transactions/Transactions-Refresh-objects-after-rollback.all.flsnp" />
+        <h2>Implicit Commits</h2>
+        <p>db4o commits implicitly when you close the object-container. The assumption is that normally you want to make the changes persistent when you close the object container. That's why it commits automatically. When you want to prevent this you should rollback the transaction before closing the container,</p>
+        <h2>Multiple Concurrent Transactions</h2>
+        <p>db4o transactions are always bound to their object container. When you want multiple concurrent transactions, you need to open multiple object containers. You can easily do this with the open session method. <MadCap:xref href="../../advanced_topics/session_containers.htm" target="" title="" alt="">See "Session Containers"</MadCap:xref></p>
+        <p>Note that in this mode, db4o uses the read committed isolation. <MadCap:xref href="isolation.htm" target="" title="" alt="">See "Isolation"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/container/sessions/Db4oSessions-Session-object-container.all.flsnp" />
+    </body>
+</html>

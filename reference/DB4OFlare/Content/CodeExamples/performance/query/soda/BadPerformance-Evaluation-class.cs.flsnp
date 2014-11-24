@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">internal</span> <span style="color:Blue;">class</span> OnlyAbcItemsEvaluation : IEvaluation
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Evaluate(ICandidate candidate)
+    {
+        <span style="color:Blue;">if</span> (candidate.GetObject() <span style="color:Blue;">is</span> <span style="color:Blue;">string</span>)
+        {
+            <span style="color:Blue;">var</span> value = (<span style="color:Blue;">string</span>) candidate.GetObject();
+            <span style="color:Blue;">if</span> (value.Equals(<span style="color:#A31515;">&quot;abc&quot;</span>))
+            {
+                candidate.Include(<span style="color:Blue;">true</span>);
+            }
+        }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			BadPerformance.cs: Evaluation class
+			<div class="codedownload">
+				<a href="Example-query-soda-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

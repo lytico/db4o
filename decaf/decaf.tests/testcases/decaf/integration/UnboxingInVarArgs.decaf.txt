@@ -1,0 +1,11 @@
+package decaf.integration;
+
+class UnboxingInVarArgs {
+
+	static void foo(int[] values) {
+	}
+	
+	static void main() {
+		foo(new int[] { (new Integer(42)).intValue(), (new Integer(-1)).intValue() });
+	}
+}

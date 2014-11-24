@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">&lt;</span><span style="color:#A31515;">path</span> <span style="color:Red;">id</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">project.classpath</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">pathelement</span> <span style="color:Red;">path</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${basedir}/bin</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">fileset</span> <span style="color:Red;">dir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">lib</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">**/*.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">fileset</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">path</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;</span><span style="color:#A31515;">taskdef</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">db4o-enhance</span><span style="color:Black;">&quot;</span>
+         <span style="color:Red;">classname</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">com.db4o.enhance.Db4oEnhancerAntTask</span><span style="color:Black;">&quot;</span>
+         <span style="color:Red;">classpathref</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">project.classpath</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span></pre>
+		<div class="codesnippet-meta">
+			simple-enhance-example.xml: Define a task for the enhancement 
+			<div class="codedownload">
+				<a href="Example-enhancement-buildtime-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="374" MadCap:lastWidth="489">
+  <head />
+  <body>
+    <h1>Commit-Time Callbacks</h1>
+    <p>Commit-time callbacks allow a user to add some specific
+behavior just before and just after a transaction is committed. </p>
+    <p>Typical use-cases for commit-time callbacks:</p>
+    <ul>
+      <li>Add constraint-violation checking before commit.</li>
+      <li>Check application-specific conditions before commit is done.</li>
+      <li>Start synchronization or backup after commit.</li>
+      <li>Notify other clients/applications about
+successful/unsuccessful commit.</li>
+    </ul>
+    <p>Commit-time callbacks can be triggered by the following 2 events:</p>
+    <ul>
+      <li>
+        <b>Committing</b>: Event
+     subscribers are notified before the container starts any meaningful commit
+     work and are allowed to cancel the entire operation by throwing an
+     exception; the object container instance is completely blocked while
+     subscribers are being notified which is both a blessing because
+     subscribers can count on a stable and safe environment and a curse because
+     it prevents any parallelism with the container;</li>
+      <li>
+        <b>Committed</b>:
+Event subscribers are notified in a separate thread after the container has completely
+finished the commit operation; exceptions if any will be ignored.
+
+</li>
+    </ul>
+  </body>
+</html>

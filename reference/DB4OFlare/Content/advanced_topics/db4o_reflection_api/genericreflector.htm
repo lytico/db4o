@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="400" MadCap:lastWidth="521">
+    <head>
+    </head>
+    <body>
+        <h1>GenericReflector</h1>
+        <p>db4o uses reflection internally for persisting and instantiating user objects. Reflection helps db4o to manage classes in a general way while saving. It also makes instantiation of objects using class name possible. However db4o reflection API can also work on generic objects when a class information is not available.</p>
+        <p>db4o uses a generic reflector as a decorator around specific reflector. The generic reflector is set when an object container is opened. All subsequent reflector calls are routed through this decorator. </p>
+        <p>The generic reflector keeps list of known classes in memory. When the generic reflector is called, it first checks its list of known classes. If the class cannot be found, the task is transferred to the delegate reflector. If the delegate fails as well, generic objects are created, which hold simulated "field values" in an array of objects.</p>
+        <p>Generic reflector makes possible the following use cases:</p>
+        <ul>
+            <li>Running a db4o server without deploying application classes.</li>
+            <li>Easier access to stored objects where classes or fields are not available.</li>
+            <li>  Building interfaces to db4o from any programming language.</li>
+        </ul>
+        <p>One of the live use cases is the ObjectManager, which uses the generic reflector to read C# objects from Java.</p>
+        <p>The generic reflector is automatically used when the class of a stored object is not found.</p>
+    </body>
+</html>

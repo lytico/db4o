@@ -1,0 +1,19 @@
+The db4o distribution comes with the following 3rd party libraries:
+
+- .l http://mono-project.com/Cecil Mono.Cecil .. (MIT/X11)
+
+Used inside Db4oTool.exe, Db4objects.Db4o.Instrumentation.dll and Db4objects.Db4o.NativeQueries.dll
+
+Cecil is used to read the CIL code during NQ anf TA enhancement.
+
+- .l http://mono-project.com/Cecil Cecil.FlowAnalysis .. (MIT/X11)
+
+Used inside Db4oTool.exe, Db4objects.Db4o.Instrumentation.dll and Db4objects.Db4o.NativeQueries.dll
+
+Cecil.FlowAnalysis is used to analyse the CIL code during NQ anf TA enhancement.
+
+- .l http://mono-project.com/ Mono.GetOptions .. (MIT/X11)
+
+Used inside Db4oTool.exe
+
+Mono.GetOptions is used to parse the command line of the Db4oAdmin.exe tool.

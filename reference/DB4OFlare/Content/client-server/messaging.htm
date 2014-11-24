@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3822" MadCap:lastWidth="945">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Network:Messaging" />
+      <MadCap:keyword term="Messaging" />Messaging</h1>
+    <p>In client/server it possible to send messages between a client and the server. Possible use cases could be:</p>
+    <ul>
+      <li>Shutting down and restarting the server.</li>
+      <li>Triggering server backup.</li>
+      <li>Using a customized login strategy to restrict the number of allowed client connections.</li>
+      <li>Running special code on the server. For example batch updates.</li>
+    </ul>
+    <h2>Sending and Receiving Messages</h2>
+    <p>First you need to decide on a class that you want to use as the message. Any object that is storable in db4o can be used as a message. Of course you use multiple classes for representing different messages. Let's create a dedicated class.</p>
+    <MadCap:snippetBlock src="../CodeExamples/clientserver/messaging/HelloMessage-The-message-class.all.flsnp" />
+    <MadCap:snippetBlock src="../CodeExamples/clientserver/messaging/MessagingExample-The-message-class.all.flsnp" />
+    <p>Now you need to register a handler to handle arriving messages. This can be done by configuring a message recipient on the server. Let's simply print out the arriving message. Additionally we answer to the client with another message.</p>
+    <MadCap:snippetBlock src="../CodeExamples/clientserver/messaging/MessagingExample-configure-a-message-receiver-for-the-server.all.flsnp" />
+    <MadCap:snippetBlock src="../CodeExamples/clientserver/messaging/MessagingExample-The-message-receiver-for-the-server.all.flsnp" />
+    <p>The same can be done on the client. Register a handler for the received messages. </p>
+    <MadCap:snippetBlock src="../CodeExamples/clientserver/messaging/MessagingExample-configure-a-message-receiver-for-a-client.all.flsnp" />
+    <MadCap:snippetBlock src="../CodeExamples/clientserver/messaging/MessagingExample-The-message-receiver-for-the-client.all.flsnp" />
+    <p>Now on the client we can get a message sender. The message sender allows you to send a message to the server. In this example we send a hello message.</p>
+    <MadCap:snippetBlock src="../CodeExamples/clientserver/messaging/MessagingExample-Get-the-message-sender-and-use-it.all.flsnp" />
+  </body>
+</html>

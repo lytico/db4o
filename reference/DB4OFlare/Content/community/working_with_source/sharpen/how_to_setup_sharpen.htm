@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1271" MadCap:lastWidth="812">
+    <head>
+    </head>
+    <body>
+        <h1>How to Setup Sharpen</h1>
+        <p> You can obtain sharpen source from db4o svn repository at:</p>
+        <p><a href="https://source.db4o.com/db4o/trunk/sharpen">https://source.db4o.com/db4o/trunk/sharpen</a>
+        </p>
+        <p>For the ease of use check-out sharpen projects:</p>
+        <ul>
+            <li>sharpen.builder</li>
+            <li>sharpen.core</li>
+            <li>sharpen.ui</li>
+            <li>sharpen.ui.tests</li>
+        </ul>
+        <p>Additionally Sharpen requires a valid <a href="http://eclipse.org/">Eclipse</a> installation to run. Install Eclipse on your machine or reuse an existing installation. Check out the four projects into the same workspace as your java project which you want
+to convert. This is not required is easier to use and maintain. </p>
+        <p>The first step is to  build sharpen. For that we can use Apache Ant:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/sharpen/sharpen-install-Build-Sharpen.all.flsnp" />
+        <p>To run Sharpen you should install it to an Eclipse instance:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/sharpen/sharpen-install-Install-Sharpen-to-Eclipse.all.flsnp" />
+        <p>Put the paths for the build in a property file, so that you can easily change them. Here's a example of the property file. You have to configure the JDK-path, the Eclipse path and the path to the Sharpen source.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/sharpen/sharpen-The-configuration-for-building-sharpen.all.flsnp" />
+        <p>After that Sharpen is set up to run. <span MadCap:conditions="Primary.Online">Download the example <a href="../../../CodeExamples/sharpen/Example-db4odoc-sharpen-.zip">build script here</a>.</span></p>
+    </body>
+</html>

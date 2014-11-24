@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="949" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Reference Cache In Client-Server Mode</h1>
+        <p>db4o uses an <a href="../basics/indentity_concept/reference_cache.htm">object reference cache</a> for easy access to persistent objects during one transaction. In
+client/server mode each client has its own reference cache, which helps to
+achieve good performance. However it gets complicated, when different clients
+work on the same object, as this object's cached value is used on each side. It
+means, that even when the operations go serially, the object's value won't be
+updated serially unless it is refreshed before each update.
+</p>
+        <MadCap:snippetBlock src="../CodeExamples/clientserver/referencecache/ReferenceCacheExamples-Reference-cache-in-client-server.all.flsnp" />
+        <p>There are multiple strategies to deal with this.</p>
+        <ul>
+            <li>If you client's are not updating the same object or it very unlikely that it happens, you don't need to take any action.</li>
+            <li>You can refresh objects as they are updated on all clients. However this need a lot of communication between the server and client. <MadCap:xref href="refreshing_objects.htm" target="" title="" alt="">See "Refreshing Objects"</MadCap:xref></li>
+            <li>You can do short unit of work on the client, to minimize the chance of outdated objects. </li>
+        </ul>
+        <h2>Clean Cache For Work</h2>
+        <p>Often you don't want to refresh object by object. Instead you want to work with a clean cache. You can do this by using a separate 'session' on the client. This container brings its own cache with it. So you can create a new container which a clean cache.</p>
+        <p>Note that open session on the client doesn't create a separate transaction. Instead it only creates a fresh cache. The transaction is always the same.</p>
+        <MadCap:snippetBlock src="../CodeExamples/clientserver/referencecache/ReferenceCacheExamples-Clean-cache-for-each-unit-of-work.all.flsnp" />
+    </body>
+</html>

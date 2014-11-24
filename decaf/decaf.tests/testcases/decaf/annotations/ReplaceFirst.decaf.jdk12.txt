@@ -1,0 +1,12 @@
+package decaf.annotations;
+
+class ReplaceFirst {
+
+	public String foo() {
+		return "bar";
+	}
+	
+	public String baz() {
+		return "new baz";
+	}
+}

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="2103" MadCap:lastWidth="511">
+    <head>
+    </head>
+    <body>
+        <h1>Enhance Collections</h1>
+        <p>You can use the normal <MadCap:variable name="Primary.Plattform" />-collections in your code and then replace the implementations with the enhancement-tools. <MadCap:xref href="../ta_enhanced_example.htm" target="" title="" alt="">See "Transparent Persistence Enhanced Example"</MadCap:xref></p>
+        <p>The enhancement tools will search for instantiations of collections and replace it with an appropriate transparent activation aware collection. </p>
+        <p MadCap:conditions="Primary.Java">The transparent persistence aware collections are always subclasses of the Java-collections. Therefore all methods are available. Furthermore                 <![CDATA[ ]]>potential cast or instanceof checks also work without any problem.</p>
+        <div MadCap:conditions="Primary..NET">
+            <p>However this has some implications. The original collection classes are all sealed and not designed for extension. This means that a complete different implementation is used and that has its consequences.</p>
+            <h2>Can Be Enhanced: When Using Interfaces in Declaration</h2>
+            <p>The best case is when collection-interface is used, like IList instead of the concrete class. For example in a field-declaration like this:</p>
+            <MadCap:snippetBlock src="../../../CodeExamples/ta/collectionEnhanceIssues/EnhancementLimitations-Can-be-enhanced-by-the-db4o-tools.all.flsnp" />
+            <p>This kind of code is correctly translated by the enhancement tools to:</p>
+            <MadCap:snippetBlock src="../../../CodeExamples/ta/collectionEnhanceIssues/EnhancementLimitations-Is-enhanced-to.all.flsnp" />
+            <h2>Cannot Be Enhanced: When Using Concrete Class  In Declaration</h2>
+            <p>When you use the concrete types in field declarations, the enhancer-tools will produce a warning and doesn't change the implementation. The example below cannot be enhanced, because it uses the concrete type.</p>
+            <MadCap:snippetBlock src="../../../CodeExamples/ta/collectionEnhanceIssues/EnhancementLimitations-Cannot-be-enhanced-by-the-db4o-tools.all.flsnp" />
+            <h2>Casts are dangerous</h2>
+            <p>The enhancement tools replace the implementation of collections. When you code has an assumptions about the concrete types and tries to cast, it may fail. In general try to avoid casting to concrete types and use interfaces instead.</p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">void</span> RegisterSessionCreation(HttpApplication httpApplication)
+{
+    httpApplication.BeginRequest += OpenSession;
+    httpApplication.EndRequest += CloseSession;
+}
+
+<span style="color:Blue;">private</span> <span style="color:Blue;">void</span> OpenSession(<span style="color:Blue;">object</span> sender, EventArgs e)
+{
+    IObjectContainer container =
+        (IObjectContainer)HttpContext.Current.Application[DataBaseInstance];
+    IObjectContainer session = container.Ext().OpenSession();
+    HttpContext.Current.Items[SessionKey] = session;
+}
+
+<span style="color:Blue;">private</span> <span style="color:Blue;">void</span> CloseSession(<span style="color:Blue;">object</span> sender, EventArgs e)
+{
+    IObjectContainer session = (IObjectContainer)HttpContext.Current.Items[SessionKey];
+    session.Dispose();
+}</pre>
+		<div class="codesnippet-meta">
+			Db4oProvider.cs: A object container per request
+			<div class="codedownload">
+				<a href="Example-WebApp-Infrastructure-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

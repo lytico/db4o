@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Person
+{
+    <span style="color:Green;">// the name is actually &lt;Name&gt;k__BackingField </span>
+    <span style="color:Green;">// but you cannot express that in C# code</span>
+    <span style="color:Blue;">private</span> <span style="color:Blue;">string</span> name;
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">string</span> Name
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> name; }
+        <span style="color:Blue;">set</span> { name = value; }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			AutoProperties.cs: Auto property behind the scenes
+			<div class="codedownload">
+				<a href="Example-platform-autoproperties-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

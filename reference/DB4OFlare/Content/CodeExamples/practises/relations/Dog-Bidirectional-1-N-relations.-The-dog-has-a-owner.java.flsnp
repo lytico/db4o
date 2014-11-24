@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> Person owner;
+
+<span style="color:Green;">// This setter ensures that the model is always consistent</span>
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> setOwner(Person owner) {
+    <span style="color:Blue;">if</span>(<span style="color:Blue;">null</span>!=<span style="color:Blue;">this</span>.owner){
+        Person oldOwner = <span style="color:Blue;">this</span>.owner;
+        <span style="color:Blue;">this</span>.owner = <span style="color:Blue;">null</span>;
+        oldOwner.removeOwnerShipOf(<span style="color:Blue;">this</span>);
+    }
+    <span style="color:Blue;">if</span>(<span style="color:Blue;">null</span>!=owner &amp;&amp; !owner.ownedDogs().contains(<span style="color:Blue;">this</span>)) {
+        owner.addOwnerShipOf(<span style="color:Blue;">this</span>);
+    }
+    <span style="color:Blue;">this</span>.owner = owner;
+}
+
+<span style="color:Blue;">public</span> Person getOwner() {
+    <span style="color:Blue;">return</span> owner;
+}</pre>
+		<div class="codesnippet-meta">
+			Dog.java: Bidirectional 1-N relations. The dog has a owner
+			<div class="codedownload">
+				<a href="Example-practises-relations-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

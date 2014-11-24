@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Db4oBench-2010", "Db4oBench-2010.csproj", "{D8AB00B9-7769-4136-98FA-920F89B12653}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Db4objects.Db4o-2010", "..\Db4objects.Db4o\Db4objects.Db4o-2010.csproj", "{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8AB00B9-7769-4136-98FA-920F89B12653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8AB00B9-7769-4136-98FA-920F89B12653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8AB00B9-7769-4136-98FA-920F89B12653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8AB00B9-7769-4136-98FA-920F89B12653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

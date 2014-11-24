@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">if</span> (!Activatable.<span style="color:Blue;">class</span>.isAssignableFrom(Person.<span style="color:Blue;">class</span>)) {
+    <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> AssertionError(<span style="color:#A31515;">&quot;Expect that the &quot;</span> + Person.<span style="color:Blue;">class</span> + <span style="color:#A31515;">&quot; implements &quot;</span> + Activatable.<span style="color:Blue;">class</span>);
+}</pre>
+		<div class="codesnippet-meta">
+			TransparentPersistence.java: Check for enhancement
+			<div class="codedownload">
+				<a href="Example-tp-enhancement-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,4 @@
+package decaf.builder;
+
+public interface Foo {
+}

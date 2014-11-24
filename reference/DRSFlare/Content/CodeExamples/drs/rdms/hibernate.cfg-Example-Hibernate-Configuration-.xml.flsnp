@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">&lt;</span><span style="color:#A31515;">hibernate-configuration</span><span style="color:Blue;">&gt;</span>
+	<span style="color:Blue;">&lt;</span><span style="color:#A31515;">session-factory</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Green;">&lt;!-- Specify the database driver --&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">property</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">hibernate.connection.driver_class</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>org.hsqldb.jdbcDriver<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">property</span><span style="color:Blue;">&gt;</span>
+
+        <span style="color:Green;">&lt;!-- The JDBC connection string --&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">property</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">hibernate.connection.url</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>jdbc:hsqldb:mem:database.hsql<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">property</span><span style="color:Blue;">&gt;</span>
+
+        <span style="color:Green;">&lt;!-- User name an password for the database --&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">property</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">hibernate.connection.username</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>sa<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">property</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">property</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">hibernate.connection.password</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span><span style="color:Blue;">&lt;/</span><span style="color:#A31515;">property</span><span style="color:Blue;">&gt;</span>
+
+        <span style="color:Green;">&lt;!-- Specify the SQl-dialect --&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">property</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">hibernate.dialect</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>org.hibernate.dialect.HSQLDialect<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">property</span><span style="color:Blue;">&gt;</span>
+
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">property</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">hibernate.show_sql</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>true<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">property</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Green;">&lt;!-- Update the database schema if out of date --&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">property</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">hibernate.hbm2ddl.auto</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>update<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">property</span><span style="color:Blue;">&gt;</span>
+
+        <span style="color:Green;">&lt;!-- Add the mapping files for your classes --&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">mapping</span> <span style="color:Red;">resource</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">com/db4odoc/drs/rdms/Car.cfg.xml</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">mapping</span> <span style="color:Red;">resource</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">com/db4odoc/drs/rdms/Pilot.cfg.xml</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+
+	<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">session-factory</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">hibernate-configuration</span><span style="color:Blue;">&gt;</span></pre>
+		<div class="codesnippet-meta">
+			hibernate.cfg.xml: Example Hibernate Configuration 
+			<div class="codedownload">
+				<a href="Example-drs-rdms-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

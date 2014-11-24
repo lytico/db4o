@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="3" MadCap:lastHeight="489" MadCap:lastWidth="507">
+    <head>
+        <link href="../../Resources/TableStyles/Basic.css" rel="stylesheet" MadCap:stylesheetType="table" />
+    </head>
+    <body>
+        <h1> db4o's Commit Process</h1>
+        <p>How does db4o make transactions safe, so that it can recover failures? Here's the short overview of the transaction-phases db4o uses.</p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 50%;" />
+            <col style="width: 50%;" />
+            <tbody>
+                <tr>
+                    <th style="text-align: left;">Phase</th>
+                    <th style="text-align: left;">In Case Of A Crash</th>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">1. During the transactions. New and updated objects are written to a new Slot in the database-file. The id-mapping and  freespace changes are kept in the transaction.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The changes are lost, because the id-mapping and freespace changes weren't persisted. Therefore the changes are invisible to the database. The transaction is rolled back.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">2. Committing starts: The id-changes and free-space changes are written to a new slot, without damaging the old information.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The changes are lost, because the id-mapping and freespace changes haven't been completely stored. The transaction is rolled back.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">3. Write the location of latest id-records, and free-space changes to the first location with and additional checksum.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">If the record write was completed, the transaction is resumed and completed. If not, the old information is used.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">4. Write the of latest id-recods, and free-space changes to the backup location with and additional checksum.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">If the record wasn't completely written, the transaction is resumed. </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Of course you don't need to worry about this. db4o ensures that a transaction either completes or is rolled back. Whenever you call commit and the call succeeds, all changes are persisted. If your application or db4o crashes before a successfully commit-call, all changes are undone. </p>
+    </body>
+</html>

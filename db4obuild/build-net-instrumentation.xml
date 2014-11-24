@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<project name="db4o instrumentation tool" default="build">	
+
+	<import file="common.xml" />
+	<property name="csc.executable" value="csc"></property>
+	<property name="dir.n.instrumentation" location="../db4on/instrumentation" />
+	
+	<property name="output.dir" location="${dir.n.instrumentation}/bin" />	
+
+	<target name="build" depends="init">
+		<csc outputfile="${output.dir}/Db4oTool.exe"
+			targettype="exe"
+			debug="true"
+			executable="${csc.executable}">
+			<src dir="${dir.n.instrumentation}/Db4oTool">
+				<include name="**/*.cs" />
+			</src>
+			<reference dir="${output.dir}">
+				<include name="*.dll" />
+			</reference>
+		</csc>
+	</target>
+	
+	<target name="test" depends="rebuild">
+		
+		<csc outputfile="${output.dir}/Db4oTool.Tests.exe"
+			targettype="exe"
+			debug="true"
+			executable="${csc.executable}">
+			<src dir="${dir.n.instrumentation}/Db4oTool.Tests">
+				<include name="**/*.cs" />
+				
+				<!-- embedded resource -->
+				<exclude name="**/Resources/**" />
+				<exclude name="**/obj/**" />
+			</src>
+			<reference dir="${output.dir}">
+				<include name="*.dll" />
+				<include name="Db4oTool.exe" />
+			</reference>
+			
+			<resource embed="true"				
+				file="${dir.n.instrumentation}/Db4oTool.Tests/Resources/CFNQSubject.cs"
+				name="Db4oTool.Tests.Resources.CFNQSubject.cs" />
+			
+			<resource embed="true"				
+				file="${dir.n.instrumentation}/Db4oTool.Tests/Resources/PredicateSubject.cs"
+				name="Db4oTool.Tests.Resources.PredicateSubject.cs" />
+			
+			<resource embed="true"				
+				file="${dir.n.instrumentation}/Db4oTool.Tests/Resources/UnoptimizablePredicateSubject.cs"
+				name="Db4oTool.Tests.Resources.UnoptimizablePredicateSubject.cs" />
+
+
+		</csc>
+		
+		<exec executable="${output.dir}/Db4oTool.Tests.exe"
+			failonerror="true"
+			dir="${output.dir}">
+		</exec>
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${output.dir}" />
+		<copy todir="${output.dir}">
+			<fileset dir="${dir.dist.dll.net}">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+		<copy todir="${output.dir}" file="${dir.n.test}/lib/Db4oUnit.dll" />
+		
+		<updateAssemblyInfoFiles srcdir="${dir.n.instrumentation}" />
+	</target>
+	
+	<target name="clean">
+		<delete dir="${output.dir}" failonerror="false" />
+	</target>
+	
+	<target name="rebuild" depends="clean, build">
+	</target>
+	
+</project>

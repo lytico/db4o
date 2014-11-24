@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3592" MadCap:lastWidth="480">
+  <head></head>
+  <body>
+    <h1>
+      <MadCap:keyword term="Object Container" />The Basic Operations</h1>
+    <P>The object container is the door to the database access. It's the starting point for all database operations.</P>
+    <h2>
+      <a name="AccessingDB"></a>Accessing a Database </h2>
+    <P>The object container is the interface for accessing the database. To open the database you pass the file-name to the object container factory.  Normally you should open an object container when the application starts and close it when it is shuts down. </P>
+    <MadCap:snippetBlock src="../CodeExamples/basics/Db4oBasics-Open-the-object-container-to-use-the-database.all.flsnp" />
+    <h2>
+      <MadCap:keyword term="Storing Objects" />
+      <a name="StoringObject"></a>Storing Objects</h2>
+    <P>Storing a object with db4o is extremely easy. Open the object container and pass your object to the store method and db4o will do the rest. There's no mapping required. db4o will read the class meta data, the read the object values with reflection and store the data.</P>
+    <MadCap:snippetBlock src="../CodeExamples/basics/Db4oBasics-Store-an-object.all.flsnp" />
+    <h2>
+      <a name="Queries"></a>Queries </h2>
+    <p>Querying for objects is also easy. There are different query interfaces available with different benefits. <MadCap:xref href="querying.htm" target="" title="" alt="">See "Querying"</MadCap:xref></p>
+    <p MadCap:conditions="Primary.Java">The most natural query method is using <a href="querying/native_queries.htm">native queries</a>. Basically you just pass in a instance of a predicate, which filters the objects out you want.</p>
+    <p MadCap:conditions="Primary..NET">The most natural query method is using <a href="querying/linq.htm">LINQ</a>. </p>
+    <MadCap:snippetBlock src="../CodeExamples/basics/Db4oBasics-Query-for-objects.all.flsnp" />
+    <h2>
+      <a name="UpdateObjects"></a>Update Objects</h2>
+    <p>Updating objects is also easy. First you query for the object which you want to update. Then you change the object and store it again in the database.</p>
+    <MadCap:snippetBlock src="../CodeExamples/basics/Db4oBasics-Update-a-pilot.all.flsnp" />
+    <h2>
+      <a name="DeleteObjects"></a>Delete Objects</h2>
+    <P>Use the delete-operation to delete objects.</P>
+    <MadCap:snippetBlock src="../CodeExamples/basics/Db4oBasics-Delete-a-object.all.flsnp" />
+  </body>
+</html>

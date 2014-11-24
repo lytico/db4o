@@ -1,0 +1,48 @@
+﻿<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </meta>
+    <meta name="generator" content="NDoc 1.3" />
+    <title>Query Interface</title>
+    <link rel="stylesheet" type="text/css" href="ndoc.css">
+    </link>
+    <script src="ndoc.js" type="text/javascript">
+    </script>
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <INPUT class="userDataStyle" id="userDataCache" type="hidden" />
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead" nowrap="true">db4o</td>
+            <td class="product" nowrap="true">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">Query Interface</h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>handle to a node in the query graph.</p>
+      <p>For a list of all members of this type, see 
+							<a href="com.db4o.query.QueryMembers.html">Query Members</a>.</p>
+      <p>
+      </p>
+<PRE class="syntax"><SPAN class="lang">[Visual Basic]
+</SPAN><b>Public Interface Query
+</b><SPAN class="lang">[C#]
+</SPAN><b>public interface Query
+</b><SPAN class="lang">[C++]
+</SPAN><b>public __gc __interface Query
+</b><SPAN class="lang">[JScript]
+</SPAN><b>public interface Query
+</b></PRE><h4 class="dtH4">Remarks</h4><p> handle to a node in the query graph. <br /><br /> A node in the query graph can represent multiple classes, one class or an attribute of a class.<br /><br />The graph is automatically extended with attributes of added constraints (see <a href="com.db4o.query.Query.constrain.html">com.db4o.query.Query.constrain</a> ) and upon calls to <a href="com.db4o.query.Query.descend.html">descend()</a> that request nodes that do not yet exist. <br /><br /> References to joined nodes in the query graph can be obtained by "walking" along the nodes of the graph with the method <b>descend()</b> . <br /><br />
+            <a href="com.db4o.query.Query.execute.html">com.db4o.query.Query.execute</a> evaluates the entire graph against all persistent objects. <br /><br />
+            <b>com.db4o.query.Query.execute</b> can be called from any <b>com.db4o.query.Query</b> node of the graph. It will return an <a href="com.db4o.ObjectSet.html">com.db4o.ObjectSet</a> filled with objects of the class/classes that the node, it was called from, represents. </p><h4 class="dtH4">Requirements</h4><p><b>Namespace: </b><a href="com.db4o.query.html">com.db4o.query</a></p><p><b>Assembly: </b>db4o (in db4o.dll)
+					</p><h4 class="dtH4">See Also</h4><p><a href="com.db4o.query.QueryMembers.html">Query Members</a> | <a href="com.db4o.query.html">com.db4o.query Namespace</a></p><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" viewastext="true" style="display: none;"><param name="Keyword" value="Query interface, about Query interface"></param></object><DIV CLASS="footer"><p><center><font color="red"><i>
+								Syntax based on .NET Framework version 1.1.<br /></i></font></center></p></DIV><hr /><div id="footer"><p><a href="http://www.db4o.com/">Copyright (C) 2004 - 2005  Versant Inc.</a></p><p>Generated from assembly db4o [4.3.1.0]</p></div></div>
+  </body>
+</html>

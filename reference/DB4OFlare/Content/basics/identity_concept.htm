@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1503" MadCap:lastWidth="530">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Identity;Reference Equality" />Identity Concept</h1>
+        <p>You've maybe noticed that you don't need to add an identifier to your objects in order to store them with db4o. So how does db4o manage objects? db4o uses the object-identity to identify objects. db4o ensures that each stored object in the database has only one in memory representation per object container. If you load an object in different ways db4o will always return the same object. Or as rule of thumb: The objects in the database behave like objects in memory. When you run multiple queries or retrieve objects in another way, the same object in the database will always represented by the same object in memory.</p>
+        <MadCap:snippetBlock src="../CodeExamples/identiy/IdentityConcepts-db4o-ensures-reference-equality.all.flsnp" />
+        <p>In order to implement this behavior each object container keeps a mapping between the objects in memory and the stored object representation. When you load the same object with multiple object-containers (for example with <a href="../advanced_topics/session_containers.htm">session-containers</a> or in <a href="../client-server.htm">client-server-mode</a>), it will have different in memory-identity. db4o ensures the same identity only for a single object-container.</p>
+        <MadCap:snippetBlock src="../CodeExamples/identiy/IdentityConcepts-Loading-with-different-object-container-results-in-different-objects.all.flsnp" />
+        <p>This also means that an object should always be processed with the same object-container.  When you load a object in one container and store it with another container db4o cannot recognize the object and will store it as a completely new object. Therefore you need to use the same container to store and load objects. </p>
+        <MadCap:snippetBlock src="../CodeExamples/identiy/IdentityConcepts-Don't-use-different-object-container-for-the-same-object..java.flsnp" />
+        <p>The identity concept works really well for desktop and embedded applications where you can have a single object container and keep that container open while the application is running. In such a case the behavior is just like you would work with regular objects. However this behavior doesn't work where you need to serialize objects, for example in web-applications. In such scenarios you need to do some extra work. <MadCap:xref href="../platform_specific_issues/disconnected_objects.htm" target="" title="" alt="">See "Disconnected Objects"</MadCap:xref></p>
+        <h2>Further Information</h2>
+        <p>Maybe your wondering why db4o manages object by identity. Why not by equality? There are good reasons why this is the case. <MadCap:xref href="indentity_concept/identity_vs_equals.htm" target="" title="" alt="">See "Identity Vs Equality"</MadCap:xref></p>
+        <p>In order to manage objects by identity db4o has a reference cache which contains all loaded objects. <MadCap:xref href="indentity_concept/reference_cache.htm" target="" title="" alt="">See "The Reference Cache"</MadCap:xref></p>
+    </body>
+</html>

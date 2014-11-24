@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="8" MadCap:lastHeight="1196" MadCap:lastWidth="581" MadCap:conditions="Primary.Java" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Spring MVC Example</h1>
+        <p>This example is a tiny CRUD application which shows how to use db4o in a web-application. This example uses the <a href="http://www.springsource.org/">Spring MVC</a> framework. Of course, db4o works with any webframework.
+		<span MadCap:conditions="Primary.Online"> Download the <a href="../../CodeExamples/WebAppJava/Example-javaAppExamples-WebAppJava-java.zip">code here</a>. This example uses Maven to build and find the dependencies. You can use a Maven plugin for your favorite IDE in order to open the project. </span></p>
+        <h2>Managing Object Containers</h2>
+        <p> It uses the code from the <a href="servlets.htm">servlet-example</a> to have a object container for each request. On each new request a object container is opened. Then all operations are done on the container. When the request ends, the container is closed.</p>
+        <p>You also can use the features of your web framework or your dependency injection framework to archive the same goal.</p>
+        <h2>Object Identification</h2>
+        <p>This example uses a GUID for each object to identify it across requests. Persisted objects which inherit from the IDHolder class which contains the id-field. Take a look at alternatives for ids. <MadCap:xref href="../disconnected_objects/comparison_of_ids.htm" target="" title="" alt="">See "Comparison Of Different IDs"</MadCap:xref></p>
+        <h2>Using db4o</h2>
+        <p>You can use db4o as expected. In this example we use a the db4o-container of the request:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebAppJava/src/main/java/com/db4odoc/exampleapp/web/HomeController-List-all-pilots-on-the-index-page.all.flsnp" />
+        <h2>Using IDs</h2>
+        <p>Now the ids can be used in the views and controllers to identify objects. For example in a list-view you use the ids for the edit- and delete-links:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebAppJava/src/main/webapp/list-In-the-view-use-the-ids-to-identify-the-objects.all.flsnp" />
+        <p>Another location where the ids are used is in the controllers. For example when you need to store changes. First we get a object which contains all changes. Then we copy all changes to the existing object in the database and finally store it. <MadCap:xref href="../disconnected_objects/merging_changes.htm" target="" title="" alt="">See "Merging Changes"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebAppJava/src/main/java/com/db4odoc/exampleapp/web/HomeController-Update-the-object.all.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

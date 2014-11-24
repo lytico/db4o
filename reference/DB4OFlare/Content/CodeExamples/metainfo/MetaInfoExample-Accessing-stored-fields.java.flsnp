@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">StoredClass metaInfoForPerson = container.ext().storedClass(Person.<span style="color:Blue;">class</span>);
+<span style="color:Green;">// Access all existing fields</span>
+<span style="color:Blue;">for</span> (StoredField field : metaInfoForPerson.getStoredFields()) {
+    System.out.println(<span style="color:#A31515;">&quot;Field: &quot;</span>+field.getName());
+}
+<span style="color:Green;">// Accessing the field 'name' of any type.</span>
+StoredField nameField = metaInfoForPerson.storedField(<span style="color:#A31515;">&quot;name&quot;</span>, <span style="color:Blue;">null</span>);
+<span style="color:Green;">// Accessing the string field 'name'. Important if this field had another time in previous</span>
+<span style="color:Green;">// versions of the class model</span>
+StoredField ageField = metaInfoForPerson.storedField(<span style="color:#A31515;">&quot;age&quot;</span>,<span style="color:Blue;">int</span>.<span style="color:Blue;">class</span>);
+
+<span style="color:Green;">// Check if the field is indexed</span>
+<span style="color:Blue;">boolean</span> isAgeFieldIndexed = ageField.hasIndex();
+
+<span style="color:Green;">// Get the type of the field</span>
+String fieldType = ageField.getStoredType().getName();</pre>
+		<div class="codesnippet-meta">
+			MetaInfoExample.java: Accessing stored fields
+			<div class="codedownload">
+				<a href="Example-db4odoc-metainfo-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">final</span> AutoIncrement increment = <span style="color:Blue;">new</span> AutoIncrement(container);
+EventRegistry eventRegistry = EventRegistryFactory.forObjectContainer(container);
+eventRegistry.creating().addListener(<span style="color:Blue;">new</span> EventListener4&lt;CancellableObjectEventArgs&gt;() {
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onEvent(Event4&lt;CancellableObjectEventArgs&gt; event4,
+                        CancellableObjectEventArgs objectArgs) {
+        <span style="color:Blue;">if</span>(objectArgs.object() <span style="color:Blue;">instanceof</span> IDHolder){
+            IDHolder idHolder = (IDHolder) objectArgs.object();
+            idHolder.setId(increment.getNextID(idHolder.getClass()));
+        }
+    }
+});
+eventRegistry.committing().addListener(<span style="color:Blue;">new</span> EventListener4&lt;CommitEventArgs&gt;() {
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onEvent(Event4&lt;CommitEventArgs&gt; commitEventArgsEvent4,
+                        CommitEventArgs commitEventArgs) {
+        increment.storeState();
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			AutoIncrementExample.java: use events to assign the ids
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,19 @@
+package usings;
+
+class Test {
+
+    static void foo(){
+    }
+
+	static class SubTest {
+	}
+}
+
+public class FullyQualifiedType {
+	private Test _test;
+	private Test.SubTest _subTest;
+	
+	void bar(){
+	    Test.foo();
+	}
+}

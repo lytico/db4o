@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+    </import>
+    <x:children>
+        <composite x:id="Control">
+            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            <layout x:class="gridLayout" numColumns="2" marginHeight="0" marginWidth="0"/>
+            <x:children>
+				<list x:id="ClasspathList" x:style="BORDER|H_SCROLL|V_SCROLL|MULTI">
+		            <layoutData x:class="gridData" heightHint="250" widthHint="250" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+				</list>
+				<composite>
+					<layout x:class="gridLayout"/>
+					<layoutData x:class="gridData" verticalAlignment="GridData.BEGINNING"/>
+					<x:children>
+						<button x:id="AddDirectoryButton" text="Add &amp;directory...">
+							<layoutData x:class="gridData" horizontalAlignment="GridData.FILL"/>
+						</button>
+						<button x:id="AddJarZipButton" text="Add &amp;jar/zip file...">
+							<layoutData x:class="gridData" horizontalAlignment="GridData.FILL"/>
+						</button>
+						<label x:style="SEPARATOR|HORIZONTAL">
+							<layoutData x:class="gridData" horizontalAlignment="GridData.FILL"/>
+						</label>
+						<button x:id="RemoveButton" text="Remove entry">
+							<layoutData x:class="gridData" horizontalAlignment="GridData.FILL"/>
+						</button>
+					</x:children>
+				</composite>
+            </x:children>
+        </composite>
+    </x:children>
+</xswt>

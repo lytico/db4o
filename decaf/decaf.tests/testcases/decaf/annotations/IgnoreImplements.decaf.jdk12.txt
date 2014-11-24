@@ -1,0 +1,22 @@
+package decaf.annotations;
+
+interface Interface1 {
+}
+
+interface Interface2 {
+}
+
+interface Interface3 {
+}
+
+class Class1 {
+}
+
+class Class2 implements Interface2 {
+}
+
+class Class21 implements Interface1, Interface2 {
+}
+
+class Class3 implements Interface2 {
+}

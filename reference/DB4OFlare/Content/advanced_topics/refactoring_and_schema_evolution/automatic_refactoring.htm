@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="235" MadCap:lastWidth="460">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Schema Evolution:Automatic Refactorings;Refactoring:Automatic Refactorings" />Automatic Refactoring</h1>
+    <p>In simple cases db4o handles schema changes automatically:</p>
+    <ul>
+      <li>When you <b>add</b> a new field, db4o automatically starts storing the new data. Older instances of your stored class have the default value  in the new field.</li>
+      <li>When you <b>remove</b> a field, db4o ignores the stored value for that field. The stored value is not  removed from the database until you update the object or run a defragmentation. Meanwhile the old values are still accessible with the  <a href="field_type_change.htm">StoredClass/StoredField API</a>.</li>
+      <li>You can   <![CDATA[ ]]><b>add an interface</b> to a class any time. The db4o operations are not affected by interfaces.</li>
+    </ul>
+  </body>
+</html>

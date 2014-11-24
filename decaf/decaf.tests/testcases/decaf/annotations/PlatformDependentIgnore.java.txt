@@ -1,0 +1,29 @@
+package decaf.annotations;
+
+@decaf.Ignore(decaf.Platform.JDK11)
+class IgnoreJdk11 {
+}
+
+@decaf.Ignore(decaf.Platform.JDK12)
+class IgnoreJdk12 {
+}
+
+@decaf.Ignore(decaf.Platform.JDK15)
+class IgnoreJdk15 {
+}
+
+@decaf.Ignore(decaf.Platform.ANDROID)
+class IgnoreAndroid {
+}
+
+@decaf.Ignore(platforms = {decaf.Platform.ANDROID, decaf.Platform.JDK11} )
+class IgnoreAndroidAndJdk11 {
+}
+
+@decaf.Ignore(decaf.Platform.ALL)
+class IgnoreAll {
+}
+
+@decaf.Ignore
+class IgnoreAllDefault {
+}

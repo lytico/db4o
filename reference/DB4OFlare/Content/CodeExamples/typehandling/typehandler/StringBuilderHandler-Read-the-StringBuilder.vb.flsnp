@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> Read(<span style="color:Blue;">ByVal</span> readContext <span style="color:Blue;">As</span> IReadContext) <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> _
+    <span style="color:Blue;">Implements</span> IValueTypeHandler.Read
+    <span style="color:Blue;">Dim</span> length <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span> = readContext.ReadInt()
+    <span style="color:Blue;">Dim</span> data <span style="color:Blue;">As</span> <span style="color:Blue;">Byte</span>() = <span style="color:Blue;">New</span> <span style="color:Blue;">Byte</span>(length - 1) {}
+    readContext.ReadBytes(data)
+    <span style="color:Blue;">Return</span> <span style="color:Blue;">New</span> StringBuilder(Encoding.UTF8.GetString(data))
+<span style="color:Blue;">End</span> <span style="color:Blue;">Function</span></pre>
+		<div class="codesnippet-meta">
+			StringBuilderHandler.vb: Read the StringBuilder
+			<div class="codedownload">
+				<a href="Example-typehandling-typehandler-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,22 @@
+package decaf.generics;
+
+class Foo {
+	public Object field;
+	
+	public Foo(Object value) {
+		field = value;
+	}
+	
+	public Object get() {
+		return field;
+	}
+}
+
+class Main {
+	static void main() {
+		Foo foo = new Foo("42");
+		String s1 = ((String) foo.get());
+		String s2 = ((String) foo.get()).toUpperCase();
+		String s3 = ((String) (foo).get());
+	}
+}

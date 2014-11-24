@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1840" MadCap:lastWidth="728">
+    <head>
+    </head>
+    <body>
+        <h1>Client Server Mode</h1>
+        <p>Let's take a look at the client server modes of db4o.</p>
+        <h2><a name="SessionContainers"></a>Embedded Clients aka Session Containers</h2>
+        <p>db4o allows us to open lightweight session containers (aka embedded clients), which have their own transaction. We can use these session containers when we need multiple transactions running at the same time. </p>
+        <MadCap:snippetBlock src="CodeExamples/cs/ClientServer-Creating-a-session-container.all.flsnp" />
+        <h2><a name="NetworkCS"></a>Network Client Server Mode</h2>
+        <p>db4o supports a client server mode over the network. However db4o was designed for embedded use cases. Therefore the client server mode isn't a core functionality but more an add-on. Not all db4o features work in the client server mode and the performance characteristics of db4o aren't optimized for client server mode. </p>
+        <p>For all these reasons we should prefer the embedded mode with session containers instead of full blown clients. Nevertheless the client server mode can be useful to for some scenarios.</p>
+        <h3>Starting a Server</h3>
+        <p>First we start the server:</p>
+        <MadCap:snippetBlock src="CodeExamples/cs/ClientServer-Open-server.all.flsnp" />
+        <h3>Connect Clients</h3>
+        <p>As long as the server is running we can connect to it. We need to specify the host, port, username and the password in order to connect. Afterwards we have a regular object container ready to be used.</p>
+        <MadCap:snippetBlock src="CodeExamples/cs/ClientServer-Using-the-client.all.flsnp" />
+        <h2><a name="SharedClasses"></a>Shared Classes</h2>
+        <p>The biggest limitation of the client server mode is that the server and the client both need to have the domain model classes available. The server needs the classes of the stored objects. If we change classes, we need to deploy them to the server and the clients. To do that we should pack the domain model into a <MadCap:variable name="Primary.Artefact" /> and ensure that the same version is used on the server and client.</p>
+    </body>
+</html>

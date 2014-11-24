@@ -1,0 +1,16 @@
+- jar instrumentation support
+- exception handling
+- use file-based filtering instead of IClassFile for incremental build
+- notify PDE about changed class files
+- export configuration for use by ant build
+- when adding nature, all classes will be instrumented by default?
+- handle default package (how?)
+
+- distribute package selection dialog responsibilities between model and property page
+
+- restrict nature applicability to IJavaProject natures
+- recursive filtering vs single package filtering
+- beautify log view
+
+- non-headless tests (log view) :/
+- port test project infrastructure to scala

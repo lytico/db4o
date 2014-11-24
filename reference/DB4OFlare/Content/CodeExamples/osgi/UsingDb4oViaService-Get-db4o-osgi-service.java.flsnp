@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ServiceReference reference = bundleContext.getServiceReference(<span style="color:#A31515;">&quot;com.db4o.osgi.Db4oService&quot;</span>);
+Db4oService db4oService = (Db4oService) bundleContext.getService(reference);
+ObjectContainer container = db4oService.openFile(<span style="color:#A31515;">&quot;database.db4o&quot;</span>);</pre>
+		<div class="codesnippet-meta">
+			UsingDb4oViaService.java: Get db4o osgi service
+			<div class="codedownload">
+				<a href="Example-db4odoc-osgi-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

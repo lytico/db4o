@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1050" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Doing a Sharpen Conversion</h1>
+        <p>Ensure that you've installed sharpen to an existing eclipse installation as explained <a href="how_to_setup_sharpen.htm">here</a>. </p>
+        <p>Use Ant scripts to run Sharpen and translate your Java code to C#. The best way for this is to define an Ant macro which you then can reuse. This task takes two arguments. The first argument is the path to a valid Eclipse workspace which contains the project to translate. The second parameter is the project in the workspace which you want to translate.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/sharpen/sharpen-install-The-sharpen-task.all.flsnp" />
+        <p>Now you can use this task to sharpen your project. First ensure that your project is in a valid Eclipse workspace. Then you specify the workspace and the sources of the project:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/sharpen/sharpen-example-Sharpen-a-example-project.all.flsnp" />
+        <p>Additionally you can pass the sharpen configuration as a file-name. When you add a '@' in front of the file-name sharpen will read that file and use all configuration flags of that. For example:</p>
+        <pre class="prettyprint">-pascalCase+
+-nativeTypeSystem
+-nativeInterfaces</pre>
+        <p>You can find a list of all Sharpen <a href="sharpen_command-line_arguments.htm">configuration flags here</a> and a list of all <a href="sharpen_annotations.htm">Sharpen annotations here</a>. </p>
+        <p MadCap:conditions="Primary.Online">The example Ant scripts can be downloaded <a href="../../../CodeExamples/sharpen/Example-db4odoc-sharpen-.zip">here</a>.</p>
+    </body>
+</html>

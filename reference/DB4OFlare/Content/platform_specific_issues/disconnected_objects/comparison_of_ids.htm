@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="3" MadCap:lastHeight="728" MadCap:lastWidth="625">
+    <head>
+        <link href="../../Resources/TableStyles/Basic.css" rel="stylesheet" MadCap:stylesheetType="table" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="IDs" />Comparison Of Different IDs</h1>
+        <p>There are a lot of possibilities for additional ids to identify objects across the object container boundary. </p>
+        <h2>Internal db4o ids</h2>
+        <p>db4o has internal ids to identify each object in the database. You can access these ids and use them yourself. <MadCap:xref target="" title="" alt="">See "Internal IDs"</MadCap:xref>. Take a look at the example. <MadCap:xref href="example_internal_id.htm" target="" title="" alt="">See "Example Internal Id"</MadCap:xref></p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 33%;" />
+            <col style="width: 33%;" />
+            <tbody>
+                <tr>
+                    <th style="text-align: left;">Advantages</th>
+                    <th style="text-align: left;">Disadvantages</th>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">
+                        <ul>
+                            <li>Internal ids are fast.</li>
+                            <li>No additional field on the class required.</li>
+                            <li>No additional configuration required.</li>
+                        </ul>
+                    </td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">
+                        <ul>
+                            <li>The id may change when defragmentating the database.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>db4o UUIDs</h2>
+        <p>db4o supports special UUIDs. You can enable them by configuration. <MadCap:xref target="" title="" alt="">See "Unique Universal IDs"</MadCap:xref>. Take a look at the example. <MadCap:xref href="example_db4o_uuid.htm" target="" title="" alt="">See "Example db4o UUID"</MadCap:xref></p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 33%;" />
+            <col style="width: 33%;" />
+            <tbody>
+                <tr>
+                    <th style="text-align: left;">Advantages</th>
+                    <th style="text-align: left;">Disadvantages</th>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">
+                        <ul>
+                            <li>A UUID is a worldwide unique id.</li>
+                            <li>No additional field on the class required.</li>
+                        </ul>
+                    </td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">
+                        <ul>
+                            <li>db4o UUIDs are large. </li>
+                            <li>db4o UUID is db4o-specific type.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2><MadCap:variable name="Primary.UUID" />-Fields on Classes</h2>
+        <p>You can add <MadCap:variable name="Primary.UUID" />-fields to your classes. In the constructor of the object you assign a new <MadCap:variable name="Primary.UUID" /> to the object. Then you can find the object by a regular query. <span MadCap:conditions="Primary.Java">Add <a href="../../advanced_topics/type_handling/uuid_support.htm">UUID support</a> before using UUIDs </span>. Don't forget <a href="../../basics/indexing.htm">to index the id-field</a>. Take a look at the example. <MadCap:xref href="example_plattform_uuid.htm" target="" title="" alt="">See "Example "</MadCap:xref></p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 33%;" />
+            <col style="width: 33%;" />
+            <tbody>
+                <tr>
+                    <th style="text-align: left;">Advantages</th>
+                    <th style="text-align: left;">Disadvantages</th>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">
+                        <ul>
+                            <li>A <MadCap:variable name="Primary.UUID" /> is a worldwide unique id .</li>
+                            <li><MadCap:variable name="Primary.UUID" /> are easy to generate and portable.</li>
+                        </ul>
+                    </td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">
+                        <ul>
+                            <li>You need an id-field on your objects.</li>
+                            <li><MadCap:variable name="Primary.UUID" />s are quite large.</li>
+                            <li>Additional index required.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>ID-Field On Classes With a ID-Generator</h2>
+        <p>You can add a id-field to your classes and then use an ID-Generator to assign new ids to stored objects. Don't forget <a href="../../basics/indexing.htm">to index the id-field</a>.  Take a look at the example. <MadCap:xref href="example_id_generator.htm" target="" title="" alt="">See "Example ID-Generator"</MadCap:xref></p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 33%;" />
+            <col style="width: 33%;" />
+            <tbody>
+                <tr>
+                    <th style="text-align: left;">Advantages</th>
+                    <th style="text-align: left;">Disadvantages</th>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">
+                        <ul>
+                            <li>A simple id on objects.</li>
+                            <li>Familiar model from the RDBMS-world.</li>
+                        </ul>
+                    </td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">
+                        <ul>
+                            <li>You need an id-field on your objects.</li>
+                            <li>You need to implement an ID-Generator. Which isn't trivial.</li>
+                            <li>Additional index required.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

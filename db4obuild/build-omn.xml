@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<project name="omnbuild-project" default="build-omn" basedir=".">
+	<import file="common-dotnet.xml" />
+	<property name="dir.wix" location="lib/wix" />	
+	<property name="candle.exe" location="${dir.wix}/candle.exe" />
+	<property name="light.exe" location="${dir.wix}/light.exe" />
+	
+	<property name="dir.omn.dist" value="${dir.dist.dll}/omn" />
+	<property name="output.dir" value="bin" />
+
+	<target name="build-omn-standalone" depends="configure-net35, build-omn" description="Builds OMN">
+	</target>
+	
+	<target name="build-omn" depends="properties, prepare-build" description="Builds OMN">
+		<msb solution="${file.omn-solution}" outputpath="${dir.omn.dist}" />
+	
+		<exec-redirected executable="${candle.exe}">
+			<args>
+				<env key="resources.dir" path="src/installer/resources" />
+				<arg value="-nologo" />
+				<arg value="-out" />
+				<arg file="${output.dir}/ObjectManagerInstaller.wixobj" />
+				<arg file="${dir.omn.dist.src}/Installer/ObjectManagerInstaller.wxs" />			
+			</args>
+		</exec-redirected>
+	
+		<exec-redirected executable="${light.exe}">
+			<args>
+				<arg file="${output.dir}/ObjectManagerInstaller.wixobj" />
+				<arg value="-out" />
+				<arg value="${dir.dist.net.build}/omn/ObjectManagerEnterprise-${db4o.version.dotted}-vs${msbuild.target.platform}.msi" />
+				<arg value="-spdb" />				
+				<arg value="-sice:ICE20" />
+				
+			</args>
+		</exec-redirected>
+	</target>
+	
+	<target name="prepare-build" depends="properties">
+		<property name="dir.omn.dist.src"  value="${dir.dist.net.src.tools}/omn" />
+		<property name="file.omn-build-log" value = "${dir.omn.dist}/omn-build.log" />
+		<property name="file.omn-solution" value = "${dir.omn.dist.src}/OMAddin" />
+		
+		<switch value="${msbuild.target.platform}">
+			<case value="2008">
+				<property name="VSSerialVersion" value="9.0" />
+			</case>
+			<case value="2010">
+				<property name="VSSerialVersion" value="10.0" />
+			</case>
+		</switch>
+		
+		<mkdir dir="${dir.omn.dist}" />
+		<reset-dir dir="${dir.dist.net.build}/omn" />
+		
+		<copy todir="${dir.omn.dist.src}" description="copy omn sources to build..." taskname="omn.sources.copy">
+            <fileset dir="${dir.omn.src}">
+                <include name="**/*" />
+            	<exclude name="**/*.wxs" />
+            </fileset>
+		</copy>		
+		
+		<copy todir="${dir.omn.dist.src}" description="copy omn wix sources to build" taskname="omn.wix.sources.copy" overwrite="true">
+            	<fileset dir="${dir.omn.src}">
+					<include name="**/*.wxs" />
+				</fileset>
+				
+				<filterset>
+					<filter token="dir.omn.output" value="${dir.omn.dist}" />
+					<filter token="db4o.version.dotted" value="${db4o.version.dotted}" />
+					<filter token="target.vs-year.version" value="${msbuild.target.platform}" />
+					<filter token="dir.omn.installer.script" value="${dir.omn.dist.src}/Installer"/>
+					<filter token="dir.omn.faq" value="${dir.omn.dist.src}/OMADDIN/FAQ"/>					
+					<filter token="target.vs-serial.version" value="${VSSerialVersion}" />
+				</filterset>
+		</copy>
+		
+		<copy file="${dir.dist.dll}/Db4objects.Db4o.dll" todir="${dir.omn.dist.src}/OM+/bin/Dependencies" overwrite="true"/>
+		<copy file="${dir.dist.dll}/Db4objects.Db4o.CS.dll" todir="${dir.omn.dist.src}/OM+/bin/Dependencies" overwrite="true"/>
+		<copy file="${dir.dist.dll}/Db4objects.Db4o.Optional.dll" todir="${dir.omn.dist.src}/OM+/bin/Dependencies" overwrite="true"/>
+		<copy file="${dir.dist.dll}/Db4objects.Db4o.Linq.dll" todir="${dir.omn.dist.src}/OM+/bin/Dependencies" overwrite="true"/>
+			
+		<updateAssemblyInfo version="${db4o.version.iteration.revision}">
+			<fileset dir="${dir.omn.dist.src}">
+				<include name="**/AssemblyInfo.cs" />
+			</fileset>
+		</updateAssemblyInfo>
+	</target>
+</project>

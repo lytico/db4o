@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3997" MadCap:lastWidth="532">
+    <head>
+    </head>
+    <body>
+        <h1>Query By Example Examples</h1>
+        <h2><a name="Basics"></a>Query By Example Basics</h2>
+        <p>For a query you pass in an example object to db4o. db4o will exanimate the object with reflection. Each field which doesn't have the default value will be use as a constrain. This means a number-field which isn't zero, a reference which isn't null or a string which isn't null. In this example we set the name to John. Then db4o will return all pilots with the name John.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-Query-for-John-by-example.all.flsnp" />
+        <p>Or we set the age to 33 and db4o will return all 33 years old pilots.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-Query-for-33-year-old-pilots.all.flsnp" />
+        <h2><a name="Combine"></a>Combine Values</h2>
+        <p>When you set multiple values all will be used as constrain. For example when we set the name to Jo and the age to 29 db4o will return all pilots which are 29 years with the name Jo.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-Query-a-29-years-old-Jo.all.flsnp" />
+        <h2><a name="AllOfAType"></a>All Objects Of A Type</h2>
+        <p>If you pass a empty example db4o will return all objects of that type. </p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-All-objects-of-a-type-by-passing-a-empty-example.all.flsnp" />
+        <p>Alternatively you also can directly pass in the type.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-All-objects-of-a-type-by-passing-the-type.all.flsnp" />
+        <h2><a name="AllObjects"></a>All Objects</h2>
+        <p>When you pass null all objects stored in the database will be returned.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-All-objects.all.flsnp" />
+        <h2><a name="NestedObjects"></a>Nested Objects</h2>
+        <p>You can also use nested objects as an example. For example with a car and a pilot. We can query for a car which has a pilot with certain constrains. In this example we get the cars which pilot is called Jenny.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-Nested-objects-example.all.flsnp" />
+        <h2><a name="Contains"></a>Contains Example</h2>
+        <p>Collections and arrays act a little different. Query by example returns all object which have at least the items in the array or collection from the example. For example it returns the blog post which has the "db4o"-tag in its tag-collection. </p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-Contains-in-collections.all.flsnp" />
+        <h2><a name="StructuredCombine"></a>Structured Contains</h2>
+        <p>You can even check that a item in a collection fulfills certain criteria's. For example we can check that the blog post has an author with the name John in its author-collection. </p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/qbe/QueryByExamples-Structured-contains.all.flsnp" />
+    </body>
+</html>

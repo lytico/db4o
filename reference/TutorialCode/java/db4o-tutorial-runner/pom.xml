@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <artifactId>db4o-tutorial-runner</artifactId>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>com.db4odoc.tutorial</groupId>
+        <artifactId>db4o-tutorial-project</artifactId>
+        <version>8.1-SNAPSHOT</version>
+    </parent>
+
+    <name>db4o tutorial runner</name>
+    <description>The db4o tutorial</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jdt.core.compiler</groupId>
+            <artifactId>ecj</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <sourceDirectory>src/main</sourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <!--<descriptors>-->
+                        <!--<descriptor>application-assembly.xml</descriptor>-->
+                    <!--</descriptors>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <keystore>${basedir}/signing-jar.keystore</keystore>
+                            <alias>applet</alias>
+                            <storepass>applet</storepass>
+                            <keypass>applet</keypass>
+                            <jarPath>${project.build.directory}/${project.build.FinalName}-${project.packaging}-with-dependencies.${project.packaging}</jarPath>
+                            <verify>true</verify>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>db4o</id>
+            <url>https://source.db4o.com/maven/</url>
+        </repository>
+    </repositories>
+</project>

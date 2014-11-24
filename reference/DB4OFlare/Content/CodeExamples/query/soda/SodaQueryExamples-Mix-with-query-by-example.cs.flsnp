@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IQuery query = container.Query();
+query.Constrain(<span style="color:Blue;">typeof</span>(Car));
+<span style="color:Green;">// if the given object is not stored,</span>
+<span style="color:Green;">// it will behave like query by example for the given object</span>
+Pilot examplePilot = <span style="color:Blue;">new</span> Pilot(<span style="color:Blue;">null</span>, 42);
+query.Descend(<span style="color:#A31515;">&quot;pilot&quot;</span>).Constrain(examplePilot);
+
+IObjectSet carsOfPilot = query.Execute();</pre>
+		<div class="codesnippet-meta">
+			SodaQueryExamples.cs: Mix with query by example
+			<div class="codedownload">
+				<a href="Example-query-soda-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1930" MadCap:lastWidth="531">
+    <head>
+    </head>
+    <body>
+        <h1>Example Merge Changes</h1>
+        <p style="font-weight: normal;">This example shows how changes are merged from the disconnected object to the object to update. To do this, traverse the object-graph and copy all value types over. All reference types are first checked if they are an existing object. If it is,the primitives are copied over, otherwise it's a stored as a new object.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/disconnectedobj/merging/MergeExample-merging.all.flsnp" />
+        <p>You can use reflection to automated this process. You can also use existing libraries like <a href="http://automapper.codeplex.com/" MadCap:conditions="Primary..NET">Automapper</a> <![CDATA[ ]]><a href="http://dozer.sourceforge.net/" MadCap:conditions="Primary.Java">Dozer</a> which help you to do this.</p>
+    </body>
+</html>

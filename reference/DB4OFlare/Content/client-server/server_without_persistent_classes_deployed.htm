@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="415" MadCap:lastWidth="598">
+    <head>
+    </head>
+    <body>
+        <h1>Server Without Persistent Classes Deployed</h1>
+        <p>We recommend to ensure that the client and server have classes of the stored objects available. So you need to include the classes of the stored object in the server process.</p>
+        <p>Running the server without classes is can cause unexpected behavior and should only be used when you are up to experiments. </p>
+        <p>When classes are unknown
+GenericReflector creates generic objects, which hold simulated "field
+values" in an array of objects. This is done automatically by db4o engine
+and does not require any additional settings from your side: you can save,
+retrieve and modify objects just as usual. An example of this functionality is
+db4o's <a href="../object_manager_enterprise.htm">Object Manager</a>. </p>
+        <p>Unfortunately in a server
+without persistent classes mode there are still some limitations:</p>
+        <ul>
+            <li>Evaluation queries won't work. This also implies that native queries which cannot be optimized don't work.&#160;</li>
+            <li>Native queries will only work if they can be optimized</li>
+            <li>Multidimensional arrays can not be stored.</li>
+        </ul>
+        <h2>Native Queries</h2>
+        <p>Native queries are <a href="../basics/querying/native_queries/native_query_optimization.htm">usually translated to SODA</a> queries. When a native query can be translated to SODA, it will run fine on a server without persisted classes. However when the query cannot be optimized the server needs the native query instance and the data model which isn't available on a server without persistent classes. Therefore native queries only work when it can be optimized. You can fallback to pure <a href="../basics/querying/soda_query.htm">SODA queries</a> in such cases. </p>
+    </body>
+</html>

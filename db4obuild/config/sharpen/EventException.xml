@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+
+
+  <type name="Db4objects.Db4o.Events.EventException">
+    <doc>
+	<summary>
+	db4o-specific exception.<br /><br />
+	Exception thrown during event dispatching if a client
+	provided event handler throws.<br/><br/>
+	The exception thrown by the client can be retrieved by
+	calling EventException.InnerException.
+	</summary>
+	<remarks>
+	db4o-specific exception.<br /><br />
+	Exception thrown during event dispatching if a client
+	provided event handler throws.<br/><br/>
+	The exception thrown by the client can be retrieved by
+	calling EventException.InnerException.
+	</remarks>
+
+    </doc>
+  </type>
+

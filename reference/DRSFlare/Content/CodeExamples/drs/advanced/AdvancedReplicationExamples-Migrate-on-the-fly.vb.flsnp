@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> replicationSession <span style="color:Blue;">As</span> IReplicationSession = _
+    Replication.Begin(desktopDatabase, mobileDatabase)
+<span style="color:Blue;">Dim</span> initialReplication <span style="color:Blue;">As</span> IList(Of Car) = desktopDatabase.Query(Of Car)()
+
+<span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> changedObjectOnDesktop <span style="color:Blue;">As</span> Car <span style="color:Blue;">In</span> initialReplication
+    <span style="color:Blue;">Dim</span> infoAboutObject <span style="color:Blue;">As</span> IObjectInfo = desktopDatabase.Ext() _
+        .GetObjectInfo(changedObjectOnDesktop)
+    <span style="color:Blue;">If</span> infoAboutObject.GetUUID() <span style="color:Blue;">Is</span> <span style="color:Blue;">Nothing</span> <span style="color:Blue;">Then</span>
+        desktopDatabase.Ext().Store(changedObjectOnDesktop, 2)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+    replicationSession.Replicate(changedObjectOnDesktop)
+<span style="color:Blue;">Next</span>
+replicationSession.Commit()</pre>
+		<div class="codesnippet-meta">
+			AdvancedReplicationExamples.vb: Migrate on the fly
+			<div class="codedownload">
+				<a href="Example-drs-advanced-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

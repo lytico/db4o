@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1142" MadCap:lastWidth="651">
+    <head>
+    </head>
+    <body>
+        <h1>Getting Started</h1>
+        <p>First you need to add Hibernate.  Read the <a href="http://www.hibernate.org/docs">Hibernate documentation</a> <![CDATA[ ]]>to configure Hibernate properly. This reference documentation only shows the essentials to get started.</p>
+        <h2>Adding The Dependencies</h2>
+        <p>In order to replicate against Hibernate you need to add the Hibernate jars. The dRS distribution contains a copy of Hibernate. dRS is only tested against that Hibernate version. You need to add following dependencies to your project.</p>
+        <ul>
+            <li>db4o-X.XX-core-java5.jar or db4o-X.XX-all-java5.jar</li>
+            <li>dRS-X.XX-core.jar</li>
+            <li>All Hibernate dependencies: hibernate3.jar, antlr-2.7.7.jar, jta.jar, commons-logging.jar, commons-collections.jar, dom4j.jar. All other jars are for optional Hibernate features.</li>
+        </ul>
+        <h2>Configure Hibernate</h2>
+        <p>Hibernate needs some configuration. You need to configure the database-driver, the database-connection and the SQL dialect. Read more on the <a href="http://docs.jboss.org/hibernate/stable/core/reference/en/html/session-configuration.html#configuration-xmlconfig" target="_parent">official Hibernate documentation</a>.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/rdms/hibernate.all.flsnp" />
+        <h2>Configure The Object Relation Mapping</h2>
+        <p>In order to store objects in Hibernate, you need define the mapping between the tables and the objects you store. There's only one requirement for the db4o replication:&#160;Each object needs a long field for the id. This id is used by dRS to recognize the object.&#160;For example we map the Pilot class to the pilots tables. Read more on the <a href="http://docs.jboss.org/hibernate/stable/core/reference/en/html/mapping.html#mapping-declaration" target="_parent">official Hibernate documentation</a>. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/rdms/Pilot.all.flsnp" />
+    </body>
+</html>

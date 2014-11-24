@@ -1,0 +1,3 @@
+class Db4oReferenceSubject
+{
+}

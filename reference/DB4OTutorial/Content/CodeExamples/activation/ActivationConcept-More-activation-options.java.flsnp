@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">EmbeddedConfiguration configuration = Db4oEmbedded.newConfiguration();
+<span style="color:Green;">// At least activate persons to a depth of 10</span>
+configuration.common().objectClass(Person.<span style="color:Blue;">class</span>).minimumActivationDepth(10);
+<span style="color:Green;">// Or maybe we just want to activate all referenced objects</span>
+configuration.common().objectClass(Person.<span style="color:Blue;">class</span>).cascadeOnActivate(<span style="color:Blue;">true</span>);</pre>
+		<div class="codesnippet-meta">
+			ActivationConcept.java: More activation options
+			<div class="codedownload">
+				<a href="Example-tutorial-activation-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

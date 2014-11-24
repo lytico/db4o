@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="365" MadCap:lastWidth="650">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Transparent Activation;TP;TA;Transparent Persistence" />Transparent Activation/Persistence</h1>
+        <p>One of the challenges of db4o is to manage the <a href="activation.htm">activation of objects</a>. Also <a href="update_concept.htm">updating</a> <![CDATA[ ]]>changed objects can be a challenge. The transparent activation/persistence framework solves these issues.</p>
+        <p>Transparent activation manages the activation of objects. It activates objects as soon as you access them. That means that you don't have to worry about the activation-depth or cascaded activation. As soon as you use transparent activation you don't need to configure any activation depth or cascading updates.</p>
+        <p>Transparent persistence builds on top of transparent activation and also manages updating objects. It monitors stored objects and memorizes changed objects. When you commit it automatically stores all updated objects. When you use transparent persistence you don't need any update depth nor cascade update configuration.</p>
+        <p>Transparent activation and persistence are very similar to implement. Therefore the same steps need to be taken to enable them. </p>
+        <p>To get started take a look at an example. <MadCap:xref href="transparentpersistence/ta_enhanced_example.htm" target="" title="" alt="">See "Transparent Persistence Enhanced Example"</MadCap:xref></p>
+        <p>For the learning the implementation details take a look at a manual implementation. <MadCap:xref href="transparentpersistence/implementation.htm" target="" title="" alt="">See "Implementation".</MadCap:xref></p>
+        <p>Collections need special attention in transparent activation / persistence. <MadCap:xref href="transparentpersistence/Collections.htm" target="" title="" alt="">See "Collections".</MadCap:xref></p>
+        <p>Also take a look at rollback strategies, which allows db4o to  rollback in memory objects. <MadCap:xref href="transparentpersistence/automatic_deactivation.htm" target="" title="" alt="">See "Automatic Rollback"</MadCap:xref></p>
+        <p>And finally take a look some well known pitfalls: <MadCap:xref href="transparentpersistence/transparent_activation_pitfalls.htm" target="" title="" alt="">See "Transparent Activation Pitfalls"</MadCap:xref></p>
+    </body>
+</html>

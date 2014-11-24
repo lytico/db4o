@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> ReferentialIntegrityCheck(<span style="color:Blue;">object</span> sender,
+                                              CancellableObjectEventArgs eventArguments)
+{
+    <span style="color:Blue;">object</span> toDelete = eventArguments.Object;
+    <span style="color:Blue;">if</span> (toDelete <span style="color:Blue;">is</span> Pilot)
+    {
+        IObjectContainer container = eventArguments.ObjectContainer();
+        IEnumerable&lt;Car&gt; cars = <span style="color:Blue;">from</span> Car c <span style="color:Blue;">in</span> container
+                                <span style="color:Blue;">where</span> c.Pilot == toDelete
+                                <span style="color:Blue;">select</span> c;
+        <span style="color:Blue;">if</span> (cars.Count() &gt; 0)
+        {
+            eventArguments.Cancel();
+        }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			CallbackExamples.cs: Referential integrity
+			<div class="codedownload">
+				<a href="Example-callbacks-examples-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

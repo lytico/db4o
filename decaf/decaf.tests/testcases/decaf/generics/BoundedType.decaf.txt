@@ -1,0 +1,27 @@
+package decaf.generics;
+
+interface Foo {
+	Object get();
+}
+
+class BoundedType { 
+    public Foo field; 
+
+    public BoundedType(Foo arg) {
+    	field = arg;
+    } 
+
+    public Object method() {
+    	return field.get(); 
+    } 
+}
+
+class Main {
+	static void main() {
+		System.out.println(((String) new BoundedType(new Foo() {
+			public Object get() {
+				return "42";
+			}
+		}).method()));
+	}
+}

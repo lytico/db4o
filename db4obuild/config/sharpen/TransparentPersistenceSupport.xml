@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+
+
+  <type name="Db4objects.Db4o.TA.TransparentPersistenceSupport">
+    <doc>
+	 <summary>
+	 Enables Transparent Persistence and Transparent Activation behaviours for
+	 the current session.
+	 </summary>
+	 <remarks>
+	 Enables Transparent Persistence and Transparent Activation behaviours for
+	 the current session.
+	 <br /><br />
+	 commonConfiguration.Add(new TransparentPersistenceSupport());
+	 </remarks>
+	 <seealso cref="Db4objects.Db4o.TA.TransparentActivationSupport">Db4objects.Db4o.TA.TransparentActivationSupport
+	 	</seealso>
+	
+
+    </doc>
+  </type>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ObjectSet changesOnDesktop = replicationSession.providerA().objectsChangedSinceLastReplication();
+
+<span style="color:Blue;">for</span> (Object changedObjectOnDesktop : changesOnDesktop) {
+    <span style="color:Blue;">if</span> (changedObjectOnDesktop <span style="color:Blue;">instanceof</span> Car) {
+        <span style="color:Blue;">if</span> (((Car) changedObjectOnDesktop).getName().startsWith(<span style="color:#A31515;">&quot;M&quot;</span>)) {
+            replicationSession.replicate(changedObjectOnDesktop);
+        }
+    }            
+}
+
+replicationSession.commit();</pre>
+		<div class="codesnippet-meta">
+			Db4oReplicationExamples.java: Selective replication with a condition
+			<div class="codedownload">
+				<a href="Example-drs-db4o-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

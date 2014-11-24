@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1664" MadCap:lastWidth="630" MadCap:conditions="Primary.Java">
+  <head />
+  <body>
+    <h1>Schema Evolution</h1>
+    <p>When a new application development is considered it is
+important to think about its evolution. What happens if your initial model does
+not suffice and you need changes or additions? Let's look how db4o and SQLite
+applications can handle it.</p>
+    <p>To keep the example simple, let's add a registration record
+to our car:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/Car-Add-a-new-field-to-the-car.all.flsnp" />
+    <p>Ok, the application is changed to take care for the new class. What
+about our databases?</p>
+    <h3>Schema Evolution in db4o</h3>
+    <p>db4o supports such schema change on the fly: we can select
+values and update the new field too: </p>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/Db4oExample-update-a-car-with-db4o.all.flsnp" />
+    <h3>Schema Evolution in SQLite</h3>
+    <p>For SQLite database model should be synchronized with the
+object model:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/SqlExample-upgrade-schema-in-SQLite.all.flsnp" />
+    <p>Now we can try to retrieve and update records:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/SqlExample-update-a-car-with-SQLite.all.flsnp" />
+    <h3>Conclusion</h3>
+    <p>You can see that schema evolution is much easier with db4o.
+But the main difficulty that is not visible from the example is that schema
+evolution with SQLite database can potentially introduce a lot of bugs that
+will be difficult to spot. For more information see
+<a href="../../advanced_topics/refactoring_and_schema_evolution.htm">Refactoring and Schema Evolution</a>.</p>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">AutoIncrement increment = <span style="color:Blue;">new</span> AutoIncrement(container);
+IEventRegistry eventRegistry = EventRegistryFactory.ForObjectContainer(container);
+
+eventRegistry.Creating+=
+    <span style="color:Blue;">delegate</span>(<span style="color:Blue;">object</span> sender, CancellableObjectEventArgs args)
+    {
+        <span style="color:Blue;">if</span> (args.Object <span style="color:Blue;">is</span> IDHolder)
+        {
+            IDHolder idHolder = (IDHolder)args.Object;
+            idHolder.Id = increment.GetNextID(idHolder.GetType());
+        }    
+    };
+eventRegistry.Committing +=
+    <span style="color:Blue;">delegate</span>(<span style="color:Blue;">object</span> sender, CommitEventArgs args)
+        {
+            increment.StoreState();    
+        };</pre>
+		<div class="codesnippet-meta">
+			AutoIncrementExample.cs: use events to assign the ids
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo PUBLIC '-//Sun Microsystems, Inc.//DTD Java Data Objects Metadata 2.2//EN' 'http://java.sun.com/dtd/jdo_2_2.dtd'>
+<jdo>
+    <package name="com.db4o.drs.test.data">
+    
+    	<class name="com.db4o.drs.test.data.ActivatableItem"/>
+    	<class name="com.db4o.drs.test.data.ArrayHolder"/>
+    	<class name="com.db4o.drs.test.data.ByteArrayHolder"/>
+    	<class name="com.db4o.drs.test.data.Car"/>
+    	<class name="com.db4o.drs.test.data.Pilot"/>
+    	<class name="com.db4o.drs.test.data.R0"/>
+    	<class name="com.db4o.drs.test.data.R1"/>
+    	<class name="com.db4o.drs.test.data.R2"/>
+    	<class name="com.db4o.drs.test.data.R3"/>
+    	<class name="com.db4o.drs.test.data.R4"/>
+    	<class name="com.db4o.drs.test.data.Replicated"/>
+    	<class name="com.db4o.drs.test.data.SimpleArrayContent"/>
+   		<class name="com.db4o.drs.test.data.SimpleArrayHolder"/>
+    	<class name="com.db4o.drs.test.data.SPCParent"/>
+    	<class name="com.db4o.drs.test.data.SPCChild"/>
+    	<class name="com.db4o.drs.test.data.SimpleListHolder"/>
+    	<class name="com.db4o.drs.test.data.ListHolder"/>
+    	<class name="com.db4o.drs.test.data.ListContent"/>
+    	<class name="com.db4o.drs.test.data.MapHolder">
+	        <field name="map" persistence-modifier="persistent">
+	            <map key-type="java.lang.String" value-type="com.db4o.drs.test.data.MapContent"/>
+	        </field>
+    	</class>
+    	<class name="com.db4o.drs.test.data.MapContent"/>
+    	<class name="com.db4o.drs.test.data.CollectionHolder">
+	        <field name="map" persistence-modifier="persistent">
+	            <map key-type="java.lang.String" value-type="java.lang.String"/>
+	        </field>
+	        <field name="list" persistence-modifier="persistent">
+	            <collection element-type="java.lang.String"/>
+	        </field>
+	        <field name="set" persistence-modifier="persistent">
+	            <collection element-type="java.lang.String"/>
+	        </field>
+    	</class>
+    	<class name="com.db4o.drs.test.data.SimpleItem"/>
+    	
+    	<class name="com.db4o.drs.test.data.NewPilot"/>
+    	
+    	<class name="com.db4o.drs.test.data.ItemWithUntypedField"/>
+    	<class name="com.db4o.drs.test.data.ItemDates"/>
+    	<class name="com.db4o.drs.test.data.NamedList"/>
+    	<class name="com.db4o.drs.test.data.ItemWithCloneable"/>
+    	<class name="UnqualifiedNamed"/>
+    	<class name="com.db4o.drs.test.data.SimpleEnumContainer"/>
+    </package>    
+</jdo>    
+

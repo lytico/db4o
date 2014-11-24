@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+
+
+  <type name="Db4objects.Db4o.Diagnostic.IDiagnosticListener">
+    <doc>
+	<summary>listens to Diagnostic messages.</summary>
+	<remarks>
+	listens to Diagnostic messages.
+	<br /><br />Create a class that implements this listener interface and add
+	the listener by calling <code>commonConfig.Diagnostic.AddListener()</code>.
+	</remarks>
+	<seealso cref="Db4objects.Db4o.Diagnostic.IDiagnosticConfiguration">Db4objects.Db4o.Diagnostic.IDiagnosticConfiguration
+		</seealso>
+
+
+    </doc>
+  </type>
+

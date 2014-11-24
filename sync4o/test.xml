@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.5.0_06" class="java.beans.XMLDecoder"> 
+ <object class="com.db4o.sync4o.Db4oSyncSource"> 
+  <void property="classConfigs"> 
+   <void method="add"> 
+    <object class="com.db4o.sync4o.SyncClassConfig"> 
+     <void property="className"> 
+      <string>com.example.Customer</string> 
+     </void> 
+     <void property="timestampField"> 
+      <string>_lastUpdate</string> 
+     </void> 
+     <void property="uniqueField"> 
+      <string>_customerId</string> 
+     </void> 
+    </object> 
+   </void> 
+  </void> 
+  <void property="dbFilename"> 
+   <string>D:\dev\sync4o\test\test.db</string> 
+  </void> 
+  <void property="info"> 
+   <object class="com.funambol.framework.engine.source.SyncSourceInfo"> 
+    <void property="supportedTypes"> 
+     <array class="com.funambol.framework.engine.source.ContentType" length="1"> 
+      <void index="0"> 
+       <object class="com.funambol.framework.engine.source.ContentType"> 
+        <void property="type"> 
+         <string>application/octet-stream</string> 
+        </void> 
+        <void property="version"> 
+         <string>1.0</string> 
+        </void> 
+       </object> 
+      </void> 
+     </array> 
+    </void> 
+   </object> 
+  </void> 
+  <void property="name"> 
+   <string>plop</string> 
+  </void> 
+  <void property="sourceURI"> 
+   <string>plop</string> 
+  </void> 
+ </object> 
+</java> 

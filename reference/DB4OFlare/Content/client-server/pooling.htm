@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1878" MadCap:lastWidth="623">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Container Pooling;Connection Pooling" />Client-Container Pooling</h1>
+        <p>When a client connects to the server, there's overhead to establish the connection. First the regular TCP-connection needs to be established. Then the server and client exchange meta data and finally the connection is ready. If you don't need a single or a few long during connections but rather short units of work on the client it is quite inefficient to open a client connection for each unit of work. In such scenarios you should consider to pool the client-containers.</p>
+        <p>Now simply pooling the raw client container might lead to issues. Each object-container has a <a href="../basics/indentity_concept/reference_cache.htm">reference-cache</a>. When you pool the object-container and reuse it for some other work, this cache isn't cleared. This means that you might get dirty objects from the reference cache. You want to avoid this and have a clean cache when reusing the client container.</p>
+        <p> There's a way to archive that. On the client container the open session method creates a fresh object container with a clean reference cache which is sharing the transaction with the client. With this building block you can build a proper container pool.
+		<span MadCap:conditions="Primary.Online">Download <span MadCap:conditions="Primary.Java">(<a href="../CodeExamples/clientserver/pooling/Example-clientserver-pooling-java.zip">Java</a>)</span><span MadCap:conditions="Primary..NET">(<a href="../CodeExamples/clientserver/pooling/Example-clientserver-pooling-csharp.zip">C#</a>, <a href="../CodeExamples/clientserver/pooling/Example-clientserver-pooling-vb.zip">VB</a>)</span> the source code of a very simple example container pool.</span></p>
+        <p>First you need to create client connections on demand which will be pooled. </p>
+        <MadCap:snippetBlock src="../CodeExamples/clientserver/pooling/ConnectionPoolExamples-Open-clients-for-the-pool.all.flsnp" />
+        <p>On a request for a object container, get a client container from the pool. Rollback the transaction on it to ensure that it is in a clean state.Then open a session container on it and use this session. The session-container ensures that the reference-cache is empty. Make sure that each client container is always used only once at any time, which means that there's always only one session-container open per client-container. The session-containers share the transaction with the client and you don't want to share transactions across multiple object containers.</p>
+        <MadCap:snippetBlock src="../CodeExamples/clientserver/pooling/ConnectionPool-Obtain-a-pooled-container.all.flsnp" />
+        <p>Now when you're done with your operations, you can return the client to your pool of object containers. First close the session-container, which commits the changes and releases the resources. Then get the underlying client-container for that session and return it to the pool.</p>
+        <MadCap:snippetBlock src="../CodeExamples/clientserver/pooling/ConnectionPool-Returning-to-pool.all.flsnp" />
+    </body>
+</html>

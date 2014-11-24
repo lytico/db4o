@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Class</span> DiagnosticFilter
+    <span style="color:Blue;">Implements</span> IDiagnosticListener
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> filterFor <span style="color:Blue;">As</span> ICollection(Of Type)
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> target <span style="color:Blue;">As</span> IDiagnosticListener
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>(<span style="color:Blue;">ByVal</span> target <span style="color:Blue;">As</span> IDiagnosticListener, <span style="color:Blue;">ByVal</span> <span style="color:Blue;">ParamArray</span> filterFor <span style="color:Blue;">As</span> Type())
+        <span style="color:Blue;">Me</span>.target = target
+        <span style="color:Blue;">Me</span>.filterFor = <span style="color:Blue;">New</span> List(Of Type)(filterFor)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> OnDiagnostic(<span style="color:Blue;">ByVal</span> diagnostic <span style="color:Blue;">As</span> IDiagnostic) _
+        <span style="color:Blue;">Implements</span> IDiagnosticListener.OnDiagnostic
+
+        <span style="color:Blue;">Dim</span> type <span style="color:Blue;">As</span> Type = diagnostic.<span style="color:Blue;">GetType</span>()
+        <span style="color:Blue;">If</span> filterFor.Contains(type) <span style="color:Blue;">Then</span>
+            target.OnDiagnostic(diagnostic)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			DiagnosticsExamples.vb: A simple message filter
+			<div class="codedownload">
+				<a href="Example-tuning-diagnostics-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

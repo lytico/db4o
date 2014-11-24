@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">Person eva = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Eva&quot;</span>,<span style="color:Blue;">null</span>);
+Person julia = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Julia&quot;</span>,eva);
+Person jennifer = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Jennifer&quot;</span>,julia);
+Person jamie = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Jamie&quot;</span>,jennifer);
+Person jill = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Jill&quot;</span>,jamie);
+Person joanna = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Joanna&quot;</span>,jill);
+
+Person joelle = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Joelle&quot;</span>,joanna);
+container.store(joelle);</pre>
+		<div class="codesnippet-meta">
+			ActivationConcept.java: Store a deep object hierarchy
+			<div class="codedownload">
+				<a href="Example-tutorial-activation-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

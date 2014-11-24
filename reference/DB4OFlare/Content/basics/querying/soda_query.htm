@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="546" MadCap:lastWidth="485">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Query:SODA Queries;SODA" />SODA Query</h1>
+        <p>The SODA query API is db4o's low level querying API, allowing direct access to 
+nodes of query graphs. Since SODA uses strings to identify fields, it is neither 
+perfectly typesafe nor compile-time checked and it also is quite verbose to 
+write.</p>
+        <p>For most applications <a href="native_queries.htm" MadCap:conditions="Primary.Java">Native Queries</a><a href="linq.htm" MadCap:conditions="Primary..NET">LINQ</a> will be the 
+better querying interface. However there can be applications where 
+dynamic generation of queries is required.</p>
+        <p>SODA is also an underlying db4o querying mechanism, all other query syntaxes are translated to SODA under the hood:</p>
+        <ul>
+            <li><a href="query_by_example.htm">Query By Example</a> is translated to SODA.</li>
+            <li><a href="native_queries.htm">Native Queries</a> use <MadCap:variable name="Primary.ByteCode" /> analysis to <a href="native_queries/native_query_optimization.htm">convert</a> to SODA  </li>
+            <li MadCap:conditions="Primary..NET"><a href="linq.htm">LINQ-queries</a> <![CDATA[ ]]>are also converted to         <![CDATA[ ]]><a href="linq/optimization.htm">SODA-Queries</a></li>
+        </ul>
+        <p>Understanding SODA will provide you with a better understanding of db4o  and will help to write more performant queries and applications. </p>
+        <p>Take a look at the SODA-examples to get a feel for SODA-API. <MadCap:xref href="soda/soda_example_catelog.htm" target="" title="" alt="">See "SODA Query Examples"</MadCap:xref> <![CDATA[ ]]></p>
+        <p>Also SODA has special capabilities for certain types like collections etc. <MadCap:xref href="soda/soda_special_case_examples.htm" target="" title="" alt="">See "SODA Special Cases Examples"</MadCap:xref></p>
+        <p>Additionally SODA evaluations can help you implementing queries which go beyond the capabilities of pure SODA queries. <MadCap:xref href="soda/soda_evaluations.htm" target="" title="" alt="">See "SODA Evaluations"</MadCap:xref></p>
+        <p>At last, you need a way to sort the results of a query. <MadCap:xref href="soda/soda_sorting.htm" target="" title="" alt="">See "SODA Sorting"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../Snippets/lazy-query-result.flsnp" />
+    </body>
+</html>

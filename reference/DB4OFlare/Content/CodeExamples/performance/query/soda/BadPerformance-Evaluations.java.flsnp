@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">final</span> Query query = container.query();
+query.constrain(Item.<span style="color:Blue;">class</span>);
+query.descend(<span style="color:#A31515;">&quot;indexedString&quot;</span>).constrain(<span style="color:Blue;">new</span> Evaluation() {
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> evaluate(Candidate candidate) {
+        <span style="color:Blue;">if</span> (candidate.getObject() <span style="color:Blue;">instanceof</span> String) {
+            String value = (String) candidate.getObject();
+            <span style="color:Blue;">if</span> (value.matches(<span style="color:#A31515;">&quot;abc&quot;</span>)) {
+                candidate.include(<span style="color:Blue;">true</span>);
+            }
+        }
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			BadPerformance.java: Evaluations
+			<div class="codedownload">
+				<a href="Example-query-soda-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

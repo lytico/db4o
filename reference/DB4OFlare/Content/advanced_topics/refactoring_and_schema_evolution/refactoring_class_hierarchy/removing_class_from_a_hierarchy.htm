@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1473" MadCap:lastWidth="531">
+  <head></head>
+  <body>
+    <h1>
+      <MadCap:keyword term="Refactoring:Remove Class From Hierarchy;Schema Evolution:Remove Class From Hierarchy" />Removing Class From A Hierarchy</h1>
+    <p>In this example we have a Human class which inherits from the Primate class. Now we want to remove the Primate class and let the Human class inherit directly from the Mammal class.</p>
+    <p>
+      <img src="../remove-type-from-hierachy.png" />
+    </p>
+    <p>Unfortunately db4o doesn't support this kind of refactoring. We need to use a work-around. Basically we create a copy of the Human class with the new Inheritance-hierarchy and the copy the existing data over.</p>
+    <h2>Step by Step</h2>
+    <ol>
+      <li>Create a copy of the Human class, for example HumanNew!</li>
+      <li>Change the inheritance of the HumanNew class to inherit directly from the Mammal class.</li>
+      <li>After that, load all existing Human-instances, copy the values over to HumanNew-instances. Store the HumanNew-instance and delete the old Human-instances</li>
+    </ol>
+    <p>Now the objects have the new inheritance hierarchy. You can delete the old Human class.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/strategies/refactoring/removehierarchy/RemoveClassFromHierarchy-copy-the-data-from-the-old-type-to-the-new-one.all.flsnp" />
+    <MadCap:snippetBlock src="../../../Snippets/update_references_not_included.flsnp" />
+  </body>
+</html>

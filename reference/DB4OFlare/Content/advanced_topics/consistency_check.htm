@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="463" MadCap:lastWidth="658">
+    <head>
+    </head>
+    <body>
+        <h1>Consistency Check and File Statistics</h1>
+        <p MadCap:conditions="Primary..NET">Both, the consistency check and the file statistics are a part of the  <![CDATA[ ]]><a href="enhancement_tools/enhancement_for_.net/db4otool/db4otool_usage.htm">Db4oTool</a>. </p>
+        <p MadCap:conditions="Primary.Java">Both, the consistency check and the file statistics are part of the db4o-X.XX-optional-java5 jar-file. To run the tool you need to have it and the core jar in the class-path. As alternative use the db4o-X.XX-all-java5 jar, which contains all dependencies. </p>
+        <MadCap:snippetBlock src="../Snippets/ConsistencyCheck.flsnp" />
+        <h2>File Statistics</h2>
+        <p MadCap:conditions="Primary..NET">To run  file statistics use the parameter -fileusage, like this:</p>
+        <p MadCap:conditions="Primary.Java">To run consistency checks use the com.db4o.filestats.FileUsageStatsCollector class, like this:</p>
+        <pre class="prettyprint" xml:space="preserve" MadCap:conditions="Primary..NET">Db4oTool.exe -fileusage databaseFile.db4o</pre>
+        <pre class="prettyprint" xml:space="preserve" MadCap:conditions="Primary.Java">java -cp db4oX-X.XX-all-java5.jar com.db4o.filestats.FileUsageStatsCollector databaseFile.db4o</pre>
+        <p>The file statistics return the space usage of objects, indexes etc in bytes. It also returns the statistics for internal objects, managed by db4o. </p>
+    </body>
+</html>

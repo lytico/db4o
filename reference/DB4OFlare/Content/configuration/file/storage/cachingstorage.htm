@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2379" MadCap:lastWidth="700">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Cache:Storage Cache" />CachingStorage</h1>
+    <p>The CachingStorage
+is db4o's default storage. The default
+implementation uses the LRU/Q2 caching mechanism to reduce disk access times and to
+improve performance. The cache is characterized by the amount of pages that
+can be utilized and the page size. The multiplication of these two parameters
+gives the maximum cache size that can be used.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/configuration/io/IOConfigurationExamples-Using-a-caching-storage.all.flsnp" />
+    <h2>Page Count and Page Size</h2>
+    <p>The CachingStorage takes two parameters, the page count and the page size. Bigger page size means faster handling of information as there is no need to switch between pages for longer. On the
+other hand a bigger page size will mean higher memory consumption, as memory will
+be reserved for the whole page size, when the page is needed. Modify
+these values and run performance tests to find the best
+performance/memory consumption combination for your system. The default values
+are the following:</p>
+    <p>Page count = 64 
+Page size = 1024KB</p>
+    <p>This gives a total of 64 KB of cache memory. </p>
+    <h2>Caching Type</h2>
+    <p>By default db4o uses a LRU/Q2 caching strategy. You can more about the LRU/Q2 cache on the Internet or you can look for the concrete implementation in db4o source code: LRU2QCache, LRU2QXCache and LRUCache. The LRU2QCache is a
+simplified implementation of the 2 Queue algorithm described here:<a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.34.2641">http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1..34.2641</a></p>
+    <p>It's possible to exchange the cache-type. Inherit from the CachingStorage class and overwrite the new cache method. There you return you're caching implementation. For example use a simple LRU-Cache.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/configuration/io/LRUCachingStorage-Exchange-the-cache-implementation.all.flsnp" />
+    <p> </p>
+  </body>
+</html>

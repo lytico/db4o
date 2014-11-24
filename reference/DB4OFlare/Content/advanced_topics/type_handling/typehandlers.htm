@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="643" MadCap:lastWidth="658">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="TypeHandlers" />TypeHandlers</h1>
+        <p>TypeHandlers are at the lowest level of db4o. A&#160;typehandler is responsible to turn a object or parts of an object into a byte stream. db4o brings are whole set of type handlers for different types of object to store them.</p>
+        <p>For special cases it can make sense to write your own type handler. This allows you to control the persistence details down to the byte level. However keep in mind that type handlers have following problems and limitations:</p>
+        <p>
+            <ul>
+                <li>There is no versioning support: If you need to change the serialisation scheme of the type your are on your own.</li>
+                <li>The typehandler-API is mostly undocumented and not as stable as other db4o APIs.</li>
+                <li>Elaborate type handlers need deep knowledge of  undocumented, internal implementation details of db4o. </li>
+                <li>Mistakes in typehandlers can lead to cryptic error messages and database corruption.</li>
+            </ul>
+        </p>
+        <MadCap:snippetBlock src="../../CodeExamples/typehandling/typehandler/TypeHandlerExample-Register-type-handler.all.flsnp" />
+        <p>Note that type handler are a low level API which doesn't protect you from any mistakes. If you make a mistake in a typehandler you can lose data.</p>
+        <p>Type handler functionality is best explained on a <a href="typehandlers/custom_typehandler_example.htm">working example</a>.</p>
+    </body>
+</html>

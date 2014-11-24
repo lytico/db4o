@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2753" MadCap:lastWidth="636">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="VOD:JDO Setup" MadCap:conditions="Primary.Java" />Setup JDO for VOD</h1>
+        <p>This guide shows how to setup JDO for VOD. </p>
+        <p> This topic assumes that you've already installed the VOD database. Visit the <a href="http://www.versant.com/developer/downloads/" target="_top">official website to download</a> VOD and follow the installation guide.</p>
+        <h2><a name="CreateDB"></a>Create A Database</h2>
+        <p>The first step is to create the database. If you already have a database you can skip this step. The official documentation on managing the VOD database can be found in the VOD installation-folder.</p>
+        <p>You can create the database with the 'Administration Console' which is shipped with VOD. Start the 'Administration Console', choose 'File'-&gt;'Create Database...' and follow the wizard to create a new database.</p>
+        <p>As alternative you can create a new database in the command line with these commands:</p>
+        <pre class="monospace" xml:space="preserve">makedb databaseName@localhost<br />createdb databaseName@localhost
+startdb databaseName@localhost
+</pre>
+        <h2><a name="JDOSetup"></a>JDO Setup</h2>
+        <p>The replication system uses the JDO API to replicate objects between db4o and VOD. Therefore you need to setup the VOD JDO implementation. Again the official documentation is part of the VOD installation. This is just a very short guide to setting JDO up and doesn't cover all details.</p>
+        <p>First you need to add the JDO-libraries to you project. The JDO-libraries are in the VOD-directory under the 'lib'-subdirectory. You need to add at least these jars.</p>
+        <ul>
+            <li>jdo2-api-2.1.jar</li>
+            <li>vodjdo.jar</li>
+            <li>asm-all-3.1.jar</li>
+            <li>jta-1.1.jar</li>
+        </ul>
+        <p>Second you need to provide the JDO configuration. You can keep this information in a property file. For example in a versant.properties-file which is stored along with your code. There are three important configuration settings you need to set, the factory-class, the connection-URL and information which classes are enhanced.</p>
+        <p>For more properties and settings read the JDO and VOD documentation. The example property-file looks like this:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/javaDRS/src/versant-JDO-configuration-for-VOD.all.flsnp" />
+        <p>Additionally you need to have a package description where you declare all persistent classes:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/vod/package-List-all-persistent-classes-of-this-package-.all.flsnp" />
+        <p>The last preparation step is to get the enhancer in place. JDO requires that classes implements the PersistenceCapable interface. Implementing this by hand would be extremely painful. That's why you can use an enhancer which does this for you. Create an Ant build script which does that.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/javaDRS/build-Enhancer-script-.xml.flsnp" />
+        <p>Along to the Ant-script add a machine.properties-file, which contains the installation specific information. Like the installation-location of VOD.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/javaDRS/machine-The-properties-for-our-project.all.flsnp" />
+        <h2><a name="UsingJDo"></a>Using JDO</h2>
+        <p>After running the enhancer you can start using JDO. First you need to create a PersistenceManagerFactory-instance. This can be created with the static helper methods from the JDOHelper-class:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/vod/JDOUtilities-Opening-the-persistence-factory.all.flsnp" />
+        <p>After that you can create persistence manager with the factory and use it to store, query and update objects with JDO:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/vod/StoreObjectsWithJDO-Use-the-persistence-manager-to-store-objects.all.flsnp" />
+        <p>For more information and help on JDO read the official VOD documentation and take a look the <a href="http://www.datanucleus.org/products/accessplatform_2_1/jdo/api.html">JOD API</a>.</p>
+    </body>
+</html>

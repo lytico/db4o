@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IObjectContainer desktopDatabase = OpenDatabase(DesktopDatabaseName);
+IObjectContainer mobileDatabase = OpenDatabase(MobileDatabaseName);
+
+IReplicationProvider dektopReplicationProvider
+    = <span style="color:Blue;">new</span> Db4oEmbeddedReplicationProvider(desktopDatabase);
+IReplicationProvider mobileReplicationProvider
+    = <span style="color:Blue;">new</span> Db4oEmbeddedReplicationProvider(mobileDatabase);
+
+IReplicationSession replicationSession 
+    = Replication.Begin(dektopReplicationProvider, mobileReplicationProvider);
+<span style="color:Green;">// set the replication-direction from the desktop database to the mobile database. </span>
+replicationSession.SetDirection(replicationSession.ProviderA(), replicationSession.ProviderB());</pre>
+		<div class="codesnippet-meta">
+			Db4oReplicationExamples.cs: Prepare unidirectional replication
+			<div class="codedownload">
+				<a href="Example-drs-db4o-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

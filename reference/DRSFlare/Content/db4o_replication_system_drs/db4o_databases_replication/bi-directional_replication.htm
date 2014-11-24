@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1621" MadCap:lastWidth="728">
+    <head><title>Bidirectional Replication</title>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="dRS:Bidirectional Replication;Replication:Bidirectional" />Bidirectional Replication</h1>
+        <p>It's quite often the case that you need replication in both directions. For example when you have a mobile device which keeps the data in sync with a desktop PC. Changes on the both partners have to be replicated to the other partner.</p>
+        <p>First, make sure that you've prepared and configured db4o properly. <MadCap:xref href="simple_example.htm" target="" title="" alt="">See "Simple Example"</MadCap:xref></p>
+        <p>Start a replication-session with the two replication partners. Note that no replication direction is set.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Prepare-bidirectional-replication.all.flsnp" />
+        <p>Then get the changed objects from both replication partners. Each replication partner returns the updated and created object in a object-set. Then iterate over both object-sets and replicate the changes. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Bidirectional-replication.all.flsnp" />
+    </body>
+</html>

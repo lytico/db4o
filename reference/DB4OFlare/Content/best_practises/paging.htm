@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2391" MadCap:lastWidth="987">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Paging" />Paging</h1>
+        <p>Currently db4o doesn't provide any paging mechanism at all. However all db4o query results are lazy loaded. db4o returns a result list which only contains the ids of the objects and will load the object as soon as you access it. This means you can page by only accessing the indexes of the range you're interested in.</p>
+        <p MadCap:conditions="Primary.Java">Since the result sets of db4o implement the Java List interface it has the sub list method. With this method you easily get only a sub set of the result. Or you can build your own paging-method based on the sub list method on the lists.</p>
+        <p MadCap:conditions="Primary..NET">You can access the list directly by the indexes to get the right objects. With this you can build a paging-utility methods which start at a certain index and return a certain amount of objects. Take a look a this example utility methods.</p>
+        <p MadCap:conditions="Primary..NET">Note that LINQ brings already methods for paging with it. The skip and take methods are optimal for implementing a paging mechanism. </p>
+        <MadCap:snippetBlock src="../CodeExamples/strategies/paging/PagingUtility-Paging-utility-methods.all.flsnp" />
+        <p>And then of course you can use the utility methods on the result-sets of db4o. </p>
+        <MadCap:snippetBlock src="../CodeExamples/strategies/paging/TestPagingUtility-Use-the-paging-utility.all.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

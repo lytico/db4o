@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C0BA12AD-54B4-43B0-A570-0299F6253AC7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4objects.Drs.Tests</RootNamespace>
+    <AssemblyName>Db4objects.Drs.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>Db4objects.Drs.Tests.Db4oDrsTestSuiteBuilder</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Xml"/>
+  </ItemGroup>
+  <ItemGroup>
+<Compile Include="Db4objects.Drs.Tests\ArrayReplicationTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\ArrayTestSuite.cs"/>
+<Compile Include="Db4objects.Drs.Tests\BidirectionalReplicationTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\ByteArrayTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\CollectionAssert.cs"/>
+<Compile Include="Db4objects.Drs.Tests\CollectionHandlerImplTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\ComplexListTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\CustomArrayListTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\ActivatableItem.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\ArrayHolder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\ByteArrayHolder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\Car.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\CollectionHolder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\Container.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\IIByteArrayHolder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\ItemDates.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\ItemWithCloneable.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\ItemWithUntypedField.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\ListContent.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\ListHolder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\MapContent.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\MapHolder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\NamedList.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\NewPilot.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\Pilot.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\R0.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\R1.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\R2.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\R3.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\R4.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\Replicated.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\SPCChild.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\SPCChildWithoutDefaultConstructor.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\SPCParent.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\SimpleArrayContent.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\SimpleArrayHolder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\SimpleItem.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\SimpleListHolder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\UnqualifiedNamed.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\UntypedFieldData.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\UntypedFieldItem.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Data\Value.cs"/>
+<Compile Include="Db4objects.Drs.Tests\DateReplicationTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Db4oClientServerDrsFixture.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Db4oDb4oDrsTestSuite.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Db4oDrsFixture.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Db4oDrsTestSuite.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Db4oDrsTestSuiteBuilder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Db4o\PartialCollectionReplicationTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Dotnet\StructTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\DrsFixture.cs"/>
+<Compile Include="Db4objects.Drs.Tests\DrsFixtureVariable.cs"/>
+<Compile Include="Db4objects.Drs.Tests\DrsTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\DrsTestSuite.cs"/>
+<Compile Include="Db4objects.Drs.Tests\DrsTestSuiteBuilder.cs"/>
+<Compile Include="Db4objects.Drs.Tests\EqualsHashCodeOverriddenTestCaseBase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Foundation\AllTests.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Foundation\Set4.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Foundation\Set4Testcase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Foundation\SignatureTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\IDrsProviderFixture.cs"/>
+<Compile Include="Db4objects.Drs.Tests\MapTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\MixedTypesCollectionReplicationTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\PerformanceTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\R0Linker.cs"/>
+<Compile Include="Db4objects.Drs.Tests\R0to4Runner.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Regression\DRS42Test.cs"/>
+<Compile Include="Db4objects.Drs.Tests\ReplicatingTwiceTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\ReplicationAfterDeletionTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\ReplicationEventTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\ReplicationFeaturesMain.cs"/>
+<Compile Include="Db4objects.Drs.Tests\ReplicationProviderTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\SameHashCodeTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\SimpleArrayTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\SimpleParentChild.cs"/>
+<Compile Include="Db4objects.Drs.Tests\SingleTypeCollectionReplicationTest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\Staging\MapElementCustomHashCodeTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\TheSimplest.cs"/>
+<Compile Include="Db4objects.Drs.Tests\TheSimplestTestSuite.cs"/>
+<Compile Include="Db4objects.Drs.Tests\TheSimplestWithCallConstructors.cs"/>
+<Compile Include="Db4objects.Drs.Tests\TimestampTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\TransparentActivationTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\UnqualifiedNamedTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\UntypedFieldTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\UuidConversionTestCase.cs"/>
+<Compile Include="Db4objects.Drs.Tests\VersantDrsTestSuite.cs"/>
+<Compile Include="Properties\AssemblyInfo.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Db4oDrsTestSuite.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Db4oDrsTestSuiteBuilder.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\DelegatingList.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Foundation\ObjectSetCollection4FacadeTestCase.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\GenericEqualityComparerTestCase.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\ListTest.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Regression\Container.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Regression\DelegateTestCase.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Regression\GenericCollectionTestCaseBase.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Regression\GenericDictionaryTestCase.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Regression\GenericListTestCase.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\Regression\GenericListTestSuite.cs"/>
+<Compile Include="native\Db4objects.Drs.Tests\ReplicationTestPlatform.cs"/>
+<Compile Include="native\Sharpen.Util\IdentityHashMap.cs"/>
+<Compile Include="native\compact\Console.cs"/>
+<Compile Include="native\compact\WindowWriter.cs"/>
+</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Db4objects.Db4o.CS\Db4objects.Db4o.CS-2008.csproj">
+      <Project>{9FA8178A-3E77-42C5-A252-6690EA9BA257}</Project>
+      <Name>Db4objects.Db4o.CS-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o\Db4objects.Db4o-2008.csproj">
+      <Project>{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}</Project>
+      <Name>Db4objects.Db4o-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4oUnit.Extensions\Db4oUnit.Extensions-2008.csproj">
+      <Project>{9446B00C-E8A6-4CEB-83DE-2CAC5168DFE3}</Project>
+      <Name>Db4oUnit.Extensions-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4oUnit\Db4oUnit-2008.csproj">
+      <Project>{8F82F8B0-95B6-4553-BDA8-BD9A954E682F}</Project>
+      <Name>Db4oUnit-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4objects.Drs\Db4objects.Drs-2008.csproj">
+      <Project>{B8BF0B55-AB4E-4335-80D1-DEDAD410FAD6}</Project>
+      <Name>Db4objects.Drs-2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

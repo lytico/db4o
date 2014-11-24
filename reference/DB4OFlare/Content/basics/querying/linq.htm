@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1231" MadCap:lastWidth="560" MadCap:conditions="Primary..NET">
+    <head />
+    <body>
+        <h1>
+            <MadCap:keyword term="LINQ;Query:LINQ" />LINQ</h1>
+        <p>Of course, db4o supports .NET LINQ to query the database.</p>
+        <p>First, you need to add the <i>Db4objects.Db4o.Linq.dll</i> and the <i>Mono.Reflection.dll</i> assemblies to your project. This assembly contains db4o LINQ-Implementation. <MadCap:xref href="../../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref></p>
+        <h2>LINQ Queries</h2>
+        <p>Writing a query is simple. You write the LINQ query against the object-container. First you need to import the LINQ-namespaces.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/query/linq/LinqExamples-Use-the-LINQ-namespace.all.flsnp" />
+        <p>After that, you can start to write a LINQ-Query against the object container.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/query/linq/LinqExamples-Simple-query.all.flsnp" />
+        <p>In order to learn LINQ, take a look a the LINQ-resources and tutorial out on the Internet. For example the <a href="http://msdn.microsoft.com/en-us/library/bb397926.aspx" target="_blank">LINQ-Overview at MSDN</a>or at <a href="http://msdn.microsoft.com/en-us/vcsharp/aa336746.aspx" target="_blank">this example-collection.</a></p>
+        <p>There are also a few simple <a href="linq/linq_examples.htm">LINQ query examples for db4o here</a>.</p>
+        <h2>
+            <MadCap:keyword term="IQueryable" />IQueryable</h2>
+        <p>db4o also support the .NET IQueryable interface. This is useful when you want to build an abstraction layer for db4o or integrate db4o with other frameworks.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/query/linq/LinqExamples-Get-a-IQueryable-instance.all.flsnp" />
+        <h2>More on db4o's LINQ Provider</h2>
+        <p>db4o LINQ provider translates the LINQ queries into db4o's low level query <a href="soda_query.htm">API</a>. Read what this query optimization need and what its limits are. <MadCap:xref href="linq/optimization.htm" target="" title="" alt="">See "LINQ Optimization"</MadCap:xref></p>
+        <p>Also read how LINQ is supported on the .NET Compact Framework. <MadCap:xref href="linq/linq_for_compact_framework.htm" target="" title="" alt="">See "LINQ For Compact Framework"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../Snippets/lazy-query-result.flsnp" />
+    </body>
+</html>

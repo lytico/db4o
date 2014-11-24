@@ -1,0 +1,133 @@
+.n
+.a First ..
+.0 First Steps ..
+
+Let's get started as simple as possible. We are going to demonstrate how to store, ._
+retrieve, update and delete instances ._
+of a single class that only contains primitive and String members. In our example ._
+this will be a Formula One (F1) pilot whose attributes are his name and the F1 points ._
+he has already gained this season.
+
+First we create a class to hold our data. It looks like this:
+
+.s com.db4odoc.f1.chapter1.Pilot ..
+
+Notice that this class does not contain any db4o-related code.
+
+.1 Opening the database ..
+
+To access a db4o database file or create a new one, call .x Db4oEmbedded.openFile() .. and ._
+provide Db4oEmbedded.newConfiguration() as a configuration template and ._
+the path to your database file as the second parameter, to obtain ._
+an .x ObjectContainer .. instance. .x ObjectContainer .. represents "The Database", ._
+and will be your primary ._
+interface to db4o. Closing the .x ObjectContainer .. with the .x #close() .. method will close the ._
+database file and release all resources associated with it.
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#accessDb4o -run ..
+
+.? java DB4OFILENAME ..?  .? net Db4oFileName ..?  is just a string value ._
+representing any filename. If the file with this name already exists, it will be opened ._
+as db4o database, otherwise a new db4o database will be created.
+For the following examples we will assume that our environment takes care ._
+of opening and closing the .x ObjectContainer .. automagically, and stores the ._
+reference in a variable named 'db'.
+
+.1 Storing objects ..
+
+To store an object, we simply call .x #store() .. on our database, passing ._
+any object as a parameter.
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#storeFirstPilot ..
+
+We'll need a second pilot, too.
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#storeSecondPilot ..
+
+.1 Retrieving objects ..
+
+The easiest way to see the content of our database is to use Object Manager ._
+Enterprise, which will be introduced ._
+in the  .l ObjectManagerOverview next chapter ..l . ._
+For now let's continue with the API overview and learn how to build db4o queries.
+db4o supplies several different querying systems,  .i Query by Example ..  (QBE), ._
+.? net  .i LINQ ..  ..?,  .i Native Queries ..  (NQ) and the  .i SODA Query API ..  (SODA). In this ._
+first example we will introduce QBE. Once you are familiar with storing ._
+objects, we encourage you to use  .? Java .l NativeQueries Native Queries .. ..?  .? net .l LINQ LINQ ..  ..? .
+
+When using Query-By-Example, you create a prototypical object for db4o to use as an example of what ._
+you wish to retrieve. db4o will retrieve all objects of the given type that contain the ._
+same (non-default) field values as the example. The results will be returned as an ._
+.x ObjectSet .. instance. We will use a convenience method .x #listResult() .. to display the contents ._
+of our result .x ObjectSet .. :
+
+.s com.db4odoc.f1.Util#listResult +{} -run ..
+
+To retrieve all pilots from our database, we provide an 'empty' prototype:
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#retrieveAllPilotQBE ..
+
+Note that we specify 0 points, but our results were not constrained to only those Pilots ._
+with 0 points; 0 is the default value for int fields.
+
+db4o also supplies a shortcut to retrieve all instances of a class:
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#retrieveAllPilots ..
+
+For  .? java JDK 5 ..? .? net .NET ..?  there also is a generics shortcut, using the ._
+query method:
+
+.? java .c List <Pilot> pilots = db.query(Pilot.class); ..c ..?
+.? net .c IList <Pilot> pilots = db.Query<Pilot>(typeof(Pilot)); ..c ..?
+
+To query for a pilot by name:
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#retrievePilotByName ..
+
+And to query for Pilots with a specific number of points:
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#retrievePilotByExactPoints ..
+
+
+Of course there's much more to db4o queries. They will be covered in more depth in later chapters.
+
+.1 Updating objects ..
+
+Updating objects is just as easy as storing them. In fact, you use the same .x #store() .. method to update ._
+your objects: just call .x #store() .. again after modifying any object.
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#updatePilot ..
+
+Notice that we query for the object first. This is an importaint point. When you call .x #store() .. to modify a ._
+stored object, if the object is not 'known' (having been previously stored or retrieved during the current session), ._
+db4o will insert a new object. db4o does this because it does not automatically match up objects to be ._
+stored, with objects previously stored. It assumes you are inserting a second object which happens to have ._
+the same field values.
+
+To make sure you've updated the pilot, please return to any of the retrieval ._
+examples above and run them again.
+
+.1 Deleting objects ..
+
+Objects are removed from the database using the .x #delete() .. method.
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#deleteFirstPilotByName ..
+
+Let's delete the other one, too.
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#deleteSecondPilotByName ..
+
+Please check the deletion with the retrieval examples above.
+
+As with updating objects, the object to be deleted has to be 'known' to db4o. It is not sufficient ._
+to provide a prototype object with the same field values.
+
+.1 Conclusion ..
+
+That was easy, wasn't it? We have stored, retrieved, updated and ._
+deleted objects with a few lines of code. Now you are probably interested to see ._
+how the database looks like. Let's have a look using db4o graphical tool - Object Manager in the  .l ObjectManagerOverview next chapter ..l .
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample ..

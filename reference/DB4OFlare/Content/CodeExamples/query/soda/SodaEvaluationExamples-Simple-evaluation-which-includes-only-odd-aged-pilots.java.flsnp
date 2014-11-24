@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">class</span> OnlyOddAge <span style="color:Blue;">implements</span> Evaluation {
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> evaluate(Candidate candidate) {
+        Pilot pilot = (Pilot) candidate.getObject();
+        candidate.include(pilot.getAge()%2!=0);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			SodaEvaluationExamples.java: Simple evaluation which includes only odd aged pilots
+			<div class="codedownload">
+				<a href="Example-query-soda-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

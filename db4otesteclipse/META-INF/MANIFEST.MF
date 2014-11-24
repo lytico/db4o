@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: db4o Regression Test Launcher
+Bundle-SymbolicName: db4otesteclipse;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: db4otesteclipse.Activator
+Bundle-Vendor: db4objects, Inc.
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.jdt.launching,
+ org.eclipse.jdt.core,
+ org.eclipse.debug.ui,
+ org.eclipse.jdt.debug.ui,
+ org.eclipse.jdt.debug
+Eclipse-LazyStart: true

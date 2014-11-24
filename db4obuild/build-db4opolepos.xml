@@ -1,0 +1,94 @@
+<project name="db4opolepos">
+
+	<import file="common.xml" />
+
+	<property name="dir.polepos" value="${dir.base}/polepos"/>
+	<property name="dir.db4opolepos" value="${dir.base}/db4opolepos"/>
+	<property name="dir.results" value="${dir.db4opolepos}/doc/results"/>
+	<property name="dir.dist.polepos" value="${dir.dist}/polepos"/>
+	<property name="dir.dist.polepos.classes" value="${dir.dist.polepos}/classes"/>
+
+	<taskdef name="gcJarFolder" classname="com.db4o.devtools.ant.GarbageCollectJarFolderTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+		</classpath>
+	</taskdef>
+	
+	<target name="init" depends="properties">
+		<path id="poleposition_classpath">
+			<pathelement location="${file.jdk1.5.nodep.jar}"/>
+			<fileset dir="${dir.polepos}/lib">
+				<include name="**/*.jar" />
+				<exclude name="**/db4o*.jar" />
+			</fileset>
+		</path>
+	</target>
+		
+	<target name="compile" depends="init">
+		<echo message="${file.jdk1.5.nodep.jar}" />
+		<mkdir dir="${dir.dist.polepos.classes}" />
+		<javac srcdir="${dir.polepos}/src" destdir="${dir.dist.polepos.classes}" debug="true">
+			<classpath refid="poleposition_classpath" />
+		</javac>
+		<javac srcdir="${dir.db4opolepos}/src" destdir="${dir.dist.polepos.classes}" debug="true">
+			<classpath>
+				<path path="${dir.dist.polepos.classes}" /> 
+				<path refid="poleposition_classpath"/>
+			</classpath>
+		</javac>
+		<copy todir="${dir.dist.polepos.classes}">
+			<fileset dir="${dir.polepos}/src">
+				<include name="**/**" />
+				<exclude name="**/*.java" />
+			</fileset>
+			<fileset dir="${dir.db4opolepos}/src">
+				<include name="**/**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="prepare" depends="compile">
+		<copy file="${file.jdk1.5.nodep.jar}" todir="${dir.polepos.db4ojars}" />
+		<gcJarFolder jarfolder="${dir.polepos.db4ojars}" maxFiles="10" />
+	</target>
+	
+	<target name="run" depends="prepare">
+		<java classname="org.polepos.PerformanceMonitoringRunner" dir="${dir.db4opolepos}" fork="true" failonerror="false" resultproperty="perf.result">
+			<classpath>
+				<path path="${dir.dist.polepos.classes}" /> 
+				<path refid="poleposition_classpath"/>
+			</classpath>
+			<arg value="1,9"/>
+			<arg path="${dir.polepos.db4ojars.fixed}"/>
+			<arg path="${dir.polepos.db4ojars}"/>
+			<jvmarg value="-Xmx1024m"/>
+			<!-- jvmarg value="-verbose:class"/ -->
+		</java>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${dir.dist.polepos}">
+			<include name="**/*"/>
+		</delete>
+	</target>
+	
+	<target name="upload-pdf" >
+		<copy file="${dir.results}/PolePosition.pdf" tofile="${dir.results}/${polepos.pdf.labelled}" overwrite="true"/>
+		<echo message="About to upload to FTP: ${dir.results}/${polepos.pdf.labelled}"/>
+		<!-- active mode required for ftp server setup -->
+        <ftp password="${ftp.password}" 
+        	server="${ftp.server}" 
+        	userid="${ftp.user}" 
+        	action="put" 
+        	passive="false" 
+        	remotedir="${ftp.path}">
+            <fileset dir="${dir.results}">
+				<include name="${polepos.pdf.labelled}" />
+			</fileset>
+		</ftp>
+	</target>
+
+
+
+</project>

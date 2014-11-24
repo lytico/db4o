@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+    </import>
+    <x:children>
+        <composite background="White">
+            <layout x:class="gridLayout" numColumns="2"/>
+            <x:children>
+            	%%fields
+            	<label x:id="FieldLabel%fieldNumber" text="%fieldName" background="White"/>
+            	<!-- <label text=": " background="White"/> -->
+            	<label x:id="FieldValue%fieldNumber" text="%fieldValue" background="White">
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+            	</label>
+            	%%fields
+            </x:children>
+        </composite>
+    </x:children>
+</xswt>

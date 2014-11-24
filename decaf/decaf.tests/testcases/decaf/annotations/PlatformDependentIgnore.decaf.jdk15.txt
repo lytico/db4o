@@ -1,0 +1,13 @@
+package decaf.annotations;
+
+class IgnoreJdk11 {
+}
+
+class IgnoreJdk12 {
+}
+
+class IgnoreAndroid {
+}
+
+class IgnoreAndroidAndJdk11 {
+}

@@ -1,0 +1,2 @@
+/* Copyright (C) 2007   Versant Inc.   http://www.db4o.com */
+package com.db4o.ta.instrumentation.test.integration;import java.util.*;class UnitOfWork {	Date _started;	Date _finished;	String _name;		public UnitOfWork(String name, Date started, Date finished) {		_name = name;		_started = started;		_finished = finished;	}	public String getName() {		return _name;	}		public long timeSpent() {		return _finished.getTime() - _started.getTime();	}}

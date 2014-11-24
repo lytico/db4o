@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>ObjectManager 2.0 Webstart</title>
+<SCRIPT LANGUAGE="JavaScript"> 
+var javawsInstalled = 0;
+var javaws142Installed=0;
+var javaws150Installed=0;
+isIE = "false";
+if (navigator.mimeTypes && navigator.mimeTypes.length) {
+   x = navigator.mimeTypes['application/x-java-jnlp-file'];
+   if (x) {
+      javawsInstalled = 1;
+      javaws142Installed=1;
+      javaws150Installed=1;
+   }
+}
+else {
+   isIE = "true";
+}
+</SCRIPT>
+
+        <SCRIPT LANGUAGE="VBScript">
+on error resume next
+If isIE = "true" Then
+  If Not(IsObject(CreateObject("JavaWebStart.isInstalled"))) Then
+     javawsInstalled = 0
+  Else
+     javawsInstalled = 1
+  End If
+  If Not(IsObject(CreateObject("JavaWebStart.isInstalled.1.4.2.0"))) Then
+     javaws142Installed = 0
+  Else
+     javaws142Installed = 1
+  End If
+  If Not(IsObject(CreateObject("JavaWebStart.isInstalled.1.5.0.0"))) Then
+     javaws150Installed = 0
+  Else
+     javaws150Installed = 1
+  End If
+End If
+</SCRIPT>
+
+
+
+
+        <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="wrapper"><h1>
+  <img src="images/db4o-logo.png" alt="db4o" width="207" height="43" align="absmiddle" /> ObjectManager 2.0</h1>
+  
+  <div id="startbox" >
+    <script language="JavaScript">
+if (javawsInstalled || (navigator.userAgent.indexOf("Gecko") !=-1)) {
+	document.write('<p>For db4o Version 5.7<br/>');
+	document.write('<a href="http://www.db4objects.net/om/objectmanager.jnlp">');
+	document.write('<img src="images/start-button.png" alt="Start!" width="194" height="41" border="0" />');
+    document.write('</a>');
+	document.write('</p><p>');
+	document.write('For db4o Version 5.5<br/>');
+	document.write('<a href="http://www.db4objects.net/om/for5.5/objectmanager.jnlp">');
+	document.write('<img src="images/start-button.png" alt="Start!" width="194" height="41" border="0" />');
+    document.write('</a>');
+	document.write('</p>');
+	
+} else {
+    document.write("Click ");
+    document.write("<a href=http://java.sun.com/PluginBrowserCheck?pass=http://www.db4objects.net/om/download-jre.html&fail=http://java.sun.com/j2se/1.5.0/download.html>here</a> ");
+    document.write("to download and install JRE 5.0 and the application.");
+}
+</SCRIPT>
+  </div>
+  <p>Welcome to ObjectManager 2.0 Web Start. </p>
+<p>To start, click the Start button to the right.</p>
+<p>Please post comment and feedback in the <a href="http://developer.db4o.com/forums/3/ShowForum.aspx">db4o User Forums</a>.</p>
+<p>If the Web Start version does not work for you, please download the zip from the <a href="http://developer.db4o.com/files/11/default.aspx">Download Center</a>, but we do recommend using the Web Start version if possible so you'll automatically get the latest updates. </p>
+<p>&nbsp;</p>
+
+</div>
+</body>
+</html>

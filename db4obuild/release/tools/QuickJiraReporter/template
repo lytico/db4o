@@ -1,0 +1,4 @@
+<%for issue in issues:%>
+<li><a href="http://tracker.db4o.com/browse/${issue.key}">${issue.key}</a> - ${issue.summary}
+</li>
+<%end%>

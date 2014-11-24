@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultVariableSet>
+  <Variable
+    Comment=""
+    Name="CompanyName">Versant Inc</Variable>
+  <Variable
+    Comment=""
+    Name="PhoneNumber">858 123 4567</Variable>
+  <Variable
+    Name="CurrentVersion"
+    Comment=""
+    Definition="Some text">X.XX</Variable>
+  <Variable
+    Name="Plattform"
+    Comment=""
+    Definition="Some text">Java</Variable>
+  <Variable
+    Name="Artefact"
+    Comment=""
+    Definition="Some text">jar</Variable>
+  <Variable
+    Name="Iterable"
+    Comment=""
+    Definition="Some text">Iterable</Variable>
+  <Variable
+    Name="Activatable"
+    Comment=""
+    Definition="Some text">Activatable</Variable>
+  <Variable
+    Name="getter/setter"
+    Comment=""
+    Definition="Some text">getter/setter</Variable>
+  <Variable
+    Name="Ant"
+    Comment=""
+    Definition="Some text">Ant</Variable>
+  <Variable
+    Name="IDE"
+    Comment=""
+    Definition="Some text">Eclipse</Variable>
+  <Variable
+    Name="UUID"
+    Comment=""
+    Definition="Some text">UUID</Variable>
+  <Variable
+    Name="Storage"
+    Comment=""
+    Definition="Some text">Storage</Variable>
+  <Variable
+    Name="Bin"
+    Comment=""
+    Definition="Some text">Bin</Variable>
+  <Variable
+    Name="EventRegistry"
+    Comment=""
+    Definition="Some text">EventRegistry</Variable>
+  <Variable
+    Name="Map"
+    Comment=""
+    Definition="Some text">Map</Variable>
+  <Variable
+    Name="getter"
+    Comment=""
+    Definition="Some text">getter</Variable>
+  <Variable
+    Name="Annotation"
+    Comment=""
+    Definition="Some text">Annotation</Variable>
+  <Variable
+    Name="JVM"
+    Comment=""
+    Definition="Some text">JVM</Variable>
+  <Variable
+    Name="close"
+    Comment=""
+    Definition="Some text">close</Variable>
+  <Variable
+    Name="Evaluation"
+    Comment=""
+    Definition="Some text">Evaluation</Variable>
+  <Variable
+    Name="ObjectContainer"
+    Comment=""
+    Definition="Some text">ObjectContainer</Variable>
+  <Variable
+    Name="Artefacts"
+    Comment=""
+    Definition="Some text">jars</Variable>
+  <Variable
+    Name="ByteCode"
+    Comment=""
+    Definition="Some text">bytecode</Variable>
+  <Variable
+    Name="Packages"
+    Comment=""
+    Definition="Some text">packages</Variable>
+</CatapultVariableSet>

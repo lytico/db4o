@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2694" MadCap:lastWidth="609">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Sorting:SODA" />SODA Sorting</h1>
+        <p>You can specify to sort by certain fields in SODA. For this you need to descend to the field and use the appropriate order ascending or order descending method.</p>
+        <p>In cases where this is not enough, you can use a special comparator.</p>
+        <h2><a name="SortByField"></a> Sorting by Field</h2>
+        <p>To sort by a field navigate to the field and call a order ascending or descending method. Note that this only works for fields which have natural sortable values, such as strings and numbers.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaSorting-Order-by-a-field.all.flsnp" />
+        <h2><a name="SortByMultipleFields"></a>Sort by Multiple Fields</h2>
+        <p>You can sort by multiple fields. Add a order constrain for each field. The first order statement has the highest priority and last added the lowest.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaSorting-Order-by-multiple-fields.all.flsnp" />
+        <h2><a name="CostumSorting"></a>Sort With Your Own Comperator</h2>
+        <p>In cases where you have more complex sorting requirements, you can specify your own comparator. It is used like a regular <MadCap:variable name="Primary.Plattform" />-comparator. </p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaSorting-Order-by-your-comparator.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaSorting-The-string-length-comperator.all.flsnp" />
+    </body>
+</html>

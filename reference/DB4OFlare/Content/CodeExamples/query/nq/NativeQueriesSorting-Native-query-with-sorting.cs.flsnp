@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IList&lt;Pilot&gt; pilots = container.Query(
+    <span style="color:Blue;">delegate</span>(Pilot p) { <span style="color:Blue;">return</span> p.Age &gt; 18; },
+    <span style="color:Blue;">delegate</span>(Pilot p1, Pilot p2) { <span style="color:Blue;">return</span> p1.Name.CompareTo(p2.Name); });</pre>
+		<div class="codesnippet-meta">
+			NativeQueriesSorting.cs: Native query with sorting
+			<div class="codedownload">
+				<a href="Example-query-nq-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

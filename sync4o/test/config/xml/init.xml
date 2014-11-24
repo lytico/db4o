@@ -1,0 +1,18 @@
+<SyncML>
+<SyncHdr>
+<VerDTD>1.1</VerDTD>
+<VerProto>SyncML/1.1</VerProto>
+<SessionID>{0}</SessionID>
+<MsgID>1</MsgID>
+<Target><LocURI>{1}</LocURI></Target>
+<Source><LocURI>{4}</LocURI></Source>
+<Cred>
+<Meta><Type xmlns="syncml:metinf">syncml:{5}</Type></Meta>
+<Data>{2}</Data>
+</Cred>
+</SyncHdr>
+<SyncBody>
+{3}
+<Final/>
+</SyncBody>
+</SyncML>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="438" MadCap:lastWidth="549">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="ACID Properties" />ACID Properties and Transactions</h1>
+        <p>The <a href="http://en.wikipedia.org/wiki/ACID" target="_parent">ACID properties</a> are one of the oldest and most important concepts of database theory. It sets out the requirements for the database reliability:</p>
+        <ul>
+            <li><strong>Atomicity</strong>: This means that  must follow an "all or nothing" rule. Each transaction is either successfully completed or in case of failure the state of the database isn't changed at all.<br /> For example in a
+bank transfer transaction there are two steps: debit and credit. If the debit
+operation was successful, but the credit failed, the whole transaction should
+fail and the system should remain in the initial state.
+            </li>
+            <li><strong>Consistency</strong>: Consistency ensures that the database stays always in a consistent state. Each transaction takes the database from one consistent state to the next consistent state.</li>
+            <li><strong>Isolation</strong>: Isolation means that different operations cannot access modified data from another  transaction that has not yet completed. There are different isolation-models. <MadCap:xref href="acid_and_transactions/isolation.htm" target="" title="" alt="">See "Isolation"</MadCap:xref></li>
+            <li><strong>Durability</strong>: This just refers to the real goal of any data store. It just means that the data should be persistently stored. </li>
+        </ul>
+        <p>db4o fulfills the ACID properties. Each <a href="object_container.htm">object container</a> has its own transaction. Each transaction is a unit of work and ensures the ACID properties. This means, that a db4o transaction is an atomic operation. Either all changes of the db4o transactions are committed and made persistent. Or in case of a failure or rollback no state is changed. The database is kept consistent even on application or database crashes. And db4o transactions are isolated from each other. <MadCap:xref href="acid_and_transactions/db4o_tx_basics.htm" target="" title="" alt="">See "db4o Transactions"</MadCap:xref></p>
+    </body>
+</html>

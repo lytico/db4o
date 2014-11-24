@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="465" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Disable Schema Change Detection</h1>
+        <p>db4o scans the class structure to find out the schema of the objects. This takes a little time. When a lot of classes are persistent this may take some time, especially on embedded devices.</p>
+        <p>Therefore you can disable this check. You can disable it only, when db4o already knows all stored classes. This means a object of each class has already been stored once. Furthermore there shouldn't be any further changes.</p>
+        <p>This setting is only useful for very special scenarios with no schema evolution at all. Otherwise this setting may cause strange and subtle errors!</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Disable-schema-evolution.all.flsnp" />
+    </body>
+</html>

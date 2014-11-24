@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- #example: List all persistent classes of this package # -->
+<jdo>
+    <package name="com.db4odoc.drs.vod">
+        <class name="com.db4odoc.drs.vod.Car"/>
+        <class name="com.db4odoc.drs.vod.Pilot"/>
+    </package>
+</jdo>
+<!-- #end example -->

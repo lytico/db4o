@@ -1,0 +1,14 @@
+package decaf.generics;
+
+class GenericMethods {
+
+	static <T> T get(Class<T> klass) {
+		return null;
+	}
+	
+	static void main() {
+		String s = get(String.class);
+		get(String.class);
+		GenericMethods.<String>get(null);
+	}
+}

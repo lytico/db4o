@@ -1,0 +1,17 @@
+package decaf.annotations;
+
+class Foo {
+
+	public void bar() {
+	}
+	
+	public void ignoredExceptAndroid() {
+	}
+
+	public void ignoredOnJdk11Only() {
+	}
+
+	public void ignoredOnJdksOnly() {
+	}
+
+}

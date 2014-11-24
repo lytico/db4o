@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> ActionResult Index()
+{
+    IList&lt;Pilot&gt; allPilots = Db4oProvider.Database.Query&lt;Pilot&gt;();
+    <span style="color:Blue;">return</span> View(allPilots);
+}</pre>
+		<div class="codesnippet-meta">
+			HomeController.cs: Listing all pilots on the index
+			<div class="codedownload">
+				<a href="Example-WebApp-Controllers-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

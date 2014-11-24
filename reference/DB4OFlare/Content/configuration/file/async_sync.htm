@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="678" MadCap:lastWidth="539">
+    <head>
+    </head>
+    <body>
+        <h1>Asynchronous File-Sync</h1>
+        <p>One of the most costly operations during commit is flushing the buffers  of the database file. In regular mode the commit call has to wait until this  operation has completed. </p>
+        <p>When asynchronous sync is turned on, the sync operation  will run in a dedicated thread, blocking all other file access until it has  completed. This way the commit can returns immediately. This allows db4o  and other processes to continue running side-by-side while the flush call is executed.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/file/FileConfiguration-Allow-asynchronous-synchronisation-of-the-file-flushes.all.flsnp" />
+        <h2>Advantage</h2>
+        <p>The commit call will return much faster. Because it doesn't have to wait until everything is written to disk.</p>
+        <h2>Disadvantage</h2>
+        <p>After the commit-call, you have no guaranties that everything is persistent. Maybe the commit is still in progress. On a failure, this means that you can lose a commit.</p>
+        <p>A setup with this  option still guarantees ACID transaction processing: A database file is always  either in the state before commit or in the state after commit. Corruption  can not occur.  You can just not rely on the transaction already having been  applied when the commit() call returns.</p>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">db.execSQL(<span style="color:#A31515;">&quot;CREATE TABLE IF NOT EXISTS &quot;</span> + DB_TABLE_PILOT + <span style="color:#A31515;">&quot; (&quot;</span>
+		+ <span style="color:#A31515;">&quot;id INTEGER PRIMARY KEY AUTOINCREMENT, &quot;</span>
+		+ <span style="color:#A31515;">&quot;name TEXT NOT NULL, points INTEGER NOT NULL);&quot;</span>);
+<span style="color:Green;">// Foreign key constraint is parsed but not enforced</span>
+<span style="color:Green;">// Here it is used for documentation purposes</span>
+db.execSQL(<span style="color:#A31515;">&quot;CREATE TABLE IF NOT EXISTS &quot;</span> + DB_TABLE_CAR + <span style="color:#A31515;">&quot; (&quot;</span>
+		+ <span style="color:#A31515;">&quot;id INTEGER PRIMARY KEY AUTOINCREMENT, &quot;</span>
+		+ <span style="color:#A31515;">&quot;model TEXT NOT NULL, pilot INTEGER NOT NULL,&quot;</span>
+		+ <span style="color:#A31515;">&quot;FOREIGN KEY (pilot)&quot;</span>
+		+ <span style="color:#A31515;">&quot;REFERENCES pilot(id) ON DELETE CASCADE);&quot;</span>);
+db.execSQL(<span style="color:#A31515;">&quot;CREATE INDEX IF NOT EXISTS CAR_PILOT ON &quot;</span> + DB_TABLE_CAR
+		+ <span style="color:#A31515;">&quot; (pilot);&quot;</span>);</pre>
+		<div class="codesnippet-meta">
+			SqlExample.java: SQLite create the schema
+			<div class="codedownload">
+				<a href="Example-db4odoc-android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="launcher/lib/jakarta-oro-2.0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="launcher/lib/xswt.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/db4ojdk1.2"/>
+	<classpathentry kind="lib" path="launcher/lib/xmlpull_1_1_3_1.jar"/>
+	<classpathentry kind="lib" path="launcher/lib/kxml-plugin.jar"/>
+	<classpathentry kind="lib" path="launcher/lib/org.eclipse.ve.sweet_1.0.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

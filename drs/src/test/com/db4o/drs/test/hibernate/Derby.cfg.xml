@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="hibernate.connection.driver_class">org.apache.derby.jdbc.EmbeddedDriver</property>
+
+		<property name="hibernate.connection.url">jdbc:derby:./derby-drs;create=true</property>
+
+		<property name="hibernate.connection.username">db4o</property>
+		<property name="hibernate.connection.password">db4o</property>
+
+		<!-- JDBC connection pool (use the built-in) -->
+		<property name="hibernate.connection.pool_size">1</property>
+
+		<!-- SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="hibernate.show_sql">false</property>
+
+		<!-- Update the database schema if out of date -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+	</session-factory>
+</hibernate-configuration>

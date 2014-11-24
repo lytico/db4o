@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Pilot pilot = container.Query&lt;Pilot&gt;()[0];
+pilot.Name = <span style="color:#A31515;">&quot;NewName&quot;</span>;
+<span style="color:Green;">// Rollback</span>
+container.Rollback();
+<span style="color:Green;">// Now the pilot has the old name again</span>
+Console.Out.WriteLine(pilot.Name);</pre>
+		<div class="codesnippet-meta">
+			RollbackExample.cs: Rollback with rollback strategy
+			<div class="codedownload">
+				<a href="Example-tp-rollback-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

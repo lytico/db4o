@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">EmbeddedConfiguration configuration = Db4oEmbedded.newConfiguration();
+configuration.common().objectClass(Car.<span style="color:Blue;">class</span>).objectField(<span style="color:#A31515;">&quot;carName&quot;</span>).indexed(<span style="color:Blue;">true</span>);
+
+ObjectContainer container = Db4oEmbedded.openFile(configuration,<span style="color:#A31515;">&quot;database.db4o&quot;</span>);</pre>
+		<div class="codesnippet-meta">
+			IndexExamples.java: Configure index externally
+			<div class="codedownload">
+				<a href="Example-tutorial-indexes-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

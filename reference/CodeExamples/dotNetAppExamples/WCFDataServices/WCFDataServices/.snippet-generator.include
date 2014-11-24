@@ -1,0 +1,11 @@
+Db4oEmbedded.cs
+Person.cs
+Team.cs
+TeamDataContext.cs
+TeamDataService.svc
+TeamDataService.svc.cs
+WCFDataServices.csproj
+Web.config
+Web.Debug.config
+Web.Release.config
+Properties

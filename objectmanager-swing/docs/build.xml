@@ -1,0 +1,21 @@
+<project name="docwiki" default="clean_all" basedir=".">
+	
+	<target name="clean_all" depends="clean_cvs">
+		<delete>
+			<fileset dir="./Object_Manager_For_db4o/">
+				<include name="**"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="clean_cvs">
+		<defaultexcludes remove="**/CVS"/>
+		<defaultexcludes remove="**/CVS/**"/>
+		<delete includeemptydirs="true">
+			<fileset dir="./Object_Manager_For_db4o/">
+				<include name="**/CVS/**"/>
+			</fileset>
+		</delete>
+	</target>
+
+</project>

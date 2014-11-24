@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">Sub</span> HandleDeleteEvent(<span style="color:Blue;">ByVal</span> sender <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>, <span style="color:Blue;">ByVal</span> args <span style="color:Blue;">As</span> CancellableObjectEventArgs)
+    <span style="color:Blue;">Dim</span> obj <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> = args.Object
+    <span style="color:Green;">' if the object has a deletion-flag:</span>
+    <span style="color:Green;">' set the flag instead of deleting the object</span>
+    <span style="color:Blue;">If</span> <span style="color:Blue;">TypeOf</span> obj <span style="color:Blue;">Is</span> Deletable <span style="color:Blue;">Then</span>
+        <span style="color:Blue;">DirectCast</span>(obj, Deletable).Delete()
+        args.ObjectContainer().Store(obj)
+        args.Cancel()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			DeletionStrategies.vb: The delete event handler
+			<div class="codedownload">
+				<a href="Example-practises-deletion-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

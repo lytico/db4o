@@ -1,0 +1,37 @@
+package decaf.integration;
+
+class A {
+
+	private Object[] values;
+	
+	public A(Object[] values) {
+		this.values = values;
+	}
+	
+	public A(int value, Object[] values) {
+		this.values = values;
+	}
+	
+	public Object get(int index) {
+		return values[index];
+	}
+	
+	public Object[] getAll(int[] indices) {
+		return null;
+	}
+}
+
+class Main {
+	static void main() {
+		A a = new A(new String[] { "foo", "bar" });
+		foo(new Object[] { ((String) a.get(0)) });
+		
+		A b = new A(new String[] { ((String) a.get(0)) });
+		A c = new A(42, new String[] { ((String) a.get(0)).toUpperCase(), ((String) a.get(1)).toLowerCase() });
+		
+		String[] all = ((String[]) a.getAll(new int[] { 0, 1 }));
+	}
+	
+	static void foo(Object[] values) {
+	}
+}

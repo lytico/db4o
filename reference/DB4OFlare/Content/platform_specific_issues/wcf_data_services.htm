@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="8" MadCap:lastHeight="2629" MadCap:lastWidth="833" MadCap:conditions="Primary..NET" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="WCF Data Service;ADO.NET Data Service" />WCF Data Services (aka ADO.NET Data Services)</h1>
+        <p>The WCF Data Services allows you to easily expose your data as a web service. db4o supports this framework. Look up the <a href="http://msdn.microsoft.com/en-us/data/bb931106.aspx" target="_blank">MSDN documentation on WCF Data Service</a> for more details about it and its features.</p>
+        <p>The are two things which the data service need. An IQueryable implementation and a IUpdatable implementation. db4o provides both. For this you need to reference the Db4objects.Db4o.Linq.dll and Db4objects.Db4o.Data.Services.dll. The first one contains the LINQ-provider, the second contains the IUpdatable.</p>
+        <h2>Preparing The Persistent Classes </h2>
+        <p>The first thing you need to do is to add a key to your objects. And you need specify at least one key for each object.</p>
+        <MadCap:snippetBlock src="../CodeExamples/WCFDataServices/WCFDataServices/Person-Add-at-least-one-key.all.flsnp" />
+        <MadCap:snippetBlock src="../CodeExamples/WCFDataServices/WCFDataServices/Team-The-Team-has-also-a-key.all.flsnp" />
+        <h2>Create A Context</h2>
+        <p>After that, you can build a data context. For this, inherit from the Db4oDataContext. You need to overwrite the OpenSession() to provide the right object container. A good practice is to use a object container per request. For example you can use the <a href="web/web_isolation.htm">OpenSession-operation</a> for creating a container per request. Take also a look how you can provide a object container for   <![CDATA[ ]]><a href="web/asp.net_request_example.htm">each request</a>.</p>
+        <p>After that, you can add operations and properties you want to expose. Remember to use the IQueryable interface to expose query options to the client.</p>
+        <MadCap:snippetBlock src="../CodeExamples/WCFDataServices/WCFDataServices/TeamDataContext-An-concrete-context.all.flsnp" />
+        <h2>Create the Service</h2>
+        <p>The last step is to actually create a service. Visual Studio can assist to do this. Right click on the Project, choose 'Add'-&gt; 'New Item'. Then Choose the 'WCF Data Service'. In older releases it's called 'ADO.NET Data Service'. </p>
+        <p>After that, you can rename the created classes and parameterize it with the previously created context. Then you need to specify which operation are allowed. Read more about how the configure the allowed operation in the <a href="http://msdn.microsoft.com/en-us/data/bb931106.aspx">data service documentation</a>.</p>
+        <MadCap:snippetBlock src="../CodeExamples/WCFDataServices/WCFDataServices/TeamDataService.svc-Build-the-concrete-service.cs.flsnp" />
+        <h2>Consuming The Service</h2>
+        <p>Now you can startup this service and you're ready to consume it. For example you can create a simple console application. There you import the service. Right click on the project choose 'Add Service Reference'. Then point the assistant to the URL of the running web service. After that you can use the service.</p>
+        <MadCap:snippetBlock src="../CodeExamples/WCFDataServices/ConsoleClient/SimpleConsoleClient-Now-the-service-can-be-used.all.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

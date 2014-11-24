@@ -1,0 +1,33 @@
+package decaf.config;
+
+class TypeMappingTest {
+	private static final decaf.config.TargetMappedType ttbm = getIt(new decaf.config.TargetMappedType());
+	private static final decaf.config.TargetMappedType sgt = getIt(new decaf.config.TargetMappedType());
+	
+	private static decaf.config.TargetMappedType getIt(final decaf.config.TargetMappedType ttbm) {
+		decaf.config.TargetMappedType smt = ttbm;
+		decaf.config.TargetMappedType smt1;
+		
+		smt1 = getIt(new decaf.config.TargetMappedType());
+		
+		return smt1;
+	}
+	
+	private static decaf.config.TargetMappedType getIt(final decaf.config.TargetMappedType arg) {
+		decaf.config.TargetMappedType smt = arg;
+		decaf.config.TargetMappedType smt1;
+		
+		smt1 = getIt(new decaf.config.TargetMappedType());
+		
+		return smt1;
+	}
+}
+
+class SourceMappedType {
+}
+
+class TargetMappedType {
+}
+
+class SourceGenericType {
+}

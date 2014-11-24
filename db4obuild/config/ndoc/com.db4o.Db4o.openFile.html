@@ -1,0 +1,51 @@
+﻿<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </meta>
+    <meta name="generator" content="NDoc 1.3" />
+    <title>Db4o.openFile Method</title>
+    <link rel="stylesheet" type="text/css" href="ndoc.css">
+    </link>
+    <script src="ndoc.js" type="text/javascript">
+    </script>
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <INPUT class="userDataStyle" id="userDataCache" type="hidden" />
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead" nowrap="true">db4o</td>
+            <td class="product" nowrap="true">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">Db4o.openFile Method </h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p> opens an <a href="com.db4o.ObjectContainer.html">ObjectContainer</a> on the specified database file for local use. <br /><br />Subsidiary calls with the same database file name will return the same <b>ObjectContainer</b> object.<br /><br /> Every call to <pre class="code">openFile()</pre> requires a corresponding <a href="com.db4o.ObjectContainer.close.html">ObjectContainer.close</a> .<br /><br /> Database files can only be accessed for readwrite access from one process (one Java VM) at one time. All versions except for db4o mobile edition use an internal mechanism to lock the database file for other processes. <br /><br />
+            </p>
+<PRE class="syntax"><SPAN class="lang">[Visual Basic]
+</SPAN><b>Shared Public Function openFile( _ 
+   ByVal <i>databaseFileName</i> As <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemStringClassTopic.htm">String</a> _ 
+) As <a href="com.db4o.ObjectContainer.html">ObjectContainer</a>
+</b><SPAN class="lang">[C#]
+</SPAN><b>public static <a href="com.db4o.ObjectContainer.html">ObjectContainer</a> openFile(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemStringClassTopic.htm">string</a> <i>databaseFileName</i>
+);
+</b><SPAN class="lang">[C++]
+</SPAN><b>public: static <a href="com.db4o.ObjectContainer.html">ObjectContainer*</a> openFile(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemStringClassTopic.htm">String*</a> <i>databaseFileName</i>
+);
+</b><SPAN class="lang">[JScript]
+</SPAN><b>public static function openFile(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemStringClassTopic.htm">String</a> <i>databaseFileName</i>
+): <a href="com.db4o.ObjectContainer.html">ObjectContainer</a>;
+</b></PRE><h4 class="dtH4">Parameters</h4><dl><dt><i>databaseFileName</i></dt><dd>the full path to the database file</dd></dl><h4 class="dtH4">Return Value</h4><p> an open <a href="com.db4o.ObjectContainer.html">ObjectContainer</a>
+            </p><h4 class="dtH4">See Also</h4><p><a href="com.db4o.Db4o.html">Db4o Class</a> | <a href="com.db4o.html">com.db4o Namespace</a> | <a href="com.db4o.config.Configuration.readOnly.html">com.db4o.config.Configuration.readOnly </a> | <a href="com.db4o.config.Configuration.encrypt.html">com.db4o.config.Configuration.encrypt </a> | <a href="com.db4o.config.Configuration.password.html">com.db4o.config.Configuration.password </a></p><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" viewastext="true" style="display: none;"><param name="Keyword" value="openFile method"></param><param name="Keyword" value="openFile method, Db4o class"></param><param name="Keyword" value="Db4o.openFile method"></param></object><DIV CLASS="footer"><p><center><font color="red"><i>
+								Syntax based on .NET Framework version 1.1.<br /></i></font></center></p></DIV><hr /><div id="footer"><p><a href="http://www.db4o.com/">Copyright (C) 2004 - 2005  Versant Inc.</a></p><p>Generated from assembly db4o [4.3.1.0]</p></div></div>
+  </body>
+</html>

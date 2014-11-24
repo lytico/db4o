@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project name="drsVodExample" default="enhance" basedir=".">
+	
+	<property file="machine.properties" />
+	
+	<target name="init" >
+		<copy file="src/versant.properties" todir="bin" overwrite="true" />
+		<taskdef resource="versant.tasks">
+			<classpath>
+				<fileset dir="${dir.versant.lib}" includes="**/*.jar"/>
+				<pathelement location="bin"/>
+			</classpath>
+		</taskdef>
+	</target>
+		
+	<target name="enhance" depends="init">
+		<jdo-enhance project="versant.properties" outputdir="bin">
+			<persistentaware dir="bin"/>
+		</jdo-enhance>
+	</target>
+	
+</project>

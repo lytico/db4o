@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="865" MadCap:lastWidth="798">
+    <head>
+    </head>
+    <body>
+        <h1>Traversing the Index Values</h1>
+        <p>The db4o query processor uses the index to speed up queries. So you just use the query APIs to benefit from indexes. For special cases you might want to traverse the indexed values yourself. You can do this by accessing the index via the <a href="../../advanced_topics/db4o_meta-information.htm">db4o meta data</a>. There you can get the meta-info for a field and then traverse its index. Note that the traverse-method will throw an exception if there is no index available.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/indexing/traverse/TraverseIndexExample-Traverse-index.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/indexing/traverse/TraverseIndexExample-The-index-visitor.all.flsnp" />
+    </body>
+</html>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="5" MadCap:lastHeight="690" MadCap:lastWidth="611">
+    <head />
+    <body>
+        <h1>
+            <MadCap:keyword term="Enhancement" />Enhancement Tools</h1>
+        <p>Enhancement tools provide a convenient framework for application (jar, dll, exe) or classes modification to support db4o-specific functionality. Enhancement tools can work on a ready application or library and apply the improvements at load or build time.  </p>
+        <p>The tools functionality is provided through <MadCap:variable name="Primary.ByteCode" /> instrumentation. This process inserts special, usually
+short, sequences of <MadCap:variable name="Primary.ByteCode" /> at designated points in your code. It is
+typically used for profiling or monitoring, however the range of use of
+<MadCap:variable name="Primary.ByteCode" /> instrumentation is not limited by this tasks: it can be applied
+anywhere where a specific functionality should be plugged into the ready built
+classes.</p>
+        <p>db4o Enhancement Tools currently have these cases for <MadCap:variable name="Primary.ByteCode" />instrumentation:</p>
+        <ul>
+            <li><a href="../basics/activation_concept/transparent_activation_framework.htm">Transparent
+Activation</a>
+            </li>
+            <li><a href="../basics/update_concept/transparent_persistence.htm">Transparent Persistence</a>
+            </li>
+            <li><a href="../basics/querying/native_queries/native_query_optimization.htm">Native Query Optimization </a>
+            </li>
+        </ul>
+        <p>In <a href="../basics/update_concept/transparent_persistence.htm">transparent activation/persistence case</a>, classes are required
+to implement <MadCap:variable name="Primary.Activatable" /> interface to support transparent activation. In many
+cases you don't want to pollute your classes with some additional
+interface, or even won't be able to do so if you use a third party classes
+library. That's where bytecode instrumentation comes handy: <MadCap:variable name="Primary.Activatable" />interface will be implemented
+on your existing classes by applying bytecode instrumentation. Another
+advantage of this approach - you can still work on your "clean" classes, just
+do not forget to run the instrumentation afterwards.</p>
+        <p>In the native query optimization case bytecode
+instrumentation is used as a more performant alternative to a run-time
+optimization. When an native query is optimized the user and compiler-friendly syntax of
+NQ predicate is replaced with a query-processor-friendly code. Obviously, optimization process can take some time, therefore it
+can be a good choice to use pre-instrumented classes, then to let the
+optimization be executed each time it is required by application.</p>
+        <p>
+            <p>The instrumentation can be run at build time, also known as static
+instrumentation. In this case a special build script calls runs the instrumentation on the classes
+before packaging them to <MadCap:variable name="Primary.Artefact" />, or on the <MadCap:variable name="Primary.Artefact" /> itself. This is the fastest solution as no time is
+spent on bytecode instrumentation at runtime. </p>
+            <p MadCap:conditions="Primary.Java">Another method is to use bytecode instrumentation at load time. In this case
+instrumenting information is inserted into the classes by a specific
+instrumenting classloader just before they are loaded into the VM.</p>
+        </p>
+        <p>There are different possibilities to integrate the enhancement tools into a project.</p>
+        <ul>
+            <li MadCap:conditions="Primary..NET">It's possible to use the Db4oTool directly from the command-line. <MadCap:xref href="enhancement_tools/enhancement_for_.net/db4otool.htm" target="" title="" alt="">See "Db4oTool"</MadCap:xref></li>
+            <li MadCap:conditions="Primary.Java">More details about built time enhancements: <MadCap:xref href="enhancement_tools/enhancement_for_java/build_time_enhancement.htm" target="" title="" alt="">See "Build Time Enhancement"</MadCap:xref></li>
+            <li MadCap:conditions="Primary.Java">It's possible to enhance the classes a runtime:&#160;<MadCap:xref target="" title="" alt="">See "Load Time Enhancement"</MadCap:xref></li>
+        </ul>
+    </body>
+</html>

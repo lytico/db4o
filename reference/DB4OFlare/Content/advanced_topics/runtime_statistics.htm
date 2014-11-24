@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="471" MadCap:lastWidth="586">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Monitoring" />
+            <MadCap:keyword term="JMX" MadCap:conditions="Primary.Java" />
+            <MadCap:keyword term="Performance Counters" MadCap:conditions="Primary..NET" />Runtime Monitoring</h1>
+        <p>The db4o runtime statistics is a monitoring feature allowing to collect various important runtime data. This data can be crucial in resolving performance issues, analyzing usage patterns, predicting resource bottlenecks etc. Runtime Statistics can be collected both in the application testing stage and in an application deployed to production system.  In the first case this data can help to estimate hardware requirements and analyze the stability of the system. In the latter case, the data can be used to fine-tune performance, find problems and fix bugs. Take a look how you install the statistics and monitor them.</p>
+        <h2>Install And Monitor</h2>
+        <p MadCap:conditions="Primary.Java">On the Java platform all runtime statistics are published through the JMX interface. This means that you can use any JMX client to monitor the statistics.    <![CDATA[ ]]><MadCap:xref href="Runtime_Statistics/install_and_monitor.htm" target="" title="" alt="">See "Install and Monitor"</MadCap:xref></p>
+        <p MadCap:conditions="Primary..NET">On the .NET platform all runtime statistics are published through the Windows Performance Counters. This means that you can use the regular windows tooling to monitor db4o statistics. <MadCap:xref href="Runtime_Statistics/install_and_monitor.htm" target="" title="" alt="">See "Install and Monitor"</MadCap:xref></p>
+        <h2>Available Statistics</h2>
+        <p>Currently following statistics are available. </p>
+        <MadCap:snippetBlock src="../Snippets/monitoring_options.flsnp" />
+    </body>
+</html>

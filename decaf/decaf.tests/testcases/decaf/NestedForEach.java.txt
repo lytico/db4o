@@ -1,0 +1,11 @@
+package decaf;
+
+class NestedForEach {
+	static void main(String[] args) {
+		for (String arg : args) {
+			for (char ch : arg.toCharArray()) {
+				System.out.println(ch);
+			}
+		}
+	}
+}

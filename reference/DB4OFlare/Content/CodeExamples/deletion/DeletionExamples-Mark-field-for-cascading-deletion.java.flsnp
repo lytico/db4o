@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+config.common().objectClass(Car.<span style="color:Blue;">class</span>).objectField(<span style="color:#A31515;">&quot;pilot&quot;</span>).cascadeOnDelete(<span style="color:Blue;">true</span>);
+ObjectContainer container = Db4oEmbedded.openFile(config,DATABASE_FILE);</pre>
+		<div class="codesnippet-meta">
+			DeletionExamples.java: Mark field for cascading deletion
+			<div class="codedownload">
+				<a href="Example-db4odoc-deletion-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

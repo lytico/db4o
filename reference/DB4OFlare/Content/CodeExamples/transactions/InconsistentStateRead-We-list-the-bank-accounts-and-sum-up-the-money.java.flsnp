@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">long</span> moneyInOurAccounts = 0;
+List&lt;BankAccount&gt; bankAccounts = container.query(BankAccount.<span style="color:Blue;">class</span>);
+<span style="color:Blue;">for</span> (BankAccount account : bankAccounts) {
+    System.out.println(<span style="color:#A31515;">&quot;This account has &quot;</span>+account.money());
+    moneyInOurAccounts +=account.money();
+    moveMoneyTransactionFinishes();
+}
+<span style="color:Green;">// We get the wrong answer here</span>
+System.out.println(<span style="color:#A31515;">&quot;The money total is &quot;</span>+moneyInOurAccounts
+        +<span style="color:#A31515;">&quot;. Expected is &quot;</span>+INITIAL_MONEY_ON_ONE_ACCOUNT*bankAccounts.size());</pre>
+		<div class="codesnippet-meta">
+			InconsistentStateRead.java: We list the bank accounts and sum up the money
+			<div class="codedownload">
+				<a href="Example-db4odoc-transactions-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

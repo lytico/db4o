@@ -1,0 +1,19 @@
+package decaf.annotations;
+
+interface Interface {
+}
+
+class IgnoreJdk11 implements Interface {
+}
+
+class IgnoreJdk12 {
+}
+
+class IgnoreJdk15 implements Interface {
+}
+
+class IgnoreAndroid implements Interface {
+}
+
+class IgnoreAll {
+}

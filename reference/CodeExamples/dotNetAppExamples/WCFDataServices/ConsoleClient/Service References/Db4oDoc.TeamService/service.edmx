@@ -1,0 +1,33 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+    <Schema Namespace="Db4oDoc.WCFDataService" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <EntityType Name="Person">
+        <Key>
+          <PropertyRef Name="Email" />
+        </Key>
+        <Property Name="Name" Type="Edm.String" Nullable="true" />
+        <Property Name="Email" Type="Edm.String" Nullable="false" />
+      </EntityType>
+      <EntityType Name="Team">
+        <Key>
+          <PropertyRef Name="TeamName" />
+        </Key>
+        <Property Name="TeamName" Type="Edm.String" Nullable="false" />
+        <Property Name="Motivation" Type="Edm.String" Nullable="true" />
+        <NavigationProperty Name="Members" Relationship="Db4oDoc.WCFDataService.Team_Members" FromRole="Team" ToRole="Members" />
+      </EntityType>
+      <Association Name="Team_Members">
+        <End Role="Team" Type="Db4oDoc.WCFDataService.Team" Multiplicity="*" />
+        <End Role="Members" Type="Db4oDoc.WCFDataService.Person" Multiplicity="*" />
+      </Association>
+      <EntityContainer Name="TeamDataContext" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Persons" EntityType="Db4oDoc.WCFDataService.Person" />
+        <EntitySet Name="Teams" EntityType="Db4oDoc.WCFDataService.Team" />
+        <AssociationSet Name="Team_Members" Association="Db4oDoc.WCFDataService.Team_Members">
+          <End Role="Team" EntitySet="Teams" />
+          <End Role="Members" EntitySet="Persons" />
+        </AssociationSet>
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

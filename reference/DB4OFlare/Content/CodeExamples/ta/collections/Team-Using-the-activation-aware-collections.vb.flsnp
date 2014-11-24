@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Class</span> Team
+    <span style="color:Blue;">Inherits</span> ActivatableBase
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> m_pilots <span style="color:Blue;">As</span> IList(Of Pilot) = <span style="color:Blue;">New</span> ActivatableList(Of Pilot)()
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Add(<span style="color:Blue;">ByVal</span> pilot <span style="color:Blue;">As</span> Pilot)
+        Activate(ActivationPurpose.Write)
+        m_pilots.Add(pilot)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">ReadOnly</span> <span style="color:Blue;">Property</span> Pilots() <span style="color:Blue;">As</span> ICollection(Of Pilot)
+        <span style="color:Blue;">Get</span>
+            Activate(ActivationPurpose.Read)
+            <span style="color:Blue;">Return</span> m_pilots
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Get</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Property</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			Team.vb: Using the activation aware collections
+			<div class="codedownload">
+				<a href="Example-ta-collections-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

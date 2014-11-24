@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <artifactId>db4o-tutorial</artifactId>
+    <packaging>jar</packaging>
+
+
+    <name>db4o tutorial</name>
+    <description>The db4o tutorial</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4o-full-java5</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <parent>
+        <groupId>com.db4odoc.tutorial</groupId>
+        <artifactId>db4o-tutorial-project</artifactId>
+        <version>8.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <build>
+        <sourceDirectory>src/main</sourceDirectory>
+        <testSourceDirectory>src/test</testSourceDirectory>
+
+        <plugins>
+            <!-- #example: Enhance persisted classes during the build# -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <dependencies>
+                    <!-- We need the db4o tooling for enhancing stuff -->
+                    <dependency>
+                        <groupId>com.db4o</groupId>
+                        <artifactId>db4o-tools-java5</artifactId>
+                        <version>8.1-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <configuration>
+                            <target>
+                                <!-- We enhance with an additional Ant-run step. You can put this also in an extra file -->
+                                <typedef resource="instrumentation-def.properties"
+                                         classpathref="maven.compile.classpath"/>
+
+                                <!-- We filter by our annotation -->
+                                <typedef name="annotation-filter"
+                                         classname="com.db4odoc.tutorial.transparentpersistence.AnnotationFilter"
+                                         classpathref="maven.compile.classpath"/>
+
+                                <db4o-instrument classTargetDir="target/classes">
+                                    <classpath refid="maven.compile.classpath"/>
+                                    <sources dir="target/classes">
+                                        <include name="**/*.class"/>
+                                    </sources>
+
+                                    <transparent-activation-step>
+                                        <annotation-filter/>
+                                    </transparent-activation-step>
+                                </db4o-instrument>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- #end example -->
+        </plugins>
+    </build>
+</project>

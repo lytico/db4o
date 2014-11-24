@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="300" MadCap:lastWidth="638">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Disconnected Objects;Web:Disconnected Objects" />Disconnected Objects</h1>
+        <p>db4o manages objects <a href="../basics/identity_concept.htm">by object-identity</a>. db4o ensures that each stored object in the database is always represented by the same object in memory. When you load an object, change it and then store it, db4o recognizes the object by its identity and will update it.</p>
+        <p>This model works wonderful as long as the object-identity is preserved. However there are a lot of scenarios, where the object-identity is lost. As soon as serialize objects, the object-identity is lost. This is typical for web-scenarios or web-services, where a object needs to be identified across requests. For such scenarios objects need additional ids to identify  object across requests- and object-container-boundaries.</p>
+        <p>There are several possibilities for such additional ids. You can use db4o internal ids, <a href="../advanced_topics/ids_and_uuids.htm">db4o uuids</a>, or additional ids-fields on objects. Each has its advantages and disadvantages, so take a looks at this comparison: <MadCap:xref href="disconnected_objects/comparison_of_ids.htm" target="" title="" alt="">See "Comparison Of Different IDs"</MadCap:xref></p>
+        <p>Only identifying the object across object container boundaries is often not enough. You actually need to update a disconnected object. This is done by coping the new values to the existing object. <MadCap:xref href="disconnected_objects/merging_changes.htm" target="" title="" alt="">See "Merging Changes"</MadCap:xref></p>
+        <p>&#160;</p>
+    </body>
+</html>

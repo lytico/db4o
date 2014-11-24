@@ -1,0 +1,296 @@
+.n
+.a Semaphores ..
+.0 Semaphores ..
+
+db4o Semaphores are named flags that can only be owned by one ._
+client/transaction at one time. They are supplied to be used ._
+as locks for exclusive access to code blocks in applications ._
+and to signal states from one client to the server and to all ._
+other clients.
+
+The naming of semaphores is up to the application. Any string ._
+can be used.
+
+Semaphores are freed automatically when a client disconnects ._
+correctly or when a clients presence is no longer detected by ._
+the server, that constantly monitors all client connections.
+
+Semaphores can be set and released with the following two methods:
+.c ExtObjectContainer#setSemaphore(String name, int waitMilliSeconds);
+ExtObjectContainer#releaseSemaphore(String name); ..
+
+The concept of db4o semaphores is very similar to the concept of ._
+synchronization in OO programming languages:
+
+.b Java ..
+.c synchronized(monitorObject){
+
+    // exclusive code block here
+    
+} ..
+
+.b C# ..
+.c lock(monitorObject){
+
+    // exclusive code block here
+    
+} ..
+
+.b db4o semaphore ..
+.c if(objectContainer.ext().setSemaphore(semaphoreName, 1000){
+
+    // exclusive code block here
+    
+    objectContainer.ext().releaseSemaphore(semaphoreName);
+} ..
+
+Although the principle of semaphores is very simple they are powerful ._
+enough for a wide range of usecases:
+
+.1 Locking objects ..
+
+.c import com.db4o.*;
+import com.db4o.ext.*;
+
+/**
+ * This class demonstrates a very rudimentary implementation
+ * of virtual "locks" on objects with db4o. All code that is
+ * intended to obey these locks will have to call lock() and
+ * unlock().  
+ */
+public class LockManager {
+    
+    private final String SEMAPHORE_NAME = "locked: ";
+    private final int WAIT_FOR_AVAILABILITY = 300; // 300 milliseconds
+    
+    private final ExtObjectContainer _objectContainer;
+    
+    public LockManager(ObjectContainer objectContainer){
+        _objectContainer = objectContainer.ext();
+    }
+    
+    public boolean lock(Object obj){
+        long id = _objectContainer.getID(obj);
+        return _objectContainer.setSemaphore(SEMAPHORE_NAME + id, WAIT_FOR_AVAILABILITY);
+    }
+    
+    public void unlock(Object obj){
+        long id = _objectContainer.getID(obj);
+        _objectContainer.releaseSemaphore(SEMAPHORE_NAME + id);
+    }
+}
+..
+
+
+.1 Ensuring Singletons ..
+.c import com.db4o.*;
+import com.db4o.query.*;
+
+/**
+ * This class demonstrates the use of a semaphore to ensure that only
+ * one instance of a certain class is stored to an ObjectContainer.
+ * 
+ * Caution !!! The getSingleton method contains a commit() call.  
+ */
+public class Singleton {
+	
+	/**
+	 * returns a singleton object of one class for an ObjectContainer.
+	 * <br><b>Caution !!! This method contains a commit() call.</b> 
+	 */
+    public static Object getSingleton(ObjectContainer objectContainer, Class clazz) {
+
+        Object obj = queryForSingletonClass(objectContainer, clazz);
+        if (obj != null) {
+            return obj;
+        }
+
+        String semaphore = "Singleton#getSingleton_" + clazz.getName();
+
+        if (!objectContainer.ext().setSemaphore(semaphore, 10000)) {
+            throw new RuntimeException("Blocked semaphore " + semaphore);
+        }
+
+        obj = queryForSingletonClass(objectContainer, clazz);
+
+        if (obj == null) {
+
+            try {
+                obj = clazz.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            objectContainer.set(obj);
+
+            /* !!! CAUTION !!!
+             * There is a commit call here.
+             * 
+             * The commit call is necessary, so other transactions
+             * can see the new inserted object.
+             */
+            objectContainer.commit();
+
+        }
+
+        objectContainer.ext().releaseSemaphore(semaphore);
+
+        return obj;
+    }
+
+    private static Object queryForSingletonClass(ObjectContainer objectContainer, Class clazz) {
+        Query q = objectContainer.query();
+        q.constrain(clazz);
+        ObjectSet objectSet = q.execute();
+        if (objectSet.size() == 1) {
+            return objectSet.next();
+        }
+        if (objectSet.size() > 1) {
+            throw new RuntimeException(
+                "Singleton problem. Multiple instances of: " + clazz.getName());
+        }
+        return null;
+    }
+
+}
+..c
+
+.1 Limiting the number of users ..
+.c import java.io.*;
+import com.db4o.*;
+
+/**
+ * This class demonstrates the use of semaphores to limit the
+ * number of logins to a server.
+ */
+public class LimitLogins {
+    
+    static final String HOST = "localhost";
+    static final int PORT = 4455;
+    static final String USER = "db4o";
+    static final String PASSWORD = "db4o";
+    
+    static final int MAXIMUM_USERS = 10; 
+    
+    public static ObjectContainer login(){
+        
+        ObjectContainer objectContainer;
+        try {
+            objectContainer = Db4o.openClient(HOST, PORT, USER, PASSWORD);
+        } catch (IOException e) {
+            return null;
+        }
+        
+        boolean allowedToLogin = false;
+        
+        for (int i = 0; i < MAXIMUM_USERS; i++) {
+            if(objectContainer.ext().setSemaphore("max_user_check_" + i, 0)){
+                allowedToLogin = true;
+                break;
+            }
+        }
+        
+        if(! allowedToLogin){
+            objectContainer.close();
+            return null;
+        }
+        
+        return objectContainer;
+    }
+}
+..
+
+
+.1 Controlling log-in information ..
+.c import java.util.*;
+import com.db4o.*;
+import com.db4o.config.*;
+import com.db4o.ext.*;
+import com.db4o.query.*;
+
+/**
+ * This class demonstrates how semaphores can be used 
+ * to rule out race conditions when providing exact and
+ * up-to-date information about all connected clients 
+ * on a server. The class also can be used to make sure
+ * that only one login is possible with a give user name
+ * and ipAddress combination.
+ */
+public class ConnectedUser {
+    
+    static final String SEMAPHORE_CONNECTED = "ConnectedUser_";
+    static final String SEMAPHORE_LOCK_ACCESS = "ConnectedUser_Lock_";
+    
+    static final int TIMEOUT = 10000;  // concurrent access timeout 10 seconds
+    
+    String userName;
+    String ipAddress;
+    
+    public ConnectedUser(String userName, String ipAddress){
+        this.userName = userName;
+        this.ipAddress = ipAddress;
+    }
+    
+    // make sure to call this on the server before opening the database
+    // to improve querying speed 
+    public static void configure(){
+        ObjectClass objectClass = Db4o.configure().objectClass(ConnectedUser.class); 
+        objectClass.objectField("userName").indexed(true);
+        objectClass.objectField("ipAddress").indexed(true);
+    }
+    
+    // call this on the client to ensure to have a ConnectedUser record 
+    // in the database file and the semaphore set
+    public static void login(ObjectContainer client, String userName, String ipAddress){
+        if(! client.ext().setSemaphore(SEMAPHORE_LOCK_ACCESS, TIMEOUT)){
+            throw new RuntimeException("Timeout trying to get access to ConnectedUser lock");
+        }
+        Query q = client.query();
+        q.constrain(ConnectedUser.class);
+        q.descend("userName").constrain(userName);
+        q.descend("ipAddress").constrain(ipAddress);
+        if(q.execute().size() == 0){
+            client.set(new ConnectedUser(userName, ipAddress));
+            client.commit();
+        }
+        String connectedSemaphoreName = SEMAPHORE_CONNECTED + userName + ipAddress;
+        boolean unique = client.ext().setSemaphore(connectedSemaphoreName, 0);
+        client.ext().releaseSemaphore(SEMAPHORE_LOCK_ACCESS);
+        if(! unique){
+            throw new RuntimeException("Two clients with same userName and ipAddress");
+        }
+    }
+    
+    // here is your list of all connected users, callable on the server
+    public static List connectedUsers(ObjectServer server){
+        ExtObjectContainer serverObjectContainer = server.ext().objectContainer().ext();
+        if(serverObjectContainer.setSemaphore(SEMAPHORE_LOCK_ACCESS, TIMEOUT)){
+            throw new RuntimeException("Timeout trying to get access to ConnectedUser lock");
+        }
+        List list = new ArrayList();
+        Query q = serverObjectContainer.query();
+        q.constrain(ConnectedUser.class);
+        ObjectSet objectSet = q.execute();
+        while(objectSet.hasNext()){
+            ConnectedUser connectedUser = (ConnectedUser)objectSet.next();
+            String connectedSemaphoreName = 
+                SEMAPHORE_CONNECTED + 
+                connectedUser.userName + 
+                connectedUser.ipAddress;
+            if(serverObjectContainer.setSemaphore(connectedSemaphoreName, TIMEOUT)){
+                serverObjectContainer.delete(connectedUser);
+            }else{
+                list.add(connectedUser);
+            }
+        }
+        serverObjectContainer.commit();
+        serverObjectContainer.releaseSemaphore(SEMAPHORE_LOCK_ACCESS);
+        return list;
+    }
+}
+..
+
+
+

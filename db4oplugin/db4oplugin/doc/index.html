@@ -1,0 +1,33 @@
+<html>
+
+<head>
+<title>db4o Instrumentation</title>
+<link rel="stylesheet" type="text/css" href="common.css">
+</head>
+
+<body>
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#ffffff">
+<img src="logo.png" />
+</td>
+</tr>
+</table>
+<h3>db4o Instrumentation</h3>
+
+<p>
+This plugin adds support for bytecode instrumentation for db4o 
+<a href="http://developer.db4o.com/Resources/view.aspx/Reference/Object_Lifecycle/Activation/Transparent_Activation_Framework">Transparent Activation</a>/<a href="http://developer.db4o.com/Resources/view.aspx/Reference/Object_Lifecycle/Transparent_Persistence">Transparent Persistence</a>
+(TA/TP) within the Eclipse IDE. It provides a builder that will react to changes to class files (most likely triggered by the Java builder) and inject
+bytecode that enables TA/TP on these classes. Instrumentation will happen in-place, i.e. the Eclipse generated class files will be modified directly in
+their respective output locations. The builder will be triggered on both full and incremental builds - if auto building is enabled on your workspace,
+an incremental build will be triggered whenever you save one or more files.
+</p>
+<p>
+The selection of instrumented classes can be configured via the plugin's <a href="preferences.html">preferences page</a>. Instrumentation events are logged to a
+dedicated <a href="logview.html">log view</a>.
+</p>
+
+</body>
+
+</html>

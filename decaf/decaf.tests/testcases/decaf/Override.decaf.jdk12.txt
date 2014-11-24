@@ -1,0 +1,17 @@
+package decaf;
+
+abstract class A {
+	public abstract void foo();
+}
+
+interface B {
+	void bar();
+}
+
+class C extends A implements B {
+	public void foo() {
+	}
+	
+	public void bar() {
+	}
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">class</span> IndexVisitor : IVisitor4
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Visit(<span style="color:Blue;">object</span> obj)
+    {
+        <span style="color:Blue;">var</span> value = (<span style="color:Blue;">int</span>) obj;
+        Console.Out.WriteLine(<span style="color:#A31515;">&quot;Value {0}&quot;</span>, value);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			TraverseIndexExample.cs: The index visitor
+			<div class="codedownload">
+				<a href="Example-indexing-traverse-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

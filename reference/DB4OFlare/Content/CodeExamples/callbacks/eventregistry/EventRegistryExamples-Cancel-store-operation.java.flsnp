@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">EventRegistry events = EventRegistryFactory.forObjectContainer(container);
+events.creating().addListener(<span style="color:Blue;">new</span> EventListener4&lt;CancellableObjectEventArgs&gt;() {
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onEvent(Event4&lt;CancellableObjectEventArgs&gt; events,
+                        CancellableObjectEventArgs eventArgs) {
+        <span style="color:Blue;">if</span>(eventArgs.object() <span style="color:Blue;">instanceof</span> Person){
+            Person p = (Person) eventArgs.object();
+            <span style="color:Blue;">if</span>(p.getName().equals(<span style="color:#A31515;">&quot;Joe Junior&quot;</span>)){
+                eventArgs.cancel();
+            }
+        }
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			EventRegistryExamples.java: Cancel store operation
+			<div class="codedownload">
+				<a href="Example-callbacks-eventregistry-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Class</span> LoggingStorage
+    <span style="color:Blue;">Inherits</span> StorageDecorator
+    <span style="color:Blue;">Implements</span> IStorage
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>(storage <span style="color:Blue;">As</span> IStorage)
+        <span style="color:Blue;">MyBase</span>.<span style="color:Blue;">New</span>(storage)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> Exists(uri <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>) <span style="color:Blue;">As</span> <span style="color:Blue;">Boolean</span>
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called: LoggingStorage.Exists(&quot;</span> &amp; uri &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">MyBase</span>.Exists(uri)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> Open(config <span style="color:Blue;">As</span> BinConfiguration) <span style="color:Blue;">As</span> IBin
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called: LoggingStorage.Open(&quot;</span> &amp; Convert.ToString(config) &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">MyBase</span>.Open(config)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Protected</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> Decorate(config <span style="color:Blue;">As</span> BinConfiguration, bin <span style="color:Blue;">As</span> IBin) <span style="color:Blue;">As</span> IBin
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">New</span> LoggingBin(<span style="color:Blue;">MyBase</span>.Decorate(config, bin))
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Sub</span> Delete(uri <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>)
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called: LoggingStorage.Delete(&quot;</span> &amp; uri &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">MyBase</span>.Delete(uri)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Sub</span> Rename(oldUri <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>, newUri <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>)
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called: LoggingStorage.Rename(&quot;</span> &amp; oldUri &amp; <span style="color:#A31515;">&quot;,&quot;</span> &amp; newUri &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">MyBase</span>.Rename(oldUri, newUri)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			LoggingStorage.vb: A logging storage decorator
+			<div class="codedownload">
+				<a href="Example-configuration-io-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">Car car = queryForCar(container);
+car.setCarName(<span style="color:#A31515;">&quot;New Mercedes&quot;</span>);
+car.getDriver().setName(<span style="color:#A31515;">&quot;New Driver Name&quot;</span>);
+
+<span style="color:Green;">// Explicitly store the driver to ensure that those changes are also in the database</span>
+container.store(car);
+container.store(car.getDriver());</pre>
+		<div class="codesnippet-meta">
+			UpdateDepthPitfall.java: Explicitly store changes on the driver
+			<div class="codedownload">
+				<a href="Example-pitfalls-updatedepth-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

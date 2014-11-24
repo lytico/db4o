@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">NotInheritable</span> <span style="color:Blue;">Class</span> Color
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">ReadOnly</span> Black <span style="color:Blue;">As</span> <span style="color:Blue;">New</span> Color(0, 0, 0)
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">ReadOnly</span> White <span style="color:Blue;">As</span> <span style="color:Blue;">New</span> Color(255, 255, 255)
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">ReadOnly</span> Red <span style="color:Blue;">As</span> <span style="color:Blue;">New</span> Color(255, 0, 0)
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">ReadOnly</span> Green <span style="color:Blue;">As</span> <span style="color:Blue;">New</span> Color(0, 255, 0)
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">ReadOnly</span> Blue <span style="color:Blue;">As</span> <span style="color:Blue;">New</span> Color(0, 0, 255)
+
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> m_red <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> m_green <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> m_blue <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>(<span style="color:Blue;">ByVal</span> red <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>, <span style="color:Blue;">ByVal</span> green <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>, <span style="color:Blue;">ByVal</span> blue <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>)
+        <span style="color:Blue;">Me</span>.m_red = red
+        <span style="color:Blue;">Me</span>.m_green = green
+        <span style="color:Blue;">Me</span>.m_blue = blue
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">ReadOnly</span> <span style="color:Blue;">Property</span> RedValue() <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+        <span style="color:Blue;">Get</span>
+            <span style="color:Blue;">Return</span> m_red
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Get</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Property</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">ReadOnly</span> <span style="color:Blue;">Property</span> GreenValue() <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+        <span style="color:Blue;">Get</span>
+            <span style="color:Blue;">Return</span> m_green
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Get</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Property</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">ReadOnly</span> <span style="color:Blue;">Property</span> BlueValue() <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+        <span style="color:Blue;">Get</span>
+            <span style="color:Blue;">Return</span> m_blue
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Get</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Property</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overloads</span> <span style="color:Blue;">Function</span> <span style="color:Blue;">Equals</span>(<span style="color:Blue;">ByVal</span> other <span style="color:Blue;">As</span> Color) <span style="color:Blue;">As</span> <span style="color:Blue;">Boolean</span>
+        <span style="color:Blue;">If</span> ReferenceEquals(<span style="color:Blue;">Nothing</span>, other) <span style="color:Blue;">Then</span> <span style="color:Blue;">Return</span> <span style="color:Blue;">False</span>
+        <span style="color:Blue;">If</span> ReferenceEquals(<span style="color:Blue;">Me</span>, other) <span style="color:Blue;">Then</span> <span style="color:Blue;">Return</span> <span style="color:Blue;">True</span>
+        <span style="color:Blue;">Return</span> other.m_red = m_red <span style="color:Blue;">AndAlso</span> other.m_green = m_green <span style="color:Blue;">AndAlso</span> other.m_blue = m_blue
+
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overloads</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> <span style="color:Blue;">Equals</span>(<span style="color:Blue;">ByVal</span> obj <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) <span style="color:Blue;">As</span> <span style="color:Blue;">Boolean</span>
+        <span style="color:Blue;">If</span> ReferenceEquals(<span style="color:Blue;">Nothing</span>, obj) <span style="color:Blue;">Then</span> <span style="color:Blue;">Return</span> <span style="color:Blue;">False</span>
+        <span style="color:Blue;">If</span> ReferenceEquals(<span style="color:Blue;">Me</span>, obj) <span style="color:Blue;">Then</span> <span style="color:Blue;">Return</span> <span style="color:Blue;">True</span>
+        <span style="color:Blue;">If</span> <span style="color:Blue;">Not</span> <span style="color:Blue;">Equals</span>(obj.<span style="color:Blue;">GetType</span>(), <span style="color:Blue;">GetType</span>(Color)) <span style="color:Blue;">Then</span> <span style="color:Blue;">Return</span> <span style="color:Blue;">False</span>
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">Equals</span>(<span style="color:Blue;">DirectCast</span>(obj, Color))
+
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> GetHashCode() <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+        <span style="color:Blue;">Dim</span> hashCode <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span> = m_red
+        hashCode = (hashCode * 397) <span style="color:Blue;">Xor</span> m_green
+        hashCode = (hashCode * 397) <span style="color:Blue;">Xor</span> m_blue
+        <span style="color:Blue;">Return</span> hashCode
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> ToString() <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">String</span>.Format(<span style="color:#A31515;">&quot;Red: {0}, Green: {1}, Blue: {2}&quot;</span>, m_red, m_green, m_blue)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			Color.vb: Class as enumeration
+			<div class="codedownload">
+				<a href="Example-strategies-storingstatic-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Friend</span> <span style="color:Blue;">Class</span> ExampleTranslator
+    <span style="color:Blue;">Implements</span> IObjectConstructor
+    <span style="color:Green;">' This is called to store the object</span>
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> OnStore(<span style="color:Blue;">ByVal</span> objectContainer <span style="color:Blue;">As</span> IObjectContainer, _
+                            <span style="color:Blue;">ByVal</span> objToStore <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> _
+                        <span style="color:Blue;">Implements</span> IObjectConstructor.OnStore
+
+        <span style="color:Blue;">Dim</span> notStorable <span style="color:Blue;">As</span> NonStorableType = <span style="color:Blue;">DirectCast</span>(objToStore, NonStorableType)
+        <span style="color:Blue;">Return</span> notStorable.Data
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Green;">' This is called when the object is activated</span>
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> OnActivate(<span style="color:Blue;">ByVal</span> objectContainer <span style="color:Blue;">As</span> IObjectContainer, _
+                          <span style="color:Blue;">ByVal</span> targetObject <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>, <span style="color:Blue;">ByVal</span> storedObject <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) _
+                      <span style="color:Blue;">Implements</span> IObjectConstructor.OnActivate
+
+        <span style="color:Blue;">Dim</span> notStorable <span style="color:Blue;">As</span> NonStorableType = <span style="color:Blue;">DirectCast</span>(targetObject, NonStorableType)
+        notStorable.Data = <span style="color:Blue;">DirectCast</span>(storedObject, <span style="color:Blue;">String</span>)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Green;">' Tell db4o which type we use to store the data</span>
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> StoredClass() <span style="color:Blue;">As</span> Type _
+        <span style="color:Blue;">Implements</span> IObjectConstructor.StoredClass
+        
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">GetType</span>(<span style="color:Blue;">String</span>)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Green;">' This method is called when a new instance is needed</span>
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> OnInstantiate(<span style="color:Blue;">ByVal</span> objectContainer <span style="color:Blue;">As</span> IObjectContainer, _
+                                  <span style="color:Blue;">ByVal</span> storedObject <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> _
+        <span style="color:Blue;">Implements</span> IObjectConstructor.OnInstantiate
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">New</span> NonStorableType(<span style="color:#A31515;">&quot;&quot;</span>)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			ExampleTranslator.vb: An example translator
+			<div class="codedownload">
+				<a href="Example-typehandling-translator-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

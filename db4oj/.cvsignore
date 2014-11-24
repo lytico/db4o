@@ -1,0 +1,4 @@
+bin
+*.yap
+TEMP
+.byecycle

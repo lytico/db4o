@@ -1,0 +1,26 @@
+package decaf.annotations;
+
+interface Interface1<T> {
+}
+
+interface Interface2 {
+}
+
+interface Interface3 {
+}
+
+@decaf.IgnoreImplements
+class Class1 implements Interface1, Interface2 {
+}
+
+@decaf.IgnoreImplements(interfaces=Interface1.class)
+class Class2 implements Interface1, Interface2 {
+}
+
+@decaf.IgnoreImplements(value=decaf.Platform.JDK11, interfaces={Interface1.class})
+class Class21 implements Interface1<String>, Interface2 {
+}
+
+@decaf.IgnoreImplements(interfaces={Interface1.class, Interface3.class})
+class Class3 implements Interface1, Interface2, Interface3 {
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<project name="db4oMono" default="buildRPM" basedir=".">
+	
+	<property file="../machine.properties" />
+	<property file="../ant.properties" />
+
+	<property name="db4o.name.short" value="db4o-${db4o.version.dotted}" />
+	<property name="db4o.name.full" value="${db4o.name.short}-mono" />
+
+	<property name="dir.mono.rpmbuild" value="${dir.dist.mono}/rpmbuild" />
+	<property name="dir.mono.zip" value="${dir.dist.mono}/zip" />
+	<property name="dir.mono.zip.db4o" value="${dir.mono.zip}/${db4o.name.short}" />
+	
+	<property name="gpg.user" value="db4objects, Inc. (database for objects) &lt;info@db4objects.com>" />
+	<!-- property name="gpg.pass" value="half life ist fuer abiturienten" / -->
+
+	<filter token="rpmtopdir" value="${dir.mono.rpmbuild}"/>
+	<filter token="db4oversion" value="${db4o.version.dotted}"/>
+	<filter token="db4obuild" value="${db4o.version.build.plain}"/>
+	
+	<target name="init">
+		<tstamp />
+	</target>
+
+	<target name="prepareRPM">
+		
+		<delete dir="${dir.mono.rpmbuild}" />
+		<delete dir="${dir.mono.zip}" />
+		
+		<mkdir dir="${dir.mono.rpmbuild}" />
+		<mkdir dir="${dir.mono.rpmbuild}/SOURCES" />
+		<mkdir dir="${dir.mono.rpmbuild}/SPECS" />
+		<mkdir dir="${dir.mono.rpmbuild}/BUILD" />
+		<mkdir dir="${dir.mono.rpmbuild}/RPMS" />
+		<mkdir dir="${dir.mono.rpmbuild}/SRPMS" />
+		<mkdir dir="${dir.mono.rpmbuild}/tmp" />
+		<mkdir dir="${dir.mono.zip.db4o}" />
+
+		<input message="Please enter user ID for GPG" addproperty="gpg.user" />
+		<filter token="gpguser" value="${gpg.user}"/>
+
+		<copy todir="${dir.mono.zip}/${db4o.name.short}">
+			<fileset dir="${dir.dist.net.build}">				
+				<include name="doc/**/**" />
+				<include name="src/**/**" />
+			</fileset>
+		</copy>
+		<copy todir="${dir.mono.zip}/${db4o.name.short}" filtering="true">
+			<fileset dir="${dir.build}/mono">
+				<include name="Makefile" />
+				<include name="db4o.spec" />
+			</fileset>
+		</copy>
+		<mkdir dir="${dir.mono.zip}/${db4o.name.short}/licenses" />
+		<copy todir="${dir.mono.zip}/${db4o.name.short}/licenses">
+			<fileset dir="${dir.build}/build/mono">				
+				<include name="*.txt" />
+			</fileset>
+			<fileset dir="${dir.base}/db4o.net/Libs">				
+				<include name="*.txt" />
+			</fileset>
+		</copy>
+		<exec executable="tar" dir="${dir.mono.zip}">
+			<arg line="-czvf ${dir.mono.rpmbuild}/SOURCES/${db4o.name.full}.tar.gz ${db4o.name.short}"/>
+		</exec>
+		<copy file="${dir.build}/mono/db4o.spec" todir="${dir.mono.rpmbuild}/SPECS" overwrite="true" filtering="true" />
+		<copy file=".rpmmacros" todir="${user.home}" overwrite="true" filtering="true" />
+	</target>	
+
+	<target name="buildRPM" depends="prepareRPM">
+		<exec executable="rpmbuild">
+			<arg line="-ta --buildroot=${dir.mono.rpmbuild}/tmp --target=noarch ${dir.mono.rpmbuild}/SOURCES/${db4o.name.full}.tar.gz" />
+		</exec>		
+		<!--
+		<input message="Please enter pass phrase for ${gpg.user}" addproperty="gpg.pass" />
+		<exec executable="rpm" inputstring="${gpg.pass}">
+			<arg line="-/-addsign ${dir.mono.rpmbuild}/RPMS/noarch/${db4o.name.short}-${db4o.version.build.plain}.noarch.rpm" />
+		</exec>		
+		<exec executable="rpm" inputstring="${gpg.pass}">
+			<arg line="-/-addsign ${dir.mono.rpmbuild}/SRPMS/${db4o.name.short}-${db4o.version.build.plain}.src.rpm" />
+		</exec>		
+		-->
+		<delete dir="${dir.build.transfer.mono}/dist" />
+		<mkdir dir="${dir.build.transfer.mono}/dist" />
+		<copy file="${dir.mono.rpmbuild}/RPMS/noarch/${db4o.name.short}-${db4o.version.build.plain}.noarch.rpm" tofile="${dir.build.transfer.mono}/dist/${db4o.name.full}.noarch.rpm" />
+		<copy file="${dir.mono.rpmbuild}/SRPMS/${db4o.name.short}-${db4o.version.build.plain}.src.rpm" tofile="${dir.build.transfer.mono}/dist/${db4o.name.full}.src.rpm" />
+		<copy file="${dir.mono.rpmbuild}/SOURCES/${db4o.name.full}.tar.gz" todir="${dir.build.transfer.mono}/dist" />
+	</target>
+</project>

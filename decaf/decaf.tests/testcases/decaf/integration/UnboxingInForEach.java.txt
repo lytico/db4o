@@ -1,0 +1,17 @@
+package decaf.integration;
+
+class Foo {
+	public int[] array;
+	
+	public Foo(int... values) {
+		array = values;
+	}
+}
+
+class Main {
+	static void main() {
+		for (int i : new Foo(new Integer(42), new Integer(-1)).array) {
+			new Foo(i);
+		}
+	}
+}

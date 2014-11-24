@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Class</span> LRUCachingStorage
+    <span style="color:Blue;">Inherits</span> CachingStorage
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> pageCount <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>(<span style="color:Blue;">ByVal</span> storage <span style="color:Blue;">As</span> IStorage)
+        <span style="color:Blue;">MyBase</span>.<span style="color:Blue;">New</span>(storage)
+        <span style="color:Blue;">Me</span>.pageCount = 128
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>(<span style="color:Blue;">ByVal</span> storage <span style="color:Blue;">As</span> IStorage, <span style="color:Blue;">ByVal</span> pageCount <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>, <span style="color:Blue;">ByVal</span> pageSize <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>)
+        <span style="color:Blue;">MyBase</span>.<span style="color:Blue;">New</span>(storage, pageCount, pageSize)
+        <span style="color:Blue;">Me</span>.pageCount = pageCount
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Protected</span> <span style="color:Blue;">Overrides</span> <span style="color:Blue;">Function</span> NewCache() <span style="color:Blue;">As</span> ICache4
+        <span style="color:Blue;">Return</span> CacheFactory.NewLRUCache(pageCount)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			LRUCachingStorage.vb: Exchange the cache-implementation
+			<div class="codedownload">
+				<a href="Example-configuration-io-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

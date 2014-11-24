@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IStoredClass metaInfo = container.Ext().StoredClass(<span style="color:Blue;">typeof</span>(IndexedClass));
+<span style="color:Green;">// list a fields and check if they have a index</span>
+<span style="color:Blue;">foreach</span> (IStoredField field <span style="color:Blue;">in</span> metaInfo.GetStoredFields())
+{
+    <span style="color:Blue;">if</span> (field.HasIndex())
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;The field '&quot;</span> + field.GetName() + <span style="color:#A31515;">&quot;' is indexed&quot;</span>);
+    }
+    <span style="color:Blue;">else</span>
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;The field '&quot;</span> + field.GetName() + <span style="color:#A31515;">&quot;' isn't indexed&quot;</span>);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			CheckForAndIndex.cs: Check for a index
+			<div class="codedownload">
+				<a href="Example-indexing-check-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

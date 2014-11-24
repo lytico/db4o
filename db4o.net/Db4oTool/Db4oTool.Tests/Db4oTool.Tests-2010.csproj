@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{69859DB2-4DE3-4DE4-A0BB-13861418378F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4oTool.Tests</RootNamespace>
+    <AssemblyName>Db4oTool.Tests</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cecil.FlowAnalysis, Version=0.1.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\net-3.5\Cecil.FlowAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.5.0.1, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\net-3.5\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.0.1.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\net-3.5\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.GetOptions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\net-2.0\Mono.GetOptions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllTests.cs" />
+    <Compile Include="Core\AbstractCommandLineInstrumentationTestCase.cs" />
+    <Compile Include="Core\AbstractInstrumentationTestCase.cs" />
+    <Compile Include="Core\AllTests.cs" />
+    <Compile Include="Core\ArrayServices.cs" />
+    <Compile Include="Core\ByAttributeTestCase.cs" />
+    <Compile Include="Core\ByFilterTestCase.cs" />
+    <Compile Include="Core\ByNameTestCase.cs" />
+    <Compile Include="Core\ByNotAttributeTestCase.cs" />
+    <Compile Include="Core\CompilationServices.cs" />
+    <Compile Include="Core\ContextVariable.cs" />
+    <Compile Include="Core\ContextVariableTestCase.cs" />
+    <Compile Include="Core\CustomInstrumentationTestCase.cs" />
+    <Compile Include="Core\DebugInformationTestSuite.cs" />
+    <Compile Include="Core\DebugInformationTestVariables.cs" />
+    <Compile Include="Core\ExpectedStackAnalysisResultAttribute.cs" />
+    <Compile Include="Core\ILPatternTestCase.cs" />
+    <Compile Include="Core\InstallPerformanceCountersTestCase.cs" />
+    <Compile Include="Core\InstrumentationServices.cs" />
+    <Compile Include="Core\InstrumentedTestCase.cs" />
+    <Compile Include="Core\InstrumentingCFAssemblyTestCase.cs" />
+    <Compile Include="Core\PreserveDebugInfoTestCase.cs" />
+    <Compile Include="Core\ResourceServices.cs" />
+    <EmbeddedResource Include="Core\Resources\DebugInformationSubject.cs" />
+    <Compile Include="Core\ShellUtilities.cs" />
+    <Compile Include="Core\SignConfiguration.cs" />
+    <Compile Include="Core\SingleResourceTestCase.cs" />
+    <Compile Include="Core\StackAnalyzerTestCase.Helper.cs" />
+    <Compile Include="Core\StackAnalyzerTestCase.Scenarios.cs" />
+    <Compile Include="Core\StackAnalyzerTestCase.cs" />
+    <Compile Include="Core\VerifyAssemblyTest.cs" />
+    <Compile Include="Db4oToolTestServices.cs" />
+    <Compile Include="NQ\AllTests.cs" />
+    <Compile Include="NQ\DelegateBuildTimeOptimizationTestCase.cs" />
+    <Compile Include="NQ\OptimizedGenericClassTestCase.cs" />
+    <Compile Include="NQ\PredicateBuildTimeOptimizationTestCase.cs" />
+    <Compile Include="NQ\UnoptimizablePredicatesTestCase.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="ProgramOptionsTestCase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReflectionServices.cs" />
+    <Compile Include="TA\AllTests.cs" />
+    <Compile Include="TA\Collections\AllTests.cs" />
+    <Compile Include="TA\Collections\TACollectionsTestCaseBase.cs" />
+    <Compile Include="TA\Collections\TADictionaryTestCase.cs" />
+    <Compile Include="TA\Collections\TAListTestCase.cs" />
+    <Compile Include="TA\MockActivator.cs" />
+    <Compile Include="TA\NonActivatableBaseClass.cs" />
+    <Compile Include="TA\TABytecodeChangesTestCase.cs" />
+    <Compile Include="TA\TACrossAssemblyInstrumentationTestCase.cs" />
+    <Compile Include="TA\TAEnsureDb4oReferenceIsAdded.cs" />
+    <Compile Include="TA\TAFieldSetterInstrumentationTestCase.cs" />
+    <Compile Include="TA\TAInstrumentationAppliedMoreThanOnceCOR-918.cs" />
+    <Compile Include="TA\TAInstrumentationTestCaseBase.cs" />
+    <Compile Include="TA\TAInstrumentedConstructorTestCase.cs" />
+    <Compile Include="TA\TANonStorableTypeTestCase.cs" />
+    <Compile Include="TA\TAOutputListenerTestCaseBase.cs" />
+    <Compile Include="TA\TATestCaseBase.cs" />
+    <Compile Include="TA\TAWarningOnNonPrivateFieldsTestCase.cs" />
+    <Compile Include="TA\TAWarningOnSignedAssemblyInstrumentation.cs" />
+    <EmbeddedResource Include="Core\Resources\ByAttributeInstrumentationSubject.cs" />
+    <EmbeddedResource Include="Core\Resources\ByFilterInstrumentationSubject.cs" />
+    <EmbeddedResource Include="Core\Resources\ByNameInstrumentationSubject.cs" />
+    <EmbeddedResource Include="Core\Resources\ByNotAttributeInstrumentationSubject.cs" />
+    <EmbeddedResource Include="Core\Resources\CFInstrumentationSubject.cs" />
+    <EmbeddedResource Include="Core\Resources\CustomInstrumentationSubject.cs" />
+    <EmbeddedResource Include="Core\Resources\PreserveDebugInfoSubject.cs" />
+    <EmbeddedResource Include="NQ\Resources\DelegateSubject.cs" />
+    <EmbeddedResource Include="NQ\Resources\GenericClassTestSubject.cs" />
+    <EmbeddedResource Include="NQ\Resources\PredicateSubject.cs" />
+    <EmbeddedResource Include="NQ\Resources\UnoptimizablePredicateSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\Db4oReferenceSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TAActivatableDictionaryScenarios.cs" />
+    <EmbeddedResource Include="TA\Resources\TAAssemblyReferenceSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TABytecodeChangesSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TAClassWithNonPrivateFieldsSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TACollectionsScenarios.cs" />
+    <EmbeddedResource Include="TA\Resources\TADoubleInstrumentationSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TAFieldSetterSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TAInstrumentationSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TAInstrumentedConstructorSubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TANoFalsePositiveWarningsForNonPrivateFields.cs" />
+    <EmbeddedResource Include="TA\Resources\TASignedAssemblySubject.cs" />
+    <EmbeddedResource Include="TA\Resources\TAUnsafeInstrumentationSubject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Db4objects.Db4o.Instrumentation\Db4objects.Db4o.Instrumentation-2010.csproj">
+      <Project>{DFE1C46F-BB18-4B6A-AE34-4366F58BEB5A}</Project>
+      <Name>Db4objects.Db4o.Instrumentation-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o.NativeQueries\Db4objects.Db4o.NativeQueries-2010.csproj">
+      <Project>{AB1BF369-A9C4-4876-9797-178DB8AD437F}</Project>
+      <Name>Db4objects.Db4o.NativeQueries-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o.Optional\Db4objects.Db4o.Optional-2010.csproj">
+      <Project>{E9588FE7-C19D-445E-BB53-AE539EA4F0E6}</Project>
+      <Name>Db4objects.Db4o.Optional-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o\Db4objects.Db4o-2010.csproj">
+      <Project>{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}</Project>
+      <Name>Db4objects.Db4o-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4oUnit.Extensions\Db4oUnit.Extensions-2010.csproj">
+      <Project>{9446B00C-E8A6-4CEB-83DE-2CAC5168DFE3}</Project>
+      <Name>Db4oUnit.Extensions-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4oUnit\Db4oUnit-2010.csproj">
+      <Project>{8F82F8B0-95B6-4553-BDA8-BD9A954E682F}</Project>
+      <Name>Db4oUnit-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4oTool\Db4oTool-2010.csproj">
+      <Project>{6F3BE659-0653-4982-94D6-F1D9D8887E09}</Project>
+      <Name>Db4oTool-2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CSharp 4\App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

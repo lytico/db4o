@@ -1,0 +1,79 @@
+.n
+.a ObjectManagerOverview ..
+.0 Object Manager Enterprise Overview ..
+
+If you did not install the Object Manager Enterprise yet, please, return ._
+to  .l FirstGlance ..  chapter and follow the installation instructions there.
+Once the Object Manager Enterprise (OME) is installed you can see it in Eclipse by ._
+selecting Window->Open Perspective->Other and choosing "OME". Typically, OME window ._
+should look similar to this:
+.g OME1.jpg ..
+.n 
+In the OME perspective you can see:
+-	OME menu:
+.g OME_Menu.jpg .. 
+  
+-	OME toolbar buttons to access the frequently used functionality fast
+-	Db4o Browser:  window displaying the contents of the open db4o database
+-	Property Viewer: window displaying the properties of the open database ._
+or the properties of the selected database class
+-	Build Query: windows allowing to build a query using drag&drop functionality
+-	Query Results: window to browse the results of the query execution
+
+.1 Browsing the database ..
+In the  .l First previous chapter ..  we've learned how to create a new database ._
+and store objects in it. Let's create a new database and store some objects in it now:
+.s com.db4odoc.f1.chapter3.OMEExample#deleteDatabase ..
+.s com.db4odoc.f1.chapter3.OMEExample#storePilots ..
+Now we can see the resultant database in the Object Manager. Please select ._
+OME->Connect/Disconnect DB (or use a shortcut button from the toolbar menu) ._
+and browse to ome.db4o file in your user folder. (normally it ._
+is c:/Documents and Settings/[user name] on Windows XP/2000, c:/Users/[user name] on Windows Vista and /home/[user_name] on *nix systems).
+Once you've connected you will see a screen similar to this:
+.g OME_Pilot.jpg .. 
+ 
+The db4o Browser window shows that there is 1 class in the database (Pilot), which ._
+contains 2 fields: name and points. In the Property Viewer you can see more information ._
+about the class fields. You can also change "Is indexed" field and add the index to the ._
+database by pressing "Save Index" button.
+The filter panel on the top of the view allows easier navigation through the database ._
+with lots of different classes. You can use wildcard searches and benefit from the ._
+search history to make the selection faster.
+
+.1 Querying ..
+It is easy to retrieve all of the Pilot instances from the database: just right-click ._
+the Pilot class in db4o Browser and select "View All Objects". The list of the Pilot ._
+objects will be shown in the Query Result view:
+.g OME_Result.jpg .. 
+ 
+You can see object details in the detailed view below. Try to change any values ._
+and use Save button to persist the changes to the database. You can also use ._
+Delete button to delete objects from the database. For the objects containing ._
+field objects you will be prompted to use cascade on delete.
+.n
+More complex queries can be done using Build Query view:
+.g OME_query.jpg .. 
+ 
+Drag "points" field from the db4oBrowser view into the Build Query view, set ._
+condition "Greater Than", put a value "99" and run the query. You can return to ._
+the Built Query tab and modify the query later on again. For example: ._
+add "AND" operator, drag "name" field and set the value to "Michael Schumacher". Re-run ._
+the query.
+.n 
+When the new query is created, the previous query is stored and can be selected ._
+from the history drop-down:
+.g OME_QHistory.jpg .. 
+ 
+More sophisticated queries can be build by joining grouped constraints using "Add Group" ._
+button.
+When you are done working with the database in OME, you can close the connection ._
+by using OME->Connect/Disconnect DB menu command or by using the equivalent ._
+button on the toolbar. 
+
+In the  .l Query next chapter ..l  we will explore more about db4o ._
+querying capabilities. You can continue using OME while going ._
+through the rest of this tutorial. If you are using the interactive ._
+version you will find the database in formula1.db4o file in your user folder. (normally it ._
+is c:/Documents and Settings/[user name] on Windows XP/2000, c:/Users/[user name] on Windows Vista and /home/[user_name] on *nix systems). ._
+Please, remember to disconnect OME before running any of the tutorial ._
+examples, as only one active connection is allowed to the database file.  

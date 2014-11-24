@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">using</span> (IObjectContainer container = Db4oEmbedded.OpenFile(<span style="color:#A31515;">&quot;database.db4o&quot;</span>))
+{
+    <span style="color:Green;">// first get all objects which should be updated</span>
+    IList&lt;Person&gt; persons = container.Query&lt;Person&gt;();
+    <span style="color:Blue;">foreach</span> (Person person <span style="color:Blue;">in</span> persons)
+    {
+        <span style="color:Green;">// get the database-metadata about this object-type</span>
+        IStoredClass dbClass = container.Ext().StoredClass(person);
+        <span style="color:Green;">// get the old field which was an int-type</span>
+        IStoredField oldField = dbClass.StoredField(<span style="color:#A31515;">&quot;id&quot;</span>, <span style="color:Blue;">typeof</span> (<span style="color:Blue;">int</span>));
+        <span style="color:Blue;">if</span>(<span style="color:Blue;">null</span>!=oldField)
+        {
+            <span style="color:Green;">// Access the old data and copy it to the new field!</span>
+            <span style="color:Blue;">object</span> oldValue = oldField.Get(person);
+            <span style="color:Blue;">if</span> (<span style="color:Blue;">null</span> != oldValue)
+            {
+                person.id = <span style="color:Blue;">new</span> Identity((<span style="color:Blue;">int</span>)oldValue);
+                container.Store(person);
+            }
+        }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			RefactoringExamples.cs: copying the data from the old field type to the new one
+			<div class="codedownload">
+				<a href="Example-strategies-refactoring-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

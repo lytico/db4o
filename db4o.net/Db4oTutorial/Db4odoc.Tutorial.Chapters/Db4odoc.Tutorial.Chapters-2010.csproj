@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0194A3AA-0EDE-46FE-BF3B-BA9B25C815E3}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Db4odoc.Tutorial.Chapters</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Db4odoc.Tutorial.F1</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="F1\Chapter1\ArbitraryQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter1\ComplexQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter1\FirstStepsExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter1\NQExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter1\Pilot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter1\QueryExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter2\Car.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter2\Pilot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter2\StructuredExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter4\Car.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter4\CollectionsExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter4\Pilot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter4\SensorReadout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter5\Car.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter5\InheritanceExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter5\Pilot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter5\PressureSensorReadout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter5\RetrieveAllSensorReadoutsPredicate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter5\SensorReadout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter5\TemperatureSensorReadout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\Car.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\ClientServerExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\DeepExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\Pilot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\PressureSensorReadout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\SensorReadout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\ServerInfo.cs" />
+    <Compile Include="F1\Chapter6\StartServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\StopServer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\TemperatureSensorReadout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter6\TransactionExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter7\CultureInfoTranslator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter7\EvaluationExample.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter7\EvenHistoryEvaluation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter7\LocalizedItemList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="F1\Chapter8\Car.cs" />
+    <Compile Include="F1\Chapter8\Pilot.cs" />
+    <Compile Include="F1\Chapter8\PressureSensorReadout.cs" />
+    <Compile Include="F1\Chapter8\SensorReadout.cs" />
+    <Compile Include="F1\Chapter8\TemperatureSensorReadout.cs" />
+    <Compile Include="F1\Chapter8\TransparentActivationExample.cs" />
+    <Compile Include="F1\Chapter9\Car.cs" />
+    <Compile Include="F1\Chapter9\SensorReadout.cs" />
+    <Compile Include="F1\Chapter9\TemperatureSensorReadout.cs" />
+    <Compile Include="F1\Chapter9\TransparentPersistenceExample.cs" />
+    <Compile Include="F1\Chapter10\Car.cs" />
+    <Compile Include="F1\Chapter10\LinqExample.cs" />
+    <Compile Include="F1\Chapter10\Pilot.cs" />
+    <Compile Include="F1\Chapter3\OmeExample.cs" />
+    <Compile Include="F1\Chapter3\Pilot.cs" />
+    <Compile Include="F1\Util.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Db4objects.Db4o.CS\Db4objects.Db4o.CS-2010.csproj">
+      <Project>{9FA8178A-3E77-42C5-A252-6690EA9BA257}</Project>
+      <Name>Db4objects.Db4o.CS-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o.Linq\Db4objects.Db4o.Linq-2010.csproj">
+      <Project>{23531440-0922-43EB-A483-6592FFC2F093}</Project>
+      <Name>Db4objects.Db4o.Linq-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o\Db4objects.Db4o-2010.csproj">
+      <Project>{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}</Project>
+      <Name>Db4objects.Db4o-2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

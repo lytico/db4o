@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">Person personOnClient1 = queryForPerson(client1);
+Person personOnClient2 = queryForPerson(client2);
+System.out.println(queryForPerson(client2).getName());
+
+personOnClient1.setName(<span style="color:#A31515;">&quot;New Name&quot;</span>);
+client1.store(personOnClient1);
+client1.commit();
+
+<span style="color:Green;">// The other client still has the old data in the cache</span>
+System.out.println(queryForPerson(client2).getName());
+
+client2.ext().refresh(personOnClient2,Integer.MAX_VALUE);
+
+<span style="color:Green;">// After refreshing the date is visible</span>
+System.out.println(queryForPerson(client2).getName());</pre>
+		<div class="codesnippet-meta">
+			ReferenceCacheExamples.java: Reference cache in client server
+			<div class="codedownload">
+				<a href="Example-clientserver-referencecache-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

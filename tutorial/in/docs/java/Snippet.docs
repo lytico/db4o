@@ -1,0 +1,14 @@
+Here is how to configure a Native Query template with Eclipse 3.1:
+From the menu, choose Window + Preferences + Java + Editor + Templates + New
+As the name type "nq". Make sure that "java" is selected as the ._
+context on the right. Paste the following into the pattern ._
+field:
+
+.c List <${extent}> list = db.query(new Predicate <${extent}> () {
+    public boolean match(${extent} candidate){
+        return true; 
+    }
+}); ..
+
+Now you can create a native query with three keys: n + q + Control-Space.
+Similar features are available in most modern IDEs.

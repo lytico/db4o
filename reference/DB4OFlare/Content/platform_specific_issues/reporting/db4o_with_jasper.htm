@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="929" MadCap:lastWidth="679">
+    <head>
+    </head>
+    <body>
+        <h1>db4o with Jasper Reports Example</h1>
+        <p>This example illustrates how you can use Jasper Reports together with db4o to create a report. Take a look at the official <a href="http://jasperforge.org/">Jasper Reports website</a> for the documentation and tools around Jasper Reports.</p>
+        <h2>Designing the Report</h2>
+        <p>The report layout is written as an XML file or alternatively you can use an editor like the <a href="http://jasperforge.org/projects/ireport">iReport</a>-editor.</p>
+        <p>For adding data you can declare fields, which then are used for each row of the report. Just use the names of your properties which you want to report. For navigating along the data separate the properties with dots:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/reporting/report-declare-fields.all.flsnp" />
+        <p>After that you can access these fields in the report:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/reporting/report-Placing-the-fields-on-the-report.all.flsnp" />
+        <h2>Filling the Report</h2>
+        <p>After that you can fill the report with data from the database. For simpler reports we can use the JRBeanCollectionDataSource, which reads the values from regular Java bean objects. For more complex reports you might need to use another data source which you can fill manually like the JRMapCollectionDataSource. For all the available datasources read the <a href="http://jasperforge.org/website/jasperreportswebsite/trunk/documentation.html">Jasper Reports documentation</a>.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/reporting/JasperReportsExample-Run-a-query-an-export-the-result-as-report.all.flsnp" />
+    </body>
+</html>

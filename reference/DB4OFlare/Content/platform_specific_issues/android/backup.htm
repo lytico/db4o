@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="532" MadCap:lastWidth="533" MadCap:conditions="Primary.Java">
+  <head />
+  <body>
+    <h1>Backup</h1>
+    <h2>SQLite</h2>
+    <p>SQLite does not support a special API to make a backup.
+However, as you remember SQLite database is stored in a single database file,
+so the backup can be simply a matter of copying the database file.
+Unfortunately, this can't be done if the database is in use. In this case you
+can use <a href="http://code.google.com/android/reference/adb.htm">Android
+Debug Bridge</a> (adb) tool to access sqlite3 command-line application, which
+has .dump command for backing up database contents while the database is in
+use:</p>
+    <pre class="monospace" xml:space="preserve">E:\&gt;adb shell
+# sqlite3 /data/data/com.db4odoc.android.compare/databases/android.db
+sqlite3 /data/data/com.db4odoc.android.compare/databases/android.db
+SQLite version 3.5.0
+Enter ".help" for instructions
+sqlite&gt; .dump &gt; android200711.dmp
+.dump &gt; android200711.dmp
+BEGIN TRANSACTION;
+COMMIT;
+sqlite&gt;.exit
+.exit
+# ^D
+
+
+</pre>
+    <p>Ctrl+D command is used to close adb session.</p>
+    <h2>db4o</h2>
+    <p>On db4o a ExtObjectContainer#backup call is used to backup a
+database in use. <MadCap:xref href="../../advanced_topics/backup.htm" target="" title="" alt="">See "Backup"</MadCap:xref></p>
+    <p> </p>
+  </body>
+</html>

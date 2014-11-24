@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1721" MadCap:lastWidth="728">
+    <head>
+    </head>
+    <body>
+        <h1>Example <MadCap:variable name="Primary.UUID" /></h1>
+        <p>This example demonstrates how you can use <MadCap:variable name="Primary.UUID" />s to identify objects across objects containers. Take a look advantages and disadvantages of <MadCap:variable name="Primary.UUID" />s: <MadCap:xref href="comparison_of_ids.htm" target="" title="" alt="">See "Comparison Of Different IDs"</MadCap:xref></p>
+        <p MadCap:conditions="Primary.Java">Don't forget to add <a href="../../advanced_topics/type_handling/uuid_support.htm">UUID support</a>.</p>
+        <p>This example assumes that all object have a common super class, IDHolder, which holds the <MadCap:variable name="Primary.UUID" /> in a field. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/disconnectedobj/idexamples/IDHolder-generate-the-id.all.flsnp" />
+        <p>It's important to index the id-field, otherwise looking up for object by id will be slow.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/disconnectedobj/idexamples/UuidOnObject-index-the-uuid-field.all.flsnp" />
+        <p>The id is hold by the object itself, so you can get it directly.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/disconnectedobj/idexamples/UuidOnObject-get-the-uuid.all.flsnp" />
+        <p>You can get the object you can by a regular query. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/disconnectedobj/idexamples/UuidOnObject-get-an-object-its-UUID.all.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

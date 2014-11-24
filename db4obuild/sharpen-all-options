@@ -1,0 +1,61 @@
+@sharpen-exceptions-mapping
+@sharpen-collections-mapping
+@sharpen-bench-mapping
+
+-pascalCase+
+-nativeTypeSystem
+-nativeInterfaces
+-organizeUsings
+
+-fullyQualify Buffer
+-fullyQualify File
+-fullyQualify Socket
+-fullyQualify ICloneable
+-fullyQualify AllTests
+-fullyQualify Messages
+
+-methodMapping com.db4o.db4ounit.jre5.collections.typehandler.ListTypeHandlerTestUnitBase.itemFactory CreateItemFactory
+
+-typeMapping java.lang.Comparable System.IComparable
+-typeMapping java.io.InputStream Sharpen.IO.IInputStream
+-typeMapping java.io.OutputStream Sharpen.IO.IOutputStream
+
+-namespaceMapping com.db4o.config.annotations Db4objects.Db4o.Config.Attributes
+-namespaceMapping com.db4o.nativequery Db4objects.Db4o.NativeQueries
+-namespaceMapping com.db4o.db4ounit Db4objects.Db4o.Tests
+-namespaceMapping com.db4o.test.nativequery Db4objects.Db4o.Tests.NativeQueries
+-namespaceMapping db4ounit.extensions.fixtures Db4oUnit.Extensions.Fixtures
+-namespaceMapping db4ounit.extensions Db4oUnit.Extensions
+-namespaceMapping db4ounit.util Db4oUnit.Util
+-namespaceMapping db4ounit Db4oUnit
+-namespaceMapping com.db4o.drs Db4objects.Drs
+-namespaceMapping com.db4o Db4objects.Db4o
+-namespaceMapping java Sharpen
+
+-propertyMapping java.lang.System.out Sharpen.Runtime.Out
+-propertyMapping java.lang.System.err Sharpen.Runtime.Err
+-propertyMapping db4ounit.TestPlatform.getExceptionCause InnerException
+-propertyMapping java.util.Date.getTime Ticks
+-propertyMapping java.lang.Class.getSimpleName Name
+-propertyMapping java.lang.Class.getEnclosingClass DeclaringType
+
+-methodMapping com.db4o.db4ounit.util.Strings.replace Replace
+
+-srcFolder core/src
+-srcFolder optional/src
+-srcFolder cs/src
+-srcFolder nq/src
+-srcFolder db4ounit/src
+-srcFolder extensions/src
+-srcFolder db4obench/src
+-srcFolder tests/src
+-srcFolder instrumentation/src
+
+-typeMapping java.util.Random System.Random
+-methodMapping java.util.Random.nextInt Next
+
+-conditionalCompilation com.db4o.filestats !SILVERLIGHT
+-conditionalCompilation com.db4o.db4ounit.common.cs !SILVERLIGHT
+-conditionalCompilation com.db4o.test.nativequery.mocks !SILVERLIGHT
+-conditionalCompilation com.db4o.db4ounit.common.foundation.network !SILVERLIGHT
+-conditionalCompilation com.db4o.db4ounit.common.concurrency !SILVERLIGHT

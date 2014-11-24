@@ -1,0 +1,25 @@
+package decaf.integration;
+
+interface Appendable {
+	boolean append(Object c);
+}
+
+class AppendableImpl implements Appendable {
+
+	public boolean append(final Object c) {
+		new Runnable() {
+			public void run() {
+				for (com.db4o.foundation.Iterator4 elementIter = ((com.db4o.foundation.Iterable4) c)
+						.iterator(); elementIter.moveNext();) {
+							final Object element = elementIter.current();
+							add(element);
+						}
+			}
+		}.run();
+		return false;
+	}
+
+	public boolean add(Object o) {
+		return false;
+	}
+}

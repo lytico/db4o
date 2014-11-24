@@ -1,0 +1,33 @@
+body
+{
+	background: #ffffff;
+	margin: 15px;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h2
+{
+	color: #707070;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+h3
+{
+	color: #707070;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+h4
+{
+	color: #707070;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+a
+{
+	color: #4050a0;
+}

@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Browser RCP Application
+Bundle-SymbolicName: com.db4o.browser; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.db4o.browser.rcp.RcpPlugin
+Bundle-Vendor: DB4O
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Eclipse-AutoStart: true
+Bundle-ClassPath: launcher/lib/db4o-4.6-java1.2.jar,
+ launcher/lib/jakarta-oro-2.0.7.jar,
+ launcher/lib/kxml-plugin.jar,
+ launcher/lib/org.eclipse.ve.sweet_1.0.0.jar,
+ launcher/lib/xmlpull_1_1_3_1.jar,
+ launcher/lib/xstream-1.1.2.jar,
+ launcher/lib/xswt.jar

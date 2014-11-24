@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="708" MadCap:lastWidth="586">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Lazy Queries" />Lazy Queries</h1>
+    <P>With the Lazy Querying no criteria evaluated at all. Instead  an iterator is created against the best index found. Further query processing, including all index processing, will happen when the application iterates through the result. This allows you to get the first query results almost immediately.</P>
+    <P>In addition to the very fast execution this method also ensures very small memory consumption. Because lazy queries do not need an intermediate representation as a set of IDs in memory. With this approach it does not have to cache a single object or ID. The memory consumption for a query is practically zero, no matter how large the result set is going to be.</P>
+    <P>There are some interesting effects appearing due to the fact that the objects are getting evaluated only on a request. It means that all the committed modifications from the other transactions and uncommitted modifications from the same transaction will be taken into account when delivering the result objects.</P>
+    <H2>Advantages</H2>
+    <UL>
+      <LI>The call to <CODE>Query.execute()</CODE> will return very fast. First results can be made available to the application before the query is fully processed.</LI>
+      <LI>A query will consume hardly any memory at all because no intermediate ID representation is ever created.</LI>
+    </UL>
+    <h2>Disadvantages</h2>
+    <UL>
+      <LI>Lazy queries check candidates when iterating through the 'result'. In doing so the query processor takes changes into account that may have happened since the Query.execute() call: committed changes from other transactions, <B>and uncommitted changes from the calling transaction</B>. There is a wide range of possible side effects:</LI>
+      <UL>
+        <LI>The underlying index may have changed. </LI>
+        <LI>Objects themselves may have changed in the meanwhile. </LI>
+        <LI>There even is a chance of creating an endless loop. If the caller iterates through the <CODE>ObjectSet</CODE> and changes each object in a way that it is placed at the end of the index, the same objects can be revisited over and over. </LI>
+      </UL>
+      <B>In lazy mode it can make sense to work in same ways as with collections to avoid concurrent modification exceptions.</B> For instance one could iterate through the <CODE>ObjectSet</CODE> first and store all the objects to a temporary collection representation before changing objects and storing them back to db4o. 
+<LI>Some method calls against a lazy <CODE>ObjectSet</CODE> will require the query processor to create a snapshot or to evaluate the query fully. An example of such a call is <CODE>ObjectSet.size()</CODE>.</LI></UL>
+    <P>Lazy mode can be an excellent choice for single transaction read use, to keep memory consumption as low as possible.</P>
+  </body>
+</html>

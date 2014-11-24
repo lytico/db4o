@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3197" MadCap:lastWidth="623">
+    <body>
+        <p>An object which implements the <MadCap:variable name="Primary.Activatable" />-interface is responsible for activating itself. For this purpose the class needs a field to keep its activator. This field is only used by the <a href="../basics/activation_concept/transparent_activation_framework.htm">transparent activation framework</a>. Therefore it's marked as transient, to avoid that it's stored in the database.&#160;</p>
+        <MadCap:snippetBlock src="../CodeExamples/ta/example/Person-Implement-the-required-activatable-interface-and-add-activator.all.flsnp" />
+        <p>Then implement the two methods of the <MadCap:variable name="Primary.Activatable" />-interface. The bind-method binds an activator to the object. It's called by the transparent activation framework. The activate-method needs to be called before any read or write operation on the object. Since these two methods are always the same, you can move the implementation to a common super class or to a static utility class.</p>
+        <MadCap:snippetBlock src="../CodeExamples/ta/example/Person-Implement-the-activatable-interface-methods.all.flsnp" />
+        <p>Now the important part. Every time a field of the class is accessed you need to call the activate-method with the purpose. For example in every <MadCap:variable name="Primary.getter/setter" /> or other method. Probably the best way is to use only           <![CDATA[ ]]><MadCap:variable name="Primary.getter/setter" /> <![CDATA[ ]]>even within the class to access fields. And the <MadCap:variable name="Primary.getter/setter" /> ensures that the activate-method is called.</p>
+        <MadCap:snippetBlock src="../CodeExamples/ta/example/Person-Call-the-activate-method-on-every-field-access.all.flsnp" />
+    </body>
+</html>

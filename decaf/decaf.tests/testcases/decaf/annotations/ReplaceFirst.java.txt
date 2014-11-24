@@ -1,0 +1,14 @@
+package decaf.annotations;
+
+class ReplaceFirst {
+
+	@decaf.ReplaceFirst("return \"bar\";")
+	public String foo() {
+		return "foo";
+	}
+	
+	@decaf.ReplaceFirst(value = "return \"new baz\";", platforms = {decaf.Platform.JDK11, decaf.Platform.JDK12} )
+	public String baz() {
+		return "baz";
+	}
+}

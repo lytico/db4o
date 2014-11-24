@@ -1,0 +1,19 @@
+package decaf.annotations;
+
+class Base {
+}
+
+interface Interface {
+}
+
+class IgnoreExtends1 {
+}
+
+class IgnoreExtends2 implements Interface {
+}
+
+interface Interface2 {
+}
+
+interface Interface3 extends Interface {
+}

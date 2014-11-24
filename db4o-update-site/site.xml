@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="https://source.db4o.com/db4o/trunk/db4o-update-site/">
+      Db4o Plugins
+   </description>
+   <feature url="features/OME_Plug_in_1.0.0.jar" id="OME_Plug_in" version="1.0.0">
+      <category name="Db4o"/>
+   </feature>
+   <category-def name="Db4o" label="Db4o"/>
+</site>

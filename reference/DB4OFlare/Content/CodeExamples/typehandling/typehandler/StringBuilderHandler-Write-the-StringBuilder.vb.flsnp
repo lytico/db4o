@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Write(<span style="color:Blue;">ByVal</span> writeContext <span style="color:Blue;">As</span> IWriteContext, <span style="color:Blue;">ByVal</span> o <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) _
+    <span style="color:Blue;">Implements</span> IValueTypeHandler.Write
+    <span style="color:Blue;">Dim</span> builder <span style="color:Blue;">As</span> StringBuilder = <span style="color:Blue;">DirectCast</span>(o, StringBuilder)
+    <span style="color:Blue;">Dim</span> str <span style="color:Blue;">As</span> <span style="color:Blue;">String</span> = builder.ToString()
+    <span style="color:Blue;">Dim</span> bytes <span style="color:Blue;">As</span> <span style="color:Blue;">Byte</span>() = Encoding.UTF8.GetBytes(str)
+    writeContext.WriteInt(bytes.Length)
+    writeContext.WriteBytes(bytes)
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			StringBuilderHandler.vb: Write the StringBuilder
+			<div class="codedownload">
+				<a href="Example-typehandling-typehandler-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> TeamDataService : DataService&lt;TeamDataContext&gt;
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> InitializeService(DataServiceConfiguration config)
+    {
+        config.SetEntitySetAccessRule(<span style="color:#A31515;">&quot;*&quot;</span>, EntitySetRights.All);
+        config.SetServiceOperationAccessRule(<span style="color:#A31515;">&quot;*&quot;</span>, ServiceOperationRights.All);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			TeamDataService.svc.cs: Build the concrete service
+			<div class="codedownload">
+				<a href="Example-WCFDataServices-WCFDataServices-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

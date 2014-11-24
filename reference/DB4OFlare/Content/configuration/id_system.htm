@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2171" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Id System</h1>
+        <p>The id-system configuration  applies to the embedded- and the server-mode of db4o. There are tree different id-systems-available. All the id system configuration is accessible via the id-system-<MadCap:variable name="Primary.getter" /> on the configuration-object.</p>
+        <p>Note that you cannot change the id-system for an existing database. You need to <a href="../advanced_topics/defragment.htm">defragment</a> the database in order to change the id-system.</p>
+        <p>The id-system is responsible to mapping a object id to the physical location of an object. This mapping can have significant impact on the performance.</p>
+        <h2>Stacked BTree Id-System</h2>
+        <p>This setting uses a stack of two BTree's on top of an InMemoryIdSystem. This system is scalable for a large number of ids.</p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/idsystem/IdSystemConfigurationExamples-Use-stacked-B-trees-for-storing-the-ids.all.flsnp" />
+        <h2>Single BTree Id-System</h2>
+        <p>This setting uses a single BTree on top of a in memory id system. This system works great for small databases. However it cannot scale for a large number of ids.</p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/idsystem/IdSystemConfigurationExamples-Use-a-single-B-tree-for-storing-the-ids.all.flsnp" />
+        <h2>In Memory Id-System</h2>
+        <p>This id-system keeps all ids in memory. While accessing the ids if fast, all ids have to be written to disk on every commit. Therefore it can be used only for tiny databases. </p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/idsystem/IdSystemConfigurationExamples-Use-a-in-memory-id-system.all.flsnp" />
+        <h2>Pointer Based Id-System</h2>
+        <p>This id system uses pointers to handle ids. Each id represents a pointer into the database-file. This makes the id-mapping simple. However since it's a pointer, you cannot change the location. Therefore this system leads to more fragmentation and  performance degradation as the database grows.</p>
+        <p>This id system is here to ensure backward-compatibility. It's not recommended to use for new databases.</p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/idsystem/IdSystemConfigurationExamples-Use-a-in-memory-id-system.all.flsnp" />
+        <h2>Custom Id-System</h2>
+        <p>It's possible to implement your own id system. You can pass an factory which creates your id-system implementation. </p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/idsystem/IdSystemConfigurationExamples-use-a-custom-id-system.all.flsnp" />
+    </body>
+</html>

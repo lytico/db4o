@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="50" MadCap:lastWidth="638">
+    <body>
+        <p MadCap:conditions="Primary..NET"><strong style="color:red">Since <a href="../basics/querying/linq.htm">.NET 3.5 LINQ</a> is the way to go in order to query db4o. LINQ provides a extremely powerful query language. We strongly recommend <a href="../basics/querying/linq.htm">using LINQ</a> instead of native queries.</strong>
+        </p>
+    </body>
+</html>

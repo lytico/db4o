@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="573" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Disable Commit Recovery</h1>
+        <p><strong>This option only makes sense when you try to recover a corrupted database.</strong>
+        </p>
+        <p>Turns commit recovery off. db4o uses a two-phase commit algorithm to ensure <a href="../../basics/acid_and_transactions.htm">ACID properties</a>. In a first step all intended changes are written to a free place in the database file, the "transaction commit record". In a second step the actual changes are performed. If the system breaks down during commit, the commit process is restarted when the database file is opened the next time. </p>
+        <p>On very rare occasions (possibilities: hardware failure or editing the database file with an external tool) the transaction commit record may be broken. In this case, this method can be used to try to open the database file without commit recovery. The method should only be used in emergency situations after consulting db4o support.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/file/FileConfiguration-Disable-commit-recovery.all.flsnp" />
+    </body>
+</html>

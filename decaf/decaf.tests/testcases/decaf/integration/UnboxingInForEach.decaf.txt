@@ -1,0 +1,21 @@
+package decaf.integration;
+
+class Foo {
+	public int[] array;
+	
+	public Foo(int[] values) {
+		array = values;
+	}
+}
+
+class Main {
+	static void main() {
+		{
+			final int[] iArray = new Foo(new int[] { (new Integer(42)).intValue(), (new Integer(-1)).intValue() }).array;
+			for (int iIndex = 0; iIndex < iArray.length; ++iIndex) {
+				final int i = iArray[iIndex];
+				new Foo(new int[] { i });
+			}
+		}
+	}
+}

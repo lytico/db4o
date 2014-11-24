@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Init(HttpApplication context)
+{
+    <span style="color:Blue;">if</span> (<span style="color:Blue;">null</span> == HttpContext.Current.Application[DataBaseInstance])
+    {
+        HttpContext.Current.Application[DataBaseInstance] = OpenDatabase();
+    }
+    RegisterSessionCreation(context);
+}
+
+<span style="color:Blue;">private</span> IEmbeddedObjectContainer OpenDatabase()
+{
+    <span style="color:Blue;">string</span> relativePath = ConfigurationSettings.AppSettings[<span style="color:#A31515;">&quot;DatabaseFileName&quot;</span>];
+    <span style="color:Blue;">string</span> filePath = HttpContext.Current.Server.MapPath(relativePath);
+    <span style="color:Blue;">return</span> Db4oEmbedded.OpenFile(filePath);
+}</pre>
+		<div class="codesnippet-meta">
+			Db4oProvider.cs: open database when the application starts
+			<div class="codedownload">
+				<a href="Example-WebApp-Infrastructure-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

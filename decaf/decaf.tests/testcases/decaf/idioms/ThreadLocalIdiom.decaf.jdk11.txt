@@ -1,0 +1,10 @@
+package decaf.idioms;
+
+class ThreadLocalIdiom {
+
+	private final com.db4o.foundation.ThreadLocal4 _message = new com.db4o.foundation.ThreadLocal4();
+	
+	public String current() {
+		return ((String) _message.get());
+	}
+}

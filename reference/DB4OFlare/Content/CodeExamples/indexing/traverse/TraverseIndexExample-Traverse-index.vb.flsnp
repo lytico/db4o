@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> storedField <span style="color:Blue;">As</span> IStoredField = container.Ext().StoredClass(<span style="color:Blue;">GetType</span>(Item)).StoredField(<span style="color:#A31515;">&quot;data&quot;</span>, <span style="color:Blue;">GetType</span>(<span style="color:Blue;">Integer</span>))
+storedField.TraverseValues(<span style="color:Blue;">New</span> IndexVisitor())</pre>
+		<div class="codesnippet-meta">
+			TraverseIndexExample.vb: Traverse index
+			<div class="codedownload">
+				<a href="Example-indexing-traverse-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

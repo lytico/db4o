@@ -1,0 +1,14 @@
+
+(N1) .NET class "Cs.cs"
+-----------------------
+Querying on the Cs class runs into a NullPointerException
+
+Notes: This is happening in the middle of the generic reflector code; I suggest
+looking there.
+
+
+(N2) ObjectTree.yap
+---------------------
+Opening any of the UUIDTest.Device classes shows a problem
+with .NET databases:
+They do not work with UUID fields yet.

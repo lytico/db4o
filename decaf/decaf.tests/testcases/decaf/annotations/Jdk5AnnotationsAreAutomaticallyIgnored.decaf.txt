@@ -1,0 +1,6 @@
+package decaf.annotations;
+
+import java.lang.annotation.*;
+
+class Bar {
+}

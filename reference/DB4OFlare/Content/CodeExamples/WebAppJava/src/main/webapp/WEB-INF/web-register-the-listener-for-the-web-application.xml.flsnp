@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">&lt;</span><span style="color:#A31515;">context-param</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">param-name</span><span style="color:Blue;">&gt;</span>database-file-name<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">param-name</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">param-value</span><span style="color:Blue;">&gt;</span>database.db4o<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">param-value</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">context-param</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;</span><span style="color:#A31515;">listener</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">listener-class</span><span style="color:Blue;">&gt;</span>com.db4odoc.servlet.Db4oServletListener<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">listener-class</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">listener</span><span style="color:Blue;">&gt;</span></pre>
+		<div class="codesnippet-meta">
+			web.xml: register the listener for the web application
+			<div class="codedownload">
+				<a href="Example-webapp-WEB-INF-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

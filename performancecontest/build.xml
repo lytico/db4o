@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<project name="PerformanceContest" default="poleposition-test-race" basedir=".">
+
+	<property file="machine.properties" />
+	<property file="ant.properties" />
+
+	<property name="java.src.core.jdk5" value="${dir.dist.java}/src"/>
+
+	<property name="filename.patched.jar" value="db4o-${db4o.version.major}.${db4o.version.minor}-patched.jar" />
+	<property name="file.db4o.patched.jar" value="${dir.dist.jars}/${filename.patched.jar}"/>
+	
+	<property name="dir.polepos" value="${dir.base}/polepos" />
+	<property name="polepos.src" value="${dir.polepos}/src" />
+	<property name="polepos.bin" value="${dir.polepos}/bin" />
+	<property name="polepos.lib" value="${dir.polepos}/lib" />
+	<property name="polepos.result.dir" value="${dir.polepos}/doc/results" />
+	<property name="polepos.templates.dir" value="${polepos.bin}/templates" />
+	<property name="dir.db4opolepos" value="${dir.base}/db4opolepos" />
+	<property name="db4opolepos.src" value="${dir.db4opolepos}/src" />
+	<property name="db4opolepos.bin" value="${dir.db4opolepos}/bin" />
+	<property name="db4opolepos.lib" value="${dir.db4opolepos}/lib"/>
+
+	<target name="clean" >
+		<delete dir="${dir.dist}" />
+	</target>
+	
+	<target name="init" >
+		<mkdir dir="${dir.dist.java}" />
+		<mkdir dir="${dir.dist.jars}" />
+	</target>
+
+	<target name="build-patched-db4o" depends="init">
+		<mkdir dir="${java.src.core.jdk5}" />
+		<copy todir="${java.src.core.jdk5}">
+			<fileset dir="${dir.j.core.src}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<copy todir="${java.src.core.jdk5}" overwrite="true">
+			<fileset dir="${dir.j.jdk1.2.core.src}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${java.src.core.jdk5}" overwrite="true">
+			<fileset dir="${dir.j.jdk5.core.src}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+
+		<mkdir dir="${dir.dist.classes.java5}" />
+		<javac srcdir="${java.src.core.jdk5}" 
+            fork="true" 
+            destdir="${dir.dist.classes.java5}" 
+            debug="${javac.debug.mode}" 
+            target="1.5" 
+            source="1.5" 
+            encoding="UTF-8" />
+
+		<jar destfile="${file.db4o.patched.jar}">
+			<fileset dir="${dir.dist.classes.java5}" />
+		</jar>
+	</target>
+
+	<target name="copy-patched-db4o" depends="build-patched-db4o">
+		<copy todir="${db4opolepos.lib}" file="${file.db4o.patched.jar}" />
+	</target>
+
+	<path id="polepos.classpath">
+		<fileset dir="${db4opolepos.lib}">
+			<include name="**/*.jar" />
+			<exclude name="db4o-*.jar" />
+		</fileset>
+		<fileset dir="${polepos.lib}">
+			<include name="**/*.jar" />
+			<exclude name="db4o-*.jar" />
+		</fileset>
+	</path>
+
+	<target name="compile-poleposition" depends="copy-patched-db4o">
+		<mkdir dir="${polepos.bin}"/>
+		<javac fork="true" destdir="${polepos.bin}">
+			<classpath refid="polepos.classpath" />
+			<classpath path="${db4opolepos.lib}/${filename.patched.jar}" />
+			<src path="${polepos.src}" />
+		</javac>
+		<mkdir dir="${db4opolepos.bin}"/>
+		<javac fork="true" destdir="${db4opolepos.bin}">
+			<classpath refid="polepos.classpath" />
+			<classpath path="${db4opolepos.lib}/${filename.patched.jar}" />
+			<classpath path="${polepos.bin}" />
+			<src path="${db4opolepos.src}" />
+		</javac>
+		<copy todir="${db4opolepos.bin}">
+			<fileset dir="${db4opolepos.src}">
+				<include name="**/**" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="poleposition-test-race" depends="compile-poleposition">
+		<java fork="true" dir="${dir.db4opolepos}"
+				classname="org.polepos.PerformanceContestTestRace" timeout="10000000">
+			<classpath>
+				<pathelement location="${db4opolepos.bin}" />
+				<pathelement location="${polepos.bin}" />
+				<path refid="polepos.classpath" />
+			</classpath>
+			<jvmarg value="-Xmx512m"/>
+		</java>
+	</target>
+	
+	<target name="poleposition-full-race" depends="compile-poleposition">
+		<java fork="true" dir="${dir.db4opolepos}"
+				classname="org.polepos.PerformanceContestFullRace" timeout="10000000">
+			<classpath>
+				<pathelement location="${db4opolepos.bin}" />
+				<pathelement location="${polepos.bin}" />
+				<path refid="polepos.classpath" />
+			</classpath>
+			<jvmarg value="-Xmx512m"/>
+		</java>
+	</target>
+
+	
+	<target name="delete-binaries" >
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${dir.j}/bin" />
+			<fileset dir="${dir.j.tests}/bin" />
+			<fileset dir="${dir.j.jdk1.2}/bin" />
+			<fileset dir="${dir.j.jdk5}/bin" />
+			<fileset dir="${db4opolepos.bin}" />
+			<fileset dir="${dir.db4opolepos}/doc" />
+			<fileset dir="${dir.db4ounit}/bin" />
+			<fileset dir="${dir.db4ounit.extensions}/bin" />
+			<fileset dir="${dir.build.bin}" />
+			<fileset dir="${dir.dist}" />
+		</delete>
+	</target>
+
+</project>

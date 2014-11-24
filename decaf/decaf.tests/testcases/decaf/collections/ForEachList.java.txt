@@ -1,0 +1,33 @@
+package decaf.collections;
+
+import java.util.*;
+
+class ForEachListHolder {
+	public List<String> list;
+}
+
+class ForEachList {
+	void forEach(List<?> list) {
+		for(Object obj : list) {
+			System.out.println(obj);
+		}
+	} 
+
+	void forEachWithGenerics(List<String> list) {
+		for(String str : list) {
+			System.out.println(str);
+		}
+	}
+
+	void forEachWithExpression(ForEachListHolder holder) {
+		for(String str : holder.list) {
+			System.out.println(str);
+		}
+	}
+
+	void forEachWithNestedGenerics(List<List<String>> list) {
+		for(String str : list.get(0)) {
+			System.out.println(str);
+		}
+	}
+}

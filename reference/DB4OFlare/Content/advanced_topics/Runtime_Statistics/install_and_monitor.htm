@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="2809" MadCap:lastWidth="605">
+    <head>
+    </head>
+    <body>
+        <h1>Install and Monitor</h1>
+        <p MadCap:conditions="Primary.Java">On the Java platform all runtime statistics are published through the JMX interface. This means that you can use any JMX client to monitor the statistics.</p>
+        <p MadCap:conditions="Primary..NET">On the .NET platform all runtime statistics are published through the Windows Performance Counters. This means that you can use the regular windows tooling to monitor db4o statistics.</p>
+        <h2>Installing the Monitoring Support</h2>
+        <p>The first thing we need to do is to add the monitoring support to the db4o configuration. The monitoring-support are in<a href="../../dependency_overview.htm"> the optional-<MadCap:variable name="Primary.Artefact" />s</a>. So you need to add those for the monitoring support. </p>
+        <p>Monitoring adds a small overhead to the regular db4o operations. Therefore the monitoring support is distributed across different monitoring options, so that you can add only the options you need.</p>
+        <p>Currently following options are available:</p>
+        <MadCap:snippetBlock src="../../Snippets/monitoring_options.flsnp" />
+        <h2 MadCap:conditions="Primary.Java">Monitor With JConsole</h2>
+        <div MadCap:conditions="Primary.Java">
+            <p>As said, the statistics are published through the JMX-interface (Java Management Extensions).&#160;Therefore you can use any JMX-client to monitor db4o. The JDK brings its own JMX-client with it: The <a href="http://java.sun.com/javase/6/docs/technotes/guides/visualvm/intro.html">JConsole</a>-application is located in the bin-folder of the JDK-installation. Start the JConsole and connect your running db4o application.  Then you will find the db4o related readings on the "MBeans" tab. In the treeview on the left, you will see "com.db4o.monitoring".</p>
+            <p>Below this tree node you will find all open ObjectContainers that have JMX monitoring enabled. For each of them the respective runtime statistics categories will be listed. If you select the "Attributes" node for any of them, the corresponding set of attribute values will be shown along with their most recent reading.</p>
+            <p>By double clicking on the number value a graph will be displayed. </p>
+            <p>Some Monitoring-Nodes also provide notifications. You can subscribe to this notifications. In the categories where the "Notifications" node is visible, you can select it and click "Subscribe" on the bottom right. For example we provide notifications about unoptimized native queries and about class index scans.</p>
+            <p>
+                <img src="jconsole.png" />
+            </p>
+        </div>
+        <div MadCap:conditions="Primary..NET">
+            <h2>Install the Performance Counters</h2>
+            <p>In order to monitor db4o you need to install the db4o performance counters. This needs to be done only once on the machine you want to monitor. Installing the performance counters require Administrator privileges.</p>
+            <p>You can install the performance counter either from you application with an simple method call or with the <a href="../../advanced_topics/enhancement_tools/enhancement_for_.net/db4otool.htm">db4oTool</a>.</p>
+            <h3>Installing From Your Application</h3>
+            <p>You can install it by simply calling the install-method on the Db4oPerformanceCounters class. Not that your application needs to run with Administrator privileges to successfully install the performance counters.</p>
+            <MadCap:snippetBlock src="../../CodeExamples/tuning/monitoring/InstallPerformanceCounters-Install-the-performance-counters.all.flsnp" />
+            <h3>Installing With Db4oTool</h3>
+            <p>You can install it with the db4oTool. Note that the Db4oTool needs to be executed with Administrator privileges to successfully install the performance counters.</p>
+            <pre class="monospace" xml:space="preserve">Db4oTool.exe -install-performance-counters</pre>
+            <h2>Monitor With Performance Monitor</h2>
+            <p>To monitor the db4o performance counters, you can use the Windows Performance Monitor (perfom.exe). You can start the Performance Monitor by opening the Run-dialog (Windows-Key + R) and enter 'perfmon' and execute.</p>
+            <p>First select which performance counters you want to monitor and for which db4o instance. Click the  'Add'-Botton on the toolbar. There scroll to the db4o-category and select the performance-counter and the instance you want to monitor.</p>
+            <p>
+                <img src="select_perf_counters.png" />
+            </p>
+            <p>After that, you can watch the performance-counters. Read the <a href="http://technet.microsoft.com/en-us/library/bb490957.aspx">Performance Monitor reference</a> for more information.</p>
+            <p>
+                <img src="monitor_perf_counters.png" />
+            </p>
+            <p>&#160;</p>
+        </div>
+    </body>
+</html>

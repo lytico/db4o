@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">List&lt;PersonOld&gt; oldPersons = container.query(PersonOld.<span style="color:Blue;">class</span>);
+<span style="color:Blue;">for</span> (PersonOld old : oldPersons) {
+    PersonNew newPerson = <span style="color:Blue;">new</span> PersonNew();
+    newPerson.setName(<span style="color:Blue;">new</span> String[]{old.getName()});
+    container.store(newPerson);
+    container.delete(old);
+}</pre>
+		<div class="codesnippet-meta">
+			ChangeArrayType.java: Copy the string-field to the new string-array field
+			<div class="codedownload">
+				<a href="Example-refactoring-arraychange-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

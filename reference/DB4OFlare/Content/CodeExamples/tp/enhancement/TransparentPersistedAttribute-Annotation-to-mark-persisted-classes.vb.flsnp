@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve">&lt;AttributeUsage(AttributeTargets.<span style="color:Blue;">Class</span>, AllowMultiple:=<span style="color:Blue;">False</span>, Inherited:=<span style="color:Blue;">True</span>)&gt; _
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Class</span> TransparentPersistedAttribute
+    <span style="color:Blue;">Inherits</span> Attribute
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			TransparentPersistedAttribute.vb: Annotation to mark persisted classes
+			<div class="codedownload">
+				<a href="Example-tp-enhancement-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

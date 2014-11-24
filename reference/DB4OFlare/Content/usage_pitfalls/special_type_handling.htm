@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="909" MadCap:lastWidth="581" MadCap:conditions="Primary.Java">
+    <head>
+    </head>
+    <body>
+        <h1>Special Type Handling</h1>
+        <p>For some often used types db4o implements a special type-handling. This can inflict some issues.</p>
+        <div>
+            <h2>SQL-Date cannot be stored properly</h2>
+            <p>The java.sql.Date extends the standard java.util.Date-type. The date-type is treated like other value-types such as strings, integers etc. Unfortunatly this isn't true for the java.sql.Date-type. This also means that the SQL-date type cannot be store correctly. When you retrieve a SQL-Date type it will contain the wrong date.</p>
+            <p>The solution is to use only the normal JDK-Date. Theirs no reason to use the java.sql.Date-type.</p>
+        </div>
+        <h2>Be Careful with own Collection-Types</h2>
+        <p>db4o uses <a href="../advanced_topics/type_handling/typehandlers.htm">special type-handlers</a> for collections to improve efficiency. &#160;This also means that db4o makes some assumptions about the collection. It assumes that all collection-methods are implemented and work properly. This isn't true for special collections like the JDK unemployable collections or maybe for you own special collection.</p>
+        <p>For example this simple collection which doesn't implement all methods:</p>
+        <MadCap:snippetBlock src="../CodeExamples/pitfalls/typehandling/MyFixedSizeCollection-This-collection-doesn't-implement-all-collection-methods.all.flsnp" />
+        <p>This collection will create exceptions when you try to load it. Because db4o uses the clear and add-methods on the collection.</p>
+        <MadCap:snippetBlock src="../CodeExamples/pitfalls/typehandling/TypeHandlingEdgeCases-db4o-fails-to-load-partially-implemented-collections.all.flsnp" />
+    </body>
+</html>

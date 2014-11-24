@@ -1,0 +1,17 @@
+Issues with the UI:
+
+- Navigating the object graph: What string to call an object?
+- Perhaps just use the object class plus the db4object ID?
+- Configureable?  Choose what attribute to show?
+
+- For collections (within the tree): Show the first x elements, then
+  an elipsis
+
+
+- Two UI ideas:
+
+- Tree-based navigator with list/detail pane
+- Something like Java Spider 
+
+-----------------------------------------------------
+

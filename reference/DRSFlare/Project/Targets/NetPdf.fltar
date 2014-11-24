@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CatapultTarget Version="1" Comment="test pdf target" Type="PDF" Destinations="" GlossaryTermConversion="first" conditions="" GetLatestBeforeCompile="true" ConditionTagExpression="include[Primary..NET or Primary.c# or Primary.Pdf or Primary.VB.NET] " PatchHeadingLevels="true" TargetLanguage="en" MasterStylesheet="/Content/Resources/Stylesheets/PrintStyle.css" OutputFolder="C:/Users/Gamlor/Develop/db4o/db4o-src//dist/flare" OutputFile="drs-reference-net.pdf">
+  <DocumentProperties Subject="db4o Replication System" Title="db4o Replication System Reference Documentation" Author="Versant Corp."/>
+  <PDF ShowUsedBookmarks="false"/>
+  <Glossaries>
+    <Glossary Link="/Project/Glossaries/PrintGlossary.flglo"/>
+    <Glossary Link="/Project/Glossaries/SharedGlossar.flglo"/>
+  </Glossaries>
+  <Variables>
+    <Variable Name="BaseVariables/Plattform">.NET</Variable>
+    <Variable Name="Primary/Plattform">.NET</Variable>
+    <Variable Name="Primary/Iterable">IEnumerable</Variable>
+    <Variable Name="Primary/Artefact">assembly</Variable>
+    <Variable Name="Primary/Activatable">IActivatable</Variable>
+    <Variable Name="Primary/getter/setter">property</Variable>
+    <Variable Name="Primary/Ant">MSBuild</Variable>
+    <Variable Name="Primary/IDE">Visual Studio</Variable>
+    <Variable Name="Primary/UUID">Guid</Variable>
+    <Variable Name="Primary/Storage">IStorage</Variable>
+    <Variable Name="Primary/Evaluation">IEvaluation</Variable>
+    <Variable Name="Primary/Bin">IBin</Variable>
+    <Variable Name="Primary/EventRegistry">IEventRegistry</Variable>
+    <Variable Name="Primary/Map">Dictionary</Variable>
+    <Variable Name="Primary/getter">property</Variable>
+    <Variable Name="Primary/Annotation">Attribute</Variable>
+    <Variable Name="Primary/close">dispose</Variable>
+    <Variable Name="Primary/JVM">CLR</Variable>
+    <Variable Name="Primary/ObjectContainer">IObjectContainer</Variable>
+    <Variable Name="Primary/Artefacts">assemblies</Variable>
+    <Variable Name="Primary/Packages">namespace</Variable>
+  </Variables>
+</CatapultTarget>

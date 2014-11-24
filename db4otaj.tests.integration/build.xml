@@ -1,0 +1,47 @@
+<project name="taj.test" basedir="." default="run">
+
+	<property name="dir.src" value="${basedir}/src" />
+	<property name="dir.bin.orig" value="${basedir}/bin" />
+	<property name="dir.bin.instrumented" value="${basedir}/bin.instrumented" />
+	
+	<path id="project.classpath">
+	    <fileset dir="lib">
+		    <include name="**/*.jar"/>
+	    </fileset>
+	</path>
+	
+	<taskdef name="db4o-enhance" 
+		classname="com.db4o.enhance.Db4oEnhancerAntTask" 
+		classpathref="project.classpath" />
+	
+	<target name="compile">
+		<mkdir dir="${dir.bin.orig}" />
+		<javac srcdir="${dir.src}" destdir="${dir.bin.orig}" failonerror="true" source="1.3" target="1.3">
+			<classpath refid="project.classpath" />
+		</javac>
+	</target>
+	
+	<target name="enhance" depends="compile">
+		<mkdir dir="${dir.bin.instrumented}"/>
+		<delete dir="${dir.bin.instrumented}">
+			<include name="**/*.class" />
+		</delete>
+		<db4o-enhance classtargetdir="${dir.bin.instrumented}" ta="true" nq="false" collections="true">
+			<classpath refid="project.classpath" />
+			<sources dir="${dir.bin.orig}">
+				<include name="com/db4o/taj/tests/model/**/*.class" />
+			</sources>
+		</db4o-enhance>
+	</target>
+
+	<target name="run" depends="enhance">
+		<java classname="com.db4o.taj.tests.program.Main" failonerror="true">
+			<classpath>
+				<pathelement location="${dir.bin.instrumented}"/>
+				<pathelement path="${dir.bin.orig}" />
+				<path refid="project.classpath" />
+			</classpath>
+		</java>
+	</target>
+
+</project>

@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<project name="omj" default="zip">
+	
+	<import file="common.xml" />
+	
+	<property name="omej.version" value="${db4o.version.dotted}.0" />
+	<property name="file.omej.zip" location="${dir.dist.ome.deploy}/ObjectManagerEnterprise-Java-${omej.version}.zip" />
+	<property name="dir.project.ome.core" location="${dir.base}/com.db4o.ome" />
+	<property name="dir.project.ome.help" location="${dir.base}/com.db4o.ome.help" />
+	<property name="dir.project.ome.feature" location="${dir.base}/com.db4o.ome.feature" />
+	<property name="dir.project.ome.test" location="${dir.base}/com.db4o.ome.test" />
+	<property name="dir.dist.ome.classes" location="${dir.dist.ome}/classes" />
+	<property name="dir.dist.ome.jars" location="${dir.dist.ome}/jars" />
+	<property name="dir.dist.ome.temp" location="${dir.dist.ome}/temp" />
+	<property name="dir.dist.ome.temp.zip" location="${dir.dist.ome.temp}/zip" />
+	<property name="dir.dist.ome.temp.zip.plugins" location="${dir.dist.ome.temp.zip}/plugins" />
+	<property name="dir.dist.ome.temp.zip.features" location="${dir.dist.ome.temp.zip}/features" />
+	<property name="dir.dist.ome.temp.feature" location="${dir.dist.ome.temp}/feature" />
+	<property name="file.omej.manifest.tmp" location="${dir.dist.ome.temp}/MANIFEST.MF" />
+	
+	<macrodef name="build-plugin">
+		
+		<attribute name="name" />
+		<attribute name="basedir" />
+		<attribute name="classesdir" default="${dir.dist.ome.classes}/@{name}" />
+		
+		<element name="additionalclasspath" optional="true" />
+		<element name="additionaljarcontent" optional="true" />
+		
+		<sequential>
+			<echo message="${filename.db4o.nodep.jar} / ${file.db4o.nodep.jar} / ${omej.version} / ${eclipse.home}" />
+			
+			<mkdir dir="@{classesdir}" />
+			
+			<javac fork="true"
+				debug="true"
+				target="1.5"
+				source="1.5"
+				destdir="@{classesdir}"
+				srcdir="@{basedir}/src"
+				encoding="UTF-8">
+				<classpath>
+					<fileset dir="${eclipse.home}/plugins">
+						<include name="org.eclipse.osgi_*/osgi.jar" />
+						<include name="org.eclipse.core.resources_*/resources.jar" />
+						<include name="org.eclipse.core.runtime_*/runtime.jar" />
+						<include name="org.eclipse.jdt.core_*/jdtcore.jar" />
+						<include name="org.eclipse.osgi_*.jar" />
+						<include name="org.eclipse.core.resources_*.jar" />
+						<include name="org.eclipse.core.resources.*.jar" />
+						<include name="org.eclipse.core.runtime_*.jar" />
+						<include name="org.eclipse.jdt.core_*.jar" />
+						<include name="org.eclipse.jdt.launching_*.jar" />
+						<include name="org.eclipse.equinox.*.jar" />
+						<include name="org.eclipse.core.jobs_*.jar" />
+						<include name="org.eclipse.ui_*.jar" />
+						<include name="org.eclipse.swt_*.jar" />
+						<include name="org.eclipse.swt.*.jar" />
+						<include name="org.eclipse.jface_*.jar" />
+						<include name="org.eclipse.core.commands_*.jar" />
+						<include name="org.eclipse.ui.workbench_*.jar" />
+						
+					</fileset>
+					
+					<pathelement location="${file.db4o.nodep.jar}" />
+
+					<additionalclasspath />
+				</classpath>
+			</javac>
+			
+			<copy file="@{basedir}/META-INF/MANIFEST.MF.TM" tofile="${file.omej.manifest.tmp}" overwrite="true" failonerror="false">
+				<filterset refid="filterset.ome" />
+			</copy>
+			
+			<jar destfile="${dir.dist.ome.jars}/@{name}_${omej.version}.jar" manifest="${file.omej.manifest.tmp}">
+				<fileset dir="@{classesdir}">
+					<include name="**/*.class"/>
+				</fileset>
+				<fileset dir="@{basedir}">
+					<include name="plugin.xml"/>
+					<include name="build.properties"/>
+				</fileset>
+				<additionaljarcontent />
+			</jar>
+		
+		</sequential>
+	</macrodef>
+
+	<target name="build" depends="init">
+		<build-plugin name="com.db4o.ome" basedir="${dir.project.ome.core}">
+			<additionalclasspath>
+				<fileset dir="${dir.project.ome.core}/lib">
+					<include name="**/*.jar" />
+					<exclude name="**/db4o-*-java5.jar" />
+				</fileset>
+			</additionalclasspath>
+			<additionaljarcontent>
+				<fileset dir="${dir.project.ome.core}">
+					<include name="ContactSales/**/*" />
+					<include name="FAQ/**/*" />
+					<include name="icons/**/*" />
+					<include name="lib/**/*.jar" />
+					<exclude name="lib/**/db4o-*-java5.jar" />
+				</fileset>
+				<fileset file="${file.db4o.nodep.jar}" />
+			</additionaljarcontent>
+		</build-plugin>
+		<build-plugin name="com.db4o.ome.help" basedir="${dir.project.ome.help}">
+			<additionaljarcontent>
+				<fileset dir="${dir.project.ome.help}">
+					<include name="html/**/*" />
+					<include name="toc.xml" />
+				</fileset>
+			</additionaljarcontent>
+		</build-plugin>		
+	</target>
+
+	<target name="build-tests" depends="build">
+		<build-plugin name="com.db4o.ome.test" basedir="${dir.project.ome.test}">
+			<additionalclasspath>
+				<fileset dir="${dir.project.ome.test}">
+					<include name="**/*.jar" />
+				</fileset>
+				<!-- FIXME -->
+				<fileset file="${dir.dist.ome.jars}/com.db4o.ome_${omej.version}.jar" />
+			</additionalclasspath>
+		</build-plugin>
+	</target>
+
+	<target name="zip" depends="build">
+		<mkdir dir="${dir.dist.ome.temp.zip.plugins}" />
+		<copy todir="${dir.dist.ome.temp.zip.plugins}">
+			<fileset dir="${dir.dist.ome.jars}">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		<mkdir dir="${dir.dist.ome.temp.feature}" />
+		<copy file="${dir.project.ome.feature}/feature.xml.TM" tofile="${dir.dist.ome.temp.feature}/feature.xml">
+			<filterset refid="filterset.ome" />
+		</copy>
+		<copy file="${dir.project.ome.feature}/build.properties" todir="${dir.dist.ome.temp.feature}" />
+		<mkdir dir="${dir.dist.ome.temp.zip.features}" />
+		<jar destfile="${dir.dist.ome.temp.zip.features}/com.db4o.ome.feature_${omej.version}.jar">
+			<fileset dir="${dir.dist.ome.temp.feature}" />
+		</jar>
+		<copy file="${dir.project.ome.feature}/site.xml.TM" tofile="${dir.dist.ome.temp.zip}/site.xml">
+			<filterset refid="filterset.ome" />
+		</copy>
+		<mkdir dir="${dir.dist.ome.deploy}" />
+		<zip destfile="${file.omej.zip}">
+			<fileset dir="${dir.dist.ome.temp.zip}">
+				<include name="**/*" />
+			</fileset>
+		</zip>
+		<copy file="${dir.project.ome.feature}/readme.html" todir="${dir.dist.ome.deploy}" />
+	</target>
+	
+	<target name="init" depends="properties">
+		<mkdir dir="${dir.dist.ome.jars}" />
+		<mkdir dir="${dir.dist.ome.temp}" />
+
+		<property name="filename.db4o.nodep.jar" value="${filename.jdk1.5.nodep.jar}" />
+		<property name="file.db4o.nodep.jar" value="${file.jdk1.5.nodep.jar}" />
+		
+		<filterset id="filterset.ome">
+			<filter token="OMEJ_VERSION" value="${omej.version}" />
+			<filter token="DB4O_JAR_NAME" value="${filename.db4o.nodep.jar}" />
+		</filterset>
+		
+		<echo message="OMJ version is ${omej.version}" />
+	</target>
+	
+	<target name="clean">
+		<reset-dir dir="${dir.dist.ome}" />
+	</target>
+	
+	<target name="cleanzip" depends="clean,zip" />
+</project>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.db4odoc.tutorial</groupId>
+    <artifactId>db4o-tutorial-project</artifactId>
+    <packaging>pom</packaging>
+
+
+    <parent>
+        <groupId>com.db4odoc</groupId>
+        <artifactId>db4o-overall-project</artifactId>
+        <version>8.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <name>db4o tutorial project</name>
+    <description>The db4o tutorial</description>
+
+    <modules>
+        <module>db4o-tutorial</module>
+        <module>db4o-tutorial-runner</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4o-core-java5</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+    </repositories>
+
+    <build>
+    </build>
+
+
+</project>

@@ -1,0 +1,46 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.db4o</groupId>
+	<artifactId>db4o-tools-java5</artifactId>
+	<version>@VERSION@</version>
+	<packaging>jar</packaging>
+	<name>db4o tools user interface</name>
+	<description>
+		db4o tools user interface, contains db4o enhancer and Ant tasks for JDK 5 and JDK 6
+	</description>
+	<url>http://www.db4o.com</url>
+	<licenses>
+		<license>
+			<name>GNU General Public License</name>
+			<url>
+				http://www.db4o.com/about/company/legalpolicies/gpl.aspx
+			</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<url>https://source.db4o.com/db4o/trunk</url>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>com.db4o</groupId>
+			<artifactId>db4o-core-java5</artifactId>
+			<version>@VERSION@</version>
+		</dependency>
+		<dependency>
+			<groupId>com.db4o</groupId>
+			<artifactId>db4o-nqopt-java5</artifactId>
+			<version>@VERSION@</version>
+		</dependency>
+		<dependency>
+			<groupId>com.db4o</groupId>
+			<artifactId>db4o-instrumentation-java5</artifactId>
+			<version>@VERSION@</version>
+		</dependency>
+		<dependency>
+			<groupId>com.db4o</groupId>
+			<artifactId>db4o-taj-java5</artifactId>
+			<version>@VERSION@</version>
+		</dependency>		
+	</dependencies>
+</project>

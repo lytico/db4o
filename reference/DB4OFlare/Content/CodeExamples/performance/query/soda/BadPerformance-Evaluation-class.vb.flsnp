@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Friend</span> <span style="color:Blue;">Class</span> OnlyAbcItemsEvaluation
+    <span style="color:Blue;">Implements</span> IEvaluation
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Evaluate(candidate <span style="color:Blue;">As</span> ICandidate) <span style="color:Blue;">Implements</span> IEvaluation.Evaluate
+        <span style="color:Blue;">If</span> <span style="color:Blue;">TypeOf</span> candidate.GetObject() <span style="color:Blue;">Is</span> <span style="color:Blue;">String</span> <span style="color:Blue;">Then</span>
+            <span style="color:Blue;">Dim</span> value = <span style="color:Blue;">DirectCast</span>(candidate.GetObject(), <span style="color:Blue;">String</span>)
+            <span style="color:Blue;">If</span> value.<span style="color:Blue;">Equals</span>(<span style="color:#A31515;">&quot;abc&quot;</span>) <span style="color:Blue;">Then</span>
+                candidate.Include(<span style="color:Blue;">True</span>)
+            <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+        <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			BadPerformance.vb: Evaluation class
+			<div class="codedownload">
+				<a href="Example-query-soda-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

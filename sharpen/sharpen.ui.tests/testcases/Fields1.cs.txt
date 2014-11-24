@@ -1,0 +1,44 @@
+public class Fields1
+{
+	private string _name;
+
+	protected int _intValue;
+
+	internal bool _boolValue;
+
+	public volatile bool _stopped;
+
+	private readonly object _lock = new object();
+
+	private readonly object _defaultLock;
+
+	private readonly int _readOnlyInt = 42;
+
+	private const int value = 42;
+
+	private int defaultValue = value;
+
+	private static readonly object _typeLock = new object();
+
+	private object _defaultTypeLock = _typeLock;
+
+	private int _staticFoo = staticFoo();
+
+	private int _instanceFoo;
+
+	internal static int staticFoo()
+	{
+		return 42;
+	}
+
+	internal virtual int instanceFoo()
+	{
+		return 42;
+	}
+
+	public Fields1()
+	{
+		_defaultLock = _lock;
+		_instanceFoo = instanceFoo();
+	}
+}

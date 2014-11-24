@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+        <package name="org.eclipse.swt.custom"/>
+        <package name="org.eclipse.jface.viewers"/>
+    </import>
+    <x:children>
+		<composite>
+		    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+		    <layout x:class="gridLayout"/>
+		    <x:children>
+            	<!-- The search box -->
+            	<composite>
+            		<layout x:class="gridLayout" numColumns="5" marginHeight="0"/>
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            		<x:children>
+            			<label text="Search: "/>
+		            	<text x:style="BORDER" x:id="Search">
+				            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+		            	</text>
+		            	<button x:id="ClearSearchButton" text="&amp;X"/>
+		            	<label text="|"/>
+		            	<button x:id="QueryButton" text="&amp;Query..."/>
+            		</x:children>
+            	</composite>
+
+            	<!-- The List/Detail tabbed notebook -->
+            	<cTabFolder x:style="BORDER" topRight="Arrows" selection="ListCompositeItem">
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            		<x:children>
+						<!-- Tree -->
+            			<composite x:id="ListComposite">
+            				<layout x:class="fillLayout"/>
+				            <x:children>
+								<tree x:id="ObjectTree"/>
+				            </x:children>
+            			</composite>
+            			<cTabItem x:id="ListCompositeItem" text="&amp;Graph" control="ListComposite"/>
+            			
+            			<!-- Detail -->
+        				<scrolledComposite x:style="H_SCROLL|V_SCROLL" x:id="FieldAreaContainer" content="FieldArea" background="White">
+        					<x:children>
+        						<composite x:id="FieldArea" background="White">
+        							<layout x:class="fillLayout"/>
+        						</composite>
+        					</x:children>
+        				</scrolledComposite>
+            			<cTabItem text="&amp;Object" control="FieldAreaContainer"/>
+            			
+            			<!-- Rodrigo's object navigator idea -
+            			<composite x:id="Navigator">
+            				<layout x:class="gridLayout" numColumns="2" makeColumnsEqualWidth="false"/>
+            				<x:children>
+            					<composite x:style="BORDER" x:id="ListOfClasses">
+            						<layout x:class="fillLayout"/>
+						            <layoutData x:class="gridData" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            					</composite>
+            					
+            					<composite x:style="BORDER" x:id="TableOfObjectsInClass">
+            						<layout x:class="fillLayout"/>
+						            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            					</composite>
+            				</x:children>
+            			</composite>
+            			<cTabItem text="&amp;Navigator" control="Navigator"/>-->
+						
+            			<!--<composite x:id="Spider"/>
+            			<cTabItem text="&amp;Spider" control="Spider"/>-->
+						
+    					<composite x:id="Arrows">
+				            <layout x:class="rowLayout" x:style="HORIZONTAL"/>
+				            <x:children>
+						    	<!-- The Path label -->
+						    	<label x:id="PathLabel" x:style="RIGHT" text="/List/Car/BMW"/>
+						    	
+						    	<label x:style="SEPARATOR|VERTICAL"/>
+						    	
+						    	<toolBar>
+						    		<x:children>
+							    		<toolItem x:id="LeftButton" image="com.db4o.browser.gui.views.DbBrowserPane left.gif"/>
+							    		<toolItem x:id="RightButton" image="com.db4o.browser.gui.views.DbBrowserPane right.gif"/>
+							    	</x:children>
+						    	</toolBar>
+				            </x:children>
+    					</composite>
+
+            		</x:children>
+            	</cTabFolder>
+
+			</x:children>
+	 	</composite>
+	 	   
+    </x:children>
+</xswt>

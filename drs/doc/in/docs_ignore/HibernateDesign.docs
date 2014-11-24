@@ -1,0 +1,36 @@
+.n
+.a Hibernate Replication Design ..
+.1 Hibernate Replication Design ..
+
+.2 Hibernate Replication Provider ..
+To extend the replication functionality to RDBMS, we utilize Hibernate as the bridge between db4o and RDBMS. ._
+HibernateReplicationProvider class implements the ReplicationProvider interface of the db4o replication System. ._
+HibernateReplicationProvider is the facade to a Hibernate-mapped database. It makes use of Hibernate to ._
+extract object data and save them relational tables.
+
+.2 How we modify database schema
+HibernateReplicationProvider is able to keep track of the uuid and the version of an object. ._
+The uuid consists of two parts, the long part and the signature of the owner of the object.
+For each object, HibernateReplicationProvider creates the columns in the database schema, ._
+provider_id, uuid_long_part, version, to keep track of the uuid long part and the version of an object. ._
+provider_id links to the primary key of the owner ReplicationProviderSignature table.
+
+.2 Provider Identity ..
+ReplicationProviderSignature is a table which stores the signature byte arrays of ReplicationProviders. ._
+To optimize space usage, each byte array is identified by a primary key, provider_id. This provider_id links ._
+the object records in other tables.
+
+.2 Keeping track of object changes ..
+An object are considered to be "changed", if its version number is larger than the version number of the ._
+version of last Replication. ReplicationRecord table keeps track of the version number used in a replication session. ._
+The table contains version number and has a foreign key of ReplicationProviderSignature. The foreign key also ._
+serve as the primary key of the ReplicationRecord. The relationship between ReplicationRecord and ReplicationProviderSignature ._
+is one-to-one.
+
+
+
+
+
+
+
+

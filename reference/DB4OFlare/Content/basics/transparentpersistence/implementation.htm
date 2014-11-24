@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="10" MadCap:lastHeight="5322" MadCap:lastWidth="686">
+    <head>
+    </head>
+    <body>
+        <h1>Implementation</h1>
+        <p>This topic explains how transparent activation/persistence works and how you can implement the required interfaces manually. In practice you should use the <a href="../../advanced_topics/enhancement_tools.htm">provided enhancer's</a> instead of implementing the interfaces yourself. <MadCap:xref href="ta_enhanced_example.htm" target="" title="" alt="">See "Transparent Persistence Enhanced Example"</MadCap:xref></p>
+        <h2><a name="Adding"></a>Adding the Configuration</h2>
+        <p>We need to explicitly configure transparent activation/persistence. </p>
+        <h3>Transparent Activation</h3>
+        <p>This adds transparent activation, which automatically activates objects.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tp/enhancement/TransparentPersistence-Add-transparent-activation.all.flsnp" />
+        <h3>Transparent Persistence</h3>
+        <p>This adds transparent persistence, which automatically activates objects and manages changes on objects. This includes implicitly the transparent activation support. </p>
+        <p>Optionally you can specify how <a href="automatic_deactivation.htm">rollbacks</a> are handled.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tp/enhancement/TransparentPersistence-Add-transparent-persistence.all.flsnp" />
+        <h2><a name="Implemen"></a>Implementing the Activatable Interface</h2>
+        <p>In order to support Transparent Activation, the objects which are stored in the database need to implement the <MadCap:variable name="Primary.Activatable" />-interface.</p>
+        <MadCap:snippetBlock src="../../Snippets/TA_TP_enabled_class.flsnp" />
+        <p> Implementing the <MadCap:variable name="Primary.Activatable" />-interface manually for every class is repetitive and error prone. That's why this process can be automated.<MadCap:xref href="ta_enhanced_example.htm" target="" title="" alt="">See "Transparent Persistence Enhanced Example"</MadCap:xref></p>
+        <p>After transparent activation/persistence is enabled you can navigate into object-graph as deeply as you want. The transparent activation will load the objects from the database as you need them. When you've enabled transparent persistence updates are also done transparently.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/ta/example/TransparentActivationExamples-Transparent-activation-in-action.all.flsnp" />
+        <h2><a name="Behavior"></a>Behavior in Mixed Mode</h2>
+        <p>In some environments there are both, objects which implement the <MadCap:variable name="Primary.Activatable" />-interface on other which don't. What's the behavior in this scenario? Then the behavior is this:</p>
+        <ul>
+            <li>Objects which implement the <MadCap:variable name="Primary.Activatable" />-interface are activated when they are used the first time. </li>
+            <li>Objects which do not implement the <MadCap:variable name="Primary.Activatable" />-interface are always fully loaded.</li>
+        </ul>
+        <p>That behavior ensures that you never run into not activated objects in the transparent activation / persistence mode. </p>
+        <p>However objects which do not implement the <MadCap:variable name="Primary.Activatable" />-interface are not updated with transparent persistence. You have to do that yourself or enhance those classes as well.</p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

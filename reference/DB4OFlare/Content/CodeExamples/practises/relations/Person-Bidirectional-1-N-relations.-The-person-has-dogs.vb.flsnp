@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> owns <span style="color:Blue;">As</span> ICollection(Of Dog) = <span style="color:Blue;">New</span> HashSet(Of Dog)()
+
+<span style="color:Green;">' The add and remove method ensure that the relations is always consistent</span>
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> AddOwnerShipOf(dog <span style="color:Blue;">As</span> Dog)
+    owns.Add(dog)
+    dog.Owner = <span style="color:Blue;">Me</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> RemoveOwnerShipOf(dog <span style="color:Blue;">As</span> Dog)
+    owns.Remove(dog)
+    dog.Owner = <span style="color:Blue;">Nothing</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">ReadOnly</span> <span style="color:Blue;">Property</span> OwnedDogs() <span style="color:Blue;">As</span> IEnumerable(Of Dog)
+    <span style="color:Blue;">Get</span>
+        <span style="color:Blue;">Return</span> owns
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Get</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Property</span></pre>
+		<div class="codesnippet-meta">
+			Person.vb: Bidirectional 1-N relations. The person has dogs
+			<div class="codedownload">
+				<a href="Example-practises-relations-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

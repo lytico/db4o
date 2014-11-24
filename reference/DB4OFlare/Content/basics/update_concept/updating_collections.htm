@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1847" MadCap:lastWidth="472">
+    <head>
+    </head>
+    <body>
+        <h1>Updating Collections</h1>
+        <p>From the db4o perspective collections behave like ordinary objects. This means that the update-depth also applies to collections. When you change a collection and store the object which contains it, the changes are not stored by default. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/updatedepth/UpdateDepthPitfall-Update-doesn't-work-on-collection.all.flsnp" />
+        <p>For collections the same rules and <a href="update_depth_in_action.htm">settings work as for regular objects</a>. For example when you increase the update depth to two, you can store the parent object and the changes of the collection are persisted as well.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/updatedepth/UpdateDepthPitfall-A-higher-update-depth-fixes-the-issue.all.flsnp" />
+    </body>
+</html>

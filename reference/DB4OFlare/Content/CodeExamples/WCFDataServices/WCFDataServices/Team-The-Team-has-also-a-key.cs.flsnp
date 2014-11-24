@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">[DataServiceKey(<span style="color:#A31515;">&quot;TeamName&quot;</span>)]
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Team
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">string</span> teamName;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">string</span> motivation;
+    <span style="color:Blue;">private</span> IList&lt;Person&gt; members = <span style="color:Blue;">new</span> List&lt;Person&gt;();
+
+    <span style="color:Blue;">public</span> Team()
+    {
+    }
+
+    <span style="color:Blue;">public</span> Team(<span style="color:Blue;">string</span> teamName)
+    {
+        <span style="color:Blue;">this</span>.teamName = teamName;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">string</span> TeamName
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> teamName; }
+        <span style="color:Blue;">set</span> { teamName = value; }
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">string</span> Motivation
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> motivation; }
+        <span style="color:Blue;">set</span> { motivation = value; }
+    }
+
+    <span style="color:Blue;">public</span> IList&lt;Person&gt; Members
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> members; }
+        <span style="color:Blue;">set</span> { members = value; }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Team.cs: The Team has also a key
+			<div class="codedownload">
+				<a href="Example-WCFDataServices-WCFDataServices-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<project name="decaf functional tests" default="test">
+	
+	<import file="decaf-common.xml" />
+	
+	<property file="machine.properties" />
+	
+	<!--
+	Must be defined in machine.properties:
+	 
+	<property name="dir.workspace" location="/Users/rodrigob/workspaces/db4o" />
+	<property name="eclipse.home" location="/Users/rodrigob/java/eclipse" />
+	<property name="asm.home" location="/work/lib/java/bytecode/asm-3.1" />
+	<property name="file.compiler.jdk1.3" location="/usr/java/jdk/jdk1.3/bin/javac" />
+	<property name="file.jvm.jdk1.1" location="/usr/java/jdk/jdk1.4/bin/java" />
+	-->
+	<property name="build.dir" location="build" />
+	
+	<property name="db4ounit.file.path" value="." />
+	
+	<target name="test" depends="test-jdk11, test-jdk12" description="runs all the tests" />
+	
+	<target name="test-jdk12" depends="api-test-jdk12, integration-test-jdk12" description="runs all the jdk12 tests">
+	</target>
+	
+	<target name="test-jdk11" depends="api-test-jdk11, integration-test-jdk11" description="runs all the jdk11 tests">
+	</target>
+	
+	<target name="clean-test" depends="clean, test" description="runs the tests in a clean workspace">
+	</target>
+	
+	<taskdef name="api-diff" classname="decaf.tests.functional.ant.ApiDiffTask">
+		<classpath>
+			<pathelement location="bin" />
+			<pathelement location="../decaf/bin" />
+			<pathelement location="${asm.home}/lib/asm-3.1.jar" />
+		</classpath>
+	</taskdef>
+
+	<target name="api-test-jdk11" depends="new-core-jar" description="checks inferred API surface is the same as original">		
+		<!--
+		<api-diff from="oldjars/db4o-old-jdk11.jar" to="${build.dir}/db4o-decaf.jar" platform="jdk12">
+			<ignore class="com.db4o.foundation.ChainedRuntimeExceptionMixin" />
+			<ignore class="com.db4o.query.Predicate">
+				<method name="figureOutExtentType" />
+				<method name="filterParameterType" />
+				<method name="&lt;clinit&gt;" />
+			</ignore>
+		</api-diff>
+		-->
+	</target>
+	
+	<target name="api-test-jdk12" depends="new-core-jar-jdk12" description="checks inferred API surface is the same as original">		
+		
+		<!--
+		<api-diff from="oldjars/db4o-old-jdk12.jar" to="${build.dir}/db4o-decaf-jdk12.jar">
+			<ignore class="com.db4o.foundation.ChainedRuntimeExceptionMixin" />
+			<ignore class="com.db4o.query.Predicate">
+				<method name="figureOutExtentType" />
+				<method name="filterParameterType" />
+				<method name="&lt;clinit&gt;" />
+			</ignore>
+			<ignore class="com.db4o.ObjectSet">
+				<interface name="java.util.Iterator" />
+			</ignore>
+		</api-diff>
+		-->
+	</target>
+	
+	<path id="java.1.1.cp">
+		<pathelement location="${path.classpath.jdk1.1}" />
+	</path>
+	
+	<macrodef name="javac11">
+		<attribute name="srcdir" />
+		<attribute name="classpathref" default="java.1.1.cp" />
+		<attribute name="destdir"  default="${build.dir}/java1.1" />
+		<sequential>
+			<javac compiler="classic"
+				fork="yes"
+				executable="${file.compiler.jdk1.3}"
+				srcdir="@{srcdir}"
+				destdir="@{destdir}"
+				debug="true"
+				classpathref="@{classpathref}">
+				<!-- <compilerarg line="${file.compiler.jdk1.3.args.line}"/> -->
+			</javac>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="javac12">
+		<attribute name="srcdir" />
+		<sequential>
+			<javac11 srcdir="@{srcdir}" destdir="${build.dir}/java1.2" />
+		</sequential>
+	</macrodef>
+	
+	<target name="integration-test-jdk12" depends="decaf-core, integration-test-jdk12-execution" description="checks inferred implementation against original tests">
+	</target>
+	
+	<target name="integration-test-jdk12-execution" depends="integration-test-jdk12-compilation">
+		<path id="tests.java1.2.cp">
+			<pathelement location="${build.dir}/java1.2" />
+		</path>
+		
+		<java jvm="${file.jvm.jdk1.3}" 
+			fork="true" 
+			classname="com.db4o.db4ounit.jre12.AllTestsJdk1_2" 
+			failonerror="true" 
+			timeout="1800000">
+			<classpath refid="tests.java1.2.cp" />
+			<sysproperty key="dir.workspace" value="${dir.workspace}" />
+			<sysproperty key="db4ounit.file.path" value="${db4ounit.file.path}" />
+			<sysproperty key="java.io.tmpdir" value="${java.io.tmpdir}" />
+		</java>
+	</target>
+		
+	<target name="integration-test-jdk12-compilation" depends="init, decaf-tests">
+		
+		<mkdir dir="${build.dir}/java1.2" />
+		
+		<javac12 srcdir="${build.dir}/workspace/db4o.decaf.jdk12/src"  />
+		<javac12 srcdir="${dir.workspace}/db4ounit/src" />
+		<javac12 srcdir="${dir.workspace}/db4ounit.extensions/src" />
+		<javac12 srcdir="${build.dir}/workspace/db4o.tests.decaf.jdk12/src"  />
+	
+	</target>
+	
+	<target name="integration-test-jdk11" depends="decaf-core, integration-test-jdk11-execution" description="checks inferred implementation against original tests">
+	</target>
+	
+	<target name="integration-test-jdk11-execution" depends="integration-test-jdk11-compilation">
+		<path id="tests.java1.1.cp">
+			<pathelement location="${build.dir}/java1.1" />
+			<path refid="java.1.1.cp" />
+			
+		</path>
+		
+		<java jvm="${file.jvm.jdk1.1}" 
+			fork="true" 
+			classname="com.db4o.db4ounit.jre11.AllTests" 
+			failonerror="true" 
+			timeout="1800000">
+			<classpath refid="tests.java1.1.cp" />
+			<sysproperty key="dir.workspace" value="${dir.workspace}" />
+			<sysproperty key="db4ounit.file.path" value="${db4ounit.file.path}" />
+			<sysproperty key="java.io.tmpdir" value="${java.io.tmpdir}" />
+		</java>
+	</target>
+		
+	<target name="integration-test-jdk11-compilation" depends="init, decaf-tests">
+		
+		<mkdir dir="${build.dir}/java1.1" />
+		
+		<javac11 srcdir="${build.dir}/workspace/db4o.decaf.jdk11/src"  />
+		<javac11 srcdir="${dir.workspace}/db4ounit/src" />
+		<javac11 srcdir="${dir.workspace}/db4ounit.extensions/src" />
+		<javac11 srcdir="${build.dir}/workspace/db4o.tests.decaf.jdk11/src"  />
+
+	</target>
+		
+	<target name="new-core-jar" depends="decaf-core">
+		<jar destfile="${build.dir}/db4o-decaf.jar" basedir="${build.dir}/workspace/db4o.decaf.jdk11/bin">
+			<exclude name="**/com/db4o/tools/**/*.class" />
+			<exclude name="**/com/db4o/io/DebugIoAdapter.class" />
+		</jar>
+	</target>
+	
+	<target name="new-core-jar-jdk12" depends="decaf-core">
+		<jar destfile="${build.dir}/db4o-decaf-jdk12.jar" basedir="${build.dir}/workspace/db4o.decaf.jdk12/bin">
+			<exclude name="**/com/db4o/tools/**/*.class" />
+			<exclude name="**/com/db4o/io/DebugIoAdapter.class" />
+		</jar>
+	</target>
+	
+	<target name="decaf-core" depends="decaf-workspace, install-decaf-plugin">
+
+		<decaf workspace="${build.dir}/workspace" resource="db4o">
+			<args>
+				<arg value="-targetPlatform" />
+				<arg value="jdk11" />
+
+				<arg value="-targetPlatform" />
+				<arg value="jdk12" />
+				
+				<arg value="-build"  />
+			</args>
+		</decaf>
+	</target>
+	
+	<target name="decaf-tests" depends="decaf-core">
+		
+		<decaf workspace="${build.dir}/workspace" resource="db4o.tests">
+			<args>
+				<arg value="-projectReference" />
+				<arg value="db4o" />
+								
+				<arg value="-targetPlatform" />
+				<arg value="jdk11" />
+
+				<arg value="-targetPlatform" />
+				<arg value="jdk12" />
+			</args>
+		</decaf>
+
+	</target>
+			
+	<target name="decaf-workspace" depends="init">
+		<prepare-workspace dir="${build.dir}/workspace" project="db4o">
+			<sources>
+				<fileset dir="${dir.workspace}/db4oj/core">
+					<include name="**/*.java"  />
+				</fileset>
+				<fileset dir="${dir.workspace}/db4oj.optional/core">
+					<include name="**/*.java" />
+				</fileset>
+				<fileset dir="${dir.workspace}/db4oj.optional/tools">
+					<include name="**/*.java" />
+				</fileset>
+				<fileset dir="${dir.workspace}/db4o.cs">
+					<include name="**/*.java" />
+				</fileset>
+				<fileset dir="${dir.workspace}/db4ounit">
+					<include name="**/*.java" />
+				</fileset>
+				<fileset dir="${dir.workspace}/db4ounit.extensions">
+					<include name="**/*.java" />
+				</fileset>
+			</sources>
+		</prepare-workspace>
+
+		<prepare-workspace dir="${build.dir}/workspace" project="db4o.tests">
+			<sources>
+				<fileset dir="${dir.workspace}/db4oj.tests">
+					<include name="**/*.java" />
+				</fileset>
+			</sources>
+		</prepare-workspace>
+			
+	</target>
+
+	<target name="init">
+		<mkdir dir="${build.dir}" />
+	</target>
+	
+	<target name="install-decaf-plugin" depends="install-sharpen-plugin">
+		
+		<property name="decaf.src.dir" location="../decaf" />
+		<property name="decaf.bin.dir" location="${decaf.src.dir}/bin" />
+		<property name="plugins.home" location="${eclipse.home}/plugins" />
+	
+		<jar manifest="${decaf.src.dir}/META-INF/MANIFEST.MF" destfile="${plugins.home}/decaf_1.0.0.jar" basedir="${decaf.bin.dir}">
+			<fileset dir="${decaf.src.dir}">
+				<include name="plugin.xml" />
+			</fileset>
+			<fileset dir="${decaf.src.dir}">
+				<include name="lib/*" />
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="install-sharpen-plugin">
+			
+		<property name="sharpen.src.dir" location="${dir.workspace}/sharpen.core" />
+		<property name="sharpen.bin.dir" location="${sharpen.src.dir}/bin" />
+		<property name="plugins.home" location="${eclipse.home}/plugins" />
+	
+		<jar destfile="${plugins.home}/sharpen.core_1.0.0.jar" basedir="${sharpen.bin.dir}">
+			<fileset dir="${sharpen.src.dir}">
+				<include name="plugin.xml" />
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+
+</project>

@@ -1,0 +1,35 @@
+package decaf.generics;
+
+interface Foo<T> {
+	T get();
+}
+
+class BoundedType<S, T extends Foo<S>> { 
+    public T field; 
+
+    public BoundedType(T arg) {
+    	field = arg;
+    } 
+
+    public S method() {
+    	return field.get(); 
+    } 
+}
+
+class IntegerFoo implements Foo<Integer> {
+	public Integer get() {
+		return 42;
+	}
+}
+
+class IntegerIntegerType extends BoundedType<Integer, IntegerFoo> {
+	public IntegerIntegerType(IntegerFoo arg) {
+		super(arg);
+	}
+}
+
+class BoundedInheritance {
+	static void main() {
+		System.out.println(new IntegerIntegerType(new IntegerFoo()).method());
+	}
+}

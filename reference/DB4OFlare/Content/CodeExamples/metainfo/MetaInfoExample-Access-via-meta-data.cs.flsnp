@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IStoredClass metaForPerson = container.Ext().StoredClass(<span style="color:Blue;">typeof</span> (Person));
+IStoredField metaNameField = metaForPerson.StoredField(<span style="color:#A31515;">&quot;name&quot;</span>, <span style="color:Blue;">null</span>);
+
+IList&lt;Person&gt; persons = container.Query&lt;Person&gt;();
+<span style="color:Blue;">foreach</span> (Person person <span style="color:Blue;">in</span> persons)
+{
+    <span style="color:Blue;">string</span> name = (<span style="color:Blue;">string</span>) metaNameField.Get(person);
+    Console.WriteLine(<span style="color:#A31515;">&quot;Name is &quot;</span> + name);
+}</pre>
+		<div class="codesnippet-meta">
+			MetaInfoExample.cs: Access via meta data
+			<div class="codedownload">
+				<a href="Example-Code-metainfo-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

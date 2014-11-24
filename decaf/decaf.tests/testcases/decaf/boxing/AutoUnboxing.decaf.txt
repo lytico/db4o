@@ -1,0 +1,37 @@
+package decaf.boxing;
+
+class AutoUnboxing {
+
+	public int foo(Integer i) {
+		return i.intValue() + 2;
+	}
+	
+	public byte unbox(Byte b) {
+		return b.byteValue();
+	}
+	
+	public short unbox(Short s) {
+		return s.shortValue();
+	}
+	
+	public long unbox(Long l) {
+		return l.longValue();
+	}
+	
+	public float unbox(Float f) {
+		return f.floatValue();
+	}
+	
+	public double unbox(Double d) {
+		return d.doubleValue();
+	} 
+	
+	public char unbox(Character c) {
+		return c.charValue();
+	}
+	
+	public void unboxCastObject() {
+		Object obj = new Integer(42);
+		int i = ((Integer) obj).intValue();
+	}
+}

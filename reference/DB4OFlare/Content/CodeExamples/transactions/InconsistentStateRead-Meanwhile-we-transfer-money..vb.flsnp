@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> bankAccounts = <span style="color:Blue;">From</span> b <span style="color:Blue;">As</span> BankAccount <span style="color:Blue;">In</span> container <span style="color:Blue;">Select</span> b
+<span style="color:Blue;">Dim</span> debitAccount = bankAccounts.ElementAt(0)
+<span style="color:Blue;">Dim</span> creditAccount = bankAccounts.ElementAt(1)
+
+<span style="color:Blue;">Dim</span> moneyToTransfer <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span> = 200
+creditAccount.WithDraw(moneyToTransfer)
+debitAccount.Deposit(moneyToTransfer)
+
+container.Store(debitAccount)
+container.Store(creditAccount)</pre>
+		<div class="codesnippet-meta">
+			InconsistentStateRead.vb: Meanwhile we transfer money.
+			<div class="codedownload">
+				<a href="Example-Code-transactions-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

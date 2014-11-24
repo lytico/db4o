@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">using</span> (IObjectContainer container = client.Ext().OpenSession())
+{
+    <span style="color:Green;">// do work</span>
+}
+<span style="color:Green;">// Start with a fresh cache:</span>
+<span style="color:Blue;">using</span> (IObjectContainer container = client.Ext().OpenSession())
+{
+    <span style="color:Green;">// do work</span>
+}</pre>
+		<div class="codesnippet-meta">
+			ReferenceCacheExamples.cs: Clean cache for each unit of work
+			<div class="codedownload">
+				<a href="Example-clientserver-referencecache-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

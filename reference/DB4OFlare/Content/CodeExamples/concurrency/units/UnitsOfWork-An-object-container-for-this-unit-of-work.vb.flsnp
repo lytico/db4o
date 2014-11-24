@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Sub</span> ListAllPeople(rootContainer <span style="color:Blue;">As</span> IObjectContainer)
+    <span style="color:Blue;">Using</span> container <span style="color:Blue;">As</span> IObjectContainer = rootContainer.Ext().OpenSession()
+        <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> person <span style="color:Blue;">As</span> Person <span style="color:Blue;">In</span> <span style="color:Blue;">From</span> p <span style="color:Blue;">In</span> container <span style="color:Blue;">Select</span> p
+            Console.WriteLine(person.Name)
+        <span style="color:Blue;">Next</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Using</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			UnitsOfWork.vb: An object container for this unit of work
+			<div class="codedownload">
+				<a href="Example-concurrency-units-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

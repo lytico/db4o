@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> allObjects <span style="color:Blue;">As</span> IList(Of <span style="color:Blue;">Object</span>) = desktopDatabase.Query(Of <span style="color:Blue;">Object</span>)()
+<span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> objectToUpdate <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> <span style="color:Blue;">In</span> allObjects
+    desktopDatabase.Store(objectToUpdate)
+<span style="color:Blue;">Next</span>
+desktopDatabase.Commit()</pre>
+		<div class="codesnippet-meta">
+			AdvancedReplicationExamples.vb: Updating all objects ensures that it has a UUID and timestamp
+			<div class="codedownload">
+				<a href="Example-drs-advanced-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

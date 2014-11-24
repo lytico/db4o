@@ -1,0 +1,10 @@
+package decaf.idioms;
+
+class ThreadLocalIdiom {
+
+	private final ThreadLocal _message = new ThreadLocal();
+	
+	public String current() {
+		return ((String) _message.get());
+	}
+}

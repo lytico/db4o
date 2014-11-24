@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="5" MadCap:lastHeight="1608" MadCap:lastWidth="269">
+    <head>
+    </head>
+    <body>
+        <h1>Getting Started</h1>
+        <p>This topic will give you some initial information about dRS and will help to get your environment ready to work with dRS.</p>
+        <h2>Download Content</h2>
+        <p>The distribution comes as a zip archive. Extract the content to any folder before you start to use the dRS. You can find the offline version the documentation in the<b>/docs/reference</b> folder. The API documentation in located in <b>/docs/api</b> folder.</p>
+        <h2>Requirements</h2>
+        <p>The dRS version corresponds to the db4o version. Ensure that the db4o and the dRS version are the same. </p>
+        <p MadCap:conditions="Primary.Java">The dRS system depends on the JDK 5 version of db4o and therefore requires Java 5 or newer.</p>
+        <p MadCap:conditions="Primary.Java"> In order to use the <a href="replication_with_rdbms.htm">Hibernate-Replication</a> functionality the Hibernate core version 3.1 is required. The Hibernate dependencies have been included in the lib folder of the dRS distribution for your convenience. When you require more complex Hibernate Mappings or what to benefit from additional Hibernate features, feel free to download the entire Hibernate-distribution on the <a href="http://www.hibernate.org/" target="_blank">Hibernate project website</a>. </p>
+        <p MadCap:conditions="Primary.Java">To run the provided ant-scripts <a href="http://ant.apache.org/" target="_blank">Apache Ant 1.6</a> or later is required.</p>
+        <h2>Installation</h2>
+        <p MadCap:conditions="Primary.Java">The dRS functionality is delivered in a single jar file. If
+you add dRS-<MadCap:variable name="Primary.CurrentVersion" />-core.jar to your CLASSPATH, dRS is installed. For using db4o replication to another database (RDBMS) you will also need the Hibernate library, which is included in the /lib folder in the distribution.</p>
+        <p MadCap:conditions="Primary.Java">Here is how to add the dRS library to an Eclipse project&#160;</p>
+        <ul MadCap:conditions="Primary.Java">
+            <li>Create a folder named "lib" under your project directory, if it doesn't exist yet</li>
+            <li>Copy dRS-<MadCap:variable name="Primary.CurrentVersion" />-core.jar to this folder</li>
+            <li>Right-click on your project in the Package Explorer and choose "refresh"</li>
+            <li>Right-click on your project in the Package Explorer again and choose "properties"</li>
+            <li>Select "Java Build Path" in the tree view on the left</li>
+            <li>Select the "Libraries" tab page.</li>
+            <li>Click "Add Jar"</li>
+            <li>The "lib" folder should appear below your project</li>
+            <li>Choose  dRS-<MadCap:variable name="Primary.CurrentVersion" />-core.jar in this folder</li>
+            <li>Hit "OK" twice </li>
+            <li>You might need to repeat the same for hibernate3.jar </li>
+        </ul>
+        <p MadCap:conditions="Primary..NET">The dRS functionality comes as a single assembly file. To use it in a development project, you only need to add the appropriate version of dRS to your project references. </p>
+        <p MadCap:conditions="Primary..NET">Here is an example of how to add dRS to a Visual Studio project:</p>
+        <ul MadCap:conditions="Primary..NET">
+            <li>Copy dRS-<MadCap:variable name="Primary.CurrentVersion"></MadCap:variable>-core.dll to your VS.NET project folder</li>
+            <li>Right-click on "References" in the Solution Explorer</li>
+            <li>Choose "Add Reference"</li>
+            <li>Select "Browse"</li>
+            <li>Find dRS-<MadCap:variable name="Primary.CurrentVersion"></MadCap:variable>-core.dll in your project folder</li>
+            <li>Click "Open"</li>
+            <li>Click "OK"</li>
+        </ul>
+    </body>
+</html>

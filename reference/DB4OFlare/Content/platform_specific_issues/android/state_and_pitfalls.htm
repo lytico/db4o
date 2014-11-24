@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="585" MadCap:lastWidth="560" MadCap:conditions="Primary.Java">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Android:Pitfalls" />Pitfalls and Tested Functionality</h1>
+        <p>Android uses a special virtual machine, the <a href="http://en.wikipedia.org/wiki/Dalvik_virtual_machine">Dalvik VM</a>&#160;and uses its own set of the standard Java libraries. This creates some pitfalls and limitations.</p>
+        <h2>Native Queries Limitation</h2>
+        <p>On most platforms db4o can optimize native queries at runtime. For this it analyses the byte-code of the query. Since Android uses a different bytecode for the Dalvik VM, this optimization doesn't work. However you can do the same optimization at built-time. <MadCap:xref href="native_queries.htm" target="" title="" alt="">See "Native Queries"</MadCap:xref></p>
+        <h2>BigMath-Limitation</h2>
+        <p>The BitMath is slightly different implemented on Android. Therefore it doesn't work out of the box with db4o. But when you add the Big-Math support, it will work just fine. Add the BigMath-support to the configuration. <MadCap:xref href="../../advanced_topics/type_handling/bigmath.htm" target="" title="" alt="">See "BigMath"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/configitems/ConfigurationItemsExamples-Add-support-for-BigDecimal-and-BigInteger.all.flsnp" />
+        <h2>Monitoring Not Supported</h2>
+        <p>Android doesn't provide the Java monitoring and instrumenting facilities. Therefore db4o's support for <a href="../../advanced_topics/runtime_statistics.htm">monitoring</a> doesn't work as well.</p>
+        <h2>Tested Functionality</h2>
+        <p>Currently the automated tests for db4o run against the Android version 2.1. db4o should run also on older Androids versions. </p>
+        <p>Since the Dalvik VM doesn't use regular Java bytecode and class-files and therefore uses different a different class-loader strategy, we don't test features of db4o which utilize this features. However this is only relevant for advanced db4o features which need those functionality. </p>
+        <p>&#160;</p>
+    </body>
+</html>

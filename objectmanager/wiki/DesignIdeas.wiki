@@ -1,0 +1,31 @@
+General design ideas:
+
+   * Query view/editor
+      * By default, shows classes in current file.
+      * Can generate more complex QBE queries than that.
+
+   * Database browser can run either as a view or as an editor
+      * If as a view, it tracks the current selection.  
+         * If the current selection is a Java class, it displays all instances of it
+      * Browser as editor is opened in response to QBE queries.
+      
+   * Multiple types of database browsers:
+      * List/Detail form based
+      * Spider-like
+         * Each node could be a list/detail browser; drag field from detail view to browse subobjects
+         * Use GEF
+         
+   * Have a db4o project nature that records the name of the db4o database.
+      * The database view will automatically open the database when classes in that project are open.
+      
+
+Implementation ideas:
+
+   * Use Resources framework
+      * Including the selection service
+      * Make the database browser view
+
+
+-----
+
+Back to HomePage

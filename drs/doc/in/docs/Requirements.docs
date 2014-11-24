@@ -1,0 +1,24 @@
+.n
+.a Requirements ..
+.0 Requirements ..
+
+To run the provided build scripts dRS requires Apache Ant 1.6 or later. 
+.l http://ant.apache.org .. 
+
+dRS is dependant on the JDK 5 version of db4o object database. A db4o-5.x.java5.jar has ._
+been included in the "lib" directory of the distribution.
+
+To use the Hibernate Replication functionality, the Hibernate core ._
+version 3.1 files are ._
+required. These files and their dependancies have been included in ._
+the /lib folder for your ._
+convenience. If you require more complicated Hibernate mapping ._
+configurations, you may wish to ._
+download the full Hibernate documentation ._
+from the  .l http://www.hibernate.org/ Hibernate project website .. .
+
+Testing the installation
+The build.xml contains targets for running the example and ._
+the regression tests:
+- run-example
+- run-regression

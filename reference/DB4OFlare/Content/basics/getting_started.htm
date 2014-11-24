@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="5" MadCap:lastHeight="1209" MadCap:lastWidth="611">
+    <head />
+    <body>
+        <h1>
+            <MadCap:keyword term="Getting Started" />Getting Started</h1>
+        <p>You can start using db4o within a few minutes following these few steps.</p>
+        <h2>1. Download db4o</h2>
+        <p>First download db4o on the <a href="http://community.versant.com/Downloads.aspx">official download site</a>. There are different releases available on the web site. The latest production version, beta versions, continues build versions and older stable releases. Use the production version at the top to get started.</p>
+        <p MadCap:conditions="Primary..NET">For each release there's a download for a particular .NET version. Choose the .NET version which you're using. For example .NET 4.0. You also can choose between a ZIP-file or a MSI-installer.</p>
+        <p MadCap:conditions="Primary.Java">For each release there's a ZIP-file which contains db4o, the documentation and the source code.</p>
+        <p MadCap:conditions="Primary..NET">Download the file to your computer. If you've chosen the ZIP-file distribution unpack it. In case you've chosen the MSI-installer run it. </p>
+        <p MadCap:conditions="Primary.Java">Download the ZIP-file to your computer and unpack it.</p>
+        <h2>2. Content Of The db4o Distribution</h2>
+        <p>The db4o distribution has following content.</p>
+        <p MadCap:conditions="Primary..NET"><strong>db4o-folder/bin</strong>: Contains the db4o database engine and the supporting libraries. This folder contains sub-folders for different .NET platforms like the regular .NET framework, the compact framework etc.</p>
+        <p MadCap:conditions="Primary.Java"><strong>db4o-folder/lib</strong>: Contains the db4o database engine and the supporting libraries. There are different versions of the libraries for the Java-versions in this folder.</p>
+        <p><strong>db4o-folder/doc</strong>:&#160;Contains all the db4o documentation. There's the complete API-documentation (db4o-folder/doc/api/<span MadCap:conditions="Primary..NET">db4o.chm</span><span MadCap:conditions="Primary.Java">index.html</span>), the tutorial (db4o-folder/doc/tutorial/<span MadCap:conditions="Primary..NET">Db4oTutorial.exe</span><span MadCap:conditions="Primary.Java">index.html</span>) and the reference documentation (db4o-folder/doc/api/index.html)</p>
+        <p><strong MadCap:conditions="Primary..NET">db4o-folder/omn</strong><strong MadCap:conditions="Primary.Java">db4o-folder/ome</strong>: Contains the installer for the Object Manager. <MadCap:xref href="../object_manager_enterprise.htm" target="" title="" alt="">See "Object Manager Enterprise"</MadCap:xref></p>
+        <p><strong>db4o-folder/src</strong>: Contains the full source code of db4o.</p>
+        <h2>3. Adding db4o To Your Project</h2>
+        <p>After you've downloaded and unpacked the db4o distribution, you can start using it. The core of db4o is the single <span MadCap:conditions="Primary.Java">db4o-X.XX-core-javaX</span><span MadCap:conditions="Primary..NET">Db4objects.Db4o.dll</span>-<MadCap:variable name="Primary.Artefact" /> and has no additional dependencies. The other <MadCap:variable name="Primary.Artefacts" /> provide additional functionality <MadCap:xref href="../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview".</MadCap:xref>.<span MadCap:conditions="Primary.Java"> You can also use the db4o-X.XX-all-javaX.jar which includes every db4o feature and dependency in one jar.</span></p>
+        <p>To use db4o in your project you only need to add the required <MadCap:variable name="Primary.Artefacts" /> to your project and then you're ready to go.</p>
+        <div MadCap:conditions="Primary..NET">
+            <p>Here is how to do this with Visual Studio:</p>
+            <ul>
+                <li>Open your project or create a new one.</li>
+                <li>Right-click on "References" in the Solution Explorer.</li>
+                <li>Choose "Add Reference".</li>
+                <li>Select "Browse".</li>
+                <li>Navigate to db4o distribution folder, there to the binaries folder and choose the assembly-files to add.</li>
+                <li>Confirm your choices. </li>
+            </ul>
+        </div>
+        <div MadCap:conditions="Primary.Java">
+            <p>Here is how to do this with Eclipse:</p>
+            <ul>
+                <li>Copy the db4o-*.jar to your projects library folder. If you don't have a library-folder yet, create one under your project. For example a folder called 'lib'.</li>
+                <li>Right-click on your project in the Package Explorer and choose "Refresh".</li>
+                <li>Right-click on your project in the Package Explorer again and choose "Properties".</li>
+                <li>Select "Java Build Path" in the tree view on the left.</li>
+                <li>Select the "Libraries" tabpage.</li>
+                <li>Click "Add JARs".</li>
+                <li>Your library folder should appear below your project. Choose the db4o-*.jars in this folder.</li>
+                <li>Confirm the changes.</li>
+                <li>Expand "Referenced Libraries" branch of your project in Package Explorer.</li>
+                <li>Select db4o-* library, right-click and open "Properties".</li>
+                <li>Select Javadoc Location in the list and browse to \doc\api folder in your db4o installation. </li>
+            </ul>
+        </div>
+        <h2>4. Ready To Go</h2>
+        <p>That's it, now you're ready to go and can use db4o in your project. </p>
+    </body>
+</html>

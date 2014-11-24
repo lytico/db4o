@@ -1,0 +1,86 @@
+.n
+.a TransparentPersistence ..
+.0 Transparent Persistence ..
+
+The problem of updating deep object structures was briefly outlined ._
+in  .l Structured Structured objects chapter ..  . Update Depth configuration setting ._
+gives a user a certain control over the object updating and ._
+allows to find a balance between performance and convenient object storage ._
+code. However, this balance is far from ideal:
+- when update depth is zero, each piece of code should "know" how many levels ._
+of objects should be updated; this potentially creates lots of problems ._
+when the objects are refactored;
+- when update depth is maximum performance can become very poor as ._
+many unchanged objects will be stored unnecessary.
+
+The solution to this problem is to let db4o engine decide, which objects ._
+were modified and should be stored. This feature was introduced in db4o ._
+version 7.1 and was named Transparent Persistence. So how does it work?
+
+1. Database should be configured to use TransparentPersistenceSupport.
+2. Persistent classes available for Transparent Persistence must implement ._
+ .x Activatable .. interface. This interface provides a .x #bind() ..  ._
+method to bind an object to the object container's activator.
+3. The object is bound to the .x ObjectContainer ..  when it is first stored or ._
+instantiated from the database.
+4. When an object field is modified in the ._
+runtime,  .x #activate() ..  method is ._
+called to register the object to be stored with the next commit. The difference ._
+from  .l TransparentActivation Transparent Activation ..  is in the activation purpose: ._
+ .? java .i ActivationPurpose.WRITE ..i ..? .? net .i ActivationPurpose.Write ..i ..? is used for TP.
+5. When the transaction is committed or the database is closed, db4o traverses ._
+the list of modified Activatable objects and persists them.
+Well, that's enough of theory, let's look at an example.
+
+.1 Transparent Persistence Example ..
+   
+We will use Car and SensorReadout classes from  .l Deep Deep Graphs chapter .. . These are ._
+persistent classes, so if we want to use Transparent Persistence, we should ._
+make them "visible" to Transparent Persistence by ._
+implementing  .? java .i Activatable ..i ..? .? net .i IActivatable ..i ..?  interface.
+
+.s com.db4odoc.f1.chapter9.Car ..
+
+Note, that we've added an  .? java .i activator ..i  ..? .? net .i _activator ..i ..?  field, ._
+ .? java .i bind ..i  ..? .? net .i Bind ..i ..?  and ._
+ .? java .i activate ..i  ..? .? net .i Activate ..i ..?  methods to implement ._
+  .? java .i Activatable ..i ..? .? net .i IActivatable ..i ..?  interface. In addition ._
+to that all methods that read or write object fields has got  .i activate ..  calls ._
+with a corresponding purpose.
+Similar modifications should be done to the SensorReadout class.
+Now we are ready to test how Transparent Persistence work. First we should ._
+configure the database to use TransparentPersistenceSupport before storing objects:        
+.s com.db4odoc.f1.chapter9.TransparentPersistenceExample#storeCarAndSnapshots -out ..
+Ok, all the objects are stored. 
+Now, let's retrieve all the stored objects and modify them:
+.s com.db4odoc.f1.chapter9.TransparentPersistenceExample#modifySnapshotHistory -out ..
+You can see that we do not have to call  .i #store ..  any more - all the objects are ._
+stored when  .i #commit ..  is called.
+Let's test that the modifications actually reached the database:
+.s com.db4odoc.f1.chapter9.TransparentPersistenceExample#readSnapshotHistory -out ..
+Yes, it is all as it should be. If you want to see the difference without Transparent ._
+Persistence, run the same examples without .i TransparentPersistenceSupport ..  .
+
+.1 Transparent Persistence Enhancement ..
+As we saw  .l TransparentActivation before ..  enhancement tools can simplify the ._
+process for Transparent Activation. The same applies to Transparent Persistence. ._
+Actually Transparent Persistence enhancement implicitly provides TA for ._
+enhanced classes. 
+For more information please refer to  .l Enhancement Enhancement chapter ..  .
+
+.1 Conclusion ..
+Transparent Persistence can considerably simplify the development process ._
+at the same time providing considerable performance benefits. For more ._
+information on Transparent Persistence please refer ._
+to our  .l http://developer.db4o.com/Documentation.aspx online reference ..l  or ._
+your offline copy of the Reference documentation.   
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter9.TransparentPersistenceExample ..
+.s com.db4odoc.f1.chapter9.Car ..
+.s com.db4odoc.f1.chapter9.SensorReadout ..
+.s com.db4odoc.f1.chapter9.TemperatureSensorReadout ..
+
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">' add an alias for a specific type</span>
+configuration.Common.AddAlias(<span style="color:Blue;">New</span> TypeAlias(<span style="color:#A31515;">&quot;Db4oDoc.Code.Configuration.Alias.OldTypeInDatabase, Db4oDoc&quot;</span>, _
+                                            <span style="color:#A31515;">&quot;Db4oDoc.Code.Configuration.Alias.NewType, Db4oDoc&quot;</span>))
+<span style="color:Green;">' or add an alias for a whole namespace</span>
+configuration.Common.AddAlias(<span style="color:Blue;">New</span> WildcardAlias(<span style="color:#A31515;">&quot;Db4oDoc.Code.Configuration.Alias.Old.Namespace.*, Db4oDoc&quot;</span>, _
+                                                <span style="color:#A31515;">&quot;Db4oDoc.Code.Configuration.Alias.Current.Namespace.*, Db4oDoc&quot;</span>))</pre>
+		<div class="codesnippet-meta">
+			AliasExamples.vb: Adding aliases
+			<div class="codedownload">
+				<a href="Example-configuration-alias-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

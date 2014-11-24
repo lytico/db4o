@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="324" MadCap:lastWidth="546">
+    <head>
+    </head>
+    <body>
+        <h1>Single Threaded Client</h1>
+        <p>You can configure the client to be single-threaded. When you enable this option, the client doesn't use background threads to handle the client-server communication.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/network/NetworkConfigurationExample-single-threaded-client.all.flsnp" />
+        <h2>Advantage</h2>
+        <p>On some smaller embedded systems reducing the running threads improves the performance significantly. </p>
+        <h2>Disadvantage</h2>
+        <p>Since all operations run in a single thread, the operations may take longer. Additionally you cannot receive <a href="../../client-server/messaging.htm">messages</a> and cannot use <a href="../../advanced_topics/callbacks/event_registry_api.htm">commit-callbacks</a> on a single-threaded client.</p>
+    </body>
+</html>

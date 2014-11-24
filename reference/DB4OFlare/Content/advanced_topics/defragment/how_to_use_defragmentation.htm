@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1147" MadCap:lastWidth="557">
+  <head />
+  <body>
+    <h1>How To Use Defragmentation</h1>
+    <p>The simplest way to defragment a db4o file would be:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/deframentation/DefragmentationExample-Simplest-possible-defragment-use-case.all.flsnp" />
+    <p>Ensure that the file is not opened by any other process or db4o instance. </p>
+    <p>This moves the file <i>filename </i>to <i>filename.backup</i>,
+then it create a defragmented version of this database at the original position. If
+the backup file already exists this an IOException is throw and no action
+will be taken.</p>
+    <p>You can also specify the backup filename manually:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/deframentation/DefragmentationExample-Specify-backup-file-explicitly.all.flsnp" />
+    <p>For more detailed configuration of the defragmentation
+process, you can use a <a href="defragmentation_configuration.htm">DefragmentConfig</a> instance:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/deframentation/DefragmentationExample-Defragment-with-configuration.all.flsnp" />
+    <p>It's possible to use a more fine grained configuration for the deframentation process. <MadCap:xref href="defragmentation_configuration.htm" target="" title="" alt="">See "Defragmentation Configuration"</MadCap:xref></p>
+    <p>Defragmentation can throw IOException in the following
+situations:</p>
+    <ul>
+      <li>Backup file exists.</li>
+      <li>Database file not found.</li>
+      <li>Database file is opened by another process.</li>
+    </ul>
+  </body>
+</html>

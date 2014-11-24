@@ -1,0 +1,81 @@
+<project name="sharpen common">
+    <property environment="env"/>
+    <property file="sharpen.properties"/>
+
+    <macrodef name="reset-dir">
+        <attribute name="dir"/>
+        <sequential>
+            <delete dir="@{dir}"/>
+            <mkdir dir="@{dir}"/>
+        </sequential>
+    </macrodef>
+
+    <!-- #example: Build Sharpen# -->
+    <target name="build-sharpen">
+        <property name="sharpen.core.dir" location="${dir.workspace}/sharpen.core"/>
+        <reset-dir dir="${dir.dist.classes.sharp}"/>
+
+        <javac fork="true"
+               debug="true"
+               target="1.5"
+               source="1.5"
+               destdir="${dir.dist.classes.sharp}"
+               srcdir="${sharpen.core.dir}/src"
+               encoding="UTF-8">
+            <classpath>
+                <fileset dir="${eclipse.home}/plugins">
+                    <include name="org.eclipse.osgi_*.jar"/>
+                    <include name="org.eclipse.core.resources_*.jar"/>
+                    <include name="org.eclipse.core.runtime_*.jar"/>
+                    <include name="org.eclipse.jdt.core_*.jar"/>
+                    <include name="org.eclipse.jdt.launching_*.jar"/>
+                    <include name="org.eclipse.equinox.*.jar"/>
+                    <include name="org.eclipse.core.jobs_*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+        <jar destfile="${dir.dist.classes.sharp}/sharpen.core_1.0.0.jar" basedir="${dir.dist.classes.sharp}">
+            <fileset dir="${sharpen.core.dir}">
+                <include name="plugin.xml"/>
+            </fileset>
+        </jar>
+    </target>
+    <!-- #end example  -->
+
+    <!-- #example: Install Sharpen to Eclipse# -->
+    <target name="install-sharpen-plugin" depends="build-sharpen">
+        <copyfile src="${dir.dist.classes.sharp}/sharpen.core_1.0.0.jar" dest="${plugins.home}/sharpen.core_1.0.0.jar"/>
+    </target>
+    <!-- #end example  -->
+
+    <!-- #example: The sharpen task#-->
+    <macrodef name="sharpen">
+        <attribute name="workspace"/>
+        <attribute name="resource"/>
+
+        <element name="args" optional="yes"/>
+
+        <sequential>
+            <java taskname="sharpen"
+                  fork="true"
+                  classname="org.eclipse.core.launcher.Main"
+                  failonerror="true" timeout="1800000">
+
+                <classpath>
+                    <fileset dir="${eclipse.home}/plugins">
+                        <include name="org.eclipse.equinox.launcher_*.jar"/>
+                    </fileset>
+                </classpath>
+
+                <arg value="-clean"/>
+                <arg value="-data"/>
+                <arg file="@{workspace}"/>
+                <arg value="-application"/>
+                <arg value="sharpen.core.application"/>
+                <arg value="@{resource}"/>
+                <args/>
+            </java>
+        </sequential>
+    </macrodef>
+    <!-- #end example -->
+</project>

@@ -1,0 +1,14 @@
+package decaf.annotations;
+
+@decaf.Remove
+class RemovedOne {
+	@decaf.Remove
+	static class RemovedInnerClass {
+	}
+}
+
+class RemoveClass {
+	public Class[] testCases() {
+		return new Class[] { RemovedOne.RemovedInnerClass.class };
+	}
+}

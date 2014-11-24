@@ -1,0 +1,10 @@
+package decaf.annotations;
+
+class IgnoreJdk11 {
+}
+
+class IgnoreJdk12 {
+}
+
+class IgnoreJdk15 {
+}

@@ -1,0 +1,7 @@
+-pascalCase
+-nativeTypeSystem
+
+-namespaceMapping ^db4ounit.extensions.fixtures Db4oUnit.Extensions.Fixtures
+-namespaceMapping ^db4ounit.extensions Db4oUnit.Extensions
+-namespaceMapping ^db4ounit.util Db4oUnit.Util
+-namespaceMapping ^db4ounit Db4oUnit

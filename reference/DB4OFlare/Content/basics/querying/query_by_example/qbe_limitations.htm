@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="7" MadCap:lastHeight="176" MadCap:lastWidth="545">
+  <head></head>
+  <body>
+    <h1>Query By Example Limitations</h1>
+    <p>Query By Example has by design a lot of limitations:</p>
+    <ul>
+      <li>You cannot perform advanced query expressions. (
+OR, NOT, etc.)</li>
+      <li>You cannot constrain for default-values like 0 on numbers, empty strings or nulls on references because they would be interpreted as 
+unconstrained.</li>
+      <li>You need a constructor to create objects 
+without initialized fields.</li>
+      <li>Complex queries by example are not easy to read and interpret what they query for.</li>
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="707" MadCap:lastWidth="539" MadCap:conditions="Primary.Java">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Android:Getting Started" />Getting Started</h1>
+        <p>It takes only a few steps to get started with db4o and Android. This description assumes that your using Eclipse to create your Android application.</p>
+        <h2>Setup db4o for a Android project</h2>
+        <ol>
+            <li>First download the Java version of db4o at the 
+			<MadCap:snippetBlock src="../../Snippets/downloadLink.flsnp" /></li>
+            <li>Unpack the distribution. Then copy the <b><i>db4o-xxx-java5.jar </i></b>the db4o-distribution to your Android project-folder. </li>
+            <li>Add the db4o-jar to the class path. In Eclipse you do it this way. Refresh you project. Right click on the <b><i>db4o-xxx-java5.jar </i></b>. Choose 'Build Path' -&gt; 'Add to Build Path'</li>
+            <li>Your done! You can now use db4o in your Android application and it will be deployed automatically when running the Android emulator.</li>
+        </ol>
+        <h2>Using db4o in a Android application</h2>
+        <p>You can use db4o on Android as normally. However you when you create a db4o-database you should use a file in the application-context. The start class of your application itself is usually the context. </p>
+        <p>Also add the AndroidSupport to your configuration, which tunes some configuration settings to work better with Android.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/Db4oOnAndroidExample-open-db4o-on-Android.all.flsnp" />
+    </body>
+</html>

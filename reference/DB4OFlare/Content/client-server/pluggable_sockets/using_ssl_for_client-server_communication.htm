@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="2149" MadCap:lastWidth="1267">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="SSL;Encryption" />Using SSL For Client-Server Communication</h1>
+    <p>With the default settings db4o client-server communication is not encrypted and thus can potentially be a dangerous security hole. db4o supports SSL for client server communication. The implementation uses the <a href="../../configuration/networking/pluggable_sockets.htm">pluggable socket</a> to provide secure sockets. </p>
+    <div MadCap:conditions="Primary.Java">
+      <p>The SSL-communication uses the standard Java Secure Socket Extensions, which are part of the normal JRE. You take a look a to <a href="http://java.sun.com/javase/technologies/security/">full documentation here</a>. </p>
+      <p>You simply need to add the SSLSupport on the server and the clients and you done. The default-implementation uses the default SSLContext for the client and the server.</p>
+      <MadCap:snippetBlock src="../../CodeExamples/clientserver/ssl/SSLExample-Add-SSL-support-to-the-server.all.flsnp" />
+      <MadCap:snippetBlock src="../../CodeExamples/clientserver/ssl/SSLExample-Add-SSL-support-to-the-client.all.flsnp" />
+      <p>Of course you also can build your own SSLContext with the Java API. After you've build the SSL-Context, you can pass it to the SSLSupport-constructor. Read in the Java documentation how to <a href="http://java.sun.com/javase/6/docs/technotes/guides/security/jsse/JSSERefGuide.html">build a proper SSLContext:</a></p>
+      <MadCap:snippetBlock src="../../CodeExamples/clientserver/ssl/SSLExample-You-can-build-up-a-regular-SSL-Context-and-us-it.all.flsnp" />
+    </div>
+    <div MadCap:conditions="Primary..NET">
+      <p>The SSL communication uses the .NET security libraries to implement the secure communication. Currently only one way authentication is supported, where the server needs to have a valid certificate. Clients-certificates are currently not supported.</p>
+      <p>On the server you need to add a the server SSL support. Additionally you need to specif the server certificate. This way you can choose from where you want to get the server-certificate. Take a look at the <a href="http://msdn.microsoft.com/en-us/library/system.net.security.aspx">.NET documentation for a more details</a>.</p>
+      <MadCap:snippetBlock src="../../CodeExamples/clientserver/ssl/SSLExample-Add-SSL-support-to-the-server.all.flsnp" />
+      <p>On the client you need to use the client SSL support. Add a callback for additional certificate verification.</p>
+      <MadCap:snippetBlock src="../../CodeExamples/clientserver/ssl/SSLExample-Add-SSL-support-to-the-client.all.flsnp" />
+      <MadCap:snippetBlock src="../../CodeExamples/clientserver/ssl/SSLExample-callback-for-validating-the-certificate.all.flsnp" />
+    </div>
+  </body>
+</html>

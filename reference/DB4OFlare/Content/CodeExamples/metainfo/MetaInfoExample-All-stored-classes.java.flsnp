@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">// Get the information about all stored classes.</span>
+StoredClass[] classesInDB = container.ext().storedClasses();
+<span style="color:Blue;">for</span> (StoredClass storedClass : classesInDB) {
+    System.out.println(storedClass.getName());
+}
+
+<span style="color:Green;">// Information for a certain class</span>
+StoredClass metaInfo = container.ext().storedClass(Person.<span style="color:Blue;">class</span>);</pre>
+		<div class="codesnippet-meta">
+			MetaInfoExample.java: All stored classes
+			<div class="codedownload">
+				<a href="Example-db4odoc-metainfo-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

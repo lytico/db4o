@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="202" MadCap:lastWidth="586">
+    <head>
+    </head>
+    <body>
+        <h1>Built-In Translators</h1>
+        <p class="MsoNormal">db4o supplies some build-in translators, which can be used
+in general cases. You can use them for your classes if they are not storable or nedd special treatment. </p>
+        <ul>
+            <li>TTransient: Doesn't store the object at all. Usable when you don't want to store instances of certain type. If makes all instances of that type transient.</li>
+            <li>TSerializable: Uses the built in serialisation mechanism to store this object.</li>
+        </ul>
+        <p>There are other built in translators, which are not intended be used directly. Instead they are used by db4o internally. Nevertheless you can use them as example implementation.
+		 Look for all classes which implement the <span MadCap:conditions="Primary..NET">I</span>ObjectTranslator-interface</p>
+    </body>
+</html>

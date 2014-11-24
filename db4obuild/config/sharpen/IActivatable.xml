@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<type name="Db4objects.Db4o.TA.IActivatable">
+	<doc>
+		<summary>
+            The IActivatable interface must be implemented by classes in order to support transparent
+            activation/persistence
+			<br />
+			<br />
+			The IActivatable interface may be added to persistent classes by hand
+			or by using the db4o instrumentation (Db4oTools).  For further information instrumentation see the
+            chapter "Enhancement" in the db4o reference documentation.
+		</summary>
+		<remarks>
+            The IActivatable interface must be implemented by classes in order to support transparent
+            activation/persistence
+			<br />
+			<br />
+			The IActivatable interface may be added to persistent classes by hand
+			or by using the db4o instrumentation (Db4oTools).  For further information instrumentation see the
+            chapter "Enhancement" in the db4o reference documentation.
+			<br />
+			<br />
+			The basic idea for Transparent Activation is:
+			<br />
+            Objects have an activation depth of 0, so they are not activated
+            at all. Whenever a method is called on such an object, the first thing to do
+            before actually executing the method body is to activate the object to
+            populating its direct members.
+			<br />
+			<br />
+			To illustrate this approach, we will use the following simple class.
+			<br />
+			<br />
+			<pre><code>
+public class Item
+{
+&#160;&#160; private Item next;
+
+&#160;&#160; public Item(Item next)
+&#160;&#160; {
+&#160;&#160; &#160;&#160; this.next = next;
+&#160;&#160; }
+
+&#160;&#160; public Item Next
+&#160;&#160; {
+&#160;&#160; &#160;&#160; get { return next; }
+&#160;&#160; &#160;&#160; set { next = value; }
+&#160;&#160; }
+
+&#160;&#160; // ...
+}
+	            }</code></pre>
+The basic sequence of actions to get the above scheme to work is the
+following:<br/>
+<br/>
+Whenever an object is instantiated from db4o, the database registers an
+activator for this object. To enable this, the object has to implement the
+Activatable interface and provide the according bind(Activator) method. The
+default implementation of the bind method will simply store the given
+activator reference for later use.<br/>
+	 <br />
+	 <code>
+public class Item : IActivatable
+{
+&#160;&#160; private Item next;
+&#160;&#160; [NonSerialized] private IActivator activator;
+
+&#160;&#160; public void Bind(IActivator activator)
+&#160;&#160; {
+&#160;&#160; &#160;&#160; if (this.activator == activator)
+&#160;&#160; &#160;&#160; {
+&#160;&#160; &#160;&#160; &#160;&#160; return;
+&#160;&#160; &#160;&#160; }
+&#160;&#160; &#160;&#160; if (activator != null &amp;&amp; null != this.activator)
+&#160;&#160; &#160;&#160; {
+&#160;&#160; &#160;&#160; &#160;&#160; throw new InvalidOperationException("Object can only be bound to one activator");
+&#160;&#160; &#160;&#160; }
+&#160;&#160; &#160;&#160; this.activator = activator;
+&#160;&#160; }
+
+&#160;&#160; public void Activate(ActivationPurpose activationPurpose)
+&#160;&#160; {
+&#160;&#160; &#160;&#160; if (null != activator)
+&#160;&#160; &#160;&#160; {
+&#160;&#160; &#160;&#160; &#160;&#160; activator.Activate(activationPurpose);
+&#160;&#160; &#160;&#160; }
+&#160;&#160; }
+
+&#160;&#160; // ...
+}
+     </code>
+The first action in every method body of an activatable object should be a
+call to the corresponding activator's Activate() method with the given purpose.
+If the method is reading the purpose should be <see cref="ActivationPurpose.Read"/>,
+for writing <see cref="ActivationPurpose.Write"/>. <br/>
+	 <br />
+	 <code>public class Item : IActivatable
+{
+&#160;&#160; private Item next;
+&#160;&#160; [NonSerialized] private IActivator activator;
+
+&#160;&#160; public void Bind(IActivator activator)
+&#160;&#160; {
+&#160;&#160; &#160;&#160; if (this.activator == activator)
+&#160;&#160; &#160;&#160; {
+&#160;&#160; &#160;&#160; &#160;&#160; return;
+&#160;&#160; &#160;&#160; }
+&#160;&#160; &#160;&#160; if (activator != null &amp;&amp; null != this.activator)
+&#160;&#160; &#160;&#160; {
+&#160;&#160; &#160;&#160; &#160;&#160; throw new InvalidOperationException("Object can only be bound to one activator");
+&#160;&#160; &#160;&#160; }
+&#160;&#160; &#160;&#160; this.activator = activator;
+&#160;&#160; }
+
+&#160;&#160; public void Activate(ActivationPurpose activationPurpose)
+&#160;&#160; {
+&#160;&#160; &#160;&#160; if (null != activator)
+&#160;&#160; &#160;&#160; {
+&#160;&#160; &#160;&#160; &#160;&#160; activator.Activate(activationPurpose);
+&#160;&#160; &#160;&#160; }
+&#160;&#160; }
+
+&#160;&#160; public Item Next
+&#160;&#160; {
+&#160;&#160; &#160;&#160; get
+&#160;&#160; &#160;&#160; {
+&#160;&#160; &#160;&#160; &#160;&#160; Activate(ActivationPurpose.Read);
+&#160;&#160; &#160;&#160; &#160;&#160; return next;
+&#160;&#160; &#160;&#160; }
+&#160;&#160; &#160;&#160; set
+&#160;&#160; &#160;&#160; {
+&#160;&#160; &#160;&#160; &#160;&#160; Activate(ActivationPurpose.Write);
+&#160;&#160; &#160;&#160; &#160;&#160; next = value;
+&#160;&#160; &#160;&#160; }
+&#160;&#160; }
+
+&#160;&#160; // ...
+}
+     </code>
+You always need to call Activate() before any data access in the object. Otherwise transparent activation / persistence will not work.
+Since this process is error prone we recommend to use the enhancer tools shipped with db4o.
+
+The Activate() method will check whether the object is already activated.
+If this is not the case, it will request the container to activate the object
+to level 1 and set the activated flag accordingly.<br/>
+<br/>
+
+To instruct db4o to actually use these hooks (i.e. to register the database
+when instantiating an object), <see cref="TransparentActivationSupport"/> or <see cref="TransparentPersistenceSupport"/>  has to be
+registered with the db4o configuration.<br/>
+<br/>
+	 <code>
+	 ICommonConfiguration config = ... // your configuration
+	 config.Add(new TransparentActivationSupport());
+	 </code>
+	</remarks>
+
+    </doc>
+  </type>
+

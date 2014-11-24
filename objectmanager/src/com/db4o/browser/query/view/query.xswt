@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+        <package name="org.eclipse.swt.custom"/>
+        <package name="org.eclipse.jface.viewers"/>
+    </import>
+    <x:children>
+		<composite>
+		    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+		    <layout x:class="gridLayout"/>
+		    <x:children>
+            	<!-- The search box -->
+            	<composite>
+            		<layout x:class="gridLayout" numColumns="10" marginHeight="0"/>
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            		<x:children>
+		            	<button x:id="QueryButton" toolTipText="Run Query" image="com.db4o.browser.gui.views.DbBrowserPane icons/etool16/run_exc.gif"/>
+		            	<label text="|"/>
+
+				    	<button x:id="CancelButton" enabled="false" toolTipText="Cancel" image="com.db4o.browser.gui.views.DbBrowserPane cancel.gif"/>
+				    	<button x:id="SaveButton" enabled="false" toolTipText="Save" image="com.db4o.browser.gui.views.DbBrowserPane save.gif"/>
+				    	<button x:id="DeleteButton" enabled="false" toolTipText="Delete" image="com.db4o.browser.gui.views.DbBrowserPane cancel.gif"/>
+
+		            	<label text="|"/>
+
+				    	<button x:id="LeftButton" toolTipText="Go back" image="com.db4o.browser.gui.views.DbBrowserPane icons/etool16/backward_nav.gif"/>
+				    	<button x:id="RightButton" toolTipText="Go forward" image="com.db4o.browser.gui.views.DbBrowserPane icons/etool16/forward_nav.gif"/>
+
+            			<label text="Search: "/>
+		            	<text x:style="BORDER" x:id="Search">
+				            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+		            	</text>
+		            	<button x:id="ClearSearchButton" toolTipText="Search within displayed results" image="com.db4o.browser.gui.views.DbBrowserPane icons/etool16/search.gif"/>
+            		</x:children>
+            	</composite>
+
+            	<sashForm x:style="VERTICAL">
+				    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            		<x:children>
+        				<scrolledComposite x:style="H_SCROLL|V_SCROLL" content="QueryArea" background="White">
+        					<x:children>
+        						<canvas x:id="QueryArea" background="White">
+        						</canvas>
+        					</x:children>
+        				</scrolledComposite>
+		            	
+		            	<!-- UI Prototype code -
+		            	<composite background="White">
+		            		<layout x:class="gridLayout" numColumns="7"/>
+		            		<x:children>
+		            			<composite x:style="BORDER">
+		            				<layout x:class="gridLayout" numColumns="3"/>
+		            				<x:children>
+		            					<label text="Car">
+										    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="3"/>
+		            					</label>
+		            					<label x:style="SEPARATOR|HORIZONTAL">
+										    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="3"/>
+		            					</label>
+		            					<label text="model"/>
+		            					<combo text="="/>
+		            					<text x:style="BORDER" text="       "/>
+		            					<label text="pilot"/>
+		            					<combo visible="false"/>
+		            					<label text=">>>>>>>>>"/>
+		            					<label text="history"/>
+		            					<combo visible="false"/>
+		            					<button text="Select type..."/>
+		            				</x:children>
+		            			</composite>
+		            			<composite x:style="BORDER">
+		            				<layout x:class="gridLayout" numColumns="3"/>
+		            				<x:children>
+		            					<label text="Pilot">
+										    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="3"/>
+		            					</label>
+		            					<label x:style="SEPARATOR|HORIZONTAL">
+										    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="3"/>
+		            					</label>
+		            					<label text="name"/>
+		            					<combo text="="/>
+		            					<text x:style="BORDER"/>
+		            					<label text="points"/>
+		            					<combo text="="/>
+		            					<text x:style="BORDER" text="       "/>
+		            				</x:children>
+		            			</composite>
+		            		</x:children>
+		            	</composite>-->
+
+		            	<!-- The List/Detail SashForm -->
+		            	<sashForm>
+						    <x:children>
+								<!-- Tree -->
+		            			<composite x:id="ListComposite">
+		            				<layout x:class="fillLayout"/>
+						            <x:children>
+										<tree x:id="ObjectTree"/>
+						            </x:children>
+		            			</composite>
+		            			
+		            			<!-- Detail -->
+		        				<scrolledComposite x:style="H_SCROLL|V_SCROLL" x:id="FieldAreaContainer" content="FieldArea" background="White">
+		        					<x:children>
+		        						<composite x:id="FieldArea" background="White">
+		        							<layout x:class="fillLayout"/>
+		        						</composite>
+		        					</x:children>
+		        				</scrolledComposite>
+						    </x:children>
+		            	</sashForm>
+		            	
+		            </x:children>
+		        </sashForm>
+            			
+			</x:children>
+	 	</composite>
+	 	   
+    </x:children>
+</xswt>

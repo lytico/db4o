@@ -1,0 +1,7 @@
+package decaf.integration;
+
+interface Interface {
+}
+
+interface Interface2 extends java.util.List {
+}

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SignAssembly>true</SignAssembly>
+<AssemblyOriginatorKeyFile>../db4objects.snk</AssemblyOriginatorKeyFile>
+</PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{97B6DEA6-255B-4B49-8973-38943AC2E70C}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4objects.Db4o.Optional</RootNamespace>
+    <AssemblyName>Db4objects.Db4o.Optional</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>../db4objects.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation/>
+    <TargetFrameworkProfile/>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT NET_4_0</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib"/>
+    <Reference Include="system"/>
+    <Reference Include="System.Core"/>
+  </ItemGroup>
+  <ItemGroup>
+<Compile Include="Db4objects.Db4o\Cluster\Cluster.cs"/>
+<Compile Include="Db4objects.Db4o\Consistency\ConsistencyChecker.cs"/>
+<Compile Include="Db4objects.Db4o\Consistency\ConsistencyCheckerUtil.cs"/>
+<Compile Include="Db4objects.Db4o\Consistency\ConsistencyReport.cs"/>
+<Compile Include="Db4objects.Db4o\Consistency\FreespaceSlotDetail.cs"/>
+<Compile Include="Db4objects.Db4o\Consistency\IdObjectSlotDetail.cs"/>
+<Compile Include="Db4objects.Db4o\Consistency\OverlapMap.cs"/>
+<Compile Include="Db4objects.Db4o\Consistency\RawObjectSlotDetail.cs"/>
+<Compile Include="Db4objects.Db4o\Consistency\SlotDetail.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\BigSetMiscCollector.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\ClassNode.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\ClassUsageStats.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\FileUsageStats.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\FileUsageStatsCollector.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\FileUsageStatsUtil.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\ISlotMap.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\MiscCollector.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\NullSlotMap.cs"/>
+<Compile Include="Db4objects.Db4o\Filestats\SlotMapImpl.cs"/>
+<Compile Include="Db4objects.Db4o\Foundation\TreeString.cs"/>
+<Compile Include="Db4objects.Db4o\Foundation\TreeStringObject.cs"/>
+<Compile Include="Db4objects.Db4o\IO\SaveAsStorage.cs"/>
+<Compile Include="Db4objects.Db4o\Internal\Cluster\ClusterConstraint.cs"/>
+<Compile Include="Db4objects.Db4o\Internal\Cluster\ClusterConstraints.cs"/>
+<Compile Include="Db4objects.Db4o\Internal\Cluster\ClusterQuery.cs"/>
+<Compile Include="Db4objects.Db4o\Internal\Cluster\ClusterQueryResult.cs"/>
+<Compile Include="Db4objects.Db4o\Monitoring\IReferenceSystemListener.cs"/>
+<Compile Include="Db4objects.Db4o\Monitoring\Internal\MonitoringReferenceSystem.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\ClassInfo.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\FieldInfo.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\ISelfReflectable.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\SelfArray.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\SelfClass.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\SelfField.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\SelfMethod.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\SelfReflectionRegistry.cs"/>
+<Compile Include="Db4objects.Db4o\Reflect\Self\SelfReflector.cs"/>
+<Compile Include="Db4objects.Db4o\Tools\Statistics.cs"/>
+<Compile Include="Properties\AssemblyInfo.cs"/>
+<Compile Include="native\Db4objects.Db4o\Config\JavaSupport.cs"/>
+<Compile Include="native\Db4objects.Db4o\Filestats\FileUsageStatsCollector.cs"/>
+<Compile Include="native\Db4objects.Db4o\Monitoring\Db4oPerformanceCounters.cs"/>
+<Compile Include="native\Db4objects.Db4o\Monitoring\FreespaceMonitoringSupport.cs"/>
+<Compile Include="native\Db4objects.Db4o\Monitoring\IOMonitoringSupport.cs"/>
+<Compile Include="native\Db4objects.Db4o\Monitoring\MonitoredStorage.cs"/>
+<Compile Include="native\Db4objects.Db4o\Monitoring\ObjectLifecycleMonitoringSupport.cs"/>
+<Compile Include="native\Db4objects.Db4o\Monitoring\PerformanceCounterSpec.cs"/>
+<Compile Include="native\Db4objects.Db4o\Monitoring\QueryMonitoringSupport.cs"/>
+<Compile Include="native\Db4objects.Db4o\Monitoring\ReferenceSystemMonitoringSupport.cs"/>
+</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Db4objects.Db4o\Db4objects.Db4o-Silverlight-2010.csproj">
+      <Project>{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}</Project>
+      <Name>Db4objects.Db4o-Silverlight-2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets"/>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties/>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

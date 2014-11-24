@@ -1,0 +1,8 @@
+package decaf.idioms;
+
+class ClassCast {
+
+	public String s(Object o) {
+		return String.class.cast(o);
+	}
+}

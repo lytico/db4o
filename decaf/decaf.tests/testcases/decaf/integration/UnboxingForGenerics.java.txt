@@ -1,0 +1,44 @@
+package decaf.integration;
+
+class Foo<T> {
+	public T value;
+	
+	public T get() {
+		return value;
+	}
+}
+
+class Variable<T> {
+
+	public T value;
+	
+	public T get() {
+		return value;
+	}
+}
+
+class Main {
+	static void main() {
+		Foo<Integer> foo = new Foo<Integer>();
+		int i = foo.get();
+		bar(foo.get());
+		bar(foo.value);
+		baz(42, foo.get());
+		baz(foo.get(), 42);
+		
+		Variable<Foo<Boolean>> foo2 = new Variable<Foo<Boolean>>();
+		isTrue(foo2.value.value);
+		isTrue(foo2.get().value);
+		Foo<Boolean> foo3 = foo2.value;
+		isTrue(foo3.value);
+	}
+	
+	static void isTrue(boolean value) {
+	}
+	
+	static void bar(int i) {
+	}	
+	
+	static void baz(int... i) {
+	}
+} 

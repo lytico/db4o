@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project name="db4o enhance project" default="enhance" basedir=".">
+    
+    
+    <!-- #example: Define a task for the enhancement #-->    
+    <path id="project.classpath">
+        <pathelement path="${basedir}/bin"/>
+        <fileset dir="lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+    <taskdef name="db4o-enhance"
+             classname="com.db4o.enhance.Db4oEnhancerAntTask"
+             classpathref="project.classpath"/>
+    <!-- #end example -->
+    
+    
+    <!-- #example: Define a target which runs the task #-->
+    <target name="enhance">
+        <db4o-enhance classtargetdir="${basedir}/bin"
+                      jartargetdir="${basedir}/lib"
+                      nq="true" ta="true"
+                      collections="true">
+            <classpath refid="project.classpath"/>
+            <sources dir="${basedir}/bin">
+                <include name="**/*.class"/>
+            </sources>
+        </db4o-enhance>
+    </target>
+    
+    <!-- #end example -->
+	
+	
+    <!-- #example: Only enhance native queries #-->
+    <target name="enhance-nq">
+        <db4o-enhance classtargetdir="${basedir}/bin"
+                      jartargetdir="${basedir}/lib"
+                      nq="true" ta="false"
+                      collections="false">
+            <classpath refid="project.classpath"/>
+            <sources dir="${basedir}/bin">
+                <include name="**/*.class"/>
+            </sources>
+        </db4o-enhance>
+    </target>
+    
+    <!-- #end example -->
+    
+</project>

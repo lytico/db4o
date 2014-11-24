@@ -1,0 +1,68 @@
+.n
+.a db4oReplication ..
+.0 db4o Replication ..
+In order to use replication, the following configuration settings have ._
+to be called before a database file is created or opened:
+.c Db4o.configure().generateUUIDs(Integer.MAX_VALUE);
+Db4o.configure().generateVersionNumbers(Integer.MAX_VALUE); ..
+UUIDs are object IDs that are unique across all databases created with ._
+db4o. That is achieved by having the database's creation timestamp as part ._
+of its objects' UUIDs. The db4o UUID contains two parts. The first part, contains an object ID. The second part identifies the ._
+database that originally created this ID. 
+
+The replication system will use this version number to invisibly tell when an object was last replicated, ._
+and if any changes have been made to the object since it was last replicated. An object's version number ._
+indicates the last time an object was modified. It is the database version at the moment of the modification. 
+
+.1 Simple Replication ..
+Now suppose we have opened two ObjectContainers from two different databases called ._
+"handheld" and "desktop", that we want to replicate. This is how we do it:
+.c ObjectContainer handheld = db4o.OpenFile("handheld.yap");
+ObjectContainer desktop = db4o.OpenFile("desktop.yap");
+
+ReplicationSession replication = Replication.begin(handheld, desktop);
+
+ObjectSet changed = replication.providerA().objectsChangedSinceLastReplication();
+
+while (changed.hasNext()) 
+	replication.replicate(changed.next()); 
+
+replication.commit(); 
+handheld.close();
+desktop.close(); ..
+We start by opening two ObjectContainers. The next line, creates the ReplicationSession. This object ._
+contains all of the replication-related logic.
+
+After creating the session, there is an interesting line:
+.c ObjectSet changed = replication.providerA().objectsChangedSinceLastReplication(); ..
+This line of code will get the provider associated with the first of our sources (the handheld ._
+ObjectContainer in this case). Then it finds all of the objects that have been updated or created. ._
+The new/modified objects will be returned in an enumerable ObjectSet.
+
+After that comes a simple loop where the resulting objects are replicated one at a time.
+
+The replication.commit() call at the end is important. This line will save all of the changes we 
+have made, and end any needed transactions. Forgetting to make this call will result in ._
+your replication changes being discarded when your application ends, or your ObjectContainers are ._
+closed.
+
+The #commit() calls also mark all objects as replicated. Therefore, changed/new objects that are not ._
+replicated in this session will be be marked as replicated.      
+
+.a ReplicatingExisting ..
+.1 Replicating Existing Data Files ..
+
+As we learned in the previous section, Db4o.configure().generateUUIDs() and ._
+Db4o.configure().generateVersionNumbers()  (or its objectClass counterparts) ._
+must be called before storing any objects to a data file because db4o replication needs ._
+object versions and UUIDs to work. This implies that objects in existing data files ._
+stored without the correct settings can't be replicated.
+
+Fortunately enabling replication for existing data files is a very simple process: 
+We just need to use the Defragment tool in com.db4o.tools (source code only) after ._
+enabling replication:
+
+.c Db4o.configure().objectClass(Task.class).enableReplication(true);
+ new Defragment().run(currentFileName(), true); ..
+			
+After a successful defragmentation our data files are ready for replication.

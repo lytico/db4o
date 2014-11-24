@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field" default-lazy="false">
+    <class name="com.db4o.drs.test.data.SimpleEnumContainer">
+        <id column="typed_id" type="long">
+            <generator class="native"/>
+        </id>
+
+        <property name="value">
+              <type name="org.hibernate.type.EnumType">
+                 <param name="enumClass">com.db4o.drs.test.data.SimpleEnum</param>
+               </type>
+        </property>
+        <property name="opaque" />
+    </class>
+</hibernate-mapping>

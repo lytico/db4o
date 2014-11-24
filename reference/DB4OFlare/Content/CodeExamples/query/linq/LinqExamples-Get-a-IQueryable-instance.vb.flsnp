@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> personQuerable <span style="color:Blue;">As</span> IQueryable(Of Person) = container.AsQueryable(Of Person)()
+<span style="color:Blue;">Dim</span> adults = <span style="color:Blue;">From</span> p <span style="color:Blue;">In</span> personQuerable _
+ <span style="color:Blue;">Where</span> p.Age &gt; 18 _
+ <span style="color:Blue;">Order</span> <span style="color:Blue;">By</span> p.Name _
+ <span style="color:Blue;">Select</span> p</pre>
+		<div class="codesnippet-meta">
+			LinqExamples.vb: Get a IQueryable-instance
+			<div class="codedownload">
+				<a href="Example-query-linq-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

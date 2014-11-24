@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">try</span>{
+    <span style="color:Blue;">final</span> ObjectContainer container = Db4oClientServer.openClient(<span style="color:#A31515;">&quot;localhost&quot;</span>, 1337, <span style="color:#A31515;">&quot;sa&quot;</span>, <span style="color:#A31515;">&quot;sa&quot;</span>);
+
+} <span style="color:Blue;">catch</span>(Db4oIOException e){
+    <span style="color:Green;">// Couldn't connect to the server.</span>
+    <span style="color:Green;">// Ask for new connection-settings or handle this case gracefully</span>
+}</pre>
+		<div class="codesnippet-meta">
+			ImportantExceptionCases.java: Cannot connect to the server
+			<div class="codedownload">
+				<a href="Example-strategies-exceptions-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,12 @@
+package decaf.annotations;
+
+@decaf.Ignore
+class Foo {
+}
+
+class Bar {
+
+	@decaf.Ignore
+	static class Nested {
+	}
+}

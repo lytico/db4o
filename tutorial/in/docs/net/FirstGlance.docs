@@ -1,0 +1,43 @@
+.a FirstGlance ..
+.0 First Glance ..
+Before diving straight into the first source code samples ._
+let's get you familiar with some basics.
+
+.1 The db4o engine ..
+The db4o object database engine consists of one single core DLL. ._
+This is all that you need to program against. ._
+In addition you may want to use client/server library or optional components. ._
+The versions ._
+supplied with the distribution can be found in /db4o- .p version .. /bin/.
+
+db4o is available in multiple distributions for Microsoft .NET. ._
+One downloadable distribution is for the .NET Framework 3.5 ._
+and the other is for the .NET Framework 4.0. Be sure to download ._
+and use the correct one for your project environment.
+
+.b /db4o- .p version .. /bin/net-X.X/Db4objects.Db4o.dll ..
+is the standard db4o engine for the regular .NET framework. 
+
+.b /db4o- .p version .. /bin/compact-X.X/Db4objects.Db4o.dll ..
+is the db4o engine for the compact framework
+
+.b /db4o- .p version .. /bin/silverlight-X.X/Db4objects.Db4o.dll ..
+is the db4o engine for Silverlight
+
+.1 Installation ..
+To use db4o in a development project, you only need to add one ._
+of the above Db4objects.Db4o.dll files to your project references.
+
+.n
+.1 Object Manager Enterprise installation ..
+Object Manager Enterprise (OME) is an object browser for db4o databases. OME ._
+provided with this installation comes as Visual Studio plugin. OME ._
+can be installed as part of db4o setup. 
+.g OMN_Setup.jpg .. 
+Alternatively, if you opt out, you can ._
+install it later by running the installation from the shortcut provided in ._
+the db4objects Start menu folder.
+If you've downloaded .NET distribution as a zip archive, you will find OME ._
+installation in the omn folder of the distribution.
+
+.< APIOverview ..

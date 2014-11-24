@@ -1,0 +1,44 @@
+.n
+.a Design and Architecture ..
+.0 Design and Architecture ..
+
+.1 Background ..
+
+There are 5 requirements any replication system would need to meet in order to permit error-free -- ._
+or, at least, as close to error-free as we could reasonably get -- reconciliation of data modified ._
+by a disconnected user.
+
+- The first requirement is a way to identify and track a specific object as clones of the object are ._
+replicated from one database to another. When you put an object into a database, that object needs a ._
+unique identifier to distinguish it from others in the database. 
+
+- Secondly, the identifier should also be remain unchanged when an object is replicated from one ._
+system to the next. Ideally, the identifier should be invisible and unmodifiable. It should not ._
+depend on the object's implementation to identify itself to the database.
+
+- Thirdly, the identifier should be universally unique. There should be no possibility that an object ._
+created by two different systems should ever have the same identifier in case either object encountered ._
+the other.
+
+- Fourth, accurate reconciliation of disconnected databases will require some sort of version number be ._
+attatched to the objects when modified. This is necessary so that the syncronization can determine which ._
+of two replicated objects is the most up-to-date.
+
+- Last, a syncronization system must provide a means for the developer or user to manage conflict ._
+resolution. If an object was modified on both sides of a replication operation since last time the ._
+operation was run, then there should be a way so that the developer can reconcile both changes and ._
+identify which or what data should be syncronized.
+
+
+.a Replication System Design ..
+.1 Replication System ..
+
+./ The general replication session objects ..
+
+.a db4o Replication Design ..
+.1 db4o Replication Design ..
+
+./ the db4o subsystem ..
+
+./ This will insert the contents of the HibernateDesign document. ..
+.< HibernateDesign ..

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Friend</span> <span style="color:Blue;">Class</span> LoggerReflector
+    <span style="color:Blue;">Implements</span> IReflector
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> readReflector <span style="color:Blue;">As</span> IReflector
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>()
+        <span style="color:Blue;">Me</span>.readReflector = <span style="color:Blue;">New</span> NetReflector()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>(<span style="color:Blue;">ByVal</span> readReflector <span style="color:Blue;">As</span> IReflector) 
+        <span style="color:Blue;">Me</span>.readReflector = readReflector
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Configuration(<span style="color:Blue;">ByVal</span> reflectorConfiguration <span style="color:Blue;">As</span> IReflectorConfiguration) _
+        <span style="color:Blue;">Implements</span> IReflector.Configuration
+        readReflector.Configuration(reflectorConfiguration)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> Array() <span style="color:Blue;">As</span> IReflectArray _
+        <span style="color:Blue;">Implements</span> IReflector.Array
+        <span style="color:Blue;">Return</span> readReflector.Array()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> ForClass(<span style="color:Blue;">ByVal</span> type <span style="color:Blue;">As</span> Type) <span style="color:Blue;">As</span> IReflectClass _
+        <span style="color:Blue;">Implements</span> IReflector.ForClass
+        Console.WriteLine(<span style="color:#A31515;">&quot;Reflector.forClass({0})&quot;</span>, type)
+        <span style="color:Blue;">Return</span> readReflector.ForClass(type)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> ForName(<span style="color:Blue;">ByVal</span> className <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>) <span style="color:Blue;">As</span> IReflectClass _
+        <span style="color:Blue;">Implements</span> IReflector.ForName
+        Console.WriteLine(<span style="color:#A31515;">&quot;Reflector.forName({0})&quot;</span>, className)
+        <span style="color:Blue;">Return</span> readReflector.ForName(className)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> ForObject(<span style="color:Blue;">ByVal</span> o <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) <span style="color:Blue;">As</span> IReflectClass _
+        <span style="color:Blue;">Implements</span> IReflector.ForObject
+        Console.WriteLine(<span style="color:#A31515;">&quot;Reflector.forObject(&quot;</span> &amp; Convert.ToString(o) &amp; <span style="color:#A31515;">&quot;)&quot;</span>)
+        <span style="color:Blue;">Return</span> readReflector.ForObject(o)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> IsCollection(<span style="color:Blue;">ByVal</span> reflectClass <span style="color:Blue;">As</span> IReflectClass) <span style="color:Blue;">As</span> <span style="color:Blue;">Boolean</span> _
+        <span style="color:Blue;">Implements</span> IReflector.IsCollection
+        <span style="color:Blue;">Return</span> readReflector.IsCollection(reflectClass)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> SetParent(<span style="color:Blue;">ByVal</span> reflector <span style="color:Blue;">As</span> IReflector) _
+        <span style="color:Blue;">Implements</span> IReflector.SetParent
+        readReflector.SetParent(reflector)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> DeepClone(<span style="color:Blue;">ByVal</span> o <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> _
+        <span style="color:Blue;">Implements</span> IReflector.DeepClone
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">New</span> LoggerReflector(<span style="color:Blue;">DirectCast</span>(readReflector.DeepClone(o), IReflector))
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			ReflectorExamples.vb: Logging reflector
+			<div class="codedownload">
+				<a href="Example-Code-reflection-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

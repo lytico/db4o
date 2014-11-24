@@ -1,0 +1,29 @@
+<namespaces>
+	<namespace name="Db4objects.Db4o">Core functionality.</namespace>
+	<namespace name="Db4objects.Db4o.Activation">Activation interfaces.</namespace>
+	<namespace name="Db4objects.Db4o.Collections">Transparent Activation-aware collections.</namespace>
+	<namespace name="Db4objects.Db4o.Config">Configuration interfaces.</namespace>
+	<namespace name="Db4objects.Db4o.Constraints">Constraints support.</namespace>
+	<namespace name="Db4objects.Db4o.CS">Client Server support.</namespace>
+	<namespace name="Db4objects.Db4o.CS.Config">Client Server configuration support.</namespace>	
+	<namespace name="Db4objects.Db4o.Defragment">Database file defragmentation utilities.</namespace>
+	<namespace name="Db4objects.Db4o.Diagnostic">Diagnostics functionality.</namespace>	
+	<namespace name="Db4objects.Db4o.Monitoring">Monitoring (performance counters) support.</namespace>	
+	<namespace name="Db4objects.Db4o.Events">Events support.</namespace>
+	<namespace name="Db4objects.Db4o.Ext">Advanced API support.</namespace>
+	<namespace name="Db4objects.Db4o.IO">Input/Output abstraction layer.</namespace>
+	<namespace name="Db4objects.Db4o.Linq">LINQ to db4o support. Include this namespace for LINQ support</namespace>
+	<namespace name="Db4objects.Db4o.IO.Crypt">Cryptographic IO support.</namespace>
+	<namespace name="Db4objects.Db4o.Marshall">Marshalling Interfaces.</namespace>
+	<namespace name="Db4objects.Db4o.Messaging">Messaging infrastructure.</namespace>
+	<namespace name="Db4objects.Db4o.Query">Query facilities.</namespace>
+	<namespace name="Db4objects.Db4o.Reflect">Reflection abstraction layer.</namespace>
+	<namespace name="Db4objects.Db4o.Reflect.Core">Reflection core.</namespace>
+	<namespace name="Db4objects.Db4o.Reflect.Generic">Generic reflection support (makes it possible to query database files when the original classes are not available).</namespace>
+	<namespace name="Db4objects.Db4o.Reflect.Net">.NET reflection support.</namespace>
+	<namespace name="Db4objects.Db4o.Replication">Replication support.</namespace>
+	<namespace name="Db4objects.Db4o.TA">Transparent Activation support.</namespace>
+	<namespace name="Db4objects.Db4o.Typehandlers">Typehandler infrastructure.</namespace>
+	<namespace name="Db4objects.Db4o.Types">Db4o types.</namespace>
+</namespaces>
+

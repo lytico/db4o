@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> ICollection&lt;Club&gt; memberIn = <span style="color:Blue;">new</span> HashSet&lt;Club&gt;();
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Join(Club club)
+{
+    <span style="color:Blue;">if</span> (!memberIn.Contains(club))
+    {
+        memberIn.Add(club);
+        club.AddMember(<span style="color:Blue;">this</span>);
+    }
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Leave(Club club)
+{
+    <span style="color:Blue;">if</span> (memberIn.Contains(club))
+    {
+        memberIn.Remove(club);
+        club.RemoveMember(<span style="color:Blue;">this</span>);
+    }
+}
+
+<span style="color:Blue;">public</span> IEnumerable&lt;Club&gt; MemberOf
+{
+    <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> memberIn; }
+}</pre>
+		<div class="codesnippet-meta">
+			Person.cs: Bidirectional N-N relation
+			<div class="codedownload">
+				<a href="Example-practises-relations-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

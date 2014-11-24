@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3872" MadCap:lastWidth="539">
+    <head>
+    </head>
+    <body>
+        <h1>SODA Evaluations</h1>
+        <p>Sometimes the capabilities of regular SODA-queries is not enough. In such cases you can add evaluations to the SODA-query. A evaluation is a piece of code which runs against objects.</p>
+        <p>To use a evaluation, you need to pass an instance of the <MadCap:variable name="Primary.Evaluation" />-interface as a constrain. db4o will call the match-method of that interface. Implement the match-method of the <MadCap:variable name="Primary.Evaluation" />-interface. In the match-method you can get the candidate-object and the object-container. Compare the object and when it matches, pass true to the include-method. Otherwise pass false.</p>
+        <p>While SODA evaluations are extremely powerful they are also slow. In order to run the evaluation the objects need to be instantiated from the database and then processed by the evaluator. This means that you should use evaluations only when there's no other possibility.</p>
+        <h2><a name="SimpleEvaluation"></a>Simple Evaluation</h2>
+        <p>Here's an example for a simple evaluation. This evaluation filters pilots by the age and picks only pilots with an odd-number as age.</p>
+        <p>First we need to create the evaluation class:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaEvaluationExamples-Simple-evaluation-which-includes-only-odd-aged-pilots.all.flsnp" />
+        <p>After that, you can use the evaluation in the SODA-query. An evaluation is added as a regular constrain.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaEvaluationExamples-Simple-evaluation.all.flsnp" />
+        <h2><a name="EvaluationOnField"></a>Evaluation on Field</h2>
+        <p>It's also possible to use the evaluation on a certain field. For this you descend into the field on which the evaluation should be applied. After that, specify the evaluation as a constrain on that field.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaEvaluationExamples-Evaluation-on-field.all.flsnp" />
+        <h2>
+            <MadCap:keyword term="SODA:Regex;Regex;Regular Expressions" /><a name="RegexEvaluation"></a>Regex on Fields</h2>
+        <p>Evaluation also allow you to add very specific additional query capabilities. On of the most useful ones is regular expressions. First create a regular expression evaluation:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaEvaluationExamples-Regex-Evaluator.all.flsnp" />
+        <p>After that you can use it on any string field:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaEvaluationExamples-Regex-evaluation-on-a-field.all.flsnp" />
+        <p style="font-weight: bold;">&#160;</p>
+    </body>
+</html>

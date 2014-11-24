@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="441" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Database Growth Size</h1>
+        <p>Configures how much the database-file grows, when there not enough space.  Whenever no free space in the database is large enough to store a object the database file is enlarged. This setting configures by how much it should be extended, in bytes. This configuration setting is intended to reduce fragmentation. Higher values will produce bigger database files and less fragmentation. To extend the database file, a single byte array is created and written to the end of the file in one write operation. Be aware that a high setting will require allocating memory for this byte array.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/file/FileConfiguration-Configure-the-growth-size.all.flsnp" />
+    </body>
+</html>

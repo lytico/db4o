@@ -1,0 +1,23 @@
+package decaf.imports;
+
+import static decaf.imports.Foo.*;
+import static decaf.imports.Environments.my;
+
+class Foo {
+	static void bar() {
+	}
+}
+
+class Environments {	
+	static <T> T my(Class<T> klass) {
+		return klass.cast(null);
+	}
+}
+
+class Driver {
+
+	public static void main(String[] args) {
+		bar();
+		String myString = my(String.class);
+	}
+}

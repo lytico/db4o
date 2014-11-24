@@ -1,0 +1,101 @@
+.n
+.a TransparentActivation ..
+.0 Transparent Activation ..
+
+Let's take a second look at the concept of Activation. We have seen how ._
+db4o uses a "depth" concept by default to activate objects ._
+to a specific depth when they are returned from a query.
+
+Wouldn't it be a lot nicer, if an application would never have ._
+to worry about activating objects and if db4o could handle things ._
+transparently for us? This is what Transparent Activation was ._
+developed for.
+
+.1 The Activation Problem ..
+
+We can reuse most of the code from the  .l Deep Deep Graphs chapter ..  and ._
+get it to work with Transparent Activation.
+
+As a first step we should fill up our database with Car, Pilot and SensorReadout ._
+objects, so we have some objects to work with.
+
+.s com.db4odoc.f1.chapter8.TransparentActivationExample#storeCarAndSnapshots -out ..
+
+If we now rerun the code to traverse all cars and their sensor readings, ._
+we are again confronted with the same problem that we had before, we end ._
+up with some leaves of our object graph being null.  
+
+.s com.db4odoc.f1.chapter8.TransparentActivationExample#retrieveSnapshotsSequentially ..
+
+.1 Turning On Transparent Activation ..
+
+Let's configure db4o to run in Transparent Activation mode and let's try again:
+
+.s com.db4odoc.f1.chapter8.TransparentActivationExample#retrieveSnapshotsSequentiallyTA ..
+
+Wow it worked! Is it really that easy? Principally yes. When db4o is run in ._
+Transparent Activation mode there are no surprises with null members that ._
+have not yet been read from the database. 
+                
+.? net .1 Implementing IActivatable ..1 ..?                
+.? java .1 Implementing Activatable ..1 ..?
+
+When Transparent Activation is turned on, all objects that do not implement ._
+the  .? net Db4objects.Db4o.TA.I ..? .? java com.db4o.ta. ..?Activatable interface will ._
+be fully activated when they are used. 
+
+Although we wont get any surprises with null objects when we work in this mode, ._
+access to the root of a deep graph may load the entire graph into memory and that ._
+can take a long time and use a lot of memory.
+
+To prevent immediate activation of a class you can implement the .x Activatable ..  ._
+interface. Whenever db4o comes across ._
+an Activatable object while activating a graph of objects it will stop ._
+traversing the graph any deeper. db4o will "know" that it can activate ._
+Activatable objects on demand, so there is no reason to continue activation ._
+until these objects are really needed. 
+
+For demonstration purposes we have made all classes used in this example ._
+Activatable and we have also added all the code required to activate ._
+by hand.
+
+Let's take a look at the Activatable version of our Car class:
+
+.s com.db4odoc.f1.chapter8.Car ..
+
+Can you spot the member _activator, all the # .? net  A ..? .? java  a ..?ctivate() calls and the two ._
+methods # .? net  A ..? .? java  a ..?ctivate() and # .? net  B ..? .? java  b ..?ind( .? net  I ..?Activator) at the end?
+
+An Activatable class should store the Activator that db4o provides to the ._
+bind method in a transient variable and call # .? net  A ..? .? java  a ..?ctivate() on this Activator ._
+before any field is accessed.
+
+If the object is already activated, the method will return immediately. ._
+If it is not, activation will happen at this time.
+
+We have added the  .? java #getPilotWithoutActivation() method ..? .? net PilotWithoutActivation property ..? to the Car class ._
+to be able to demonstrate.
+
+.s com.db4odoc.f1.chapter8.TransparentActivationExample#demonstrateTransparentActivation  ..
+
+.1 Where Enhancement can help ..
+
+If all this Activatable code in a persistent class looked like a lot of ._
+typing work, do not worry: db4o comes with a tool to add this code ._
+automatically to all of your persistent classes. Read more about it in the ._
+chapter on  .l Enhancement ..  .  
+
+As a final step we should clean up the database again.
+
+.s com.db4odoc.f1.Util#deleteAll -out ..
+
+.1 Conclusion ..
+
+This was just a short introduction to Transparent Activation and ._
+what it can do for you. For more detailed information please see ._ 
+the pages on Transparent Activation in our  .l http://developer.db4o.com/Documentation.aspx online reference ..l  or in ._
+your offline copy of the Reference documentation.
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter8.TransparentActivationExample ..

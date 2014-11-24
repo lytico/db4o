@@ -1,0 +1,25 @@
+package decaf.boxing;
+
+class BooleanAutoUnboxing {
+	public void foo(Boolean flag) {
+		if((flag = null).booleanValue());
+	}
+}
+
+class IfExpressionUnboxing {
+	public void foo() {
+		if((new Integer(10)).intValue() == 10) {
+		}
+	}
+
+	public void bar() {
+		if(10 == (new Integer(10)).intValue()) {
+		}
+	}
+
+	public void baz() {
+		Object obj = null;
+		if(((Integer)(obj = new Integer(10))).intValue() == 10) {
+		}
+	}
+}

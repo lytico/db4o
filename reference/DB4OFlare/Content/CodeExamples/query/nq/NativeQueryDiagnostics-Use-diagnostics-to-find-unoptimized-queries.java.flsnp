@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">configuration.common().diagnostic().addListener(<span style="color:Blue;">new</span> DiagnosticListener() {
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onDiagnostic(Diagnostic diagnostic) {
+        <span style="color:Blue;">if</span>(diagnostic <span style="color:Blue;">instanceof</span> NativeQueryNotOptimized){
+            System.out.println(<span style="color:#A31515;">&quot;Query not optimized&quot;</span>+diagnostic);
+        } <span style="color:Blue;">else</span> <span style="color:Blue;">if</span>(diagnostic <span style="color:Blue;">instanceof</span> NativeQueryOptimizerNotLoaded){
+            System.out.println(<span style="color:#A31515;">&quot;Missing native query optimisation jars in classpath &quot;</span>+diagnostic);
+        }
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			NativeQueryDiagnostics.java: Use diagnostics to find unoptimized queries
+			<div class="codedownload">
+				<a href="Example-query-nq-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

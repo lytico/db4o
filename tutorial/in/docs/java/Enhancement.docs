@@ -1,0 +1,224 @@
+.n
+.a Enhancement ..
+.0 Enhancement ..
+
+As we have seen both  .l TransparentActivation Transparent Activation ..  and ._
+ .l NativeQueries Native Queries ..  will produce correct results out-of-the-box.
+ 
+To get your application to run as fast as possible with db4o, you will want ._
+to make sure that only required objects are loaded from the database ._
+and that Native Queries are optimized to use field indexes where this is possible.
+
+Theoretically you could write all the necessary code by hand but you will save ._
+yourself a lot of time if you use automatic enhancement.
+
+The db4o enhancer tools will add code to your persistent classes to make them ._
+work even better with db4o.
+
+db4o for Java supplies three different enhancer strategies:
+.l EnhancementCompileTime Enhancing at Compile/Deployment Time ..
+.l EnhancementLoadTime Enhancing at Class Loading Time ..
+.l NQOptimization Native Query Optimization at Query Execution Time ..
+
+.1 Required Libraries ..
+
+The enhancer tasks require the addition of the following libraries ._
+to your project:
+
+.b ant.jar ..   
+for using the  .l http://ant.apache.org/ Ant ..  enhancer task
+
+.b bloat-1.0.jar ..
+the bytecode optimization library
+
+.b db4o- .p version .. -instrumentation.jar ..
+instrumentation library on top of bloat
+
+.b db4o- .p version ..  -java5.jar ..
+the db4o core engine
+
+.b db4o- .p version ..  -nqopt.jar ..
+the Native Query Optimizer
+
+.b db4o- .p version .. -taj.jar ..
+the Transparent Activation Framework for Java
+
+.b db4o- .p version ..  -tools.jar ..
+the tools interface that provides the top level enhancer tasks.
+
+Alternatively you can add  .b db4o- .p version .. -all-java5.jar .. instead, which contains the classes from all
+the libraries listed above.
+
+.a EnhancementCompileTime ..
+.1 Enhancing at Compile Time  ..
+
+The db4o enhancer adds code to class files or jar files. Afterwards these ._
+files will be slightly different to what the debugger expects.
+
+In the setup the db4o team has been working with, using the Eclipse IDE, ._
+enhancing has worked perfectly when files were instrumented in-place, ._
+directly in the /bin/ directory where the Eclipse compiler places ._
+compiled class files. In all our tests the Eclipse debugger simply ._
+ignored additional statements and stepped over them and debugging ._
+worked perfectly as usual.
+
+The db4o enhancer technology is new. Not all possible development environment ._
+setups have been checked by the db4o team and there may be incompatibility ._
+issues with your IDE when enhancing class and library files in place. By trying ._
+out in-place enhancement with your setup and by reporting back issues to ._
+the  .l http://developer.db4o.com/Forums.aspx db4o forums ..  you ._
+can help the db4o team to improve enhancement for your personal setup. A ._
+possible strategy to resolve problems with in-place enhancement ._
+would be to use different output directories than /bin and /lib as ._
+output paths for the enhancer and to run your enhanced application ._
+from there.  
+
+.2 Enhancing with Ant ..
+
+db4otools.jar contains the main enhancer task:
+com.db4o.enhance.Db4oEnhancerAntTask
+
+For all possibilities of using this task see ._
+the  .l http://developer.db4o.com/Documentation.aspx  topic on build time enhancement ..  in ._
+the reference documentation.
+
+The simplest enhancer task can do the following: 
+
+1. optimize Native Queries ._
+2. add the Activatable interface to your classes, making sure ._
+a persistent object is activated whenever any field is read.
+3. replace constructor invocation for platform collections (ArrayList,...) ._
+with a custom activatable version derived from the platform collection
+
+Here is an example of how an  .l http://ant.apache.org/ Ant ..  script ._
+could look like. This script enhances all class files and jar files ._
+except for the db4o libraries in-place, in the /bin and /lib directory ._
+of your project: 
+
+.c <?xml version="1.0"?> 
+<project name="db4o enhance project" default="enhance" basedir=".">
+	
+	<path id="project.classpath">
+		<pathelement path="${basedir}/bin" />
+	    <fileset dir="lib">
+		    <include name="**/*.jar"/>
+	    </fileset>
+	</path>
+	
+	<taskdef name="db4o-enhance" 
+		classname="com.db4o.enhance.Db4oEnhancerAntTask" 
+		classpathref="project.classpath" />
+	
+	<target name="enhance">
+		<db4o-enhance classtargetdir="${basedir}/bin" jartargetdir="${basedir}/lib" nq="true" ta="true" collections="true">
+			<classpath refid="project.classpath" />		
+			<sources dir="${basedir}/bin" />
+			<jars dir="${basedir}/lib">
+				<include name="*.jar" />
+				<exclude name="db4o-*.jar" />
+				<exclude name="ant.jar" />
+				<exclude name="bloat-1.0.jar" />
+			</jars>
+		</db4o-enhance>
+	</target>
+	
+</project> ..
+
+The instrumentation process can be configured with the ollowing attributes:
+
+nq: switch for native query optimization enhancement
+ta: switch for transparent activation/persistence enhancement
+collections: switch for enhancement of platform collections for transparent activation/persistence (only effective if ta is switched on)
+
+By default, these all are set to true.
+
+If you use Eclipse, there is a very convenient way to make ._
+sure an  .l http://ant.apache.org/ Ant ..  script ._
+is executed every time after compilation and before you run your ._ 
+application: You can add a builder to your project. To do this, right ._ 
+click on your project, choose "Properties" + "Builders" + "New" + ._
+"Ant Builder" and enter the name of the build file you created. 
+
+.2 Programmatic Enhancement ..
+
+The db4o enhancer is just another Java application so of course you can ._
+start it directly. The enhancer user interface is a convenience interface ._
+to the underlying instrumentation layer. To take advantage of all the ._ 
+possibilities you may want to consider a look at the sources of ._
+com.db4o.instrumentation.main.Db4oFileInstrumentor and call instrumentation ._
+directly.
+
+Here is a very basic example how you could enhance all the files in ._
+the /bin folder below the project 'myproject' using the Db4oFileEnhancer:
+ 
+.c import com.db4o.enhance.*; 
+
+public static void main(String[] args) throws Exception {
+    String path = "../myproject/bin";
+    new Db4oFileEnhancer().enhance(path, path);
+} ..
+
+.a EnhancementLoadTime ..
+.1 Enhancing at Load Time  ..
+
+As an alternative to enhancing classes at build time, it is also possible ._
+to run a db4o application using a special launcher. Under the hood ._
+the Db4oEnhancedLauncher installs a special ClassLoader that instruments ._
+classes for db4o on the fly, when they are loaded.
+
+For using the launcher, please see the method signatures of
+.c Db4oEnhancedLauncher#launch() ..
+ 
+
+.a NQOptimization ..
+.1 NQ Optimization at Querying Time ..
+
+In case no other enhancer has been run previously, Native Queries will ._
+still be optimized automatically if the following optimization libraries ._
+are found in the CLASSPATH:
+bloat-1.0.jar, db4o- .p version .. -instrumentation.jar, db4o- .p version .. -nqopt.jar
+
+The Native Query optimizer is still under development to eventually ._
+"understand" all Java constructs. Current optimization supports ._
+the following constructs well:
+
+- compile-time constants
+- simple member access
+- primitive comparisons
+- #equals() on primitive wrappers and Strings
+- #contains()/#startsWith()/#endsWith() for Strings
+- arithmetic expressions
+- boolean expressions
+- static field access
+- array access for static/predicate fields
+- arbitrary method calls on static/predicate fields (without candidate based params)
+- candidate methods composed of the above
+- chained combinations of the above
+
+Note that the current implementation does not support polymorphism and multiline ._
+methods yet.
+
+.1 Monitoring Native Query optimization ..
+
+To find out if a Native Query runs optimized or unoptimized you can attach ._
+a query execution listener as follows:
+
+.c ((ObjectContainerBase)db).getNativeQueryHandler().addListener(new Db4oQueryExecutionListener() {
+  public void notifyQueryExecuted(NQOptimizationInfo info) {
+    System.err.println(info);
+  }
+}); ..c
+
+The listener will be notified on each native query call and will be ._
+passed the Predicate object processed, the optimized expression tree (if ._
+successful) and the success status of the optimization run:
+
+NativeQueryHandler.UNOPTIMIZED ("UNOPTIMIZED")
+  if the predicate could not be optimized and is run in unoptimized mode
+
+NativeQueryHandler.PREOPTIMIZED ("PREOPTIMIZED")
+  if the predicate already was optimized (due to class file or load time
+  instrumentation)
+
+NativeQueryHandler.DYNOPTIMIZED ("DYNOPTIMIZED")
+  if the predicate was optimized at query execution time 

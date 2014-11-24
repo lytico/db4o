@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<!-- experimental standalone macker ant run -->
+<project name="db4o-macker" default="run-macker">
+
+	<import file="common.xml" />
+
+	<path id="macker.classpath">
+		<fileset dir="${dir.build.lib}/macker" includes="*.jar" />
+	</path>
+	
+	<taskdef name="macker" classname="net.innig.macker.ant.MackerAntTask" classpathref="macker.classpath"/> 
+	
+	<target name="run-macker">
+		<macker verbose="false" failOnError="true">
+			<rules dir="${dir.build}" includes="macker-db4o-rules.xml" />
+			<classes dir="${dir.dist.classes.jdk1.5}">
+		    	<include name="**/*.class" />
+		    </classes>
+			<classes dir="${dir.dist.classes.jdk1.5.optional}">
+		    	<include name="**/*.class" />
+		    </classes>
+			<classes dir="${dir.dist.classes.jdk1.5.cs}">
+		    	<include name="**/*.class" />
+		    </classes>
+		</macker>
+	</target>
+
+</project>

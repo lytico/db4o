@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+	<!-- Example -->
+	<!--
+	<type name="javadoc.XmlDocOverlay">
+	
+		<doc>
+			<summary>
+			This was overlaid here.
+			
+			Including its multiple lines.
+			</summary>
+		</doc>
+		
+		<member name="ctor()">
+			<doc>
+				<summary>
+				Constructors have a special name.
+				</summary>
+			</doc>
+		</member>
+		
+		<member name="baz()">
+			<doc>
+				<summary>
+				Method bar is very interesting.
+				</summary>
+			</doc>
+		</member>
+		
+		<member name="baz(int)">
+			<doc>
+				<summary>
+				Method bar(int) is much better.
+				</summary>
+			</doc>
+		</member>
+		
+		<member name="baz(string, int)">
+			<doc>
+				<summary>
+				Method bar(string, int) is the one.
+				</summary>
+			</doc>
+		</member>		
+	</type>
+	-->
+</doc>

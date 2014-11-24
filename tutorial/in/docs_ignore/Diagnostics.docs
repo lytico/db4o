@@ -1,0 +1,165 @@
+.n
+.a Diagnostics ..
+.0 Diagnostics - Clippy for db4o ..
+
+
+Clippy for db4o is a special tool, which allows the database ._
+engine itself to give you helpful performance and maintenance ._
+suggestions. 
+Clippy can be switched on in the configuration before opening ._
+the database file:
+.c Db4o.Configure().Diagnostic().AddListener(new DiagnosticListener ()) ..
+where DiagnosticListener is a callback interface tracking ._
+diagnostic messages from different parts of the system:
+.c public interface DiagnosticListener {
+    public void onDiagnostic(Diagnostic d);
+} ..
+Db4o provides 2 different listeners:
+
+- DiagnosticToConsole (Java, prints diagnostic messages to the console);
+- DiagnosticToTrace (.NET, prints diagnostic messages to the debug output window).
+
+Every diagnostic message is represented by it's own type, all ._
+possible types can be found in the com.db4o.diagnostic ._
+package/namespace.
+At the present moment there are the following diagnostic classes ._
+implemented:
+- ClassHasNoFields 
+- LoadedFromClassIndex 
+- NativeQueryNotOptimized 
+- UpdateDepthGreaterOne
+
+.1 ClassHasNoFields ..
+This diagnostic type provides information about classes in your ._
+persistent class hierarchy that have no persistent fields. The ._
+diagnostic message appears when the class is saved to the ._
+database. Classes with no persistent fields should be removed ._
+from the database in order to avoid the overhead for the ._
+maintenance of class indexes.
+Let's look at the following example:
+.c package com.tutorial.f1.chapter41;
+
+import java.util.Calendar;
+import java.text.DateFormat;
+
+
+public class Empty {    
+    
+    public Empty() {
+    }
+        
+	public String CurrentTime()
+	{
+		Calendar cl = Calendar.getInstance();
+		DateFormat df = DateFormat.getDateTimeInstance();
+		String time = df.format(cl.getTime());
+		return time;
+	}
+
+	public String ToString()
+	{
+		return CurrentTime();
+	}
+} ..
+.c private static void setEmptyObject(ObjectContainer db){
+  	Empty empty = new Empty();
+    db.set(empty);
+} ..
+.s com.tutorial.f1.chapter41.DiagnosticExample#testEmpty ..
+
+Diagnostic message is produced when the execution point reaches 
+.c	db.set(empty); ..
+Empty class does not save any ._
+information and can be kept in the application code; there is no ._
+need to put it in the database.
+
+.1 LoadedFromClassIndex ..
+This diagnostic class is provided to keep track of all the queried ._
+fields in your application that have no indexes. The output ._
+produced can give a comprehensive picture of index tuning required.
+
+.1 NativeQueryNotOptimized ..
+This diagnostics object informs you that a Native Query cannot be ._
+optimized. It means that it will be run by instantiating all ._
+objects of the candidate class. Try to simplify your query ._
+expression.
+For an example let's look at a predicate using 2 different ._
+unrelated clauses.
+.c package com.tutorial.f1.chapter41;
+import com.db4o.query.Predicate;
+
+public class ArbitraryQuery extends Predicate{    
+    private int[] points;
+    
+    public ArbitraryQuery(int[] points) {
+        this.points=points;
+    }
+    
+    public boolean match(Pilot pilot) {
+    	for (int i = 0; i < points.length; i++) {
+ 			if (pilot.getPoints() == points[i])
+			{
+				return true;
+			}
+		}
+		return pilot.getName().startsWith("Rubens");
+    }
+    
+} ..
+.c private static void queryPilot(ObjectContainer db){
+    	int[]  i = new int[]{99,0};
+    	ObjectSet result = db.query(new ArbitraryQuery(i));
+    	listResult(result);
+} ..
+.s com.tutorial.f1.chapter41.DiagnosticExample#testArbitrary ..
+
+
+.1 UpdateDepthGreaterOne ..
+UpdateDepth configuration setting allows you to specify the level ._
+of objects' enclosure where update command will still be valid:
+.c Db4o.Configure().UpdateDepth(depth); ..
+This setting has a considerable impact on performance and can make ._
+the application very slow. It is recommended to keep the default ._
+configuration setting (UpdateDepth(1)) and specify UpdateDepth for ._
+definite classes, where cascaded update will be really useful: 
+.c Db4o.Configure().ObjectClass(typeof(Car)).UpdateDepth(3); ..
+
+.1 Diagnostic Messages Filter ..
+
+The standard listeners can potentially produce quite a lot of ._
+messages. By writing your own DiagnosticListener you can filter ._
+that information.
+
+On the stage of application tuning you can be interested in ._
+optimizing performance through indexing. Clippy can help you with ._
+that giving information about queries that are running on ._
+un-indexed fields. Having this information you can decide which ._
+queries are frequent and heavy and should be indexed, and which ._
+have little performance impact and do not need an index. Field ._
+indexes dramatically improve query performance but they may ._
+considerably reduce storage and update performance. 
+
+In order to get rid of all unnecessary diagnostic information and ._
+concentrate on indexes let's create special diagnostic listener:
+.c package com.tutorial.f1.chapter41;
+
+import com.db4o.diagnostic.*;
+
+public class IndexDiagListener  extends DiagnosticToConsole
+{
+	   public void onDiagnostic(Diagnostic d) {
+		   if (d.getClass().equals(LoadedFromClassIndex.class)){
+	        System.out.println(d.toString());
+		   }
+	    }
+} ..
+The following command will install the new listener:
+.c Db4o.Configure().Diagnostic().AddListener(new IndexDiagListener()); ..
+We can check the efficacy of IndexDiagListener using queries from ._
+the previous paragraphs:
+.s com.tutorial.f1.chapter41.DiagnosticExample#testIndexDiagnostics ..
+Potentially this piece of code triggers all the diagnostic objects, ._
+but we are getting only index warning messages due to ._
+IndexDiagListener.
+
+

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2567" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Wrong Approach</h1>
+        <p>The wrong approach is to try to store disconnected objects. db4o manages object by their <a href="../../basics/identity_concept.htm">object-identity</a> and doesn't recognize objects which have been serialized or loaded by another object container instance. This example shows, that instead of updating the object, db4o will store a new instance of the object. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/disconnectedobj/objectidentity/ObjectIdentityExamples-Update-doesn't-works-when-using-the-different-object-containers.all.flsnp" />
+        <p>So in order to update an object, you need to load and store it in the same object-container. If you cannot do this, you need to merge to object-changes. <MadCap:xref href="example_merge_changes.htm" target="" title="" alt="">See "Example Merge Changes"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/disconnectedobj/objectidentity/ObjectIdentityExamples-Update-works-when-using-the-same-object-container.all.flsnp" />
+    </body>
+</html>

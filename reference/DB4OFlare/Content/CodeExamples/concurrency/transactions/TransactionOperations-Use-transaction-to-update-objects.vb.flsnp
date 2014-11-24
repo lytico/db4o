@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Sub</span> UpdateAllJoes(dbSupport <span style="color:Blue;">As</span> DatabaseSupport)
+    dbSupport.InTransaction(
+        <span style="color:Blue;">Function</span>(container)
+            <span style="color:Blue;">Dim</span> allJoes = <span style="color:Blue;">From</span> p <span style="color:Blue;">As</span> Person <span style="color:Blue;">In</span> container _
+                        <span style="color:Blue;">Where</span> p.Name = <span style="color:#A31515;">&quot;Joe&quot;</span> _
+                        <span style="color:Blue;">Select</span> p
+            <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> joe <span style="color:Blue;">As</span> Person <span style="color:Blue;">In</span> allJoes
+                joe.Name = <span style="color:#A31515;">&quot;New Joe&quot;</span>
+                container.Store(joe)
+            <span style="color:Blue;">Next</span>
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>)
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			TransactionOperations.vb: Use transaction to update objects
+			<div class="codedownload">
+				<a href="Example-concurrency-transactions-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

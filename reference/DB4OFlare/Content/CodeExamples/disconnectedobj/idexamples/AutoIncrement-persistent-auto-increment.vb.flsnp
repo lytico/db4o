@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Class</span> PersistedAutoIncrements
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> currentHighestIds <span style="color:Blue;">As</span> IDictionary(Of Type, <span style="color:Blue;">Integer</span>) _
+                        = <span style="color:Blue;">New</span> Dictionary(Of Type, <span style="color:Blue;">Integer</span>)()
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> NextNumber(<span style="color:Blue;">ByVal</span> forClass <span style="color:Blue;">As</span> Type) <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+        <span style="color:Blue;">Dim</span> number <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+        <span style="color:Blue;">If</span> <span style="color:Blue;">Not</span> currentHighestIds.TryGetValue(forClass, number) <span style="color:Blue;">Then</span>
+            number = 0
+        <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+        number += 1
+        currentHighestIds(forClass) = number
+        <span style="color:Blue;">Return</span> number
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			AutoIncrement.vb: persistent auto increment
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="10" MadCap:lastHeight="679" MadCap:lastWidth="864">
+    <head>
+    </head>
+    <body>
+        <h1>Add Custom Configuration</h1>
+        <p>When your database uses special configuration items, like another <a href="../../configuration/common/string_encoding.htm">string encoding</a>, <a href="../../configuration/common/register_type_handler.htm">special typehandler</a> etc you need to configure that in OME. OME is configured by loading a specially build configuration assembly.</p>
+        <ol>
+            <li>1. Create a class library project which contains all your custom configurations.</li>
+            <li>Add a reference to the OMCustomConfigurationforUser assembly. This library you can get from the path where OME is installed. Generally it is in C:\Program Files (x86)\db4o\db4o-X.X\Object Manager Enterprise</li>
+            <li>To add configuration to an embedded database inherit from IOMNEmbeddedCustomConfigurationProvider. Otherwise, when your connecting to a server inherit from IOMNClientCustomConfigurationProvider:
+</li>
+<MadCap:snippetBlock src="../../CodeExamples/omn/ConfigForOMN-Configuration-for-embedded-database.all.flsnp" />
+			
+<MadCap:snippetBlock src="../../CodeExamples/omn/ConfigForOMN-Configuration-for-a-client-connection.all.flsnp" />
+
+            <li>Compile this project.Then load it into OMN using "Custom Config Assembly Path"</li>
+            <li>Load all the other associated assemblies which are be needed by your custom config. Or assemblies with the classes and types stored in the database.</li>
+        </ol>
+    </body>
+</html>

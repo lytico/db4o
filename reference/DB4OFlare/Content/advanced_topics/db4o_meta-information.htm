@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3012" MadCap:lastWidth="630">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Meta-Information" />db4o Meta-Information</h1>
+        <p>Db4o meta information API provides an access to the actual structure of db4o database file. Its primary use is <a href="../advanced_topics/refactoring_and_schema_evolution.htm">refactoring</a>.</p>
+        <p>You can access the meta information via extended object container. You can ask the object container for all stored classes or for a specific class. To find the meta information for a specific class you can provide the full name, the class itself or an instance of a particular type.</p>
+        <p>Note that db4o also returns information about internal db4o instances which have been stored. </p>
+        <MadCap:snippetBlock src="../CodeExamples/metainfo/MetaInfoExample-All-stored-classes.all.flsnp" />
+        <p>The stored class interface provides all meta information db4o knows about. You can get the name of the class, ask for the instance count, ask for a list of the ids and get the meta info for super classes.</p>
+        <p>The most important information about the stored classes meta info is the list of the field which are stored. You can get a list of all fields or ask for specific fields. Note that the meta information might return information for fields which don't exist anymore. This is <a href="../advanced_topics/refactoring_and_schema_evolution/field_type_change.htm">useful for refactoring</a>. </p>
+        <MadCap:snippetBlock src="../CodeExamples/metainfo/MetaInfoExample-Accessing-stored-fields.all.flsnp" />
+        <p>On a the field meta information you can find out the name, type and if the field has an index. And you also can access the values of a object via the stored field. This allows you to access information which is stored in the database but has been removed from the class model. This is <a href="../advanced_topics/refactoring_and_schema_evolution/field_type_change.htm">useful for refactoring</a>.</p>
+        <MadCap:snippetBlock src="../CodeExamples/metainfo/MetaInfoExample-Access-via-meta-data.all.flsnp" />
+    </body>
+</html>

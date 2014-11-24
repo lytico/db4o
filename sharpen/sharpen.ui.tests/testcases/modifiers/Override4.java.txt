@@ -1,0 +1,18 @@
+package modifiers;
+
+class YapField {
+
+	void delete() {
+	}
+}
+
+abstract class YapFieldVirtual extends YapField {
+
+	abstract void delete();
+}
+
+class YapFieldVersion extends YapFieldVirtual {
+
+	void delete() {
+	}
+}

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <ul>
+            <li>
+                <a href="../tuning/Runtime_Statistics/monitor_queries.htm">Query Monitoring</a>: Monitor how queries behave and perform.</li>
+            <li>
+                <a href="../tuning/Runtime_Statistics/monitor_object_lifecycle.htm">Object Lifecycle Monitoring</a>: Monitor how many objects are stored, deleted and activated.</li>
+            <li>
+                <a href="../tuning/Runtime_Statistics/monitor_io.htm">IO Monitoring</a>: Monitor the IO-operations of db4o.</li>
+            <li>
+                <a href="../tuning/Runtime_Statistics/monitor_network.htm">Network Monitoring</a>: Monitor the network operations of db4o.</li>
+            <li>
+                <a href="../tuning/Runtime_Statistics/monitor_reference_system.htm">Reference System Monitoring</a>: Monitor db4o's reference system.</li>
+        </ul>
+    </body>
+</html>

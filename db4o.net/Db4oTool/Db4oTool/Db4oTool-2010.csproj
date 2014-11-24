@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6F3BE659-0653-4982-94D6-F1D9D8887E09}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4oTool</RootNamespace>
+    <AssemblyName>Db4oTool</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile/>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SignAssembly>true</SignAssembly>
+<AssemblyOriginatorKeyFile>../../db4objects.snk</AssemblyOriginatorKeyFile>
+</PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cecil.FlowAnalysis, Version=0.1.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\net-3.5\Cecil.FlowAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.6.9.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\net-3.5\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.0.1.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\net-3.5\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.GetOptions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libs\net-2.0\Mono.GetOptions.dll</HintPath>
+    </Reference>
+    <Reference Include="System"/>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Xml"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\AbstractAssemblyInstrumentation.cs"/>
+    <Compile Include="Core\ByAttributeFilter.cs"/>
+    <Compile Include="Core\ByNameFilter.cs"/>
+    <Compile Include="Core\CecilReflector.cs"/>
+    <Compile Include="Core\CompactFrameworkServices.cs"/>
+    <Compile Include="Core\Configuration.cs"/>
+    <Compile Include="Core\CurrentDirectoryAssemblyResolver.cs"/>
+    <Compile Include="Core\DebugInformation.cs"/>
+    <Compile Include="Core\DirectoryAssemblyResolver.cs"/>
+    <Compile Include="Core\IAssemblyInstrumentation.cs"/>
+    <Compile Include="Core\ILPattern.cs"/>
+    <Compile Include="Core\ITypeFilter.cs"/>
+    <Compile Include="Core\InstrumentationContext.cs"/>
+    <Compile Include="Core\InstrumentationPipeline.cs"/>
+    <Compile Include="Core\InstrumentationUtil.cs"/>
+    <Compile Include="Core\MethodEditor.cs"/>
+    <Compile Include="Core\NotFilter.cs"/>
+    <Compile Include="Core\RelativeAssemblyResolver.cs"/>
+    <Compile Include="Core\SaveAssemblyInstrumentation.cs"/>
+    <Compile Include="Core\StackAnalysisResult.cs"/>
+    <Compile Include="Core\StackAnalyzer.cs"/>
+    <Compile Include="Factory.cs"/>
+    <Compile Include="NQ\AbstractOptimizer.cs"/>
+    <Compile Include="NQ\CFNQEnabler.cs"/>
+    <Compile Include="NQ\DelegateOptimizer.cs"/>
+    <Compile Include="NQ\DelegateQueryProcessor.cs"/>
+    <Compile Include="NQ\PredicateOptimizer.cs"/>
+    <Compile Include="NQ\QueryInvocationProcessor.cs"/>
+    <Compile Include="Program.cs"/>
+    <Compile Include="ProgramOptions.cs"/>
+    <Compile Include="Properties\AssemblyInfo.cs"/>
+    <Compile Include="TA\ActivateMethodEmitter.cs"/>
+    <Compile Include="TA\BindMethodEmitter.cs"/>
+    <Compile Include="TA\ITAInstrumentationStep.cs"/>
+    <Compile Include="TA\MethodEmitter.cs"/>
+    <Compile Include="TA\NullTAInstrumentationStep.cs"/>
+    <Compile Include="TA\TACollectionsStep.cs"/>
+    <Compile Include="TA\TAInstrumentation.cs"/>
+    <Compile Include="TA\TAInstrumentationStepBase.cs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Db4objects.Db4o.Instrumentation\Db4objects.Db4o.Instrumentation-2010.csproj">
+      <Project>{DFE1C46F-BB18-4B6A-AE34-4366F58BEB5A}</Project>
+      <Name>Db4objects.Db4o.Instrumentation-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o.NativeQueries\Db4objects.Db4o.NativeQueries-2010.csproj">
+      <Project>{AB1BF369-A9C4-4876-9797-178DB8AD437F}</Project>
+      <Name>Db4objects.Db4o.NativeQueries-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o.Optional\Db4objects.Db4o.Optional-2010.csproj">
+      <Project>{E9588FE7-C19D-445E-BB53-AE539EA4F0E6}</Project>
+      <Name>Db4objects.Db4o.Optional-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4objects.Db4o\Db4objects.Db4o-2010.csproj">
+      <Project>{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}</Project>
+      <Name>Db4objects.Db4o-2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets"/>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

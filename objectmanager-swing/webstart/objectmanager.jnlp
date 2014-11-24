@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp
+        spec="1.5+"
+        codebase="http://www.db4objects.net/om"
+        href="objectmanager.jnlp">
+    <information>
+        <title>db4o ObjectManager 2.0</title>
+        <vendor>db4objects, Inc.</vendor>
+        <homepage href="docs/help.html"/>
+        <description>db4o ObjectManager 2.0</description>
+        <description kind="short">db4o ObjectManager 2.0</description>
+        <icon href="images/database2.gif"/>
+        <icon kind  ="splash" href="images/splash.png"/>
+        <offline-allowed/>
+        <shortcut online="false">
+            <desktop/>
+            <menu submenu="db4o"/>
+        </shortcut>
+    </information>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <j2se version="1.5+" java-vm-args="-esa -Xnoclassgc"/>
+        <jar href="lib/objectmanager.jar"/>
+        <jar href="lib/objectmanager-api.jar"/>
+        <jar href="lib/@DB4O_VERSION@"/>
+        <jar href="lib/db4o-sql.jar"/>
+        <jar href="lib/looks-2.0.4.jar"/>
+        <jar href="lib/forms-1.0.7.jar"/>
+    </resources>
+    <application-desc />
+</jnlp>

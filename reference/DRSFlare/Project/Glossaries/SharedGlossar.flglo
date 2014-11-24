@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultGlossary>
+  <GlossaryEntry>
+    <Terms>
+      <Term>CF</Term>
+    </Terms>
+    <Definition
+      Link="">.NET Compact Framework</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>RDBMS</Term>
+    </Terms>
+    <Definition
+      Link="">Relational Database Management System</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>OME</Term>
+      <Term>OMN</Term>
+    </Terms>
+    <Definition
+      Link="">Object Manager, a tool to view and edit a db4o database</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>TA</Term>
+    </Terms>
+    <Definition
+      Link="">Transparent Activation</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>TP</Term>
+    </Terms>
+    <Definition
+      Link="">Transparent Persistence</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>NQ</Term>
+    </Terms>
+    <Definition
+      Link="">Native Query</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>VOD</Term>
+    </Terms>
+    <Definition
+      Link="">Versant Object Database</Definition>
+  </GlossaryEntry>
+</CatapultGlossary>

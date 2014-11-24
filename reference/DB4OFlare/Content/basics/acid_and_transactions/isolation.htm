@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="10" MadCap:lastHeight="1613" MadCap:lastWidth="595">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Isolation" />Isolation</h1>
+        <p>Isolation
+imposes rules which ensure that transactions do not interfere with each other
+even if they are executed at the same time. Read more about <a href="http://en.wikipedia.org/wiki/Isolation_level" target="_parent">isolation levels on Wikipedia</a>. </p>
+        <p>db4o uses the read committed isolation level, on an object level. That's means db4o has a very weak isolation. It ensures that you do not see uncommitted objects of other transactions. However it does not guarantee any consistency across different objects. </p>
+        <MadCap:snippetBlock src="../../Snippets/isolation_issues.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

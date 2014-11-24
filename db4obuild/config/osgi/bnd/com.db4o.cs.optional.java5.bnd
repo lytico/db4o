@@ -1,0 +1,5 @@
+Bundle-Vendor: Versant
+Bundle-Version: ${db4o.version.iteration.revision}
+Bundle-Name: db4o cs optional for Java 5
+Export-Package: com.db4o.*;version=${db4o.version.iteration.revision}
+DynamicImport-Package: *

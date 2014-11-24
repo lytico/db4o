@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="111" MadCap:lastWidth="537">
+    <body>
+        <h2>Lazy Loaded Result Set</h2>
+        <p>db4o always returns lazy loaded result sets. That means the object container needs to stay open as long as you are using the result set. If you want use the result of a query after the object container has been closed, you need to copy the query result into a new collection first.</p>
+    </body>
+</html>

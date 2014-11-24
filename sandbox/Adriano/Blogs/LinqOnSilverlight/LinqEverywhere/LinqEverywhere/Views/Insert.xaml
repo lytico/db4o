@@ -1,0 +1,37 @@
+﻿<navigation:Page x:Class="LinqEverywhere.Views.Insert" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Insert Page" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
+    
+        <Grid x:Name="LayoutRoot">
+        <StackPanel HorizontalAlignment="Stretch" Name="stackPanel1" VerticalAlignment="Stretch" Orientation="Vertical">
+            <StackPanel Name="stackPanel2" Orientation="Horizontal">
+                <sdk:Label Height="28" Name="label1" Width="120" Content="Name" />
+                <TextBox Height="23" Name="TextBoxName" Width="120" />
+            </StackPanel>
+            
+            <StackPanel Name="stackPanel3" Orientation="Horizontal">
+                <sdk:Label Height="28" Name="label2" Width="120" Content="Age" />
+                <TextBox Height="23" Name="TextBoxAge" Width="120" MaxLength="3" IsEnabled="True" Text="{Binding Age, Mode=TwoWay, ValidatesOnExceptions=True}"/>
+            </StackPanel>
+
+            <ListBox Name="PersonList" Padding="4" Margin="0,10,0,0" MinHeight="100">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="2" MinWidth="100" />
+                            <TextBlock Text="{Binding Age, Mode=OneWay}" Margin="2" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Button Content="Insert" Height="23" Name="InsertButton" Width="75" HorizontalAlignment="Right" Margin="0,10,10,0" Click="InsertButtonClick" />
+        </StackPanel>
+    </Grid>
+</navigation:Page>

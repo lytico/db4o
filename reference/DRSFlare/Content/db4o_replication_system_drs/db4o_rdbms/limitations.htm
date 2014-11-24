@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="184" MadCap:lastWidth="503">
+    <head>
+    </head>
+    <body>
+        <h1>Limitations</h1>
+        <h2>Collections Limitation</h2>
+        <p>Collections are treated differently by Hibernate and db4o. In db4o a collection is a regular object. In Hibernate collections are representation of join-operations. This means that collections in Hibernate don't have a identity. That why dRS currently doesn't not track updates on collections when replicating against Hibernate. You only can replicate a collection initially, but cannot replicate updates.</p>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+package decaf.collections;
+
+import java.util.*;
+
+class MapAPI {
+
+	void forEachWithMapList(Map<Integer, String> map) {
+		for(int i : map.keySet()) {
+			System.out.println(i);
+		}
+	}
+
+}

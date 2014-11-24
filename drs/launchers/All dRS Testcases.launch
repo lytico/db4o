@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/drs/src/test/com/db4o/drs/test/all/AllDrsTests.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+<listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.db4o.drs.test.all.AllDrsTests"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="drs"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx1400m&#13;&#10;-DrunVodTests=true&#13;&#10;-javaagent:${workspace_loc:drs}/lib/jdo-enhancer/dRS-jdo-enhancer.jar=com.db4o.drs.test.data,com.db4o.drs.versant.metadata,com.db4o.drs.test.versant.data"/>
+</launchConfiguration>

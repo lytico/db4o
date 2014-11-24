@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1211" MadCap:lastWidth="532" MadCap:conditions="Primary..NET">
+    <head>
+    </head>
+    <body>
+        <h1>ASP.NET MVC Example</h1>
+        <p>This example is a tiny CRUD application which shows how to use db4o in ASP.NET MVC 2.0.
+		<span MadCap:conditions="Primary.Online"> Download the <a href="../../CodeExamples/WebApp/Example-dotNetAppExamples-WebApp-csharp.zip">code here</a>. This example requires Visual Studio 2008 or new and ASP.NET MVC 2.0 installed. Unzip the project. Add the db4o-assemblies to the Lib-folder. Then open the project and run it.&#160;</span></p>
+        <h2>Managing Object Containers</h2>
+        <p>This example uses the code from the <a href="asp.net_request_example.htm">request-example</a> <![CDATA[ ]]>to create a object container for each request. On each new request a object container is opened. Then all operations are done on this container. When the request ends, the container is disposed.</p>
+        <h2>Object Identification</h2>
+        <p>This example uses a GUID for each object to identify it across requests. Persisted objects inherit from the IDHolder class which contains the id-field. Take a look at alternatives for ids. <MadCap:xref href="../disconnected_objects/comparison_of_ids.htm" target="" title="" alt="">See "Comparison Of Different IDs"</MadCap:xref></p>
+        <h2>Using db4o</h2>
+        <p>You can use db4o as expected. Just use the request-container:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Controllers/HomeController-Listing-all-pilots-on-the-index.all.flsnp" />
+        <h2>Using IDs</h2>
+        <p>Now the ids can be used in the views and actions to identify objects. For example in a list-view you use the ids for the action-links:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Views/Home/Index-In-the-view-use-the-ids-to-identify-the-objects.all.flsnp" />
+        <p>Another location where the ids are used is in the actions. For example when you need to store changes. First we get a object which contains all changes. Then we copy all changes to the existing object in the database and finally store it. <MadCap:xref href="../disconnected_objects/merging_changes.htm" target="" title="" alt="">See "Merging Changes"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Controllers/HomeController-update-the-object.all.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

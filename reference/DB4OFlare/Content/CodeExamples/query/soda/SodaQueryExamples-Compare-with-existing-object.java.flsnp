@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">Pilot pilot = container.query(Pilot.<span style="color:Blue;">class</span>).get(0);
+
+Query query = container.query();
+query.constrain(Car.<span style="color:Blue;">class</span>);
+<span style="color:Green;">// if the given object is stored, its compared by identity</span>
+query.descend(<span style="color:#A31515;">&quot;pilot&quot;</span>).constrain(pilot);
+
+ObjectSet&lt;Object&gt; carsOfPilot = query.execute();</pre>
+		<div class="codesnippet-meta">
+			SodaQueryExamples.java: Compare with existing object
+			<div class="codedownload">
+				<a href="Example-query-soda-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

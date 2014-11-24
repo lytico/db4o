@@ -1,0 +1,125 @@
+/* Javadoc style sheet */
+
+/* Define colors, fonts and other style attributes here to override the defaults */
+
+/* Page background color */
+body {
+    background-color: #F6F6F6;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    margin: 1em 1em 1em 1em;
+}
+
+/* Headings */
+h1 {
+    font-size: 15.5pt;
+    margin-bottom: .5em;
+    color: #333333;
+}
+
+h2 {
+    font-size: 13.5pt;
+    margin-bottom: .5em;
+    color: #333333;
+}
+
+h3 {
+    font-size: 10.5pt;
+    margin-bottom: .5em;
+    color: #333333;
+}
+
+code{
+	font-family: Consolas, "Droid Sans Mono", "DejaVu Sans Mono", "Courier New", Courier, monospace;
+}
+
+pre.prettyprint
+{
+	font-family: Consolas, "Droid Sans Mono", "DejaVu Sans Mono", "Courier New", Courier, monospace;
+	text-align: left;
+	border-bottom: #AAAAAA solid 1px;
+	background-color:#EEEEEE;
+	margin: 0;
+	padding: 4px;
+}
+
+/* Table colors */
+.TableHeadingColor {
+    background: #D5D5D5;
+    color: #333333;
+    font-weight: normal;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+.TableSubHeadingColor {
+    background: #D5D5D5;
+    color: #333333;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+.TableRowColor {
+    background-color: #F6F6F6;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+/* Font used in left-hand frame lists */
+.FrameTitleFont {
+    font-size: 100%;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+.FrameHeadingFont {
+    font-size: 90%;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+.FrameItemFont {
+    font-size: 90%;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+/* Navigation bar fonts and colors */
+.NavBarCell1 {
+    background: #D5D5D5;
+    color: #333333;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+.NavBarCell1Rev {
+    background: #D5D5D5;
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+}
+
+.NavBarFont1 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #45ABBF;
+}
+
+.NavBarFont1Rev {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #003366;
+    text-decoration: underline;
+}
+
+.NavBarCell2 {
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+    background-color: #FFFFFF;
+}
+
+.NavBarCell3 {
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+    background-color: #FFFFFF;
+}
+
+a, a:link {
+    text-decoration: none;
+    color: #258B9F;
+}
+
+a:visited {
+    color: #003366;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8F82F8B0-95B6-4553-BDA8-BD9A954E682F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>Db4oUnit</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Db4oUnit</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    
+    
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation/>
+    <TargetFrameworkProfile/>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SignAssembly>true</SignAssembly>
+<AssemblyOriginatorKeyFile>../db4objects.snk</AssemblyOriginatorKeyFile>
+</PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>TRACE;DEBUG;NET_3_5;NET_4_0</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineConstants>TRACE;NET_3_5;NET_4_0</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Xml"/>
+  </ItemGroup>
+  <ItemGroup>
+<Compile Include="Db4oUnit\Db4oUnit\ArrayAssert.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Assert.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\AssertionException.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Check.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ClassLevelFixtureTestSuite.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\CompositeTestListener.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ConsoleListener.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ConsoleTestRunner.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ContextfulTest.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Data\Generators.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Data\Streams.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\FailingTest.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\Contextful.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\ContextfulIterator.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\EnvironmentProvider.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\FixtureBasedTestSuite.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\FixtureContext.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\FixtureDecorator.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\FixtureTestSuiteDescription.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\FixtureVariable.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\IDeferred4.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\IFixtureProvider.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\ILabeled.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\LabeledObject.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\MultiValueFixtureProvider.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\SimpleFixtureProvider.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\SubjectFixtureProvider.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Fixtures\TestWithFixture.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\IClassLevelFixtureTest.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ICodeBlock.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ITest.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ITestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ITestDecorator.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ITestExecutor.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ITestFactory.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ITestLifeCycle.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ITestListener.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ITestSuiteBuilder.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Iterable4Assert.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Iterator4Assert.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\IteratorAssert.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\JaggedArrayAssert.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Mocking\CodeGenerator.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Mocking\MethodCall.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Mocking\MethodCallRecorder.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\OpaqueTestSuiteBase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Printable.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ReflectionTestSuite.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\ReflectionTestSuiteBuilder.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\SetupFailureException.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\StringAssert.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\TearDownFailureException.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\TestDecorationAdapter.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\TestFailure.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\TestFailureCollection.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\TestMethod.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\TestResult.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\TestRunner.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\AllTests.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\AssertTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\ClassLevelFixtureTestTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\CompositeTestListenerTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Data\AllTests.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Data\GeneratorsTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Data\StreamsTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\ExceptionInTearDownDoesNotShadowTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\AllTests.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\CollectionSet4.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\FixtureBasedTestSuiteTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\FixtureContextTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\HashtableSet4.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\ISet4.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\Iterable4TestUnit.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\Set4TestSuite.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\Fixtures\Set4TestUnit.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\FrameworkTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\OpaqueTestSuiteFailureTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\OpaqueTestSuiteTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\ReflectionTestSuiteBuilderTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\ReinstantiatePerMethodTest.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\RunsGreen.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\RunsLifeCycle.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\RunsRed.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\TestExceptionWithInnerCause.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\TestLifeCycleTestCase.cs"/>
+<Compile Include="Db4oUnit\Db4oUnit\Tests\TestRunnerTestCase.cs"/>
+<Compile Include="Properties\AssemblyInfo.cs"/>
+<Compile Include="native\Db4oUnit\ArrayAssert.cs"/>
+<Compile Include="native\Db4oUnit\Assert.cs"/>
+<Compile Include="native\Db4oUnit\AssertionException.cs"/>
+<Compile Include="native\Db4oUnit\Data\Generators.cs"/>
+<Compile Include="native\Db4oUnit\NullTextWriter.cs"/>
+<Compile Include="native\Db4oUnit\TestException.cs"/>
+<Compile Include="native\Db4oUnit\TestPlatform.cs"/>
+<Compile Include="native\Db4oUnit\Util\PlatformInformation.cs"/>
+<Compile Include="native\Db4oUnit\Util\StopWatch.cs"/>
+</ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Db4objects.Db4o\Db4objects.Db4o-2010.csproj">
+      <Project>{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}</Project>
+      <Name>Db4objects.Db4o-2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets"/>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

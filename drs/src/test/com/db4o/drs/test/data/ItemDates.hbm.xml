@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class name="com.db4o.drs.test.data.ItemDates">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+		<property name="date1"/>
+		<property name="date2"/>
+		<property name="dateArray"/>
+	</class>
+</hibernate-mapping>

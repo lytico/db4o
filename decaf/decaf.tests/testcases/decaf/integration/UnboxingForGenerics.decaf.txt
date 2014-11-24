@@ -1,0 +1,44 @@
+package decaf.integration;
+
+class Foo {
+	public Object value;
+	
+	public Object get() {
+		return value;
+	}
+}
+
+class Variable {
+
+	public Object value;
+	
+	public Object get() {
+		return value;
+	}
+}
+
+class Main {
+	static void main() {
+		Foo foo = new Foo();
+		int i = (((Integer) foo.get())).intValue();
+		bar((((Integer) foo.get())).intValue());
+		bar((((Integer) foo.value)).intValue());
+		baz(new int[] { 42, (((Integer) foo.get())).intValue() });
+		baz(new int[] { (((Integer) foo.get())).intValue(), 42 });
+		
+		Variable foo2 = new Variable();
+		isTrue((((Boolean) ((Foo) foo2.value).value)).booleanValue());
+		isTrue((((Boolean) ((Foo) foo2.get()).value)).booleanValue());
+		Foo foo3 = ((Foo) foo2.value);
+		isTrue((((Boolean) foo3.value)).booleanValue());
+	}
+	
+	static void isTrue(boolean value) {
+	}
+	
+	static void bar(int i) {
+	}	
+	
+	static void baz(int[] i) {
+	}
+}

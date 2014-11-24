@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="5" MadCap:lastHeight="628" MadCap:lastWidth="493">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Type Handling" />Type Handling</h1>
+        <p>db4o tries to be simple an easy to use. A big part of this is to transparently store any object without any complex mapping or configuration. Storing an object correctly is a complex process and heavily depends on the type of the object. db4o has different storing strategies for different types. </p>
+        <h2>Supported Types</h2>
+        <p>For most types the regular db4o type handling is sufficient. You can store objects composed of following types:</p>
+        <ul>
+            <li>All basic numeric types like ints, bytes, floats, doubles etc<span MadCap:conditions="Primary.Java"> (and their wrapper types)</span>.</li>
+            <li>Strings</li>
+            <li>Arrays</li>
+            <li>Date<span MadCap:conditions="Primary..NET">Time</span>s</li>
+            <li>Enums</li>
+            <li>Basic collections like <span MadCap:conditions="Primary.Java">Array</span>Lists and <span MadCap:conditions="Primary.Java">HashMaps</span><span MadCap:conditions="Primary..NET">Dictionaries</span>.</li>
+            <li MadCap:conditions="Primary.Java"><a href="type_handling/uuid_support.htm">UUIDs</a> and <a href="type_handling/bigmath.htm">BigMath</a> types after adding the appropriate configuration item.</li>
+            <li>Any class type which you've build with yourself with the types above.</li>
+        </ul>
+        <h2>Types Which Should Not Be Stored</h2>
+        <p>These kind of types shouldn't be stored without any special treatment:</p>
+        <ul>
+            <li>Any type from the JDK /&#160;.NET Framework, library or framework. As long as you don't have control over the implementation of a type you cannot be sure how and what exactly is stored. </li>
+            <li>This is also true for collections with sophisticated behavior like <span MadCap:conditions="Primary.Java">ConcurrentMaps or WeakHashmaps.</span><span MadCap:conditions="Primary..NET">ConcurrentDictionary or ConcurrentStack.</span></li>
+        </ul>
+        <h2>Control Persistence</h2>
+        <p>If you need more control on how a object is persisted, then you can do that with <a href="type_handling/translators.htm">object translators</a> and <a href="type_handling/typehandlers.htm">type handlers</a>.</p>
+    </body>
+</html>

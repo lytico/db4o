@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">static</span> <span style="color:Blue;">class</span> PersistedAutoIncrements {
+ <span style="color:Blue;">private</span> <span style="color:Blue;">final</span> Map&lt;Class, Integer&gt; currentHighestIds = <span style="color:Blue;">new</span> HashMap&lt;Class, Integer&gt;();
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> nextNumber(Class forClass) {
+        Integer number = currentHighestIds.get(forClass);
+        <span style="color:Blue;">if</span> (<span style="color:Blue;">null</span> == number) {
+            number = 0;
+        }
+        number += 1;
+        currentHighestIds.put(forClass,number);
+        <span style="color:Blue;">return</span> number;
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			AutoIncrement.java: persistent auto increment
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="64" MadCap:lastWidth="638">
+    <body>
+        <p>Go to "Tools" -&gt; "Object Manager Enterprise" -&gt; "Options" menu and select "Assembly
+Search Path...". Add the path to the assembly, containing the type definition.
+Now disconnect and reconnect the database and browse the objects again:</p>
+    </body>
+</html>

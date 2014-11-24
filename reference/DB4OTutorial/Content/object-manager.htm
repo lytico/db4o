@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="3" MadCap:lastHeight="3086" MadCap:lastWidth="637">
+    <head>
+    </head>
+    <body>
+        <h1>Object Manager</h1>
+        <p>The object manager allows us to open and explore db4o databases. </p>
+        <h2>Installation</h2>
+        <div MadCap:conditions="Primary.Java">
+            <p>The object manager is an Eclipse plugin. In the <a href="http://community.versant.com/Downloads.aspx" target="_parent">db4o distribution</a> there's a subfolder 'ome', which contains a zip-file. Unzip that file and then start up Eclipse. There we choose 'Help'-&gt;'Install New Software...'. Then we add the location of the unzipped object manager as an update site and continue the installation.</p>
+            <p>
+                <img src="omj-installation.png" style="width: 612px;height: 497px;" />
+            </p>
+        </div>
+        <div MadCap:conditions="Primary..NET">
+            <p>The object manager is a Visual Studio plugin.  In the <a href="http://community.versant.com/Downloads.aspx" target="_parent">db4o distribution</a> there's a subfolder 'omn', which contains the setup for it. We install it and then open Visual Studio. </p>
+        </div>
+        <h1>Using the Object Manager</h1>
+        <p MadCap:conditions="Primary.Java">To use the object manager we first open the OME perspective ('Window'-&gt;'Open Perspective'-&gt;'Other...'. Then we can open a db4o database.</p>
+        <p MadCap:conditions="Primary..NET">After the installation we can open db4o databases with Visual Studio (Tools-&gt;'ObjectManager Enterprise'-&gt;Connect). After that we can explore the database.</p>
+        <p>After connecting we see a list of stored classes on the right. Below that we can inspect a stored class and see it details.</p>
+        <p>To query the database we drag and drop the fields we're interested in to the query builder. Then we change the condition and values on that query and run it.</p>
+        <p MadCap:conditions="Primary.Java">
+            <img src="ome-overview.png" />
+        </p>
+        <p MadCap:conditions="Primary..NET">
+            <img src="omn-overview.png" />
+        </p>
+        <p>On the result page we can select the different objects and inspect their values. We also can change values of objects and then store the data.</p>
+        <p MadCap:conditions="Primary.Java">
+            <img src="omj-result.png" />
+        </p>
+        <p MadCap:conditions="Primary..NET">
+            <img src="ome-result.png" />
+        </p>
+    </body>
+</html>

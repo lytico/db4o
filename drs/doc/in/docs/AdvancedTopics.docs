@@ -1,0 +1,57 @@
+.n
+.a Advanced Topics ..
+.0 Advanced Topics ..
+
+In this chapter, we will look into several advanced replication features.
+
+.1 Events ..
+Imagine you have just passed in an object that contains a huge List of objects. ._
+You only want to replicate the root object but not the list. ._
+What you can do is to make use of the event system of dRS to stop traversal at the list.
+Here is how:
+
+First, you need to implement the ReplicationEventListener interface and pass it to Replication.
+.c ReplicationEventListener listener = new ReplicationEventListener() {
+	public void onReplicate(ReplicationEvent event) {
+		if (event.stateInProviderA().getObject() instanceof List)
+			event.stopTraversal();
+	}
+};
+
+ReplicationSession replication = Replication.begin(objectContainer, hibernateConfiguration, listener);
+..
+
+.2 Resolving conflicts ..
+The event system of dRS can also be used to resolve conflicts. When there is a conflict, ._
+You can choose to override the result with either the object from provider A, provider B or null. ._
+If you choose null, then the object will not be replicated.
+
+.c ReplicationEventListener listener = new ReplicationEventListener() {
+	public void onReplicate(ReplicationEvent event) {
+		if (event.isConflict()) {
+			ObjectState chosenObjectState = event.stateInProviderA();
+			event.overrideWith(chosenObjectState);
+		}
+	}
+};
+
+ReplicationSession replication = Replication.begin(objectContainer, hibernateConfiguration, listener);
+..
+
+.1 Deleted Objects Replication ..
+
+In addition to replicating changed/new objects, dRS is able to replicate deletions of objects. ._    
+When an object is deleted since last replication in provider A and you would like to replicate this changes ._
+to provider B, you can make use of the dRS to handle that.
+
+You could replicate  deletions as follow:
+
+.c replication.replicateDeletions(Car.class); ..
+
+dRS traverses every Car object in both providers. For instance, if a deletion is found in one provider, ._
+the deletion will be replicated to the other provider. During the traversal, ReplicationEvent will be generated ._
+as usual, you can listen to them. By default, the deletion will prevail. You can choose the counterpart of ._
+the deleted object to prevail if required. 
+
+Note that the deletions of a Parent will not be cascaded to child objects. For example, if a Car contains a child object, ._
+e.g. Pilot, Pilot will not be traversed and the deletions of Pilot will not be replicated.

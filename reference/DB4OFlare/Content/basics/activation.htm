@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1473" MadCap:lastWidth="576">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Activation" />Activation Concept</h1>
+        <P>Activation is a db4o mechanism which controls object instantiation. Why is it necessary? Let's look at an example of a stored  tree structure. There's one root object, which has a bunch nodes. Each node has again a few subnodes and so on and so forth. What happens when you run a query and retrieve the root object? All the sub-objects will have to be created in the memory! If the tree is very large, this will fill up your memory. </P>
+        <P>
+            <img src="activation_concept/without_activation.png" />
+        </P>
+        <P>Luckily db4o does not behave like this. When a query returns objects, they are loaded into memory (activated in db4o terms) only to a certain activation depth. In this case depth means "number of member references away from the original object". All the fields beyond the activation depth are set to null or to default values. So db4o does not load the whole object graph. Instead, db4o loads only the parts of the object graph you are interested in.</P>
+        <P>
+            <img src="activation_concept/with_activation.png" />
+        </P>
+        <P>Activation occurs in the following cases:</P>
+        <OL>
+            <LI>When you iterate over query results.</LI>
+            <LI>Object is activated explicitly with the object containers activate method. </LI>
+            <LI>Collections  members are activated automatically, when the collection is activated, using at least depth 1 for lists and depth 2 for maps.</LI>
+        </OL>
+        <p>For a concrete example of the activation process: <MadCap:xref href="activation_concept/hitting_activation_depth_wall.htm" target="" title="" alt="">See "Activation In Action"</MadCap:xref></p>
+        <p>If you want to automate the activation process: <MadCap:xref href="activation_concept/transparent_activation_framework.htm" target="" title="" alt="">See "Transparent Activation"</MadCap:xref></p>
+    </body>
+</html>

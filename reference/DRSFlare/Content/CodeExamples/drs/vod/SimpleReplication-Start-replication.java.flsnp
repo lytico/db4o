@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ReplicationSession replicationSession =
+        Replication.begin(mobileDatabase, centralDatabase);
+
+ObjectSet changesOnMobileDB = mobileDatabase.objectsChangedSinceLastReplication();
+<span style="color:Blue;">for</span> (Object changedObject : changesOnMobileDB) {
+    replicationSession.replicate(changedObject);
+}
+replicationSession.commit();</pre>
+		<div class="codesnippet-meta">
+			SimpleReplication.java: Start replication
+			<div class="codedownload">
+				<a href="Example-drs-vod-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

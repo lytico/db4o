@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?NLS TYPE="org.eclipse.help.toc" ?>
+<toc label="db4o Instrumentation" topic="doc/index.html">
+	<topic href="doc/preferences.html" label="db4o Instrumentation Preferences Page">
+ </topic>
+ <topic href="doc/logview.html" label="db4o Instrumentation Log View">
+ </topic>
+</toc>

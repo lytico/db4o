@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="600" MadCap:lastWidth="527">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Communication" />Client-Server Timeouts</h1>Every client/server application has to face a problem of
+network communications. Luckily modern protocols screen the end-application
+from all fixable problems. However there are still physical reasons that can't
+be fixed by a protocol: disconnections, power failures, crash of a system on
+the other end of communication channel etc. In these cases it is still the
+responsibility of the client-server application to exit the connection
+gracefully, releasing all resources and protecting data. 
+
+<p>In order to achieve an efficient client/server communication
+and handling of connection problems the following requirements were defined for
+db4o:</p><ul><li>The connection should not
+     be terminated when both client and server are still alive, even if either
+     of the machines is running under heavy load. </li><li>Whenever a client dies,
+     peacefully or with a crash, the server should clean up all resources that
+     were reserved for the client. </li><li>Whenever a server goes
+     offline, it should be possible for the client to detect that there is a problem.
+     </li><li>Since many clients may be
+     connected at the same time, it makes sense to be careful with the
+     resources the server reserves for each client. </li><li>A client can be a very
+     small machine, so it would be good if the client application can work with
+     a single thread.</li></ul><p>The current approach tries to keep things as simple as
+possible: any connection is closed immediately upon a timeout. In order to
+prevent closing connections when there is no communication between client and
+server due to reasons different from connection problems a separate timer
+thread was created to send messages to the server at a regular basis. The
+server must reply to the thread immediately, if this does not happen the
+communication channel gets closed. </p><p>This approach works effectively for both client and server side. However
+there's are small downside to this. When a server operation takes longer than the timeout, the connection will be closed. You can configure the timeouts for the <a href="../configuration/client/timeout_client_socket.htm">client</a> and the <a href="../configuration/server_configuration.htm">server</a>.</p><p>An easy rule of thumb: </p><ul><li>If you experience clients disconnecting, raise the timeout value.</li><li>If you have a system where clients crash frequently or where the network is
+very instable, lower the values, so resources for disconnected clients are
+freed faster.</li></ul></body>
+</html>

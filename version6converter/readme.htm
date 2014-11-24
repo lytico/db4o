@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Readme</title>
+</head>
+<body>
+    These macros are created to convert .NET db4o applications, which are using
+    db4o version 5.x, to db4o version 6.0.<br />
+    The macros support VS2003 and VS2005 projects in VB and c#.<br />
+    <br />
+    <h2>
+        Usage:</h2>
+    <br />
+    <ol>
+        <li>Make a full backup of your solution. </li>
+        <li>Open the solution in the Visual Studio.&nbsp;</li>
+        <li>Import the macro using Macro Explorer "Load Macro Project.." function.</li>
+        <li>Run the macro Convert method.&nbsp;</li>
+        <li>Go to the project references, remove old db4o version and replace it with the db4o version
+            6.0. Note: if you are upgrading to a higher version, you might have to do some manual
+            corrections as the API changed since version 6.0 (see Configuration#ClientServer
+            etc)
+            <br />
+        </li>
+    </ol>
+    <br />
+    <h2>
+        Limitations:
+    </h2>
+    <br />
+    <ol>
+        <li>Irregular format may be not interpreted correctly, i.e:
+            <br />
+            <br />
+            db4o. &nbsp; Query query = ....
+            <br />
+            or
+            <br />
+            com.&nbsp;<br />
+            &nbsp; &nbsp;&nbsp; db4o.Query query = </li>
+        <li>Some of the db4o method names clash with the interface names, which creates a problem
+            in VB if the method should be implemented:&nbsp;<br />
+            <br />
+            Public Function StoredClass() As j4o.lang.Class 
+            <br />
+            Implements ObjectConstructor.StoredClass&nbsp;<br />
+            <br />
+            StoredClass here is a method, but as the syntax can be equally used for an interface.
+            StoredClass will be treated by the converter as an interface.&nbsp;</li>
+        <li>j4o internal namespace is not translated.&nbsp;</li>
+        <li>If you've been using com.db4o namespace for your own custom classes, you must be
+            aware that it will be converted too.&nbsp;<br />
+        </li>
+    </ol>
+    <br />
+    <h2>
+        &nbsp;!!! Important !!!:
+    </h2>
+    Converter does not guarantee the result. Please make a full backup before trying
+    the converter functionality.
+
+</body>
+</html>

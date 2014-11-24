@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="226" MadCap:lastWidth="586" MadCap:conditions="Primary..NET,Primary.All languages">
+  <head />
+  <body>
+    <h1>Delegates And Events</h1>
+    <p>
+      <p MadCap:conditions="Primary..NET"></p>
+      <p>Db4o rules for delegate fields are very straightforward: <b>delegates are simply not stored.</b>  Events and delegates are generally used for binding user interface elements and domain models together. The Db4o team felt that not storing delegate fields by default was more appropriate than opening what could potentially be a very nasty can of worms (just think of a text box bound to a Customer.Changed event).  After careful thought we can easily add delegate persistence to our domain model by either installing translators for the delegate types of interest or reconnecting the necessary objects upon activation using callbacks.  For details see the specific chapters on <a href="translators.htm">Translators</a> and <a href="../callbacks.htm">Callbacks</a>.  </p>
+      <p MadCap:conditions="Global.Primary:net" />
+    </p>
+  </body>
+</html>

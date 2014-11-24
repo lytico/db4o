@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="382" MadCap:lastWidth="485">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Callbacks" />Object Callbacks</h1>
+        <p>Callback methods are automatically called on persistent objects by db4o during certain database events.</p>
+        <p>For a complete list of the signatures of all available methods see the com.db4o.ext.ObjectCallbacks interface.</p>
+        <p>You do not have to implement this interface. db4o recognizes the presence of individual methods by their signature, using reflection. You can simply add one or more of the methods to your persistent classes and they will be called.</p>
+        <p>Returning false to the <code>#objectCanXxxx()</code> methods will prevent the current action from being taken.</p>
+        <p>In a client/server environment callback methods will be called on the client with two exceptions: </p><code>objectOnDelete(), objectCanDelete()</code>
+        <p>Some possible usecases for callback methods:</p>
+        <ul>
+            <li>Setting default values after refactorings. </li>
+            <li>Checking object integrity before storing objects.  </li>
+            <li>Setting transient fields.  </li>
+            <li>Restoring connected state (of GUI, files, connections). </li>
+        </ul>
+    </body>
+</html>

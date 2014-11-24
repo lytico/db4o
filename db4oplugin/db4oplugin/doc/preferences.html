@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<title>db4o Instrumentation Preferences Page</title>
+<link rel="stylesheet" type="text/css" href="common.css">
+</head>
+
+<body>
+<table class="header" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td bgcolor="#ffffff">
+<img src="logo.png" />
+</td>
+</tr>
+</table>
+<h3>db4o Instrumentation Preferences Page</h3>
+
+<p>
+The selection of classes to be instrumented for TA/TP can be configured from
+a preferences page in the "db4o" category of the project preferences dialog.
+</p>
+<p>
+Currently two modes of selection are available:
+<ul>
+<li>a regular expression matching fully qualified class names</li>
+<li>a list of packages from the current project</li>
+</ul>
+The modes can be combined with boolean AND/OR operators.
+</p>
+<p>
+The default settings for a new project are: No packages <em>OR</em> a catch all
+(".*") regular expression, i.e. all classes will be instrumented.
+</p>
+<img src="preferences.png" align="center" />
+<p>
+In the sample screenshot for the "foo_core" project, all classes inside the
+foo.core.model package that are prefixed "Domain" will be instrumented. 
+</p>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+.n
+.a QBE ..
+.1 Query by Example (QBE) ..
+
+When using  .i Query By Example ..  (QBE) you provide db4o with a ._
+template object. db4o will return all of the objects which match all ._
+non-default field values. This is done via reflecting all of the fields ._
+and building a query expression where all non-default-value fields are ._
+combined with AND expressions. Here's an example from the previous chapter:
+
+.s com.db4odoc.f1.chapter1.FirstStepsExample#retrievePilotByName -run ..
+
+Querying this way has some obvious limitations:
+- db4o must reflect all members of your example object.
+- You cannot perform advanced query expressions. (AND, OR, NOT, etc.)
+- You cannot constrain on values like 0 (integers), "" (empty strings), ._
+or nulls (reference types) because they would be interpreted as unconstrained.
+- You need to be able to create objects without initialized fields. ._
+That means you can not initialize fields where they are declared. ._
+You can not enforce contracts that objects of a class are only ._
+allowed in a well-defined initialized state.
+- You need a constructor to create objects without initialized fields.
+
+To get around all of these constraints, db4o provides the Native Query (NQ) system.

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1416" MadCap:lastWidth="728">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Network;Client-Server" />Client-Server</h1>
+        <p>db4o's is an embedded database which usually runs in process. Nevertheless db4o also supports a client server setup. There's no ready to use db4o server, instead you embedded the db4o server in a regular application. This gives you full how you want to run the db4o server.</p>
+        <p>In order to use the db4o client server mode you need to include the <span MadCap:conditions="Primary.Java">db4o-X.XX-cs-javaC.jar if your not using the db4o-X.XX-all-javaX.jar</span><span>Db4objects.Db4o.CS.dll-assembly </span>in your project. <MadCap:xref href="dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref></p>
+        <h2>Start The Server</h2>
+        <p>You start the server by creating a object server instance with the client server factory. Pass the database file path and the port to the factory. After that you need to specify a user-name and password which clients can use to login to this server. You can add multiple users by calling the grant access method multiple times.</p>
+        <MadCap:snippetBlock src="CodeExamples/clientserver/basics/ServerExample-Start-a-db4o-server.all.flsnp" />
+        <h2>Connect To The Server</h2>
+        <p>After the server is up an running you can connect to it. Pass the URL, port, user name and password to the client server factory. This will return a client object container. After that the container is ready to use.</p>
+        <MadCap:snippetBlock src="CodeExamples/clientserver/basics/Db4oClientExample-Connect-to-the-server.all.flsnp" />
+        <h2>Client-Server Setup</h2>
+        <p>When using a client server setup you should check following things:</p>
+        <ul>
+            <li>Ensure that the client and server use the same db4o version.</li>
+            <li>Both, the server and client should have access to classes of the stored objects. When the classes differ  between the client and server or are missing unspecified behavior can occur.</li>
+        </ul>
+    </body>
+</html>

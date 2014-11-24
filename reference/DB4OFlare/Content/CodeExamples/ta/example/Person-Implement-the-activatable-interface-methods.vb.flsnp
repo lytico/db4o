@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Bind(<span style="color:Blue;">ByVal</span> activator <span style="color:Blue;">As</span> IActivator) _
+        <span style="color:Blue;">Implements</span> IActivatable.Bind
+    <span style="color:Blue;">If</span> m_activator <span style="color:Blue;">Is</span> activator <span style="color:Blue;">Then</span>
+        <span style="color:Blue;">Exit</span> <span style="color:Blue;">Sub</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+    <span style="color:Blue;">If</span> activator <span style="color:Blue;">IsNot</span> <span style="color:Blue;">Nothing</span> <span style="color:Blue;">AndAlso</span> m_activator <span style="color:Blue;">IsNot</span> <span style="color:Blue;">Nothing</span> <span style="color:Blue;">Then</span>
+        <span style="color:Blue;">Throw</span> <span style="color:Blue;">New</span> InvalidOperationException(<span style="color:#A31515;">&quot;Object can only be bound to one activator&quot;</span>)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+    m_activator = activator
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> Activate(<span style="color:Blue;">ByVal</span> activationPurpose <span style="color:Blue;">As</span> ActivationPurpose) _
+        <span style="color:Blue;">Implements</span> IActivatable.Activate
+    <span style="color:Blue;">If</span> m_activator <span style="color:Blue;">IsNot</span> <span style="color:Blue;">Nothing</span> <span style="color:Blue;">Then</span>
+        m_activator.Activate(activationPurpose)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			Person.vb: Implement the activatable interface methods
+			<div class="codedownload">
+				<a href="Example-ta-example-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="10" MadCap:lastHeight="983" MadCap:lastWidth="784" MadCap:conditions="Primary..NET">
+    <head>
+    </head>
+    <body>
+        <h1>ASP.NET Assembly Naming</h1>
+        <p>When you code directly in ASP.NET pages you should take into consideration that the assembly names are generated automatically on each build. db4o distinguish persisted classes by name, namespace and assembly. So after the assembly name has changed, you won't be able to access classes saved with the previous version of the assembly.</p>
+        <p>There are several workarounds:</p>
+        <ul>
+            <li>You can create a separate class library keeping db4o logic and persistent classes. This can also help if you need to access fully trusted db4o library from partially trusted ASP application.</li>
+            <li>You can use db4o <a href="../../configuration/common/alias.htm">aliasing API</a> to redirect saved classes to the new assembly name. The following method should be called before opening database file to make all the classes within the namespace available after assembly name change:</li>
+        </ul>
+        <p>
+            <MadCap:snippetBlock src="../../CodeExamples/platform/asp/DynamicAssembliesIssue-Fix-ASP.all.flsnp" />
+        </p>
+        <MadCap:snippetBlock src="../../CodeExamples/platform/asp/DynamicAssembliesIssue-Replace-the-dynamic-assembly-name-with-a-fixed-one.all.flsnp" />
+    </body>
+</html>

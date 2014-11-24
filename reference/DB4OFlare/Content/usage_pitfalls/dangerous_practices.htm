@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="7" MadCap:lastHeight="317" MadCap:lastWidth="573">
+    <head>
+    </head>
+    <body>
+        <h1>Dangerous Practices</h1>
+        <p>Db4o
+databases are well protected against corruption. However some specific
+configurations can make your database file vulnerable.
+</p>
+        <ul>
+            <li><a href="../configuration/file/lock_database.htm">Disabling the file-lock</a>. When two db4o instance write to the same database file at the same time, the database will be corrupted. Therefore you should avoid disabling this setting. You can safely disable the file-lock, when you're using the database in a <a href="../configuration/file/read_only.htm">read-only</a> mode.</li>
+            <li>Using the <a href="../configuration/file/storage/nonflushingstorage.htm">non-flushing storage</a>. This storage will disable the flush-operation to the disk. While this improves the performance, it endangers consistent commits in a crash.</li>
+            <li>db4o cannot deal with some class-hierarchy-changes. You cannot add a class between two existing classes in the class-hierarchy. Or remove a class from the top of the class-hierarchy. <MadCap:xref href="../advanced_topics/refactoring_and_schema_evolution/refactoring_class_hierarchy.htm" target="" title="" alt="">See "Refactoring Class Hierarchy"</MadCap:xref></li>
+            <li>You cannot change a field from a array to a simple field of the same type and back.This only applies when you change it from a type to the same array-type. So for example from a string to an array of strings. A change from string to an array of integer is fine. <MadCap:xref href="../advanced_topics/refactoring_and_schema_evolution/field_refactoring_limitation.htm" target="" title="" alt="">See "Field Refactoring Limitation"</MadCap:xref></li>
+        </ul>
+    </body>
+</html>

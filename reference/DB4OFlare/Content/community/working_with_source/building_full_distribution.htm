@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="1338" MadCap:lastWidth="553">
+    <head>
+    </head>
+    <body>
+        <h1>Building db4o</h1>
+        <p>Building full distribution will allow you to get the same db4o packages as you can get from db4o download center. However, the flexibility of the build project also allows you to get only parts of it, like only java distro, only documentation, only tests etc.</p>
+        <p>The following documentation explains how to build a full distribution using Eclipse version 3.4 Ganymede. It is assumed that you have <a href="http://ant.apache.org/">ant</a> and one of Eclipse SVN clients (<a href="http://subclipse.tigris.org/">Subclipse</a> or <a href="http://www.eclipse.org/subversive/">Subversive</a>) installed.  </p><a name="Projects Required "></a>
+        <h2>Projects Required </h2>
+        <p>In order to build db4o you will need to check out the following
+projects.
+</p>
+        <ul>
+            <li>bloat: The byte code manipulation library db4o uses.</li>
+            <li>db4o.cs: The client server implementation for db4o.</li>
+            <li>db4o.cs.optional: Optional client server features for db4o.</li>
+            <li>db4o.instrumentation: The instrumentation basic functionality for db4o.</li>
+            <li>db4o.net: The .NET version of db4o.</li>
+            <li>db4obuild: The build scripts for db4o.</li>
+            <li>db4onqopt: The db4o native query optimizer.</li>
+            <li>db4otaj: The db4o transparent activation/persistence enhancer.</li>
+            <li>db4otools: The db4o tools like Ant scripts.</li>
+            <li>db4ounit: The db4o test project.</li>
+            <li>db4ounit.extensions: Additional unit test functionality.</li>
+            <li>decaf: The Java 1.5 to Java 1.4 converter. You need to checkout all sub-projects on the same level as other db4o projects.</li>
+            <li>drs: The db4o replication system.</li>
+            <li>sharpen: The Java to C# converter.  You need to checkout all sub-projects on the same level as other db4o projects.</li>
+            <li>doctor: A tool for building the tutorial.</li>
+            <li>tutorial: The db4o tutorial</li>
+        </ul><a name="machine.properties"></a>
+        <h3>machine.properties</h3>
+        <p>You will need to
+create machine.properties file in db4obuild folder. The contents of the
+file
+can be copied from build.xml (see the comments at the beginning of the
+file). Modify the paths where applicable to set the build variables for
+your environment. </p>
+        <p>Read the instructions at top of the  build.xml to find out what options are available. Here's an example:</p>
+        <pre class="monospace" xml:space="preserve">file.compiler.jdk1.3=%JAVA_HOME%/bin/javac.exe
+file.compiler.jdk1.3.args.optional=-source 1.3
+file.jvm.jdk1.5=%JAVA_HOME%/bin/java.exe
+dir.workspace=C:/Users/Gamlor/Develop/db4o/db4o-src/
+eclipse.home=C:/progs/eclipse
+msbuild.executable="C:/Windows/Microsoft.NET/Framework/v4.0.30319/MSBuild.exe"&#160;</pre>
+        <h2>Build Preparation</h2>
+        <p>First you will need to run some preparation scripts. This is done only once per workspace and should not be repeated in the future.</p>
+        <p>Run build-db4obuild.xml, this will compile some of the tools used in the build process.</p>
+        <p>You will need to generate a key to sign the tutorial applet. Use the following commands:</p>
+        <p>keytool -genkey -alias db4objects -keyalg rsa</p>
+        <p>keytool -export -alias db4objects -file [path]/db4obuild/config/db4objects.crt </p>
+        <p>Use "kistoa" (without quotes) as your keypass and storepass. </p>
+        <p>Replace [path] with the path to db4obuild project on your system and make sure that db4objects.crt file is created in db4obuild/config folder.</p>
+        <p>If you've already generated db4objects key pair before, you will need to delete it before re-generating:</p>
+        <p>keytool -delete -alias db4objects </p>
+        <p>You will need to add ant-contrib.jar to your eclipse ant. You can download ant-contib.jar at:</p>
+        <p><a href="http://sourceforge.net/projects/ant-contrib/">http://sourceforge.net/projects/ant-contrib</a>
+        </p>
+        <ul>
+            <li>Add ant-contib jar to ant folder in eclipse/plugins.</li>
+            <li>After this is done go to Window-&gt;Preferences menu in Eclipse.</li>
+            <li>Select Ant-&gt;Runtime in the list. </li>
+            <li>Then select "Ant Home Entries".</li>
+            <li>Press "Add External Jar"
+and select ant-contib.jar location in the plugins folder.</li>
+        </ul><a name="Running The Build"></a>
+        <h2>Running The Build</h2>
+        <p>Now everything is ready to run db4o build. Right-click build.xml file and
+select "Run As/Ant Build". You will need to run "buildall" target to generate java and .NET distribution.   </p>
+    </body>
+</html>

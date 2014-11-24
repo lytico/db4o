@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="205" MadCap:lastWidth="637">
+    <body>
+        <h2>Consistency Check</h2>
+        <p MadCap:conditions="Primary..NET">To run consistency checks use the <a href="../advanced_topics/enhancement_tools/enhancement_for_.net/db4otool.htm">Db4oTool</a> with the parameter -check, like this:</p>
+        <p MadCap:conditions="Primary.Java">To run consistency checks use the com.db4o.consistency.ConsistencyChecker class, like this:</p>
+        <pre class="prettyprint" xml:space="preserve" MadCap:conditions="Primary..NET">Db4oTool.exe -check databaseFile.db4o</pre>
+        <pre class="prettyprint" xml:space="preserve" MadCap:conditions="Primary.Java">java -cp db4oX-X.XX-all-java5.jar com.db4o.consistency.ConsistencyChecker databaseFile.db4o</pre>
+        <p>This consistency check doesn't check the content of objects. It only checks if the overall structure of the database file is still intact. Also it doesn't offer any repair functionality. It only tells you if the file is corrupted or not.</p>
+    </body>
+</html>

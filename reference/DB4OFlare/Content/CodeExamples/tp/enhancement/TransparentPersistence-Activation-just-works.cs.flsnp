@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Person person = QueryByName(container, <span style="color:#A31515;">&quot;Joanna the 10&quot;</span>);
+Person beginOfDynasty = person.Mother;
+
+<span style="color:Green;">// With transparent activation enabled, you can navigate deeply</span>
+<span style="color:Green;">// nested object graphs. db4o will ensure that the objects</span>
+<span style="color:Green;">// are loaded from the database.</span>
+<span style="color:Blue;">while</span> (<span style="color:Blue;">null</span> != beginOfDynasty.Mother)
+{
+    beginOfDynasty = beginOfDynasty.Mother;
+}
+Console.WriteLine(beginOfDynasty.Name);</pre>
+		<div class="codesnippet-meta">
+			TransparentPersistence.cs: Activation just works
+			<div class="codedownload">
+				<a href="Example-tp-enhancement-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

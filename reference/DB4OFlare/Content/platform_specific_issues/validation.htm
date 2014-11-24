@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3201" MadCap:lastWidth="728">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Validation" />Validation</h1>
+        <p>By default db4o doesn't support any validation and integrity checks <a href="../advanced_topics/unique_constraints.htm">except unique field values</a>.
+		
+		 <span>However you can use <a href="http://msdn.microsoft.com/en-us/library/cc490428.aspx" target="_parent">.NET data annotations</a> to validate objects. The .NET data annotations provide attributes for validating objects.</span><span>However you can use other libraries like <a href="http://www.hibernate.org/subprojects/validator.html" target="_parent">Hibernate-Validator</a> to validate objects. Download the library from the <a href="http://www.hibernate.org/subprojects/validator/download" target="_parent">official Hibernate site</a> and include into your project.</span>Objects can be validated when you store them in the database by <a href="../advanced_topics/callbacks.htm">using db4o events</a>.</p>
+        <p>Add the <MadCap:variable name="Primary.Annotation" /> to your classes which you want to validate:</p>
+        <MadCap:snippetBlock src="../CodeExamples/validation/DataValidation-Validation-attributes.all.flsnp" />
+        <p>Now we can write a validation method and register it to the db4o events:</p>
+        <MadCap:snippetBlock src="../CodeExamples/validation/DataValidation-Validation-support.all.flsnp" />
+        <MadCap:snippetBlock src="../CodeExamples/validation/DataValidation-Register-validation-for-the-create-and-update-event.all.flsnp" />
+        <p>After that you can store and update objects. In case a object violates its validation rules an exception is thrown. That exception will contain information about the violations.</p>
+        <MadCap:snippetBlock src="../CodeExamples/validation/DataValidation-Storing-a-valid-pilot.all.flsnp" />
+        <MadCap:snippetBlock src="../CodeExamples/validation/DataValidation-Storing-a-invalid-pilot-throws-exception.all.flsnp" />
+    </body>
+</html>

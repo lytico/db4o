@@ -1,0 +1,32 @@
+.0 Download Contents ..
+
+The db4o Java distribution comes as one zip file, db4o- .p version .. -java.zip. ._
+When you unzip this file, you get the following directory structure:
+
+.g directoryjava.gif ..
+
+
+Please take a look at all the supplied documentation formats to choose ._
+the one that works best for you:
+.a APIDocumentation ..
+.b db4o- .p version .. /doc/api/index.html ..
+The API documentation for db4o is supplied as JavaDocs HTML files. While ._
+you read through this tutorial it may be helpful to look into the API ._
+documentation occasionally.
+
+.b db4o- .p version .. /doc/reference/index.html ..
+The reference documentation is a complete compilation for ._
+experienced db4o users. 
+
+.b db4o- .p version .. /doc/tutorial/index.html .. 
+This is the interactive HTML tutorial. Examples can be run "live" ._
+against a db4o database from within the browser. ._
+In order to use the interactive functionality ._
+a Java JRE 1.5 or above needs to be installed and integrated ._
+into the browser. Java security settings have to allow applets to be ._
+run. If you have problems using the interactive functionality, please ._
+refer to  .l Troubleshooting Tutorial Troubleshooting .. .
+
+.b db4o- .p version .. /doc/tutorial/db4o- .p version .. -tutorial.pdf .. 
+The PDF version of the tutorial allows best fulltext search capabilities.
+

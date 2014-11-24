@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="db4oBuilder"
+         name="db4o instrumentation builder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            callOnEmptyDelta="false"
+            hasNature="true">
+         <run
+               class="com.db4o.eclipse.builder.Db4oInstrumentationBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="db4oNature"
+         name="db4o project nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.db4o.eclipse.nature.Db4oNature">
+         </run>
+      </runtime>
+      <builder
+            id="db4oplugin.db4oBuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IProject"
+            nameFilter="*"
+            id="db4oplugin.popup.naturechange">
+         <action
+               class="com.db4o.eclipse.ui.ToggleDb4oNatureAction"
+               enablesFor="1"
+               id="db4oplugin.addRemoveNatureAction"
+               label="Add/Remove db4o Nature"
+               menubarPath="additions"
+               state="false">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            adaptable="true"
+            class="com.db4o.eclipse.ui.Db4oInstrumentationPropertyPage"
+            id="db4oplugin.propertyPage"
+            name="db4o"
+            objectClass="org.eclipse.jdt.core.IJavaProject">
+            <filter name="nature" value="db4oplugin.db4oNature" />
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="db4oplugin.view.category"
+            class="com.db4o.eclipse.ui.Db4oInstrumentationLogView"
+            icon="res/db4oicon.png"
+            id="db4oplugin.logView"
+            name="db4o log"
+            restorable="true">
+      </view>
+      <category
+            id="db4oplugin.view.category"
+            name="db4o">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            category="db4o"
+            file="doc/toc.xml"
+            primary="true">
+      </toc>
+   </extension>
+
+</plugin>

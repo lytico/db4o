@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="440" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Intern Strings</h1>
+        <p>You can configure db4o to call the intern method on all strings. See more on the intern method for your platform.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-intern-strings.all.flsnp" />
+        <h2>Benefits</h2>
+        <p>When a lot of strings contain a the exact same content, calling intern on them can safe some memory.</p>
+        <h2>Disadvantage</h2>
+        <p>Calling intern on  a string adds that string to a global pool. Therefore this string cannot be garbage collected. So when you load a lot of strings which you use only once, you can run into memory-problems.</p>
+    </body>
+</html>

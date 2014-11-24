@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">// First get the changes of the two replication-partners</span>
+ObjectSet changesOnDesktop = replicationSession.providerA().objectsChangedSinceLastReplication();
+ObjectSet changesOnMobile = replicationSession.providerB().objectsChangedSinceLastReplication();
+
+<span style="color:Green;">// then iterate over both change-sets and replicate it</span>
+<span style="color:Blue;">for</span> (Object changedObjectOnDesktop : changesOnDesktop) {
+    replicationSession.replicate(changedObjectOnDesktop);
+}
+
+<span style="color:Blue;">for</span> (Object changedObjectOnMobile : changesOnMobile) {
+    replicationSession.replicate(changedObjectOnMobile);
+}
+
+replicationSession.commit();</pre>
+		<div class="codesnippet-meta">
+			Db4oReplicationExamples.java: Bidirectional replication
+			<div class="codedownload">
+				<a href="Example-drs-db4o-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

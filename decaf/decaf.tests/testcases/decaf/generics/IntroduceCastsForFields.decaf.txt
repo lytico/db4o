@@ -1,0 +1,69 @@
+package decaf.generics;
+
+class Foo {
+	public Object field;
+	public Object[] array;
+	
+	public Foo(Object value) {
+		field = value;
+	}
+	
+	public void run(Object value) {
+	}
+}
+
+class Foo2 extends Foo {
+
+	public Foo2(CharSequence value) {
+		super(value);
+	}
+
+	public void set(int index, CharSequence value) {
+		((CharSequence[]) array)[index] = value;
+	}
+	
+	public void set(CharSequence value) {
+		field = value;
+	}
+}
+
+class Bar extends Foo {
+
+	public Bar() {
+		super(null);
+	}
+	
+	public String toString() {
+		String value = ((String) field);
+		if (value.length() == 0)
+			return null;
+		return ((String) field);
+	}
+}
+
+class Baz extends Foo {
+	public Baz() {
+		super(null);
+	}
+	
+	public int size() {
+		return ((String) ((Foo) field).field).length();
+	}
+	
+	public void run(Object value) {
+		int size = ((String) ((Foo) value).field).length();
+	}
+}
+
+class Main {
+	static void main() {
+		Foo foo = new Foo("42");
+		String s1 = ((String) foo.field);
+		String s2 = ((String) foo.field).toUpperCase();
+		String s3 = ((String) (foo).field);
+		String s4 = ((String[]) foo.array)[0];
+		foo.field = s1;
+		(foo).field = s2;
+		((String[]) foo.array)[0] = s3;
+	}
+}

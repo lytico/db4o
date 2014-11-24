@@ -1,0 +1,115 @@
+.n
+.a Translators ..
+.0 Translators ..
+
+In the last chapter we have covered the alternative configurations ._
+db4o offers for object reinstantiation. What's left to see is how ._
+we can store objects of a class that can't be cleanly stored with either ._
+of these approaches.
+
+.1 A 'NotStorable' class ..
+
+Let's reuse our example from the previous chapter.
+
+.s com.db4o.f1.chapter7.NotStorable ..
+
+We'll be using this code to store and retrieve and instance of this ._
+class with different configuration settings:
+
+.s com.db4odoc.f1.chapter7.TranslatorExample#tryStoreAndRetrieve -run +{} ..
+
+.2 Using the constructor ..
+
+.2 Bypassing the constructor ..
+
+.s com.db4odoc.f1.chapter7.TranslatorExample#tryStoreWithoutCallConstructors ..
+
+In this case our object seems to be nicely stored and retrieved, however, ._
+it has forgotten about its length, since db4o doesn't store transient ._
+members and the constructor code that sets it is not executed.
+
+.s com.db4odoc.f1.chapter7.TranslatorExample#tryStoreWithCallConstructors ..
+
+At storage time, db4o tests the only available constructor with null arguments and ._
+runs into a NullPointerException, so it refuses to accept our object.
+
+(Note that this test only occurs when configured with exceptionsOnNotStorable - ._
+otherwise db4o will silently fail when trying to reinstantiate the object.)
+
+.1 The Translator API ..
+
+So how do we get our object into the database, now that everything seems ._
+to fail? Db4o provides a way to specify a custom way of storing and retrieving ._
+objects through the ObjectTranslator and ObjectConstructor interfaces.
+
+.2 ObjectTranslator ..
+
+The ObjectTranslator API looks like this:
+
+.c public Object onStore(ObjectContainer container,
+                      Object applicationObject);
+public void onActivate(ObjectContainer container,
+                       Object applicationObject,
+                       Object storedObject);
+public Class storedClass ();
+..c
+
+The usage is quite simple: When a translator is configured for a class, ._
+db4o will call its onStore method with a reference to the database and ._
+the instance to be stored as a parameter and will store the object returned. ._
+This object's type has to be primitive from a db4o point of view and it has ._
+to match the type specification returned by storedClass().
+
+On retrieval, db4o will create a blank object of the target class (using ._
+the configured instantiation method) and then pass it on to onActivate() ._
+along with the stored object to be set up accordingly.
+
+.2 ObjectConstructor ..
+
+However, this will only work if the application object's class provides ._
+sufficient setters to recreate its state from the information contained ._
+in the stored object, which is not the case for our example class.
+
+For these cases db4o provides an extension to the ObjectTranslator ._
+interface, ObjectConstructor, which declares one additional method:
+
+.c public Object onInstantiate(ObjectContainer container,
+                            Object storedObject);
+..c
+
+If db4o detects a configured translator to be an ObjectConstructor ._
+implementation, it will pass the stored class instance to the onInstantiate() ._
+method and use the result as a blank application object to be processed ._
+by onActivate().
+
+Note that, while in general configured translators are applied to ._
+subclasses, too, ObjectConstructor application object instantiation ._
+will not be used for subclasses (which wouldn't make much sense, ._
+anyway), so ObjectConstructors have to be configured for the ._
+concrete classes.
+
+.1 A translator implementation ..
+
+To translate NotStorable instances, we will pack their id and name ._
+values into an Object array to be stored and retrieve it from there ._
+again. Note that we don't have to do any work in onActivate(), since ._
+object reinstantiation is already fully completed in onInstantiate().
+
+.s com.db4odoc.f1.chapter7.NotStorableTranslator ..
+
+Let's try it out:
+
+.s com.db4odoc.f1.chapter7.TranslatorExample#storeWithTranslator ..
+
+.1 Conclusion ..
+
+For classes that cannot cleanly be stored and retrieved with db4o's ._
+standard object instantiation mechanisms, db4o provides an API to ._
+specify custom reinstantiation strategies. These also come in two ._
+flavors: ObjectTranslators let you reconfigure the state of a 'blank' ._
+application object reinstantiated by db4o, ObjectConstructors also ._
+take care of instantiating the application object itself.
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter7.TranslatorExample ..

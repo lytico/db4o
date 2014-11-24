@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1359" MadCap:lastWidth="586" MadCap:conditions="Primary..NET">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Object Manager Enterprise:View Enums" />Viewing Enum Values In OME</h1>
+        <p><a href="../../advanced_topics/type_handling/static_fields_and_enums/.net_enumerations.htm">.NET-enums&#160;</a> <![CDATA[ ]]>do not carry any database identity and are stored in
+their parent object slot. If you open a database with enum values in OME, you
+will be able to see the enum class in the db4o Browser view, but if you
+proceed and select "Show all objects" from the right-click menu you will see
+that there are no enum objects stored in the database.</p>
+        <p>But don't
+worry, an enum is just an integer so all we need are the values of the
+enum fields in the database. &#160;Please,
+select a class with the enum field in the db4o Browser view. Right-click it and select
+"Show all objects". </p>
+        <p>
+            <img src="Viewing_Enum_Values_In_OME/omn_without_assembly.png" />
+        </p>
+        <p>Something
+went wrong here - there are no Enum values and nulls are stored instead. Is the
+information lost? </p>
+        <p>Here you
+will need to understand how enum values are stored in the database. In order to
+save space in the database file, db4o stores only the absolutely necessary
+information for the enums:</p>
+        <ul>
+            <li>Enum
+class id</li>
+            <li>Enum
+numeric value</li>
+        </ul>
+        <p>The actual enum representation will be picked
+up in the runtime using enum class definition. As OME by default runs without
+class definitions using Generic Reflector, OME can't interpret the Enum field
+value correctly.&#160; In order to fix you need to add the assemblies which contain the enum-type.</p>
+        <MadCap:snippetBlock src="../../Snippets/OME_add_assembly.flsnp" />
+        <p>
+            <img src="Viewing_Enum_Values_In_OME/omn_with_assembly.png" />
+        </p>
+    </body>
+</html>

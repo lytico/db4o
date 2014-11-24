@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();
+config.Common.ObjectClass(<span style="color:Blue;">typeof</span> (Car)).ObjectField(<span style="color:#A31515;">&quot;pilot&quot;</span>).CascadeOnDelete(<span style="color:Blue;">true</span>);
+<span style="color:Blue;">using</span> (IObjectContainer container = Db4oEmbedded.OpenFile(config, DatabaseFile))
+{</pre>
+		<div class="codesnippet-meta">
+			DeletionExamples.cs: Mark field for cascading deletion
+			<div class="codedownload">
+				<a href="Example-Code-deletion-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

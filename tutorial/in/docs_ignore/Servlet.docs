@@ -1,0 +1,91 @@
+.n
+.a Servlets ..
+.0 Servlets ..
+
+Running db4o as the persistence layer of a Java web application is easy. ._
+There is no installation procedure - db4o is just another library in ._
+your application. There are only two issues that make web applications ._
+distinct from standalone programs from a db4o point of view. One is ._
+the more complex classloader environment - db4o needs to know itself ._
+(of course) and the classes to be persisted. Please refer to the ._
+.l Classloader classloader chapter ..l  for more information.
+
+
+The other issue is configuring, starting and shutting down the db4o ._
+server correctly. This can be done at the servlet API layer or within ._
+the web application framework you are using.
+
+
+On the servlet API layer, you could bind db4o server handling to the ._
+servlet context via an appropriate listener. A very basic sketch might ._
+look like this:
+
+
+.c 
+public class Db4oServletContextListener
+    implements ServletContextListener {
+  public static final String KEY_DB4O_FILE_NAME = "db4oFileName";
+  public static final String KEY_DB4O_SERVER = "db4oServer";
+  private ObjectServer server=null;
+	
+  public void contextInitialized(ServletContextEvent event) {
+    close();
+    ServletContext context=event.getServletContext();
+    String filePath=context.getRealPath(
+        "WEB-INF/db/"+context.getInitParameter(KEY_DB4O_FILE_NAME));
+    server=Db4o.openServer(filePath,0);
+    context.setAttribute(KEY_DB4O_SERVER,server);
+    context.log("db4o startup on "+filePath);
+  }
+
+  public void contextDestroyed(ServletContextEvent event) {
+    ServletContext context = event.getServletContext();
+    context.removeAttribute(KEY_DB4O_SERVER);
+    close();
+    context.log("db4o shutdown");
+  }
+
+  private void close() {
+    if(server!=null) {
+      server.close();
+    }
+    server=null;
+  }
+}
+..c
+
+
+This listener just has to be registered in the web.xml.
+
+
+.c 	
+<context-param>
+  <param-name>db4oFileName</param-name>
+  <param-value>db4oweb.db4o</param-value>
+</context-param>
+<listener>
+  <listener-class>
+    com.db4o.sample.web.Db4oServletContextListener
+  </listener-class>
+</listener>
+..c
+
+
+Now db4o should be available to your application classes.
+
+
+.c 
+ObjectServer server=
+    (ObjectServer)context.getAttribute("db4oServer"); 
+..c
+
+
+A more complex and 'old school' example without using context listeners comes with ._
+the samples section of the db4o3 distribution that's still available from our ._
+web site.
+
+
+However, We strongly suggest that you use the features provided by your framework ._
+and that you consider not exposing db4o directly to your application logic. (There ._
+is nothing db4o-specific about these recommendentations, we would vote for this ._
+in the presence of any persistence layer.)

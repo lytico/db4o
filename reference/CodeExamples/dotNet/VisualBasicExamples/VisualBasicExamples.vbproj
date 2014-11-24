@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3CAF686B-6504-4D47-95A8-185AAF528CC5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <StartupObject>VisualBasicExamples.Db4oDoc.Code.ClientServer.Refresh.RefreshingObjects</StartupObject>
+    <RootNamespace>VisualBasicExamples</RootNamespace>
+    <AssemblyName>VisualBasicExamples</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Console</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>VisualBasicExamples.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>VisualBasicExamples.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Db4objects.Db4o">
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.CS">
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.CS.dll</HintPath>
+    </Reference>
+    <Reference Include="DB4objects.Db4o.CS.Optional">
+      <HintPath>..\..\..\libs\net\DB4objects.Db4o.CS.Optional.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Data.Services">
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Linq">
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\..\libs\net\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Reflection">
+      <HintPath>..\..\..\libs\net\Mono.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="OMCustomConfigurationforUser">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\db4o\db4o-8.1\Object Manager Enterprise\OMCustomConfigurationforUser.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\acidproperties\DangerousPractises.vb" />
+    <Compile Include="Code\backup\BackupExample.vb" />
+    <Compile Include="Code\callbacks\eventregistry\EventRegistryExamples.vb" />
+    <Compile Include="Code\callbacks\examples\CallbackExamples.vb" />
+    <Compile Include="Code\clientserver\refresh\RefreshingObjects.vb" />
+    <Compile Include="Code\collections\bigset\BigSetExample.vb" />
+    <Compile Include="Code\concurrency\locking\ReadWriteLockingOperations.vb" />
+    <Compile Include="Code\concurrency\locking\LockingOperations.vb" />
+    <Compile Include="Code\concurrency\locking\Person.vb" />
+    <Compile Include="Code\concurrency\transactions\ReadWriteTransactionOperations.vb" />
+    <Compile Include="Code\concurrency\transactions\DatabaseSupportWithReadWriteLock.vb" />
+    <Compile Include="Code\concurrency\transactions\DatabaseSupport.vb" />
+    <Compile Include="Code\concurrency\transactions\TransactionOperations.vb" />
+    <Compile Include="Code\concurrency\transactions\Person.vb" />
+    <Compile Include="Code\concurrency\units\UnitsOfWork.vb" />
+    <Compile Include="Code\configuration\basics\ConfigurationBasics.vb" />
+    <Compile Include="Code\configuration\file\FileConfiguration.vb" />
+    <Compile Include="Code\configuration\io\IOConfigurationExamples.vb" />
+    <Compile Include="Code\configuration\io\LoggingBin.vb" />
+    <Compile Include="Code\configuration\io\LoggingStorage.vb" />
+    <Compile Include="Code\configuration\objectfield\City.vb" />
+    <Compile Include="Code\container\sessions\Db4oSessions.vb" />
+    <Compile Include="Code\db4otests\ExampleTestCase.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\AutoIncrement.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\AutoIncrementExample.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\Db4oInternalIdExample.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\Db4oUuidExample.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\IdExamples.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\IDHolder.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\IIdExample.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\Pilot.vb" />
+    <Compile Include="Code\disconnectedobj\idexamples\UuidOnObject.vb" />
+    <Compile Include="Code\disconnectedobj\merging\Car.vb" />
+    <Compile Include="Code\disconnectedobj\merging\IDHolder.vb" />
+    <Compile Include="Code\disconnectedobj\merging\MergeExample.vb" />
+    <Compile Include="Code\disconnectedobj\merging\Pilot.vb" />
+    <Compile Include="Code\disconnectedobj\objectidentity\ObjectIdentityExamples.vb" />
+    <Compile Include="Code\disconnectedobj\objectidentity\Pilot.vb" />
+    <Compile Include="Code\features\uniqueconstrain\UniqueConstrainExample.vb" />
+    <Compile Include="Code\indexing\check\CheckForAndIndex.vb" />
+    <Compile Include="Code\indexing\traverse\TraverseIndexExample.vb" />
+    <Compile Include="Code\metainfo\MetaInfoExample.vb" />
+    <Compile Include="Code\omn\ConfigForOMN.vb" />
+    <Compile Include="Code\performance\GenericHolder.vb" />
+    <Compile Include="Code\performance\Item.vb" />
+    <Compile Include="Code\performance\ItemHolder.vb" />
+    <Compile Include="Code\performance\ObjectHolder.vb" />
+    <Compile Include="Code\performance\query\linq\BadPerformance.vb" />
+    <Compile Include="Code\performance\query\linq\GoodPerformance.vb" />
+    <Compile Include="Code\performance\query\soda\BadPerformance.vb" />
+    <Compile Include="Code\performance\CollectionHolder.vb" />
+    <Compile Include="Code\performance\query\soda\GoodPerformance.vb" />
+    <Compile Include="Code\performance\StopWatchUtil.vb" />
+    <Compile Include="Code\PersistanceAware.vb" />
+    <Compile Include="Code\platform\Asp\DynamicAssembliesIssue.vb" />
+    <Compile Include="Code\practises\deletion\DeletionStrategies.vb" />
+    <Compile Include="Code\practises\relations\Club.vb" />
+    <Compile Include="Code\practises\relations\Country.vb" />
+    <Compile Include="Code\practises\relations\Dog.vb" />
+    <Compile Include="Code\practises\relations\Item.vb" />
+    <Compile Include="Code\practises\relations\Person.vb" />
+    <Compile Include="Code\practises\relations\RelationManagementExamples.vb" />
+    <Compile Include="Code\practises\relations\ShoppingCard.vb" />
+    <Compile Include="Code\practises\relations\TestClubPersonRelationship.vb" />
+    <Compile Include="Code\practises\relations\TestDogPersonRelation.vb" />
+    <Compile Include="Code\reflection\ReflectorExamples.vb" />
+    <Compile Include="Code\systeminfo\SystemInfoExamples.vb" />
+    <Compile Include="Code\ta\collectionEnhanceIssues\EnhancementLimitations.vb" />
+    <Compile Include="Code\ta\collections\CollectionsExample.vb" />
+    <Compile Include="Code\ta\collections\Team.vb" />
+    <Compile Include="Code\ta\example\Person.vb" />
+    <Compile Include="Code\ta\example\TransparentActivationExamples.vb" />
+    <Compile Include="Code\tp\enhancement\Person.vb" />
+    <Compile Include="Code\tp\enhancement\TransparentPersistedAttribute.vb" />
+    <Compile Include="Code\tp\enhancement\TransparentPersistence.vb" />
+    <Compile Include="Code\tp\rollback\RollbackExample.vb" />
+    <Compile Include="Code\tp\TransparentActivationExample.vb" />
+    <Compile Include="Code\transactions\InconsistentStateRead.vb" />
+    <Compile Include="Code\troubleshooting\restore\TryToReadSingleObjects.vb" />
+    <Compile Include="Code\typehandling\blob\BlobStorage.vb" />
+    <Compile Include="Code\typehandling\notstored\StoredEntity.vb" />
+    <Compile Include="Code\typehandling\translator\ExampleTranslator.vb" />
+    <Compile Include="Code\typehandling\typehandler\StringBuilderHandler.vb" />
+    <Compile Include="Code\typehandling\typehandler\TypeHandlerExample.vb" />
+    <Compile Include="Code\validation\DataValidation.vb" />
+    <Compile Include="Code\xml\XMLSerialisationExamples.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\basics\Db4oBasics.vb" />
+    <Compile Include="Code\clientserver\basics\Db4oClientExample.vb" />
+    <Compile Include="Code\clientserver\basics\ServerExample.vb" />
+    <Compile Include="Code\clientserver\messaging\MessagingExample.vb" />
+    <Compile Include="Code\clientserver\pooling\ConnectionPool.vb" />
+    <Compile Include="Code\clientserver\pooling\ConnectionPoolExamples.vb" />
+    <Compile Include="Code\clientserver\pooling\TestConnectionPool.vb" />
+    <Compile Include="Code\clientserver\referencecache\ReferenceCacheExamples.vb" />
+    <Compile Include="Code\clientserver\ssl\SSLExample.vb" />
+    <Compile Include="Code\configuration\alias\AliasExamples.vb" />
+    <Compile Include="Code\configuration\client\ClientConfigurationExamples.vb" />
+    <Compile Include="Code\configuration\common\CommonConfigurationExamples.vb" />
+    <Compile Include="Code\configuration\io\LRUCachingStorage.vb" />
+    <Compile Include="Code\configuration\idsystem\IdSystemConfigurationExamples.vb" />
+    <Compile Include="Code\configuration\network\NetworkConfigurationExample.vb" />
+    <Compile Include="Code\configuration\objectconfig\ObjectConfigurationExamples.vb" />
+    <Compile Include="Code\configuration\objectfield\ObjectFieldConfigurations.vb" />
+    <Compile Include="Code\configuration\server\ServerConfigurationExamples.vb" />
+    <Compile Include="Code\deframentation\DefragmentationConfigurationExamples.vb" />
+    <Compile Include="Code\deframentation\DefragmentationExample.vb" />
+    <Compile Include="Code\deletion\DeletionExamples.vb" />
+    <Compile Include="Code\identiy\DataModel.vb" />
+    <Compile Include="Code\identiy\IdentityConcepts.vb" />
+    <Compile Include="Code\indexing\where\WhereToIndexExample.vb" />
+    <Compile Include="Code\pitfalls\activation\ActivationDepthPitfall.vb" />
+    <Compile Include="Code\pitfalls\activation\Person.vb" />
+    <Compile Include="Code\pitfalls\updatedepth\UpdateDepthPitfall.vb" />
+    <Compile Include="Code\platform\autoproperties\AutoProperties.vb" />
+    <Compile Include="Code\query\linq\LinqExamples.vb" />
+    <Compile Include="Code\query\nq\DataModel.vb" />
+    <Compile Include="Code\query\nq\NativeQueriesSorting.vb" />
+    <Compile Include="Code\query\nq\NativeQueryDiagnostics.vb" />
+    <Compile Include="Code\query\nq\NativeQueryExamples.vb" />
+    <Compile Include="Code\query\qbe\DataModel.vb" />
+    <Compile Include="Code\query\qbe\QueryByExamples.vb" />
+    <Compile Include="Code\query\soda\DataModel.vb" />
+    <Compile Include="Code\query\soda\SodaEvaluationExamples.vb" />
+    <Compile Include="Code\query\soda\SodaQueryExamples.vb" />
+    <Compile Include="Code\query\soda\SodaSorting.vb" />
+    <Compile Include="Code\semaphores\SemaphoreExamples.vb" />
+    <Compile Include="Code\strategies\exceptions\ImportantExceptionCases.vb" />
+    <Compile Include="Code\strategies\paging\PagingUtility.vb" />
+    <Compile Include="Code\strategies\paging\TestPagingUtility.vb" />
+    <Compile Include="Code\strategies\refactoring\arraychange\ChangeArrayType.vb" />
+    <Compile Include="Code\strategies\refactoring\extendhierarchy\AddClassToHierarchy.vb" />
+    <Compile Include="Code\strategies\refactoring\RefactoringExamples.vb" />
+    <Compile Include="Code\strategies\refactoring\removehierarchy\RemoveClassFromHierarchy.vb" />
+    <Compile Include="Code\strategies\storingstatic\Color.vb" />
+    <Compile Include="Code\strategies\storingstatic\StoringStaticFields.vb" />
+    <Compile Include="Code\transactions\Transactions.vb" />
+    <Compile Include="Code\tuning\diagnostics\DiagnosticsExamples.vb" />
+    <Compile Include="Code\tuning\monitoring\CSMonitoring.vb" />
+    <Compile Include="Code\tuning\monitoring\DataObject.vb" />
+    <Compile Include="Code\tuning\monitoring\FreespaceMonitoring.vb" />
+    <Compile Include="Code\tuning\monitoring\InstallPerformanceCounters.vb" />
+    <Compile Include="Code\tuning\monitoring\IOMonitoring.vb" />
+    <Compile Include="Code\tuning\monitoring\ObjectLifecycleMonitoring.vb" />
+    <Compile Include="Code\tuning\monitoring\QueryMonitoring.vb" />
+    <Compile Include="Code\tuning\monitoring\ReferenceSystemMonitoring.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)\..\..\libs\net\Db4oTool.exe -tp -collections -debug -by-attribute:Db4oDoc.Code.PersistanceAwareAttribute $(TargetPath)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

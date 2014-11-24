@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> CanBeEnhanced
+{
+    <span style="color:Blue;">private</span> IList&lt;<span style="color:Blue;">string</span>&gt; _names = <span style="color:Blue;">new</span> List&lt;<span style="color:Blue;">string</span>&gt;();
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> ContainsName(<span style="color:Blue;">string</span> item)
+    {
+        <span style="color:Blue;">return</span> _names.Contains(item);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> AddName(<span style="color:Blue;">string</span> item)
+    {
+        _names.Add(item);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			EnhancementLimitations.cs: Can be enhanced by the db4o-tools
+			<div class="codedownload">
+				<a href="Example-ta-collectionEnhanceIssues-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

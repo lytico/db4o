@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="561" MadCap:lastWidth="686">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="dRS:Replicate Deletions;Replication:Deletions" />Replicate Deletions</h1>
+        <p>In addition to replicate new and changed objects, dRS is also able to replicate deletions of objects. By default deletions are not replicated across the databases. When an object is deleted since last
+replication in one database and you would like to replicate these
+changes to another database you can use the following method to do this. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Replicate-deletions.all.flsnp" />
+        <p>dRS traverses every Car object in both providers. For instance, if a
+deleted object is found in one provider, the object will be deleted as well in the other provider.By default the deletion replication is bidirectional. For unidirectional replication set the direction on the replication-session.</p>
+        <p>Note, that the deletions of a Parent will not be cascaded to child
+objects. For example, if a Car object is deleted, the Pilots referenced by that Car won't be deleted.</p>
+    </body>
+</html>

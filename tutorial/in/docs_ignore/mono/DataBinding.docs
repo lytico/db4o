@@ -1,0 +1,246 @@
+.n
+.a Data Binding ..
+.0 Data Binding ..
+
+One common question we get from our users is:
+
+.b Can I still take advantage of data aware control mechanisms with my objects? ..
+
+The answer is quite simply yes. .NET data binding also works with plain objects.
+This is also to say that using db4o is completely orthogonal to the use of data binding.
+
+The usual pattern would be something like the following:
+* the code asks db4o to retrieve the objects that must be presented to the user;
+* the UI controls are bound to the objects (no interaction with db4o here);
+* the user interacts with the objects through the controls (no interaction with db4o here);
+* when the user is done interacting with the objects or by his request, the application will ask db4o to persist his changes;
+
+Let's take a very simple example that illustrates the points above.
+
+Our business class:
+.c namespace CSDataBinding
+{
+    /// <summary>
+    /// A simple business class.
+    /// </summary>
+    public class Customer
+    {
+        string _name;
+        string _phoneNumber;
+
+        public Customer(string name, string phoneNumber)
+        {
+            _name = name;
+            _phoneNumber = phoneNumber;
+        }
+
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+
+            set
+            {
+                _name = value;
+            }
+        }
+
+        public string PhoneNumber
+        {
+            get
+            {
+                return _phoneNumber;
+            }
+
+            set
+            {
+                _phoneNumber = value;
+            }
+        }
+    }
+}
+..c
+
+The Form class:
+.c using System;
+using System.Drawing;
+using System.Collections;
+using System.ComponentModel;
+using System.IO;
+using System.Windows.Forms;
+using com.db4o;
+
+namespace CSDataBinding
+{
+    /// <summary>
+    /// DataBinding form example
+    /// </summary>
+    public class MainForm : System.Windows.Forms.Form
+    {
+        internal System.Windows.Forms.TextBox _txtPhoneNumber;
+        internal System.Windows.Forms.ComboBox _cmbCustomers;
+
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.Container components = null;
+        
+        internal System.Windows.Forms.Label _labelPhone;
+        internal System.Windows.Forms.Label _labelName;
+
+        private ObjectContainer _container = null;
+
+        private ArrayList _customers = new ArrayList();
+
+        public MainForm()
+        {
+            //
+            // Required for Windows Form Designer support
+            //
+            InitializeComponent();
+
+            OpenDataFile();
+            SetUpDataBindings();
+        }
+
+        void OpenDataFile()
+        {
+            string dataFile = Path.Combine(Application.UserAppDataPath, "data.db4o");
+            _container = Db4o.openFile(dataFile);
+        }
+
+        void SetUpDataBindings()
+        {
+            ObjectSet os = _container.get(typeof(Customer));
+            if (0 == os.size())
+            {
+                // Generate some initial data
+                _customers.Add(new Customer("John Cleese", "55-98763333"));
+                _customers.Add(new Customer("Herman Hesse","32-33335555"));
+                _customers.Add(new Customer("Douglas Adams", "42-42424242"));
+            }
+            else
+            {
+                while (os.hasNext())
+                {
+                    _customers.Add(os.next());
+                }
+            }
+            _cmbCustomers.DisplayMember = "Name";
+            _cmbCustomers.DataSource = _customers;
+            _txtPhoneNumber.DataBindings.Add("Text", _customers, "PhoneNumber");
+        }
+
+        void PersistChanges()
+        {
+            foreach (Customer customer in _customers)
+            {
+                _container.set(customer);
+            }
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            PersistChanges();
+            _container.close();
+            base.OnClosing (e);
+        }
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        protected override void Dispose( bool disposing )
+        {
+            if( disposing )
+            {
+                if (components != null) 
+                {
+                    components.Dispose();
+                }
+            }
+            base.Dispose( disposing );
+        }
+
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this._labelPhone = new System.Windows.Forms.Label();
+            this._txtPhoneNumber = new System.Windows.Forms.TextBox();
+            this._labelName = new System.Windows.Forms.Label();
+            this._cmbCustomers = new System.Windows.Forms.ComboBox();
+            this.SuspendLayout();
+            // 
+            // _labelPhone
+            // 
+            this._labelPhone.Location = new System.Drawing.Point(8, 48);
+            this._labelPhone.Name = "_labelPhone";
+            this._labelPhone.Size = new System.Drawing.Size(72, 16);
+            this._labelPhone.TabIndex = 9;
+            this._labelPhone.Text = "Phone#:";
+            // 
+            // _txtPhoneNumber
+            // 
+            this._txtPhoneNumber.Location = new System.Drawing.Point(96, 48);
+            this._txtPhoneNumber.Name = "_txtPhoneNumber";
+            this._txtPhoneNumber.Size = new System.Drawing.Size(184, 20);
+            this._txtPhoneNumber.TabIndex = 8;
+            this._txtPhoneNumber.Text = "";
+            // 
+            // _labelName
+            // 
+            this._labelName.Location = new System.Drawing.Point(8, 16);
+            this._labelName.Name = "_labelName";
+            this._labelName.Size = new System.Drawing.Size(72, 16);
+            this._labelName.TabIndex = 7;
+            this._labelName.Text = "Customer:";
+            // 
+            // _cmbCustomers
+            // 
+            this._cmbCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+                | System.Windows.Forms.AnchorStyles.Right)));
+            this._cmbCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._cmbCustomers.Location = new System.Drawing.Point(96, 16);
+            this._cmbCustomers.Name = "_cmbCustomers";
+            this._cmbCustomers.Size = new System.Drawing.Size(186, 21);
+            this._cmbCustomers.TabIndex = 6;
+            // 
+            // MainForm
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.ClientSize = new System.Drawing.Size(290, 79);
+            this.Controls.Add(this._labelPhone);
+            this.Controls.Add(this._txtPhoneNumber);
+            this.Controls.Add(this._labelName);
+            this.Controls.Add(this._cmbCustomers);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "MainForm";
+            this.Text = "Db4o Data Binding";
+            this.ResumeLayout(false);
+
+        }
+        #endregion
+
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main() 
+        {
+            Application.Run(new MainForm());
+        }
+    }
+}
+..c
+
+There are also some good tutorials on the .net on the use of Forms data binding [1], unfortunately most of them are focused only on binding controls to relational databases.
+We - the software development community - still suffer from database atrophy[2] after all.
+We - the db4o team along with the object oriented community - are working to change that so we can finally move on to the next level.
+
+[1] http://samples.gotdotnet.com/quickstart/winforms/doc/winformsdata.aspx
+[2] http://www.people4objects.org/Klaus/2005/01/database-atrophy.html

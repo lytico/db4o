@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="593" MadCap:lastWidth="521">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Exception-Handling" />Exception-Handling</h1>
+        <p>A part of the db4o operations is handling possible exceptions. There are two fundamental different exception-types for db4o.  The recoverable exceptions and the fatal exceptions.</p>
+        <h2>Recoverable Exceptions</h2>
+        <p> The recoverable exceptions are all exceptions which don't endanger the consistency of the database. For example if a event callback throws an exception. After a recoverable exception you can continue to work with the object container. </p>
+        <p>Typical recoverable exceptions are:</p>
+        <ul>
+            <li>Exceptions in callbacks.</li>
+            <li>Passing invalid ids to the object container.</li>
+            <li>Unsupported schema-changes.</li>
+            <li>Constraint-violations.</li>
+        </ul>
+        <h2>Fatal Exceptions</h2>
+        <p>A fatal exception will immediately shut down the object container without committing anything. This tries to protect the database from damaging itself. Any exception which happens in the db4o core and is not expected and handled is considered as a fatal exception. Because when an exception happens in the db4o-core, it could cause a invalid state in the db4o-core and then cause further errors and lead to database corruption. That's why the policy it the stop immediately any operation after a fatal exception.</p>
+        <p>Typical fatal recoverable exceptions are:</p>
+        <ul>
+            <li>Exceptions related to runtime, like OutOfMemory-exceptions</li>
+            <li>Exceptions related to corrupted database-files.</li>
+        </ul>
+        <h2>Handle-Exceptions</h2>
+        <p>Take a look a the list of the most common db4o related exceptions. <MadCap:xref href="exceptions/exception_types.htm" target="" title="" alt="">See "Exception Types"</MadCap:xref> Handling db4o exceptions is nothing special and complies with regular exception handling.<MadCap:xref href="exceptions/how_to_work_with_db4o_exceptions.htm" target="" title="" alt="">See "How To Work With db4o Exceptions"</MadCap:xref></p>
+    </body>
+</html>

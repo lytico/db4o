@@ -1,0 +1,13 @@
+package decaf.collections;
+
+import java.util.*;
+
+public class SimpleListUsage {	
+	public static void main(String[] args) {
+		List list = new ArrayList();
+		list.add(new Integer(42));
+		int value = (((Integer) list.get(0))).intValue();
+		List unmodifiable = Collections.unmodifiableList(list);
+		List qUnmodifiable = java.util.Collections.unmodifiableList(list);
+	}
+}

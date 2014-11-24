@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="496" MadCap:lastWidth="638">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Concurrency" />Concurrency and db4o</h1>
+        <p>How should you deal with concurrent access to a db4o database? This chapter gives an overview and  guidelines for dealing with that.</p>
+        <h2>Do Not Share an Object Containers Across Threads</h2>
+        <p>There are some basic rules which you should never break, otherwise strange effects due to race-condition can happen:</p>
+        <p><b>Never share an object-container instance across threads</b>, nor share the data-objects across threads. That will almost certainly create race-conditions. The reason is that when you change objects, while other threads read them, you will get inconsistent views on the state of your data model. </p>
+        <p>Now how do you deal with concurrent operations?&#160;Well you need to use some kind of synchronization strategy. </p>
+        <h2>Use an Object Containers per Unit of Work</h2>
+        <p>You can avoid synchronization when you are using multiple object containers for different units of work. However you need to be aware to the <a href="../basics/acid_and_transactions/isolation.htm">isolation level</a> db4o guarantees. <MadCap:xref href="concurrency/object_container_per_unit_of_work.htm" target="" title="" alt="">See "Object Container per Unit of Work"</MadCap:xref></p>
+        <p>This is often used in web applications, where you have an object container per request.</p>
+        <h2>Sharing an Object Container</h2>
+        <p>In a desktop/mobile application you usually want to have one consistent view on your data model. Therefore it makes sense to use the same object container in the whole application. That ensures that we always get the same objects throughout the whole application. As long as you don't load of work to different threads, everything is fine. </p>
+        <p>However as soon as you start to do manipulations on the data model in different threads you need to synchronize these operations.      <![CDATA[ ]]><MadCap:xref href="concurrency/share_object_container_threads.htm" target="" title="" alt="">See "Share a Object Container Across Threads"</MadCap:xref></p>
+    </body>
+</html>

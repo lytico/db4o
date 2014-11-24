@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+    </import>
+    <x:children>
+        <composite x:id="Control">
+            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            <layout x:class="gridLayout" numColumns="2" marginHeight="0" marginWidth="0"/>
+            <x:children>
+            	<label text="db4o will call the constructors of fully-qualified class names (and their subclasses) listed on this page.">
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="2"/>
+            	</label>
+            	<label text="NOTE: This is a global setting.  Changing this preference closes all databases!">
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" horizontalSpan="2"/>
+            	</label>
+            	<text x:id="ConstructorClassInput" x:style="BORDER">
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+            	</text>
+            	<button x:id="AddButton" text="Add constructor">
+					<layoutData x:class="gridData" horizontalAlignment="GridData.FILL"/>
+				</button>
+				<list x:id="ConstructorClassList" x:style="BORDER|H_SCROLL|V_SCROLL|MULTI">
+		            <layoutData x:class="gridData" heightHint="250" widthHint="250" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+				</list>
+				<button x:id="RemoveButton" text="Remove entry">
+					<layoutData x:class="gridData" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.BEGINNING"/>
+				</button>
+            </x:children>
+        </composite>
+    </x:children>
+</xswt>

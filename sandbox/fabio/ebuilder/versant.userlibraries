@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="VERSANT" systemlibrary="false">
+        <archive path="/polepos/lib/vod/jvi80.jar"/>
+        <archive path="/polepos/lib/vod/vodjdo.jar"/>
+    </library>
+</eclipse-userlibraries>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="365" MadCap:lastWidth="532">
+    <head>
+    </head>
+    <body>
+        <h1>SODA Processing</h1>
+        <p>The SODA processing runs in two stages.</p>
+        <h2>First Stage: Index-Lookups</h2>
+        <p>First SODA tries to find the best fitting index for the query. It looks up all available field- and class-indexes. Then it goes through all possible indexes and chooses the index with the smallest candidate result set.</p>
+        <p>In practice this means that SODA first uses the field-indexes. If no suitable field index is found it falls back to the class-index, which contains all objects of a certain type. </p>
+        <p>With this index a first set of candidates is created. This means SODA looks up in the index the objects and returns the IDs of the candidate-objects.</p>
+        <h2>Second Stage: Constrain Evaluation</h2>
+        <p>The second stage uses the ids from the first stage and runs all those objects against the given constrains. If the constrains are <a href="soda_example_catelog.htm">regular SODA-constrains</a>, it directly uses the values in the database to compare it. If additional <a href="soda_evaluations.htm">evaluations</a> are present, SODA will instantiate the candidate-objects and pass it to the evaluation-function. </p>
+        <p>Finally SODA will apply the sorting and then return all IDs of objects which match the query criteria. </p>
+    </body>
+</html>

@@ -1,0 +1,153 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.db4odoc.reference</groupId>
+    <artifactId>db4o-reference-examples</artifactId>
+    <version>8.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>db4o reference examples</name>
+
+    <parent>
+        <groupId>com.db4odoc</groupId>
+        <artifactId>db4o-overall-project</artifactId>
+        <version>8.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+
+    <dependencies>
+        <!-- well its about db4o -->
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4o-full-java5</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4o-osgi</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+        <!-- the db4o testing stuff -->
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4ounit</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4ounit-extensions</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- for the validation examples -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.1.0.Final</version>
+        </dependency>
+        <!-- for the osgi examples -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>4.2.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- the db4o-full needs an ant installation in the osgi container-->
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>com.springsource.org.apache.tools.ant</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+
+        <!-- for the xml examples -->
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+
+        <!-- For the reporting chapter -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        <!-- sane date handling -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
+        <!-- others -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <!-- #example: Enhance persisted classes during the build# -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <dependencies>
+                    <!-- We need the db4o tooling for enhancing stuff -->
+                    <dependency>
+                        <groupId>com.db4o</groupId>
+                        <artifactId>db4o-tools-java5</artifactId>
+                        <version>8.1-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <configuration>
+                            <target>
+                                <!-- We enhance with an additional Ant-run step. You can put this also in an extra file -->
+                                <typedef resource="instrumentation-def.properties"
+                                         classpathref="maven.compile.classpath"/>
+
+                                <!-- We filter by our annotation -->
+                                <typedef name="annotation-filter"
+                                         classname="com.db4odoc.tp.enhancement.AnnotationFilter"
+                                         classpathref="maven.compile.classpath"/>
+
+                                <db4o-instrument classTargetDir="target/classes"
+                                          verbose="true">
+                                    <classpath refid="maven.compile.classpath"/>
+                                    <sources dir="target/classes">
+                                        <include name="**/*.class"/>
+                                    </sources>
+
+                                    <transparent-activation-step>
+                                        <annotation-filter/>
+                                    </transparent-activation-step>
+                                </db4o-instrument>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- #end example -->
+        </plugins>
+    </build>
+</project>

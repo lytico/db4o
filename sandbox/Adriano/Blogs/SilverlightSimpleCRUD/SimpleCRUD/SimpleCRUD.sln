@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCRUD", "SimpleCRUD.csproj", "{0A72C91B-A71C-461F-BB82-26C17858CC02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Db4objects.Db4o-Silverlight-2008", "..\..\..\..\..\db4o.net\Db4objects.Db4o\Db4objects.Db4o-Silverlight-2008.csproj", "{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A72C91B-A71C-461F-BB82-26C17858CC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A72C91B-A71C-461F-BB82-26C17858CC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A72C91B-A71C-461F-BB82-26C17858CC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A72C91B-A71C-461F-BB82-26C17858CC02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

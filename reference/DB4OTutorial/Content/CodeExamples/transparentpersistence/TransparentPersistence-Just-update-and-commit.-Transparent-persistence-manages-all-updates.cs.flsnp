@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Driver driver = QueryForDriver(container);
+driver.MostLovedCar.CarName = <span style="color:#A31515;">&quot;New name&quot;</span>;
+driver.Name = <span style="color:#A31515;">&quot;John Turbo&quot;</span>;
+driver.AddOwnedCar(<span style="color:Blue;">new</span> Car(<span style="color:#A31515;">&quot;Volvo Combi&quot;</span>));
+<span style="color:Green;">// Just commit the transaction. All modified objects are stored</span>
+container.Commit();</pre>
+		<div class="codesnippet-meta">
+			TransparentPersistence.cs: Just update and commit. Transparent persistence manages all updates
+			<div class="codedownload">
+				<a href="Example-Code-transparentpersistence-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

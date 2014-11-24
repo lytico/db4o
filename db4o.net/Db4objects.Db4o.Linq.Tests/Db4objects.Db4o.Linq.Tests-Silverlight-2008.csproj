@@ -1,0 +1,123 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66106A5C-4C38-4680-BDB0-38F39BE3D3A9}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4objects.Db4o.Linq.Tests</RootNamespace>
+    <AssemblyName>Db4objects.Db4o.Linq.Tests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>TRACE;DEBUG;SILVERLIGHT;NET_3_5</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;NET_3_5</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Db4objects.Db4o.Linq.Tests\AbstractDb4oLinqTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\AllTests.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\ByteQueryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Caching\AllTests.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Caching\GenericCacheFactoryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\CodeAnalysis\ActivatedPropertyQueryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\CodeAnalysis\AllTests.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\CodeAnalysis\OrderByPropertyTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\CodeAnalysis\PropertyQueryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\CollectionContainsObjectTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\CollectionContainsOptimizationTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\CollectionContainsTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\ComposedQueryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\ConcurrentLINQTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\CountTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\DateTimeOffsetQueryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\EnumComparisonTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Expressions\AllTests.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Expressions\ExpressionEqualityComparerTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Expressions\SubtreeEvaluatorTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\GenericQueryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\GuidTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\NullConstantTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\OrderByTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\ParameterizedWhereTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\PartiallyOptimizedQueryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Queries\AllTests.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Queries\QueryExtensions.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Queries\QueryPrettyPrinter.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\Queries\QueryPrettyPrinterTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryableTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryOperators\AllTests.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryOperators\SkipTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryOperators\SkipTestSuite.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryOperators\SkipTestSuiteVariables.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryOperators\SkipTestUnit.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryOperators\SkipTestUnit.Helper.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryReuseTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\QueryTranslationPerformanceTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\StringMethodTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\UntypedQueryTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\VisualBasicTestCase.cs" />
+    <Compile Include="Db4objects.Db4o.Linq.Tests\WhereTestCase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Db4objects.Db4o.Linq\Db4objects.Db4o.Linq-Silverlight-2008.csproj">
+      <Project>{96E9DCEB-D739-419F-8346-1BC2EE86F562}</Project>
+      <Name>Db4objects.Db4o.Linq-Silverlight-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4objects.Db4o\Db4objects.Db4o-Silverlight-2008.csproj">
+      <Project>{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}</Project>
+      <Name>Db4objects.Db4o-Silverlight-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4oUnit.Extensions\Db4oUnit.Extensions-Silverlight-2008.csproj">
+      <Project>{13B5E015-9250-4E70-939D-56233D43D8C3}</Project>
+      <Name>Db4oUnit.Extensions-Silverlight-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4oUnit\Db4oUnit-Silverlight-2008.csproj">
+      <Project>{C74364D8-A04A-4CF9-801D-D1811D49E72A}</Project>
+      <Name>Db4oUnit-Silverlight-2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="741" MadCap:lastWidth="454" MadCap:conditions="Primary.Java">
+    <head>
+    </head>
+    <body>
+        <h1>Proguard</h1>
+        <p>The Android SDK includes Proguard to shrink the size of the application by removing unused stuff, shorting names and other optimisations.</p>
+        <p>db4o relies heavily on reflection, which can lead to major issues when code is processed with Proguard. db4o has not been tested under such a environment. When you're using Proguard you need to test yourself if your application is still working. </p>
+        <p>You should to exclude all persisted classes from the shrinking process, because db4o manages objects by their name. Therefore db4o will have issue when those name changes by the shrinking process.   Read the <a href="http://proguard.sourceforge.net/index.html#/manual/usage.html" target="_parent">Proguard documentation</a> for the right configuration. For example when your persisted classes in a certain package you can exclude them like this:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/Android/proguard-Keep-persisted-classes-intact.all.flsnp" />
+        <p>To be on the save side you should keep all db4o classes in the original state. Especially since db4o stores some internal data structures which shouldn't be renamed.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/Android/proguard-keep-db4o-intact.all.flsnp" />
+    </body>
+</html>

@@ -1,0 +1,3 @@
+#example: List all configuration items for OMJ
+com.db4odoc.omj.ConfigureDBForOmj
+#end example

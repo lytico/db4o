@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="979" MadCap:lastWidth="588">
+    <head>
+    </head>
+    <body>
+        <h1>Events In Client Server-Mode</h1>
+        <p>Events of course also work in client server mode. This topic only applies to the networked client/server mode. Embedded client/server-mode isn't affected. There the events work the same way as in the embedded-mode. <MadCap:xref href="../advanced_topics/callbacks/event_registry_api.htm" target="" title="" alt="">See "Event Registry API"</MadCap:xref></p>
+        <h2>Separate Event Registry For Each Client</h2>
+        <p>Each client has its own event registry. When you register to a event on the client-event-registry, events will be fired for actions on the client. You won't receive events for actions on other clients.</p>
+        <p>Furthermore you cannot register for the delete-events, the delete events is only on the server available.</p>
+        <h2>The Server Event Registry</h2>
+        <p>The server has its own event registry. When you register to an event on the server registry, events will be fired for all action of the clients and the server itself. So you can monitor all operations on the server.</p>
+        <p>Note that in some events the server isn't involved. For example when a client activates some object, the server is no involved, an therefore no event is fired on the server.</p>
+        <p>Use central server object container to register for the events on the server.</p>
+        <MadCap:snippetBlock src="../CodeExamples/callbacks/eventregistry/EventRegistryExamples-register-for-events-on-the-server.all.flsnp" />
+        <h2>Committed Event On All Parties</h2>
+        <p>The committed event is an exception. When a client or the server commits, every client and the server will fire the committed event. This way a client can inform itself that another client has made changes to the database.</p>
+        <p>However this involves communication overhead to send the message to all the clients. Therefore you should use this event only when absolutely necessary on the clients.</p>
+        <h2>Events Are Fired Asynchronous</h2>
+        <p>In client-server-mode the events are fired asynchronous. This means that you event-handler is invoked in a separate thread. You need to ensure that you lock any shared data-structure you access from the event-handlers.</p>
+    </body>
+</html>

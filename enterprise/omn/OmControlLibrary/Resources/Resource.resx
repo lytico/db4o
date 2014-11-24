@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ATTRIB_TEXT" xml:space="preserve">
+    <value>Attribute List</value>
+  </data>
+  <data name="BUTTON_ADD_GROUP_CAPTION" xml:space="preserve">
+    <value>Add &amp;Group</value>
+  </data>
+  <data name="BUTTON_CLEAR_AAL_CAPTION" xml:space="preserve">
+    <value>&amp;Clear All</value>
+  </data>
+  <data name="BUTTON_DELETE_CAPTION" xml:space="preserve">
+    <value>&amp;Delete</value>
+  </data>
+  <data name="BUTTON_SAVE_CAPTION" xml:space="preserve">
+    <value>&amp;Save</value>
+  </data>
+  <data name="BUTTON_UPDATE_QUERY_CAPTION" xml:space="preserve">
+    <value>&amp;Update Query</value>
+  </data>
+  <data name="CLASS_PROPERTY_DATA_TYPE" xml:space="preserve">
+    <value>DataType</value>
+  </data>
+  <data name="CLASS_PROPERTY_FIELD_NAME" xml:space="preserve">
+    <value>Field</value>
+  </data>
+  <data name="CLASS_PROPERTY_ISINDEXED" xml:space="preserve">
+    <value>Indexed</value>
+  </data>
+  <data name="CLASS_PROPERTY_ISPUBLIC" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="COMBOBOX_DEFAULT_TEXT" xml:space="preserve">
+    <value>&lt;&lt; select &gt;&gt;</value>
+  </data>
+  <data name="CONFIRMATION_MSG_LOGOUT" xml:space="preserve">
+    <value>Do you want to logout?</value>
+  </data>
+  <data name="CONFIRMATION_MSG_REMOVE_QUERY_GROUP" xml:space="preserve">
+    <value>Do you want to remove the Expression Group?</value>
+  </data>
+  <data name="CONTEXT_MENU_ADD_TO_ATTRIBUTE" xml:space="preserve">
+    <value>Add To Attributes List</value>
+  </data>
+  <data name="CONTEXT_MENU_ADD_TO_QUERY" xml:space="preserve">
+    <value>Add To Query</value>
+  </data>
+  <data name="CONTEXT_MENU_CLEAR" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="CONTEXT_MENU_SHOW_ALL_OBJECTS" xml:space="preserve">
+    <value>Show All Objects</value>
+  </data>
+  <data name="DB_PROPERTY_CLASSES" xml:space="preserve">
+    <value>No. of Classes</value>
+  </data>
+  <data name="DB_PROPERTY_FREESPACE" xml:space="preserve">
+    <value>Free Space</value>
+  </data>
+  <data name="DB_PROPERTY_SIZE" xml:space="preserve">
+    <value>Database Size</value>
+  </data>
+  <data name="DB4O_BROWSER_CAPTION" xml:space="preserve">
+    <value>db4o Browser</value>
+  </data>
+  <data name="ERROR_MSG_CONNECTION" xml:space="preserve">
+    <value>Error in connection!</value>
+  </data>
+  <data name="GUID_FORMATTER_STRING" xml:space="preserve">
+    <value>B</value>
+  </data>
+  <data name="LABEL_OBJECTS_NO" xml:space="preserve">
+    <value>No. of Objects Retrieved:</value>
+  </data>
+  <data name="LABEL_OF" xml:space="preserve">
+    <value>of:</value>
+  </data>
+  <data name="LABEL_QUERY_BUILDER" xml:space="preserve">
+    <value>Build Query</value>
+  </data>
+  <data name="LABEL_RECENT_QUERIES" xml:space="preserve">
+    <value>Recent Queries</value>
+  </data>
+  <data name="LOGIN_CAPTION_CONNECT" xml:space="preserve">
+    <value>&amp;Connect</value>
+  </data>
+  <data name="LOGIN_CAPTION_LOCAL" xml:space="preserve">
+    <value>Local</value>
+  </data>
+  <data name="LOGIN_CAPTION_OPEN" xml:space="preserve">
+    <value>&amp;Open</value>
+  </data>
+  <data name="LOGIN_FILE_TEXT" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="LOGIN_HOST_TEXT" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="LOGIN_NEWCONNECTION_TEXT" xml:space="preserve">
+    <value>New Connection</value>
+  </data>
+  <data name="LOGIN_OPEN_FILE_DIALOG_CAPTION" xml:space="preserve">
+    <value>Open db4o Database File</value>
+  </data>
+  <data name="LOGIN_PASSWORD_TEXT" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LOGIN_PORT_TEXT" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="LOGIN_RECENTCONNECTION_TEXT" xml:space="preserve">
+    <value>Recent Connections</value>
+  </data>
+  <data name="LOGIN_TYPE_TEXT" xml:space="preserve">
+    <value>Select Type</value>
+  </data>
+  <data name="LOGIN_USERNAME_TEXT" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="LOGIN_WINDOW_LOCAL_CAPTION" xml:space="preserve">
+    <value>Connect to db4o database</value>
+  </data>
+  <data name="LOGIN_WINDOW_REMOTE_CAPTION" xml:space="preserve">
+    <value>Connect to db4o server</value>
+  </data>
+  <data name="OBJBROWSER_FIND_TEXT" xml:space="preserve">
+    <value>db4o Browser Search</value>
+  </data>
+  <data name="OBJECT_PROPERTY_DEPTH" xml:space="preserve">
+    <value>Depth</value>
+  </data>
+  <data name="OBJECT_PROPERTY_LOCALID" xml:space="preserve">
+    <value>LocalId</value>
+  </data>
+  <data name="OBJECT_PROPERTY_UUID" xml:space="preserve">
+    <value>ObjectUuid</value>
+  </data>
+  <data name="OBJECT_PROPERTY_VERSION" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="OBJECTMANAGER_MSG_RESULT_NOT_FOUND" xml:space="preserve">
+    <value>No matching objects found.</value>
+  </data>
+  <data name="PRODUCT_CAPTION" xml:space="preserve">
+    <value>ObjectManager Enterprise</value>
+  </data>
+  <data name="PROGRESS_MESSAGE_CHECKING_CREDENTIALS" xml:space="preserve">
+    <value>Checking Credentials...</value>
+  </data>
+  <data name="PROPERTIES_TAB_CAPTION" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="PROPERTIES_TAB_DATABASE_CAPTION" xml:space="preserve">
+    <value>DataBase Properties</value>
+  </data>
+  <data name="QUERY_BUILDER_CAPTION" xml:space="preserve">
+    <value>Query Builder</value>
+  </data>
+  <data name="QUERY_GRID_CONDITION" xml:space="preserve">
+    <value>Condition</value>
+  </data>
+  <data name="QUERY_GRID_FIELD" xml:space="preserve">
+    <value>Field</value>
+  </data>
+  <data name="QUERY_GRID_OPERATOR" xml:space="preserve">
+    <value>Operator</value>
+  </data>
+  <data name="QUERY_GRID_VALUE" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="QUERY_GROUP_CAPTION" xml:space="preserve">
+    <value>Expression Group </value>
+  </data>
+  <data name="QUERY_RESULT_PROPERTIES_PANE_TEXT" xml:space="preserve">
+    <value>Properties Pane</value>
+  </data>
+  <data name="QUERY_RESULT_SHOW_HIDE_QUERY_BUILDER" xml:space="preserve">
+    <value>Show/Hide Query Builder</value>
+  </data>
+  <data name="RESOURCE_KEY_NOT_PRESENT" xml:space="preserve">
+    <value>Key: &lt;&lt;KEY&gt;&gt; does not exist in the resource file.</value>
+  </data>
+  <data name="SHOW_ALL_COLUMN" xml:space="preserve">
+    <value>Show All Columns</value>
+  </data>
+  <data name="TOOLBAR_LOGIN_CAPTION" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="TOOLBAR_LOGOUT_CAPTION" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="TOOLBAR_MODE_FULL" xml:space="preserve">
+    <value>Full Functionality Mode</value>
+  </data>
+  <data name="TOOLBAR_MODE_REDUCED" xml:space="preserve">
+    <value>Reduced Mode</value>
+  </data>
+  <data name="TOOLTIP_OBJECTBROWSER_ASSEMBLY_VIEW" xml:space="preserve">
+    <value>Assembly View</value>
+  </data>
+  <data name="TOOLTIP_OBJECTBROWSER_CLASS_VIEW" xml:space="preserve">
+    <value>Class View</value>
+  </data>
+  <data name="TOOLTIP_OBJECTBROWSER_CLEARSEARCH" xml:space="preserve">
+    <value>Clear Search</value>
+  </data>
+  <data name="TOOLTIP_OBJECTBROWSER_FILTER" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="TOOLTIP_OBJECTBROWSER_FILTER_NEXT" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="TOOLTIP_OBJECTBROWSER_FILTER_PREV" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="TOOLTIP_PAGE_FIRST" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="TOOLTIP_PAGE_LAST" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="TOOLTIP_PAGE_NEXT" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="TOOLTIP_PAGE_PREV" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="VALIDATION_DEFAULT_GROUP_IS_EMPTY" xml:space="preserve">
+    <value> cannot be empty, enter some clauses.</value>
+  </data>
+  <data name="VALIDATION_MESSAGE_VALUE_NOT_SPECIFIED" xml:space="preserve">
+    <value>Value for some clauses are not specified yet.</value>
+  </data>
+  <data name="VALIDATION_MSG_ENTER_HOST" xml:space="preserve">
+    <value>Please enter host.</value>
+  </data>
+  <data name="VALIDATION_MSG_ENTER_PASSWORD" xml:space="preserve">
+    <value>Please enter password.</value>
+  </data>
+  <data name="VALIDATION_MSG_ENTER_PORT" xml:space="preserve">
+    <value>Please enter port.</value>
+  </data>
+  <data name="VALIDATION_MSG_ENTER_USERNAME" xml:space="preserve">
+    <value>Please enter user name.</value>
+  </data>
+  <data name="VALIDATION_MSG_INVALID_CREDENTIALS" xml:space="preserve">
+    <value>Credentials don’t match. Please enter again.</value>
+  </data>
+  <data name="VALIDATION_MSG_INVALIDE_VALUE" xml:space="preserve">
+    <value>Invalid value entered.</value>
+  </data>
+  <data name="VALIDATION_MSG_MANDATORY_FIELDS" xml:space="preserve">
+    <value>Mandatory fields cannot be empty.</value>
+  </data>
+  <data name="VALIDATION_MSG_PORT_RANG" xml:space="preserve">
+    <value>Please specify a value between 1 and 65535 in port.</value>
+  </data>
+  <data name="VALIDATION_MSG_SELECT_DATABASE" xml:space="preserve">
+    <value>Please select the database.</value>
+  </data>
+  <data name="VALIDATION_MSG_SELECT_REMOTE_CONNECTION" xml:space="preserve">
+    <value>Please select remote connection.</value>
+  </data>
+</root>

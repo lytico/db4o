@@ -1,0 +1,4 @@
+package decaf.builder;
+
+public class FooImpl<T> implements Foo<T>{
+}

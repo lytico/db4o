@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget
+  Version="1"
+  Comment="New Target"
+  Type="WebHelp"
+  Destinations=""
+  GlossaryTermConversion="first"
+  ConditionTagExpression="include[Primary..NET or Primary.c# or Primary.Online or Primary.VB.NET] "
+  MasterPageLayout="/Content/Resources/PageLayouts/Default.flpgl"
+  MasterStylesheet="/Content/Resources/Stylesheets/OnlineStyle.css"
+  MasterPage="/Content/Resources/MasterPages/Prettifier.flmsp"
+  UseCustomTopicFileExtension="false"
+  OutputFolder=""
+  OutputFile="index.html"
+  Skin="/Project/Skins/RedVersant.flskn">
+  <Glossaries>
+    <Glossary
+      Link="/Project/Glossaries/OnlineGlossary.flglo" />
+    <Glossary
+      Link="/Project/Glossaries/SharedGlossar.flglo" />
+  </Glossaries>
+  <Variables>
+    <Variable
+      Name="BaseVariables/Plattform">.NET</Variable>
+    <Variable
+      Name="Primary/Artefact">assembly</Variable>
+    <Variable
+      Name="Primary/Iterable">IEnumerable</Variable>
+    <Variable
+      Name="Primary/Plattform">.NET</Variable>
+    <Variable
+      Name="Primary/Activatable">IActivatable</Variable>
+    <Variable
+      Name="Primary/getter/setter">property</Variable>
+    <Variable
+      Name="Primary/Ant">MSBuild</Variable>
+    <Variable
+      Name="Primary/IDE">Visual Studio</Variable>
+    <Variable
+      Name="Primary/Evaluation">IEvaluation</Variable>
+    <Variable
+      Name="Primary/UUID">Guid</Variable>
+    <Variable
+      Name="Primary/Storage">IStorage</Variable>
+    <Variable
+      Name="Primary/Bin">IBin</Variable>
+    <Variable
+      Name="Primary/EventRegistry">IEventRegistry</Variable>
+    <Variable
+      Name="Primary/Map">Dictionary</Variable>
+    <Variable
+      Name="Primary/Annotation">Attribute</Variable>
+    <Variable
+      Name="Primary/getter">property</Variable>
+    <Variable
+      Name="Primary/close">dispose</Variable>
+    <Variable
+      Name="Primary/JVM">CLR</Variable>
+    <Variable
+      Name="Primary/ObjectContainer">IObjectContainer</Variable>
+    <Variable
+      Name="Primary/Artefacts">assemblies</Variable>
+    <Variable
+      Name="Primary/Packages">namespace</Variable>
+    <Variable
+      Name="Primary/native queries">LINQ</Variable>
+  </Variables>
+</CatapultTarget>

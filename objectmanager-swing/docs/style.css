@@ -1,0 +1,252 @@
+body, p, td
+{
+	font-family: Arial, Helvetica, Verdana;
+	font-size: 10pt;
+	color: #666666;
+}
+
+a img
+{
+	border: none;
+}
+
+#NavFrameTOC
+{
+}
+
+#NavFrameTOC a{
+	text-decoration:none;
+	color:white;
+}
+
+/*#NavFrameTOC ul{
+	margin-left:0px;
+	padding-left: 0px;
+}
+
+#NavFrameTOC li{
+	margin-left:15px;
+	line-height:1.5;
+	list-style: none;
+}*/
+
+
+#Footer
+{
+	margin-top: 2em;
+	padding: 0.5em;
+	font-size: 90%;
+	color: #CCCCCC;
+	background-color: #999;
+}
+
+.CommonContentArea H1
+{
+	color: #447744;
+	font-size: 180%;
+	font-weight: bold;
+}
+
+.CommonContentArea H2
+{
+	color: #447744;
+	font-size: 160%;
+	font-weight: bold;
+	border-bottom: double #CCC 3px;
+}
+
+.CommonContentArea H3
+{
+	color: #447744;
+	font-size: 140%;
+	font-weight: bold;
+	border-bottom: solid #CCC 1px;
+}
+
+.CommonContentArea H4
+{
+	color: #447744;
+	font-size: 130%;
+	font-weight: bold;
+}
+
+.CommonContentArea H5
+{
+	color: #447744;
+	font-size: 120%;
+	font-weight: bold;
+}
+
+.CommonContentArea H6
+{
+	color: #447744;
+	font-size: 100%;
+	font-weight: bold;
+}
+
+.AttachmentInfo
+{
+	border: #CCCCCC 1px solid;
+	background-color: #F4F4F4;
+	padding: 0.5em;
+	color: #666666;
+	display: block;
+	white-space: nowrap;
+/*	-moz-display: table;*/
+}
+
+/*DIV.AttachmentInfo DIV
+{
+	display: table-cell;
+}*/
+
+.AttachmentInfo A
+{
+	text-decoration: none;
+}
+
+.AttachmentInfo A:hover
+{
+	text-decoration: underline;
+}
+
+.AttachmentInfo .AttachmentIcon
+{
+	float: left;
+	margin-right: .5em;
+}
+
+.AttachmentInfo .AttachmentFileName
+{
+	font-weight: bold;
+	font-size: 115%;
+}
+
+.AttachmentInfo .AttachmentFileSize, .AttachmentFileDetailsLink
+{
+	font-size: 85%;
+}
+
+.FormattedSourceCode
+{
+	line-height: 1.2em;
+	background-color: #F4F4F4;
+	border: 1px solid #CCCCCC;
+	margin-bottom: 1.5em;
+	clear: both;
+}
+
+.FormattedSourceCode .fscCode
+{
+	font-family: Consolas, Lucida Console, Courier, Monospace;
+	border-top: 1px solid #CCCCCC;
+	margin: 0px;
+}
+
+.FormattedSourceCode PRE
+{
+	font-family: Consolas, Lucida Console, Courier, Monospace;
+	margin: .5em;
+}
+
+.FormattedSourceCode .fscHeader
+{
+	background-color: #FAFAFA;
+	margin-bottom: 0px;
+	vertical-align: middle;
+	padding: 0.2em 0.5em 0.2em 0.5em;
+}
+
+.FormattedSourceCode .fscFileName
+{
+	font-weight: bold;
+	font-size: 80%;
+}
+
+.FormattedSourceCode .fscDownload
+{
+	float: right;
+	margin-left: 0.5em;
+}
+
+.FormattedSourceCode .fscCopyToClipboard
+{
+	float: right;
+	margin-left: 0.5em;
+}
+
+.FormattedSourceCode A
+{
+	text-decoration: none;
+}
+
+.FormattedSourceCode A:hover
+{
+	text-decoration: underline;
+}
+
+#TOC
+{
+/*	float: right;
+	clear: right;
+	margin-left: 20px;*/
+	width: 300px;
+	padding: .5em;
+	border: 1px solid #CCCCCC;
+	background-color: #FAFAFA;
+}
+
+#TOCinner
+{
+	text-align:left;
+	padding-right: 4em;
+}
+
+.TOCtitle
+{
+	font-weight: bold;
+}
+
+.TOCcontents
+{
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+.TOCcontents UL
+{
+	padding-left: 1em;
+	margin: 0px;
+}
+
+.TOCcontents UL LI
+{
+	list-style-type: none;
+}
+
+.TOCcontents A
+{
+	text-decoration: none;
+}
+
+.TOCcontents A:hover
+{
+	text-decoration: underline;
+}
+
+SUP.notExist{
+	display: none;
+}
+
+SUP.newTopic{
+	display: none;
+}
+
+SUP.changedTopic{
+	display: none;
+}
+
+.childTopicList p
+{
+	margin-bottom: 0.5em;
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">@Override
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> contextInitialized(ServletContextEvent event) {
+    ServletContext context = event.getServletContext();
+    String filePath = context.getRealPath(<span style="color:#A31515;">&quot;WEB-INF/&quot;</span>
+            + context.getInitParameter(KEY_DB4O_FILE_NAME));
+    EmbeddedObjectContainer rootContainer = Db4oEmbedded.openFile(filePath);
+    context.setAttribute(KEY_DB4O_SERVER, rootContainer);
+    context.log(<span style="color:#A31515;">&quot;db4o startup on &quot;</span> + filePath);
+}
+
+
+@Override
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> contextDestroyed(ServletContextEvent event) {
+    ServletContext context = event.getServletContext();
+    ObjectContainer rootContainer = (ObjectContainer) context.getAttribute(KEY_DB4O_SERVER);
+    context.removeAttribute(KEY_DB4O_SERVER);
+    close(rootContainer);
+    context.log(<span style="color:#A31515;">&quot;db4o shutdown&quot;</span>);
+}</pre>
+		<div class="codesnippet-meta">
+			Db4oServletListener.java: db4o-instance for the web-application
+			<div class="codedownload">
+				<a href="Example-db4odoc-servlet-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

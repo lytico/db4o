@@ -1,0 +1,13 @@
+package decaf.collections;
+
+import java.util.*;
+
+public class SimpleListUsage {	
+	public static void main(String[] args) {
+		com.db4o.foundation.Sequence4 list = new com.db4o.foundation.Collection4();
+		list.add(new Integer(42));
+		int value = (((Integer) list.get(0))).intValue();
+		com.db4o.foundation.Sequence4 unmodifiable = com.db4o.foundation.Collections4.unmodifiableList(list);
+		com.db4o.foundation.Sequence4 qUnmodifiable = com.db4o.foundation.Collections4.unmodifiableList(list);
+	}
+}

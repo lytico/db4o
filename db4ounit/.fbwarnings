@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="0.9.7" sequence="0" timestamp="-1" analysisTimestamp="1146405265091" release="">
+  <Project filename="&lt;&lt;unnamed project&gt;&gt;">
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/Assert.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/AssertionException.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/BaseTestCase.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/Test.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/TestCase.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/TestPlatform4.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/TestResult.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/TestSuite.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/TestSuiteBuilder.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/db4o/Db4oFixture.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/db4o/Db4oTest.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/db4o/Db4oTestCase.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/db4o/fixtures/Db4oInMemory.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/db4o/fixtures/Db4oSolo.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/MultipleDb4oTestCase.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/RegressionTest$Db4oTestSuiteBuilder.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/RegressionTest.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/RunsAssertions.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/RunsGreen.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/RunsLifeCycle.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/RunsRed.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/RunsWithPluggableSelector.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/SimpleDb4oTestCase$Data.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/SimpleDb4oTestCase.class</Jar>
+    <Jar>/home/patrick/workspaces/db4o/db4ounit/bin/com/db4o/test/unit/test/TestRunner.class</Jar>
+    <AuxClasspathEntry>/home/patrick/workspaces/db4o/db4ounit/bin</AuxClasspathEntry>
+    <AuxClasspathEntry>/home/patrick/workspaces/db4o/db4ounit/lib/db4o-5.0-java1.2.jar</AuxClasspathEntry>
+  </Project>
+  <BugInstance type="REC_CATCH_EXCEPTION" priority="3" abbrev="REC" category="STYLE">
+    <Class classname="com.db4o.test.unit.TestPlatform4">
+      <SourceLine classname="com.db4o.test.unit.TestPlatform4" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="TestPlatform4.java" sourcepath="com/db4o/test/unit/TestPlatform4.java"/>
+    </Class>
+    <Method classname="com.db4o.test.unit.TestPlatform4" name="create" signature="(Ljava/lang/Object;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;" isStatic="true">
+      <SourceLine classname="com.db4o.test.unit.TestPlatform4" start="47" end="51" startBytecode="0" endBytecode="20" sourcefile="TestPlatform4.java" sourcepath="com/db4o/test/unit/TestPlatform4.java"/>
+    </Method>
+    <SourceLine classname="com.db4o.test.unit.TestPlatform4" start="49" end="49" startBytecode="18" endBytecode="18" sourcefile="TestPlatform4.java" sourcepath="com/db4o/test/unit/TestPlatform4.java"/>
+  </BugInstance>
+  <BugInstance type="EI_EXPOSE_REP2" priority="2" abbrev="EI2" category="MALICIOUS_CODE">
+    <Class classname="com.db4o.test.unit.TestSuite">
+      <SourceLine classname="com.db4o.test.unit.TestSuite" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="TestSuite.java" sourcepath="com/db4o/test/unit/TestSuite.java"/>
+    </Class>
+    <Method classname="com.db4o.test.unit.TestSuite" name="&lt;init&gt;" signature="([Lcom/db4o/test/unit/Test;)V" isStatic="false">
+      <SourceLine classname="com.db4o.test.unit.TestSuite" start="6" end="8" startBytecode="0" endBytecode="9" sourcefile="TestSuite.java" sourcepath="com/db4o/test/unit/TestSuite.java"/>
+    </Method>
+    <Field classname="com.db4o.test.unit.TestSuite" name="tests" signature="[Lcom/db4o/test/unit/Test;" isStatic="true">
+      <SourceLine classname="com.db4o.test.unit.TestSuite" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="TestSuite.java" sourcepath="com/db4o/test/unit/TestSuite.java"/>
+    </Field>
+    <SourceLine classname="com.db4o.test.unit.TestSuite" start="7" end="7" startBytecode="6" endBytecode="6" sourcefile="TestSuite.java" sourcepath="com/db4o/test/unit/TestSuite.java"/>
+  </BugInstance>
+  <BugInstance type="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" priority="3" abbrev="UwF" category="STYLE">
+    <Class classname="com.db4o.test.unit.db4o.Db4oTestCase">
+      <SourceLine classname="com.db4o.test.unit.db4o.Db4oTestCase" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="Db4oTestCase.java" sourcepath="com/db4o/test/unit/db4o/Db4oTestCase.java"/>
+    </Class>
+    <Field classname="com.db4o.test.unit.db4o.Db4oTestCase" name="_fixture" signature="Lcom/db4o/test/unit/db4o/Db4oFixture;" isStatic="false">
+      <SourceLine classname="com.db4o.test.unit.db4o.Db4oTestCase" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="Db4oTestCase.java" sourcepath="com/db4o/test/unit/db4o/Db4oTestCase.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" priority="3" abbrev="UwF" category="STYLE">
+    <Class classname="com.db4o.test.unit.db4o.fixtures.Db4oInMemory">
+      <SourceLine classname="com.db4o.test.unit.db4o.fixtures.Db4oInMemory" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="Db4oInMemory.java" sourcepath="com/db4o/test/unit/db4o/fixtures/Db4oInMemory.java"/>
+    </Class>
+    <Field classname="com.db4o.test.unit.db4o.fixtures.Db4oInMemory" name="_db" signature="Lcom/db4o/ext/ExtObjectContainer;" isStatic="false">
+      <SourceLine classname="com.db4o.test.unit.db4o.fixtures.Db4oInMemory" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="Db4oInMemory.java" sourcepath="com/db4o/test/unit/db4o/fixtures/Db4oInMemory.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" priority="3" abbrev="UwF" category="STYLE">
+    <Class classname="com.db4o.test.unit.db4o.fixtures.Db4oSolo">
+      <SourceLine classname="com.db4o.test.unit.db4o.fixtures.Db4oSolo" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="Db4oSolo.java" sourcepath="com/db4o/test/unit/db4o/fixtures/Db4oSolo.java"/>
+    </Class>
+    <Field classname="com.db4o.test.unit.db4o.fixtures.Db4oSolo" name="_db" signature="Lcom/db4o/ext/ExtObjectContainer;" isStatic="false">
+      <SourceLine classname="com.db4o.test.unit.db4o.fixtures.Db4oSolo" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="Db4oSolo.java" sourcepath="com/db4o/test/unit/db4o/fixtures/Db4oSolo.java"/>
+    </Field>
+  </BugInstance>
+  <BugInstance type="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" priority="3" abbrev="UwF" category="STYLE">
+    <Class classname="com.db4o.test.unit.db4o.fixtures.Db4oSolo">
+      <SourceLine classname="com.db4o.test.unit.db4o.fixtures.Db4oSolo" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="Db4oSolo.java" sourcepath="com/db4o/test/unit/db4o/fixtures/Db4oSolo.java"/>
+    </Class>
+    <Field classname="com.db4o.test.unit.db4o.fixtures.Db4oSolo" name="_file" signature="Ljava/io/File;" isStatic="false">
+      <SourceLine classname="com.db4o.test.unit.db4o.fixtures.Db4oSolo" start="-1" end="-1" startBytecode="-1" endBytecode="-1" sourcefile="Db4oSolo.java" sourcepath="com/db4o/test/unit/db4o/fixtures/Db4oSolo.java"/>
+    </Field>
+  </BugInstance>
+  <Errors></Errors>
+  <FindBugsSummary timestamp="Sun, 30 Apr 2006 15:54:25 +0200" total_classes="0" total_bugs="0" total_size="0" num_packages="0" cpu_seconds="0.03" clock_seconds="0.04" peak_mbytes="173.60" gc_seconds="0.00"></FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

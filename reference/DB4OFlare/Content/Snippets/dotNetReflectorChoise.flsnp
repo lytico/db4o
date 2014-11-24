@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="124" MadCap:lastWidth="612">
+    <body>
+        <p MadCap:conditions="Primary..NET">There are currently two reflectors available:</p>
+        <ul MadCap:conditions="Primary..NET">
+            <li MadCap:conditions="Primary..NET"><strong>NetReflector</strong>: The default reflector which uses standard .NET reflection for inspecting and accessing objects.</li>
+            <li><strong>FastNetReflector</strong>:&#160;A reflector which generates special access-code for each class. Therefore it is a lot faster than the default NetReflector. However it has a higher memory-consumption due to the generated code.</li>
+        </ul>
+    </body>
+</html>

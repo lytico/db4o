@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="419" MadCap:lastWidth="492">
+    <head>
+    </head>
+    <body>
+        <h1>Cascading Deletion</h1>
+        <p>By default db4o only deletes objects which are passed to the delete-method and doesn't delete referenced objects. You can easily change that. Configure the cascading deletion behavior in the configuration for <a href="../../configuration/objectclass/cascade_on_delete.htm">certain classes</a> or <a href="../../configuration/objectfield_configuration.htm">certain fields</a>. </p>
+        <p>For example we mark that the object in the 'pilot'-field is also deleted:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/deletion/DeletionExamples-Mark-field-for-cascading-deletion.all.flsnp" />
+        <p>When we now delete the car, the pilot of that car is also deleted.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/deletion/DeletionExamples-Cascade-deletion.all.flsnp" />
+    </body>
+</html>

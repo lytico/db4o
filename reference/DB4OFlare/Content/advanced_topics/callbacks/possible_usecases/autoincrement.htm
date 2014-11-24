@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="5955" MadCap:lastWidth="742">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Autoincrement" />Autoincrement</h1>
+    <p>db4o does not deliver a field auto increment feature, which
+is common in RDBMS. Normally you don't need any additional ids, since db4o manages objects by object-identity. However cases where you have <a href="../../../platform_specific_issues/disconnected_objects.htm">disconnected objects</a>, you need additional ids. One of then possibilities it to use auto incremented ids.</p>
+    <p> If your application logic requires this feature you can
+implement it using external callbacks. One of the possible solutions is
+presented below. Note that this example only works in embedded-mode.</p>
+    <p>This example assumes that all object which need an auto incremented id are subclasses of the IDHolder class. This class contains the auto-incremented id.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/disconnectedobj/idexamples/IDHolder-id-holder.all.flsnp" />
+    <p>First create a class which keeps the state of the auto-increment numbers. For example a map which keeps the latest auto incremented id for each class.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/disconnectedobj/idexamples/AutoIncrement-persistent-auto-increment.all.flsnp" />
+    <p>Then create two methods, which are called later. One which returns the next auto-incremented id for a certain class. Another which stores the current state of the auto-increments.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/disconnectedobj/idexamples/AutoIncrement-getting-the-next-id-and-storing-state.all.flsnp" />
+    <p>The last part is to ensure that the existing auto-increments are loaded from the database. Or if not existing a new instance is created.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/disconnectedobj/idexamples/AutoIncrement-load-the-state-from-the-database.all.flsnp" />
+    <p>Now it's time to use the callbacks. Every time when a new object is created, assign a new id. For this the creating-event is perfect. When commiting  also make the auto increment-state persistent, to ensure that no id is used twice.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/disconnectedobj/idexamples/AutoIncrementExample-use-events-to-assign-the-ids.all.flsnp" />
+    <p>Last, don't forget to index the id-field. Otherwise looks-ups will be slow.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/disconnectedobj/idexamples/AutoIncrementExample-index-the-id-field.all.flsnp" />
+  </body>
+</html>

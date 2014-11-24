@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="10" MadCap:lastHeight="3649" MadCap:lastWidth="602">
+    <head>
+    </head>
+    <body>
+        <h1>Object Container per Unit of Work</h1>
+        <p>One possibility is to use an object container per unit of work and avoid sharing it across threads. A typical example is to use an object container per request. You can create a new <a href="../session_containers.htm">session object container at any time</a>. </p>
+        <p>Let's take a look at an example. This operation  starts a background task and carries on doing other things:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/units/UnitsOfWork-Schedule-back-ground-tasks.all.flsnp" />
+        <p>In this example we use an object container for the background work:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/units/UnitsOfWork-An-object-container-for-the-background-task.all.flsnp" />
+        <p>And another background container for the list task.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/units/UnitsOfWork-An-object-container-for-this-unit-of-work.all.flsnp" />
+        <h2>Be Aware of the Isolation Level</h2>
+        <p>When using multiple object containers you need to be aware of the <a href="../../basics/acid_and_transactions/isolation.htm">transaction isolation</a>. db4o has read committed isolation properties. This isolation applies per object level. Object are loaded individually, which means that the different object-states may are from different committed states. </p>
+        <MadCap:snippetBlock src="../../Snippets/isolation_issues.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

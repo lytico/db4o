@@ -1,0 +1,28 @@
+package decaf.integration;
+
+class Foo {
+	public Object[] array;
+	
+	public Foo(Object[] values) {
+		array = values;
+	}
+	
+	public void bar(Object[] ts) {
+		for (int argIndex = 0; argIndex < ts.length; ++argIndex) {
+			final Object arg = ts[argIndex];
+			System.out.println(arg);
+		}
+	}
+}
+
+class Main {
+	static void main() {
+		{
+			final String[] sArray = ((String[]) new Foo(new String[] { "foo", "bar" }).array);
+			for (int sIndex = 0; sIndex < sArray.length; ++sIndex) {
+				final String s = sArray[sIndex];
+				new Foo(new String[] { s });
+			}
+		}
+	}
+}

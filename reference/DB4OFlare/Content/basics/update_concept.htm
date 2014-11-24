@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="449" MadCap:lastWidth="638">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Update Concept" />Update Concept</h1>
+        <p>Updating objects in db4o is as easy as storing them. You just call then store-method again to update a object. How does a update work? There are two main questions. First, how does db4o recognize a object so that it knows whenever it should update a object or store it as a new object? And what's the scope of updates? All all objects updated? Or just the objects you explicitly store?</p>
+        <h2>Object Recognition</h2>
+        <p>How does db4o know which object needs to be updated and which object has to be stored as new object? Well db4o uses the <a href="identity_concept.htm">object-identity</a> and looks up it if has loaded this object. If the object was loaded by db4o, it is an existing object and will be updated. Otherwise it has to be a new object and is stored as a new object.</p>
+        <h2>Update Depth</h2>
+        <p>When you update of a object, db4o only stores the changes to a certain depth. This update depth avoids that db4o needs to go through the whole object graph and find out which objects have changed. </p>
+        <p>By default this update depth is one. This means when you update a object, only the changes on that object are stored. Changes on other objects are not included. When you want to store changes of multiple objects you need either to increase the <a href="../configuration/common/update_depth.htm">update-depth</a>, store each object individually or use <a href="../basics/update_concept/transparent_persistence.htm">transparent persistence</a>. </p>
+        <p>Take a look at this concrete example to see how the update-depth affects you're operations. <MadCap:xref href="update_concept/update_depth_in_action.htm" target="" title="" alt="">See "Update Depth In Action"</MadCap:xref></p>
+        <p>Since collection are regular object in db4o the update depth also applies to collections. <MadCap:xref href="update_concept/updating_collections.htm" target="" title="" alt="">See "Updating Collections"</MadCap:xref></p>
+        <p>If you want to automate the update process of object:&#160;<MadCap:xref href="update_concept/transparent_persistence.htm" target="" title="" alt="">See "Transparent Persistence"</MadCap:xref></p>
+    </body>
+</html>

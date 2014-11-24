@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1016" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Monitoring Queries</h1>
+        <p>You can monitor queries to find out more about the runtime behavior of your application.</p>
+        <h2>Configure the Query Monitoring Support</h2>
+        <p>First you need to add the monitoring support to the db4o configuration.
+		 There are two separate items.
+	 The QueryMonitoringSupport will monitor the very basic query operations.
+	 The NativeQueryMonitoringSupport adds additional statistics about <span MadCap:conditions="Primary..NET">LINQ and</span> native queries.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tuning/monitoring/QueryMonitoring-Add-query-monitoring.all.flsnp" />
+        <h2>The Query Statistics</h2>
+        <p MadCap:conditions="Primary.Java"><strong>AverageQueryExecutionTime</strong> : Tells you how long on average a query takes to execute. Of course this heavily depends on the complexity of the queries. However if this number is high, you maybe should improve you query-performance. For example by adding additional indexes. <MadCap:xref href="../../basics/indexing.htm" target="" title="" alt="">See "Indexing"</MadCap:xref></p>
+        <p><strong MadCap:conditions="Primary.Java">ClassIndexScansPerSecond</strong><strong MadCap:conditions="Primary..NET">class index scans/sec</strong>: Tells you the number of queries which required to scan through all objects. This means that a query couldn't use a field index and therefore required to go through all objects. This is of course slow. You should try to keep this number low by adding the right indexes on fields. <MadCap:xref href="../../basics/indexing.htm" target="" title="" alt="">See "Indexing"</MadCap:xref></p>
+        <p><strong MadCap:conditions="Primary.Java">QueriesPerSecond</strong><strong MadCap:conditions="Primary..NET">queries/sec</strong>: Tells you how many queries run per second. </p>
+        <p MadCap:conditions="Primary.Java"><strong>Loaded From Class Index Notifications</strong>: The query statistics can notify you every time a query used the class-index and couldn't utilize a field index. You should try to avoid loading by class index by adding the right indexes on fields. <MadCap:xref href="../../basics/indexing.htm" target="" title="" alt="">See "Indexing"</MadCap:xref></p>
+        <h2>The Native Query Statistics</h2>
+        <p><strong MadCap:conditions="Primary.Java">NativeQueriesPerSecond</strong><strong MadCap:conditions="Primary..NET">native queries/sec</strong>: Tells you how many native queries per second run.</p>
+        <p><strong MadCap:conditions="Primary.Java">UnoptimizedNativeQueriesPerSecond</strong><strong MadCap:conditions="Primary..NET">unoptimized native queries/sec</strong>: Tells you how many unoptimized native queries run per second. Such queries need to instantiate all objects which is a slow operation. If this number is high, you should try to simplify your queries.</p>
+        <p MadCap:conditions="Primary..NET"><strong>linq queries/sec</strong>: Tells you how many db4o-LINQ queries run per second.</p>
+        <p MadCap:conditions="Primary..NET"><strong>unoptimized linq queries/sec</strong>: Tells you how many unoptimized LINQ run per second . You should avoid unoptimized LINQ-queries, because these queries instantiate allobjects to perform the query and therefore are slow. Try to write a more simple LINQ-query. <MadCap:xref href="../../basics/querying/linq.htm" target="" title="" alt="">See "LINQ"</MadCap:xref></p>
+        <p MadCap:conditions="Primary.Java"><strong>Native Query Not Optimized Notifications</strong>: The native query statistics can notify you every time a query couldn't be optimized. You should try to avoid such queries. Try to simplify the native query or fall back to SODA-queries.</p>
+    </body>
+</html>

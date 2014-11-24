@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Class</span> LogReplicationListener
+    <span style="color:Blue;">Implements</span> IReplicationEventListener
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> OnReplicate(<span style="color:Blue;">ByVal</span> replicationEvent <span style="color:Blue;">As</span> IReplicationEvent) _
+                                    <span style="color:Blue;">Implements</span> IReplicationEventListener.OnReplicate
+        <span style="color:Blue;">Dim</span> stateInDesktop <span style="color:Blue;">As</span> IObjectState = replicationEvent.StateInProviderA()
+        <span style="color:Blue;">If</span> stateInDesktop.IsNew() <span style="color:Blue;">Then</span>
+            Console.WriteLine(<span style="color:#A31515;">&quot;Object '{0}' is new on desktop database&quot;</span>, _
+                              stateInDesktop.GetObject())
+        <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+        <span style="color:Blue;">If</span> stateInDesktop.WasModified() <span style="color:Blue;">Then</span>
+            Console.WriteLine(<span style="color:#A31515;">&quot;Object '{0}' was modified on desktop database&quot;</span>, _
+                              stateInDesktop.GetObject())
+        <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			AdvancedReplicationExamples.vb: The ReplicationEventListener for informations about the replication process
+			<div class="codedownload">
+				<a href="Example-drs-advanced-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

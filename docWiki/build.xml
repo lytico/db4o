@@ -1,0 +1,27 @@
+<project name="docwiki" default="clean_all" basedir=".">
+	
+	<target name="clean_all" depends="clean_cvs">
+		<delete>
+			<fileset dir="./java/">
+				<include name="**"/>
+			</fileset>
+			<fileset dir="./net/">
+				<include name="**"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="clean_cvs">
+		<defaultexcludes remove="**/CVS"/>
+		<defaultexcludes remove="**/CVS/**"/>
+		<delete includeemptydirs="true">
+			<fileset dir="./java/">
+				<include name="**/CVS/**"/>
+			</fileset>
+			<fileset dir="./net/">
+				<include name="**/CVS/**"/>
+			</fileset>
+		</delete>
+	</target>
+
+</project>

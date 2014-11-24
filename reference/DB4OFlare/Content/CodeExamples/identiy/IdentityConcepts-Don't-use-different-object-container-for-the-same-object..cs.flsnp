@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Car loadedWithContainer1 = container1.Query&lt;Car&gt;()[0];
+container2.Store(loadedWithContainer1);
+<span style="color:Green;">// Now the car is store twice.</span>
+<span style="color:Green;">// Because the container2 cannot recognize objects from other containers</span>
+<span style="color:Green;">// Therefore always use the same container to store and load objects</span>
+PrintAll(container2.Query&lt;Car&gt;());</pre>
+		<div class="codesnippet-meta">
+			IdentityConcepts.cs: Don't use different object-container for the same object.
+			<div class="codedownload">
+				<a href="Example-Code-identiy-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

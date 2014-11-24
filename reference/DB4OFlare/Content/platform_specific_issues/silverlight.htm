@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2105" MadCap:lastWidth="623" MadCap:conditions="Primary..NET">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Silverlight" />Silverlight</h1>
+        <p>db4o runs with some limitations on Microsoft's Silverlight. You can find the Silverlight assemblies in the db4o distribution, in the folder 'bin/silverlight'. </p>
+        <h2>Feature Set</h2>
+        <p>Currently only the core functionality is supported on Silverlight. The db4o core and the db4o LINQ provider run on Silverlight. Other features like the client-server mode are not supported. </p>
+        <h2>Add Silverlight Support</h2>
+        <p>To run db4o on Silverlight you need to use the Silverlight assemblies which are in the db4o distribution. Additionally you need to configure the Silverlight support in the db4o configuration. This also configured the <a href="#Isolated">isolated storage</a>. </p>
+        <MadCap:snippetBlock src="../CodeExamples/silverlight/configuration/io/IOExamples-Add-Silverlight-support.all.flsnp" />
+        <h2>Persistent Object Limitations</h2>
+        <p>Due to the restrictions of the Silverlight sandbox, it's impossible to inspect the private fields of an object. This means that the field of persistent objects need to be public!</p>
+        <p>Also auto-properties cannot be stored. Auto properties use a regular, compiler generated private field to hold the data. Since db4o cannot access private fields, it also cannot access the data of auto-properties.</p>
+        <MadCap:snippetBlock src="../CodeExamples/silverlight/model/Person-fields-need-to-be-public-to-be-persisted.all.flsnp" />
+        <h2>Queries</h2>
+        <p>You can use <a href="../basics/querying/linq.htm">LINQ</a> to query your objects in Silverlight. Note that the Silverlight version uses the Mono.Cecil.dll and the Cecil.FlowAnalysis.dll assembly for the LINQ-implementation. </p>
+        <MadCap:snippetBlock src="../CodeExamples/silverlight/model/QueriesInSilverlight-Queries-in-Silverlight.all.flsnp" />
+        <h2><a name="Isolated"></a>Isolated Storage</h2>
+        <p>By default you cannot access the file system in Silverlight, but only a special isolated storage. Therefore you need to use the isolated storage when you're configuring the IO system. By default this storage is limited to 1 MByte of data. You <a href="http://msdn.microsoft.com/en-us/library/system.io.isolatedstorage.isolatedstoragefile.increasequotato(v=VS.95).aspx">can increase it with</a> the users consent.</p>
+        <p>When the Silverlight application runs outside the browser with enough privileges you can use the regular storage. However by default the isolated storage should be used.</p>
+        <MadCap:snippetBlock src="../CodeExamples/silverlight/configuration/io/IOExamples-use-the-isolated-storage-on-silverlight.all.flsnp" />
+    </body>
+</html>

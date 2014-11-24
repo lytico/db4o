@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="673" MadCap:lastWidth="637">
+    <head>
+    </head>
+    <body>
+        <h1>Bidirectional Replication</h1>
+        <p>In order to replicate objects from Hibernate to db4o you need to do some additional work. dRS needs to know which objects have changed since the last replication. For this some   <![CDATA[ ]]><a href="drs_internals.htm">meta data</a> <![CDATA[ ]]>is maintained.You need to register a dRS event handler on every Hibernate-session you're using. This listener will maintain the meta-data. If an object is stored on a session without this listener, the update is not replicated. That also means dRS replication only works when you persist all object through Hibernate</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/rdms/Db4oRDBMSReplicationExamples-Install-the-listeners-to-the-session.all.flsnp" />
+        <p>After that dRS is ready to replicate in both directions. Again, set up the replication-session. After that you can replicate the changes of the two providers in both directions.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/rdms/Db4oRDBMSReplicationExamples-Bidirectional-replication.all.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

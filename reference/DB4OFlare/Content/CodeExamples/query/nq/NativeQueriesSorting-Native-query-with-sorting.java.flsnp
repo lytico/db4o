@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">final</span> ObjectSet&lt;Pilot&gt; pilots = container.query(<span style="color:Blue;">new</span> Predicate&lt;Pilot&gt;() {
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> match(Pilot o) {
+        <span style="color:Blue;">return</span> o.getAge() &gt; 18;
+    }
+}, <span style="color:Blue;">new</span> QueryComparator&lt;Pilot&gt;() {
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> compare(Pilot pilot, Pilot pilot1) {
+        <span style="color:Blue;">return</span> pilot.getName().compareTo(pilot1.getName());
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			NativeQueriesSorting.java: Native query with sorting
+			<div class="codedownload">
+				<a href="Example-query-nq-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

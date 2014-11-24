@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+	
+<project name="dRS" default="enhance" basedir=".">
+	
+	<property file="../db4obuild/machine.properties" />
+	
+	<target name="init" >
+		
+	</target>
+		
+	
+	<target name="enhance" depends="init">
+		<copy file="src/core/versant.properties" todir="bin" />
+		<taskdef resource="versant.tasks">
+			<classpath>
+				<fileset dir="${dir.vod.lib}" includes="**/*.jar"/>
+				<fileset dir="." includes="**/*.jar"/>
+				<pathelement location="bin"/>
+				<pathelement location="../db4oj/bin"/>
+				<pathelement location="../db4ounit/bin"/>
+			</classpath>
+		</taskdef>
+		<jdo-enhance  project="versant.properties" outputdir="bin" >
+			<persistentaware dir="bin"/>
+		</jdo-enhance>
+	</target>
+	
+</project>	
+

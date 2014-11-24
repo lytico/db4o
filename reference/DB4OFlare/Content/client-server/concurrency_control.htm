@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="234" MadCap:lastWidth="570">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Concurrency" />Concurrency Control</h1>
+    <p>As soon as you will start using db4o with multiple client
+connections you will recognize the necessity of implementing a concurrency
+control system. db4o itself works as an overly optimistic scheme, i.e. an
+object is locked for read and write, but no collision check is made. This
+approach makes db4o very flexible and gives you an opportunity to organize a
+concurrency control system, which will suit your needs the best. Your main
+tools to build your concurrency control system would be:</p>
+    <ul>
+      <li>
+        <a href="semaphores.htm">Semaphores</a>
+      </li>
+      <li>
+        <a href="../advanced_topics/callbacks.htm">Callbacks</a>
+      </li>
+    </ul>
+    <p>The articles in this topic set will show you how to implement locking and will give you an advice which strategy to use in different situations.</p>
+  </body>
+</html>

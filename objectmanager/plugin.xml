@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id="ObjectManager"
+         name="Object Manager"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.db4o.browser.rcp.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="Perspective"
+            class="com.db4o.browser.rcp.Perspective"
+            id="com.db4o.browser.rcp.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            name="View"
+            class="com.db4o.browser.rcp.View"
+            id="com.db4o.browser.rcp.view">
+      </view>
+   </extension>
+   <extension
+         id="ObjectManagerProduct"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.db4o.browser.ObjectManager"
+            name="Object Manager"/>
+   </extension>
+
+</plugin>

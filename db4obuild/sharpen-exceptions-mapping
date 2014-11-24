@@ -1,0 +1,1 @@
+-typeMapping java.lang.SecurityException System.Security.SecurityException

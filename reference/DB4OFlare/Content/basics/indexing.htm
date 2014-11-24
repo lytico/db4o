@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="972" MadCap:lastWidth="588">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Indexes" />Indexing</h1>
+        <p>db4o supports indexes like most databases do. Indexes are data structures which allow efficient lookup of data. When you enable an index, db4o will add an entry to index for each object. This makes the insert and update operation a little slower. However it makes queries a lot faster. A query which uses an index is a order of magnitude faster that a query which cannot use a index.</p>
+        <p>You can create a index by enabling it on a field. <MadCap:xref href="../configuration/objectfield_configuration.htm#Adding" target="" title="" alt="">See "Adding a Field Index"</MadCap:xref></p>
+        <p MadCap:conditions="Primary..NET">Note that you need to set the index on a field, not a property. This is also true for auto-properties. </p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/objectfield/City-Index-a-field.all.flsnp" />
+        <p>As an alternative you can configure a field index externally.</p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/objectfield/ObjectFieldConfigurations-Index-a-certain-field.all.flsnp" />
+        <h2>When And Where Do I&#160;Need An Index</h2>
+        <p>When do you need an index? As a rule of thumb: Add an index all fields which are used in queries. <MadCap:xref href="indexing/when_and_where.htm" target="" title="" alt="">See "When And Where"</MadCap:xref></p>
+        <p>There are different factors which need to be fulfilled to profit from an index.</p>
+        <ul>
+            <li>Read operations dominate the database operations: When you application only writes objects but rarely query for objects, there's no benefit of faster queries. However in most system reading is the dominate operation and should be fast.</li>
+            <li>You're using the field / class in a query: If no query touches the field or class you're have a index on, you have not benefit from the index. The index improves only the query performance, but slows down store and update-operations.</li>
+            <li>You actually need a substantial amount of data. The performance gains of an index are negligible for small data sets. When you test indexes use 10'000 and more objects.</li>
+        </ul>
+    </body>
+</html>

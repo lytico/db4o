@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Person joelle = QueryForJoelle(container);
+Person jennifer = joelle.Mother.Mother.Mother.Mother;
+Console.WriteLine(<span style="color:#A31515;">&quot;Is activated: {0}&quot;</span>, jennifer);
+<span style="color:Green;">// Now we step across the activation boundary</span>
+<span style="color:Green;">// therefore the next person isn't activate anymore.</span>
+<span style="color:Green;">// That means all fields are set to null or default-value</span>
+Person julia = jennifer.Mother;
+Console.WriteLine(<span style="color:#A31515;">&quot;Isn't activated anymore {0}&quot;</span>, julia);</pre>
+		<div class="codesnippet-meta">
+			ActivationConcept.cs: Activation depth in action
+			<div class="codedownload">
+				<a href="Example-Code-activation-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

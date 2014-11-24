@@ -1,0 +1,61 @@
+.n
+.1 API Overview ..
+Do not forget the API documentation while reading through this ._
+tutorial. It provides an organized view of the API, looking from a ._
+namespace perspective and you may find related functionality to the theme you ._
+are currently reading up on.
+
+For starters, the Db4objects.Db4o and Db4objects.Db4o.Query namespaces ._
+are all that you need to worry about.
+
+.b Db4objects.Db4o ..
+
+The Db4objects.Db4o namespace ._
+contains most of the functionality you will commonly ._
+need when you work with db4o. Two classes of special interest are ._
+Db4objects.Db4o.Db4oFactory and Db4objects.Db4o.IObjectContainer.
+
+The Db4oFactory is your starting point. Static methods in ._
+this class ._
+allow you to open a database file, start a server, or connect to an existing server. ._
+It also lets you configure the db4o environment before opening a database.
+
+The most important interface, and the one that you will be using 99% of the time is 
+IObjectContainer: This is your db4o database.
+- An IObjectContainer can either be a database in single-user mode or ._
+a client connection to a db4o server.
+- Every IObjectContainer owns one transaction. All work is transactional. ._
+When you open an IObjectContainer, you are in a transaction, when you ._
+commit() or rollback(), the next transaction is started immediately.
+- Every IObjectContainer maintains it's own references to stored and ._
+instantiated objects. In doing so, it manages object identities, and ._
+is able to achieve a high level of performance.
+- IObjectContainers are intended to be kept open as long as you work ._
+against them. When you close an IObjectContainer, all database references ._
+to objects in RAM will be discarded.
+
+.b Db4objects.Db4o.Ext ..
+
+In case you wonder why you only see very few methods in an IObjectContainer, ._
+here is why: The db4o interface is supplied in two steps in two namespaces, ._
+Db4objects.Db4o and Db4objects.Db4o.Ext for the following reasons:
+- It's easier to get started, because the important methods are emphasized.
+- It will be easier for other products to copy the basic db4o interface.
+- It is an example of how a lightweight version of db4o could look.
+
+Every IObjectContainer object is also an IExtObjectContainer. ._
+You can cast the IObjectContainer to IExtObjectContainer or you can use ._
+the .Ext() method to access advanced features.
+
+.b Db4objects.Db4o.Config ..
+
+The Db4objects.Db4o.Config namespace ._
+contains types necessary to configure db4o. The objects and interfaces ._
+within are discussed in the  .l Configuration Configuration ..  section.
+
+.b  Db4objects.Db4o.Query ..
+
+The Db4objects.Db4o.Query namespace contains ._
+the Predicate class to construct  .l Query Native Queries .. . The Native Query ._
+interface is the primary db4o querying interface and should be preferred over ._
+the Soda Query API . 

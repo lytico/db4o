@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">using</span> (IObjectContainer container = Db4oEmbedded.OpenFile(DatabaseFile))
+{
+    Car car = QueryForCar(container);
+    car.CarName = <span style="color:#A31515;">&quot;New Mercedes&quot;</span>;
+    car.Driver.Name = <span style="color:#A31515;">&quot;New Driver Name&quot;</span>;
+
+    <span style="color:Green;">// With the default-update depth of one, only the changes</span>
+    <span style="color:Green;">// on the car-object are stored, but not the changes on</span>
+    <span style="color:Green;">// the person</span>
+    container.Store(car);
+}
+<span style="color:Blue;">using</span> (IObjectContainer container = Db4oEmbedded.OpenFile(DatabaseFile))
+{
+    Car car = QueryForCar(container);
+    Console.WriteLine(<span style="color:#A31515;">&quot;Car-Name:&quot;</span> + car.CarName);
+    Console.WriteLine(<span style="color:#A31515;">&quot;Driver-Name:&quot;</span> + car.Driver.Name);
+}</pre>
+		<div class="codesnippet-meta">
+			UpdateDepthPitfall.cs: Update depth limits what is store when updating objects
+			<div class="codedownload">
+				<a href="Example-pitfalls-updatedepth-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

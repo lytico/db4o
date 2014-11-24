@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="682" MadCap:lastWidth="665">
+    <head>
+    </head>
+    <body>
+        <h1>Configure IDMapping</h1>
+        <p>When you defragment a database each object is stored at a new location. To keep track which old id maps the which new location a IDMapper is uses. You can change the IDMapper or even implement your own.</p>
+        <p>By default the InMemoryIdMapping is uses, which is the fastest version, but consumes the most memory. As alterative there's the DatabaseIdMapping available, which stores mapping in a file and therefore uses less memory.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/deframentation/DefragmentationConfigurationExamples-Choose-a-id-mapping-system.all.flsnp" />
+    </body>
+</html>

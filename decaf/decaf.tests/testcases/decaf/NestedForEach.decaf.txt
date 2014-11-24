@@ -1,0 +1,16 @@
+package decaf;
+
+class NestedForEach {
+	static void main(String[] args) {
+		for (int argIndex = 0; argIndex < args.length; ++argIndex) {
+			final String arg = args[argIndex];
+			{
+				final char[] chArray = arg.toCharArray();
+				for (int chIndex = 0; chIndex < chArray.length; ++chIndex) {
+					final char ch = chArray[chIndex];
+					System.out.println(ch);
+				}
+			}
+		}
+	}
+}

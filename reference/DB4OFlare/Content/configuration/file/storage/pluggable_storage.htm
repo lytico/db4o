@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1672" MadCap:lastWidth="644">
+    <head />
+    <body>
+        <h1>Pluggable Storage</h1>
+        <p>You can implement a storage mechanism yourself. It can be memory,
+native IO, encrypted storage, mirrored storage etc.</p>
+        <p>The implementation is guided by two interfaces. The storage interface which represents a 'file'-system where multiple stored databases can live. And the bin interface which represents the storage access.</p>
+        <p>When you only need a decorator for existing storage implementations, then you can base your implementation on the StorageDecorator and BinDecorator classes. These classes delegate all calls to the underlying implementation, but give you a chance to override certain methods to intercept the calls.</p>
+        <h2>Logging-Storage Example</h2>
+        <p>This example just logs all calls to the storage system:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/configuration/io/LoggingStorage-A-logging-storage-decorator.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/configuration/io/LoggingBin-A-logging-bin-decorator.all.flsnp" />
+    </body>
+</html>

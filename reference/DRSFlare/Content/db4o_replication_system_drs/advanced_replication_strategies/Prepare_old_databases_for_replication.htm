@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2304" MadCap:lastWidth="1008">
+    <head>
+    </head>
+    <body>
+        <h1>Prepare Old Databases for Replication</h1>
+        <p>Sometimes  replication is a new requirement for a existing application. Therefore existing databases have to be replicated. However the required UUIDs and timestamps haven't been enabled so far. How do you migrate the older databases to enable replication?</p>
+        <p>The first step is to enable the UUIDs and timestamps. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Configure-db4o-to-generate-UUIDs-and-commit-timestamps.all.flsnp" />
+        <p>The next issue is that the all objects stored don't have a UUID nor a version numbers. The easiest way to have such a number is to load and update each object in the database. Because when you update a object the new configuration takes effect. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/advanced/AdvancedReplicationExamples-Updating-all-objects-ensures-that-it-has-a-UUID-and-timestamp.all.flsnp" />
+        <p>Updating all object is maybe not an option. It's also possible to do this during the first replication. First query the objects which are target of the replication. Then do the replication. When a object doesn't have a UUID yet, update the object to ensure it has an UUID. Make also sure that the update-depth is high enough so that child objects also have an UUID.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/advanced/AdvancedReplicationExamples-Migrate-on-the-fly.all.flsnp" />
+    </body>
+</html>

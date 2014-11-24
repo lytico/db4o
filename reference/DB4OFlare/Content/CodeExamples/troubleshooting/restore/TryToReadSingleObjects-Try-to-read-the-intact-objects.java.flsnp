@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">final</span> <span style="color:Blue;">long</span>[] idsOfPersons = container.ext().storedClass(Person.<span style="color:Blue;">class</span>).getIDs();
+<span style="color:Blue;">for</span> (<span style="color:Blue;">long</span> id : idsOfPersons) {
+    <span style="color:Blue;">try</span>{
+        <span style="color:Blue;">final</span> Person person = (Person)container.ext().getByID(id);
+        container.ext().activate(person,1);
+        <span style="color:Green;">// store the person to another database</span>
+        System.out.println(<span style="color:#A31515;">&quot;This object is ok &quot;</span>+person);
+    } <span style="color:Blue;">catch</span> (Exception e){
+        System.out.println(<span style="color:#A31515;">&quot;We couldn't read the object with the id &quot;</span>+id +<span style="color:#A31515;">&quot; anymore.&quot;</span> +
+                <span style="color:#A31515;">&quot; It is lost&quot;</span>);
+        e.printStackTrace();
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			TryToReadSingleObjects.java: Try to read the intact objects
+			<div class="codedownload">
+				<a href="Example-troubleshooting-restore-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

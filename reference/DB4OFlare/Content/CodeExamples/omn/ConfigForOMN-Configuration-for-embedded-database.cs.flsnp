@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> ConfigForEmbedded : IOMNEmbeddedCustomConfigurationProvider
+{
+    <span style="color:Blue;">public</span> IEmbeddedConfiguration NewEmbeddedCustomConfiguration()
+    {
+        <span style="color:Blue;">var</span> config = Db4oEmbedded.NewConfiguration();
+        config.Common.StringEncoding = StringEncodings.Utf8();
+        <span style="color:Blue;">return</span> config;
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			ConfigForOMN.cs: Configuration for embedded database
+			<div class="codedownload">
+				<a href="Example-Code-omn-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

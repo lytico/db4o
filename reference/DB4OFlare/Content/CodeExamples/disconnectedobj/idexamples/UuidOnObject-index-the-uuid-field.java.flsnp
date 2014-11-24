@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">configuration.common().add(<span style="color:Blue;">new</span> UuidSupport());
+configuration.common().objectClass(IDHolder.<span style="color:Blue;">class</span>).objectField(<span style="color:#A31515;">&quot;uuid&quot;</span>).indexed(<span style="color:Blue;">true</span>);</pre>
+		<div class="codesnippet-meta">
+			UuidOnObject.java: index the uuid-field
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

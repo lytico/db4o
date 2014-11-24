@@ -1,0 +1,38 @@
+package decaf.generics;
+
+class Function {
+	public Object apply(Object value) {
+		return (Object)value;
+	}
+}
+
+class Hash {
+
+	public final Object defaultValue = null;
+	Object[] keys;
+	Object[] values;
+	
+	void put(Object key, Object value) {
+	}
+	
+	Object get(Object key) {
+		return this.defaultValue;
+	}
+	
+	Hash convert(Function converter, Function valueConverter) {
+		Object k1 = keys[0];
+		Object k2 = converter.apply(k1);
+		Object v1 = values[0];
+		Object v2 = valueConverter.apply(v1);
+		return null;
+	}
+}
+
+class Main {
+	static void main() {
+		final Hash hash = new Hash();
+		hash.put("ltuae", new Integer(42));
+		final Integer value = ((Integer) hash.get("ltuae"));
+		final Hash hash2 = hash.convert(new Function(), new Function());
+	}
+}

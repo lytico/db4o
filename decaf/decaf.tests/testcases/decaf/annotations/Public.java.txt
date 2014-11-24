@@ -1,0 +1,32 @@
+package decaf.annotations;
+
+@decaf.Public
+class Public {
+
+	@decaf.Public
+	class NestedPublic {
+	}
+	
+	private class NestedPrivate {
+	}
+	
+	@decaf.Public
+	private String _publicField;
+	
+	private String _privateField;
+	
+	@decaf.Public
+	protected Public() {
+	}
+	
+	protected Public(String value) {
+	}
+	
+	@decaf.Public
+	private void publicMethod() {
+	}
+	
+	protected void protectedMethod() {
+	}
+}
+

@@ -1,0 +1,40 @@
+package decaf.generics;
+
+public class NestedTypeErasure {
+
+	public interface NestedType {
+	}
+	
+	public static class NestedClass {
+	}
+	
+	public interface Procedure4 {
+		void apply(Object arg);
+	}
+	
+	public Object[] foo(Object[] args) {
+		return null;
+	}
+	
+	public void main() {
+		{
+			final NestedTypeErasure.NestedType[] tArray = ((NestedTypeErasure.NestedType[]) foo(new NestedTypeErasure.NestedType[] { new NestedType() {} }));
+			for (int tIndex = 0; tIndex < tArray.length; ++tIndex) {
+				final NestedTypeErasure.NestedType t = tArray[tIndex];
+				System.out.println(t);
+			}
+		}
+		{
+			final NestedTypeErasure.NestedClass[] cArray = ((NestedTypeErasure.NestedClass[]) foo(new NestedTypeErasure.NestedClass[] { new NestedClass() {} }));
+			for (int cIndex = 0; cIndex < cArray.length; ++cIndex) {
+				final NestedTypeErasure.NestedClass c = cArray[cIndex];
+				System.out.println(c);
+			}
+		}
+		new NestedTypeErasure.Procedure4() {
+			public void apply(Object arg) {
+				System.out.println(((String) arg));
+			}
+		};
+	}
+}

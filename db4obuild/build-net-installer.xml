@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<project name="db4oninstaller" default="build">
+
+	<property file="machine.properties" />
+	<property file="ant.properties" />
+	
+	<import file="common-dotnet.xml" />
+
+	<property name="dir.wix" location="lib/wix" />	
+	<property name="candle.exe" location="${dir.wix}/candle.exe" />
+	<property name="light.exe" location="${dir.wix}/light.exe" />
+	
+	<property name="output.dir" location="bin" />
+	
+	<target name="build" depends="configure-net35">
+		<mkdir dir="${output.dir}" />
+		
+		<!--
+		set correct db4o's version in the build scripts
+		-->
+		<copy todir="${output.dir}" overwrite="true">
+			<fileset dir="src/installer">
+				<include name="installer.wxs" />
+				<include name="extra-parameters.xml" />
+			</fileset>
+			
+			<filterset>
+				<filter token="db4o.version.dotted" value="${db4o.version.dotted}" />
+				<filter token="db4o.version.full" value="${db4o.version.full}" />
+				<filter token="target.vs.version" value="${target.vs.version}" />
+				<filter token="installer.product.guid" value="${installer.product.guid}" />
+				<filter token="installer.upgrade.guid" value="${installer.upgrade.guid}" />
+			</filterset>
+		</copy>
+		
+		<exec executable="${candle.exe}" failonerror="true">		
+			<env key="resources.dir" path="src/installer/resources" />
+			<env key="appicon" path="${dir.dist.net.build.tutorial}/db4o-tutorial.exe" />
+			
+			<arg value="-nologo" />			
+			<arg value="-out" />
+			<arg file="${output.dir}/installer.wixobj" />
+			<arg file="${output.dir}/installer.wxs" />
+		</exec>		
+		
+		<msbuild outputPath="${output.dir}" solutionFile="src/WixBuilder/WixBuilder.sln" />
+		
+		<exec executable="${output.dir}/WixBuilder.exe" failonerror="true">
+			<arg file="${dir.dist.net.package}" />
+			<arg file="${output.dir}/extra-parameters.xml" />
+			<arg file="${output.dir}/files.wxs" />
+		</exec>		
+		
+		<exec-redirected executable="${candle.exe}">
+			<args>
+				<arg value="-nologo" />
+				<arg value="-out" />
+				<arg file="${output.dir}/files.wixobj" />
+				<arg file="${output.dir}/files.wxs" />			
+			</args>
+		</exec-redirected>
+	
+		<exec-redirected executable="${light.exe}">
+			<args>
+				<arg file="${output.dir}/installer.wixobj" />
+				<arg file="${output.dir}/files.wixobj" />
+				<arg value="-out" />
+				<arg value="${installer.msi}" />
+				
+				<arg value="-spdb" />
+				
+				<arg value="-sice:ICE20" />
+				<arg value="-sice:ICE69" />
+				<arg value="-sice:ICE64" />
+			</args>
+		</exec-redirected>
+		
+		<echo>msi package successfuly generated: ${installer.msi}</echo>
+	</target>	
+</project>

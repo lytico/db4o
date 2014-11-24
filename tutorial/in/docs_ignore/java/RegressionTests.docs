@@ -1,0 +1,48 @@
+.n
+.a RegressionTests ..
+.0 RegressionTests ..
+
+.1 The built-in db4o regression tests ..
+
+Db4o includes a fairly comprehensive suite of regression tests to help prevent ._
+errors from creeping into the code over time.  Since no regression test suite ._
+is perfect, we are documenting how to work with our tests in the hope that ._
+customers will benefit from seeing the test suite improve.
+
+.1 Running the regression tests ..
+
+Db4o includes its complete source code and test suite packaged in zip files ._
+in the src folder of the distribution.  The first step in running the test ._
+suite is to unpack these zip files in the src folder so that they can be ._
+compiled an run.  From the command line on Linux, this would look like:
+
+- cd /path/to/db4o-<version>/src
+- unzip *src*
+- unzip *test*
+
+Users of other platforms can easily substitute their favoriate tools in this ._
+procedure.
+
+Next, create an Eclipse project, pointing to the folder where you unpacked ._
+db4o.  For Eclipse 3.1M7, the procedure is: 
+
+- Make sure the Console view is open so you can see the output
+- File | New | Project...
+- Pick "Java Project" and click "Next"
+- Type a project name
+- Pick the "Create Project from existing source" radio button
+- Enter "/path/to/db4o-<version>" in the box requesting the source directory
+- Click "Finish"
+- Expand the "src" folder, then the com.db4o.test package
+- Right-click "AllTests.java"
+- Choose "Run As | Java Application"
+
+.1 Switching individual tests on or off ..
+
+Individual tests may be turned on or off by commenting or uncommenting ._
+lines corresponding to each individual test in the suite.  The test suite ._
+is defined by classes beginning with com.db4o.test.AllTestsConf*.  Each ._
+test class is listed in an array returned by the tests() method in the ._
+*Conf* class.
+
+

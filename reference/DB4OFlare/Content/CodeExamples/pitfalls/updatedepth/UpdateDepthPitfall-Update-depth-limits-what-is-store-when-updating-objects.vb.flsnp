@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Using</span> container <span style="color:Blue;">As</span> IObjectContainer = Db4oEmbedded.OpenFile(DatabaseFile)
+    <span style="color:Blue;">Dim</span> car <span style="color:Blue;">As</span> Car = QueryForCar(container)
+    car.CarName = <span style="color:#A31515;">&quot;New Mercedes&quot;</span>
+    car.Driver.Name = <span style="color:#A31515;">&quot;New Driver Name&quot;</span>
+
+    <span style="color:Green;">' With the default-update depth of one, only the changes</span>
+    <span style="color:Green;">' on the car-object are stored, but not the changes on</span>
+    <span style="color:Green;">' the person</span>
+    container.Store(car)
+<span style="color:Blue;">End</span> <span style="color:Blue;">Using</span>
+<span style="color:Blue;">Using</span> container <span style="color:Blue;">As</span> IObjectContainer = Db4oEmbedded.OpenFile(DatabaseFile)
+    <span style="color:Blue;">Dim</span> car <span style="color:Blue;">As</span> Car = QueryForCar(container)
+    Console.WriteLine(<span style="color:#A31515;">&quot;Car-Name:&quot;</span> &amp; car.CarName)
+    Console.WriteLine(<span style="color:#A31515;">&quot;Driver-Name:&quot;</span> &amp; car.Driver.Name)
+<span style="color:Blue;">End</span> <span style="color:Blue;">Using</span></pre>
+		<div class="codesnippet-meta">
+			UpdateDepthPitfall.vb: Update depth limits what is store when updating objects
+			<div class="codedownload">
+				<a href="Example-pitfalls-updatedepth-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

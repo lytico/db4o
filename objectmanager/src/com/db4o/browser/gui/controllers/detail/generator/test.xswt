@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+        <package name="org.eclipse.swt.custom"/>
+        <package name="org.eclipse.jface.viewers"/>
+    </import>
+    <x:children>
+		<composite>
+		    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+		    <layout x:class="gridLayout"/>
+		    <x:children>
+            	<!-- The search box -->
+            	<composite>
+            		<layout x:class="gridLayout" numColumns="5" marginHeight="0"/>
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            		<x:children>
+            			<label text="Search: "/>
+		            	<text x:style="BORDER" x:id="Search">
+				            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+		            	</text>
+		            	<button x:id="SearchButton" text="&amp;X"/>
+		            	<label text="|"/>
+		            	<button x:id="QueryButton" text="&amp;Query..."/>
+            		</x:children>
+            	</composite>
+
+            	<!-- The List/Detail tabbed notebook -->
+            	<tabFolder>
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            		<x:children>
+						<!-- Tree -
+            			<composite x:id="ListComposite">
+            				<layout x:class="fillLayout"/>
+				            <x:children>
+								<tree x:id="ObjectTree" x:style="BORDER"/>
+				            </x:children>
+            			</composite>
+            			<tabItem text="&amp;Tree" control="ListComposite"/>-->
+            			
+            			<!-- Detail -->
+        				<composite x:id="DetailComposite">
+            				<layout x:class="gridLayout" numColumns="2" makeColumnsEqualWidth="false"/>
+            				<x:children>
+            					<composite>
+						            <layoutData x:class="gridData" horizontalSpan="2" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+						            <layout x:class="gridLayout" numColumns="4"/>
+						            <x:children>
+						            	<button x:style="ARROW|LEFT" x:id="LeftButton"/>
+						            	<button x:style="ARROW|RIGHT" x:id="RightButton"/>
+						            	<button text="&amp;History..." x:id="HistoryButton"/>
+						            	
+								    	<!-- The Path label -->
+								    	<label x:id="PathLabel" x:style="RIGHT">
+								            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+								    	</label>
+		    	
+						            </x:children>
+            					</composite>
+            				
+            					<composite x:style="BORDER" x:id="HyperlinkArea">
+						            <layoutData x:class="gridData" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            					</composite>
+            					
+            					<composite x:style="BORDER" x:id="FieldArea">
+						            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            						<layout x:class="gridLayout"/>
+						            <x:children>
+						            </x:children>
+            					</composite>
+            				</x:children>
+            			</composite>
+            			<tabItem text="&amp;Detail" control="DetailComposite"/>
+						
+            		</x:children>
+            	</tabFolder>
+
+			</x:children>
+	 	</composite>
+	 	   
+    </x:children>
+</xswt>

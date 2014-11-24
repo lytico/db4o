@@ -1,0 +1,1 @@
+Go to the Project Properties / Build Events tab and adjust the path for Db4oTool.exe to match your system in the "Post-build event command line" box.

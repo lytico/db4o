@@ -1,0 +1,12 @@
+package decaf;
+
+import java.lang.*;
+
+class TestDriver {
+	public void GenericForEachArray(Object []items) {
+		for (int itemIndex = 0; itemIndex < items.length; ++itemIndex) {
+			final Object item = items[itemIndex];
+			System.out.println(item);
+		}
+	}
+}

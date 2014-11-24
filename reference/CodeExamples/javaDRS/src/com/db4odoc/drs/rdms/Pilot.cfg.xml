@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- #example: Mapping the Pilot class #-->
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="com.db4odoc.drs.rdms.Pilot" table="pilots">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+
+		<property name="name"/>
+		<property name="points"/>
+
+	</class>
+</hibernate-mapping>
+<!-- #end example -->

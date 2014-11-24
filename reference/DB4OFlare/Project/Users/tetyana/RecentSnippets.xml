@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UrlList>
+    <Url Source="Resources/Snippets/Network Server/ClientServerExample.java/ServerSetup.flsnp" />
+    <Url Source="Resources/Snippets/Network Server/ClientServerExample.cs/ServerSetup.flsnp" />
+    <Url Source="Resources/Snippets/Selective Persistence/Test.vb/test1.flsnp" />
+    <Url Source="Resources/Snippets/Selective Persistence/Test.cs/test1.flsnp" />
+    <Url Source="Resources/Snippets/Selective Persistence/Test.java/test1.flsnp" />
+    <Url Source="Resources/Snippets/.NET Reporting/Db4oManager.cs/Db4oManager.flsnp" />
+    <Url Source="Resources/Snippets/.NET Reporting/Db4oManager.vb/Db4oManager.flsnp" />
+    <Url Source="Resources/Snippets/StoreCarCommit.flsnp" />
+</UrlList>

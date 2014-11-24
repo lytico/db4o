@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1584" MadCap:lastWidth="560">
+  <head></head>
+  <body>
+    <h1>
+      <MadCap:keyword term="Deletion Behavior" />Delete Behavior</h1>
+    <p>Deleting an object is as simple as storing an object. You simply call the delete-method on the container to delete it. By default only the object you pass to the delete method is deleted. All referenced objects are not deleted.</p>
+    <MadCap:snippetBlock src="../CodeExamples/deletion/DeletionExamples-Deleting-object-is-as-simple-as-storing.all.flsnp" />
+    <h2>Reference To Deleted Objects</h2>
+    <p>What happens when you delete a object which is still referenced by other objects? Well in such cases that reference is set to null.</p>
+    <MadCap:snippetBlock src="../CodeExamples/deletion/DeletionExamples-Delete-the-pilot.all.flsnp" />
+    <MadCap:snippetBlock src="../CodeExamples/deletion/DeletionExamples-Reference-is-null-after-deleting.all.flsnp" />
+    <p>Often you want to ensure that a object isn't referenced anymore, before you can delete it. However such referential integrity isn't supported at the moment. You need to implement your integrity checks manually, for example with <a href="../advanced_topics/callbacks.htm">callbacks</a>. </p>
+    <h2>Cascading Deletion And Collections.</h2>
+    <p>Additionally you can configure cascading behavior for deletion. <MadCap:xref href="delete_behavior/cascading_deletion.htm" target="" title="" alt="">See "Cascading Deletion"</MadCap:xref></p>
+    <p>Also collections are treated like regular objects and need to be deleted explicitly. <MadCap:xref href="delete_behavior/collections.htm" target="" title="" alt="">See "Collections And Arrays"</MadCap:xref></p>
+  </body>
+</html>

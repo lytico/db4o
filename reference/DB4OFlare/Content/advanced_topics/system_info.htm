@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1320" MadCap:lastWidth="588">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="System Info" />System Info</h1>
+        <p>You can ask the object container for basic system information. Following information can be accessed:</p>
+        <h2>Freespace Size</h2>
+        <MadCap:snippetBlock src="../CodeExamples/systeminfo/SystemInfoExamples-Freespace-size-info.all.flsnp" />
+        <p>Returns the freespace size in the database
+  in bytes. When db4o stores modified objects, it allocates a new slot for it.
+  During commit the old slot is freed. Free slots are collected in the
+  freespace manager, so they can be reused for other objects.</p>
+        <p>This method returns a sum of the size of all
+  free slots in the database file.</p>
+        <p>To reclaim
+  freespace run <a href="defragment.htm">Defragment</a>.</p>
+        <h2>Freespace Entry Count</h2>
+        <MadCap:snippetBlock src="../CodeExamples/systeminfo/SystemInfoExamples-Freespace-entry-count-info.all.flsnp" />
+        <p>Returns the number
+  of entries in the Freespace Manager.A high value for the number of
+  freespace entries is an indication that the database is fragmented and that
+  <a href="defragment.htm">Defragment</a> should be run.</p>
+        <h2>Total Size</h2>
+        <MadCap:snippetBlock src="../CodeExamples/systeminfo/SystemInfoExamples-Database-size-info.all.flsnp" />
+        <p>Returns the total
+  size of the database on disk.</p>
+        <p>&#160;</p>
+    </body>
+</html>

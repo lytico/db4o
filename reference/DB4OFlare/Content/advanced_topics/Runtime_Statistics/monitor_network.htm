@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="799" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Monitor Network</h1>
+        <p>You can monitor the network-operations of db4o in client-server mode.</p>
+        <h2>Configure the Network Monitoring Support</h2>
+        <p>First you need to add the monitoring support to the db4o configuration. The network monitoring support is in two separate configuration-items. The NetworkingMonitoringSupport can be used on the server and client to monitor the network statistics.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tuning/monitoring/CSMonitoring-Add-the-network-monitoring-support.all.flsnp" />
+        <p> The ClientConnectionsMonitoringSupport can be added to the db4o server to monitor the connected clients.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tuning/monitoring/CSMonitoring-Add-the-client-connections-monitoring-support.all.flsnp" />
+        <h2>The Network Statistics</h2>
+        <p><strong MadCap:conditions="Primary.Java">BytesReceivedPerSecond</strong><strong MadCap:conditions="Primary..NET">network bytes sent/sec</strong>: Tells you how many bytes this client or server has receives per second.</p>
+        <p><strong MadCap:conditions="Primary.Java">BytesSentPerSecond</strong><strong MadCap:conditions="Primary..NET">network bytes received/sec</strong>: Tells you how many bytes this client or server sends per second.</p>
+        <p><strong MadCap:conditions="Primary.Java">MessagesSentPerSecond</strong><strong MadCap:conditions="Primary..NET">network messages sent/sec</strong>: Tells you how many messages this client or server sends per second.</p>
+        <p><strong MadCap:conditions="Primary.Java">ConnectedClientCount</strong><strong MadCap:conditions="Primary..NET">number of connected clients</strong>: Tells you how many clients are connected to this server.</p>
+    </body>
+</html>

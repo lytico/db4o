@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Bind(IActivator activator)
+{
+    <span style="color:Blue;">if</span> (<span style="color:Blue;">this</span>.activator == activator)
+    {
+        <span style="color:Blue;">return</span>;
+    }
+    <span style="color:Blue;">if</span> (activator != <span style="color:Blue;">null</span> &amp;&amp; <span style="color:Blue;">null</span> != <span style="color:Blue;">this</span>.activator)
+    {
+        <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> InvalidOperationException(<span style="color:#A31515;">&quot;Object can only be bound to one activator&quot;</span>);
+    }
+    <span style="color:Blue;">this</span>.activator = activator;
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Activate(ActivationPurpose activationPurpose)
+{
+    <span style="color:Blue;">if</span> (<span style="color:Blue;">null</span> != activator)
+    {
+        activator.Activate(activationPurpose);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Person.cs: Implement the activatable interface methods
+			<div class="codedownload">
+				<a href="Example-ta-example-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

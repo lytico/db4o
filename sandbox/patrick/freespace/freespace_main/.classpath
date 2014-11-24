@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/freespace_java"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/freespace_scala"/>
+	<classpathentry kind="var" path="ECLIPSE_HOME/plugins/ch.epfl.lamp.sdt.compiler_2.6.9.RC312812/lib/scala-library.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

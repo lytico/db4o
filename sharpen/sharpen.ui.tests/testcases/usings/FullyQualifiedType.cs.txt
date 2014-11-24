@@ -1,0 +1,25 @@
+namespace Usings
+{
+	internal class Test
+	{
+		internal static void Foo()
+		{
+		}
+
+		internal class SubTest
+		{
+		}
+	}
+
+	public class FullyQualifiedType
+	{
+		private Usings.Test _test;
+
+		private Usings.Test.SubTest _subTest;
+
+		internal virtual void Bar()
+		{
+			Usings.Test.Foo();
+		}
+	}
+}

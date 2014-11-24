@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">class</span> AspAssemblyNamingFix : IAlias
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">const</span> <span style="color:Blue;">string</span> FixedName = <span style="color:#A31515;">&quot;AspFixedAssemblyName&quot;</span>;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">string</span> DynamicName 
+        = <span style="color:Blue;">typeof</span>(AspAssemblyNamingFix).Assembly.GetName().Name;
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">string</span> ResolveRuntimeName(<span style="color:Blue;">string</span> runtimeTypeName)
+    {
+        <span style="color:Blue;">return</span> runtimeTypeName.Replace(DynamicName, FixedName);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">string</span> ResolveStoredName(<span style="color:Blue;">string</span> storedTypeName)
+    {
+        <span style="color:Blue;">return</span> storedTypeName.Replace(FixedName, DynamicName);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			DynamicAssembliesIssue.cs: Replace the dynamic assembly name with a fixed one
+			<div class="codedownload">
+				<a href="Example-platform-asp-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

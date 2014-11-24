@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="429" MadCap:lastWidth="560">
+  <head />
+  <body>
+    <h1>Disable Callbacks</h1>
+    <p>db4o supports <a href="../../advanced_topics/callbacks.htm">callback-methods</a> on each class. In order to support this, db4o scans all persistent classes and looks for the callback-method signature. When a lot of different classes are stored, this may take some time, especially on embedded devices. Therefore you can disable the object callbacks, when you don't need them. </p>
+    <p>Note that this doesn't disable the <a href="../../advanced_topics/callbacks/event_registry_api.htm">global events</a>. These can still be used, even when callbacks are disabled.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Disable-callbacks.all.flsnp" />
+  </body>
+</html>

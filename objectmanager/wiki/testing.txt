@@ -1,0 +1,24 @@
+
+Directory of D:\website\downloads\new 
+
+16.06.2005 18:38 <DIR> . 
+16.06.2005 18:38 <DIR> .. 
+16.06.2005 18:27 3.249.121 db4o-4.5-java.zip 
+16.06.2005 17:58 1.216.307 db4o-4.5-mono.noarch.rpm 
+16.06.2005 17:58 1.532.413 db4o-4.5-mono.src.rpm 
+16.06.2005 17:58 1.532.657 db4o-4.5-mono.tar.gz 
+16.06.2005 18:27 3.024.896 db4o-4.5-net.msi 
+16.06.2005 18:27 2.890.831 db4o-4.5-net.zip 
+16.06.2005 18:38 0 downloads.txt 
+16.06.2005 18:11 3.578.214 objectmanager_linux.tar.gz 
+16.06.2005 18:09 3.585.442 objectmanager_linux.zip 
+16.06.2005 18:09 6.313.268 objectmanager_win_ikvm.zip 
+16.06.2005 18:09 3.536.580 objectmanager_win_novm.zip 
+11 File(s) 30.459.729 bytes 
+2 Dir(s) 64.520.474.624 bytes free
+[11:40:06] … Please take the ones you feel responsible for and post back OK here for every single one you test.
+[11:40:12] Dave Orme Okay
+[11:40:30] Carl Rosenberger The build will go online as Production so we should check thoroughly.
+[11:40:41] … Download path is:
+[11:40:56] … http://www.db4o.com/downloads/new/[file]
+

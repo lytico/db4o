@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Downloads">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="Download">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Releases">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="0" maxOccurs="1" name="clear" />
+										<xs:choice minOccurs="1" maxOccurs="unbounded">
+											<xs:element name="add">
+												<xs:complexType>
+													<xs:attribute name="name" type="xs:string" use="required" />
+													<xs:attribute name="archivePrevious" type="xs:boolean" use="optional" default="false" />
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="remove">
+												<xs:complexType>
+													<xs:attribute name="name" type="xs:string" use="required" />
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+							<xs:element minOccurs="0" maxOccurs="1" name="ReleaseNotes">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute name="announcementUrl" type="xs:anyURI" use="optional" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" maxOccurs="1" name="Tags">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="0" maxOccurs="1" name="clear"/>
+										<xs:element minOccurs="0" maxOccurs="unbounded" name="add">
+											<xs:complexType>
+												<xs:attribute name="tag" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element minOccurs="0" maxOccurs="unbounded" name="remove">
+											<xs:complexType>
+												<xs:attribute name="tag" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:integer" use="optional" />
+						<xs:attribute name="file" type="xs:string" use="optional" />
+						<xs:attribute name="title" type="xs:string" use="optional" />
+						<xs:attribute name="downloadUrl" type="xs:string" use="optional" />
+						<xs:attribute name="version" type="xs:string" use="optional" />
+						<xs:attribute name="platform" type="xs:string" use="optional" />
+						<xs:attribute name="package" type="xs:string" use="optional" />
+						<xs:attribute name="size" type="xs:integer" use="optional" />
+						<xs:attribute name="iconFile" type="xs:string" use="optional" />
+						<xs:attribute name="mimeType" type="xs:string" use="optional" />
+						<xs:attribute name="releaseDate" type="xs:dateTime" use="optional" />
+						<xs:attribute name="isArchived" type="xs:boolean" default="false" use="optional" />
+						<xs:attribute name="enabled" type="xs:boolean" use="optional" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Folders">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" name="Folder">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="required" />
+						<xs:attribute name="subTitle" type="xs:string" use="optional" />
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

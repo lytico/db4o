@@ -1,0 +1,9 @@
+package decaf.annotations;
+
+class InsertFirst {
+
+	@decaf.InsertFirst("bar();")
+	public void foo() {
+		System.out.println("foo");
+	}
+}

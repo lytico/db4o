@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.db4odoc.reference</groupId>
+    <artifactId>drs-reference-examples</artifactId>
+    <version>8.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>drs reference examples</name>
+
+    <parent>
+        <groupId>com.db4odoc</groupId>
+        <artifactId>db4o-overall-project</artifactId>
+        <version>8.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+
+    <dependencies>
+        <!-- well its about db4o -->
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4o-full-java5</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>db4o-osgi</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.db4o</groupId>
+            <artifactId>drs</artifactId>
+            <version>8.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- others -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8</version>
+        </dependency>
+    </dependencies>
+    <repositories>
+    </repositories>
+
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <plugins>
+            <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+        </plugins>
+    </build>
+</project>

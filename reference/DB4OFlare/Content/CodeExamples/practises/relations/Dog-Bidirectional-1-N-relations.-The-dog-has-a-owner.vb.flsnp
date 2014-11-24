@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> m_owner <span style="color:Blue;">As</span> Person
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Property</span> Owner() <span style="color:Blue;">As</span> Person
+    <span style="color:Blue;">Get</span>
+        <span style="color:Blue;">Return</span> m_owner
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Get</span>
+    <span style="color:Blue;">Set</span>(value <span style="color:Blue;">As</span> Person)
+        <span style="color:Green;">' This setter ensures that the model is always consistent</span>
+        <span style="color:Blue;">If</span> <span style="color:Blue;">Me</span>.m_owner <span style="color:Blue;">IsNot</span> <span style="color:Blue;">Nothing</span> <span style="color:Blue;">Then</span>
+            <span style="color:Blue;">Dim</span> oldOwner <span style="color:Blue;">As</span> Person = <span style="color:Blue;">Me</span>.m_owner
+            <span style="color:Blue;">Me</span>.m_owner = <span style="color:Blue;">Nothing</span>
+            oldOwner.RemoveOwnerShipOf(<span style="color:Blue;">Me</span>)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+        <span style="color:Blue;">If</span> value <span style="color:Blue;">IsNot</span> <span style="color:Blue;">Nothing</span> <span style="color:Blue;">AndAlso</span> <span style="color:Blue;">Not</span> value.OwnedDogs.Contains(<span style="color:Blue;">Me</span>) <span style="color:Blue;">Then</span>
+            value.AddOwnerShipOf(<span style="color:Blue;">Me</span>)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+        <span style="color:Blue;">Me</span>.m_owner = value
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Set</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Property</span></pre>
+		<div class="codesnippet-meta">
+			Dog.vb: Bidirectional 1-N relations. The dog has a owner
+			<div class="codedownload">
+				<a href="Example-practises-relations-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

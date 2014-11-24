@@ -1,0 +1,59 @@
+<!-- #example: Enhancer script # -->
+<project name="tutorial" default="build-and-enhance" basedir=".">
+
+    <property file="machine.properties"/>
+    <!--The location of the build-result (the compiled class-files).
+     Depends on you're build-system / IDE.
+     For plain Eclipse projects it's usually "./bin" -->
+    <property name="dir.build.output" value="./bin"/>
+    <property name="dir.build.source" value="./src"/>
+    <property name="dir.lib" value="./lib"/>
+
+    <property name="dir.jdo.lib" value="${dir.vod.install.location}\lib"/>
+    <property name="dir.jdo.sdklib" value="${dir.vod.install.location}\sdk\lib"/>
+
+    <path id="enhancerClassPath">
+        <pathelement  path="${dir.build.output}"/>
+        <fileset dir="${dir.jdo.lib}" includes="**/*.jar"/>
+        <fileset dir="${dir.jdo.sdklib}" includes="**/*.jar"/>
+    </path>
+
+    <target name="build-and-enhance" depends="compile, enhance"/>
+
+    <target name="enhance" description="Enhance the JOD classes">
+        <taskdef resource="versant.tasks">
+            <classpath>
+                <path refid="enhancerClassPath"/>
+            </classpath>
+        </taskdef>
+
+        <jdo-enhance outputdir="${dir.build.output}"
+                     classpathref="enhancerClassPath" >
+            <persistentaware dir="${dir.build.output}"/>
+        </jdo-enhance>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${dir.build.output}"  />
+        <javac srcdir="${dir.build.source}"
+            destdir="${dir.build.output}"
+            target="6"
+			source="6"
+			debug="on"
+			encoding="UTF-8">
+                <classpath>
+                    <pathelement path="${dir.jdo.lib}/jdo2-api-2.1.jar"/>
+                    <pathelement path="${dir.jdo.lib}/vodjdo.jar"/>
+                    <pathelement path="${dir.jdo.lib}/asm-all-3.1.jar"/>
+                    <pathelement path="${dir.lib}/*"/>
+                </classpath>
+			</javac>
+        <copy todir="${dir.build.output}">
+            <fileset dir="${dir.build.source}" casesensitive="yes">
+              <include name="**/*.*"/>
+              <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+</project>
+<!-- #end example -->

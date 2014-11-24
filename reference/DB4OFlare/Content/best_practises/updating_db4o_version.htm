@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="322" MadCap:lastWidth="462">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Upgrade db4o Version" />Upgrade db4o Version</h1>
+        <p>How do you upgrade to a newer version safely? By default db4o can read an older version of a database and operate on it without any issues. However for major version updates you should consider doing this updating procedure. This ensures that the database uses the newest file format and performance optimizations. </p>
+        <h2>The safest update procedure:</h2>
+        <ol>
+            <li><a href="../advanced_topics/defragment.htm">Defragment</a> the database with the current version. This will automatically also create a backup.</li>
+            <li>Upgrade to the new db4o version.</li>
+            <li>After that immediately  <![CDATA[ ]]><a href="../advanced_topics/defragment.htm">defragment</a> the database with the current version. This will create another backup. After that the database file uses the most current database format. </li>
+            <li>Make sure that you can read the data from the database. If everything works you can delete the backups.</li>
+        </ol>
+    </body>
+</html>

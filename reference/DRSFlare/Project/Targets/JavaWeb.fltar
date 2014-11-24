@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CatapultTarget Version="1" Comment="New Target" Type="WebHelp" Destinations="" GlossaryTermConversion="first" ConditionTagExpression="include[Primary.Java or Primary.Online or Primary.Print] " MasterPageLayout="/Content/Resources/PageLayouts/Default.flpgl" MasterStylesheet="/Content/Resources/Stylesheets/OnlineStyle.css" MasterPage="/Content/Resources/MasterPages/Prettifier.flmsp" UseCustomTopicFileExtension="false" OutputFile="index.html" OutputFolder="C:/Users/Gamlor/Develop/db4o/db4o-src//dist/flare" Skin="/Project/Skins/RedVersant.flskn">
+  <Glossaries>
+    <Glossary Link="/Project/Glossaries/OnlineGlossary.flglo"/>
+    <Glossary Link="/Project/Glossaries/SharedGlossar.flglo"/>
+  </Glossaries>
+  <Variables>
+    <Variable Name="BaseVariables/Plattform">Java</Variable>
+  </Variables>
+</CatapultTarget>

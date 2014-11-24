@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1432" MadCap:lastWidth="595">
+    <body>
+        <p>Here's an example to demonstrate the isolation level issues. We have two bank accounts. One transaction lists the two bank accounts and sums up the total. </p>
+        <MadCap:snippetBlock src="../CodeExamples/transactions/InconsistentStateRead-We-list-the-bank-accounts-and-sum-up-the-money.all.flsnp">
+        </MadCap:snippetBlock>
+        <p>During that operation another transaction finishes a money transfer from one account to another and commits.</p>
+        <MadCap:snippetBlock src="../CodeExamples/transactions/InconsistentStateRead-Meanwhile-we-transfer-money.all.flsnp" />
+        <p> Now the other transaction sees one bank account previous transfer, the other account is in the last committed state. Therefore it sees an inconsistent view across these two objects. </p>
+    </body>
+</html>

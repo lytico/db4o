@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Function</span> EnsureLoadedIncrements() <span style="color:Blue;">As</span> PersistedAutoIncrements
+    <span style="color:Blue;">If</span> state <span style="color:Blue;">Is</span> <span style="color:Blue;">Nothing</span> <span style="color:Blue;">Then</span>
+        state = LoadOrCreateState()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+    <span style="color:Blue;">Return</span> state
+<span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+<span style="color:Blue;">Private</span> <span style="color:Blue;">Function</span> LoadOrCreateState() <span style="color:Blue;">As</span> PersistedAutoIncrements
+    <span style="color:Blue;">Dim</span> existingState <span style="color:Blue;">As</span> IList(Of PersistedAutoIncrements) = container.Query(Of PersistedAutoIncrements)()
+    <span style="color:Blue;">If</span> 0 = existingState.<span style="color:Blue;">Count</span> <span style="color:Blue;">Then</span>
+        <span style="color:Blue;">Return</span> <span style="color:Blue;">New</span> PersistedAutoIncrements()
+    <span style="color:Blue;">ElseIf</span> 1 = existingState.<span style="color:Blue;">Count</span> <span style="color:Blue;">Then</span>
+        <span style="color:Blue;">Return</span> existingState(0)
+    <span style="color:Blue;">Else</span>
+        <span style="color:Blue;">Throw</span> <span style="color:Blue;">New</span> InvalidOperationException(<span style="color:#A31515;">&quot;Cannot have more than one state stored in database&quot;</span>)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Function</span></pre>
+		<div class="codesnippet-meta">
+			AutoIncrement.vb: load the state from the database
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

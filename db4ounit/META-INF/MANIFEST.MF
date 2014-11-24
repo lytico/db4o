@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: db4ounit
+Bundle-SymbolicName: db4ounit
+Bundle-Version: 1.0.0
+Bundle-ClassPath: db4ounit.jar,
+ lib/db4o-5.0-java1.2.jar
+Bundle-Localization: plugin
+Export-Package: db4ounit

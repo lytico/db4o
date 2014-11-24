@@ -1,0 +1,32 @@
+<project name="compilebuild" default="compileall" basedir=".">
+	<property environment="env" />
+	<property name="path.machine.properties" value="machine.properties" />
+	<property file="${path.machine.properties}" />
+	<property file="ant.properties" />
+	
+	<target name="compiledb4obuild" depends="" description="Compile db4obuild">
+		<delete dir="${dir.build.bin}" includes="**/*"/>
+		<mkdir dir="${dir.build.bin}" />
+		<javac executable="${file.compiler.jdk1.5}" fork="true" srcdir="${dir.build.src}" destdir="${dir.build.bin}" source="1.5" target="1.5" encoding="UTF-8">
+			<classpath>
+				<dirset dir="${dir.build.bin}"/>
+				<fileset dir="${dir.build.lib}">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+			<exclude name="**/osgi/**/*.java" />
+		</javac>
+		<!-- TODO get rid of this 'fork' -->
+		<javac executable="${file.compiler.jdk1.5}" fork="true" srcdir="${dir.build.src}" destdir="${dir.build.bin}" source="1.3" target="1.2" encoding="UTF-8">
+			<classpath>
+				<dirset dir="${dir.build.bin}"/>
+				<fileset dir="${dir.build.lib}">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<include name="**/osgi/**/*.java" />
+		</javac>
+	</target>
+
+	<target name="compileall" depends="compiledb4obuild" description="Compile everything needed for the main ant script tasks"/>
+</project>

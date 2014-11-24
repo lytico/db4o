@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Delete(IDeleteContext deleteContext)
+{
+    SkipData(deleteContext);
+}
+
+<span style="color:Blue;">private</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> SkipData(IReadBuffer deleteContext)
+{
+    <span style="color:Blue;">int</span> numBytes = deleteContext.ReadInt();
+    deleteContext.Seek(deleteContext.Offset() + numBytes);
+}</pre>
+		<div class="codesnippet-meta">
+			StringBuilderHandler.cs: Delete the content
+			<div class="codedownload">
+				<a href="Example-typehandling-typehandler-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">&lt;% foreach (var pilot in Model) { %&gt;
+
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;%= Html.ActionLink(&quot;Edit&quot;, &quot;Edit&quot;, new { id=pilot.ID }) %&gt; |
+            &lt;%= Html.ActionLink(&quot;Delete&quot;, &quot;Delete&quot;, new { id = pilot.ID })%&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;%= Html.Encode(pilot.Name) %&gt;
+        &lt;/td&gt;
+        &lt;td&gt;
+            &lt;%= Html.Encode(pilot.Points) %&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+
+&lt;% } %&gt;</pre>
+		<div class="codesnippet-meta">
+			Index.aspx: In the view use the ids to identify the objects
+			<div class="codedownload">
+				<a href="Example-Views-Home-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

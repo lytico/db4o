@@ -1,0 +1,18 @@
+.0 Miscellaneous ..
+
+.i This is just a temporary section to separate my text from the pre-existing
+structure. (pr) ..
+
+.1 Automatic schema recognition ..
+
+.i What does this mean? (pr) ..
+.i When you add new fields, db4o takes care, you don't have to worry.
+Existing objects can be continued to use. New fields are null. (cr) ..
+
+.1 Query-By-Example ..
+.1 "Known" Objects - db4o references ..
+.1 A first look at S.O.D.A. queries ..
+.1 Supplying public constructors ..
+.1 commit() and rollback() ..
+.1 activate() and deactivate() ..
+.1 Simple Client/Server use ..

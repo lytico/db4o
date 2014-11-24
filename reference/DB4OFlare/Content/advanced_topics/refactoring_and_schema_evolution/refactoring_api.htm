@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1111" MadCap:lastWidth="644">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Schema Evolution:Rename Classes and Fields;Refactoring:Rename Classes and Fields" />Renaming API</h1>
+    <p>db4o provides a special API to move classes between <MadCap:variable name="Primary.Packages" />, rename classes or fields. </p>
+    <h2>Rename a Class</h2>
+    <p>Use the <a href="../../configuration/objectclass_configuration.htm">configuration API to rename a class</a>.You need to rename the class before you open the database. </p>
+    <p MadCap:conditions="Primary..NET">Remember to include the <a href="../../platform_specific_issues/class_name_format_in_.net.htm">assembly name</a>.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/strategies/refactoring/RefactoringExamples-Rename-a-class.all.flsnp" />
+    <h2>Rename a Field</h2>
+    <p>Use the <a href="../../configuration/objectfield_configuration.htm">configuration API to rename a field</a>. You need to rename the field before you open the database.</p>
+    <p MadCap:conditions="Primary..NET">Remember to include the <a href="../../platform_specific_issues/class_name_format_in_.net.htm">assembly name</a>.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/strategies/refactoring/RefactoringExamples-Rename-field.all.flsnp" />
+    <h2>Rename Step by Step</h2>
+    <p>The safe order of actions for renaming is:</p>
+    <ol>
+      <li>Backup your database.</li>
+      <li>Close all open object containers if any. </li>
+      <li>Rename classes or fields in your application.</li>
+      <li>Add the renaming call to on the configuration before opening the database.</li>
+      <li>Pass the configuration with the rename-information to the object container factory. Open the database and you're ready to work with the renamed classes or fields.</li>
+    </ol>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="7998" MadCap:lastWidth="903">
+    <head>
+    </head>
+    <body>
+        <h1>Transparent Persistence</h1>
+        <p>In the previous topics we've seen that <a href="activation.htm">activation</a> and the <a href="update-concept.htm">update depth</a> can be annoying and cause unexpected errors. That's why we want to get rid of it. That's where transparent persistence comes to our rescue. It manages the activation and updating of our updates. Let's get started.</p>
+        <h2><a name="Enhance"></a>Enhance Persistent Classes</h2>
+        <p>The first step for transparent persistence it to enhance the persisted classes. For that we introduce an <MadCap:variable name="Primary.Annotation" />:</p>
+        <MadCap:snippetBlock src="CodeExamples/transparentpersistence/TransparentPersisted-Annotation-to-mark-persisted-classes.all.flsnp" />
+        <MadCap:snippetBlock src="CodeExamples/transparentpersistence/TransparentPersistedAttribute-Annotation-to-mark-persisted-classes.all.flsnp" />
+        <p>After that we can mark the persistent classes with the <MadCap:variable name="Primary.Annotation" />.<MadCap:snippetText src="Snippets/See-domain-model.flsnp" /></p>
+        <div MadCap:targetName="domainModel">
+            <MadCap:snippetBlock src="CodeExamples/transparentpersistence/Car-Domain-model-for-cars.all.flsnp" />
+            <MadCap:snippetBlock src="CodeExamples/transparentpersistence/Driver-Domain-model-for-drivers.all.flsnp" />
+        </div>
+        <div MadCap:conditions="Primary.Java">
+            <p>The next step it to create a class filter which reports all classes which should be enhanced. In our example we check for the presence of the annotation. In practice you can implement your own class filter as you like. </p>
+            <MadCap:snippetBlock src="CodeExamples/transparentpersistence/AnnotationFilter-Build-a-filter.all.flsnp" />
+            <h3>Enhancing Classes Using Ant</h3>
+            <p>The next step is to run the enhancement step when compiling the source. You can do this with a Ant task.</p>
+            <MadCap:snippetBlock src="CodeExamples/enhance-Ant-target-for-enhancing-your-classes-after-building-them.all.flsnp" />
+            <p>We can configure Eclipse to run the Ant build with each compile step. Right click on our project and choose 'Properties'. Then switch to 'Builders' and add a new one. The we choose the 'Ant Builder'. On the new window we choose the build-file which contains the example-code.Then switch to the 'Targets'-Tab. There we choose the enhance-target for the 'Auto-Build'. Now the enhancer-task will be run by Eclipse automatically. </p>
+            <h3>Enhance Classes Using Maven</h3>
+            <p>The next step is to run the enhancement step when compiling the source. You can do this by adding a small Ant task to your Maven file:</p>
+            <MadCap:snippetBlock src="CodeExamples/pom-Enhance-persisted-classes-during-the-build.all.flsnp" />
+        </div>
+        <div MadCap:conditions="Primary..NET">
+            <h3>Execute Enhancement on Build</h3>
+            <p>The next step is to run the enhancement step during the build. We can do this by running a command line application on the post build events:</p>
+            <p>
+                <img src="after-build-events-vs.png" style="width: 532px;height: 321px;" />
+            </p>
+            <p>For C# find the post build events in the project properties. Right click on the project, choose properties. On the project properties dialog choose 'Build Events'. Add the command there.</p>
+            <p>For VB.NET find the post build events in the project properties. Right click on the project, choose properties. There navigate to the 'Compile'-tab and click the 'Build Events...'-button there. </p>
+            <p>On the post build event add this command:</p>
+            <pre class="prettyprint" xml:space="preserve">$(ProjectDir)\lib\Db4oTool.exe -tp -debug -by-attribute:YourNamespace.TransparentPersistedAttribute $(TargetPath)</pre>
+        </div>
+        <h3>Check Enhancement</h3>
+        <p>Finally we check if the enhancement actually worked. We just check if the classes implement the interface. If the interface is present everything worked. We can make this check a part of our test suite.</p>
+        <MadCap:snippetBlock src="CodeExamples/transparentpersistence/TransparentPersistence-Check-for-enhancement.all.flsnp" />
+        <h2><a name="UsingIt"></a>Using Transparent Persistence</h2>
+        <p>In order to use transparent persistence we need to configure it first:</p>
+        <MadCap:snippetBlock src="CodeExamples/transparentpersistence/TransparentPersistence-Configure-transparent-persistence.all.flsnp" />
+        <p>After that transparent persistence is active and manages the activation and updates for us.</p>
+        <MadCap:snippetBlock src="CodeExamples/transparentpersistence/TransparentPersistence-Transparent-persistence-manages-activation.all.flsnp" />
+        <p>Transparent persistence also manages updates. You just can change existing objects as you please. Later when you commit the transaction all updates are persisted. You don't need to store objects in order to update them. You only need to call store once for objects which are new and are not referenced by an existing object.</p>
+        <MadCap:snippetBlock src="CodeExamples/transparentpersistence/TransparentPersistence-Just-update-and-commit.all.flsnp" />
+    </body>
+</html>

@@ -1,0 +1,32 @@
+package decaf.annotations;
+
+class Foo {
+
+	public void bar() {
+	}
+	
+	@decaf.Ignore
+	public void ignoredOnAll() {
+	}
+
+	@decaf.Ignore(except = decaf.Platform.SHARPEN)
+	public void ignoredExceptSharpen() {
+	}
+
+	@decaf.Ignore(except = decaf.Platform.ANDROID)
+	public void ignoredExceptAndroid() {
+	}
+
+	@decaf.Ignore(unlessCompatible = decaf.Platform.JMX)
+	public void ignoredUnlessCompatibleJmx() {
+	}
+
+	@decaf.Ignore(decaf.Platform.JDK11)
+	public void ignoredOnJdk11Only() {
+	}
+
+	@decaf.Ignore(platforms = { decaf.Platform.JDK11, decaf.Platform.JDK12, decaf.Platform.JDK15 })
+	public void ignoredOnJdksOnly() {
+	}
+
+}

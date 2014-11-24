@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="685" MadCap:lastWidth="624" MadCap:conditions="Primary.Java">
+    <head></head>
+    <body>
+        <h1>Querying</h1>
+        <p>It is easy to
+retrieve all of the Pilot instances from the database: just right-click the
+Pilot class in db4o Browser and select "View All Objects". The list of the
+Pilot objects will be shown in the Query Result view:</p>
+        <p>
+            <img src="ome_result.png" />
+        </p>
+        <p>You can see object details in the detailed view
+below. Try to change any values and use Save button to persist the changes to
+the database. You can also use Delete button to delete objects from the
+database. For the objects containing field objects you will be prompted to use
+cascade on delete.</p>
+        <p>More
+complex queries can be done by using Build Query view:</p>
+        <p>
+            <img src="ome_query.png" />
+        </p>
+        <p>Drag
+"points" field from the db4oBrowser view into the Build Query view, set
+condition "Greater Than", put a value "99" and run the query. You can return to
+the Built Query tab and modify the query later on again. For example: add "AND"
+operator, drag "name" field and set the value to "Michael Schumacher". Re-run
+the query. </p>
+        <p>When the
+new query is created, the previous query is stored and can be selected from the
+history drop-down:</p>
+        <p>
+            <img src="ome_qhistory.png" />
+        </p>
+        <p>More
+sophisticated queries can be build by joining grouped constraints using "Add
+Group" button.</p>
+        <p>When you
+are done working with the database in OME, you can close the connection by
+using OME-&gt;Connect/Disconnect DB menu command or by using the equivalent
+button on the toolbar. </p>
+    </body>
+</html>

@@ -1,0 +1,260 @@
+<project name="db4oandroid-tests" default="run-tests">
+	<import file="common.xml" />
+	
+	<property name="android.apilevel" value="android-13" />
+	<property name="emulator.device" value="android-3.2-db4otests" />
+	
+	<property name="android.emulator.port" value="5554" />
+	<property name="android.emulator.serial.number" value="emulator-${android.emulator.port}" />
+
+	<property name="android.emulator.packageManager.timeout" value="3000000" />
+	
+	<property name="db4o.junit.package.name" value="com.db4o.junit.launcher" />
+	<property name="db4o.junit.class.test.main" value="${db4o.junit.package.name}/Db4oTestCasesLauncher" />
+
+	
+	<taskdef name="dumpstderr" classname="com.db4o.devtools.ant.DumpStderrTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}"/>
+		</classpath>
+	</taskdef>
+		
+	<taskdef name="waitprocess" classname="com.db4o.devtools.ant.WaitingForPatternTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}"/>
+		</classpath>
+	</taskdef>
+	
+	<taskdef name="rerununtil" classname="com.db4o.devtools.ant.RerunUntilPatternTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}"/>
+		</classpath>
+	</taskdef>
+
+		
+	<property name="dir.android.tools" value="${dir.android.home}/tools" />
+	<property name="dir.android.platform.home" value="${dir.android.home}/platforms/${android.apilevel}" />
+	<property name="dir.android.platform.tools" value="${dir.android.home}/platform-tools" />
+	<property name="file.jar.android" value="${dir.android.platform.home}/android.jar" />
+	
+	<property name="file.android.tool.adb" value="${dir.android.platform.tools}/${android.tool.adb}" />
+	
+	<property name="file.keystore" value="${user.home}/.keystore" />
+	<property name="keystore.password" value="kistoa" />
+	<property name="keystore.alias" value="db4objects" />
+	
+	<property name="dir.android.artifacts" value="${dir.dist.android}/artifacts" />
+	<property name="file.dex.classes" value="${dir.android.artifacts}/classes.dex" />
+	<property name="file.apk.unsigned" value="${dir.dist.android}/db4otests.unsigned.apk" />
+	<property name="file.apk" value="${dir.dist.android}/db4otests.apk" />
+	
+	<tempfile property="file.android.sdcard" prefix="db4o-sdcard-" suffix=".fat32" deleteonexit="true"/>
+
+	<target name="run-tests" depends="start-emu, sign-apk, run-emu" />
+	
+	<target name="run-emu" depends="start-emu, uninstall-package, install-package, run-tests-on-emulator, stop-emu, check-failure, delete-avd" />
+
+	<target name="clean">
+		<delete failonerror="false">
+			<fileset dir="${dir.dist.android}">
+			    <include name="**/*"/>
+			</fileset>
+			<fileset dir="${dir.dist.db4ojunit.classes}">
+			    <include name="**/*"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="compile" depends="android-init">
+		<mkdir dir="${dir.dist.classes.db4ojunit}" />
+		<javac debug="true" srcdir="${dir.db4ojunit}/src" destdir="${dir.dist.classes.db4ojunit}">
+			<classpath>
+				<pathelement location="${file.junit.jar}" />
+				<pathelement location="${file.jdk1.5.nodep.jar}" />
+				<pathelement location="${dir.dist.classes.db4ounit.jdk1.5}" />
+				<pathelement location="${dir.dist.classes.test.jdk1.5}" />
+				<pathelement location="${file.easymock.jar}" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="android-init" depends="properties">
+
+		<property name="android.dependencies" value="${file.jdk1.5.nodep.jar} ${file.jdk1.5.db4ounit.jar} ${dir.dist.classes.test.jdk1.5} ${file.easymock.jar}" />
+		
+		<mkdir dir="${dir.dist.android}" />
+		<mkdir dir="${dir.android.artifacts}" />
+	
+	</target>
+	
+	<target name="dex" depends ="android-init,compile">
+		<exec executable="${dir.android.platform.tools}/${android.tool.dx}">
+			<arg value="--dex" />
+			<arg value="--output=${file.dex.classes}" />
+			<arg line="${dir.dist.classes.db4ojunit} ${android.dependencies}" />
+		</exec>
+	</target>
+	
+	<target name="package-resources" depends ="android-init">
+		<exec executable="${dir.android.platform.tools}/${android.tool.aapt}">
+			<arg value="p" />
+			<arg line="-M ${dir.config}/android/AndroidManifest.xml" />
+			<arg line="-F ${file.apk.unsigned}" />
+			<arg line='-I "${file.jar.android}"' />
+			<arg value="-f" />
+			<arg line="${dir.android.artifacts}" />
+			<arg line="${dir.db4ojunit}/res" />
+		</exec>
+	</target>
+	
+	<target name="sign-apk" depends="dex, package-resources">
+		<signjar
+			keystore="${file.keystore}"
+			alias="${keystore.alias}" 
+			storepass="${keystore.password}" 
+			jar="${file.apk.unsigned}"
+			signedjar="${file.apk}" />
+	</target>
+	
+	<target name="create-avd" unless="emulator-available">
+		<exec executable="${dir.android.tools}/${android.tool.mksdcard}">
+			<arg line="-l db4otest 64M ${file.android.sdcard}" />
+		</exec>
+		<exec executable="${dir.android.tools}/${android.tool.android}" inputstring="no">
+			<arg line="-s create avd -t ${android.apilevel} -n ${emulator.device} -f -c ${file.android.sdcard}" />
+		</exec>
+	</target>
+	
+	<target name="delete-avd" unless="emulator-available">
+		<exec executable="${dir.android.tools}/${android.tool.android}">
+			<arg line="-s delete avd -n ${emulator.device}" />
+		</exec>
+		<delete file="${file.android.sdcard}" failonerror="false" />
+	</target>
+	
+	<target name="start-emu" unless="emulator-available" depends="create-avd">
+		<exec executable="${dir.android.tools}/${android.tool.emulator}" spawn="true">
+			<arg line="-avd ${emulator.device}" />
+			<arg value="-no-window" />
+			<arg value="-noaudio" />
+			<arg value="-port" />
+			<arg value="${android.emulator.port}" />
+		</exec>
+		
+		<!-- Big big fat hack to stay away (but not rid) of race conditions between running the adb deamon and waiting for the device in windows -->
+		<echo message="Waiting for 10 minutes first..." />
+		<sleep seconds="600" />
+		
+		<echo message="Waiting for device..." />
+		
+		<rerununtil pattern="com.android.mms" command="${file.android.tool.adb} -s ${android.emulator.serial.number} shell ps com.android.mms" timeout="${android.emulator.packageManager.timeout}" sleepBetweenRetries="60000" />
+		
+		<echo message="Device online." />
+		
+	</target>
+	
+	<target name="stop-emu" unless="emulator-available">
+		<exec executable="${file.android.tool.adb}">
+			<arg line="-s ${android.emulator.serial.number}" />
+			<arg line="emu kill"/>
+		</exec>
+
+		<condition property="inWindows">
+			<os family="windows"/>
+		</condition>
+		
+		<!-- BLD-200 - we give the emulator 5 seconds for it to quit gracefully before killing it -->
+		<if>
+			<equals arg1="${inWindows}" arg2="true" />
+			<then>
+				<sleep seconds="5"/>
+			</then>
+		</if>
+		
+		<antcall target="kill-emulator-on-windows" />
+		
+		<exec executable="${file.android.tool.adb}">
+			<arg line="-s ${android.emulator.serial.number}" />
+			<arg value="kill-server"/>
+		</exec>
+	</target>
+	
+	<!-- required in windows to make sure the emulator is killed because "adb emu kill" apears to be buggy in that OS -->
+	<target name="kill-emulator-on-windows" if="inWindows">
+		<exec executable="taskkill">
+			<arg line="/f /im ${android.tool.emulator}" />
+		</exec>
+	</target>
+	
+	<target name="install-package" depends="start-emu">
+		<exec executable="${file.android.tool.adb}">
+			<arg line="-s ${android.emulator.serial.number}" />
+			<arg value="install" />
+			<arg line="-r ${file.apk}" />
+		</exec>
+	</target>
+
+	<target name="uninstall-package" depends="start-emu">
+		<exec executable="${file.android.tool.adb}">
+			<arg line="-s ${android.emulator.serial.number}" />
+			<arg value="uninstall" />
+			<arg value="${db4o.junit.package.name}" />
+		</exec>
+	</target>
+
+	<target name="run-tests-on-emulator" depends="install-package">
+		<delete failonerror="false">
+			<fileset dir="${dir.dist.android}">
+			    <include name="db4o-tests-output.txt"/>
+			</fileset>
+		</delete>
+		<exec executable="${file.android.tool.adb}" outputproperty="test.output" logerror="true">
+			<arg line="-s ${android.emulator.serial.number}" />
+			<arg value="shell" />
+			<arg value="am" />
+			<arg value="instrument" />
+			<arg value="-w" />
+			<!--
+			
+			To debug a testcase in android:
+			
+			1) Uncomment the following line:
+			<arg line="-e debug true" />
+
+			2) Run this ant build. After a while, the run will stop just showing 
+			   "run-tests-on-emulator:" and will wait forever until you connect 
+			   a debugger. 
+			   To do so, you have to forward a local tcp port to testcase launcher
+			   process id in the android device (or emulator). Which can be done by:
+			   $ adb forward tcp:9090 jdwp:`adb jdwp | tail -n1`
+			   
+			3) In eclipse, create a "Remote Java Application" debug configuration
+			   pointing to your localhost port 9090 (or whatever port you've forwarded)
+			   and launch it.
+			   
+			-->
+			<arg line="-e class ${db4o.junit.class.test.main}" />
+			<arg value="${db4o.junit.package.name}/android.test.InstrumentationTestRunner" />
+		</exec>
+		<echo message="${test.output}" />
+		<exec executable="${file.android.tool.adb}" outputproperty="test.output" logerror="true">
+			<arg line="-s ${android.emulator.serial.number}" />
+			<arg value="pull" />
+			<arg value="/sdcard/db4o-tests-output.txt" />
+			<arg value="${dir.dist.android}/db4o-tests-output.txt" />
+		</exec>
+	</target>
+	
+	<target name="check-failure" depends="run-tests-on-emulator">
+		<dumpstderr file="${dir.dist.android}/db4o-tests-output.txt" />
+		<fail>
+			<condition>
+				<not>
+					<contains string="${test.output}" substring="OK (1 test)" />
+				</not>
+			</condition>
+		</fail>
+	</target>
+	
+	
+</project>

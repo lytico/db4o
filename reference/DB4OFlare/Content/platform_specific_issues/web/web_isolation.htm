@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1595" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Web:Request Isolation" />Isolation in Web-Applications</h1>
+        <p>In most web-application multiple concurrent request are processes. You want to isolate the request from each other. db4o supports <a href="../../basics/acid_and_transactions.htm">transactions</a>, which are perfect for this kind of isolation. Each unit of work gets its own transaction, for example each request. You can create a new session object container for this purpose. Such a session-container brings its own transaction and reference-system. This ensures that the session container is isolated from other operations on the database.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/container/sessions/Db4oSessions-Session-object-container.all.flsnp" />
+        <p>Or you can use embedded clients when your <a href="../../client-server/embedded.htm">embedded clients</a>.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/container/sessions/Db4oSessions-Embedded-client.all.flsnp" />
+    </body>
+</html>

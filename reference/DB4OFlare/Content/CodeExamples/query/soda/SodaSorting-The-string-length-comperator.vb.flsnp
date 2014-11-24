@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Class</span> NameLengthComperator
+    <span style="color:Blue;">Implements</span> IQueryComparator
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> Compare(<span style="color:Blue;">ByVal</span> first <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>, <span style="color:Blue;">ByVal</span> second <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span> _
+        <span style="color:Blue;">Implements</span> IQueryComparator.Compare
+
+        <span style="color:Blue;">Dim</span> p1 <span style="color:Blue;">As</span> Pilot = <span style="color:Blue;">DirectCast</span>(first, Pilot)
+        <span style="color:Blue;">Dim</span> p2 <span style="color:Blue;">As</span> Pilot = <span style="color:Blue;">DirectCast</span>(second, Pilot)
+        <span style="color:Green;">' sort by string-length</span>
+        <span style="color:Blue;">Return</span> Math.Sign(p1.Name.Length - p2.Name.Length)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			SodaSorting.vb: The string length comperator
+			<div class="codedownload">
+				<a href="Example-query-soda-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

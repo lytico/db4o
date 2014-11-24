@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> driver <span style="color:Blue;">As</span> Driver = QueryForDriver(container)
+driver.Name = <span style="color:#A31515;">&quot;Johannes&quot;</span>
+driver.MostLovedCar.CarName = <span style="color:#A31515;">&quot;Red Ferrari&quot;</span>
+driver.AddOwnedCar(<span style="color:Blue;">New</span> Car(<span style="color:#A31515;">&quot;Fiat Punto&quot;</span>))
+container.Store(driver)</pre>
+		<div class="codesnippet-meta">
+			UpdateConcept.vb: Update the driver and his cars
+			<div class="codedownload">
+				<a href="Example-Code-updating-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

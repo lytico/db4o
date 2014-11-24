@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="3" MadCap:lastHeight="188" MadCap:lastWidth="625">
+    <head>
+    </head>
+    <body>
+        <MadCap:breadcrumbsProxy />
+        <script type="text/javascript">/*<![CDATA[*/
+			document.write("<a href=\"" + location.href +"\">");
+			document.write("Direct Link");
+			document.write('</a>');/*]]>*/</script>
+        <MadCap:bodyProxy />
+        <div id="footer" MadCap:conditions="Primary.Online">
+            <p align="center">Do you have any questions, suggestions or feedback? 
+			Ask your questions in the <a href="http://community.versant.com/Forums.aspx" target="_top">db4o forums</a>. 
+			Join the <a href="http://community.versant.com" target="_top">db4o community</a> for additional resources and news.
+			<br /><br /><a href="http://www.db4o.com/" target="_top">www.db4o.com</a></p>
+        </div>
+        <script src="../Code/jquery.min.js">
+        </script>
+        <script src="../Code/ZeroClipboard.js">
+        </script>
+        <script type="text/javascript"> 
+window.onload = function(){
+	var pathToFlash = $('html').attr('MadCap:PathToHelpSystem') + 'Content/Resources/Code/ZeroClipboard.swf';
+	ZeroClipboard.setMoviePath(pathToFlash);
+			
+	function bindToClipBord(element,content){
+		var clip = new ZeroClipboard.Client();
+		clip.setText(content);
+		clip.glue(element);
+	};
+		
+	if(location.protocol==='file:'){
+		$('.copylink-marker').remove();
+	} else{
+			$('.copylink-marker').each(function(){
+				var text = $(this).parent().parent().children('.prettyprint').text();
+				$(this).hover(function(){
+					bindToClipBord(this,text);
+				},
+				function(){});
+			});	
+	}		
+};
+                </script>
+    </body>
+</html>

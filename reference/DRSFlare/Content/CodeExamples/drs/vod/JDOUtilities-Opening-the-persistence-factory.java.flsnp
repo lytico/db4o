@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">InputStream propertySource = Thread.currentThread()
+        .getContextClassLoader().getResourceAsStream(VERSANT_PROPERTY_FILE);
+<span style="color:Blue;">if</span> (<span style="color:Blue;">null</span> == propertySource) {
+    <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> RuntimeException(<span style="color:#A31515;">&quot;Couldn't find resource '&quot;</span> + VERSANT_PROPERTY_FILE + <span style="color:#A31515;">&quot;' in the classpath&quot;</span>);
+}
+<span style="color:Blue;">try</span> {
+    <span style="color:Blue;">return</span> JDOHelper.getPersistenceManagerFactory(propertySource);
+} <span style="color:Blue;">finally</span> {
+    <span style="color:Blue;">try</span> {
+        propertySource.close();
+    } <span style="color:Blue;">catch</span> (IOException ignored) {
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			JDOUtilities.java: Opening the persistence factory
+			<div class="codedownload">
+				<a href="Example-drs-vod-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

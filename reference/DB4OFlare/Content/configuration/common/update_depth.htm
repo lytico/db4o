@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="812" MadCap:lastWidth="572">
+    <head>
+    </head>
+    <body>
+        <h1>Update Depth</h1>
+        <p>By default db4o only stores changes on the updated object but not the changes on referenced objects. With a higher update-depth db4o will traverse along the object graph to a certain depth and update all objects. <MadCap:xref href="../../basics/update_concept.htm" target="" title="" alt="">See "Update Concept"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../Snippets/not_needed_with_tp.flsnp" />
+        <p>With the update-depth you configure how deep db4o updates the object-graph. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Increasing-the-update-depth.all.flsnp" />
+        <p>A higher update depth is usually more convenient, because you don't need to explicitly store each changed object. However the higher the update depth is the more time it takes to update the objects. Therefore it is a tradeoff. Note that you can also use <a href="../../basics/update_concept/transparent_persistence.htm">transparent persistence</a>, which takes of updating the right objects.</p>
+        <h2>Class Specific Configuration</h2>
+        <p>You can also configure a class specific update depth. <MadCap:xref href="../objectclass_configuration.htm" target="" title="" alt="">See "ObjectClass Configuration"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/objectconfig/ObjectConfigurationExamples-Set-the-update-depth.all.flsnp" />
+    </body>
+</html>

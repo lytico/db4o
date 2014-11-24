@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="638" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Monitor Object Lifecycle</h1>
+        <p>You can monitor the object lifecycle statistics of db4o to find out more about the runtime behavior of your application.</p>
+        <h2>Configure the Object Lifecycle Monitoring Support</h2>
+        <p>In order to monitor the object lifecycle statistics, you need to add the monitoring support to the configuration.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tuning/monitoring/ObjectLifecycleMonitoring-Monitor-the-object-lifecycle-statistics.all.flsnp" />
+        <h2>The Object Lifecycle Statistics</h2>
+        <p><strong MadCap:conditions="Primary.Java">ObjectsActivatedPerSec</strong><strong MadCap:conditions="Primary..NET">objects activated/sec</strong>: Tells you how many objects are <a href="../../basics/activation.htm">activated</a> per second. Activation can consume a lot of time for complex object graphs. If there's a lot of time spend with activating objects, you may want to reduce the amount of activated objects. One of the best way to activate only the minimum set of objects is to use <a href="../../basics/activation_concept/transparent_activation_framework.htm">transparent activation</a>.</p>
+        <p><strong MadCap:conditions="Primary.Java">ObjectsDeactivatedPerSec</strong><strong MadCap:conditions="Primary..NET">objects deactivated/sec</strong>: Tells you how many objects are deactivate per second. </p>
+        <p><strong MadCap:conditions="Primary.Java">ObjectsDeletedPerSec</strong><strong MadCap:conditions="Primary..NET">objects deleted/sec</strong>: Tells you how many objects are deleted per second.</p>
+        <p><strong MadCap:conditions="Primary.Java">ObjectsStoredPerSec</strong><strong MadCap:conditions="Primary..NET">objects stored/sec</strong>: Tells you how many objects are stored per second.</p>
+    </body>
+</html>

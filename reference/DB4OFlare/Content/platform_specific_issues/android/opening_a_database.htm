@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="803" MadCap:lastWidth="651" MadCap:conditions="Primary.Java">
+  <head />
+  <body>
+    <h1>Opening A Database</h1>
+    <p>Opening the database is very similar. </p>
+    <h2>SQLite</h2>
+    <p>Opening a SQLite database is very easy. However is necessary to generate the schema for the database.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/SqlExample-opening-SQLite-database.all.flsnp" />
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/SqlExample-SQLite-create-the-schema.all.flsnp" />
+    <h2>db4o</h2>
+    <p>Opening a db4o database is easy. First you need to create a file which is in the context of the application. Then you can open the database. To be faster, we configure additional indexes.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/Db4oExample-open-a-db4o-database.all.flsnp" />
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/Db4oExample-configure-db4o.all.flsnp" />
+    <h2>Conclusion</h2>
+    <p>db4o code is a bit more compact, but the main advantage of db4o is in the fact that all APIs are pure java, they are compile-time checked and can be transferred into IDE templates (database opening should be a template as it most probably be the same for all your db4o applications including tests). </p>
+  </body>
+</html>

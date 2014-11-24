@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="db4o enhance project" default="enhance" basedir=".">
+
+    <path id="project.classpath">
+        <pathelement path="${basedir}/bin"/>
+        <fileset dir="../libs/java">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+    <taskdef name="db4o-enhance"
+             classname="com.db4o.enhance.Db4oEnhancerAntTask"
+             classpathref="project.classpath"/>
+
+    <target name="enhance">
+        <db4o-enhance classtargetdir="${basedir}/bin"
+                      jartargetdir="../libs/java/"
+                      nq="false" ta="true"
+                      collections="true"
+                      verbose="true">
+            <classpath refid="project.classpath"/>
+            <sources dir="${basedir}/bin">
+                      <include name="com/db4odoc/tp/**/*.class"/>
+            </sources>
+        </db4o-enhance>
+    </target>
+
+
+</project>

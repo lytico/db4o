@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IQueryable&lt;Driver&gt; querable = container.AsQueryable&lt;Driver&gt;();
+
+<span style="color:Blue;">var</span> drivers = <span style="color:Blue;">from</span> d <span style="color:Blue;">in</span> querable
+              <span style="color:Blue;">where</span> d.Name == <span style="color:#A31515;">&quot;Joe&quot;</span> 
+              <span style="color:Blue;">select</span> d;</pre>
+		<div class="codesnippet-meta">
+			Queries.cs: Get the IQueryable interface
+			<div class="codedownload">
+				<a href="Example-Code-queries-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

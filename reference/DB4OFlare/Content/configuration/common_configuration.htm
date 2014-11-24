@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="3" MadCap:lastHeight="1278" MadCap:lastWidth="520">
+    <head>
+        <link href="../Resources/TableStyles/Basic.css" rel="stylesheet" MadCap:stylesheetType="table" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Configuration:Common Configuration" />Common Configuration</h1>
+        <p>The common-configuration applies to the embedded-, client- and the server-mode of db4o. All the common configuration is accessible via the common-<MadCap:variable name="Primary.getter" /> on the configuration-object. </p>
+        <h2>Overview</h2>
+        <p>Here's a overview over all common configuration-settings which you can change:</p>
+        <table style="width: 100%;mc-table-style: url('../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 80%;" />
+            <col style="width: 50pt;" />
+            <col style="width: 50pt;" />
+            <tbody>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Same in C/S<MadCap:footnote style="mc-footnote-position: page;">This setting needs to be the same on the server and all clients.</MadCap:footnote></td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Can not change <MadCap:footnote style="mc-footnote-position: page;">This setting has to be set the first time when the database is created. You cannot change is for an existing database.</MadCap:footnote></td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/activation_depth.htm">ActivationDepth</a></strong>: Change globally the activation-depth.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/alias.htm">Aliases</a></strong>: Configure aliases for class and package-names.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/updating_db4o_file_format.htm">AllowVersionUpdates</a></strong>: Allow/Disallow to update the database-format.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Yes</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/automatic_shutdown.htm">AutomaticShutDown</a></strong>: Close the database when the application exits.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/btree_node_size.htm">BTreeNodeSize</a></strong>: Tune the size of the B-tree-node which are used for the indexes.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/no_callbacks.htm">Callbacks</a></strong>: Turn object-callbacks on an off.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/calling_constructors.htm">CallConstructors</a></strong>: Use or bypass the constructor for creating objects.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/no_schema_changes.htm">DetectSchemaChanges</a></strong>: Disable/Enable schema changes detection.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/diagnostics.htm">Diagnostic</a></strong>: Add diagnostic-listeners.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/exceptionsonnotstorable.htm">ExceptionsOnNotStorable</a></strong>: Enable/Disable exceptions on not storable objects.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/intern_strings.htm">InternStrings</a></strong>: Will call the intern-method on the retrieved strings. </td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/mark_transient.htm">MarkTransient</a></strong>: Configure a <MadCap:variable name="Primary.Annotation" /> for marking fields as transient.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/message_level.htm">MessageLevel</a></strong>: Configure the logging-message level.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/name_provider.htm">NameProvider</a></strong>: Configure the toString() value of the object-container.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/max_stack_size.htm">MaxStackSize</a></strong>: Configure how many recursive operations are executed directly on the stack.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="objectclass_configuration.htm">ObjectClass</a></strong>: Configure class-specific settings.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/disable_optimize_nq.htm">OptimizeNativeQueries</a></strong>:&#160;Enable runtime query optimization.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/out_stream.htm">OutStream</a></strong>: Configure the log message output stream</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/query_modes.htm">Queries</a></strong>: Configure query behaviors</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="../advanced_topics/db4o_reflection_api.htm">ReflectWith</a></strong>: Configure a reflector.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="../advanced_topics/type_handling/typehandlers.htm">RegisterTypeHandler</a></strong>: Register a new TypeHandler.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Required</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/string_encoding.htm">StringEncoding</a></strong>: Configure the string-encoding.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Required</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Yes</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/no_test_instances.htm">TestConstructors</a></strong>: Configure if db4o checks for valid constructors.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/update_depth.htm">UpdateDepth</a></strong>:&#160;Change the update-depth.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="common/weak_reference_collection_interval.htm">WeakReferenceCollectionInterval</a></strong>: Change the weak-reference cleanup interval. Default setting is 1000 milliseconds.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep"><strong><a href="common/disable_weak_references.htm">WeakReferences</a></strong>: Enable/disable weak references.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Additional Configuration Items</h2>
+        <p>There are additional configuration items which add for additional features. You can add then on the common-configuration. For example to enable transparent persistence you add the TransparentPersistenceSupport configuration item. Take a look a the available configuration items. <MadCap:xref href="common/configuration_items.htm" target="" title="" alt="">See "Common Configuration Items"</MadCap:xref></p>
+        <p>&#160;</p>
+    </body>
+</html>

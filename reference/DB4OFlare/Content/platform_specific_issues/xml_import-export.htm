@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="8" MadCap:lastHeight="2215" MadCap:lastWidth="602" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Xml Import-Export In .NET</h1>
+        <p>One of the most widely used platform independent formats of data exchange today is xml.</p>
+        <p>db4o
+does not provide any specific API to be used for XML import/export, but
+with the variety of XML serialization libraries available.</p>
+        <p>All that you need to export your database/query results is:</p>
+        <ol>
+            <li>Retrieve objects from the database.</li>
+            <li>Serialize them in XML format using your favorite serialization API/library</li>
+            <li>Save XML stream (to a disc location, into memory, into another database).</li>
+        </ol>
+        <p>Import process is just the reverse:</p>
+        <ol>
+            <li>Read the XML stream.</li>
+            <li>Create an objects from XML.</li>
+            <li>Save objects to db4o.</li>
+        </ol>
+        <p MadCap:conditions="Primary.Java">Let's go through a simple example. We will use XStream library (<a href="http://xstream.codehaus.org/" target="_parent">http://xstream.codehaus.org/</a>) for object serialization, but any other tool capable of serializing objects into XML will do as well.</p>
+        <p MadCap:conditions="Primary..NET">Let's go through a simple example. We will use the .NET XmlSerializer. Of course you can use 
+any other XML serialization tool, which is able to serialize/deserialize 
+objects.</p>
+        <MadCap:snippetBlock src="../CodeExamples/xml/XMLSerialisationExamples-Serialize-to-XML.all.flsnp" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <p>After the method executes all car objects from the database will be stored in 
+the export file as an array. Note that child objects (Pilot) are stored as well 
+without any additional settings. You can check the created XML file to see how 
+it looks like.</p>
+        <p>Now we can clean the database and try to recreate it from the 
+XML file:</p>
+        <MadCap:snippetBlock src="../CodeExamples/xml/XMLSerialisationExamples-Read-objects-from-XML.all.flsnp" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" />
+        <p>Obviously there is much more to XML serialization:
+renaming fields, storing collections, selective persistence etc. You
+should be able to find detailed description together with the
+serialization library, which you will use.</p>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">&lt;UsingTask AssemblyFile=&quot;.\lib\Db4oTool.MSBuild.dll&quot; TaskName=&quot;Db4oTool.MSBuild.Db4oEnhancerMSBuildTask&quot; /&gt;
+&lt;ItemGroup&gt;
+  &lt;Db4oEnhance Include=&quot;$(TargetPath)&quot; /&gt;
+&lt;/ItemGroup&gt;</pre>
+		<div class="codesnippet-meta">
+			simple-enhance-example.csproj: Define a task for the enhancement 
+			<div class="codedownload">
+				<a href="Example-enhancement-buildtime-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

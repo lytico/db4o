@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Primary.Java" MadCap:lastBlockDepth="4" MadCap:lastHeight="281" MadCap:lastWidth="612">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="VOD-Replication;Replication:VOD;Versant Object Database" />Replication With VOD</h1>
+        <p>The Versant Object Database is the 'big brother' of db4o. It's an object database which can deal with a huge amount of data. Because it is also an object database it is a good partner for db4o. For scenarios where you have mobile devices which are synchronized against a big central datastore combining VOD and db4o makes sense. db4o for the mobile end device and VOD on the central server. The Java version of dRS supports therefore this replication between db4o and VOD.</p>
+        <MadCap:snippetBlock src="../Snippets/vod-requirements.flsnp" />
+        <p>The VOD replication partner has to be prepared to be ready for replication. The replication is based on the JDO-interface. Therefore you need to setup and use JDO for the replication. <MadCap:xref href="vod/setup.htm" target="" title="" alt="">See "Setup JDO for VOD"</MadCap:xref> <![CDATA[ ]]></p>
+        <p>Additionally a special event processor has to be installed which is responsible to keep track of changes for upcoming replications.&#160;<MadCap:xref href="vod/setup-event-processing.htm" target="" title="" alt="">See "Setup Event Processing"</MadCap:xref></p>
+        <p>After everything is up and running you can start to replicate between db4o and VOD. <MadCap:xref href="vod/vod_replication.htm" target="" title="" alt="">See "VOD Replication"</MadCap:xref></p>
+    </body>
+</html>

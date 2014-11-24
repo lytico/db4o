@@ -1,0 +1,48 @@
+The following example shows how to create an autocompletion code snippet in Visual Studio 2005.
+Create a "nq.snippet" file in any text editor.
+Paste the following code:
+
+.c  <?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>NQ</Title>
+			<Shortcut>NQ</Shortcut>
+			<Description>Code snippet for Native Query</Description>
+			<Author>db4objects Inc.</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>type</ID>
+					<ToolTip>Type</ToolTip>
+					<Default>MyType</Default>
+				</Literal>
+				<Literal>
+					<ID>var</ID>
+					<ToolTip>variable</ToolTip>
+					<Default>myType</Default>
+				</Literal>
+				<Literal>
+					<ID>expression</ID>
+					<ToolTip>Boolean expression</ToolTip>
+					<Default>return true;</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[ IList<$type$> list = db.Query<$type$>(delegate($type$ $var$)
+            	{
+                	$expression$
+            	});]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>  ..  
+
+Save the file.
+In the Visual Studio 2005 open Tools/Code SnippetsManager
+Select language "Visual c#" if not yet selected. Press "Import..." button and select the ._
+newly created file. Select "Visual c#" as the location and press "Finish" button. 
+Now you can use the snippet by selecting it from "Edit/InstelliSense/Insert Snippet..." menu.

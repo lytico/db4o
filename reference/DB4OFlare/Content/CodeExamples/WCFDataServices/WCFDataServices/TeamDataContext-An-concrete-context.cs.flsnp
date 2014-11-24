@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> TeamDataContext : Db4oDataContext
+{
+    <span style="color:Green;">// Provide access to your data via properties</span>
+    <span style="color:Blue;">public</span> IQueryable&lt;Person&gt; Persons
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> Container.AsQueryable&lt;Person&gt;(); }
+    }
+    <span style="color:Blue;">public</span> IQueryable&lt;Team&gt; Teams
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> Container.AsQueryable&lt;Team&gt;(); }
+    }
+
+
+
+    <span style="color:Gray;">///</span><span style="color:Green;"> You need to implement the open-session and return a object container</span>
+    <span style="color:Gray;">///</span><span style="color:Green;"> The best practise is to use a separate object-container per request.</span>
+    <span style="color:Gray;">///</span><span style="color:Green;"> For example use the </span>
+    <span style="color:Gray;">///</span> <span style="color:Gray;">&lt;see cref=&quot;IObjectContainer&quot;/&gt;</span><span style="color:Green;">.&lt;see cref=&quot;IObjectContainer.Ext&quot;/&gt;.&lt;see cref=&quot;IExtObjectContainer.OpenSession&quot;/&gt;</span>
+    <span style="color:Gray;">///</span><span style="color:Green;"> to open session-containers for each request.</span>
+    <span style="color:Blue;">protected</span> <span style="color:Blue;">override</span> IObjectContainer OpenSession()
+    {
+        <span style="color:Blue;">return</span> Db4oEmbedded.NewSession();
+    }
+
+}</pre>
+		<div class="codesnippet-meta">
+			TeamDataContext.cs: An concrete context
+			<div class="codedownload">
+				<a href="Example-WCFDataServices-WCFDataServices-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

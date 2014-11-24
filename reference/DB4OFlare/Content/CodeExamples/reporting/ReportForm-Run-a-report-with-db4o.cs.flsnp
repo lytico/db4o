@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">var</span> dataToShow = <span style="color:Blue;">from</span> Person p <span style="color:Blue;">in</span> container
+                 <span style="color:Blue;">where</span> p.FirstName.Contains(<span style="color:#A31515;">&quot;o&quot;</span>)
+                 <span style="color:Blue;">select</span> p;
+
+<span style="color:Blue;">var</span> reportViewer = <span style="color:Blue;">new</span> ReportViewer
+{
+    ProcessingMode = ProcessingMode.Local
+};
+
+<span style="color:Green;">// Put the data into the datasource which you are using</span>
+<span style="color:Green;">// in your report. Here it's named 'MainData'</span>
+reportViewer.LocalReport.DataSources.Add(
+    <span style="color:Blue;">new</span> ReportDataSource(<span style="color:#A31515;">&quot;MainData&quot;</span>, dataToShow));
+reportViewer.Dock = DockStyle.Fill;
+
+<span style="color:Green;">// The report can be an embedded resource</span>
+reportViewer.LocalReport.ReportEmbeddedResource = <span style="color:#A31515;">&quot;Db4oDoc.Code.Reporting.ExampleReport.rdlc&quot;</span>;
+<span style="color:Green;">// or can be a file</span>
+<span style="color:Green;">// reportViewer.LocalReport.ReportPath = &quot;path/to/your/report&quot;; </span>
+
+<span style="color:Green;">// After that you can use the report viewer in your app</span>
+<span style="color:Blue;">this</span>.Controls.Add(reportViewer);
+reportViewer.RefreshReport();</pre>
+		<div class="codesnippet-meta">
+			ReportForm.cs: Run a report with db4o
+			<div class="codedownload">
+				<a href="Example-Code-Reporting-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

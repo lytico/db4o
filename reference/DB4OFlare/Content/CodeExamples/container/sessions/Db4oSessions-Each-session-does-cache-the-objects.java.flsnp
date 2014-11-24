@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">Person personOnSession1 = session1.query(Person.<span style="color:Blue;">class</span>).get(0);
+Person personOnSession2 = session2.query(Person.<span style="color:Blue;">class</span>).get(0);
+
+personOnSession1.setName(<span style="color:#A31515;">&quot;NewName&quot;</span>);
+session1.store(personOnSession1);
+session1.commit();
+
+
+<span style="color:Green;">// the second session still sees the old value, because it was cached</span>
+System.out.println(personOnSession2.getName());
+<span style="color:Green;">// you can explicitly refresh it</span>
+session2.ext().refresh(personOnSession2, Integer.MAX_VALUE);
+System.out.println(personOnSession2.getName());</pre>
+		<div class="codesnippet-meta">
+			Db4oSessions.java: Each session does cache the objects
+			<div class="codedownload">
+				<a href="Example-container-sessions-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

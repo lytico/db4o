@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1109" MadCap:lastWidth="627">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Cache:Reference Cache;Reference Cache" />The Reference Cache</h1>
+        <p>We know that db4o manages objects by identity. But how does db4o recognize objects? How does it know if it needs to update a object? To archive this, db4o has a reference-cache. This is a table which maps objects in memory to their internal id. The internal id is used to find the object on disk. </p>
+        <p>Since this table has a reference to the object in memory it also acts as cache. Therefore it's called reference cache. When you load objects, db4o will fist lookup in the reference cache to get objects from there. This avoids loading the data from the disk and also returns the local state of the object. If object isn't in the reference cache, db4o will load it from disk.</p>
+        <p>
+            <img src="reference_cache.png" />
+        </p>
+        <h2>Weak Reference</h2>
+        <p>By default db4o uses weak references in the reference cache. While your application has at least one references to an object, the reference cache has reference to it. But as soon as your application has no reference to the object anymore, it can be collected by the garbage collector. db4o will never prevent any object from being garbage collected. In the end persisted objects are garbage collected like any other objects.</p>
+        <p>To keep the cache clean, db4o does periodically remove all empty weak references. You can configure that clean-up interval. <MadCap:xref href="../../configuration/common/weak_reference_collection_interval.htm" target="" title="" alt="">See "Weak Reference Collection Interval"</MadCap:xref></p>
+        <p>You even can disable the weak reference. <MadCap:xref href="../../configuration/common/disable_weak_references.htm" target="" title="" alt="">See "Disable Weak References"</MadCap:xref>. Then db4o holds regular references to your objects.This prevents the objects from being garbage collected. This means that you need to remove object from the reference cache manually. Or only use short living object containers. <MadCap:xref href="../../advanced_topics/session_containers.htm" target="" title="" alt="">See "Session Containers"</MadCap:xref></p>
+        <h2>Manually Remove A Object From The Reference Cache</h2>
+        <p>You can manually remove a object from the reference cache. This only required when you have disabled the <a href="../../configuration/common/disable_weak_references.htm">weak-references</a>. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/identiy/IdentityConcepts-With-purge-you-can-remove-objects-from-the-reference-cache.all.flsnp" />
+    </body>
+</html>

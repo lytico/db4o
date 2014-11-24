@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+    </import>
+    <x:children>
+        <composite>
+            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            <layout x:class="gridLayout" numColumns="1" marginHeight="0" marginWidth="0"/>
+            <x:children>
+            
+            	<!-- Global activation settings -->
+            	<group text="Global activation settings:">
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+		            <layout x:class="gridLayout" numColumns="2"/>
+		            <x:children>
+		            	<composite>
+		            		<layout x:class="gridLayout" numColumns="2" marginHeight="0" marginWidth="0"/>
+		            		<x:children>
+				            	<label text="Activation depth when running queries:"/>
+				            	<spinner x:id="InitialActivationDepth" x:style="BORDER"/>
+				            	<label text=" ">
+				            		<layoutData x:class="gridData" horizontalSpan="2"/>
+				            	</label>
+				            	<label text="Activation depth when traversing object graph:"/>
+				            	<spinner x:id="SubsequentActivationDepth" x:style="BORDER"/>
+		            		</x:children>
+		            	</composite>
+		            	<composite>
+		            		<layout x:class="gridLayout" marginHeight="0" marginWidth="0"/>
+		            		<layoutData x:class="gridData" verticalAlignment="gridData.BEGINNING"/>
+		            		<x:children>
+				            	<label text="(Changes will be applied the next time"/>
+				            	<label text="you open a database or run a query)"/>
+		            		</x:children>
+		            	</composite>
+		            </x:children>
+            	</group>
+            	
+            	<!-- Per-class activation -
+            	<group text="Per-class activation depth:">
+		            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+		            <layout x:class="gridLayout" numColumns="3"/>
+		            <x:children>
+		            	<label text="Class Name:"/>
+						<text x:id="ClassName" x:style="BORDER">
+				            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+						</text>
+						<button x:id="BrowseClasses" text="Browse..."/>
+		            	<label text="Activation Depth:"/>
+						<spinner x:id="ClassActivationDepth" x:style="BORDER"/>
+						<button x:id="AddButton" text="Add" enabled="false">
+				            <layoutData x:class="gridData" horizontalAlignment="GridData.FILL"/>
+						</button>
+						<label x:style="SEPARATOR|HORIZONTAL">
+							<layoutData x:class="gridData" horizontalSpan="2" horizontalAlignment="GridData.FILL"/>
+						</label>
+						<label/>
+						<list x:id="ClassList" x:style="BORDER">
+				            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL" horizontalSpan="2"/>
+						</list>
+						<button x:id="RemoveButton" text="Remove" enabled="false">
+				            <layoutData x:class="gridData" verticalAlignment="GridData.BEGINNING" horizontalAlignment="GridData.FILL"/>
+						</button>
+		            </x:children>
+            	</group>-->
+            </x:children>
+        </composite>
+    </x:children>
+</xswt>

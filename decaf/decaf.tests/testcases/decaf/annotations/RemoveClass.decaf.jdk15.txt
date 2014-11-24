@@ -1,0 +1,10 @@
+package decaf.annotations;
+
+class ConditionalRemoved {
+}
+
+class RemoveClass {
+	public Class[] testCases() {
+		return new Class[] { ConditionalRemoved.class, RemoveClass.class };
+	}
+}

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="635" MadCap:lastWidth="598">
+    <head>
+    </head>
+    <body>
+        <h1>Transparent Activation Pitfalls</h1>
+        <p><a href="../activation_concept/transparent_activation_framework.htm">Transparent Persistence</a> is a powerful feature that can
+make your development much faster, easier and more error-proof. However it can
+lead to trouble if used in a wrong way. The aim of this chapter is to point you
+out to typical pitfalls, which lead to unexpected and undesired results.</p>
+        <h2>Not Activate Call Before Field Access</h2>
+        <p>Before accessing any field you need to call the activate-method. This is true for all <MadCap:variable name="Primary.getter/setter" /> and also for other methods like the toString-method. The best strategy is to call the activate-method in the <MadCap:variable name="Primary.getter/setter" /> and then access the field through those even in the class itself.</p>
+        <p>Or use the <a href="../../advanced_topics/enhancement_tools.htm">enhancement-tools</a> to avoid this issue complete. </p>
+        <h2>Migrating Between Databases</h2>
+        <h3>Problem</h3>
+        <p>Transparent Activation is implemented through the <MadCap:variable name="Primary.Activatable" />-interface, which binds an object to the current object container. When an object is stored in more than one object container, this logic won't work, as only one binding is allowed per object. </p>
+        <h3>Solution</h3>
+        <p>To allow correct behavior of the object between databases, the object should be unbound before being stored to the another database.Just set the activator to null.</p>
+        <p MadCap:conditions="Primary.Java">
+            <h2>Instrumentation Limitations</h2>
+            <h3>Problem</h3>
+            <p>For Java built time enhancement
+the classes to instrument should be on the
+classpath. </p>
+            <h3>Solution</h3>
+            <p>Make sure that all classes to be instrumented are available
+through the classpath</p>
+        </p>
+        <h2>Debugging Instrumented Classes</h2>
+        <p>Debugging instrumented classes may not work 100% correct. <span>Make sure that you are using the debug-flag for the <a href="../../advanced_topics/enhancement_tools/enhancement_for_.net/db4otool.htm">db4otool</a></span></p>
+        <p>You should be able to debug normally anywhere around
+instrumented bytecode. If you still think that the problem occurs in the
+instrumented area, please submit a bug report to <a href="http://tracker.db4o.com/">db4o Jira</a>.</p>
+    </body>
+</html>

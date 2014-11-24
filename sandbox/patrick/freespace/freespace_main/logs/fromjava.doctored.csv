@@ -1,0 +1,8 @@
+,,,,,,
+,1,2,4,8,16,32
+SyncActorFreespaceManagerWrapper,4862,4932,5092,6016,10535,20507
+QueueingFreespaceManager,4415,4532,4536,5140,9947,20087
+SyncActorFreespaceManagerWrapper,4536,4647,4756,7007,11531,20467
+ReactActorFreespaceManagerWrapper,4656,4731,4788,7264,11783,20843
+SyncActorFreespaceManagerWrapper/Scala,2581,2692,4880,9469,19046,37534
+ReactActorFreespaceManagerWrapper/Scala,2471,2579,3536,5776,10819,19811

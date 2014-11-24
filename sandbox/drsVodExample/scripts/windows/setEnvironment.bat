@@ -1,0 +1,26 @@
+SET EXAMPLE_HOME=%~dp0%\..\..
+
+SET JAVA=java
+rem SET JAVA="C:\Program Files (x86)\Java\jdk1.6.0_17\bin\java"
+
+SET DATABASE_NAME=dRSVodExample
+
+SET VERSANT_BIN=%VERSANT_ROOT%\bin
+SET VERSANT_LIB=%VERSANT_ROOT%\lib
+
+setlocal ENABLEDELAYEDEXPANSION
+
+SET LCP=.
+
+FOR /R %EXAMPLE_HOME%\lib %%G IN (*.jar) DO set LCP=!LCP!;%%G
+
+FOR /R %VERSANT_LIB% %%G IN (*.jar) DO set LCP=!LCP!;%%G
+
+endlocal & set LOCAL_CLASSPATH=%LCP%
+
+SET VED_CONFIGFILE=config.ved.win
+SET LOG_FILE="drsLogFile.log"
+
+SET SERVER_PORT=4000
+SET CLIENT_PORT=4100
+SET EVENTPROCESSOR_PORT=4088

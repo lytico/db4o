@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> ExampleTestCase : AbstractDb4oTestCase
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main(<span style="color:Blue;">string</span>[] args)
+    {
+        <span style="color:Blue;">new</span> ExampleTestCase().RunSolo();
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> TestStoresElement()
+    {
+        Db().Store(<span style="color:Blue;">new</span> TestItem());
+        IList&lt;TestItem&gt; result = Db().Query&lt;TestItem&gt;();
+        Assert.AreEqual(1, result.Count);
+    }
+
+
+    <span style="color:Blue;">private</span> <span style="color:Blue;">class</span> TestItem
+    {
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			ExampleTestCase.cs: Basic test case
+			<div class="codedownload">
+				<a href="Example-Code-db4otests-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

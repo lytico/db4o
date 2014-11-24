@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="229" MadCap:lastWidth="612">
+    <body>
+        <p>From the VOD distribution</p>
+        <ul>
+            <li>jdo2-api-2.1.jar</li>
+            <li>vodjdo.jar</li>
+            <li>asm-all-3.1.jar</li>
+            <li>antlr-3.1.1-runtime.jar</li>
+            <li>jta-1.1.jar</li>
+            <li>jvi80.jar</li>
+        </ul>
+        <p>From the db4o / dRS distribution</p>
+        <ul>
+            <li>db4o-X.XX-core-java5.jar (or db4o-X.XX-all-java5.jar)</li>
+            <li>dRS-X.XX-core.jar</li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">class</span> OSGiLoader <span style="color:Blue;">implements</span> JdkLoader{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">final</span> Bundle[] bundlesToLookIn;
+
+    OSGiLoader(Bundle... bundlesToLookIn) {
+        <span style="color:Blue;">this</span>.bundlesToLookIn = bundlesToLookIn;
+    }
+
+    <span style="color:Blue;">public</span> Class loadClass(String s) {
+        <span style="color:Blue;">for</span> (Bundle bundle : bundlesToLookIn) {
+            <span style="color:Blue;">try</span> {
+                <span style="color:Blue;">return</span> bundle.loadClass(s);
+            } <span style="color:Blue;">catch</span> (ClassNotFoundException e) {
+                <span style="color:Green;">// just retry on other bundles</span>
+            }
+        }
+        <span style="color:Blue;">try</span> {
+            <span style="color:Blue;">return</span> getClass().getClassLoader().loadClass(s);
+        } <span style="color:Blue;">catch</span> (ClassNotFoundException e) {
+            <span style="color:Blue;">return</span> <span style="color:Blue;">null</span>;
+        }
+    }
+
+    <span style="color:Blue;">public</span> Object deepClone(Object o) {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> OSGiLoader(bundlesToLookIn);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			UsingDb4oDirectly.java: Load classes from multiple bundles
+			<div class="codedownload">
+				<a href="Example-db4odoc-osgi-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,48 @@
+.n
+.a Configuration ..
+.0 Configuration ..
+
+db4o provides a wide range of configuration methods to request ._
+special behaviour. For a complete list of all available methods ._
+see the API documentation for the .? java com.db4o.config and com.db4o.cs.config packages. ..? ._
+.? net Db4objects.Db4o.Config and Db4objects.Db4o.CS.Config namespaces. ..?  
+A more complete description of Configuration usage and scope can also ._
+be obtained from the  .l http://developer.db4o.com/Documentation.aspx Reference ..   documentation.
+
+Some hints around using configuration calls:
+
+.1 Scope ..
+Configuration should be created and passed to an opening ObjectContainer or ObjectServer:
+.? java .c EmbeddedConfiguration config = Db4oEmbedded.newConfiguration(); ..
+.c ServerConfiguration serverConfig = Db4oClientServer.newServerConfiguration(); ..
+.c ClientConfiguration clientConfig = Db4oClientServer.newClientConfiguration(); ..  ..?
+.? net .c IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration(); ..
+.c IServerConfiguration serverConfig = Db4oClientServer.NewServerConfiguration(); ..
+.c IClientConfiguration clientConfig = Db4oClientServer.NewClientConfiguration(); ..  ..?
+
+Appropriate configuration should be submitted when an .x ObjectContainer .. / .x ObjectServer .. is opened:
+.? java .c Db4oEmbedded.openFile(config, filename) ..
+.c Db4oClientServer.openServer(serverConfig, filename, PORT) ..
+.c Db4oClientServer.openClient(clientConfig, HOST, PORT, USER, PASS); .. ..?
+.? net .c Db4oEmbedded.OpenFile(config, filename) ..
+.c Db4oClientServer.OpenServer(serverConfig, filename, PORT) ..
+.c Db4oClientServer.OpenClient(clientConfig, HOST, PORT, USER, PASS); .. ..?
+
+A separate configuration instance should be created for each new .x ObjectContainer .. / .x ObjectServer .. . ._
+It is recommended to use a factory method with all the necessary settings.
+
+
+.1 Calling Methods ..
+Configurations that influence the database file format will ._
+have to take place, before a database is created, before the ._
+first .x #openXXX() .. call. Some examples:
+.? java .c EmbeddedConfiguration conf = Db4oEmbedded.newConfiguration();
+conf.blockSize(8);
+conf.stringEncoding(new MyStringEncoding()); .. ..?
+.? net .c IEmbeddedConfiguration conf = Db4oEmbedded.NewConfiguration();
+conf.BlockSize(8);
+conf.StringEncoding(new MyStringEncoding()); .. ..?
+
+Configuration settings are  .b not ..  stored in db4o database files. ._
+Accordingly the same configuration has to be submitted  ._
+ .b every time ..  an  .x ObjectContainer .. / .x ObjectServer ..  is opened. ._

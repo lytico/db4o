@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <p>Note that currently collections cannot be indexed and therefore such a constrain can be slow on a large data set.</p>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+
+---+++ Welcome to Object Manager
+
+   * The BugList shows bugs I know about but aren't yet on my TodoList
+   * TodoList shows what I'm working on including bugs and tasks.
+   * CompletedTodos is where I move stuff when it's no longer on my TodoList.
+   * DesignIdeas shows some of the early design ideas for the Object Manager
+   
+-----
+
+I also keep personal DesignNotes for Db4o and OM here.
+
+-----
+
+Return to Db4oWiki:/HomePage.wiki
+

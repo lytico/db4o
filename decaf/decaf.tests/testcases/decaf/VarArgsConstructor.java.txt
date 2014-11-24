@@ -1,0 +1,30 @@
+package decaf;
+
+class VarArgsConstructor extends RuntimeException {
+
+  public VarArgsConstructor(Throwable... throwable){
+  
+  }
+  
+  private void throwMethod(Throwable origExc) {
+      try{
+          subMethod();  
+      } catch (Throwable throwable) {
+          throw new VarArgsConstructor(origExc, throwable);
+      }
+  }
+  
+  private void throwSecondMethod(Throwable origExc) {
+      try{
+          subMethod();  
+      } catch (Throwable throwable) {
+          throw new VarArgsConstructor(origExc, throwable);
+      }
+  }
+  
+  
+  public void subMethod(){
+    
+  }
+  
+}

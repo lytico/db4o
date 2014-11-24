@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Class</span> DefragmentListener
+    <span style="color:Blue;">Implements</span> IDefragmentListener
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> NotifyDefragmentInfo(<span style="color:Blue;">ByVal</span> defragmentInfo <span style="color:Blue;">As</span> DefragmentInfo) _
+        <span style="color:Blue;">Implements</span> IDefragmentListener.NotifyDefragmentInfo
+
+        Console.WriteLine(defragmentInfo)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			DefragmentationExample.vb: Defragmentation listener implementation
+			<div class="codedownload">
+				<a href="Example-Code-deframentation-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

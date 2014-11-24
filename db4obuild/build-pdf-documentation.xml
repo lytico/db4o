@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="project" default="upload.pdf.doc">
+
+	<import file="common.xml" />
+	
+	<target name="init">
+		<property name="dir.docWiki" value="${dir.base}/docWiki" />
+		<property name="dir.pdf.titles" value="${dir.docWiki}/pdf-title"/>
+
+		<property name="dir.reference.java" value="${dir.docWiki}/java" />
+		<property name="dir.reference.net" value="${dir.docWiki}/net" />
+		<property name="file.content.xml" value="content.xml" />
+		<property name="file.list" value="htmlFileList.txt" />
+		
+		<property name="pdf.filename.java" value="db4o-reference-java.pdf"/>
+		<property name="pdf.filename.net" value="db4o-reference-net.pdf"/>
+		<property name="pdf.title.page.java" value="db4o-reference-title-java.html"/>
+		<property name="pdf.title.page.net" value="db4o-reference-title-net.html"/>
+
+		<property name="lib" value="lib" />
+		<property name="scripts" value="${dir.build}/scripts" />
+		<property name="tidy.error.file" value="tidy.error" />
+		<property name="dir.pdf.doc" value="${dir.dist}/pdf.doc/${db4o.version.dotted}" />
+	    
+	    <copy todir="${dir.pdf.doc}">
+	        <fileset dir="${dir.pdf.titles}">
+	            <include name="*.html"/>
+	        </fileset>
+	        <filterset>
+	            <filter token="db4o.version.dotted" value="${db4o.version.dotted}"/>
+	        </filterset>
+	    </copy>
+	    <copy file="${dir.pdf.titles}/db4objects1.jpg" tofile="${dir.pdf.doc}/db4objects1.jpg" />
+	</target>
+
+	<target name="upload.pdf.doc" depends="generate.pdf.all" >
+		<ftp server="${ftp.server}"
+            userid="${ftp.user}"
+            password="${ftp.password}"
+			remotedir="${ftp.reference.path}"
+			>
+            <fileset dir="${dir.dist}/pdf.doc">
+                <include name="${db4o.version.dotted}/" />
+            </fileset>
+		</ftp>
+	</target>
+    
+	<target name="generate.pdf.all" depends="generate.pdf.java, generate.pdf.net" />
+
+    <taskdef name="checklinks" classname="com.db4o.devtools.ant.LinkCheckTask">
+	    <classpath>
+			<pathelement location="${dir.build.bin}" />
+	    </classpath>
+	</taskdef>
+
+	<target name="check-links-java">
+		<!--
+		<checklinks
+			 startURI="file:/${dir.reference.java}/html/_contents.html"
+		     ProtocolFilename="${dir.build}/link-check-java.xml"/>
+		-->
+    </target>
+
+	<target name="check-links-net">
+		<!--
+			<checklinks
+				 startURI="file:/${dir.reference.net}/html/_contents.html"
+			     ProtocolFilename="${dir.build}/link-check-net.xml"/>
+		-->
+	</target>
+	
+    <target name="generate.pdf.java" depends="init, check-links-java">
+    	<convert working.dir="${dir.pdf.doc}"
+    			 dir.reference="${dir.reference.java}"
+    			 pdf.filename="${pdf.filename.java}"
+    			 pdf.title.page="${dir.pdf.doc}/${pdf.title.page.java}"
+    	/>
+    </target>
+
+    <target name="generate.pdf.net" depends="init, check-links-net">
+    	<convert working.dir="${dir.pdf.doc}"
+    			 dir.reference="${dir.reference.net}"
+    			 pdf.filename="${pdf.filename.net}"
+    			 pdf.title.page="${dir.pdf.titles}/${pdf.title.page.net}"
+    	/>
+    </target>
+	
+ 
+    <macrodef name="convert">
+        <attribute name="working.dir" />
+    	<attribute name="dir.reference" />
+    	<attribute name="pdf.filename" />
+    	<attribute name="pdf.title.page"/>
+        <sequential>
+ 	
+			<mkdir dir="@{working.dir}" />
+       	
+        	<java fork="true" 
+					jar="${lib}/tidy.jar"
+					output="@{working.dir}/${file.content.xml}"
+					error="${tidy.error.file}">
+				<arg line="-config ${lib}/tidy.config"/>
+				<arg line="-asxml" />
+				<arg line="@{dir.reference}/html/_contents.html" />
+			</java>
+       	
+	    	<java classname="com.db4o.devtools.pdfdoc.HtmlFileListing" failonerror="true" fork="true">
+	    		<classpath>
+	    			<pathelement location="${dir.build}/bin" />
+	    		</classpath>
+	    		<arg line="-ref @{dir.reference}/html/" />
+	    		<arg line="-conv @{working.dir}" />
+	    		<arg line="-content @{working.dir}/${file.content.xml}" />
+	    		<arg line="-output-name ${file.list}" />
+	    	</java>
+        	        	
+	    	<exec executable="cscript.exe" failonerror="true" >
+	    		<arg line="${scripts}/AcrobatAutomation.vbs" />
+	    		<arg line='"@{pdf.title.page}"' />
+	    		<arg line='"@{pdf.filename}"' />
+	    		<arg line='"@{working.dir}/${file.list}"' />
+	    	</exec>
+      	
+        	<delete>
+				<fileset dir="@{working.dir}">
+				    <include name="${file.list}"/>
+					<include name="${file.content.xml}"/>
+				</fileset>
+        	</delete>
+        	<delete>
+        		<fileset dir="${dir.build}">
+        			<include name="${tidy.error.file}"/>
+        		</fileset>
+			</delete>
+	    	
+	    	<move file="@{pdf.filename}" todir="@{working.dir}" />   	
+        	 	
+        </sequential>
+    </macrodef>
+	
+
+</project>

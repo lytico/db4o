@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="708" MadCap:lastWidth="460">
+  <head />
+  <body>
+    <h1>Refactoring Class Hierarchy</h1>
+    <p>db4o does not directly support the following two
+refactorings: </p>
+    <ul>
+      <li>Inserting
+     classes into an inheritance hierarchy. </li>
+      <li>Removing
+     classes from inheritance hierarchy.</li>
+    </ul>
+    <p>Note that interfaces don't influence the inheritance-hierarchy and can be added and removed at any time.</p>
+    <p>For example we've following classes:</p>
+    <p>
+      <img src="inheritance-refactoring.png" />
+    </p>
+    <p> </p>
+    <p>In this example you cannot introduce a 'Animal' class above the 'Mammal' or add another class between 'Mammal' and 'Primate'. Also you shouldn't remove an class form the inheritance-hierarchy.</p>
+    <p>Currently the only possible solution for this refactoring is this.</p>
+    <ol>
+      <li>Create
+     the new hierarchy with different names, preferably in a new package</li>
+      <li>Copy
+     all values from the old classes to the new classes.</li>
+      <li>Redirect
+     all references from existing objects to the new classes.</li>
+    </ol>
+    <p>Take a look at the example to how to add a class into the hierarchy. <MadCap:xref href="refactoring_class_hierarchy/inserting_class_into_a_hierarchy.htm" target="" title="" alt="">See "Inserting Class Into A Hierarchy"</MadCap:xref>. </p>
+    <p>Or how you can remove a class from the inheritance hierarchy. <MadCap:xref href="refactoring_class_hierarchy/removing_class_from_a_hierarchy.htm" target="" title="" alt="">See "Removing Class From A Hierarchy"</MadCap:xref></p>
+  </body>
+</html>

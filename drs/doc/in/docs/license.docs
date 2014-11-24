@@ -1,0 +1,25 @@
+.n
+.a License ..
+.0 License ..
+
+.1 dRS ..
+
+.l http://www.db4o.com db4objects Inc. ..  supplies the ._
+db4o Replication System (dRS) under the General Public License (GPL).
+
+
+Under the GPL dRS is free to be used:
+- for development,
+- in-house as long as no deployment to third parties takes place,
+- together with works that are placed under the GPL themselves.
+
+
+You should have received a copy of the GPL in the file ._
+dRS.license.txt together with the dRS distribution.
+
+.1 Bundled 3rd Party Licenses ..
+
+The dRS distribution comes with several 3rd party libraries, ._
+located in the /lib/ subdirectory together with the respective ._
+license files.
+

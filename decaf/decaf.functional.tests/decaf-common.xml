@@ -1,0 +1,53 @@
+<project name="decaf common">
+
+	<macrodef name="reset-dir">
+		<attribute name="dir" />
+		<sequential>
+			<delete dir="@{dir}" />
+			<mkdir dir="@{dir}" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="prepare-workspace">
+		<attribute name="project" />
+		<attribute name="dir" />
+		<element name="sources" optional="no" />
+		
+		<sequential>
+			<mkdir dir="@{dir}/@{project}"  />
+			
+			<copy todir="@{dir}/@{project}">
+				<sources />
+			</copy>
+		</sequential>
+	</macrodef>
+			
+	<macrodef name="decaf">
+		<attribute name="workspace" />
+		<attribute name="resource" />
+		
+		<element name="args" optional="yes" />
+		
+		<sequential>
+			<echo>org.eclipse.core.launcher.Main -data @{workspace} -application decaf.application @{resource}</echo>
+		
+			<java fork="true" classname="org.eclipse.core.launcher.Main" failonerror="true" timeout="1800000">
+				<jvmarg value="-Xms256m" />
+				<jvmarg value="-Xmx512m" />
+				<classpath>
+					<fileset dir="${eclipse.home}/plugins">
+						<include name="org.eclipse.equinox.launcher_*.jar"  />
+					</fileset>
+				</classpath>
+				<arg value="-clean" />
+				<arg value="-data" />
+				<arg file="@{workspace}" />
+				<arg value="-application" />
+				<arg value="decaf.application" />
+				<arg value="@{resource}" />
+				<args />
+			</java>
+		</sequential>
+	</macrodef>
+	
+</project>

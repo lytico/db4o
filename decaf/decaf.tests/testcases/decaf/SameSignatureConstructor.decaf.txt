@@ -1,0 +1,12 @@
+package decaf;
+
+class SameSignatureConstructorBase {
+	public SameSignatureConstructorBase(int id) {
+	}	
+}
+
+class SameSignatureConstructor extends SameSignatureConstructorBase {
+	public SameSignatureConstructor(int id) {
+		super(id);
+	}	
+}

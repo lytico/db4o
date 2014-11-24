@@ -1,0 +1,23 @@
+@sharpen-exceptions-mapping
+@sharpen-collections-mapping
+
+-pascalCase+
+-nativeTypeSystem
+-nativeInterfaces
+-organizeUsings
+
+-fullyQualify ICollectionHandler
+-fullyQualify AllTests
+	
+-namespaceMapping com.db4o.drs.test Db4objects.Drs.Tests
+-namespaceMapping com.db4o.drs Db4objects.Drs
+-namespaceMapping com.db4o Db4objects.Db4o
+
+-namespaceMapping db4ounit Db4oUnit
+-namespaceMapping java Sharpen
+
+-propertyMapping java.lang.System.out Sharpen.Runtime.Out
+-propertyMapping java.lang.System.err Sharpen.Runtime.Err
+
+-propertyMapping db4ounit.fixtures.FixtureVariable.value Value
+

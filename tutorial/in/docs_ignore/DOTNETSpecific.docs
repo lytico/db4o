@@ -1,0 +1,104 @@
+.n
+.a DOTNETSpecific ..
+.0 .NET Specific Notes ..
+.1 Enums
+
+When dealing with .NET enumerated types we must face the fact ._
+that they are nothing more than glorified integer numbers. In other ._
+words, everything we know about how db4o handles integer values ._
+also applies to .NET enumerated types: ._
+it does not make sense to store, delete or retrieve enumerated values ._
+directly but to always use them as fields of other types.
+
+A very important implication of this similarity that might not be entirely ._
+obvious is in how db4o will handle enumerated values during a Query By Example. ._
+Let's consider the following (WRONG) example:
+
+.c enum DoorState {
+  Open,
+  Closed
+}
+
+class Door { 
+  DoorState _state;
+  public Door(DoorState state) {
+    _state = state;
+  }
+}
+
+class Example {
+  public static ObjectSet FindOpenDoors(ObjectContainer container) {
+    return container.get(new Door(DoorState.Open));
+  }
+}
+..
+The problem is in how the method FindOpenDoors tries to use the enumerated ._
+value DoorState.Open to retrieve only the specified subset of Door objects ._
+when the query in fact will return ALL Door instances regardless of their _state ._
+field value.
+
+This might seem intriguing at first but it's just a matter of ._
+understanding two things:
+
+1) QBE works by looking at the given prototype and filtering the system ._
+by only those fields which are not set to their default/null/zero value ._
+according to its underlying type;
+
+2) the DoorState enum declaration in our first example really means:
+.c enum DoorState {
+  Open = 0,
+  Closed = 1
+}
+.. which implies that DoorState.Open is the default value for the DoorState type ._
+thus excluding it from the filter.
+
+There are two main strategies to cope with this situation:
+
+1) to use the SODA API and recode the Example class as:
+.c class Example {
+  public static ObjectSet FindOpenDoors(ObjectContainer container) {
+    Query query = container.query();
+    query.constrain(typeof(Door));
+    query.descend("_state").constrain(DoorState.Open);
+    return query.execute();
+  }
+}
+..
+2) to always reserve the first slot of an enumerate value by either ._
+explicitly naming it:
+.c enum DoorState {
+  Uninitialized,
+  Open,
+  Closed
+}
+.. or explicitly setting the value of every element:
+.c enum DoorState {
+  Open = 1,
+  Closed = 2
+}
+..
+.1 Delegates and Events ..
+
+Db4o rules for delegate fields are very straightforward: ._
+.b delegates are simply not stored. ..
+
+Events and delegates are generally used for binding user interface elements ._
+and domain models together. The Db4o team felt that not storing ._
+delegate fields by default was more appropriate than opening ._
+what could potentially be a very nasty can of worms ._
+(just think of a text box bound to a Customer.Changed event).
+
+After careful thought we can easily add delegate persistence to our ._
+domain model by either installing translators for the delegate types ._
+of interest or reconnecting the necessary objects upon activation ._
+using callbacks.
+
+For details see the specific chapters on ._
+.l Translators .. ._
+and ._
+.l Callbacks .. .
+
+
+
+
+

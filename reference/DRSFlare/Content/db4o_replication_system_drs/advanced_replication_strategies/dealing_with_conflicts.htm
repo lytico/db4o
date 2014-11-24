@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2879" MadCap:lastWidth="714">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Replication:Conflicts;dRS:Conflicts" />Dealing with Conflicts</h1>
+        <p>When replicated objects are changed independent and the replicated again, conflict are inevitable. The default behavior of dRS is to throw a ReplicationConflictException in such a situation. This prevents corruption, but doesn't help to resolve the conflict. Fortunately dRS allows you to handle such a conflict situation properly.</p>
+        <p>To deal with conflicts you use a event listener. <MadCap:xref href="events.htm" target="" title="" alt="">See "Events"</MadCap:xref> . The event has also information about conflicts. When a change conflicts with another change, the conflict flag is set on the replication event. Then you can decide which state is actually replicated. For example: When a conflict occurs you could always take the state of one replication partner.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/advanced/AdvancedReplicationExamples-Conflict-resolving-listener.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/drs/advanced/AdvancedReplicationExamples-Deal-with-conflicts.all.flsnp" />
+        <p>Of course there are more advanced strategies possible. For example can compare the timestamp's of the conflicting changes and take the newer change. Note that the clocks of disconnected devices are not perfectly synchronized.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/advanced/AdvancedReplicationExamples-Listener-which-takes-latest-changes.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/drs/advanced/AdvancedReplicationExamples-Take-latest-change.all.flsnp" />
+    </body>
+</html>

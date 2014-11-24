@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="979" MadCap:lastWidth="602" MadCap:conditions="Primary.Java">
+    <head>
+    </head>
+    <body>
+        <h1>Custom Configuration</h1>
+        <p>When the database cannot be opened with OMJ you should try to pass your configuration to OMJ. This ensures that OMJ&#160;opens the database the same way as your application does.</p>
+        <h2>Prepare Configuration Jar File</h2>
+        <p>First you need to prepare a jar-file which contains code to configure OMJ. You do this by implementing the EmbeddedConfigurationItem-interface or implementing ClientConfigurationItem-interface.</p>
+        <p>In the implementation you can apply all the configuration settings to the object container which you use in your application. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/omj/ConfigureDBForOmj-A-configuration-item-for-Java.all.flsnp" />
+        <p>Then create the file 'com.db4o.config.EmbeddedConfigurationItem' in the 'META-INF/services' folder of your jar. Add the fully qualified name of your EmbeddedConfigurationItem/ClientConfigurationItem-implementation. You can list as many implementations as you want.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/META-INF/services/com.all.flsnp" />
+        <p>Finally you need to package the compiled code and the 'META-INF/service' folder into a jar-file. The jar-layout should be like this:</p>
+        <p>
+            <img src="jar-overview.png" />
+        </p>
+        <h2>Using the Configuration in OMJ</h2>
+        <p>After that you can choose the 'Custom config...' option on the open-dialog. There add the jar-file you've build previously. On the right all configuration-items are listed. Select the appropriate configuration items for your database.</p>
+        <p>
+            <img src="custom-config.png" />
+        </p>
+        <p>&#160;</p>
+    </body>
+</html>

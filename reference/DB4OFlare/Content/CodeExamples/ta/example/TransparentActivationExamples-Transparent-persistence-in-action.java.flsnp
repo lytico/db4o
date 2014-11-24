@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">{
+    ObjectContainer container = openDatabaseWithTP();
+    Person person = Person.personWithHistory();
+    container.store(person);
+    container.close();
+}
+{
+    ObjectContainer container = openDatabaseWithTP();
+    Person person = queryByName(container,<span style="color:#A31515;">&quot;Joanna the 10&quot;</span>);
+    Person beginOfDynasty = person.getMother();
+
+    <span style="color:Green;">// With transparent persistence enabled, you can navigate deeply</span>
+    <span style="color:Green;">// nested object graphs. db4o will ensure that the objects</span>
+    <span style="color:Green;">// are loaded from the database.</span>
+    <span style="color:Blue;">while</span>(<span style="color:Blue;">null</span>!=beginOfDynasty.getMother()){
+        beginOfDynasty = beginOfDynasty.getMother();
+    }
+    System.out.println(beginOfDynasty.getName());
+
+    <span style="color:Green;">// Updating a object doesn't requires no store call.</span>
+    <span style="color:Green;">// Just change the objects and the call commit.</span>
+    beginOfDynasty.setName(<span style="color:#A31515;">&quot;New Name&quot;</span>);
+    container.commit();
+    container.close();
+}
+{
+    ObjectContainer container = openDatabaseWithTP();
+    Person person = queryByName(container,<span style="color:#A31515;">&quot;New Name&quot;</span>);
+    <span style="color:Green;">// The changes are stored, due to transparent persistence</span>
+    System.out.println(person.getName());
+    container.close();
+}</pre>
+		<div class="codesnippet-meta">
+			TransparentActivationExamples.java: Transparent persistence in action
+			<div class="codedownload">
+				<a href="Example-ta-example-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

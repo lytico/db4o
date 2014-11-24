@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project name="ContactList" default="build">
+
+	<property name="src.dir" value="ContactList.net" />
+	<property name="bin.dir" value="${src.dir}/bin" />
+	
+	<include buildfile="build-properties.xml" />
+
+	<target name="build" depends="init">
+		<csc target="exe" output="${bin.dir}/ContactList.exe">
+			<sources basedir="${src.dir}">
+				<include name="**/*.cs" />
+			</sources>
+			<references basedir="${bin.dir}">
+				<include name="Db4objects.Db4o.dll" />
+			</references>
+		</csc>
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${bin.dir}" />
+		<copy todir="${bin.dir}" file="${db4o.dll}" />
+	</target>
+	
+</project>

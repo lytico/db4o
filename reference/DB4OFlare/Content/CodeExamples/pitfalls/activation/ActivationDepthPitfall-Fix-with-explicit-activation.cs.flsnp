@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Person julia = jodie.Mother.Mother.Mother.Mother.Mother;
+container.Activate(julia,5);
+
+Console.WriteLine(julia.Name);
+<span style="color:Blue;">string</span> joannaName = julia.Mother.Name;
+Console.WriteLine(joannaName);</pre>
+		<div class="codesnippet-meta">
+			ActivationDepthPitfall.cs: Fix with explicit activation
+			<div class="codedownload">
+				<a href="Example-pitfalls-activation-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

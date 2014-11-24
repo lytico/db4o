@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">sealed</span> <span style="color:Blue;">class</span> Color
+{
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">readonly</span> Color Black = <span style="color:Blue;">new</span> Color(0, 0, 0);
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">readonly</span> Color White = <span style="color:Blue;">new</span> Color(255, 255, 255);
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">readonly</span> Color Red = <span style="color:Blue;">new</span> Color(255, 0, 0);
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">readonly</span> Color Green = <span style="color:Blue;">new</span> Color(0, 255, 0);
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">readonly</span> Color Blue = <span style="color:Blue;">new</span> Color(0, 0, 255);
+
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> red;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> green;
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> blue;
+
+    <span style="color:Blue;">private</span> Color(<span style="color:Blue;">int</span> red, <span style="color:Blue;">int</span> green, <span style="color:Blue;">int</span> blue)
+    {
+        <span style="color:Blue;">this</span>.red = red;
+        <span style="color:Blue;">this</span>.green = green;
+        <span style="color:Blue;">this</span>.blue = blue;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> RedValue
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> red; }
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> GreenValue
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> green; }
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> BlueValue
+    {
+        <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> blue; }
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> Equals(Color other)
+    {
+        <span style="color:Blue;">if</span> (ReferenceEquals(<span style="color:Blue;">null</span>, other)) <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
+        <span style="color:Blue;">if</span> (ReferenceEquals(<span style="color:Blue;">this</span>, other)) <span style="color:Blue;">return</span> <span style="color:Blue;">true</span>;
+        <span style="color:Blue;">return</span> other.red == red &amp;&amp; other.green == green &amp;&amp; other.blue == blue;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">bool</span> Equals(<span style="color:Blue;">object</span> obj)
+    {
+        <span style="color:Blue;">if</span> (ReferenceEquals(<span style="color:Blue;">null</span>, obj)) <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
+        <span style="color:Blue;">if</span> (ReferenceEquals(<span style="color:Blue;">this</span>, obj)) <span style="color:Blue;">return</span> <span style="color:Blue;">true</span>;
+        <span style="color:Blue;">if</span> (obj.GetType() != <span style="color:Blue;">typeof</span> (Color)) <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
+        <span style="color:Blue;">return</span> Equals((Color) obj);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">int</span> GetHashCode()
+    {
+        <span style="color:Blue;">unchecked</span>
+        {
+            <span style="color:Blue;">int</span> result = red;
+            result = (result*397) ^ green;
+            result = (result*397) ^ blue;
+            <span style="color:Blue;">return</span> result;
+        }
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">string</span> ToString()
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">string</span>.Format(<span style="color:#A31515;">&quot;Red: {0}, Green: {1}, Blue: {2}&quot;</span>, red, green, blue);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Color.cs: Class as enumeration
+			<div class="codedownload">
+				<a href="Example-strategies-storingstatic-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

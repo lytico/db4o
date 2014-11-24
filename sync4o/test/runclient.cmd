@@ -1,0 +1,1 @@
+java -cp sampleclient.jar;customer.jar;db4o-6.1-java1.2.jar;commons-codec-1.3.jar;funambol-clientframework.jar;funambol-framework.jar;sc-api-j2se.jar;sync4j-clientframework.jar;sync4o-client-3.0.1.jar com.db4o.sync4o.test.TestSync

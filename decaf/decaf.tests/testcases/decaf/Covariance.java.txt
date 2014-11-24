@@ -1,0 +1,12 @@
+package decaf;
+
+abstract class CovarianceBase {
+	public abstract Object foo();
+}
+
+class Covariance extends CovarianceBase {
+	@Override
+	public String foo() {
+		return "foo";
+	}
+}

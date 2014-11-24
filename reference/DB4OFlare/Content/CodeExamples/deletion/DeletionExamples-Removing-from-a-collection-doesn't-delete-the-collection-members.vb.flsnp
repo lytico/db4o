@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> <span style="color:Blue;">group</span> <span style="color:Blue;">As</span> PilotGroup = FindGroup(container)
+<span style="color:Blue;">Dim</span> pilot <span style="color:Blue;">As</span> Pilot = <span style="color:Blue;">group</span>.Pilots(0)
+<span style="color:Blue;">group</span>.Pilots.Remove(pilot)
+container.Store(<span style="color:Blue;">group</span>.Pilots)
+
+AssertEquals(3, AllPilots(container).<span style="color:Blue;">Count</span>)
+AssertEquals(2, <span style="color:Blue;">group</span>.Pilots.<span style="color:Blue;">Count</span>)</pre>
+		<div class="codesnippet-meta">
+			DeletionExamples.vb: Removing from a collection doesn't delete the collection-members
+			<div class="codedownload">
+				<a href="Example-Code-deletion-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

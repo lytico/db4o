@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1665" MadCap:lastWidth="560" MadCap:conditions="Primary..NET">
+    <head />
+    <body>
+        <h1>LINQ Optimization</h1>
+        <p> LINQ queries are
+converted to <a href="../soda_query.htm">SODA Query</a> under the hood.  The downside of this is
+that some of the queries cannot be converted to SODA. In this case db4o falls back to the plain LINQ to objects implementation. This means that all objects are instantiated and the query is ran against the objects. This of course is slower by an order of magnitude.</p>
+        <p>Note that db4o needs the Mono.Reflection.dll-assembly for this optimization. On the .NET compact framework you need Mono.Cecil.dll- and Cecil.FlowAnalysis.dll-assembly. <MadCap:xref href="linq_for_compact_framework.htm" target="" title="" alt="">See "LINQ For Compact Framework"</MadCap:xref></p>
+        <p>For example a simple query like this can be optimized:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/linq/LinqExamples-A-query-which-is-optimizable.all.flsnp" />
+        <p>However, queries which invoke operations on the objects cannot be optimized:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/linq/LinqExamples-Unoptimizable-query,-because-of-the-'operations'-withing-the-query.all.flsnp" />
+        <h2>Detect Unoptimized Queries</h2>
+        <p> In Visual Studio, you can see a message in the debugger-output for each unoptimized query. First open the debug output window (Debug-&gt;Windows-&gt;Output). Then run your application. A query which cannot be optimized will produce this message:</p>
+        <p>'A first chance exception of type 'Db4objects.Db4o.Linq.QueryOptimizationException' occurred in Db4objects.Db4o.Linq.dll'</p>
+        <p>To find it out for a particular query, break before the query. Then step over the query and see if the message has been printed out.</p>
+        <p>For a broader picture, you can also use <a href="../../../advanced_topics/runtime_statistics.htm">db4o's monitoring support</a>. This will report the amount of unoptimized queries per second.</p>
+        <h2>Improve Unoptimizable Queries </h2>
+        <p>In cases where you have queries which cannot optimized it's often possible to split the query in two parts. The first part runs optimized. After that you run a regular LINQ to Object query to do the rest of the job. Let's look a this example:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/linq/LinqExamples-Unoptimizable-query.all.flsnp" />
+        <p>In this example the part which calls the substring-operation cannot be optimized. Therefore the query runs very slow on large data sets. But the rest of the query could be optimized. So lets split this query into two parts:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/linq/LinqExamples-Splitting-into-two-parts.all.flsnp" />
+        <p>The first query contains only the parts which can be optimized. After that, use the AsEnumerable()-operator to force to run the rest of the query with LINQ to objects. This splitting will improve the performance significantly, since parts of the operation run as optimized query.</p>
+    </body>
+</html>

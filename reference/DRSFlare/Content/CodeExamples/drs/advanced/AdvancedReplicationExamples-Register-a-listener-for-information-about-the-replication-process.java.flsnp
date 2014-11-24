@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ReplicationSession replicationSession = Replication.begin(providerA, providerB,
+        <span style="color:Blue;">new</span> ReplicationEventListener() {
+            <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onReplicate(ReplicationEvent replicationEvent) {
+                ObjectState stateInDesktop = replicationEvent.stateInProviderA();
+                <span style="color:Blue;">if</span> (stateInDesktop.isNew()) {
+                    System.out.println(<span style="color:#A31515;">&quot;Object '&quot;</span>
+                            + stateInDesktop.getObject()
+                            + <span style="color:#A31515;">&quot;' is new on desktop database&quot;</span>);
+                }
+                <span style="color:Blue;">if</span> (stateInDesktop.wasModified()) {
+                    System.out.println(<span style="color:#A31515;">&quot;Object '&quot;</span>
+                            + stateInDesktop.getObject()
+                            + <span style="color:#A31515;">&quot;' was modified on desktop database&quot;</span>);
+                }
+            }
+        });</pre>
+		<div class="codesnippet-meta">
+			AdvancedReplicationExamples.java: Register a listener for information about the replication process
+			<div class="codedownload">
+				<a href="Example-drs-advanced-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

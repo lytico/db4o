@@ -1,0 +1,25 @@
+public class Fields1 {
+	
+	private String _name;
+	protected Integer _intValue;
+	boolean _boolValue;
+	public volatile boolean _stopped;
+	private final Object _lock = new Object();
+	private final Object _defaultLock = _lock;
+	private final int _readOnlyInt = 42;
+	private static final int value = 42;
+	private int defaultValue = value;
+	private static final Object _typeLock = new Object();
+	private Object _defaultTypeLock = _typeLock;
+	private int _staticFoo = staticFoo();
+	private int _instanceFoo = instanceFoo();
+	
+	static int staticFoo() {
+		return 42;
+	}
+	
+	int instanceFoo() {
+		return 42;
+	}
+	
+}

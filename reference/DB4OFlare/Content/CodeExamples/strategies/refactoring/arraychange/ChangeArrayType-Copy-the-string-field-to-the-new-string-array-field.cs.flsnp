@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IList&lt;PersonOld&gt; oldPersons = container.Query&lt;PersonOld&gt;();
+<span style="color:Blue;">foreach</span> (PersonOld old <span style="color:Blue;">in</span> oldPersons)
+{
+    PersonNew newPerson = <span style="color:Blue;">new</span> PersonNew();
+    newPerson.Name = <span style="color:Blue;">new</span> <span style="color:Blue;">string</span>[] {old.Name};
+    container.Store(newPerson);
+    container.Delete(old);
+}</pre>
+		<div class="codesnippet-meta">
+			ChangeArrayType.cs: Copy the string-field to the new string-array field
+			<div class="codedownload">
+				<a href="Example-refactoring-arraychange-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">using</span>(IObjectServer server = Db4oClientServer.OpenServer(<span style="color:#A31515;">&quot;database.db4o&quot;</span>,8080))
+{
+    <span style="color:Green;">// allow access to this server</span>
+    server.GrantAccess(<span style="color:#A31515;">&quot;user&quot;</span>,<span style="color:#A31515;">&quot;password&quot;</span>);
+
+    <span style="color:Green;">// Keep server running as long as you need it</span>
+    Console.Out.WriteLine(<span style="color:#A31515;">&quot;Press any key to exit.&quot;</span>);
+    Console.Read();
+    Console.Out.WriteLine(<span style="color:#A31515;">&quot;Exiting...&quot;</span>);
+}</pre>
+		<div class="codesnippet-meta">
+			ClientServer.cs: Open server
+			<div class="codedownload">
+				<a href="Example-Code-cs-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

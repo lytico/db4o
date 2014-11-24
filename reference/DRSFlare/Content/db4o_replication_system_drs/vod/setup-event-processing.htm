@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2979" MadCap:lastWidth="1309">
+    <head>
+        <link href="../../Resources/TableStyles/Basic.css" rel="stylesheet" MadCap:stylesheetType="table" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="VOD:Event Processing" MadCap:conditions="Primary.Java" />Setup Event Processing</h1>
+        <p>The replication system needs to know which objects have been changed in order to replicate these changes. To do so it uses VOD's event system. You need to setup the event processing and keep it running for this purpose.</p>
+        <MadCap:snippetBlock src="../../Snippets/vod-requirements.flsnp" />
+        <h2>The Classpath</h2>
+        <p>For the replication operations some additional libraries are required besides the JDO ones. This includes the db4o related libraries and additional VOD libraries.</p>
+        <MadCap:snippetBlock src="../../Snippets/VODDrsClasspath.flsnp" />
+        <ul>
+            <li>commons-cli-1.2.jar</li>
+        </ul>
+        <h2><a name="EventSchema"></a>Creating the Event Schema</h2>
+        <p>The event processing needs special schema's to work correctly. Therefore you need to setup the event schema. You can do this by running the CreateEventSchema-class which does this for you. Pass the database name as argument to that class. You can execute this from the command line, where the classpath contains the libraries from above.</p>
+        <p>Windows:</p>
+        <pre class="prettyprint" xml:space="preserve">java -classpath %CLASSPATH% com.db4o.drs.versant.eventprocessor.CreateEventSchema %DATABASE_NAME%</pre>
+        <p>Unix/Linux:</p>
+        <pre class="prettyprint" xml:space="preserve">java -classpath $CLASSPATH com.db4o.drs.versant.eventprocessor.CreateEventSchema $DATABASE_NAME</pre>
+        <h2><a name="EventDriver"></a>Running The Event Driver</h2>
+        <p>The next step is to run the VOD event driver. The event driver is a small service application for processing database events. You need to keep the event driver running all the time when you're using replication. Without a running event driver modifications are not replicated. You need to create a configuration file for the event driver.</p>
+        <p>Windows config.ved.win:</p>
+        <pre class="prettyprint" xml:space="preserve">
+ChannelServicePort	4000
+LogFile eventdb.log
+LogLevel 2
+&lt;EngineLibs&gt;
+vedse.dll
+&lt;/EngineLibs&gt;</pre>
+        <p>Unix/Linux config.ved.linux:</p>
+        <pre class="prettyprint" xml:space="preserve">
+ChannelServicePort	4000
+LogFile eventdb.log
+LogLevel 2
+&lt;EngineLibs&gt;
+libvedse.so
+&lt;/EngineLibs&gt;</pre>
+        <p>With this configuration you can run the event driver. Execute the veddriver command where the first argument is the database name and the second argument is the configuration-file:</p>
+        <pre class="monospace" xml:space="preserve">veddriver %DATABASE_NAME% %VED_CONFIGFILE%</pre>
+        <p>When veddriver executable is in the 'bin'-subdirectory of your VOD installation.</p>
+        <h2><a name="EventProcessor"></a>Running The Event Processor</h2>
+        <p>After the event driver is up and running we finally can start to process the events. This event processing is there to maintain additional meta-information for the replication process. Ensure that the event processor it always up and running. If it isn't running changes are not replicated.</p>
+        <p>The event processor is part of the db4o replication system. It's in the EventProcessorApplication-class. This class needs these parameters:</p>
+        <table style="width: 100%;mc-table-style: url('../../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 145px;" />
+            <col style="width: 52px;" />
+            <col style="width: 50%;" />
+            <tbody>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">-database</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The name of the database which is replicated</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">-server</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Optional</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The host name of the machine where the VOD event driver is running.This a optional parameter. If it's not specified it assumes that the event driver is running on the localhost.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">-servertport</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The port of the VOD event driver. It's the port specified in the event driver configuration. In this example it's 4000</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">-client</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Optional</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The VOD event driver contacts the event processor on certain events. With this parameter you specify the host-name on which the event processor runs. It this parameter is not set localhost will be used.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">-clientport</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The port which is used for the client. It can be any free port. </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">-eventProcessorPort</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The port on which the event processor listens for replication processes. The replication process connects to this port. </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"> -logfile</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Specifies the log file.</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">-verbose</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">Optional</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">Enable the verbose messages</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>To start the event processor you can use this command. Use the classpath-variable refers to the classpath listed above.</p>
+        <p>Windows:</p>
+        <pre class="prettyprint" xml:space="preserve">java -cp %CLASSPATH% com.db4o.drs.versant.eventprocessor.EventProcessorApplication -clientport 4100 -database %DATABASE_NAME% -eventProcessorPort 4088 -logfile %LOG_FILE% -serverport 4000</pre>
+        <p>Linux:</p>
+        <pre class="prettyprint" xml:space="preserve">java -cp $CLASSPATH com.db4o.drs.versant.eventprocessor.EventProcessorApplication -clientport 4100 -database $DATABASE_NAME -eventProcessorPort 4088 -logfile $LOG_FILE  -serverport 4000</pre>
+        <h2><a name="ExampleScripts"></a>Example Scripts</h2>
+        <p>You can use scripts to do this tasks described above. <span MadCap:conditions="Primary.Online">Download the example scripts for <a href="../../CodeExamples/javaDRS/scripts/windows/Example-scripts-windows-java.zip">Windows</a> or <a href="../../CodeExamples/javaDRS/scripts/linux/Example-scripts-linux-java.zip">Linux/Unix</a></span>. </p>
+        <p>You need to adopt the setEnviroment-script to you environment. Specify the path where dRS and db4o jars are. Additionally it expects that the JAVA_HOME and the VERSANT_ROOT environment variables are set. The JAVA_HOME should point to your java-installation. The VERSANT_ROOT should point to the VOD installation directory.</p>
+        <p>Windows:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/javaDRS/scripts/windows/setEnvironment-The-imporatent-configuration-items.all.flsnp" />
+        <p>Linux: </p>
+        <MadCap:snippetBlock src="../../CodeExamples/javaDRS/scripts/linux/setEnvironment-The-imporatent-configuration-items.all.flsnp" />
+        <p>After that you can use the provided scripts to do the steps above. </p>
+        <ul>
+            <li class="monospace">createDatabase:&#160;This scripts creates a database with the name configured in DATABASE_NAME</li>
+            <li class="monospace">createEventSchema: This script creates the schema for the event processing</li>
+            <li class="monospace">startEventDriver: This script starts the event driver</li>
+            <li class="monospace">startEventProcessor: This script starts the event processor</li>
+        </ul>
+        <h2>Start the Event Driver and Event Processor With Your Database</h2>
+        <p>In a production environment the event driver and event processor have to run all the time. Therefore it makes sense to start up these two processes together with your database.</p>
+        <p>You can do this by adding startup entries to your database configuration.</p>
+        <p>First copy the scripts for starting the event processor to your VOD database directory. Edit the script so that it works from the new location. In the example scripts you probably have to change the directory where the libraries reside.</p>
+        <p>Second add two new configuration entries to the profile.be file:</p>
+        <pre class="monospace">event_daemon veddriver  the/path/to/config.ved.win<br />startup_script startEventProcessor.bat</pre>
+        <p>Then restart the database. These configuration entries should ensure that the event driver and processor are started together with the VOD database.</p>
+    </body>
+</html>

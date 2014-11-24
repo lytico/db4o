@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IEventRegistry events = EventRegistryFactory.ForObjectContainer(container);
+events.Committed +=
+    <span style="color:Blue;">delegate</span>(<span style="color:Blue;">object</span> sender, CommitEventArgs args)
+        {
+            <span style="color:Blue;">foreach</span> (LazyObjectReference reference <span style="color:Blue;">in</span> args.Added)
+            {
+                Console.WriteLine(<span style="color:#A31515;">&quot;Added &quot;</span> + reference.GetObject());
+            }
+            <span style="color:Blue;">foreach</span> (LazyObjectReference reference <span style="color:Blue;">in</span> args.Updated)
+            {
+                Console.WriteLine(<span style="color:#A31515;">&quot;Updated &quot;</span> + reference.GetObject());
+            }
+            <span style="color:Blue;">foreach</span> (FrozenObjectInfo reference <span style="color:Blue;">in</span> args.Deleted)
+            {
+                <span style="color:Green;">//the deleted info might doesn't contain the object anymore and</span>
+                <span style="color:Green;">//return the null.</span>
+                Console.WriteLine(<span style="color:#A31515;">&quot;Deleted &quot;</span> + reference.GetObject());
+            }
+        };</pre>
+		<div class="codesnippet-meta">
+			EventRegistryExamples.cs: Commit-info
+			<div class="codedownload">
+				<a href="Example-callbacks-eventregistry-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,112 @@
+<!-- Copyright (C) 2007 db4objects Inc.  http://www.db4o.com -->
+
+<project name="dRS core" default="build-all" basedir=".">
+	<description>dRS build file</description>
+	<!--
+		To execute the "dist" target, which is to build the dRS release, 
+		you need to create a "machine.properties" with this line:
+		
+	    font.pdf.base=C:/WINDOWS/Fonts/VERDANA.TTF
+	    
+	    OR wherever the location of the font is if you are on Linux
+	-->	
+	
+	<import file="drs.common.xml" />
+	
+	<property name="drs.dir.src.test" value="${drs.dir.src}/test" />
+	<property name="drs.dir.src.tutorial" value="${drs.dir.src}/tutorial" />
+	<property name="drs.dir.dist.core" value="${drs.dir.dist}/core" />
+	<property name="drs.dir.dist.core.classes" value="${drs.dir.dist.core}/classes" />
+	<property name="drs.dir.dist.core.temp" value="${drs.dir.dist.core}/tmp" />
+
+	<target name="init" depends="properties">
+		<mkdir dir="${drs.dir.dist.lib}" />
+
+		<path id="class.path" description="universal classpath for all targets">
+			<fileset dir="${drs.dir.lib}">
+				<include name="**/*.jar" />
+			</fileset>
+			
+			<fileset dir="${drs.dir.dist.lib}">
+				<include name="**/*.jar" />
+			</fileset>
+
+			<pathelement location="${file.jdk1.5.jar}" />
+			<pathelement location="${file.jdk1.5.db4ounit.jar}" />
+			<pathelement location="${file.jdk1.5.cs.jar}" />
+			<pathelement location="${file.jdk1.5.optional.jar}" />
+		</path>
+
+		<property name="drs.file" value="dRS-${db4o.version.iteration.revision}-" />
+
+		<property name="filename.drs.core.jar" value="${drs.file}core.jar" />
+		<property name="filename.drs.test.jar" value="${drs.file}test.jar" />
+		<property name="filename.drs.tutorial.jar" value="${drs.file}tutorial.jar" />
+		
+		<property name="file.drs.core.jar" value="${drs.dir.dist.lib}/${filename.drs.core.jar}" />
+		<property name="file.drs.test.jar" value="${drs.dir.dist.lib}/${filename.drs.test.jar}" />
+		<property name="file.drs.tutorial.jar" value="${drs.dir.dist.lib}/${filename.drs.tutorial.jar}" />
+		
+	</target>
+    
+	<target name="build-core" description="jar the core src of drs" depends="init">
+		<mkdir dir="${drs.dir.dist.core.temp}" />
+		<javac srcdir="${drs.dir.src.core}" destdir="${drs.dir.dist.core.temp}" debug="true" target="1.5" source="1.5" failonerror="true">
+			<classpath refid="class.path" />
+		</javac>
+		
+		<copy todir="${drs.dir.dist.core.temp}">
+			<fileset dir="${drs.dir.src.core}">
+				<exclude name="log4j.xml" />
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		
+		<jar jarfile="${file.drs.core.jar}" basedir="${drs.dir.dist.core.temp}" />
+		<delete dir="${drs.dir.dist.core.temp}" />
+	</target>
+	
+	<target name="build-example" description="jar the example src of drs" depends="init">
+		<buildjar srcdir="${drs.dir.src.tutorial}" classpathrefid="class.path" jar="${file.drs.tutorial.jar}" tmpdir="${drs.dir.dist.core.temp}" />
+	</target>
+
+	<target name="build-regression" description="jar the test src of drs" depends="init">
+		<buildjar srcdir="${drs.dir.src.test}" classpathrefid="class.path" jar="${file.drs.test.jar}" tmpdir="${drs.dir.dist.core.temp}"/>
+	</target>
+
+	<target name="build-all" depends="init">
+		<antcall target="build-core" />
+		<antcall target="build-example" />
+		<antcall target="build-regression" />
+	</target>
+
+	<target name="run-example" depends="init">
+		<java fork="true" classname="f1.stepbystep.StepByStepExample">
+			<classpath refid="class.path" />
+		</java>
+	</target>
+	
+	<target name="run-regression-with-debug" depends="init" if="run-drs-tests-with-debug">
+		<java jvm="${file.jvm.jdk1.6}" fork="true" classname="com.db4o.drs.test.all.AllDrsTests" failonerror="true">
+			<classpath refid="class.path" />
+			<jvmarg line="-Xdebug -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=y"/>
+		</java>
+	</target>
+
+	<target name="run-regression-without-debug" depends="init" unless="run-drs-tests-with-debug">
+		<java jvm="${file.jvm.jdk1.6}" fork="true" classname="com.db4o.drs.test.all.AllDrsTests" failonerror="true">
+			<classpath refid="class.path" />
+		</java>
+	</target>
+
+	<target name="run-regression" depends="run-regression-with-debug, run-regression-without-debug" />
+
+	<target name="clean">
+		<delete dir="${drs.dir.dist.core}" />
+		<delete file="${file.drs.core.jar}" />
+		<delete file="${file.drs.test.jar}" />
+		<delete file="${file.drs.tutorial.jar}" />
+		<delete dir="${drs.dir.dist.core.temp}" />
+	</target>
+	
+</project>

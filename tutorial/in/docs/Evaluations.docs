@@ -1,0 +1,100 @@
+.n
+.a Evaluations ..
+.0 SODA Evaluations ..
+
+In the  .l SODAQueryAPI SODA API chapter ..  we already mentioned  .i Evaluations .. ._
+as a means of providing user-defined custom constraints and as a means to run any ._
+arbitrary code in a SODA query. Let's have a closer look.
+
+.1 Evaluation API ..
+
+The evaluation API consists of two interfaces,  .x Evaluation ..  and  .x Candidate ..  . ._
+Evaluation implementations are implemented by the user and injected into a query. ._
+During a query, they will be called from db4o with a candidate instance ._
+in order to decide whether to include it into the current (sub-)result.
+
+
+The .x Evaluation ..  interface contains a single method only:
+
+.? java .c public void evaluate(Candidate candidate); .. ..?
+.? net .c public void Evaluate(ICandidate candidate); .. ..?
+
+This will be called by db4o to check whether the object encapsulated by this ._
+candidate should be included into the current candidate set.
+
+
+The .x Candidate ..  interface provides three methods:
+
+.? java  .c public Object getObject();
+public void include(boolean flag);
+public ObjectContainer objectContainer();
+..  ..?
+
+.? net  .c public object GetObject();
+public void Include(bool flag);
+public IObjectContainer ObjectContainer();
+..  ..?
+
+An Evaluation implementation may call .x #getObject() ..  to retrieve the actual object ._
+instance to be evaluated, it may call .x #include() ..  to instruct db4o whether or not ._
+to include this object in the current candidate set, and finally it may access ._
+the current database directly by calling .x #objectContainer() .. .
+
+
+.1 Example ..
+
+For a simple example, let's go back to our Pilot/Car implementation from the ._
+.l Collections Collections chapter .. . Back then, we kept a history of ._
+SensorReadout instances in a List member inside the car. Now imagine that ._
+we wanted to retrieve all cars that have assembled an even number of history ._
+entries. A quite contrived and seemingly trivial example, however, it gets ._
+us into trouble: Collections are transparent to the query API, it just ._
+'looks through' them at their respective members.
+
+
+So how can we get this done? Let's implement an Evaluation that expects the ._
+objects passed in to be instances of type Car and checks their history size.
+
+.s com.db4odoc.f1.chapter7.EvenHistoryEvaluation ..
+
+To test it, let's add two cars with history sizes of one, respectively two:
+
+.s com.db4odoc.f1.chapter7.EvaluationExample#storeCars -out ..
+
+and run our evaluation against them:
+
+.s com.db4odoc.f1.chapter7.EvaluationExample#queryWithEvaluation ..
+
+.1 Drawbacks ..
+
+While evaluations offer you another degree of freedom for assembling queries, ._
+they come at a certain cost: As you may already have noticed from the example, ._
+evaluations work on the fully instantiated objects, while 'normal' queries ._
+peek into the database file directly. So there's a certain performance penalty ._
+for the object instantiation, which is wasted if the object is not included ._
+into the candidate set.
+
+
+Another restriction is that, while 'normal' queries can bypass encapsulation and ._
+access candidates' private members directly, evaluations are bound to use their ._
+external API, just as in the language itself.
+
+.? java
+
+One last hint: Evaluations are expected to be serializable for client/server ._
+operation. So be careful when implementing them as (anonymous) inner classes ._
+and keep in mind that those will carry an implicit reference to their surrounding ._
+class and everything that belongs to it. Best practice is to always implement ._
+evaluations as normal top level or static inner classes.
+
+..?
+
+.1 Conclusion ..
+
+With the introduction of evaluations we finally completed our query toolbox. ._
+Evaluations provide a simple way of assemble arbitrary custom query building blocks, ._
+however, they come at a price.
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter7.EvaluationExample ..

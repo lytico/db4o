@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Class</span> ConfigForEmbedded
+    <span style="color:Blue;">Implements</span> IOMNEmbeddedCustomConfigurationProvider
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> NewEmbeddedCustomConfiguration() <span style="color:Blue;">As</span> IEmbeddedConfiguration _
+        <span style="color:Blue;">Implements</span> IOMNEmbeddedCustomConfigurationProvider.NewEmbeddedCustomConfiguration
+        <span style="color:Blue;">Dim</span> config = Db4oEmbedded.NewConfiguration()
+        config.Common.StringEncoding = StringEncodings.Utf8()
+        <span style="color:Blue;">Return</span> config
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			ConfigForOMN.vb: Configuration for embedded database
+			<div class="codedownload">
+				<a href="Example-Code-omn-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

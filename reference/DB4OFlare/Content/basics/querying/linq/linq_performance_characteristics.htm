@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:conditions="Primary..NET" MadCap:lastBlockDepth="8" MadCap:lastHeight="3953" MadCap:lastWidth="581">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="LINQ:Performance;Performance:LINQ-Queries" />LINQ Performance Characteristics </h1>
+        <p>This overview shows which query operations perform well or badly on large datasets. It should give you an idea which operations can be used on large datasets and which operations can only be applied to small datasets.</p>
+        <p>LINQ queries are translated to SODA and therefore they share the same basic  <![CDATA[ ]]><a href="../soda/soda_performance_characteristics.htm">performance characteristics</a>.</p>
+        <p>When you run a LINQ query the first time db4o has to initialize the LINQ query subsystem and do various analyses. Therefore the first run of a query can be quite slow. However subsequent runs are fast.</p>
+        <h2><a name="GoodPerf"></a>Good Performance Characteristics</h2>
+        <p>For a good query performance fields which are used in a query have to be <a href="../../indexing.htm">indexed</a>. Otherwise db4o needs to scan through all objects. With an index these operations should scale logarithmically with the amount of data. The following queries all assume that the fields are indexed.</p>
+        <h3>Equals Operation on Indexed Field</h3>
+        <p>Simple equals operations on indexed fields’ perform very well.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/GoodPerformance-Equals-on-indexed-field.all.flsnp" />
+        <p>Not equals operations also do perform well. However a 'not equals' operation tends to return a large result which will slow down the query.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/GoodPerformance-Not-equals.all.flsnp" />
+        <h3>Navigation Queries on Index Field</h3>
+        <p>Queries which navigate along references are executed also efficiently, as long every field and reference is indexed.</p>
+        <p>However there's a catch to this: The reference field type has to be a concrete type. If a field type is an interface or of type object, <a href="#SlowNavigationQueries">then the query runs slow</a>.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/GoodPerformance-Equals-across-indexed-fields.all.flsnp" />
+        <h3>Reference-Queries</h3>
+        <p>Like regular equals operation, comparisons against references also have a good performance.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/GoodPerformance-Query-by-reference.all.flsnp" />
+        <h3>Comparison and Range Queries</h3>
+        <p>Comparison and range queries  also perform well.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/GoodPerformance-Bigger-than.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/GoodPerformance-In-between.all.flsnp" />
+        <h3>Date Queries</h3>
+        <p>Operations on dates are also fast.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/GoodPerformance-Date-comparisons-are-also-fast.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/GoodPerformance-Find-a-newer-date.all.flsnp" />
+        <h2><a name="BadPerf"></a>Bad Performance Characteristics</h2>
+        <p>Here's an overview of the query operations with bad performances characteristics. The reason is that db4o cannot utilize indexes to perform these queries. Or that the LINQ query optimizer cannot translate the query to SODA. That means the  query time grows linearly with the amount of data. </p>
+        <h3>String Operations: Like, Contains, StartsWith, Ends With</h3>
+        <p>All string operations beside the simple equals operation cannot use indexes at the moment. Therefore all string operations like contains, like, starts with etc. run slowly. Advanced string operations are not translated to SODA and therefore run even more slowly.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/BadPerformance-Contains-is-slow.all.flsnp" />
+        <h3>Queries on Collections / Arrays</h3>
+        <p>Any query which does contains operations on collections/arrays or navigates across a collection/array field will run slowly. The reason is that db4o cannot index collections. Furthermore the LINQ query optimizer may doesn't recognize such a query and just loads all objects to process the query.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/BadPerformance-Contains-on-collection.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/BadPerformance-Nagivating-into-collection.all.flsnp" />
+        <h3>Calling Complex Methods / Properties</h3>
+        <p>Calling complex methods or properties in LINQ queries is a bad idea. For example when a property fires an event in the getter, then the query accessing it won't be optimized. The same is true when you call complex methods in the query.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/BadPerformance-Complex-property.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/linq/BadPerformance-Calling-a-method.all.flsnp" />
+        <h2><a name="Detect"></a>Detect Slow Queries</h2>
+        <p>The best indication that a query is slow is when it cannot use any field index. Install a <a href="../../../advanced_topics/diagnostics.htm">diagnostic listener and look for the LoadedFromClassIndex</a> message. That message indicates that a query couldn't use any field index for its execution.</p>
+        <p>Also read about the LINQ optimization and how you can write queries which run efficiently and still use advanced LINQ&#160;features. <MadCap:xref href="optimization.htm" target="" title="" alt="">See "LINQ Optimization"</MadCap:xref></p>
+    </body>
+</html>

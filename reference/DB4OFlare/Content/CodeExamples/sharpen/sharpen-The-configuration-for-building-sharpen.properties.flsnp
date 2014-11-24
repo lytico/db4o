@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="">
+        <pre class="prettyprint" xml:space="preserve">#The workspace where the sharpen projects are
+dir.workspace=C:/Users/Gamlor/Develop/db4o/sharpenProject
+# Java executable
+jdk.home=${env.JAVA_HOME}
+jdk.home.java=${jdk.home}/bin/java.exe
+# Eclipse home directory
+eclipse.home=C:/progs/eclipse
+# Sandcastle can be used to convert javadoc to .NET xml comments
+# dir.lib.sandcastle=e:/sandcastle/
+# sharpen compile directory
+dir.dist.classes.sharp=${dir.workspace}/dist/
+# Eclipse plugins home
+plugins.home=${eclipse.home}/plugins</pre>
+		<div class="codesnippet-meta">
+			sharpen.properties: The configuration for building sharpen
+			<div class="codedownload">
+				<a href="Example-db4odoc-sharpen-.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

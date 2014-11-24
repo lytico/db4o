@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="284" MadCap:lastWidth="598">
+    <head />
+    <body>
+        <h1>Scalability</h1>
+        <p>db4o is intended for embedded use with smaller databases around 2-16 GByte and at maximum 256 GByte. As a general rule, if you expect your database to grow beyond 16 gigabytes, you should look at the <a href="http://www.versant.com/" target="_top">Versant object database</a>.</p>
+        <p>db4o is explicitly single-threaded. Concurrent accesses will be synchronized against a global database lock.That means db4o cannot deal with a highly concurrent access, since it blocks on all operations. When you expect a high load and concurrent access, then you should consider a larger database like the <a href="http://www.versant.com/" target="_top">Versant object database</a>.</p>
+        <p>If you want to make sure that your
+application can grow and scale with db4o database you may take the following
+steps:</p>
+        <ul>
+            <li>Write performance tests to accommodate for performance requirements
+     of the growing application. Especially look that you capture the complexity of the model and don't use a simplified flat data model.</li>
+            <li>Also check that you can the throughput you need with concurrent access.</li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project name="Win32IoAdapter" default="build">
+	
+	<property name="project.dir" location="../../../../../../.." />
+	<property name="db4oj.bin.dir" location="${project.dir}/../db4oj/bin" />
+	<property name="output.dir" location="${project.dir}/bin" />
+	<property name="src.dir" location="${project.dir}/plugins/src" />
+	
+	<path id="project.classpath">
+		<pathelement location="${output.dir}" />
+		<pathelement location="${db4oj.bin.dir}" />
+	</path>
+	
+	<target name="run" depends="build">
+		
+		<echo>${output.dir}</echo>
+		<java
+			classname="com.db4o.util.io.spikes.SimpleIoBenchmark"
+			classpathref="project.classpath"
+			fork="yes">
+
+			<sysproperty key="java.library.path" path="${output.dir}" />
+			
+		</java>
+	</target>
+
+	<target name="build" depends="build-java, build-native">
+	</target>
+
+	<target name="build-java" depends="init">
+		<javac srcdir="${src.dir}" destdir="${output.dir}" classpathref="project.classpath">
+		</javac>
+	</target>
+	
+	<target name="build-native" depends="build-java">
+		<javah
+			class="com.db4o.util.io.win32.Win32IoAdapter"
+			outputfile="Win32IoAdapter.h"
+			classpathref="project.classpath">
+		</javah>
+		<exec executable="cl" failonerror="true">
+			<arg value="/I" />
+			<arg path="${java.home}/../include" />
+			<arg value="/I" />
+			<arg path="${java.home}/../include/win32" />
+			<arg file="Win32IoAdapter.cpp" />
+			<arg value="/DUNICODE" />
+			<arg value="/LD" />
+			<arg value="/link" />
+			<arg value="/OUT:${output.dir}\Win32IoAdapter.dll" />
+		</exec>
+	</target>
+
+	<target name="init">
+		<mkdir dir="${output.dir}" />
+	</target>
+</project>

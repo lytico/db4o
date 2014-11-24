@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="357" MadCap:lastWidth="586" >
+    <head></head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Refactoring" />
+            <MadCap:keyword term="Schema Evolution" />Refactoring and Schema Evolution</h1>
+        <P>Application design is a volatile thing: it changes from version to version, from one customer implementation to another. The database changes together with the application. For relational databases this process is called Schema Evolution, for object databases the term Refactoring is used as more appropriate.</P>
+        <P>Object database refactoring changes the shape of classes stored on the disk. The main challenge here is to preserve old object information and make it usable with the new classes' design.</P>
+        <P>Simple cases like adding or removing a field and changing interfaces are handled automatically. <MadCap:xref href="refactoring_and_schema_evolution/automatic_refactoring.htm" target="" title="" alt="">See "Automatic Refactoring"</MadCap:xref></P>
+        <p>For renaming classes and fields you can use the renaming API. <MadCap:xref href="refactoring_and_schema_evolution/refactoring_api.htm" target="" title="" alt="">See "Renaming API"</MadCap:xref>. </p>
+        <p>You can change the type of a field any time. However db4o won't migrate the data to the new type. You need to do this explicitly. <MadCap:xref href="refactoring_and_schema_evolution/field_type_change.htm" target="" title="" alt="">See "Field Type Change".</MadCap:xref> <![CDATA[ ]]>And there are some small limitations when refactoring the field-type. <MadCap:xref href="refactoring_and_schema_evolution/field_refactoring_limitation.htm" target="" title="" alt="">See "Field Refactoring Limitation"</MadCap:xref></p>
+        <p>Unfortunatly db4o doesn't support changing the inheritance hierarchy. <MadCap:xref href="refactoring_and_schema_evolution/refactoring_class_hierarchy.htm" target="" title="" alt="">See "Refactoring Class Hierarchy"</MadCap:xref></p>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ObjectServer serverDatabase = openDatabaseServer(DESKTOP_DATABASE_NAME);
+ObjectContainer mobileDatabase = openDatabase(MOBILE_DATABASE_NAME);
+
+{
+
+    ObjectContainer serverDbConnection =
+            Db4oClientServer.openClient(HOST, PORT, USER_NAME, USER_NAME);
+    serverDbConnection.store(<span style="color:Blue;">new</span> Pilot(<span style="color:#A31515;">&quot;Pilot 1&quot;</span>));
+    serverDbConnection.commit();
+
+    <span style="color:Green;">// The replication starts here</span>
+    ObjectContainer connectionForReplication
+            = Db4oClientServer.openClient(HOST, PORT, USER_NAME, USER_NAME);
+    
+    Db4oEmbeddedReplicationProvider providerA = <span style="color:Blue;">new</span> Db4oClientServerReplicationProvider(connectionForReplication);
+    Db4oEmbeddedReplicationProvider providerB = <span style="color:Blue;">new</span> Db4oEmbeddedReplicationProvider(mobileDatabase);
+    
+    ReplicationSession replicationSession = Replication.begin(providerA, providerB);
+    ObjectSet changesOnDesktop
+            = replicationSession.providerA().objectsChangedSinceLastReplication();
+
+    <span style="color:Green;">// during the replication other clients store data on the server</span>
+    serverDbConnection.store(<span style="color:Blue;">new</span> Pilot(<span style="color:#A31515;">&quot;Pilot 2&quot;</span>));
+    serverDbConnection.commit();
+
+    <span style="color:Blue;">for</span> (Object changedObjectOnDesktop : changesOnDesktop) {
+        replicationSession.replicate(changedObjectOnDesktop);
+    }
+
+    replicationSession.commit();
+
+    serverDbConnection.store(<span style="color:Blue;">new</span> Pilot(<span style="color:#A31515;">&quot;Pilot 3&quot;</span>));
+    serverDbConnection.commit();
+
+}
+
+<span style="color:Green;">// Pilot 2 is not replicated</span>
+printPilots(mobileDatabase);
+
+
+{
+    ObjectContainer connectionForReplication
+            = Db4oClientServer.openClient(HOST, PORT, USER_NAME, USER_NAME);
+    
+    Db4oEmbeddedReplicationProvider providerA = <span style="color:Blue;">new</span> Db4oClientServerReplicationProvider(connectionForReplication);
+    Db4oEmbeddedReplicationProvider providerB = <span style="color:Blue;">new</span> Db4oEmbeddedReplicationProvider(mobileDatabase);
+    
+    ReplicationSession replicationSession= Replication.begin(providerA, providerB);
+    ObjectSet changesOnDesktop
+            = replicationSession.providerA().objectsChangedSinceLastReplication();
+    <span style="color:Blue;">for</span> (Object changedOnDesktop : changesOnDesktop) {
+        replicationSession.replicate(changedOnDesktop);
+    }
+    replicationSession.commit();
+}
+
+<span style="color:Green;">// Pilot 2 is still not replicated</span>
+printPilots(mobileDatabase);</pre>
+		<div class="codesnippet-meta">
+			AdvancedReplicationExamples.java: Lost replication
+			<div class="codedownload">
+				<a href="Example-drs-advanced-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

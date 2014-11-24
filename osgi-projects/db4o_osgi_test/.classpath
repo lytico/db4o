@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/db4o-tests.jar" sourcepath="db4o_osgi_testsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/db4o-tests-nq.jar" sourcepath="/db4onqopt"/>
+	<classpathentry exported="true" kind="lib" path="lib/db4o-8.0.178.15299-db4ounit-java5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

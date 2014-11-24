@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="278" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Reserve Storage Space</h1>
+        <p>Reserves a number of bytes in database files.  Without this setting storage space will be allocated continuously as necessary. </p>
+        <p>The allocation of a fixed number of bytes at one time makes it more likely that the database will be stored in one chunk on the mass storage. This will result in less read/write head movement on disk based storage. Note: Allocated space will be lost on abnormal termination of the database engine (hardware crash, VM crash). A Defragment run will recover the lost space. For the best possible performance, this method should be called before the Defragment run to configure the allocation of storage space to be slightly greater than the anticipated database file size.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/file/FileConfiguration-Reserve-storage-space.all.flsnp" />
+    </body>
+</html>

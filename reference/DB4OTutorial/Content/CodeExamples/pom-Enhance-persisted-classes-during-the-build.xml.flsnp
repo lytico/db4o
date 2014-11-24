@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">&lt;</span><span style="color:#A31515;">plugin</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">artifactId</span><span style="color:Blue;">&gt;</span>maven-antrun-plugin<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">artifactId</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">version</span><span style="color:Blue;">&gt;</span>1.6<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">version</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">dependencies</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Green;">&lt;!-- We need the db4o tooling for enhancing stuff --&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">dependency</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">groupId</span><span style="color:Blue;">&gt;</span>com.db4o<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">groupId</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">artifactId</span><span style="color:Blue;">&gt;</span>db4o-tools-java5<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">artifactId</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">version</span><span style="color:Blue;">&gt;</span>8.1-SNAPSHOT<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">version</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">dependency</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">dependencies</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">executions</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">execution</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">phase</span><span style="color:Blue;">&gt;</span>compile<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">phase</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">configuration</span><span style="color:Blue;">&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">target</span><span style="color:Blue;">&gt;</span>
+                    <span style="color:Green;">&lt;!-- We enhance with an additional Ant-run step. You can put this also in an extra file --&gt;</span>
+                    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">typedef</span> <span style="color:Red;">resource</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">instrumentation-def.properties</span><span style="color:Black;">&quot;</span>
+                             <span style="color:Red;">classpathref</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">maven.compile.classpath</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+
+                    <span style="color:Green;">&lt;!-- We filter by our annotation --&gt;</span>
+                    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">typedef</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">annotation-filter</span><span style="color:Black;">&quot;</span>
+                             <span style="color:Red;">classname</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">com.db4odoc.tutorial.transparentpersistence.AnnotationFilter</span><span style="color:Black;">&quot;</span>
+                             <span style="color:Red;">classpathref</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">maven.compile.classpath</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+
+                    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">db4o-instrument</span> <span style="color:Red;">classTargetDir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">target/classes</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+                        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">classpath</span> <span style="color:Red;">refid</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">maven.compile.classpath</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+                        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">sources</span> <span style="color:Red;">dir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">target/classes</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+                            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">**/*.class</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+                        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">sources</span><span style="color:Blue;">&gt;</span>
+
+                        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">transparent-activation-step</span><span style="color:Blue;">&gt;</span>
+                            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">annotation-filter</span><span style="color:Blue;">/&gt;</span>
+                        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">transparent-activation-step</span><span style="color:Blue;">&gt;</span>
+                    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">db4o-instrument</span><span style="color:Blue;">&gt;</span>
+                <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">target</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">configuration</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">goals</span><span style="color:Blue;">&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">goal</span><span style="color:Blue;">&gt;</span>run<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">goal</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">goals</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">execution</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">executions</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">plugin</span><span style="color:Blue;">&gt;</span></pre>
+		<div class="codesnippet-meta">
+			pom.xml: Enhance persisted classes during the build
+			<div class="codedownload">
+				<a href="Example-java-db4o-tutorial-.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

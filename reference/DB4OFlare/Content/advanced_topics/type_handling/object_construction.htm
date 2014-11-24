@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="357" MadCap:lastWidth="609">
+    <head>
+    </head>
+    <body>
+        <h1>Object Construction</h1>
+        <p>How does db4o construct its objects when it loads it from the database? </p>
+        <h2>Bypassing the Constructor</h2>
+        <p>By default db4o creates the object and bypasses any constructor. It does that by using the available methods on the platform. After that it uses reflection of fill the fields of the object with the content. After that object creating process is finished and the object is ready to be used.</p>
+        <h2>Using the Constructor</h2>
+        <p><a href="../../configuration/common/calling_constructors.htm">Optionally</a> <![CDATA[ ]]>db4o can also create objects using the constructor. In that case db4o tries to find a constructor which is can use. db4o starts to tries out all constructors, starting with the constructor with the least arguments. As soon a constructor can be called without throwing an exception, it is used. When a constructor has arguments db4o calls it with default values for all arguments. For reference-types that’s null, for number zero and for other values types the appropriate default. When no constructor can be found, db4o will throw an appropriate exception.</p>
+        <h2>Special Construction</h2>
+        <p>The last possibility for db4o to construct objects is by special handlers. Either with <a href="translators.htm">translators</a> or  <a href="typehandlers.htm">type handlers</a>. </p>
+    </body>
+</html>

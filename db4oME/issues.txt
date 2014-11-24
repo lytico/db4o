@@ -1,0 +1,20 @@
+Brutally removed:
+
+- Client/Server: Msg, *Client*, *Server*
+- Blob
+- JDK reflector
+- Net* (primitive wrappers)
+- NQ
+- Coercion (Number superclass is missing)
+
+Smaller issues:
+
+- Unobfuscated: UUID/INetAddress
+- String#lastIndexOf & Co.
+
+Design issues:
+
+- No int.class/Integer.TYPE, etc. in CLDC, used in YapJavaClass
+
+several IDS's compile differenty
+-Xheapsize:1m

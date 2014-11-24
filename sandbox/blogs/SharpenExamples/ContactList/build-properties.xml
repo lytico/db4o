@@ -1,0 +1,7 @@
+<project name="build properties">
+	<property name="sharpen.workspace.dir" value="build" />
+	<property name="db4o.jar" value="c:/java/db4o-7.2/lib/db4o-7.2.39.10644-java5.jar"  />
+	<property name="db4o.dll" value="c:/dotnet/db4o-7.2/bin/net-2.0/Db4objects.Db4o.dll" />
+	<property name="eclipse.home" value="c:/java/eclipse" />
+	<property name="nant.exe" value="c:/dotnet/nant-0.85/bin/NAnt.exe" />
+</project>

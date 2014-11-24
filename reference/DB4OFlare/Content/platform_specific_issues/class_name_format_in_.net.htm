@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="7" MadCap:lastHeight="382" MadCap:lastWidth="784" MadCap:conditions="Primary..NET,Primary.All languages">
+  <head />
+  <body>
+    <h1>Class Name Format In .NET</h1>
+    <p>Db4o uses full class name to distinguish classes within the database file. In .NET full class name has the following format:</p>
+    <pre class="prettyprint">Namespace.ClassName, AssemblyName</pre>
+    <p>Effectively that means that the same class definition within different assemblies (applications or libraries) will be recognized as two different classes by db4o. You should keep this in mind in the following cases:</p>
+    <ul>
+      <li>Two or more applications working with the same database file;</li>
+      <li>Client/server application with the classes deployed on both the client and the server;</li>
+      <li>
+        <a href="asp.net.htm">ASP.NET2</a> application with dynamic compilation</li>
+    </ul>
+    <h2>Generics</h2>
+    <p>Instances of generic classes are have also a special naming-schema. The generic type parameter is in []-brackets. For example the generic class like list looks like this.</p>
+    <pre class="prettyprint">"System.Collections.Generic.List`1[[Namespace.ClassName, AssemblyName]], mscorlib"</pre>
+    <p>Or a dictionary looks like this:</p>
+    <pre class="prettyprint">System.Collections.Generic.Dictionary[[System.String, mscorlib], [Namespace.ClassName, AssemblyName]], mscorelib</pre>
+  </body>
+</html>

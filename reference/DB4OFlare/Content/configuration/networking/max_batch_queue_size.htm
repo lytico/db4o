@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="230" MadCap:lastWidth="546">
+    <head>
+    </head>
+    <body>
+        <h1>Max Batch Queue Size</h1>
+        <p>To avoid unnecessary network traffic, the client and server can queue up operations, which don't need to be executed immediately. As soon as a message need to be send, all queued messages are send as well. You can configure the maximum of this message queue.</p>
+        <p>A larger size allows to queue up more messages and avoid unnecessary network roundtrip's. However queued up messages consume additional memory.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/network/NetworkConfigurationExample-change-the-maximum-batch-queue-size.all.flsnp" />
+    </body>
+</html>

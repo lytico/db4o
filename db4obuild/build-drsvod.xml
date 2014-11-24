@@ -1,0 +1,169 @@
+<!-- Copyright (C) 2007 db4objects Inc.  http://www.db4o.com -->
+
+<project name="dRS/VOD" default="build-all" basedir=".">
+	<description>dRS build file</description>
+	<!--
+		To execute the "dist" target, which is to build the dRS release, 
+		you need to create a "machine.properties" with this line:
+		
+	    font.pdf.base=C:/WINDOWS/Fonts/VERDANA.TTF
+	    
+	    OR wherever the location of the font is if you are on Linux
+	-->	
+	<import file="drs.common.xml" />
+	
+	<property name="drs.vod.dir.lib" value="${drs.vod.dir.base}/lib" />
+	<property name="drs.vod.dir.src.test" value="${drs.vod.dir.src}/test" />
+	<property name="drs.vod.dir.dist" value="${drs.dir.dist}/drsvod" />
+	<property name="drs.vod.dir.dist.classes" value="${drs.vod.dir.dist}/classes" />
+	<property name="drs.vod.dir.dist.temp" value="${drs.vod.dir.dist}/tmp" />
+	
+	<target name="init" depends="properties">
+		<path id="class.path" description="universal classpath for all targets">
+			<fileset dir="${drs.dir.dist.lib}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${drs.vod.dir.lib}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${dir.vod.lib}">
+				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${drs.dir.lib}">
+				<include name="**/*.jar" />
+			</fileset>
+			<pathelement location="${drs.vod.dir.dist.classes}" />
+			<pathelement location="${file.jdk1.5.jar}" />
+			<pathelement location="${file.jdk1.5.db4ounit.jar}" />
+			<pathelement location="${file.jdk1.5.cs.jar}" />
+			<pathelement location="${file.jdk1.5.optional.jar}" />
+		</path>
+		
+		<property name="drs.vod.file" value="dRS-${db4o.version.iteration.revision}-VOD" />
+		<property name="filename.drs.vod.core.jar" value="${drs.vod.file}.jar" />
+		<property name="filename.drs.vod.test.jar" value="${drs.vod.file}-test.jar" />
+		
+		<property name="file.drs.vod.core.jar" value="${drs.dir.dist.lib}/${filename.drs.vod.core.jar}" />
+		<property name="file.drs.vod.test.jar" value="${drs.dir.dist.lib}/${filename.drs.vod.test.jar}" />
+		
+		<if>
+			<os family="windows" />
+			<then>
+				<property name="key.drs.vod.regression.bin" value="Path" />
+			</then>
+			<else>
+				<property name="key.drs.vod.regression.bin" value="PATH" />
+			</else>
+		</if>
+		<if>
+			<equals arg1="${run.vod.drs.tests}" arg2="true" />
+			<then>
+				<property name="jvmarg.drs.vod.regression.enhancer" value="-javaagent:${drs.dir.lib}/jdo-enhancer/dRS-jdo-enhancer.jar=com.db4o.drs.test.data,com.db4o.drs.test.versant.data" />
+				<if>
+					<os family="windows" />
+					<then>
+						<property name="path.drs.vod.regression.bin" value="${path.vod.bin};${path.vod.lib};${env.Path}" />
+						<property name="path.drs.vod.regression.lib" value="" />
+					</then>
+					<else>
+						<property name="path.drs.vod.regression.bin" value="${path.vod.bin}:${env.PATH}" />
+						<property name="path.drs.vod.regression.lib" value="${path.vod.lib}:${env.LD_LIBRARY_PATH}" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<property name="jvmarg.drs.vod.regression.enhancer" value="" />
+				<if>
+					<os family="windows" />
+					<then>
+						<property name="path.drs.vod.regression.bin" value="${env.Path}" />
+						<property name="path.drs.vod.regression.lib" value="" />
+					</then>
+					<else>
+						<property name="path.drs.vod.regression.bin" value="${env.PATH}" />
+						<property name="path.drs.vod.regression.lib" value="${env.LD_LIBRARY_PATH}" />
+					</else>
+				</if>
+			</else>
+		</if>
+	</target>
+    
+	<target name="build-vod" depends="init" description="jar the core src of drs-vod">
+		<delete dir="${drs.vod.dir.dist.temp}" />
+		<mkdir dir="${drs.vod.dir.dist.temp}" />
+
+		<javac srcdir="${drs.vod.dir.src.core}" destdir="${drs.vod.dir.dist.temp}" debug="true" target="1.5" source="1.5" failonerror="true">
+			<classpath refid="class.path" />
+		</javac>
+		
+		<copy todir="${drs.vod.dir.dist.temp}">
+			<fileset dir="${drs.vod.dir.src.core}">
+				<exclude name="log4j.xml" />
+				<include name="**/*.jdo" />
+				<include name="**/*.xml" />
+				<include name="versant.properties" />
+			</fileset>
+		</copy>
+
+		<path id="versant.enhancer.class.path">
+			<fileset dir="${dir.vod.lib}" includes="**/*.jar"/>
+			<fileset dir="${drs.dir.lib}" includes="**/*.jar"/>
+			<fileset dir="${drs.dir.dist.lib}" includes="**/*.jar"/>
+			<fileset dir="${drs.vod.dir.base}/lib" includes="**/*.jar"/>
+			<pathelement location="${drs.vod.dir.dist.temp}"/>
+			<pathelement location="${dir.dist.classes.jdk1.5}"/>
+			<pathelement location="${dir.dist.classes.db4ounit.jdk1.5}"/>
+		</path>
+
+		<taskdef resource="versant.tasks">
+			<classpath refid="versant.enhancer.class.path" />
+		</taskdef>
+		
+		<jdo-enhance project="versant.properties" outputdir="${drs.vod.dir.dist.temp}" >
+			<persistentaware dir="${drs.vod.dir.dist.temp}"/>
+		</jdo-enhance>
+		
+		<jar jarfile="${file.drs.vod.core.jar}" basedir="${drs.vod.dir.dist.temp}" />
+		<delete dir="${drs.vod.dir.dist.temp}" />
+	</target>
+	
+	<target name="build-regression" description="jar the test src of drs" depends="init">
+		<buildjar srcdir="${drs.vod.dir.src.test}" classpathrefid="class.path" jar="${file.drs.vod.test.jar}" tmpdir="${drs.vod.dir.dist.temp}" />
+	</target>
+
+	<target name="build-all" depends="init">
+		<antcall target="build-vod" />
+		<antcall target="build-regression" />
+	</target>
+
+	<target name="run-regression-with-debug" depends="init" if="run-drs-tests-with-debug">
+		<java jvm="${file.jvm.jdk1.6}" fork="true" classname="com.db4o.drs.test.all.AllVodDrsTests" failonerror="true">
+			<classpath refid="class.path" />
+			<jvmarg line="${jvmarg.drs.vod.regression.enhancer}" />
+			<jvmarg line="-Xdebug -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=y"/>
+			<env key="${key.drs.vod.regression.bin}" path="${path.drs.vod.regression.bin}" />
+			<env key="LD_LIBRARY_PATH" path="${path.drs.vod.regression.lib}" />
+		</java>
+	</target>
+
+	<target name="run-regression-without-debug" depends="init" unless="run-drs-tests-with-debug">
+		<java jvm="${file.jvm.jdk1.6}" fork="true" classname="com.db4o.drs.test.all.AllVodDrsTests" failonerror="true">
+			<classpath refid="class.path" />
+			<jvmarg line="${jvmarg.drs.vod.regression.enhancer}" />
+			<env key="${key.drs.vod.regression.bin}" path="${path.drs.vod.regression.bin}" />
+			<env key="LD_LIBRARY_PATH" path="${path.drs.vod.regression.lib}" />
+		</java>
+	</target>
+
+	<target name="run-regression" depends="run-regression-with-debug, run-regression-without-debug">
+	</target>
+
+	<target name="clean">
+		<delete dir="${drs.vod.dir.dist}" />
+		<delete file="${file.drs.vod.core.jar}" />
+		<delete file="${file.drs.vod.test.jar}" />
+		<delete dir="${drs.vod.dir.dist.temp}" />
+	</target>
+	
+</project>
+

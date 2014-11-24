@@ -1,0 +1,20 @@
+package decaf.annotations;
+
+class Foo {
+
+	public void bar() {
+	}
+	
+	public void ignoredExceptSharpen() {
+	}
+
+	public void ignoredUnlessCompatibleJmx() {
+	}
+
+	public void ignoredOnJdk11Only() {
+	}
+
+	public void ignoredOnJdksOnly() {
+	}
+
+}

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <ul MadCap:conditions="Primary..NET">
+            <li>ActivatableList&lt;T&gt;: An activatable version of the List&lt;T&gt;-class</li>
+            <li>ActivatableDictionary&lt;T&gt;: An activatable version of the Dictionary&lt;T&gt;</li>
+        </ul>
+        <ul MadCap:conditions="Primary.Java">
+            <li>ActivatableArrayList&lt;T&gt;: An activatable version of the ArrayList&lt;T&gt;</li>
+            <li>ActivatableHashMap&lt;T&gt;: An activatable version of the HashMap&lt;T&gt;</li>
+            <li>ActivatableHashSet&lt;T&gt;: An activatable version of the HashSet&lt;T&gt;</li>
+            <li>ActivatableHashtable&lt;T&gt;: An activatable version of the HashHashtable&lt;T&gt;</li>
+            <li>ActivatableLinkedList&lt;T&gt;: An activatable version of the LinkedList&lt;T&gt;</li>
+            <li>ActivatableStack&lt;T&gt;: An activatable version of the Stack&lt;T&gt;</li>
+            <li>ActivatableTreeSet&lt;T&gt;: An activatable version of the TreeSet&lt;T&gt;</li>
+        </ul>
+    </body>
+</html>

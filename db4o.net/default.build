@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<project name="Db4objects.Db4o" default="test">
+
+	<property name="build.dir" value="bin" />
+	<property name="debug" value="true" />
+
+	<property
+		name="csc.define" value="NET;NET_1_1"
+		if="${'net-1.1' == framework::get-target-framework()}" />
+		
+	<property name="csc.define" value="NET_2_0"
+		if="${2 == version::get-major(framework::get-version(framework::get-target-framework()))}" />
+		
+	<property name="libs.dir" value="Libs/${framework::get-target-framework()}/" />
+	
+	<echo>
+	Target framework is: ${framework::get-target-framework()}
+	C# defines: ${csc.define}
+	</echo>
+
+	<target name="test" depends="Db4objects.Db4o.Tests">
+		<exec program="${build.dir}/Db4objects.Db4o.Tests.exe" managed="true">
+		</exec>
+	</target>
+	
+	<target name="Db4objects.Db4o.Tests" depends="Db4objects.Db4o, Db4oUnit.Extensions">
+		<csc
+			output="${build.dir}/Db4objects.Db4o.Tests.exe"
+			main="Db4objects.Db4o.Tests.AllTests"
+			target="exe"
+			debug="${debug}"
+			define="${csc.define}" >
+			
+			<sources basedir="Db4objects.Db4o.Tests">
+				<include name="**/*.cs" />
+			</sources>
+			
+			<references basedir="${build.dir}">
+				<include name="Db4objects.Db4o.dll" />
+				<include name="Db4oUnit.Extensions.dll" />
+				<include name="Db4oUnit.dll" />
+			</references>
+		</csc>
+	</target>
+	
+	<target name="Db4oUnit.Extensions" depends="Db4oUnit, Db4objects.Db4o">
+		<csc
+			output="${build.dir}/Db4oUnit.Extensions.dll"
+			target="library"
+			debug="${debug}"
+			define="${csc.define}" >
+			
+			<sources basedir="Db4oUnit.Extensions">
+				<include name="**/*.cs" />
+			</sources>
+			
+			<references basedir="${build.dir}">
+				<include name="Db4oUnit.dll" />
+				<include name="Db4objects.Db4o.dll" />
+			</references>
+		</csc>
+	</target>
+	
+	<target name="Db4objects.Db4o" depends="init">
+		<csc
+			output="${build.dir}/Db4objects.Db4o.dll"
+			target="library"
+			debug="${debug}"
+			define="${csc.define}" >
+			
+			<sources basedir="Db4objects.Db4o">
+				<include name="**/*.cs" />
+			</sources>
+		</csc>
+	</target>
+	
+	<target name="Db4oUnit" depends="init">
+		<csc
+			output="${build.dir}/Db4oUnit.dll"
+			target="library"
+			debug="${debug}"
+			define="${csc.define}" >
+			
+			<sources basedir="Db4oUnit">
+				<include name="**/*.cs" />
+			</sources>
+		</csc>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${build.dir}" />
+		<copy todir="${build.dir}">
+			<fileset basedir="${libs.dir}">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+	</target>
+	
+</project>

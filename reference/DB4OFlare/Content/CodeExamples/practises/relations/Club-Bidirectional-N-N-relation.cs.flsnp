@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> ICollection&lt;Person&gt; members = <span style="color:Blue;">new</span> HashSet&lt;Person&gt;();
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> AddMember(Person person)
+{
+    <span style="color:Blue;">if</span> (!members.Contains(person))
+    {
+        members.Add(person);
+        person.Join(<span style="color:Blue;">this</span>);
+    }
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">void</span> RemoveMember(Person person)
+{
+    <span style="color:Blue;">if</span> (members.Contains(person))
+    {
+        members.Remove(person);
+        person.Leave(<span style="color:Blue;">this</span>);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Club.cs: Bidirectional N-N relation
+			<div class="codedownload">
+				<a href="Example-practises-relations-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

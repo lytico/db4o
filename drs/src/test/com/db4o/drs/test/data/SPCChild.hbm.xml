@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<!-- Copyright (C) 2004 - 2005  db4objects Inc.  http://www.db4o.com -->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="property" default-lazy="false">
+	<class name="com.db4o.drs.test.data.SPCChild">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+	</class>
+</hibernate-mapping>

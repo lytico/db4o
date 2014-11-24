@@ -1,0 +1,21 @@
+package decaf.imports;
+
+import decaf.imports.deeper.*;
+import decaf.*;
+import java.lang.*;
+
+@decaf.Ignore
+class Foo {
+}
+
+class Bar {
+
+	@Public
+	private static class Nested {
+	
+		@Public(Platform.ALL)
+		private void toBeRemoved() {
+			FooBar fooBar = new FooBar();
+		}
+	}
+}

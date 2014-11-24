@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="test.lib/db4ounit.jar"/>
+	<classpathentry kind="lib" path="lib/db4o-java1.2.jar"/>
+	<classpathentry kind="lib" path="lib/db4o-taj.jar"/>
+	<classpathentry kind="lib" path="lib/db4o-instrumentation.jar"/>
+	<classpathentry kind="lib" path="lib/bloat-1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

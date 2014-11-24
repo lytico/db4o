@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">########################
+## Monitoring requires JMX, which is not available on Android
+-dontwarn com.db4o.monitoring.*
+-dontwarn com.db4o.cs.monitoring.*
+-dontwarn com.db4o.internal.monitoring.*
+
+## Ant is usually not used in a running app
+-dontwarn com.db4o.instrumentation.ant.*
+-dontwarn com.db4o.ta.instrumentation.ant.*
+
+## Keep internal classes.
+-keep class com.db4o.** { *; }</pre>
+		<div class="codesnippet-meta">
+			proguard.cfg: keep db4o intact
+			<div class="codedownload">
+				<a href="Example-javaAppExamples-Android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

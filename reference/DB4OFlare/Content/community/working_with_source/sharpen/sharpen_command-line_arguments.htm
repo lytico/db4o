@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1232" MadCap:lastWidth="586">
+    <head>
+    </head>
+    <body>
+        <h1>Sharpen Command-Line Arguments</h1>
+        <p>Sharpen command-line arguments can be defined in an options
+file</p>
+        <pre class="monospace" xml:space="preserve"><i>&lt;sharpen workspace="${target.dir}" resource="sharpened_examples/src"&gt;
+   &lt;args&gt;
+      &lt;!-- Sharpen options are defined in a separate file --&gt;
+      &lt;arg value="@sharpen-all-options" /&gt;
+    &lt;/args&gt;
+ &lt;/sharpen&gt;</i>      </pre>
+        <p>Here sharpen-all-options file contains all command-line
+options needed to convert current project. For an example of command-line
+options file see the <a href="example_conversion.htm">previous topic</a>.</p>
+        <p>Command-line arguments can also be specified directly in an
+ant script:</p>
+        <pre class="monospace" xml:space="preserve"><i>&lt;sharpen workspace="${dir.sharpen}" resource="db4oj/core/src"&gt;
+    &lt;args&gt;
+        &lt;arg value="-xmldoc"/&gt;
+        &lt;arg file="config/sharpen/ApiOverlay.xml" /&gt;       
+        &lt;arg value="@sharpen-all-options" /&gt;
+     &lt;/args&gt;
+ &lt;/sharpen&gt;</i>
+        </pre>
+        <p>The following table shows available command-line options, their
+meaning and example usage:</p>
+        <table border="1" cellpadding="0" cellspacing="0">
+            <tr>
+                <td valign="top">
+                    <p><b>Argument</b>
+                    </p>
+                </td>
+                <td valign="top">
+                    <p><b>Usage</b>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-pascalCase</p>
+                </td>
+                <td valign="top">
+                    <p>Convert Java identifiers to Pascal case</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-pascalCase+</p>
+                </td>
+                <td valign="top">
+                    <p>Convert Java indentifiers and package names (namespaces)
+  to Pascal case </p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-cp</p>
+                </td>
+                <td valign="top">
+                    <p>Adds a new entry to classpath:</p>
+                    <p>&lt;arg
+  value="-cp" /&gt;</p>
+                    <p>&lt;arg path="lib/db4o-7.2.37.10417-java5.jar"
+  /&gt;</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-srcFolder</p>
+                </td>
+                <td valign="top">
+                    <p>Adds a new source folder for sharpening</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-nativeTypeSystem</p>
+                </td>
+                <td valign="top">
+                    <p>Map java classes to .NET classes with a similar
+  functionality. For example: java.lang.Class - System.Type</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-nativeInterfaces</p>
+                </td>
+                <td valign="top">
+                    <p>Adds an "I" in front of the interface name</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-organizeUsings</p>
+                </td>
+                <td valign="top">
+                    <p>Adds "using" for the types used </p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-fullyQualify</p>
+                </td>
+                <td valign="top">
+                    <p>Converts to a fully-qualified name:</p>
+                    <p>-fullyQualify File</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-namespaceMapping</p>
+                </td>
+                <td valign="top">
+                    <p>Maps a java package name to a .NET namespace. For example:</p>
+                    <p>-namespaceMapping com.db4o Db4objects.Db4o</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-methodMapping</p>
+                </td>
+                <td valign="top">
+                    <p>Maps a java method name to a .NET method (can be method in
+  another class). For example:</p>
+                    <p>-methodMapping java.util.Date.getTime
+  Sharpen.Runtime.ToJavaMilliseconds</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-typeMapping</p>
+                </td>
+                <td valign="top">
+                    <p>Maps a java class to .NET type:</p>
+                    <p>-typeMapping com.db4o.Db4o Db4objects.Db4o.Db4oFactory</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-propertyMapping</p>
+                </td>
+                <td valign="top">
+                    <p>Maps a java method to .NET property:</p>
+                    <p>-propertyMapping com.db4odoc.structured.Car.getPilot Pilot</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-runtimeTypeName</p>
+                </td>
+                <td valign="top">
+                    <p> Name of the runtime class. The runtime class provides implementation for methods that don't have a direct mapping or that are simpler to map at the language level than at the sharpen level. For instance: String.substring, String.valueOf, Exception.printStackTrace, etc. </p>
+                    <p>For a complete list of all the method that can be mapped to the runtime class see Configuration#runtimeMethod call hierarchy.  </p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-header</p>
+                </td>
+                <td valign="top">
+                    <p>Header comment to be added to all converted files.</p>
+                    <p>-header config/copyright_comment.txt</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <p>-xmldoc</p>
+                </td>
+                <td valign="top">
+                    <p>Specifies an xml-overlay file, which overrides javadoc
+  documentation for specific classes:</p>
+                    <p>-xmldoc config/sharpen/ApiOverlay.xml</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">-eventMapping</td>
+                <td valign="top">Converts the methods to an event.</td>
+            </tr>
+            <tr>
+                <td valign="top">-eventAddMapping</td>
+                <td valign="top">Marks the method as an event subscription method. Invocations to the method in the form &lt;target&gt;.method(&lt;argument&gt;) will be replaced by the c# event subscription idiom: &lt;target&gt; += &lt;argument&gt; </td>
+            </tr>
+            <tr>
+                <td valign="top">-conditionalCompilation</td>
+                <td valign="top">
+                    <p valign="top">Add a condition when to translate the Java code</p>
+                    <p valign="top">- -conditionalCompilation com.db4o.db4ounit.common.cs !SILVERLIGHT</p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">-configurationClass</td>
+                <td valign="top">Change the configuration class. The default is 'sharpen.core.DefaultConfiguration'</td>
+            </tr>
+        </table>
+    </body>
+</html>

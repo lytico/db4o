@@ -1,0 +1,47 @@
+<project name="db4otool.tests.integration" basedir="." default="run">
+
+	<import file="common-dotnet.xml" />
+	
+	<property name="dir.bin.orig" value="${dir.dist}/InstrumentedTest" />
+	<property name="dir.ta.integration.src" value="${dir.n.v6}/Db4oTool/Db4oTool.Tests.Integration" />
+	<property name="integration.project.name" value="Db4oTool.Tests.Integration" />
+	
+	<property name="file.test-app-executable" value="${dir.bin.orig}/Db4oTool.Tests.Integration.exe" />
+	
+	<path id="project.classpath">
+	    <fileset dir="lib">
+		    <include name="**/*.jar"/>
+	    </fileset>
+	</path>
+	
+	<target name="compile" depends="configure-net40">
+		
+		<msb solution="${dir.ta.integration.src}/${integration.project.name}" outputpath="${dir.bin.orig}" />
+		<copy file="${dir.ta.integration.src}/App.config" tofile="${dir.bin.orig}/${integration.project.name}.exe.config"  overwrite="true" taskname="fixing version information">
+			<filterset>
+				<filter token="db4o.version.iteration.revision" value="${db4o.version.iteration.revision}"/>
+			</filterset>
+		</copy>
+		
+		<copy file="${dir.dist.dll}/Db4objects.Db4o.dll" todir="${dir.bin.orig}" />
+		<copy file="${dir.dist.dll}/Db4oUnit.dll" todir="${dir.bin.orig}" />
+	
+	</target>
+	
+	<target name="enhance" depends="properties,compile">	
+		<exec executable="${dir.dist.dll}\Db4oTool.exe" dir="${dir.dist.dll}" failonerror="true">
+			<arg value="-debug" />
+			<arg value="-ta"/>
+			<arg value="-collections"/>
+			<arg value="${file.test-app-executable}"/>
+			
+			<env key="TEMP" value="${Tests.Temp.Path}"/>
+		</exec>
+		
+	</target>
+
+	<target name="run" depends="enhance" unless="skip.tests">
+		<exec executable="${file.test-app-executable}" failonerror="true"/>		
+	</target>
+
+</project>

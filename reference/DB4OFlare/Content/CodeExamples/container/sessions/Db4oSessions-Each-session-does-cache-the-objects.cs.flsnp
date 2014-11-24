@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Person personOnSession1 = session1.Query&lt;Person&gt;()[0];
+Person personOnSession2 = session2.Query&lt;Person&gt;()[0];
+
+personOnSession1.Name = <span style="color:#A31515;">&quot;NewName&quot;</span>;
+session1.Store(personOnSession1);
+session1.Commit();
+
+
+<span style="color:Green;">// the second session still sees the old value, because it was cached</span>
+Console.WriteLine(personOnSession2.Name);
+<span style="color:Green;">// you can explicitly refresh it</span>
+session2.Ext().Refresh(personOnSession2,<span style="color:Blue;">int</span>.MaxValue);
+Console.WriteLine(personOnSession2.Name);</pre>
+		<div class="codesnippet-meta">
+			Db4oSessions.cs: Each session does cache the objects
+			<div class="codedownload">
+				<a href="Example-container-sessions-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

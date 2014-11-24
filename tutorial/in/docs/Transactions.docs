@@ -1,0 +1,64 @@
+.n
+.a Transactions ..
+.0 Transactions ..
+
+Probably you have already wondered how db4o handles concurrent access ._
+to a single database. Just as any other DBMS, db4o provides a transaction ._
+mechanism. Before we take a look at multiple, perhaps even remote, clients ._
+accessing a db4o instance in parallel, we will introduce db4o transaction ._
+concepts in isolation.
+
+.1 Commit and rollback ..
+
+You may not have noticed it, but we have already been working with ._
+transactions from the first chapter on. By definition, you are always ._
+working inside a transaction when interacting with db4o. A transaction ._
+is implicitly started when you open a container, and the current transaction ._
+is implicitly committed when you close it again. So the following code snippet ._
+to store a car is semantically identical to the ones we have seen before; ._
+it just makes the commit explicit.
+
+.s com.db4odoc.f1.chapter6.TransactionExample#storeCarCommit -out ..
+
+.s com.db4odoc.f1.chapter6.TransactionExample#listAllCars ..
+
+However, we can also rollback the current transaction, resetting the ._
+state of our database to the last commit point.
+
+.s com.db4odoc.f1.chapter6.TransactionExample#storeCarRollback -out ..
+
+.s com.db4odoc.f1.chapter6.TransactionExample#listAllCars ..
+
+.1 Refresh live objects ..
+
+There's one problem, though: We can roll back our database, but this ._
+cannot automagically trigger a rollback for our live objects.
+
+.s com.db4odoc.f1.chapter6.TransactionExample#carSnapshotRollback ..
+
+We will have to explicitly refresh our live objects when we suspect they ._
+may have participated in a rollback transaction.
+
+.s com.db4odoc.f1.chapter6.TransactionExample#carSnapshotRollbackRefresh ..
+
+What is this .x #ext() .. construct good for? Well, it provides some functionality ._
+that is in itself stable, but the API may still be subject to change. As soon ._
+as we are confident that no more changes will occur,  .x #ext() ..  functionality ._
+will be transferred to the common .x ObjectContainer .. API. 
+
+Finally, we clean up again.
+
+.s com.db4odoc.f1.Util#deleteAll -out ..
+
+.1 Conclusion ..
+
+We have seen how transactions work for a single client. In the ._
+.l ClientServer Client/Server chapter ..l  we will see how the transaction concept extends to multiple ._
+clients, whether they are located within the same  .? java VM ..? .? net runtime ..? or on a remote machine.
+
+Let't first revisit Activation again in the  .l TransparentActivation next chapter ..l and ._
+take a look at how db4o can take care of our Object lifecycle automatically. 
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter6.TransactionExample ..

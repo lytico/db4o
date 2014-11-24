@@ -1,0 +1,7 @@
+package decaf.annotations;
+
+import java.util.*;
+
+@decaf.Ignore
+public class IgnoreMainType {
+}

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> LoggingStorage : StorageDecorator, IStorage
+{
+    <span style="color:Blue;">public</span> LoggingStorage(IStorage storage) : <span style="color:Blue;">base</span>(storage)
+    {
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">bool</span> Exists(<span style="color:Blue;">string</span> uri)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called: LoggingStorage.Exists(&quot;</span> + uri + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">base</span>.Exists(uri);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> IBin Open(BinConfiguration config)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called: LoggingStorage.Open(&quot;</span> + config + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">base</span>.Open(config);
+    }
+
+    <span style="color:Blue;">protected</span> <span style="color:Blue;">override</span> IBin Decorate(BinConfiguration config, IBin bin)
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> LoggingBin(<span style="color:Blue;">base</span>.Decorate(config, bin));
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Delete(<span style="color:Blue;">string</span> uri)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called: LoggingStorage.Delete(&quot;</span> + uri + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">base</span>.Delete(uri);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Rename(<span style="color:Blue;">string</span> oldUri, <span style="color:Blue;">string</span> newUri)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called: LoggingStorage.Rename(&quot;</span> + oldUri + <span style="color:#A31515;">&quot;,&quot;</span> + newUri + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">base</span>.Rename(oldUri, newUri);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			LoggingStorage.cs: A logging storage decorator
+			<div class="codedownload">
+				<a href="Example-configuration-io-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

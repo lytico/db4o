@@ -1,0 +1,7 @@
+<OutOfBrowserSettings ShortName="Db4oTutorial.ExampleRunner Application" EnableGPUAcceleration="False" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>Db4oTutorial.ExampleRunner Application on your desktop; at home, at work or on the go.</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="Db4oTutorial.ExampleRunner Application" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.Icons />
+</OutOfBrowserSettings>

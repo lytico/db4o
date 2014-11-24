@@ -1,0 +1,19 @@
+package decaf.annotations;
+
+class Base {
+}
+
+class IgnoreJdk11 extends Base {
+}
+
+class IgnoreJdk12 extends Base {
+}
+
+class IgnoreJdk15 {
+}
+
+class IgnoreAndroid extends Base {
+}
+
+class IgnoreAll {
+}

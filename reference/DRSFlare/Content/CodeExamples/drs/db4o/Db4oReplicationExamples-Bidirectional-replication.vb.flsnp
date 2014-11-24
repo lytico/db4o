@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">' First get the changes of the two replication-partners</span>
+<span style="color:Blue;">Dim</span> changesOnDesktop <span style="color:Blue;">As</span> IObjectSet _
+    = replicationSession.ProviderA().ObjectsChangedSinceLastReplication()
+<span style="color:Blue;">Dim</span> changesOnMobile <span style="color:Blue;">As</span> IObjectSet _
+    = replicationSession.ProviderB().ObjectsChangedSinceLastReplication()
+
+<span style="color:Green;">' then iterate over both change-sets and replicate it</span>
+<span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> changedObjectOnDesktop <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> <span style="color:Blue;">In</span> changesOnDesktop
+    replicationSession.Replicate(changedObjectOnDesktop)
+<span style="color:Blue;">Next</span>
+
+<span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> changedObjectOnMobile <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> <span style="color:Blue;">In</span> changesOnMobile
+    replicationSession.Replicate(changedObjectOnMobile)
+<span style="color:Blue;">Next</span>
+
+replicationSession.Commit()</pre>
+		<div class="codesnippet-meta">
+			Db4oReplicationExamples.vb: Bidirectional replication
+			<div class="codedownload">
+				<a href="Example-drs-db4o-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="269" MadCap:lastWidth="638">
+    <head>
+    </head>
+    <body>
+        <h1>Prefetching IDs For New Objects</h1>
+        <p>Sets the number of IDs to be pre-allocated new objects created on the client. This avoids requests to allocate new ids when new objects are stored on a client.</p>
+        <p>&#160;</p>
+        <p>When a new object is
+created on a client, the client should contact the server to get the next
+available object ID. PrefetchIDCount allows to specify how many IDs
+should be pre-allocated on the server and prefetched by the client. This method
+helps to reduce client-server communication.</p>
+        <p>PrefetchIDCount can
+be tuned to approximately match the usual amount of objects created in one
+operation to improve the performance.</p>
+        <p>When the PrefetchIDCount is one, the client will have to connect to the server for each new objects created. On the other hand,, when the PrefetchIDCount is
+bigger than the amount of new objects  the database will keep
+unnecessary preallocated ids. </p>
+        <p>The default
+PrefetchIDCount is 10.</p>
+    </body>
+</html>

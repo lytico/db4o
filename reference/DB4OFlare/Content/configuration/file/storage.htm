@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="358" MadCap:lastWidth="450">
+    <head />
+    <body>
+        <h1>
+            <MadCap:keyword term="Storage" />Storage</h1>
+        <p>db4o allows a user to configure the IO storage mechanism. Currently db4o provides the following mechanisms: </p>
+        <ul>
+            <li><a href="storage/filestorage.htm">FileStorage: Raw file access.</a>
+            </li>
+            <li><a href="storage/cachingstorage.htm">CachingStorage: A caching layer, used on top of other storages.</a>
+            </li>
+            <li><a href="storage/memory_storage.htm">MemoryStorage and PagingMemoryStorage: For in memory databases.</a>
+            </li>
+            <li><a href="storage/nonflushingstorage.htm">NonFlushingStorage:&#160;A storage which disables the costly flush operation</a>
+            </li>
+            <li MadCap:conditions="Primary..NET"><a href="storage/isolated_storage.htm">The IsolatedStorageStorage for Silverlight</a>
+            </li>
+        </ul>
+        <p>It is also possible to create your own custom mechanism by <a href="storage/pluggable_storage.htm">implementing the Storage interface</a>. Possible use cases for a custom IO mechanism: </p>
+        <ul>
+            <li>Improved performance with a native library.</li>
+            <li>Mirrored write to two files.</li>
+            <li>Encryption of the database file.</li>
+        </ul>
+    </body>
+</html>

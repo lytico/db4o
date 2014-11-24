@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1">
+  <TocEntry
+    Title="Introduction"
+    Link="/Content/welcome.htm" />
+  <TocEntry
+    Title="Basics"
+    Link="/Content/basics.htm">
+    <TocEntry
+      Title="Open a Database"
+      Link="/Content/basics.htm#OpenDB" />
+    <TocEntry
+      Title="Store an Object"
+      Link="/Content/basics.htm#StoreObject"></TocEntry>
+    <TocEntry
+      Title="Query the Database"
+      Link="/Content/basics.htm#QueryDB" />
+    <TocEntry
+      Title="Update an Object"
+      Link="/Content/basics.htm#UpdateObject" />
+    <TocEntry
+      Title="Delete an Object"
+      Link="/Content/basics.htm#DeleteObject" />
+  </TocEntry>
+  <TocEntry
+    Title="Queries"
+    Link="/Content/queries.htm">
+    <TocEntry
+      Title="Native Queries"
+      Link="/Content/queries.htm#NativeQueries"
+      StartSection="false"
+      StartChapter="false"
+      VolumeNumberReset="same"
+      SectionNumberReset="continue"
+      ChapterNumberReset="continue"
+      ComputeToc="false"
+      conditions="Primary.Java" />
+    <TocEntry
+      Title="LINQ"
+      Link="/Content/queries.htm#LINQ"
+      conditions="Primary..NET" />
+    <TocEntry
+      Title="SODA"
+      Link="/Content/queries.htm#SODA" />
+  </TocEntry>
+  <TocEntry
+    Title="Activation"
+    Link="/Content/activation.htm">
+    <TocEntry
+      Title="Activation in Action"
+      Link="/Content/activation.htm#ActivationInAction" />
+    <TocEntry
+      Title="Deal With Activation"
+      Link="/Content/activation.htm#DealWithActivation" />
+  </TocEntry>
+  <TocEntry
+    Title="Update Concept"
+    Link="/Content/update-concept.htm">
+    <TocEntry
+      Title="Updating in Action"
+      Link="/Content/update-concept.htm#UpdateDepthInAction" />
+    <TocEntry
+      Title="Deal with Updates"
+      Link="/Content/update-concept.htm#DealWithIt" />
+  </TocEntry>
+  <TocEntry
+    Title="Transparent Persistence"
+    Link="/Content/transparentpersistence.htm">
+    <TocEntry
+      Title="Enhance Persistent Classes"
+      Link="/Content/transparentpersistence.htm#Enhance" />
+    <TocEntry
+      Title="Using Transparent Persistence"
+      Link="/Content/transparentpersistence.htm#UsingIt" />
+  </TocEntry>
+  <TocEntry
+    Title="Transactions"
+    Link="/Content/transactions.htm">
+    <TocEntry
+      Title="Commit and Rollback"
+      Link="/Content/transactions.htm#CommitRollback" />
+    <TocEntry
+      Title="Object State After Rollback"
+      Link="/Content/transactions.htm#ObjectState" />
+    <TocEntry
+      Title="Multiple Transactions"
+      Link="/Content/transactions.htm#MultipleTx" />
+  </TocEntry>
+  <TocEntry
+    Title="Indexes"
+    Link="/Content/indexes.htm" />
+  <TocEntry
+    Title="Configuration"
+    Link="/Content/configuration.htm" />
+  <TocEntry
+    Title="Client Server Mode"
+    Link="/Content/client-server.htm">
+    <TocEntry
+      Title="Embedded Clients aka Session Containers"
+      Link="/Content/client-server.htm#SessionContainers"></TocEntry>
+    <TocEntry
+      Title="Network Client Server Mode"
+      Link="/Content/client-server.htm#NetworkCS" />
+    <TocEntry
+      Title="Shared Classes"
+      Link="/Content/client-server.htm#SharedClasses" />
+  </TocEntry>
+  <TocEntry
+    Title="Object Manager"
+    Link="/Content/object-manager.htm" />
+  <TocEntry
+    Title="Community"
+    Link="/Content/db4ocommunity.htm">
+    <TocEntry
+      Title="Forums"
+      Link="/Content/db4ocommunity.htm#forums" />
+    <TocEntry
+      Title="Additional Resources"
+      Link="/Content/db4ocommunity.htm#resources" />
+    <TocEntry
+      Title="Report Bugs"
+      Link="/Content/db4ocommunity.htm#bugRepors" />
+  </TocEntry>
+  <TocEntry
+    Title="Contact"
+    Link="/Content/contact.htm" />
+</CatapultToc>

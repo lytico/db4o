@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+
+
+  <type name="Db4objects.Db4o.Config.IFileConfiguration">
+	<member name = "LockDatabaseFile">
+	    <doc>
+		<summary>can be used to turn the database file locking thread off.</summary>
+		<remarks>
+		can be used to turn the database file locking thread off.
+		<br /><br /><b>Caution!</b><br />If database file
+		locking is turned off, concurrent write access to the same
+		database file from different sessions will <b>corrupt</b> the
+		database file immediately.<br /><br /> This method
+		has no effect on open ObjectContainers. It will only affect how
+		ObjectContainers are opened.<br /><br />
+		The default setting is true.<br /><br />
+		
+		</remarks>
+	    </doc>
+	</member>
+
+    
+
+  </type>
+

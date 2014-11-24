@@ -1,0 +1,166 @@
+<!-- Copyright (C) 2007 db4objects Inc.  http://www.db4o.com -->
+
+<project name="dRS" default="dist" basedir=".">
+	<description>dRS build file</description>
+	<!--
+		To execute the "dist" target, which is to build the dRS release, 
+		you need to create a "machine.properties" with this line:
+		
+	    font.pdf.base=C:/WINDOWS/Fonts/VERDANA.TTF
+	    
+	    OR wherever the location of the font is if you are on Linux
+	-->	
+	
+	<import file="drs.common.xml" />
+	
+	<property name="drs.dir.dist.api" value="${drs.dir.dist}/api" />
+	<property name="drs.dir.dist.temp" value="${drs.dir.dist}/tmp" />
+	<property name="drs.dir.dist.src" value="${drs.dir.dist}/src" />
+	
+	<target name="init" depends="properties">
+		<mkdir dir="${drs.dir.dist.lib}" />
+		<mkdir dir="${drs.dir.dist.api}" />
+
+		<path id="class.path" description="universal classpath for all targets">
+			<!--
+			<fileset dir="${drs.dir.lib}">
+				<include name="**/*.jar" />
+			</fileset>
+			-->			
+			<fileset dir="${drs.dir.dist.lib}">
+				<include name="**/*.jar" />
+			</fileset>
+
+			<pathelement location="${file.jdk1.5.jar}" />
+			<pathelement location="${file.jdk1.5.db4ounit.jar}" />
+			<pathelement location="${file.jdk1.5.cs.jar}" />
+			<pathelement location="${file.jdk1.5.optional.jar}" />
+		</path>
+		<property name="drs.file" value="dRS-${db4o.version.iteration.revision}-" />
+		<property name="filename.drs.core.jar" value="${drs.file}core.jar" />
+		<property name="filename.drs.test.jar" value="${drs.file}test.jar" />
+		<property name="filename.drs.tutorial.jar" value="${drs.file}tutorial.jar" />
+		<property name="filename.drs.zip" value="${drs.file}java.zip" />
+		
+		<property name="file.drs.core.jar" value="${drs.dir.dist.lib}/${filename.drs.core.jar}" />
+		<property name="file.drs.test.jar" value="${drs.dir.dist.lib}/${filename.drs.test.jar}" />
+		<property name="file.drs.tutorial.jar" value="${drs.dir.dist.lib}/${filename.drs.tutorial.jar}" />
+		<property name="file.drs.zip" value="${dir.dist}/${filename.drs.zip}" />
+		
+	</target>
+    
+	<target name="build-all" depends="init">
+		<ant antfile="build-drs-core.xml" target="build-all" />
+		<ant antfile="build-drsvod.xml" target="build-all" />
+	</target>
+
+	<target name="javadoc" depends="init">
+		<javadoc destdir="${drs.dir.dist.api}" author="true" version="true" use="true" windowtitle="dRS"
+			classpathref="class.path">
+            <header><![CDATA[<b>db4o Replication System (dRS)</b>]]></header>
+            <doctitle><![CDATA[<h1>db4o Replication System (dRS)</h1><p align="left">This document is the API specification for db4o Replication System (dRS)]]></doctitle>
+			<fileset dir="${drs.dir.src.core}" defaultexcludes="yes">
+				<include name="com/db4o/drs/*.java" />
+			</fileset>
+			<fileset dir="${drs.vod.dir.src.core}" defaultexcludes="yes">
+				<include name="com/db4o/drs/*.java" />
+			</fileset>
+		</javadoc>
+		<copy file="${javadoc.stylesheet}" todir="${drs.dir.dist.api}" overwrite="true" />
+	</target>
+	
+	
+	<target name="flare-drs-java" if="flare.executable">
+
+		<flare output="${dir.dist.flare.temp}" target="JavaPdf" projectDirectory="${flare.project.drs.folder}" />
+		<copy file="${dir.dist.flare.temp}/Output/JavaPdf/drs-reference-java.pdf" todir="${drs.dir.dist.temp}/doc/reference" />
+		
+		<flare output="${dir.dist.flare.temp}" target="JavaWeb" projectDirectory="${flare.project.drs.folder}"  />
+		<copy todir="${drs.dir.dist.temp}/doc/reference">
+			<fileset dir="${dir.dist.flare.temp}/Output/JavaWeb">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="dist" depends="build-all, javadoc, flare-drs-java">
+		<property name="zipbasedir" value="drs-${db4o.version.dotted}" />
+		
+		<copy file="${drs.dir.base}/compatibility.java.html" tofile="${drs.dir.dist.temp}/compatibility.html" overwrite="true">
+					        <filterchain>
+					           <striplinecomments>
+					              <comment value="!"/>
+					           </striplinecomments>
+					           <replacetokens>
+					                <token key="db4o.version.dotted" value="${db4o.version.dotted}"/>
+					            </replacetokens>
+					        </filterchain>
+					    </copy>
+		
+        <antcall target="add-gplheader" />
+		
+		<mkdir dir="${drs.dir.dist.temp}/doc/reference"/>
+        
+		<zip destfile="${file.drs.zip}" >
+			<zipfileset dir="${drs.dir.base}" prefix="${zipbasedir}" includes="readme.html, drs.license.html" />
+			<zipfileset dir="${drs.dir.dist.temp}" prefix="${zipbasedir}" includes="compatibility.html" />
+			<zipfileset dir="${drs.dir.lib}" prefix="${zipbasedir}/lib" >
+				<include name="**/*.jar"/>
+				<include name="**/*.html"/>
+				<exclude name="derby/" />
+				<exclude name="doctor/" />
+				<exclude name="mysql/" />
+				<exclude name="postgresql/" />
+			</zipfileset>
+			<zipfileset file="${file.jdk1.5.jar}" prefix="${zipbasedir}/lib" />
+			<zipfileset file="${file.jdk1.5.db4ounit.jar}" prefix="${zipbasedir}/lib" />
+			<zipfileset dir="${drs.dir.dist.src}" prefix="${zipbasedir}/src" excludes="misc/, jira/" />
+
+			<zipfileset dir="${drs.dir.dist.api}" prefix="${zipbasedir}/doc/api" />
+			<zipfileset dir="${drs.dir.dist.temp}/doc/reference" prefix="${zipbasedir}/doc/reference" />
+
+			<zipfileset dir="${drs.dir.dist.lib}" prefix="${zipbasedir}/lib" includes="*.jar" />
+		</zip>
+	</target>
+    
+    <target name="add-gplheader">
+        <loadfile property="content.gplheader" srcfile="${dir.build}/config/gpl_comment.txt" encoding="iso-8859-1" />
+    	<delete dir="${drs.dir.dist.src}" />
+    	<mkdir dir="${drs.dir.dist.src}" />
+    	<copy todir="${drs.dir.dist.src}">
+    		<fileset dir="${drs.dir.src.core}">
+    			<include name="**/*.java" />
+    			<include name="**/*.jdo" />
+				<include name="**/*.xml" />
+    		</fileset>
+    	</copy>
+    	<copy todir="${drs.dir.dist.src}">
+    		<fileset dir="${drs.vod.dir.src.core}">
+    			<include name="**/*.java" />
+    			<include name="**/*.jdo" />
+				<include name="**/*.xml" />
+    		</fileset>
+    	</copy>
+        <filehead beforePattern="package" header="${content.gplheader}" >
+			<sources dir="${drs.dir.dist.src}">
+				<include name="**/*.java" />
+			</sources>
+		</filehead>
+    </target>
+
+	<target name="run-example" depends="init">
+		<ant antfile="build-drs-core.xml" target="run-example" />
+	</target>
+	
+	<target name="run-regression" depends="init">
+		<ant antfile="build-drs-core.xml" target="run-regression" />
+		<ant antfile="build-drsvod.xml" target="run-regression" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${drs.dir.dist}" />
+		<delete file="${file.drs.zip}" />
+	</target>
+	
+</project>

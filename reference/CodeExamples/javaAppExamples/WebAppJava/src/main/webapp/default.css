@@ -1,0 +1,50 @@
+#page { 
+width: 50%;
+margin-top: 0px;
+margin-right: auto;
+margin-bottom: 0px;
+margin-left: auto;
+}
+
+body{
+font-family:Verdana,Arial,Helvetica,sans-serif;
+color:#666666;
+}
+
+p{
+text-align:left;
+
+}
+
+table{
+border: solid 1px #EEEEEE;
+margin: 0.1em 0.1em 0.5em 0.1em;
+padding: 0.1em;
+border-collapse:collapse;
+width:45%;
+}
+td{
+text-align:left;
+padding-top:5px;
+padding-bottom:4px;
+background-color:#EEEEEE;
+color:#666666;
+padding:0.4em;
+}
+
+input.button {
+margin: 0;
+padding: 1px 3px;
+background-color: #ddd;
+border: 1px outset;
+margin:5px 0px;
+}
+
+h1{
+font-family:Verdana,Arial,Helvetica,sans-serif;
+font-size:14pt;
+}
+h2{
+font-family:Verdana,Arial,Helvetica,sans-serif;
+font-size:12pt;    
+}

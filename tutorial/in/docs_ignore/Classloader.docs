@@ -1,0 +1,98 @@
+.n
+.a Classloader ..
+.0 Classloader issues ..
+
+Db4o needs to know its own classes, of course, and it needs to know ._
+the class definitions of the objects it stores. (In Client/Server mode, ._
+both the server and the clients need access to the class definitions.) ._
+While this usually is a non-issue with self-contained standalone ._
+applications, it can become tricky to ensure this condition when ._
+working with plugin frameworks, where one might want to deploy db4o ._
+as a shared library for multiple plugins, for example.
+
+.1 Classloader basics ..
+
+Classloaders are organized in a tree structure, where classloaders deeper ._
+down the tree (usually) delegate requests to their parent classloaders ._
+and thereby 'share' their parent's knowledge.
+
+A typical situation might look like this:
+
+.g classloader.jpg ..
+
+An in-depth explanation of the workings of classloaders is beyond the ._
+scope of this tutorial, of course. Starting points might be found ._
+here:
+
+.l http://www.javaworld.com/javaworld/javaqa/2003-06/01-qa-0606-load.html ..l
+
+.l http://java.sun.com/developer/technicalArticles/Networking/classloaders/ ..l
+
+.l http://java.sun.com/products/jndi/tutorial/beyond/misc/classloader.html ..l
+
+.1 Configuration ..
+
+Db4o can be configured to use a user-defined classloader.
+
+.c
+Db4o.configure().reflectWith(new JdkReflector(classloader));
+..c
+
+This line will configure db4o to use the provided classloader. Note that, ._
+as with most db4o configuration options, this configuration will have to ._
+occur before the respective database has been opened.
+
+The usual ways of getting a classloader reference are:
+
+- Using the classloader the class containing the currently executed ._
+code was loaded from. ( .i this.getClass().getClassLoader() ..i)
+- Using the classloader db4o was loaded from. ( .i Db4o.class.getClassLoader() ..i)
+- Using the classloader your domain classes were loaded from. ( .i SomeDomainClass.class.getClassLoader() ..i)
+- Using the context classloader that may have been arbitrarily ._
+set by the execution environment. ( .i Thread.currentThread().getContextClassLoader() ..i).
+
+To choose the right classloader to use, you have to be aware of the ._
+classloader hierarchy of your specific execution environment. As a rule ._
+of thumb, one should configure db4o to use a classloader as ._
+deep/specialized in the tree as possible. In the above example this ._
+would be the classloader of the plugin db4o is supposed to work with.
+
+.1 Typical Environments ..
+
+In your average standalone program you'll probably never have to face these ._
+problems, but there are standard framework classics that'll force you to think about ._
+these issues.
+
+.2 Servlet container ..
+
+In a typical servlet container, there will be one or more classloader responsible ._
+for internal container classes and shared libraries, and one dedicated classloader ._
+per deployed web application. If you deploy db4o within your web application, there ._
+should be no problem at all. When used as a shared library db4o has to be configured ._
+to use the dedicated web application classloader. This can be done by assigning the ._
+classloader of a class that's present in the web application only, or by using the ._
+context classloader, since all servlet container implementations we are aware of ._
+will set it accordingly.
+
+You will find more detailed information on classloader handling in Tomcat, the ._
+reference servlet container implementation, here:
+
+.l http://jakarta.apache.org/tomcat/tomcat-4.1-doc/class-loader-howto.html ..l
+
+.2 Eclipse ..
+
+Eclipse uses the system classloader to retrieve its core classes. There is one ._
+dedicated classloader per plugin, and the classloader delegation tree will ._
+resemble the plugin dependency tree. The context classloader will ._
+usually be the system classloader that knows nothing about db4o and your ._
+business classes. So the best candidate is the classloader for one of your ._
+domain classes within the plugin.
+
+.1 Running without classes ..
+
+Recently db4o has started to learn to cope with missing class definitions. ._
+This is a by-product of the work on our  .l ObjectManager object manager application .. . However, ._
+this feature is still quite restricted (read-only mode, etc.), incomplete and ._
+is under heavy development. If you like to play with this feature and help ._
+us with your feedback to enhance it, you are welcome, but we strongly recommend ._
+not to try to use this for production code of any kind.

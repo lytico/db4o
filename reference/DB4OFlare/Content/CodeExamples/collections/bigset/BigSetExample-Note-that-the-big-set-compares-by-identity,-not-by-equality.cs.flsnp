@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Person aCitizen;
+<span style="color:Blue;">using</span> (IEnumerator&lt;Person&gt; aCitizenEnumerator = city.Citizen.GetEnumerator())
+{
+    aCitizenEnumerator.MoveNext();
+    aCitizen = aCitizenEnumerator.Current;
+}
+Console.WriteLine(<span style="color:#A31515;">&quot;The big-set uses the identity, not equality of an object&quot;</span>);
+Console.WriteLine(<span style="color:#A31515;">&quot;Therefore it .contains() on the same person-object is &quot;</span>
+                  + city.Citizen.Contains(aCitizen));
+Person equalPerson = <span style="color:Blue;">new</span> Person(aCitizen.Name);
+Console.WriteLine(<span style="color:#A31515;">&quot;Therefore it .contains() on a equal person-object is &quot;</span>
+                  + city.Citizen.Contains(equalPerson));</pre>
+		<div class="codesnippet-meta">
+			BigSetExample.cs: Note that the big-set compares by identity, not by equality
+			<div class="codedownload">
+				<a href="Example-collections-bigset-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

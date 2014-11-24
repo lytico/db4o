@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<project name="db4o enhance by annotation" default="enhance" basedir=".">
+
+    <!-- NOTE: The enhance step has to take place after compiling the source -->
+    <!-- #example: Ant target for enhancing your classes after building them# -->
+    <target name="enhance">
+        <!-- Change these according to your project -->
+        <property name="target" value="./target/classes/"/>
+        <property name="libraries" value="./lib/"/>
+
+        <path id="project.classpath">
+            <pathelement path="${target}"/>
+            <fileset dir="${libraries}">
+                <include name="*.jar"/>
+            </fileset>
+        </path>
+
+        <!-- We enhance with an additional Ant-run step. You can put this also in an extra file -->
+        <typedef resource="instrumentation-def.properties"
+                 classpathref="project.classpath"
+                 loaderRef="instrumentation.loader"/>
+
+        <!-- We filter by our annotation -->
+        <typedef name="annotation-filter"
+                 classname="com.db4odoc.tp.enhancement.AnnotationFilter"
+                 classpathref="project.classpath"
+                 loaderRef="instrumentation.loader"/>
+
+        <db4o-instrument classTargetDir="${target}"
+                      verbose="true">
+            <classpath refid="project.classpath"/>
+            <sources dir="${target}">
+                <include name="**/*.class"/>
+            </sources>
+
+            <transparent-activation-step>
+                <annotation-filter/>
+            </transparent-activation-step>
+        </db4o-instrument>
+    </target>
+    <!-- #end example -->
+
+
+    <!-- #example: Simple enhancing step# -->
+    <target name="simpleEnhanceStep">
+        <db4o-enhance classtargetdir="${basedir}/bin"
+                      jartargetdir="../libs/java/"
+                      nq="false" ta="true"
+                      collections="true"
+                      verbose="true">
+            <classpath refid="project.classpath"/>
+            <sources dir="${basedir}/bin">
+                      <include name="com/db4odoc/tp/**/*.class"/>
+            </sources>
+        </db4o-enhance>
+    </target>
+    <!-- #end example -->
+
+</project>

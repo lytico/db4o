@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="5185" MadCap:lastWidth="936">
+    <head>
+    </head>
+    <body>
+        <h1>SODA Query Examples</h1>
+        <p>Here's a collection of SODA-query examples.
+		 These queries assume that there's a Pilot class with a name and age, 
+			a Car class with a pilot and name and
+			 a BlogPost class with list of tags, authors and a
+			 <MadCap:variable name="Primary.Map" /> of meta-data.</p>
+        <p>There are also a few examples for special <a href="soda_special_case_examples.htm">cases.</a> <![CDATA[ ]]></p>
+        <h2><a name="TypeConstraint"></a>Type Constraint</h2>
+        <p>This is the most basic and most used constraint for SODA-queries. SODA acts like a filter on all stored objects. But usually you're only interested for instances of a certain type. Therefore you need to constrain the type of the result.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Type-constrain-for-the-objects.all.flsnp" />
+        <h2><a name="FieldConstraint"></a>Field Constraint</h2>
+        <p>You can add constrains on fields. This is done by descending into a field and constrain the value of that field. By default the constrain is an equality comparison.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-A-simple-constrain-on-a-field.all.flsnp" />
+        <h2><a name="Comparisons"></a>Comparisons</h2>
+        <p>You can do comparison on the field-values. For example to check if something is greater or smaller than something else. </p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-A-greater-than-constrain.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-A-greater-than-or-equals-constrain.all.flsnp" />
+        <h2><a name="Combination"></a>Combination of Constraints (AND, OR)</h2>
+        <p>You can combine different constraints with an 'AND' or 'OR' condition. By default all constrains are combined with the 'AND' condition. </p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Logical-combination-of-constrains.all.flsnp" />
+        <h2><a name="NotConstrain"></a>Not-Constrain</h2>
+        <p>You can invert a constrain by calling the not-method.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Not-constrain.all.flsnp" />
+        <h2><a name="StringComparison"></a>String Comparison</h2>
+        <p>There are special compare operations for strings. By default strings are compared by equality and the comparison is case sensitive.</p>
+        <p>There's the contains-comparison which checks if a field contains a substring. The like-comparison is the case-insensitive version of the contains-comparison.</p>
+        <p>Also a start-with- and a ends-with-caparison is available for strings. For this you can specify if the comparison is case sensitive or not.</p>
+        <p>Note that string comparison do not utilize any index in db4o and therefore show bad performance.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-String-comparison.all.flsnp" />
+        <h2><a name="CheckForObject"></a>Compare Field With Existing Object</h2>
+        <p>When you have a reference type field, you can compare this field with a certain object. It will compare the field and the object by object identity.</p>
+        <p>Note that this comparison only works with stored objects. When you use a not yet stored object as constrain, it will use <a href="soda_special_case_examples.htm#MixQueryByExample">query by example</a>. To force a comparison by object identity, you can add a .Identiy() call.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Compare-with-existing-object.all.flsnp" />
+        <h2><a name="DescendIntoObjects"></a>Descend Deeper Into Objects</h2>
+        <p>You can descend deeper into the objects by following fields. This allows you to setup complex constraints on nested objects. Note that the deeper you descend into the objects, the more expensive the query is to execute.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-Descend-over-multiple-fields.all.flsnp" />
+        <p>&#160;</p>
+    </body>
+</html>

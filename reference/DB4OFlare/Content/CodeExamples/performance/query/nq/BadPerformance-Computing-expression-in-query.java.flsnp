@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">final</span> List&lt;Item&gt; result = container.query(<span style="color:Blue;">new</span> Predicate&lt;Item&gt;() {
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> match(Item o) {
+        <span style="color:Blue;">return</span> o.getIndexedString().equals(<span style="color:#A31515;">&quot;data for &quot;</span> + number);
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			BadPerformance.java: Computing expression in query
+			<div class="codedownload">
+				<a href="Example-query-nq-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

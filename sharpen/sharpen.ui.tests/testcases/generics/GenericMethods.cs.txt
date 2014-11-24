@@ -1,0 +1,20 @@
+namespace generics
+{
+	public class GenericMethods
+	{
+		public virtual T[] toArray<T>(T[] a)
+		{
+			return a;
+		}
+
+		public static System.Collections.Generic.IList<string> asList()
+		{
+			return generics.GenericMethods.newList<string>();
+		}
+
+		private static System.Collections.Generic.IList<T> newList<T>()
+		{
+			return null;
+		}
+	}
+}

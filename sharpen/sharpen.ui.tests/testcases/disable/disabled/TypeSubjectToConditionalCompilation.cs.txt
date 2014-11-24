@@ -1,0 +1,8 @@
+#if DisabledByConfig
+namespace disable.disabled
+{
+	internal class IWillBeSubjectToConditionalCompilation
+	{
+	}
+}
+#endif // DisabledByConfig

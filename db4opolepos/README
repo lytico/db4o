@@ -1,0 +1,21 @@
+
+
+---------------------------
+polepos
+---------------------------
+
+This project is dependant on the polepos project hosted at SourceFourge:
+
+http://sourceforge.net/projects/polepos
+http://www.polepos.org/
+
+The SVN connect string to download polepos is:
+https://svn.sourceforge.net/svnroot/polepos
+
+
+---------------------------
+Indianapolis
+---------------------------
+
+The Indiananpolis circuit was written to test and document the performance of
+the new BTree field index processor.

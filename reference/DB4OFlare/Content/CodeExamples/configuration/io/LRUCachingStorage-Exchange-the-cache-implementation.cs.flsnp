@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> LRUCachingStorage : CachingStorage {
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> <span style="color:Blue;">int</span> pageCount;
+
+    <span style="color:Blue;">public</span> LRUCachingStorage(IStorage storage):<span style="color:Blue;">base</span>(storage) {
+        <span style="color:Blue;">this</span>.pageCount = 128;
+    }
+
+    <span style="color:Blue;">public</span> LRUCachingStorage(IStorage storage, <span style="color:Blue;">int</span> pageCount, <span style="color:Blue;">int</span> pageSize)
+        : <span style="color:Blue;">base</span>(storage, pageCount, pageSize)
+    {
+        <span style="color:Blue;">this</span>.pageCount = pageCount;
+    }
+
+    <span style="color:Blue;">protected</span> <span style="color:Blue;">override</span> ICache4 NewCache()
+    {
+        <span style="color:Blue;">return</span> CacheFactory.NewLRUCache(pageCount);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			LRUCachingStorage.cs: Exchange the cache-implementation
+			<div class="codedownload">
+				<a href="Example-configuration-io-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

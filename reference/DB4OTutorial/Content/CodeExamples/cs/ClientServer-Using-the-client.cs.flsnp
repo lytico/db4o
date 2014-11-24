@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">using</span> (IObjectContainer container 
+    = Db4oClientServer.OpenClient(<span style="color:#A31515;">&quot;localhost&quot;</span>,8080,<span style="color:#A31515;">&quot;user&quot;</span>,<span style="color:#A31515;">&quot;password&quot;</span>))
+{
+    <span style="color:Green;">// Use the client object container as usual</span>
+}</pre>
+		<div class="codesnippet-meta">
+			ClientServer.cs: Using the client
+			<div class="codedownload">
+				<a href="Example-Code-cs-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="554" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>B-Tree Node Size</h1>
+        <p>db4o uses B-tree indexes for increased query performance and reduced memory consumption. B-trees are used for <a href="../objectfield_configuration.htm#Adding">field-index</a>, <a href="../objectclass/diable_class_index.htm">class-index</a> and for the <a href="../id_system.htm">id-system</a>. B-trees are optimized for scenarios where a part of the data is on secondary storage such as a hard disk, since disk accesses is extremely expensive. B-trees minimize the number of disk accesses required. You find more information <a href="http://en.wikipedia.org/wiki/B-tree">about B-trees on the internet</a>.</p>
+        <p>You can tune the B-trees by configuring the size of a node. Larger node sizes require less disk access, since a node is read on one read-operation. However it consumes more memory to keep the larger nodes available. Also larger nodes take longer to write back to disk. You need to tune the B-tree node size according to your application requirements. When benchmarking the settings, use large data sets. The influence of B-trees is more significant for larger dabases with 100'000 and more objects.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Change-B-tree-node-size.all.flsnp" />
+    </body>
+</html>

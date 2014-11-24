@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">var</span> instance = (<span style="color:Blue;">from</span> IDHolder o <span style="color:Blue;">in</span> container
+                  <span style="color:Blue;">where</span> o.Id == id
+                  <span style="color:Blue;">select</span> o).Single();</pre>
+		<div class="codesnippet-meta">
+			AutoIncrementExample.cs: get an object by its id
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

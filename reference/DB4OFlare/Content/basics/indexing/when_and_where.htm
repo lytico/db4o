@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1399" MadCap:lastWidth="889">
+    <head>
+    </head>
+    <body>
+        <h1>When And Where</h1>
+        <p>When do you need an index? And on which fields do I need an index? An index has a costs and benefits. <MadCap:xref href="costs_and_benefits.htm" target="" title="" alt="">See "Costs And Benefits"</MadCap:xref>. Therefore you should only add one when you actually benefit from it.</p>
+        <h2>When To Add Queries</h2>
+        <p>Indexes speed up queries but slow down store and delete operations. You only need to add indexes when queries are too slow. There's no real benefit to add a index when your queries are already fast enough.</p>
+        <p>Also add index only on fields which are used in queries. Indexes on fields which are never used in a query have no benefit.</p>
+        <h2>Where To Add Queries</h2>
+        <p>How do I find the queries which can benefit from indexes? How do I find queries which couldn't utilize indexes? You can use the <a href="../../configuration/common/diagnostics.htm">diagnostic-API</a> find out. Filter for the LoadedFromClassIndex-message. Every time this message arrives the query didn't use a field index. You can add a break-point to the message-output and find out which query is the source and then add the index.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/indexing/where/WhereToIndexExample-Index-diagnostics.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/indexing/where/WhereToIndexExample-Find-queries-which-cannot-use-index.all.flsnp" />
+    </body>
+</html>

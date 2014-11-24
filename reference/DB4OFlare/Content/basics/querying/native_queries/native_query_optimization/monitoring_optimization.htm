@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="8" MadCap:lastHeight="1187" MadCap:lastWidth="756" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head />
+    <body>
+        <h1>
+            <MadCap:keyword term="Native Queries:Optimisation" />Monitoring Optimization</h1>
+        <MadCap:snippetBlock src="../../../../Snippets/linq_instead_of_nq.flsnp" />
+        <p>In order to optimize native queries the <MadCap:variable name="Primary.ByteCode" /> is analyzed and converted into <a href="../../soda_query.htm">SODA queries</a>.  This task isn't easy. If there's any doubt in the correctness of the conversion db4o won't do it. In such cases db4o falls back and instantiates all objects and runs it against the query. This is a order of magnitude slower than optimized queries. Therefore you probably want to monitor the query optimization and be warned when a query isn't optimized. This is possible with the <a href="../../../../advanced_topics/diagnostics/diagnostic_messages_filter.htm">diagnostic listeners</a>.</p>
+        <MadCap:snippetBlock src="../../../../CodeExamples/query/nq/NativeQueryDiagnostics-Use-diagnostics-to-find-unoptimized-queries.all.flsnp" />
+        <MadCap:snippetBlock src="../../../../CodeExamples/query/nq/NativeQueryDiagnostics-The-native-query-listener.all.flsnp" />
+        <p>You can register a diagnostic listener and check for certain messages. There are two messages related to the native query optimization. The first is the <strong>NativeQueryNotOptimized</strong>-message. This tells you that a query couldn't be optimized. Consider simplifying the query. The second is the <strong>NativeQueryOptimizerNotLoaded</strong>-message. This message tells you that db4o couldn't find the libraries needed for the native query optimization. Check that you've included the <MadCap:variable name="Primary.Artefacts" />-files <a href="../../../../dependency_overview.htm">you need</a>. </p>
+        <p>&#160;</p>
+    </body>
+</html>

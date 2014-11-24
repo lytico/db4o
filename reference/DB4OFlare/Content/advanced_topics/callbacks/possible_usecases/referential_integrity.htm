@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1575" MadCap:lastWidth="840">
+    <head>
+    </head>
+    <body>
+        <h1>Referential Integrity</h1>
+        <p>db4o does not have a built-in referential integrity checking
+mechanism. Luckily EventRegistry gives you access to all the necessary events
+to implement it. You will just need to trigger validation on create, update or
+delete and cancel the action if the integrity is going to be broken.</p>
+        <p>For example, if Car object is referencing Pilot and the
+referenced object should exist, this can be ensured with the following handler
+in deleting() event:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/callbacks/examples/CallbackExamples-Referential-integrity.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/callbacks/examples/CallbackExamples-Register-handler.all.flsnp" />
+        <p>You can also add handlers for creating() and updating()
+events for a Car object to make sure that the pilot field is not null. 
+</p>
+        <p>Note, that in client/server mode deleting event is only raised on the server side, therefore the code above can't be used and will throw an exception.  </p>
+    </body>
+</html>

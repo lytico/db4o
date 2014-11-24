@@ -1,0 +1,181 @@
+
+.0 FAQ ..
+Frequently Asked Questions
+
+
+.1 Questions ..
+.l faqtechnical I have a technical question. Whom do I ask? .. 
+.l faqcosts I would like to license db4o for a commercial product. What are the costs? ..
+.l faqretrieve Why can't I retrieve the objects that I stored? ..
+.l faqstored Why are objects of certain classes not stored? ..
+.l faqdriver Where is the database driver? ..
+.l faqlarge How does db4o behave with large amounts of data? ..
+.l faqactivation What's "activation" and what is it for? ..
+.l faqupdate Some of my objects are not updated. Why? ..
+.l faqwhat What is db4o really doing with my objects? ..
+
+.1 Answers ..
+.a faqtechnical .. .b I have a technical question. Whom do I ask? ..
+
+If possible, please post your questions to our newsgroup  .l news://news.db4odev.com/db4o.users .. ._
+. A synchronised web- and email-interface for the newsgroup can be found at ._
+.l http://groups.yahoo.com/group/db4o_unmoderated .. . The db4o team is ._
+monitoring all the postings and usually answers questions on the same day. ._
+If you do not wish to talk about your technical problems in public, please ._
+mail your questions to  .l mailto:support@db4o.com support@db4o.com .. .  
+
+.a faqcosts ..
+.b I would like to license db4o for a commercial product. What are the costs? ..
+
+Please refer to the purchasing section on the db4o website to learn more about ._
+db4o Runtimes (dRT) for commercial redistribution of db4o embedded into your ._
+products and about the db4o Developer Network (dDN) for professional support options.
+
+.a faqretrieve ..
+.b Why can't I retrieve the objects that I stored? ..
+
+First you should check, that your objects have actually been stored, by using ._
+com.db4o.tools.Statistics. The Statistics class is supplied as sourcecode with ._
+the download. If the objects are not there, it's another FAQ.
+
+If the objects are there:
+Query-By-Example evaluates all non-null fields and all simple type variables ._
+that do not hold their default values against the stored objects. Check to make ._
+sure that you are not constraining the resultset by accidentally initialising ._
+variables on your template objects. Typical places could be:
+- Constructors
+- Constructors in ancestors of your class
+- Static initialisation
+- Static initialisation in ancestors of your class. 
+
+.a faqstored ..
+.b Why are objects of certain classes not stored? ..
+
+db4o needs a constructor that it can use. Ideally this is a zero-parameter ._
+constructor (declared public for Java JDK versions prior to JDK 1.2). If ._
+db4o does not find a zero-parameter constructor, db4o iterates through all ._
+other constructors and internally attempts to create an instance of an ._
+object by passing appropriate null parameters. If this is successful with ._
+any of the present constructors, this constructor is used. 
+
+db4o supplies a configuration feature to detect problems with constructors. ._
+To analyse problems with your code, you may want to turn the following switch ._
+ on before starting the db4o engine:
+.c Db4o.configure().exceptionsOnNotStorable(true); ..
+
+There are classes that do not have usable constructors. java.net.URL is an ._
+example from the Java JDK. In this case you have the following options:
+- add a zero-parameter constructor specifically for db4o
+- derive from the class and add a zero-parameter constructor
+- add a custom translator. 
+If you need to quickly implement a solution for one of the JDK classes and ._
+querying members is not an issue, you may choose to use the built in ._
+serializable translator. Here is an example, how this is done for java.net.URL:
+.c Db4o.configure().objectClass("java.net.URL").
+   translate(new com.db4o.config.TSerializable()); ..
+The above code needs to be executed every time before the db4o engine is ._
+started.
+
+.a faqdriver ..
+.b Where is the database driver? ..
+
+db4o is an independant object database engine on it's own. It does not need a database driver. All you need to do is...
+Java: add db4o.jar to your CLASSPATH 
+.NET: add db4o.dll to your project References
+...and you are all set to program against the db4o API. 
+
+.a faqlarge ..
+.b How does db4o behave with large amounts of data? ..
+
+We recommend a maximum size of 1 GB per database file. You may however ._
+use multiple database files and move and copy objects freely between ._
+them. Navigation access times to objects and the performance of access ._
+by internal IDs remains constant, no matter how large database files ._
+are. Query performance does drop linearly with an increasing number of ._
+objects per class. Since db4o insert performance is extremely good, it ._
+is very little effort to conduct your own performance tests with large ._
+amounts of data. 
+
+.a faqactivation ..
+.b What's "activation" and what is it for? ..
+
+Let's explain this with an example:
+Consider that you retrieve an object from the database by using a query. This object might have 1000 members, all these 1000 objects might have 1000 members, these could have 1000 members in turn and so on.... 
+In the worst case, you would have a single root object that indirectly references all other objects in the database. Creating all of these objects automatically during retrieval from the database file could take a very long time and you would probably experience OutOfMemory problems.
+
+To solve this, db4o introduces a concept of "deactivated" objects:
+All of the fields of a "deactivated" object are set to null.
+The primitive types hold their default values respectively. 
+
+In db4o terms, loading the fields with the stored values from the database is called "activation".
+
+db4o provides an API, to configure how activation is to behave. You can set a global activation depth and override the behaviour individually for specific classes:
+Db4o.configure().activationDepth(int)
+Db4o.configure().objectClass("yourClass").minimumActivationDepth(int)
+Db4o.configure().objectClass("yourClass").maximumActivationDepth(int)
+By default, Db4o is configured with a standard activation depth of 5.
+
+The term "depth" means: 
+"number of member references away from the original object"
+
+Here is an example. Consider you have a default activation depth of 3. If you retrieve an object:
+object.member1.member2.member3 will be instantiated.
+"member3" will be present but deactivated.
+
+You can use manual activation to instantiate individual objects:
+ObjectContainer#activate(object, depth);
+
+Manual deactivation may be used to save memory:
+ObjectContainer#deactivate(object, depth); 
+
+By configuring db4o you have full control over how you want db4o to behave. The two extremes:
+- using an activationDepth of Integer.MAX_VALUE let's you forget about manual activation but you might not have the best performance and memory footprint
+- using an activationDepth of 0 and activating and deactivating all objects manually keeps memory consumption extremely low on a low-memory-device.
+
+.a faqupdate ..
+.b Some of my objects are not updated. Why? ..
+
+In the default configuration a call to ObjectContainer#set() only updates ._
+objects to depth 1. This means that all simple types, their wrappers, ._
+String and Date are updated but not the contained individual objects.
+
+db4o supplies the following features to alternate the behaviour:
+
+- configuring the global update depth.
+.c Db4o.configure().updateDepth(int depth) ..
+
+- configuring the update depth for a specific class.
+.c Db4o.configure().objectClass("yourPackage.yourClass").
+   updateDepth(int depth) ..
+
+- cascading classes
+.c Db4o.configure().objectClass("yourPackage.yourClass").
+   cascadeOnUpdate(true) ..
+
+- cascading individual fields
+.c Db4o.configure().objectClass("yourClass").
+   objectField("yourField").cascadeOnUpdate(true) ..
+
+- using a callback method:
+.c public class Foo{
+  Bar bar;
+  public void objectOnUpdate(ObjectContainer con) {
+    con.set(bar);
+  }
+} ..
+
+The cascadeOnUpdate(true) configuration methods are recommended as the best choice.
+
+.a faqwhat ..
+.b What is db4o really doing with my objects? ..
+
+Finding out is very simple. Call:
+.c Db4o.configure().messageLevel(4); ..
+before opening a database file and everything that is happening will be logged ._
+to the console.
+
+Use 
+.c Db4o.configure().setOut(); ..
+to redirect output to a PrintStream of your choice. 
+
+

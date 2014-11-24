@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> loadedWithContainer1 <span style="color:Blue;">As</span> Car = container1.Query(Of Car)()(0)
+container2.Store(loadedWithContainer1)
+<span style="color:Green;">' Now the car is store twice.</span>
+<span style="color:Green;">' Because the container2 cannot recognize objects from other containers</span>
+<span style="color:Green;">' Therefore always use the same container to store and load objects</span></pre>
+		<div class="codesnippet-meta">
+			IdentityConcepts.vb: Don't use different object-container for the same object.
+			<div class="codedownload">
+				<a href="Example-Code-identiy-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

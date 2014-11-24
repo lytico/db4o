@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="612" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Monitor IO</h1>
+        <p>You can monitor the IO-operations of db4o to find out more about the runtime behavior of your application.</p>
+        <h2>Configure the IO Monitoring Support</h2>
+        <p>In order to monitor the IO activities of db4o you need to configure the IO monitoring support.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tuning/monitoring/IOMonitoring-Add-IO-Monitoring.all.flsnp" />
+        <h2>The IO Statistics</h2>
+        <p><strong MadCap:conditions="Primary.Java">BytesReadPerSecond</strong><strong MadCap:conditions="Primary..NET">bytes read/sec</strong>: Tells you how many bytes are read per second from the disk.</p>
+        <p><strong MadCap:conditions="Primary.Java">BytesWrittenPerSecond</strong><strong MadCap:conditions="Primary..NET">bytes written/sec</strong>: Tells you how many bytes are written to disk per second.</p>
+        <p MadCap:conditions="Primary.Java"><strong>ReadsPerSecond</strong>: Tells how many read requests are issues per second.</p>
+        <p MadCap:conditions="Primary.Java"><strong>SyncsPerSecond</strong>: Tells you how many sync-operations are done per second. The sync-operation is a part of the commit-process. I forces the runtime and operating system to flush all buffers to the disk to ensure that the data are safely stored. The sync operation is normally a costly operation, since it need to wait on the physical disk to finish all write operations</p>
+        <p MadCap:conditions="Primary.Java">.<strong>WritesPerSecond</strong>: Tells you how may write requests are issued per second.</p>
+        <p>&#160;</p>
+    </body>
+</html>

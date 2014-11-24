@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<project name="common-dotnet">
+
+	<import file="common.xml" />
+	
+	<property name="dir.n.v6" location="${dir.base}/db4o.net" />
+	<property name="dir.n.v6.core" location="${dir.n.v6}/Db4objects.Db4o" />	
+	<property name="dir.n.v6.core.src" location="${dir.n.v6.core}/Db4objects.Db4o/" />	
+	<property name="dir.n.v6.libs" location="${dir.n.v6}/Libs/" />
+	<property name="dir.n.db4ounit" location="${dir.n.v6}/Db4oUnit" />
+	<property name="dir.n.db4obench" location="${dir.n.v6}/Db4oBench" />
+	<property name="dir.n.v6.nq" location="${dir.n.v6}/Db4objects.Db4o.NativeQueries" />
+	<property name="dir.n.v6.instrumentation" location="${dir.n.v6}/Db4objects.Db4o.Instrumentation" />
+	<property name="dir.n.v6.cs" location="${dir.n.v6}/Db4objects.Db4o.CS" />	
+	<property name="dir.n.v6.cs.optional" location="${dir.n.v6}/Db4objects.Db4o.CS.Optional" />	
+	<property name="dir.n.v6.optional" location="${dir.n.v6}/Db4objects.Db4o.Optional" />	
+	<property name="dir.n.v6.msbuild" location="${dir.n.v6}/Db4oTool/Db4oTool.MSBuild" />	
+	<property name="dir.programfiles" location="${env.ProgramFiles}" />
+	
+	<condition property="mono" value="true">
+		<os family="unix" />
+	</condition>
+	
+	<target name="configure-mono" if="mono">
+		<echo>Configuring mono build.</echo>
+		
+		<property name="target.framework.version" value="2.0" />
+		<property name="csharp.definitions" value="MONO,NET_2_0" />
+		<property name="dir.libs.net" location="${dir.n.v6.libs}/net-2.0" />
+		<property name="csc.executable" value="gmcs" />
+		<property name="csc.tests.extraoptions" value="-r:System.Drawing" />
+	</target>
+	
+	<target name="configure-net35" unless="mono">
+		<echo>Configuring .net 3.5 build.</echo>
+		
+		<property name="target.framework.version" value="3.5" />		
+		<property name="csc.executable.path.net35" location="${env.SystemRoot}/Microsoft.NET/Framework/v3.5" />		
+		<property name="msbuild.executable.net35" location="${csc.executable.path.net35}/MSBuild.exe" />
+		<property name="msbuild.executable" location="${msbuild.executable.net35}" />
+		<property name="msbuild.target.platform" value="2008" />
+		<property name="msbuild.target.configuration" value="Release" />
+
+		<property name="silverlight.version" value="3.0" />
+	</target>
+	
+	<target name="configure-net40" unless="mono" >	
+		<echo>Configuring .net 4.0 build.</echo>
+			
+		<property name="target.framework.version" value="4.0" />		
+		<property name="csc.executable.path.net40" location="${env.SystemRoot}/Microsoft.NET/Framework/v4.0.30319" />		
+		<property name="msbuild.executable.net40" location="${csc.executable.path.net40}/MSBuild.exe" />
+		<property name="msbuild.executable" location="${msbuild.executable.net40}" />
+		<property name="msbuild.target.platform" value="2010" />
+		<property name="msbuild.target.configuration" value="Release" />
+	
+		<property name="silverlight.version" value="4.0" />
+		<property name="cf.not.supported" value="true" />
+	</target>
+	
+	<target name="configure-debug">
+		<property name="msbuild.target.configuration" value="Debug" />
+	</target>
+	
+	<target name="configure" depends="configure-debug, configure-net35, configure-mono">
+	</target>
+	
+	<target name="compiletestsjava">
+		<ant antfile="build-java.xml" target="build.db4ojdk1.1.tests" />
+		<ant antfile="build-java.xml" target="build.db4ojdk1.2" />
+	</target>
+	
+	<macrodef name="reset-src-dir">
+		<attribute name="dir" />
+		<sequential>
+			<delete dir="@{dir}">
+				<include name="**/*.cs" />
+			</delete>
+			<mkdir dir="@{dir}" />
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="msbuild">
+		
+		<attribute name="solutionFile" />
+		<attribute name="outputPath" default="${dir.dist.dll.net}" />
+		
+		<sequential>
+			<exec taskname="msbuild" executable="${msbuild.executable}" failonerror="true">
+				<arg file="@{solutionFile}" />
+				<arg value="/t:Clean" />
+				<arg value="/t:Rebuild" />
+				<arg value="/p:Configuration=${msbuild.target.configuration}" />
+				<arg value="/p:OutputPath=@{outputPath}" />
+				<arg value="/p:WarningLevel=0" />
+			</exec>
+		</sequential>
+	</macrodef>
+	
+	
+	<macrodef name="msb">
+		<attribute name="solution" />
+		<attribute name="outputPath" default="${dir.dist.dll.net}" />
+
+		<sequential>
+			<var name="solution.file" value="@{solution}-${msbuild.target.platform}.sln" />
+			
+			<echo>Building ${solution.file} (${msbuild.target.configuration})</echo>
+			<echo>OutputPath: @{outputPath}</echo>
+			<echo>msbuild exec: ${msbuild.executable}</echo>
+		    
+		    <delete >
+		        <fileset dir="${dir.n.v6}">
+		            <include name="**/obj/Debug/" />
+		            <include name="**/obj/Release/" />
+		        </fileset>
+		    </delete>
+			
+			<msbuild solutionFile="${solution.file}" outputPath="@{outputPath}" />
+
+		</sequential>
+	</macrodef>
+
+	<macrodef name="exec-redirected">
+		<attribute name="executable"/>
+		<element name="args" optional="yes" />
+		
+		<sequential>
+			<prepareUniqueNames prefixes="result,out,err" suffix="unique.name"/>
+			
+			<exec executable="@{executable}" resultproperty="${result.unique.name}" failonerror="false" outputproperty="${out.unique.name}" errorproperty="${err.unique.name}">
+				<args />
+			</exec>
+			
+			<commitUniqueNames prefixes="result,out,err" suffix="unique.name"/>
+		
+			<echo message="${out}" />
+			<echo message="${err}" />
+			
+			<if>
+				<not><equals arg1="${result}" arg2="0"/></not>
+				<then>
+					<fail message="Build failed. Check this log to find out the reason." />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<taskdef name="prepareUniqueNames" classname="com.db4o.devtools.ant.PrepareUniqueNamesTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+			
+	<taskdef name="commitUniqueNames" classname="com.db4o.devtools.ant.CommitUniqueNamesTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>		
+</project>

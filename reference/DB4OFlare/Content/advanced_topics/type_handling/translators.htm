@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3156" MadCap:lastWidth="721">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Translators;Object Translator" />Translators</h1>
+        <p>Sometimes objects cannot be stored in db4o. For example because the objects have references to other parts of the system other where never intended to be stored. This is especially for objects from third party libraries. </p>
+        <p>Now the db4o object translators is a simple mechanism which allows you to manually handle the persistence of an object. There are two important interfaces for this. The <span MadCap:conditions="Primary..NET">I</span>ObjectTranslator-interface and the <span MadCap:conditions="Primary..NET">I</span>ObjectConstructor. The first interface lets you take the control over storing and activation of the object. The second interface also allows you to control the instantiation of the object.</p>
+        <p>If you register a <span MadCap:conditions="Primary..NET">I</span>ObjectTranslator-instance for a certain type, it will also be applied to sub-types. This doesn't apply to <span MadCap:conditions="Primary..NET">I</span>ObjectConstructor-instances, because those need to create the right instance and therefore cannot handle subtypes.</p>
+        <h2>Creating a Translator</h2>
+        <p>First you need to create a translator for your types. Let's take a look at this example. There three distinct tasks a translator has to do. The first task is to convert the not storable object into another, storable object. Another task of the translator is to take care of the activation of the object. There it need to copy the values from the stored object into a instance of the original type. The third task it to create instances of the object. There you create a instance of the original type. And for some types you maybe also read the data at this point in time. </p>
+        <p>As an alternative you can use the <a href="translators/built-in_translators.htm">predefined translators</a>.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/typehandling/translator/ExampleTranslator-An-example-translator.all.flsnp" />
+        <h2>Registering a Translator</h2>
+        <p>After that you can register the translator for you're type. If you register a <span MadCap:conditions="Primary..NET">I</span>ObjectTranslator-instance it will also be applied to the sub-types. However a <span MadCap:conditions="Primary..NET">I</span>ObjectConstructor-instance is only applied for the specific type. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/typehandling/translator/ExampleTranslator-Register-type-translator-for-the-NonStorableType-class.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/typehandling/translator/TranslatorExample-Register-type-translator-for-the-NonStorableType-class.all.flsnp" />
+        <h2>Using The Translator</h2>
+        <p>After that you can store and use the not storable objects like any other persistent objects. db4o will call the translator for each instance when required in order to store the object correctly. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/typehandling/translator/ExampleTranslator-Store-the-non-storable-type.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/typehandling/translator/TranslatorExample-Store-the-non-storable-type.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/typehandling/translator/ExampleTranslator-Load-the-non-storable-type.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/typehandling/translator/TranslatorExample-Load-the-non-storable-type.all.flsnp" />
+        <h2>Limitations</h2>
+        <p>The object translator mechanism is great for types which couldn't be stored otherwise. However there are serious limitations.</p>
+        <ul>
+            <li>Queries into the members of a object which was stored with a object translator are extremely slow. The reason is that the object first need to be loaded and instantiated with the translator in order to run the query on it. </li>
+            <li>You cannot index types which are translated.</li>
+        </ul>
+    </body>
+</html>

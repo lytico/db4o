@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<project name="common drs build definitions">
+	<property file="machine.properties" />
+	<property file="ant.properties" />
+	<property environment="env" />
+	
+	<import file="common.xml" />
+
+	<property name="drs.dir.base" value="${dir.base}/drs" />
+	<property name="drs.dir.lib" value="${drs.dir.base}/lib" />
+
+	<property name="drs.dir.dist" value="${dir.dist}/drs/java" />
+	<property name="drs.dir.dist.lib" value="${drs.dir.dist}/lib" />
+	<property name="drs.dir.src" value="${drs.dir.base}/src" />
+	<property name="drs.dir.src.core" value="${drs.dir.src}/core" />
+
+	<property name="drs.vod.dir.base" value="${dir.base}/drsvod" />
+	<property name="drs.vod.dir.src" value="${drs.vod.dir.base}/src" />
+	<property name="drs.vod.dir.src.core" value="${drs.vod.dir.src}/core" />
+
+	<macrodef name="buildjar" description="compile, jar classes for various src folders">
+		<attribute name="srcdir" />
+		<attribute name="classpathrefid" />
+		<attribute name="jar" />
+		<attribute name="tmpdir" />
+
+		<sequential>
+			<delete dir="@{tmpdir}" />
+			<mkdir dir="@{tmpdir}" />
+
+			<javac srcdir="@{srcdir}" destdir="@{tmpdir}" debug="true" target="1.5" source="1.5" failonerror="true">
+				<classpath refid="@{classpathrefid}" />
+			</javac>
+			<copy todir="@{tmpdir}">
+				<fileset dir="@{srcdir}">
+					<exclude name="log4j.xml" />
+					<include name="**/*.jdo" />
+					<include name="**/*.xml" />
+				</fileset>
+			</copy>
+			<jar jarfile="@{jar}" basedir="@{tmpdir}" />
+			<delete dir="@{tmpdir}" />
+		</sequential>
+	</macrodef>
+
+
+</project>

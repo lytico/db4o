@@ -1,0 +1,21 @@
+2007-10-27
+
+- Ignore/purge JDK5 LVTT attribute in Code constructor
+
+2007-10-25
+
+- ClassFileLoader#loadClassFromRessource(): String#replaceAll() -> String#replace()
+- Added BloatingClassLoader#getEditorContext() 
+- CodeArray#visit_ldc: fix for JDK5 class literal constant references
+- ClassFile: maintain original major/minor class format version information
+
+---
+
+- FlowGraph#addHandlerEdges: added visited parameter to keep track of
+blocks already visited to break 'infinite loop' in compiler-generated
+'self-handling' exception handlers since JDK 1.4
+
+- Type#getType(Class): small fix for array type descriptors
+
+- Tree#visit_ldc: broken hack for JDK5 class constants - check usages and fix
+

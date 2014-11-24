@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> LoggingBin : BinDecorator, IBin
+{
+    <span style="color:Blue;">public</span> LoggingBin(IBin bin) : <span style="color:Blue;">base</span>(bin)
+    {
+    }
+
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Close()
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Close()&quot;</span>);
+        <span style="color:Blue;">base</span>.Close();
+    }
+
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">long</span> Length()
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Length()&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">base</span>.Length();
+    }
+
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">int</span> Read(<span style="color:Blue;">long</span> position, <span style="color:Blue;">byte</span>[] bytes, <span style="color:Blue;">int</span> bytesToRead)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Read(&quot;</span> + position + <span style="color:#A31515;">&quot;, ...,&quot;</span> + bytesToRead + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">base</span>.Read(position, bytes, bytesToRead);
+    }
+
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Sync()
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Sync()&quot;</span>);
+        <span style="color:Blue;">base</span>.Sync();
+    }
+
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">int</span> SyncRead(<span style="color:Blue;">long</span> position, <span style="color:Blue;">byte</span>[] bytes, <span style="color:Blue;">int</span> bytesToRead)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.SyncRead(&quot;</span> + position + <span style="color:#A31515;">&quot;, ...,&quot;</span> + bytesToRead + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">base</span>.SyncRead(position, bytes, bytesToRead);
+    }
+
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Write(<span style="color:Blue;">long</span> position, <span style="color:Blue;">byte</span>[] bytes, <span style="color:Blue;">int</span> bytesToWrite)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Write(&quot;</span> + position + <span style="color:#A31515;">&quot;, ...,&quot;</span> + bytesToWrite + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">base</span>.Write(position, bytes, bytesToWrite);
+    }
+
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> Sync(IRunnable runnable)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Called LoggingBin.Sync(&quot;</span> + runnable + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">base</span>.Sync(runnable);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			LoggingBin.cs: A logging bin decorator
+			<div class="codedownload">
+				<a href="Example-configuration-io-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Pilot pilot = container.Query&lt;Pilot&gt;()[0];
+
+IQuery query = container.Query();
+query.Constrain(<span style="color:Blue;">typeof</span>(Car));
+<span style="color:Green;">// if the given object is stored, its compared by identity</span>
+query.Descend(<span style="color:#A31515;">&quot;pilot&quot;</span>).Constrain(pilot);
+
+IObjectSet carsOfPilot = query.Execute();</pre>
+		<div class="codesnippet-meta">
+			SodaQueryExamples.cs: Compare with existing object
+			<div class="codedownload">
+				<a href="Example-query-soda-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

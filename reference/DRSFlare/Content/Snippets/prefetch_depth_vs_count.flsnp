@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="385" MadCap:lastWidth="605">
+    <body>
+        <p> The <a href="../configuration/client/prefetch_depth.htm">prefetch depth</a> and the <a href="../configuration/client/prefetch_object_count.htm">prefetch object count</a> are closely related to each other. The prefetch object count configures how many objects are prefetched from a query-result. The prefetch-depth configures how deep the object-graph is fetched.</p>
+        <p>
+            <img src="../configuration/client/prefetch-visualisation.png" />
+        </p>
+    </body>
+</html>

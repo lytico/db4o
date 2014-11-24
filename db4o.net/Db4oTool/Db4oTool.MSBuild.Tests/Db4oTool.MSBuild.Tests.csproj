@@ -1,0 +1,78 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D9C5532A-0D6C-4AFD-A961-D04D2D9ECD94}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4oTool.MSBuild.Tests</RootNamespace>
+    <AssemblyName>Db4oTool.MSBuild.Tests</AssemblyName>
+    <StartupObject>Db4oTool.MSBuild.Tests.AllTests</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandlineTestCase.cs" />
+    <Compile Include="IntItem.cs" />
+    <Compile Include="IntItemTestCase.cs" />
+    <Compile Include="AllTests.cs" />
+    <Compile Include="NonTAItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Db4objects.Db4o\Db4objects.Db4o-2005.csproj">
+      <Project>{4FA6645B-E14B-4F18-A2CC-C1925663EFCE}</Project>
+      <Name>Db4objects.Db4o-2005</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4oUnit.Extensions\Db4oUnit.Extensions-2005.csproj">
+      <Project>{9ABAFC31-D29D-4000-B6A0-C24F0BB221F6}</Project>
+      <Name>Db4oUnit.Extensions-2005</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Db4oUnit\Db4oUnit-2005.csproj">
+      <Project>{9ABAFC31-D29D-4000-B6A0-C24F0BB221F5}</Project>
+      <Name>Db4oUnit-2005</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4oTool.MSBuild\Db4oTool.MSBuild.csproj">
+      <Project>{03E2AD50-7A21-4D03-8504-3E190AE5361F}</Project>
+      <Name>Db4oTool.MSBuild</Name>
+    </ProjectReference>
+    <ProjectReference Include="Db4oTool.MSBuild.Tests.Project\Db4oTool.MSBuild.Tests.Project.csproj">
+      <Project>{D073735B-C148-46A8-A6F6-A26AA5C78C0F}</Project>
+      <Name>Db4oTool.MSBuild.Tests.Project</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  -->
+  <UsingTask AssemblyFile="$(OutputPath)\Db4oTool.MSBuild.dll" TaskName="Db4oTool.MSBuild.Db4oEnhancerMSBuildTask" />
+  <ItemGroup>
+    <Db4oEnhance Include="$(TargetPath)" />
+    <Db4oEnhance Include="$(OutputPath)\Db4oTool.MSBuild.Tests.Project.dll" />
+  </ItemGroup>
+  <Target Name="AfterBuild">
+    <Db4oEnhancerMSBuildTask Assemblies="@(Db4oEnhance)" CommandLine="-by-name:IntItem" />
+  </Target>
+</Project>

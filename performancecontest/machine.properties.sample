@@ -1,0 +1,6 @@
+
+# To run the Ant scripts in this project, please create a copy 
+# of this file and call it "machine.properties".
+
+# The following property should point to your Eclipse workspace: 
+dir.workspace=C:/PerformanceContest

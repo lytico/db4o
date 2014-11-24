@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">' Get the information about all stored classes.</span>
+<span style="color:Blue;">Dim</span> classesInDB <span style="color:Blue;">As</span> IStoredClass() = container.Ext().StoredClasses()
+<span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> storedClass <span style="color:Blue;">As</span> IStoredClass <span style="color:Blue;">In</span> classesInDB
+    Console.WriteLine(storedClass.GetName())
+<span style="color:Blue;">Next</span>
+
+<span style="color:Green;">' Information for a certain class</span>
+<span style="color:Blue;">Dim</span> metaInfo <span style="color:Blue;">As</span> IStoredClass = container.Ext().StoredClass(<span style="color:Blue;">GetType</span>(Person))</pre>
+		<div class="codesnippet-meta">
+			MetaInfoExample.vb: All stored classes
+			<div class="codedownload">
+				<a href="Example-Code-metainfo-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

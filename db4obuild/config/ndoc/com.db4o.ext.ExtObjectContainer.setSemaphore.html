@@ -1,0 +1,57 @@
+﻿<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </meta>
+    <meta name="generator" content="NDoc 1.3" />
+    <title>ExtObjectContainer.setSemaphore Method</title>
+    <link rel="stylesheet" type="text/css" href="ndoc.css">
+    </link>
+    <script src="ndoc.js" type="text/javascript">
+    </script>
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <INPUT class="userDataStyle" id="userDataCache" type="hidden" />
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead" nowrap="true">db4o</td>
+            <td class="product" nowrap="true">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">ExtObjectContainer.setSemaphore Method </h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>attempts to set a semaphore.</p>
+<PRE class="syntax"><SPAN class="lang">[Visual Basic]
+</SPAN><b>Function setSemaphore( _ 
+   ByVal <i>name</i> As <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemStringClassTopic.htm">String</a>, _ 
+   ByVal <i>waitForAvailability</i> As <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemInt32ClassTopic.htm">Integer</a> _ 
+) As <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemBooleanClassTopic.htm">Boolean</a>
+</b><SPAN class="lang">[C#]
+</SPAN><b><a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemBooleanClassTopic.htm">bool</a> setSemaphore(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemStringClassTopic.htm">string</a> <i>name</i>,
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemInt32ClassTopic.htm">int</a> <i>waitForAvailability</i>
+);
+</b><SPAN class="lang">[C++]
+</SPAN><b><a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemBooleanClassTopic.htm">bool</a> setSemaphore(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemStringClassTopic.htm">String*</a> <i>name</i>,
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemInt32ClassTopic.htm">int</a> <i>waitForAvailability</i>
+);
+</b><SPAN class="lang">[JScript]
+</SPAN><b>function setSemaphore(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemStringClassTopic.htm">String</a> <i>name</i>,
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemInt32ClassTopic.htm">int</a> <i>waitForAvailability</i>
+): <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemBooleanClassTopic.htm">bool</a>;
+</b></PRE><h4 class="dtH4">Parameters</h4><dl><dt><i>name</i></dt><dd>the name of the semaphore to be set</dd><dt><i>waitForAvailability</i></dt><dd> the time in milliseconds to wait for other transactions to release the semaphore. The parameter may be zero, if the method is to return immediately. </dd></dl><h4 class="dtH4">Return Value</h4><p> boolean flag <br /><pre class="code">true</pre>, if the semaphore could be set or if the calling transaction already owned the semaphore. <br /><pre class="code">false</pre>, if the semaphore is owned by another transaction. </p><h4 class="dtH4">Remarks</h4><p> attempts to set a semaphore. <br /><br /> Semaphores are transient multi-purpose named flags for <a href="com.db4o.ObjectContainer.html">ObjectContainers</a> . <br /><br /> A transaction that successfully sets a semaphore becomes the owner of the semaphore. Semaphores can only be owned by a single transaction at one point in time.<br /><br /> This method returns true, if the transaction already owned the semaphore before the method call or if it successfully acquires ownership of the semaphore.<br /><br /> The waitForAvailability parameter allows to specify a time in milliseconds to wait for other transactions to release the semaphore, in case the semaphore is already owned by another transaction.<br /><br /> Semaphores are released by the first occurence of one of the following:<br /> - the transaction releases the semaphore with <a href="com.db4o.ext.ExtObjectContainer.releaseSemaphore.html">com.db4o.ext.ExtObjectContainer.releaseSemaphore </a>
+            <br /> - the transaction is closed with <a href="com.db4o.ObjectContainer.close.html">com.db4o.ObjectContainer.close</a>
+            <br /> - C/S only: the corresponding <a href="com.db4o.ObjectServer.html">com.db4o.ObjectServer</a> is closed.<br /> - C/S only: the client <b>com.db4o.ObjectContainer</b> looses the connection and is timed out.<br /><br /> Semaphores are set immediately. They are independant of calling <a href="com.db4o.ObjectContainer.commit.html">com.db4o.ObjectContainer.commit</a> or <a href="com.db4o.ObjectContainer.rollback.html">com.db4o.ObjectContainer.rollback</a> .<br /><br /> <b>Possible usecases for semaphores:</b><br /> - prevent other clients from inserting a singleton at the same time. A suggested name for the semaphore: "SINGLETON_" + Object#getClass().getName().<br /> - lock objects. A suggested name: "LOCK_" + <a href="com.db4o.ext.ExtObjectContainer.getID.html">getID(Object)</a>
+            <br /> - generate a unique client ID. A suggested name: "CLIENT_" + System.currentTimeMillis().<br /><br />
+            </p><h4 class="dtH4">See Also</h4><p><a href="com.db4o.ext.ExtObjectContainer.html">ExtObjectContainer Interface</a> | <a href="com.db4o.ext.html">com.db4o.ext Namespace</a></p><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" viewastext="true" style="display: none;"><param name="Keyword" value="setSemaphore method"></param><param name="Keyword" value="setSemaphore method, ExtObjectContainer interface"></param><param name="Keyword" value="ExtObjectContainer.setSemaphore method"></param></object><DIV CLASS="footer"><p><center><font color="red"><i>
+								Syntax based on .NET Framework version 1.1.<br /></i></font></center></p></DIV><hr /><div id="footer"><p><a href="http://www.db4o.com/">Copyright (C) 2004 - 2005  Versant Inc.</a></p><p>Generated from assembly db4o [4.3.1.0]</p></div></div>
+  </body>
+</html>

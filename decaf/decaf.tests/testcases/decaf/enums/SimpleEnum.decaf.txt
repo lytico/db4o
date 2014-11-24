@@ -1,0 +1,68 @@
+package decaf.enums;
+
+/**
+ * a simple enum 
+ */
+class Animal extends com.db4o.foundation.Enum4 {
+	public static class CowAnimal extends Animal {
+		public static final int ORDINAL = 0;
+
+		private CowAnimal() {
+			super("Cow", CowAnimal.ORDINAL);
+		}
+	}
+
+	public static class CatAnimal extends Animal {
+		public static final int ORDINAL = 1;
+
+		private CatAnimal() {
+			super("Cat", CatAnimal.ORDINAL);
+		}
+	}
+
+	public static class DogAnimal extends Animal {
+		public static final int ORDINAL = 2;
+
+		private DogAnimal() {
+			super("Dog", DogAnimal.ORDINAL);
+		}
+	}
+
+	public static final Animal Cow = new CowAnimal();
+	public static final Animal Cat = new CatAnimal();
+	public static final Animal Dog = new DogAnimal();
+
+	private Animal(String name, int ordinal) {
+		super(name, ordinal);
+	}
+
+	public static Animal[] values() {
+		return new Animal[] { Animal.Cow, Animal.Cat, Animal.Dog };
+	}
+}
+
+public class SimpleEnum {
+	
+	public String simpleSwitch(Animal animal) {
+		switch (theAnimal().ordinal()) {
+		case decaf.enums.Animal.CowAnimal.ORDINAL:
+		case decaf.enums.Animal.CatAnimal.ORDINAL:
+		case decaf.enums.Animal.DogAnimal.ORDINAL:
+			return "moo or meeow or wauwau";
+		}
+
+		switch (animal.ordinal()) {
+		case decaf.enums.Animal.CowAnimal.ORDINAL:
+		case decaf.enums.Animal.CatAnimal.ORDINAL:
+			return "moo or meeow";
+		case decaf.enums.Animal.DogAnimal.ORDINAL:
+			return "wauwau";
+		default:
+			throw new IllegalArgumentException();
+		}
+	}
+
+	private Animal theAnimal() {
+		return Animal.Dog;
+	}
+}

@@ -1,0 +1,10 @@
+<h3>$circuit.name()</h3>
+<p>$circuit.description()</p>
+<h4>Laps</h4>
+<p>
+<ol>
+#foreach($lap in $laps)
+<li><a href="${circuit.internalName()}_${lap.name()}.html">$lap.name()</a></li>
+#end
+</ol>
+</p>

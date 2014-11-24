@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="699" MadCap:lastWidth="462">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Backup" />Backup</h1>
+        <p>db4o supplies hot backup functionality to backup single-user databases and client-server databases while they are running.</p>
+        <MadCap:snippetBlock src="../CodeExamples/backup/BackupExample-Store-a-backup-while-using-the-database.all.flsnp" />
+        <p>Maybe you want to use a other storage system for the backup than the main database. You can specify the storage system for the backup directly:</p>
+        <MadCap:snippetBlock src="../CodeExamples/backup/BackupExample-Store-a-backup-with-storage.all.flsnp" />
+        <p>The methods can be called while an object container is open and they will execute with low priority in a dedicated thread, with as little impact on processing performance as possible.
+        All concurrent changes to the database will be applied to the backup as well. This process will usually take significantly longer than a plain file copy.</p>
+        <p>To perform a faster backup that blocks all concurrent database activity, use <b>backupSync</b> instead.</p>
+    </body>
+</html>

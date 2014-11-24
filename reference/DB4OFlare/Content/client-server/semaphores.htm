@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1249" MadCap:lastWidth="497">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Semaphores" />Semaphores</h1>
+        <p>db4o semaphores are named flags that can only be owned by one object container at one time. They are supplied to be used as locks for exclusive access to code blocks in applications and to signal states from one client to the server and to all other clients.</p>
+        <p>The naming of semaphores is up to the application. Any string can be used.</p>
+        <p>Semaphores are freed automatically when a client disconnects correctly or when a clients presence is no longer detected by the server, that constantly monitors all client connections.</p>
+        <MadCap:snippetBlock src="../CodeExamples/semaphores/SemaphoreExamples-Grab-a-semaphore.all.flsnp" />
+        <h2>Building Block</h2>
+        <p>Semaphores are a low level building block. Usually they are not used directly. Instead you can build the abstractions you need with semaphores. For example you can build object-locking, critical sections etc with semaphores. </p>
+        <p>&#160;</p>
+    </body>
+</html>

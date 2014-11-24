@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="7" MadCap:lastHeight="294" MadCap:lastWidth="585">
+    <head>
+    </head>
+    <body>
+        <h1>Including Db4oTool In The Build</h1>
+        <p>The easiest way to use Db4oTool is to include it directly in the build process. This will enable you to get a processed assembly immediately after a successful build. </p>
+        <p>Use the following steps to enable Db4oTool in Visual Studio project:</p>
+        <ul>
+            <li>Make sure that Db4oTool.exe together with the other libraries from the bin folder in the distribution are accessible to your project.</li>
+            <li>Open Project Properties page and select "Build Events" tab.</li>
+            <li>In the "Post-build event command line:" enter the required Db4oTool command:</li>
+            <ul>
+                <li><code>[path_to_Db4oTool_folder]/Db4oTools.exe [options] $(TargetPath)</code> if Db4oTool is included in your project's references, <code>[path_to_Db4oTool_folder]</code> should be skipped. </li>
+            </ul>
+            <li>In the "Run the post-build event:" select "On successful build"</li>
+            <li>Run the build. The resulting assembly will contain all the modifications made by Db4oTool.</li>
+        </ul>
+        <p>For more Db4oTool options please refer to <a href="db4otool_usage.htm">Db4oTool Usage</a>.</p>
+    </body>
+</html>

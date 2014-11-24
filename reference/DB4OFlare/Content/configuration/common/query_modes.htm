@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="549" MadCap:lastWidth="553">
+  <head></head>
+  <body>
+    <h1>Query Modes</h1>
+    <p>What is the best way to process queries? How to get
+the optimum performance for your application needs?</p>
+    <p>Situations, when query result is bigger than the memory
+available or when query time is longer than the whole functional operation.</p>
+    <p>Luckily db4o takes most of the trouble for itself.
+There are three query modes allowing to fine tune the balance between speed, memory
+consumption and availability of the results:</p>
+    <ul>
+      <li>
+        <a href="query_modes/immediate_queries.htm">Immediate</a>: The default mode. The result is determined immediately and only the objects are lazy loaded.</li>
+      <li>
+        <a href="query_modes/lazy_queries.htm">Lazy</a>: The query is evaluated while iterating to the result.</li>
+      <li>
+        <a href="query_modes/snapshot_queries.htm">Snapshot</a>: Runs the index-processing and creates a snapshot of the result. Further processing is done while iterating over the result.</li>
+    </ul>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Change-the-query-mode.all.flsnp" />
+    <p> </p>
+  </body>
+</html>

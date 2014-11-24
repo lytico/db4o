@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="5" MadCap:lastHeight="744" MadCap:lastWidth="599" MadCap:conditions="Primary..NET">
+    <head>
+    </head>
+    <body>
+        <h1>ASP.NET Security</h1>
+        <p>It is characteristic to web-applications that there are some security permissions involved, which can in fact forbid db4o functionality in your ASP.NET application. So, before developing/deploying you should make sure that the required permissions would be granted to your application at the hosting server:</p>
+        <OL>
+            <LI>ASP.NET user should have read/write permissions to the directory containing database file. Obviously this is necessary to work with the database.</LI>
+            <LI>
+                <p>Trust Level of your site should be set to "Full".</p>
+            </LI>
+            <LI>
+                <p>All the necessary permissions should be granted to db4o assembly. The easiest way to ensure this is to add full trust to db4o by installing it in GAC.</p>
+            </LI>
+            <p>If full trust is not a suitable solution for, you can check the minimum security permissions that db4o-assembly needs to operate using permcalc.exe tool from your Visual Studio installation. </p>
+            <p><code>PermCalc.exe -Sandbox Db4objects.Db4o.dll</code>
+            </p>
+            <MadCap:snippetBlock src="../../Resources/Snippets/ASP.NET/sandbox.PermCalc.xml/sandbox.PermCalc.xml.flsnp">
+            </MadCap:snippetBlock>
+            <p>Consult with your web-server administrator to grant these permissions. <a href="../sandbox.permcalc.xml">permcalc.xml</a></p>
+        </OL>
+    </body>
+</html>

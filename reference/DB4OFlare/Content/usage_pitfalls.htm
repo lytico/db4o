@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="5" MadCap:lastHeight="472" MadCap:lastWidth="480">
+  <head />
+  <body>
+    <h1>Usage Pitfalls</h1>
+    <p>The db4o team tries hard to make the db4o as easy to use as possible. However there are still some pitfalls.</p>
+    <p>When objects are only partially loaded and you run into null pointer exceptions, then you ran into not activated objects. This is a common issue. <MadCap:xref href="usage_pitfalls/activation_depth.htm" target="" title="" alt="">See "The Activation Pitfall"</MadCap:xref></p>
+    <p>When updates are not stored then you have issues with the update-depth.<MadCap:xref href="usage_pitfalls/update_depth.htm" target="" title="" alt=""> See "Update Depth Pitfall"</MadCap:xref></p>
+    <p>db4o tries hard to store every object without any mapping.
+		However in practice the mapping is not perfect.
+			<span MadCap:conditions="Primary.Java">For UUID you should add a configuration to support them propertly. <MadCap:xref href="advanced_topics/type_handling/uuid_support.htm" target="" title="" alt="">See "UUID Support"</MadCap:xref>. For big math types you need some additional configuration <MadCap:xref href="usage_pitfalls/storing_bigdecimal.htm" target="" title="" alt="">See "Storing BigDecimal And BigInteger"</MadCap:xref>. Also be careful with collections and avoid SQL-Types. <MadCap:xref href="usage_pitfalls/special_type_handling.htm" target="" title="" alt="">See "Special Type Handling"</MadCap:xref></span><span MadCap:conditions="Primary..NET">.For example remoting objects shouldn't be stored in db4o. <MadCap:xref href="usage_pitfalls/storing_marshalbyref_objects.htm" target="" title="" alt="">See "Storing MarshalByRef Objects"</MadCap:xref></span></p>
+    <p MadCap:conditions="Primary..NET">db4o includes the <a href="platform_specific_issues/class_name_format_in_.net.htm">assembly-name in the type names</a>. This also means that you need to be careful when accessing the same database from different applications. <MadCap:xref href="usage_pitfalls/accessing_persistent_classes_from_different_.net_applications.htm" target="" title="" alt="">See "Accessing Persistent Classes From Different .NET Applications"</MadCap:xref></p>
+    <p MadCap:conditions="Primary.Java">In more complex Java environments you may run into class loading issues. <MadCap:xref href="usage_pitfalls/classloader_and_generic_classes.htm" target="" title="" alt="">See "Classloader And Generic Classes"</MadCap:xref></p>
+    <p> There are a few dangerous practices which you really should avoid. <MadCap:xref href="usage_pitfalls/dangerous_practices.htm" target="" title="" alt="">See "Dangerous Practices"</MadCap:xref></p>
+    <p>db4o has database size limit, which is by default 2 GByte. See how you can increase it. <MadCap:xref href="usage_pitfalls/working_with_large_amounts_of_data.htm" target="" title="" alt="">See "Working With Large Amounts Of Data"</MadCap:xref></p>
+  </body>
+</html>

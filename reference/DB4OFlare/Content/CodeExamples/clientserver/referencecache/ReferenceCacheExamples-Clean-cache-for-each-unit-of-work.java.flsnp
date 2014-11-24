@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ObjectContainer container = client.ext().openSession();
+<span style="color:Blue;">try</span>{
+    <span style="color:Green;">// do work</span>
+}<span style="color:Blue;">finally</span> {
+    container.close();
+}
+<span style="color:Green;">// Start with a fresh cache:</span>
+container = client.ext().openSession();
+<span style="color:Blue;">try</span>{
+    <span style="color:Green;">// do work</span>
+}<span style="color:Blue;">finally</span> {
+    container.close();
+}</pre>
+		<div class="codesnippet-meta">
+			ReferenceCacheExamples.java: Clean cache for each unit of work
+			<div class="codedownload">
+				<a href="Example-clientserver-referencecache-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

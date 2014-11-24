@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">internal</span> <span style="color:Blue;">class</span> LoggerReflector : IReflector
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> IReflector readReflector;
+
+    <span style="color:Blue;">public</span> LoggerReflector()
+    {
+        <span style="color:Blue;">this</span>.readReflector = <span style="color:Blue;">new</span> NetReflector();
+    }
+
+    <span style="color:Blue;">public</span> LoggerReflector(IReflector readReflector)
+    {
+        <span style="color:Blue;">this</span>.readReflector = readReflector;
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Configuration(IReflectorConfiguration reflectorConfiguration)
+    {
+        readReflector.Configuration(reflectorConfiguration);
+    }
+
+    <span style="color:Blue;">public</span> IReflectArray Array()
+    {
+        <span style="color:Blue;">return</span> readReflector.Array();
+    }
+
+    <span style="color:Blue;">public</span> IReflectClass ForClass(Type type)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Reflector.forClass({0})&quot;</span>, type);
+        <span style="color:Blue;">return</span> readReflector.ForClass(type);
+    }
+
+    <span style="color:Blue;">public</span> IReflectClass ForName(<span style="color:Blue;">string</span> className)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Reflector.forName({0})&quot;</span>, className);
+        <span style="color:Blue;">return</span> readReflector.ForName(className);
+    }
+
+    <span style="color:Blue;">public</span> IReflectClass ForObject(<span style="color:Blue;">object</span> o)
+    {
+        Console.WriteLine(<span style="color:#A31515;">&quot;Reflector.forObject(&quot;</span> + o + <span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> readReflector.ForObject(o);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">bool</span> IsCollection(IReflectClass reflectClass)
+    {
+        <span style="color:Blue;">return</span> readReflector.IsCollection(reflectClass);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> SetParent(IReflector reflector)
+    {
+        readReflector.SetParent(reflector);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">object</span> DeepClone(<span style="color:Blue;">object</span> o)
+    {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> LoggerReflector((IReflector) readReflector.DeepClone(o));
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			ReflectorExamples.cs: Logging reflector
+			<div class="codedownload">
+				<a href="Example-Code-reflection-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

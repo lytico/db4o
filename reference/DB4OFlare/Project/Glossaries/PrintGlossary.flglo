@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultGlossary>
+  <GlossaryEntry>
+    <Terms>
+      <Term>OODBMS</Term>
+      <Term>ODBMS</Term>
+    </Terms>
+    <Definition
+      Link="">Object Oriented Database Management System</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>OSGi</Term>
+      <Term>OSGI</Term>
+    </Terms>
+    <Definition
+      Link="">OSGi framework, a module system and service platform</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>C/S</Term>
+    </Terms>
+    <Definition
+      Link="">Client-Server</Definition>
+  </GlossaryEntry>
+  <GlossaryEntry>
+    <Terms>
+      <Term>QBE</Term>
+      <Term>QbE</Term>
+    </Terms>
+    <Definition
+      Link="">Query By Example</Definition>
+  </GlossaryEntry>
+</CatapultGlossary>

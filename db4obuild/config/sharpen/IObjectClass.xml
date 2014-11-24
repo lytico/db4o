@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+
+
+
+  <type name="Db4objects.Db4o.Config.IObjectClass">
+	<member name = "CallConstructor(bool)">
+	    <doc>
+		<summary>
+		advises db4o to try instantiating objects of this class with/without
+		calling constructors.
+		</summary>
+		<remarks>
+		advises db4o to try instantiating objects of this class with/without
+		calling constructors.
+		<br /><br />
+		Not all .NET-environments support this feature. db4o will
+		attempt, to follow the setting as good as the enviroment supports.
+		<br/><br/>
+		This setting may also be set globally for all classes in
+		<see cref="Db4objects.Db4o.Config.IConfiguration.CallConstructors">Db4objects.Db4o.Config.IConfiguration.CallConstructors
+			</see>
+		.<br /><br />
+		In client-server environment this setting should be used on both
+		client and server. <br /><br />
+		This setting can be applied to an open object container. <br /><br />
+		</remarks>
+		<param name="flag">
+		- specify true, to request calling constructors, specify
+		false to request <b>not</b> calling constructors.
+		</param>
+		<seealso cref="Db4objects.Db4o.Config.IConfiguration.CallConstructors">Db4objects.Db4o.Config.IConfiguration.CallConstructors
+			</seealso>
+
+	    </doc>
+	</member>
+	<member name="CascadeOnDelete(bool)">
+	   <doc>
+		<summary>sets cascaded delete behaviour.</summary>
+		<remarks>
+		sets cascaded delete behaviour.
+		<br /><br />
+		Setting CascadeOnDelete to true will result in the deletion of
+		all member objects of instances of this class, if they are
+		passed to
+		<see cref="Db4objects.Db4o.IObjectContainer.Delete">Db4objects.Db4o.IObjectContainer.Delete
+			</see>
+		.
+		<br /><br />
+		<b>Caution !</b><br />
+		This setting will also trigger deletion of old member objects, on
+		calls to
+		<see cref="Db4objects.Db4o.IObjectContainer.Store">Db4objects.Db4o.IObjectContainer.Store
+			</see>
+		.<br /><br />
+		An example of the behaviour:<br />
+		<code>
+		ObjectContainer con;<br />
+		Bar bar1 = new Bar();<br />
+		Bar bar2 = new Bar();<br />
+		foo.bar = bar1;<br />
+		con.Store(foo);  // bar1 is stored as a member of foo<br />
+		foo.bar = bar2;<br />
+		con.Store(foo);  // bar2 is stored as a member of foo
+		</code><br />The last statement will <b>also</b> delete bar1 from the
+		ObjectContainer, no matter how many other stored objects hold references
+		to bar1.
+		<br /><br />
+		The default setting is <b>false</b>.<br /><br />
+		In client-server environment this setting should be used on both
+		client and server. <br /><br />
+		This setting can be applied to an open object container. <br /><br />
+		</remarks>
+		<param name="flag">whether deletes are to be cascaded to member objects.</param>
+		<seealso cref="Db4objects.Db4o.Config.IObjectField.CascadeOnDelete">Db4objects.Db4o.Config.IObjectField.CascadeOnDelete
+			</seealso>
+		<seealso cref="Db4objects.Db4o.IObjectContainer.Delete">Db4objects.Db4o.IObjectContainer.Delete
+			</seealso>
+		<seealso cref="Db4objects.Db4o.Ext.IObjectCallbacks">Using callbacks</seealso>
+
+	   </doc>
+	</member>
+	<member name="PersistStaticFieldValues()">
+	   <doc>
+		<summary>turns on storing static field values for this class.</summary>
+		<remarks>
+		turns on storing static field values for this class.
+		<br /><br />By default, static field values of classes are not stored
+		to the database file. By turning the setting on for a specific class
+		with this switch, all <b>non-simple-typed</b> static field values of this
+		class are stored the first time an object of the class is stored, and
+		restored, every time a database file is opened afterwards, <b>after
+		class meta information is loaded for this class</b> (which can happen
+		by querying for a class or by loading an instance of a class).<br /><br />
+		To update a static field value, once it is stored, you have to the following
+		in this order:<br />
+		(1) open the database file you are working agains<br />
+		(2) make sure the class metadata is loaded<br />
+		<code>objectContainer.Query().Constrain(typeof(Foo)); </code><br />
+		(3) change the static member<br />
+		(4) store the static member explicitely<br />
+		<code>objectContainer.Store(Foo.staticMember); </code>
+		<br /><br />The setting will be ignored for simple types.
+		<br /><br />Use this setting for constant static object members.
+		<br /><br />This option will slow down the process of opening database
+		files and the stored objects will occupy space in the database file.
+		<br /><br />In client-server environment this setting should be used on both
+		client and server. <br /><br />
+		This setting can NOT be applied to an open object container. <br /><br />
+		</remarks>
+
+	   </doc>
+	</member>
+  </type>
+

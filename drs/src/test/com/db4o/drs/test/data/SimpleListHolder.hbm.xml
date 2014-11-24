@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="property" default-lazy="false" default-cascade="save-update">
+	<class name="com.db4o.drs.test.data.SimpleListHolder">
+		<id column="simple_list_holder_id" type="long">
+			<generator class="native"/>
+		</id>
+
+		<list name="list" table="SimpleItem">
+			<key column="ListHolderId"/>
+			<list-index column="sortOrder"/>
+			<one-to-many class="com.db4o.drs.test.data.SimpleItem"/>
+		</list>
+	</class>
+</hibernate-mapping>

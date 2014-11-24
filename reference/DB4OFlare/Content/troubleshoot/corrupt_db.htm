@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1446" MadCap:lastWidth="735">
+    <head>
+    </head>
+    <body>
+        <h1>Deal With a Corrupt Database</h1>
+        <p>In general you should do regular <a href="../advanced_topics/backup.htm">backups</a> of your database. db4o tries to do its best to never corrupt the database. However due to bugs or external reasons corruption can occur. Check also your configuration to not use <a href="../basics/acid_and_transactions/dangerous_practises.htm">any risky settings</a>.</p>
+        <p>If you have a corrupted database you may think about reporting it: <MadCap:xref href="../community/report_bugs.htm" target="" title="" alt="">See "Report Bugs"</MadCap:xref></p>
+        <p>The fist step is to run the consistency check on your database. If the database is really corrupt you can try  to restore at least some your data.</p>
+        <MadCap:snippetBlock src="../Snippets/ConsistencyCheck.flsnp" />
+        <p>When the tool reports inconsistencies you've defiantly have a corrupted database. Then you should fall back to the latest backup or try to recover parts of the database.</p>
+        <p>In case the tool doesn't report any issues you maybe still have a corrupted object in your database. In that case you usually can read all intact objects and copy them to a new database.</p>
+        <h2>Try to Restore Intact Objects</h2>
+        <p>When you cannot read some particular object then you can try to read and copy  the intact objects over to a new database. You can get the id of all objects for a certain type. With these ids you then can load each single object. When loading an object fails then that object is lost. However you still can store the intact objects to another storage.</p>
+        <MadCap:snippetBlock src="../CodeExamples/troubleshooting/restore/TryToReadSingleObjects-Try-to-read-the-intact-objects.all.flsnp" />
+    </body>
+</html>

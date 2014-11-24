@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">StoredClass metaInfo = container.ext().storedClass(IndexedClass.<span style="color:Blue;">class</span>);
+<span style="color:Green;">// list a fields and check if they have a index</span>
+<span style="color:Blue;">for</span> (StoredField field : metaInfo.getStoredFields()) {
+    <span style="color:Blue;">if</span>(field.hasIndex()){
+        System.out.println(<span style="color:#A31515;">&quot;The field '&quot;</span>+field.getName()+<span style="color:#A31515;">&quot;' is indexed&quot;</span>);
+    } <span style="color:Blue;">else</span>{
+        System.out.println(<span style="color:#A31515;">&quot;The field '&quot;</span>+field.getName()+<span style="color:#A31515;">&quot;' isn't indexed&quot;</span>);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			CheckForAndIndex.java: Check for a index
+			<div class="codedownload">
+				<a href="Example-indexing-check-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

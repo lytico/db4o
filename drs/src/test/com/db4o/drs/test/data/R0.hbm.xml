@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="com.db4o.drs.test.data.R0" table="R0">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+		<discriminator/>
+		<property name="name"/>
+		<many-to-one name="r0"/>
+		<many-to-one name="r1"/>
+		<subclass name="com.db4o.drs.test.data.R1">
+			<many-to-one name="circle1"/>
+			<many-to-one name="r2"/>
+			<subclass name="com.db4o.drs.test.data.R2">
+				<many-to-one name="circle2"/>
+				<many-to-one name="r3"/>
+				<subclass name="com.db4o.drs.test.data.R3">
+					<many-to-one name="circle3"/>
+					<many-to-one name="r4"/>
+					<subclass name="com.db4o.drs.test.data.R4">
+						<many-to-one name="circle4"/>
+					</subclass>
+				</subclass>
+			</subclass>
+		</subclass>
+	</class>
+</hibernate-mapping>

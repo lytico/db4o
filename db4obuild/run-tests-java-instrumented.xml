@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<project name="JDK5 instrumented tests" basedir="." default="all">
+	
+	<import file="common.xml" />
+
+	<path id="task.classpath">
+		<pathelement path="${file.bloat.jar}" />
+		<pathelement path="${dir.dist.classes.jdk1.5}" />
+		<pathelement path="${dir.dist.classes.jdk1.5.instrumentation}" />
+		<pathelement path="${dir.dist.classes.jdk1.5.taj}" />
+	    <pathelement path="${dir.dist.classes.jdk1.5.db4otools}" />
+	</path>
+
+	<path id="instrumentation.classpath">
+		<pathelement path="${dir.dist.classes.jdk1.5}" />
+		<pathelement path="${dir.dist.classes.jdk1.5.cs}" />
+		<pathelement path="${dir.dist.classes.jdk1.5.cs.optional}" />
+		<pathelement path="${dir.dist.classes.jdk1.5.optional}" />
+		<pathelement path="${dir.dist.classes.db4ounit.jdk1.5}" />
+		<pathelement path="${file.easymock.jar}" />
+	</path>
+
+	
+	<property name="source.dir" value="${dir.dist.classes.test.jdk1.5}" />
+
+	<property name="target.dir" value="${dir.dist.classes}/test1.5.instrumented" />
+	
+	<taskdef name="db4o-enhance" 
+		classname="com.db4o.enhance.Db4oEnhancerAntTask" 
+		classpathref="task.classpath" />
+
+
+	<target name="instrument">
+		<mkdir dir="${target.dir}"/>
+		<delete dir="${target.dir}">
+			<include name="**/*.class" />
+		</delete>
+		<db4o-enhance classtargetdir="${target.dir}" ta="true" nq="false" collections="true">
+			<classpath refid="instrumentation.classpath" />
+			<sources dir="${source.dir}">
+				<include name="**/*.class" />
+				<exclude name="**/ta/**" />
+				<exclude name="**/tp/**" />
+				<exclude name="**/activation/**" />
+				<exclude name="**/collections/transparent/**" />
+				<exclude name="**/typehandler/**" /> <!-- why? -->
+				<exclude name="**/migration/**" />
+				<exclude name="**/StandaloneNativeReflectorTestCase*.class" />
+			</sources>
+		</db4o-enhance>
+	</target>
+	
+	<target name="run-tests">
+		<java 
+			classname="com.db4o.db4ounit.jre5.AllTestsDb4oUnitJdk5" 
+			fork="true" 
+			failonerror="true" 
+			jvm="${file.jvm.jdk1.5}"
+			timeout="10000000"
+			jvmargs="${java.vmargs}">
+			
+			<jvmarg value="-Xmx512m"/>
+			<sysproperty key="dir.workspace" value="${dir.base}" />
+			<classpath>
+				<path  refid="instrumentation.classpath" />
+				<pathelement path="${target.dir}" />
+				<pathelement path="${source.dir}" />
+			</classpath>
+		</java>
+	</target>
+
+	<target name="all" depends="instrument,run-tests" />
+	
+</project>

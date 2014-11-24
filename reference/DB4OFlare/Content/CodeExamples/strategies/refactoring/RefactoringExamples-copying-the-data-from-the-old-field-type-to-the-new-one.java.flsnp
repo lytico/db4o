@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ObjectContainer container = Db4oEmbedded.openFile( <span style="color:#A31515;">&quot;database.db4o&quot;</span>);
+<span style="color:Blue;">try</span>{
+    <span style="color:Green;">// first get all objects which should be updated</span>
+    ObjectSet&lt;Person&gt; persons = container.query(Person.<span style="color:Blue;">class</span>);
+    <span style="color:Blue;">for</span> (Person person : persons) {
+        <span style="color:Green;">// get the database-metadata about this object-type</span>
+        StoredClass dbClass = container.ext().storedClass(person);
+        <span style="color:Green;">// get the old field which was an int-type</span>
+        StoredField oldField = dbClass.storedField(<span style="color:#A31515;">&quot;id&quot;</span>, <span style="color:Blue;">int</span>.<span style="color:Blue;">class</span>);
+        <span style="color:Blue;">if</span>(<span style="color:Blue;">null</span>!=oldField){
+            <span style="color:Green;">// Access the old data and copy it to the new field!</span>
+            Object oldValue = oldField.get(person);
+            <span style="color:Blue;">if</span>(<span style="color:Blue;">null</span>!=oldValue){
+                person.id = <span style="color:Blue;">new</span> Identity((Integer)oldValue);
+                container.store(person);
+            }                   
+        }
+    }
+} <span style="color:Blue;">finally</span> {
+    container.close();
+}</pre>
+		<div class="codesnippet-meta">
+			RefactoringExamples.java: copying the data from the old field type to the new one
+			<div class="codedownload">
+				<a href="Example-strategies-refactoring-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

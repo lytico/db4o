@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1761" MadCap:lastWidth="623">
+    <head />
+    <body>
+        <h1>
+            <MadCap:keyword term="In Memory Database;Storage:Memory" />Memory Storage</h1>
+        <p>The MemoryStorage allows you to create
+and use a db4o database fully in RAM. This strategy eliminates long disk access
+times and makes db4o much faster.</p>
+        <p>A great way to use such a in memory database is for testing. You can create a new in memory database, use it for one or multiple test and discard it.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/configuration/io/IOConfigurationExamples-Using-memory-storage.all.flsnp" />
+        <p>MemoryStorage can be
+created without any additional parameters passed to the constructor. In this
+case default configuration values will be used. </p>
+        <h2>PagingMemoryStorage</h2>
+        <p>The regular MemoryStorage implementation keeps all the content in a single byte-array. However this brings some issues. When the database outgrows the array-size, a new, larger array is created and the content is copied over. This can be quite slow. Also can cause this a out of memory exception, because during the copying these two large arrays are present. Also, on some runtimes large objects are treated different by the garbage-collector and are less often collected. </p>
+        <p>To avoid all this issues, the PagingMemoryStorage uses multiple, small arrays to keep the database in memory. When the database outgrows the storage, only  smaller arrays needs to be allocated. The old content stays in the existing arrays. No coping is required. </p>
+        <p>However managing these arrays cost some small overhead. But for lots of cases, the PagingMemoryStorage is the better choice.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/configuration/io/IOConfigurationExamples-Using-paging-memory-storage.all.flsnp" />
+        <h2>Growth Strategy for MemoryStorage</h2>
+        <p>Growth strategy defines
+how the database storage (reserved disk or memory space) will grow when the
+current space is not enough anymore.</p>
+        <p>DoublingGrowthStrategy - default
+setting. When the size of the database is not enough, the reserved size will be
+doubled.</p>
+        <p>ConstantGrowthStrategy -
+a configured amount of bytes will be added to the existing size when necessary.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/configuration/io/IOConfigurationExamples-Using-memory-storage-with-constant-grow-strategy.all.flsnp" />
+        <h2>MemoryBin</h2>
+        <p>Each memory storage can contain a collection of memory bins, which are
+actually just names memory storages. When you use the same storage instance and the same 'file' name db4o will open the same in-memory database. This is especially useful for testing. You can create a in-memory storage and then open and close a object container without loosing the test-data for the current test-suite.</p>
+        <p>More Reading:<ul><li><p><a href="memory_storage/storing_memorybin_data.htm">Storing MemoryBin Data</a></p></li></ul></p>
+    </body>
+</html>

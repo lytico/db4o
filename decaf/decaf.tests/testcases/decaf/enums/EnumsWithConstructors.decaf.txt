@@ -1,0 +1,56 @@
+package decaf.enums;
+
+class Hero extends com.db4o.foundation.Enum4 {
+	public static class SuperManHero extends Hero {
+		public static final int ORDINAL = 0;
+
+		private SuperManHero(int param_0) {
+			super("SuperMan", SuperManHero.ORDINAL, param_0);
+		}
+	}
+
+	public static class BatmanHero extends Hero {
+		public static final int ORDINAL = 1;
+
+		private BatmanHero(int param_0) {
+			super("Batman", BatmanHero.ORDINAL, param_0);
+		}
+	}
+
+	public static class BatGirlHero extends Hero {
+		public static final int ORDINAL = 2;
+
+		private BatGirlHero(int param_0) {
+			super("BatGirl", BatGirlHero.ORDINAL, param_0);
+		}
+	}
+
+	public static class BobParrHero extends Hero {
+		public static final int ORDINAL = 3;
+
+		private BobParrHero(int param_0) {
+			super("BobParr", BobParrHero.ORDINAL, param_0);
+		}
+	}
+
+	public static final Hero SuperMan = new SuperManHero(2006);
+	public static final Hero Batman = new BatmanHero(1939);
+	public static final Hero BatGirl = new BatGirlHero(1961);
+	public static final Hero BobParr = new BobParrHero(2004);
+
+	private Hero(String name, int ordinal, int year) {
+		super(name, ordinal);
+		_year = year;
+	}
+
+	public static Hero[] values() {
+		return new Hero[] { Hero.SuperMan, Hero.Batman, Hero.BatGirl,
+				Hero.BobParr };
+	}
+
+	public int year() {
+		return _year;
+	}
+
+	private final int _year;
+}

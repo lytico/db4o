@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="429" MadCap:lastWidth="557">
+  <head></head>
+  <body>
+    <h1>
+      <MadCap:keyword term="Defragment:Configuration" />Defragmentation Configuration</h1>
+    <p>You can configure the defragmentation processes for your needs. This topic discusses the available configuration options.</p>
+    <p>First you need to configure which database file to defragment. <MadCap:xref href="configuration/database_files.htm" target="" title="" alt="">See "Original Database And Backup"</MadCap:xref></p>
+    <p>It's also recommended to use the db4o database configuration for the defragmentation process. This ensures that all low level settings which influence the database-file layout are used. <MadCap:xref href="configuration/database_configuration.htm" target="" title="" alt="">See "Database Configuration"</MadCap:xref></p>
+    <p>When you defragment large database you should configure a commit-frequency to speed up the defragmentation process. <MadCap:xref href="configuration/commit_frequency.htm" target="" title="" alt="">See "Commit Frequency"</MadCap:xref></p>
+    <p>If you have refractored your classes you might want to remove old meta data. This is possible with the class filters. <MadCap:xref href="configuration/class_filter.htm" target="" title="" alt="">See "Class Filter"</MadCap:xref> </p>
+    <p>By default the backup file isn't deleted after a successful defragmentation. You can change that. <MadCap:xref href="configuration/delete_backup.htm" target="" title="" alt="">See "Delete The Backup"</MadCap:xref></p>
+    <p>You can force a database update before defragmenting the database-file. <MadCap:xref href="configuration/upgrade_db.htm" target="" title="" alt="">See "Upgrade Database File"</MadCap:xref></p>
+    <p>You can disable the read-only more the for backup file. <MadCap:xref href="configuration/disable_read_only.htm" target="" title="" alt="">See "Disable Read Only Mode"</MadCap:xref></p>
+    <p>If you want to have different storage implementation for the old database file and the new defragmented database file you can configure a separate storage. <MadCap:xref href="configuration/storage_backupdb.htm" target="" title="" alt="">See "Configure Storage for Backup File"</MadCap:xref></p>
+    <p>You can change the id-mapping implementation for the defragmentation-process. <MadCap:xref href="configuration/id_mapping.htm" target="" title="" alt="">See "Configure IDMapping"</MadCap:xref></p>
+  </body>
+</html>

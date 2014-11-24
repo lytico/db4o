@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ObjectContainer container = Db4oEmbedded.openFile(<span style="color:#A31515;">&quot;databaseFile.db4o&quot;</span>);
+<span style="color:Blue;">try</span> {
+    List&lt;Driver&gt; drivers = container.query(<span style="color:Blue;">new</span> Predicate&lt;Driver&gt;() {
+        <span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> match(Driver d) {
+            <span style="color:Blue;">return</span> d.getName().equals(<span style="color:#A31515;">&quot;Joe&quot;</span>);
+        }
+    });
+    Driver driver = drivers.get(0);
+    System.out.println(<span style="color:#A31515;">&quot;Deleting &quot;</span> +driver.getName());
+    container.delete(driver);
+} <span style="color:Blue;">finally</span> {
+    container.close();
+}</pre>
+		<div class="codesnippet-meta">
+			BasicOperations.java: Delete an object
+			<div class="codedownload">
+				<a href="Example-tutorial-firststeps-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> T InTransaction&lt;T&gt;(TransactionFunction&lt;T&gt; transactionClosure)
+{
+    <span style="color:Blue;">lock</span> (transactionLock)
+    {
+        <span style="color:Blue;">try</span>
+        {
+            <span style="color:Blue;">return</span> transactionClosure(database);
+        }
+        <span style="color:Blue;">catch</span> (Exception)
+        {
+            database.Rollback();
+            <span style="color:Blue;">throw</span>;
+        }
+        <span style="color:Blue;">finally</span>
+        {
+            database.Commit();
+        }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			DatabaseSupport.cs: A transaction method
+			<div class="codedownload">
+				<a href="Example-concurrency-transactions-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

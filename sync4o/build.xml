@@ -1,0 +1,304 @@
+<?html version="1.0" enconding="UTF-8"?>
+
+<!-- $Id: build.xml,v 1.6 2006/05/26 13:38:52 neil_macintosh Exp $
+=======================================================
+Build file for sync4o - the db4o Connector for Funambol
+=======================================================
+-->
+
+<project name="sync4o - the db4o Connector" default="pack" basedir=".">
+
+    <!-- =============================================== -->
+    <!-- Environment Variable                            -->
+    <!-- =============================================== -->
+    <property environment="ENV"/>
+    <property file="build.properties"/>
+
+    <!-- =============================================== -->
+    <!-- Definitions                                     -->
+    <!-- =============================================== -->
+    <property name="dir.lib"             value="lib"/>
+    <property name="dir.src"             value="src"/>
+    <property name="dir.src.sql"         value="sql"/>
+    <property name="dir.src.java"        value="src"/>
+	<property name="dir.src.tests"		 value="test/src"/>
+	<property name="dir.test.root"		 value="test"/>
+	<property name="dir.src.config"		 value="test/config"/>	
+    <property name="dir.output"          value="dist"/>
+	<property name="dir.cookbook.output" value="dist/cookbook"/>
+    <property name="dir.output.javadoc"  value="javadoc"    />
+    <property name="dir.output.classes"  value="dist/classes"/>
+    <property name="module.version"      value="${sync4o.release.major}.${sync4o.release.minor}.${sync4o.build.number}"/>
+    <property name="client.module.name"  value="sync4o-client-${module.version}"/>
+	<property name="module.name"         value="sync4o-${module.version}"/>
+	<property name="module.pk.prefix"    value="sync4o"/>
+
+    <!-- =============================================== -->
+    <!-- USAGE                                           -->
+    <!-- =============================================== -->
+        <target name="usage" depends="init">
+
+        <echo message=""/>
+        <echo message="${project-name-text} build file"/>
+        <echo message="------------------------------------------------------"/>
+        <echo message=""/>
+        <echo message=" Available targets are :"/>
+        <echo message=""/>
+        <echo message=" usage       --> help on usage"/>
+        <echo message=" build       --> builds the project"/>
+        <echo message=" pack        --> generates binary files for distribution"/>
+        <echo message=" clean       --> cleans up the build directory"/>
+        <echo message=" env         --> Displays the current environment"/>
+        <echo message=" test		--> Runs JUnit tests for the project"/>
+        <echo message=""/>
+
+    </target>
+
+    <!-- =============================================== -->
+    <!-- ENV                                             -->
+    <!-- =============================================== -->
+
+    <target name="env">
+         <echoproperties/>
+    </target>
+
+    <!-- =============================================== -->
+    <!-- INIT                                            -->
+    <!-- =============================================== -->
+    <target name="init">
+        <!-- Directory set up -->
+        <mkdir dir="${dir.output.classes}"/>
+    	<mkdir dir="${dir.cookbook.output}"/>
+    </target>
+
+    <!-- =============================================== -->
+    <!-- BUILD                                           -->
+    <!-- =============================================== -->
+    <target name="build" depends="init">
+        <javac debug             = "on"
+               deprecation       = "true"
+               srcdir            = "${dir.src.java}"
+               destdir           = "${dir.output.classes}"
+               includeAntRuntime = "no"
+               source            = "1.4"
+               includes          = "**/*java">
+            <classpath>
+                <fileset dir="lib">
+                  <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- =============================================== -->
+    <!-- TEST                                            -->
+    <!-- =============================================== -->
+	<target name="test" depends="build">
+        <javac debug             = "on"
+               deprecation       = "true"
+               srcdir            = "${dir.src.tests}"
+               destdir           = "${dir.output.classes}"
+               includeAntRuntime = "no"
+               source            = "1.4"
+               includes          = "**/*java">
+            <classpath>
+                <fileset dir="lib">
+                  <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+	</target>
+	
+    <!-- =============================================== -->
+    <!-- PACK                                            -->
+    <!-- =============================================== -->
+    <target name="pack" depends="build, test">
+        <property name="dir.module" value="${dir.output}/${module.name}"/>
+
+        <!--
+            Create the package directory structure for a Funambol module
+        -->
+        <mkdir dir="${dir.module}/config"/>
+        <mkdir dir="${dir.module}/sql"/>
+    	<mkdir dir="${dir.module}/sql/hypersonic"/>
+    	<mkdir dir="${dir.module}/sql/mysql"/>
+    	<mkdir dir="${dir.module}/sql/postgresql"/>    	
+    	<mkdir dir="${dir.module}/sql/sqlserver"/>
+        <mkdir dir="${dir.module}/lib"/>
+
+        <copy todir = "${dir.module}/sql/hypersonic" preservelastmodified="true">
+            <fileset dir="${dir.src.sql}/"/>
+        </copy>
+
+        <copy todir = "${dir.module}/sql/mysql" preservelastmodified="true">
+            <fileset dir="${dir.src.sql}/"/>
+        </copy>
+
+	    <copy todir = "${dir.module}/sql/postgresql" preservelastmodified="true">
+	        <fileset dir="${dir.src.sql}/"/>
+	    </copy>
+    	
+	    <copy todir = "${dir.module}/sql/sqlserver" preservelastmodified="true">
+	        <fileset dir="${dir.src.sql}/"/>
+	    </copy>
+    	
+        <copy todir = "${dir.module}/lib" preservelastmodified="true">
+            <fileset dir="${dir.lib}">
+            	<include name="**/*jar"/>
+            	<exclude name="**/sync4j-clientframework*jar"/>
+            	<exclude name="**/sc-api-*jar"/>
+            	<exclude name="**/funambol*jar"/>
+           	</fileset>
+        </copy>
+    	
+        <!--
+            The classes jar
+        -->
+        <jar jarfile  = "${dir.module}/lib/${module.name}.jar"
+             compress = "true"
+             update   = "true"
+        >
+            <fileset dir="${dir.output.classes}">
+                <include name="**/*.class" />
+            	<exclude name="**/Db4oClientSyncSource.class"/>
+            	<exclude name="**/TestSync.class"/>
+            	<exclude name="**/DataGenerator.class"/>       
+            	<exclude name="**/Customer.class"/>
+            </fileset>
+        </jar>
+
+        <!--
+            The module jar (contains the module structure)
+        -->
+        <jar jarfile  = "${dir.output}/${module.name}.s4j"
+             compress = "true"
+             update   = "true"
+        >
+            <fileset dir="${dir.module}">
+                <include name="**/*" />
+            </fileset>
+        </jar>
+    	
+    	<!--
+    		The client module jar (just the classes required for the sync4o
+    		client SyncSource.
+    	-->
+    	<jar jarfile  = "${dir.output}/${client.module.name}.jar"
+    	     compress = "true"
+    	     update   = "true"
+    	>
+    		<fileset dir="${dir.output.classes}">
+    			<include name="**/*" />
+    			<exclude name="**/Db4oSyncSource.class" />
+    			<exclude name="**/Db4oSyncSourceConfigPanel*class" />    			
+    			<exclude name="**/SyncClassConfigTree*.class" />
+            	<exclude name="**/TestSync.class"/>
+            	<exclude name="**/DataGenerator.class"/>       
+            	<exclude name="**/Customer.class"/>
+   			</fileset>
+		</jar>    		
+
+    	<!--
+    		Create the jars used in the Cookbook example from the test sources
+    	-->
+    	<jar jarfile= "${dir.cookbook.output}/customer.jar"
+    		compress="true"
+    		update="true"
+    	>
+			<fileset dir="${dir.output.classes}">
+    			<include name="**/*Customer.class"/>
+    		</fileset>
+    	</jar>
+    	
+    	<jar jarfile="${dir.cookbook.output}/cookbook.jar"
+    		compress="true"
+    		update="true"
+    	>
+    		<fileset dir="${dir.output.classes}">
+    			<include name="**/Customer.class"/>
+    			<include name="**/DataGenerator.class"/>
+    		</fileset>
+    	</jar>
+    	
+    	
+    	<jar jarfile="${dir.cookbook.output}/sampleclient.jar"
+    		compress="true"
+    		update="true"
+    	>
+    		<fileset dir="${dir.output.classes}">
+    			<include name="**/TestSync.class"/>
+    		</fileset>
+    	</jar>
+
+    	<!--
+    		Create the client configuration tree used in the Cookbook example
+    	-->
+    	<mkdir dir="${dir.cookbook.output}/config"/>
+        <copy todir = "${dir.cookbook.output}/config" preservelastmodified="true">
+            <fileset dir="${dir.src.config}">
+            	<include name="**/*xml"/>
+            	<include name="**/*properties"/>
+           	</fileset>
+        </copy>
+    	<copy todir = "${dir.cookbook.output}" preservelastmodified="true">
+            <fileset dir="${dir.test.root}">
+            	<include name="**/runclient.cmd"/>
+            	<include name="**/rundbtool.cmd"/>            	
+           	</fileset>
+   		</copy>
+    	<copy todir = "${dir.cookbook.output}" preservelastmodified="true">
+            <fileset dir="${dir.output}">
+            	<include name="**/${client.module.name}.jar"/>
+           	</fileset>
+   		</copy>
+    	<copy todir = "${dir.cookbook.output}" preservelastmodified="true">
+            <fileset dir="${dir.lib}">
+            	<include name="**/commons-codec-1.3.jar"/>
+            	<include name="**/funambol-clientframework.jar"/>
+            	<include name="**/funambol-framework.jar"/>
+            	<include name="**/sc-api-j2se.jar"/>
+            	<include name="**/sync4j-clientframework.jar"/>
+            	<include name="**/db4o-6.1-java1.2.jar"/>
+           	</fileset>
+   		</copy>
+    	
+    	
+        <antcall target="clean-module">
+          <param name="dir.module" value="${dir.module}"/>
+        </antcall>
+
+        <!-- Zip up source files -->
+        <delete file="${dir.output}/${module.name}.zip"/>
+        <zip zipfile="${dir.output}/${module.name}.zip">
+            <zipfileset dir="${basedir}"
+                defaultexcludes="yes"
+                includes="**/*"
+                excludes="dist/**,changeslog.txt,**/cvshistory.txt"
+                prefix="${module.pk.prefix}"/>
+        </zip>
+    	
+    	<!-- Zip up client module and associated external libs -->
+        <delete file="${dir.output}/${client.module.name}.zip"/>
+        <zip zipfile="${dir.output}/${client.module.name}.zip">
+            <zipfileset dir="${basedir}"
+                defaultexcludes="yes"
+                includes="**/${client.module.name}.jar,**/commons-codec-1.3.jar,**/funambol-clientframework.jar,**/funambol-framework.jar,**/sc-api-j2se.jar,**/sync4j-clientframework.jar,**/db4o-6.1-java1.2.jar"
+                prefix="${module.pk.prefix}"/>
+        </zip>
+    </target>
+
+    <!-- =============================================== -->
+    <!-- CLEAN                                           -->
+    <!-- =============================================== -->
+    <target name="clean">
+        <delete dir = "${dir.output}"/>
+    </target>
+
+    <!-- =============================================== -->
+    <!-- CLEAN-MODULE                                    -->
+    <!-- =============================================== -->
+    <target name="clean-module" unless="debug">
+        <echo message="Cleaning ${dir.module}"/>
+        <delete dir = "${dir.module}"/>
+    </target>
+</project>

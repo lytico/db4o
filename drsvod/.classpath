@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/core"/>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry kind="src" path="src/enhancer"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/drs"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/VERSANT"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/db4oj"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/db4ounit"/>
+	<classpathentry kind="lib" path="lib/commons-cli-1.2.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/db4o.cs"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/db4ounit.extensions"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

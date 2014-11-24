@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="209" MadCap:lastWidth="632">
+    <head>
+    </head>
+    <body>
+        <h1>Merging Changes</h1>
+        <p>Merging the changes is the most challenging part when using disconnected objects. Imagine that we have a disconnected object, which contains the changes. We have to store the changes somehow. You cannot simply store the disconnected object, because db4o wouldn't recognize it and store a new object instead of updating the old one. <MadCap:xref href="wrong_approach.htm" target="" title="" alt="">See "Wrong Approach"</MadCap:xref></p>
+        <p>Instead you need to load the existing object and then copy the state from the disconnected object to the loaded object. Basically you traverse the object-graph and copy all changes over.      <![CDATA[ ]]><MadCap:xref href="example_merge_changes.htm" target="" title="" alt="">See "Example Merge Changes"</MadCap:xref></p>
+        <p>db4o has no built-in merge support. However there are external libraries which can help you to merge changes, like <a href="http://automapper.codeplex.com/" MadCap:conditions="Primary..NET">Automapper</a> <![CDATA[ ]]><a href="http://dozer.sourceforge.net/" MadCap:conditions="Primary.Java">Dozer</a>.</p>
+    </body>
+</html>

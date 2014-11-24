@@ -1,0 +1,164 @@
+---++ Bugs:
+
+   * Moved to Bugzilla: http://www.db4odev.com/bugzilla
+
+
+----+++ Cross-platform
+
+   * Open password-protected file; be able to supply custom encryption class **DONE**
+
+   * Some way to show the type heirachy for a class. Example is ClassB : ClassA, the field inspector should show all fields defined by ClassB and ClassA with an additional line to note that ClassB is ClassA. When expanding the branch for ClassA (since it shows up in the inital list), also list instances of ClassB as ClassB (I think this should work).
+
+   * needs to be able to cope with refactored classes:
+      * instances may have multiple fields of the same name
+      * Fixed except need to be able to specify data type in SODA queries
+  
+   * Query untyped variables by specifying the type
+
+   * The toolbar leaks SWT Image resources **POSTPONED**
+   
+   * XSWT.parse disposes all resources in an application in its dispose listener! **POSTPONED**
+   
+   * When a database is reopened after updating classpath, the generic reflector is no longer used, causing instability **FIXED**
+
+
+---++ Remaining Features:
+
+   * Beautify UI; add icons in appropriate places
+      * In tree: Icon for each node type
+   * Implement tree layout algorithm for expanded classes **POSTPONED**
+   * Implement grabbing hand scrolling mode for large queries
+   * Click right side to navigate
+      * (Hyperlink objects if object.hasChildren()?)
+   * If right side is displaying a collection, display in a table
+
+---+++ Data editing:
+
+   * Database needs to encapsulate an IObjectEditorFactory  **DONE**
+   * FieldNodes need an isEditable() method **DONE**
+   * FieldNodes provide getObject() to get object to edit if isEditable() is true **DONE**
+   * Need to prevent tree from changing focus during editing
+      * Create an EditorState object associated with each tab?
+      * All UI elements register themselves as listeners
+      * There is one event with two states: editing(true), editing(false)
+      * Tree does a setEnabled(!editing) when it gets an editing event
+      * Tree does a refresh() when it gets editing(false)
+      * Detail pane dispatches editing events
+      * Detail pane includes UI for committing changes
+   * Need a status bar for displaying status bar messages
+
+   
+---++ Release engineering
+
+   * Nullsoft installer for Windows platforms  (Rodrigo)
+
+
+---++ Postponed Features
+
+   * Figure out what class is selected in tree when File|Query... or query button pressed.  Highlight that class by default in query dialog.
+   
+   * Catch up MockDatabase to the generic reflector impl
+
+   * Customize display of nodes (See Carl's notes below)
+   
+   * After initial release: fix tree/detail to implement IMaster/IDetail; submit changes to JFace
+
+   * Unit testing verify that the iterator is always restored after it is used
+      * template generator
+
+
+---++ User feedback
+
+   * Please show for every class:
+
+      * All members of the class (preferably with an expanding branch for members defined in any base class(es).
+      
+      * The names of the members as well as the defined type of the field
+      
+      * The Value of each field and the type of the stored value (this is importaint)
+      
+      * For fields containing objects, an easy way to double-click or navigate to the object. It would be cool to show the db4o object ID for reference.
+      
+      * For objects containing an array/collection, a way to see all objects/values stored in the array, by index.
+      
+      * Please pay special attention to things like the Db4o LinkedList and HashMap classes!
+
+   * would be nice to be able to modify data too  :-) 
+
+
+
+----------------
+
+---+++ Display Customization Features (Postponed to Version 1.5)
+
+   * Be able to see how many subobjects per node
+   
+   * Click on a Java class in package explorer, see instances
+
+
+   * Display properties:
+      * Be able to configure the following on a global or a package basis: (select packages by substring or regex)
+
+      * Display nodes: in addition to toString():
+         * getDeclaredType(), getConcreteType(), getImplementedType(), 
+         * call a specific method, use a special field;
+         * *.*      [declared] [concrete] [method:(name)] [field:(name)]
+         * *.db4o   [concrete] [method:(name)] [field:(name)]
+         *          [declared] [concrete] [method:(name)] [field:(name)]
+         *          [declared] [concrete] [method:(name)] [field:(name)]
+         *          [declared] [concrete] [method:(name)] [field:(name)]
+
+   * Filter from search box; limit search depth (add UI for this)
+      * Incremental search **DONE**
+      * Regular expression
+
+   * Hide package names option
+   * Hide these classes option (for hiding system classes)
+
+---+++ Schedule
+
+April: version 1.0
+
+October timeframe: mature browser
+
+
+
+---+++ Carl's notes:
+
+  Popup Nodes, if there are too many. Display first 50 and use node to expand
+  
+  Would like to see the number items per class
+  
+  Double-clicking on a node: Browse from here.
+  
+  History for objects
+  
+  Update the browse view from selecting class in Java perspective
+  
+  Declared type and implemented type
+  
+  Hide package names
+
+  [declared type] [concrete type] [method:toString] [method:(name)] [field:(name)]
+
+
+---+++ Use-cases:
+
+1) Run on mobile devices
+
+2) Debug use-cases:
+
+2.1) Navigate
+
+2.2) Query
+
+2.3) Visualize object graphs  (Java Spider)
+
+
+----
+
+Back to HomePage
+
+
+
+

@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<project name="Db4oUnit" default="build">
+	<import file="common.xml" />
+	
+	<property name="projectName" value="Db4oUnit" />
+	<property name="db4ounit.dir" location="${dir.base}/db4ounit" />
+	<property name="db4ounit.src.dir" location="${db4ounit.dir}/src" />
+	<property name="db4ounit.bin.dir" location="${db4ounit.dir}/bin" />
+	<property name="db4ounit.jar.dir" location="${dir.j}/lib" />
+	<property name="db4ounit.net.dir" location="${dir.n}/${projectName}" />
+	<property name="db4ounit.net.src.dir" location="${db4ounit.net.dir}/src" />
+	<property name="db4ounit.net.in.dir" location="${db4ounit.net.dir}/in" />
+	<property name="conversion.workspace.dir" location="${dir.dist}/${projectName}/workspace" />
+	
+	<target name="build" depends="buildjava, buildnet">
+	</target>
+	
+	<target name="buildjava" depends="init">
+		<delete>
+			<fileset dir="${db4ounit.bin.dir}">
+				<include name="**/*.class"/>
+			</fileset>
+		</delete>
+		<javac compiler="classic"
+			fork="yes"
+			executable="${file.compiler.jdk1.3}"
+			srcdir="${db4ounit.src.dir}"
+			destdir="${db4ounit.bin.dir}"
+			debug="off"
+			encoding="UTF-8">
+			<compilerarg line="${file.compiler.jdk1.3.args.line}"/>
+		</javac>
+	</target>
+		
+	<target name="buildnet" depends="update-csharp-projects">		
+		<property name="assembly" location="${dir.dist.db4ounit.dll}/${projectName}.dll" />		
+		<csc executable="${csc.executable}" outputfile="${assembly}"
+			targettype="library"
+			srcdir="${db4ounit.net.src.dir}">
+		</csc>
+	</target>
+	
+	<target name="sharpen" depends="prepare-conversion-workspace, install-sharpen-plugin">
+		<sharpen resource="db4ounit/src" workspace="${conversion.workspace.dir}">
+			<args>
+				<arg value="@sharpen-db4ounit-options" />
+				<arg value="@sharpen-exceptions-mapping" />
+				
+				<arg value="-typeMapping" />
+				<arg value="java.io.Writer" />
+				<arg value="System.IO.TextWriter" />
+				
+				<arg value="-typeMapping" />
+				<arg value="java.io.StringWriter" />
+				<arg value="System.IO.StringWriter" />
+			</args>
+		</sharpen>
+	</target>
+		
+	<target name="update-csharp-projects" depends="sharpen">
+		<delete dir="${db4ounit.net.src.dir}">
+			<include name="**/*.cs" />
+			<exclude name="**/.svn/**" />
+		</delete>
+		<mkdir dir="${db4ounit.net.src.dir}" />
+		<copy todir="${db4ounit.net.src.dir}">
+			<fileset dir="${conversion.workspace.dir}/db4ounitcsharp/src">
+				<include name="**/*.cs" />
+			</fileset>
+		</copy>
+
+		<copy todir="${db4ounit.net.src.dir}" overwrite="true">
+			<fileset dir="${db4ounit.net.in.dir}">
+				<include name="**/*.cs" />
+			</fileset>
+		</copy>
+		
+		<updatecsharpproject projectfile="${db4ounit.net.dir}/${projectName}-2008.csproj">
+			<sources dir="${db4ounit.net.dir}">
+				<include name="src/**/*.cs" />
+			</sources>
+		</updatecsharpproject>
+
+		<!-- TODO: Remove after a green build
+		<updatecsharpproject projectfile="${db4ounit.net.dir}/${projectName}.csproj">
+			<sources dir="${db4ounit.net.dir}">
+				<include name="src/**/*.cs" />
+			</sources>
+		</updatecsharpproject>
+		-->
+		
+		<updateAssemblyInfoFiles srcdir="${db4ounit.net.src.dir}" />
+	</target>
+	
+	<target name="prepare-conversion-workspace" depends="init">
+		<delete dir="${conversion.workspace.dir}" />
+		<mkdir dir="${conversion.workspace.dir}" />
+		
+		<copy todir="${conversion.workspace.dir}/db4ounit/src">
+			<fileset dir="${db4ounit.src.dir}">
+				<include name="**/*.java" />
+				<exclude name="**/db4o/**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${db4ounit.net.dir}" />
+		<mkdir dir="${dir.dist.db4ounit.dll}" />
+		<mkdir dir="${db4ounit.jar.dir}" />
+	</target>
+</project>

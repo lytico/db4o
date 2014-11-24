@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="752" MadCap:lastWidth="507" MadCap:conditions="Primary.Java">
+  <head />
+  <body>
+    <h1>General Info</h1>
+    <p>Both db4o and SQLite are embedded databases, i.e. they run within an
+application process, removing the overhead associated with a client-server
+configuration, although db4o can also be used in client-server mode. Both db4o
+and SQLite offer zero-configuration run modes, which allows to get the database
+up and running immediately.</p>
+    <h2>Access Control</h2>
+    <p>SQLite relies solely on the file system for its database permissions and has
+no concept of user accounts. SQLite has database-level locks and does not
+support client/server mode.</p>
+    <p>db4o can use encryption or client/server mode for user access control.
+Client/server can also be used in embedded mode, i.e on the same device.</p>
+    <h2>Referential Integrity</h2>
+    <p>Traditionally referential integrity in relational databases is implemented
+with the help of foreign keys. However SQLite <a href="http://www.sqlite.org/omitted.htm">does not support</a> this feature. In
+db4o referential integrity is imposed by the object model, i.e. you can't
+reference an object that does not exist. </p>
+    <h2>Transactions</h2>
+    <p>Both db4o and SQLite support ACID transactions. </p>
+    <p>In db4o all the work is
+transactional: transaction is implicitly started when the database is open and
+closed either by explicit commit() call or by close() call through implicit
+commit.  Data is protected from system crash during all application lifecycle. If a crash occurs during commit itself, the commit will be restarted when the system is up again if the system had enough time to write the list of changes, otherwise the transaction will be rolled back to the last safe state. </p>
+    <p>In SQLite autocommit feature is
+used by default: transaction is started when a SQL command other than SELECT is
+executed and commit is executed as soon as pending operation is finished. Explicit
+BEGIN and END TRANSACTION(COMMIT) or ROLLBACK can be used alternatively to
+specify user-defined transaction limits. Database crash always results in
+pending transaction rollback. Nested transactions are not supported.</p>
+    <h2>Database Size</h2>
+    <p>Though embeddable db4o and SQLite support big database files:</p>
+    <ul>
+      <li>db4o up to 256 GB</li>
+      <li> 
+SQLite up to 2TB</li>
+    </ul>
+    <p>all the data is stored in a single database file. db4o also supports clustered databases. </p>
+  </body>
+</html>

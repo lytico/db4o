@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Decaf Plug-in
+Bundle-SymbolicName: decaf; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: decaf.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.jdt,
+ org.eclipse.jdt.core,
+ org.eclipse.text,
+ org.eclipse.core.filebuffers,
+ org.eclipse.jdt.ui,
+ sharpen.core
+Bundle-ActivationPolicy: lazy
+Export-Package: decaf,
+ decaf.application,
+ decaf.builder,
+ decaf.config,
+ decaf.core,
+ decaf.ui
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ClassPath: lib/decaf-annotations.jar,
+ .

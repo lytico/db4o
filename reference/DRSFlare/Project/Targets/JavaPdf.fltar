@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTarget Version="1" Comment="test pdf target" Type="PDF" Destinations="" GlossaryTermConversion="first" conditions="" GetLatestBeforeCompile="true" ConditionTagExpression="include[Primary.Java or Primary.Pdf] " PatchHeadingLevels="true" TargetLanguage="en" MasterStylesheet="/Content/Resources/Stylesheets/PrintStyle.css" OutputFile="drs-reference-java.pdf" OutputFolder="C:/Users/Gamlor/Develop/db4o/db4o-src//dist/flare" MasterToc="/Project/TOCs/Primary TOC.fltoc">
+    <DocumentProperties Subject="db4o Replication System" Title="db4o Replication System Reference Documentation" Author="Versant Corp." />
+    <PDF ShowUsedBookmarks="false" />
+    <Destinations>
+    </Destinations>
+    <Glossaries>
+        <Glossary Link="/Project/Glossaries/PrintGlossary.flglo" />
+        <Glossary Link="/Project/Glossaries/SharedGlossar.flglo" />
+    </Glossaries>
+    <Variables>
+        <Variable Name="BaseVariables/Plattform">Java</Variable>
+    </Variables>
+</CatapultTarget>

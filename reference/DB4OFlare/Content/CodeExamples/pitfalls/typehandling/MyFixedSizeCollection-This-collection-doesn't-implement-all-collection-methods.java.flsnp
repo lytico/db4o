@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">class</span> MyFixedSizeCollection&lt;E&gt; <span style="color:Blue;">extends</span> AbstractCollection&lt;E&gt;{
+    <span style="color:Blue;">private</span> E[] items;
+
+    <span style="color:Blue;">public</span> MyFixedSizeCollection(E[] items) {
+        <span style="color:Blue;">this</span>.items = items;
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> Iterator&lt;E&gt; iterator() {
+        <span style="color:Blue;">return</span> Arrays.asList(items).iterator();
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> size() {
+        <span style="color:Blue;">return</span> items.length;
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			MyFixedSizeCollection.java: This collection doesn't implement all collection methods
+			<div class="codedownload">
+				<a href="Example-pitfalls-typehandling-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

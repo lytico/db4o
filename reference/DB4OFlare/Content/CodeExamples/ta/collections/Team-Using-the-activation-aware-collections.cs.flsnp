@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Team : ActivatableBase
+{
+    <span style="color:Blue;">private</span> <span style="color:Blue;">readonly</span> IList&lt;Pilot&gt; pilots = <span style="color:Blue;">new</span> ActivatableList&lt;Pilot&gt;();
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Add(Pilot pilot)
+    {
+        Activate(ActivationPurpose.Write);
+        pilots.Add(pilot);
+    }
+
+    <span style="color:Blue;">public</span> ICollection&lt;Pilot&gt; Pilots
+    {
+        <span style="color:Blue;">get</span>
+        {
+            Activate(ActivationPurpose.Read);
+            <span style="color:Blue;">return</span> pilots;
+        }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Team.cs: Using the activation aware collections
+			<div class="codedownload">
+				<a href="Example-ta-collections-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

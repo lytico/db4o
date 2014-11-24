@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="1459" MadCap:lastWidth="588" MadCap:conditions="Primary..NET,Primary.All languages">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Security" />Security Requirements On .NET Platform</h1>
+    <p>db4o requires certain security permissions to be granted for successful execution. It is important to know these permission requirements in a not fully trusted environment. .NET security model is out of scope of this article, to find out more about it use Internet search on ".NET security permissions". </p>
+    <p>Security permissions of an assembly can be calculated with the help of PermCalc tool, which can be found in Visual Studio installation:</p>
+    <p>[Visual Studio Home]\SDK\v2.0\Bin</p>
+    <p>The following command line will calculate the minimum security permissions for Db4objects.Db4o.dll and will safe them in xml format Sandbox.Permcalc.xml document:</p>
+    <p>
+      <code>PermCalc.exe -sandbox Db4objects.Db4o.dll</code>
+    </p>
+    <p>The output should look like this:</p>
+    <MadCap:snippetBlock src="../Resources/Snippets/Security Requirements On .NET Platform/Db4o.Xml/Db4o.Xml.flsnp" />
+    <p>(UIPermission is not required).</p>
+    <p>The table below contains short explanation of each permission requirement. For the complete list of method calls requiring special security permissions, please run permcalc tool with -Stacks parameter. (More information on PermCalc can be found on <a href="http://msdn2.microsoft.com/">MSDN</a> site).</p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>
+            <b>Permission name</b>
+          </p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>
+            <b>Functionality</b>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>FileIOPermission</p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>File read, write and create permissions are required for the corresponding operations on the database file. db4o does not restrict the location of a database file, therefore these permissions and browsing permission is required for all files in the system.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>ReflectionPermission</p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>db4o ability to create runtime objects from the database data is based on reflection. Reflection should be allowed.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>SecurityPermission:</p>
+        </td>
+        <td style="width:432px;" valign="top"></td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>
+            <i>UnmanagedCode</i>
+            <i></i>
+          </p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>Unmanaged code is used internally for file access and socket operations.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>
+            <i>Execution</i>
+            <i></i>
+          </p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>Permission for the code to run. Without this permission, managed code will not be executed.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>
+            <i>ControlEvidence</i>
+            <i></i>
+          </p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>Is required internally to make use of some .NET functionality</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>
+            <i>SerializationFormatter</i>
+            <i></i>
+          </p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>Used to utilize serialization services (formatters)</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>
+            <i>ControlAppDomain</i>
+            <i></i>
+          </p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>Utilized with AppDomain functions.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:432px;" valign="top">
+          <p>KeyContainerPermission</p>
+        </td>
+        <td style="width:432px;" valign="top">
+          <p>Is used in .NET Socket operations.</p>
+        </td>
+      </tr>
+    </table>
+    <p>When you deploy an assembly, you must take into consideration all the assemblies that can be referenced from the original assembly. db4o can be deployed with the following additional assemblies:</p>
+    <ul>
+      <li>Db4objects.Db4o.NativeQueries.dll : for runtime <a href="../basics/querying/native_queries.htm">NQ</a> optimization;</li>
+      <li>Db4objects.Db4o.Instrumentation.dll : bytecode instrumentation library (required for <a href="../basics/querying/native_queries.htm">NQ</a> optimization).</li>
+    </ul>
+    <p>The following table lists the permission requirements of these auxiliary assemblies:</p>
+    <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="width:454px;" valign="top">
+          <p>
+            <b>Assembly</b>
+          </p>
+        </td>
+        <td style="width:454px;" valign="top">
+          <p>
+            <b>Permission requirements</b>
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:454px;" valign="top">
+          <p>Db4objects.Db4o.NativeQueries</p>
+        </td>
+        <td style="width:454px;" valign="top">
+          <ul>
+            <li>No specific permissions </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:454px;" valign="top">
+          <p>Db4objects.Db4o.Instrumentation</p>
+        </td>
+        <td style="width:454px;" valign="top">
+          <ul>
+            <li>SecurityPermission(UnmanagedCode)</li>
+            <li>UIPermission </li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+    <p MadCap:conditions="Primary.Online">Download example permission:</p>
+    <p MadCap:conditions="Primary.Online">
+      <a href="sandbox.permcalc.xml">permcalc.xml</a>
+    </p>
+  </body>
+</html>

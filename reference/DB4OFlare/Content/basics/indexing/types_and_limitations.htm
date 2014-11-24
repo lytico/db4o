@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="535" MadCap:lastWidth="470">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Indexes:Limitations" />Types And Limitations</h1>
+        <p>There are limitations to the db4o indexing. Not all types can be indexed. </p>
+        <h2>Types Which Can Be Indexed</h2>
+        <p>Basically all primitive types like int, long, double<span MadCap:conditions="Primary..NET">, decimals, enums</span> etc can be indexed. Indexes on primitive types work extremely well.</p>
+        <p>Additionally you can index strings, which are handled by db4o like primitives. Strings can be arbitrary long, so a index on string is usually slower than a index on a primitive value. But it's still fast for straight lookups. Note also that a string index can only be used for equality comparison. Comparisons like contains, start with etc don't use the index.</p>
+        <p>The <span MadCap:conditions="Primary.Java">Date </span><span>DateTime, DateTimeOffset and Guid</span> <![CDATA[ ]]>can also be indexed without any issues.</p>
+        <p>You also can index any object reference except arrays and strings, which are handled like primitives. This means you can index a field which holds a reference to a object and then look up for objects which have a certain reference. </p>
+        <p MadCap:conditions="Primary.Java">You can also index BigDecimal and BigNumber objects. Those indexes act like indexes on regular primitive types like int or long. Note that you need to add <a href="../../advanced_topics/type_handling/bigmath.htm">BigMath-support</a>.</p>
+        <h2>Types Which Cannot Be Indexed</h2>
+        <p>Arrays and collections cannot be indexed. The current db4o index implementation cannot deal with those types. This also means that you cannot do fast look-ups on arrays or collections. </p>
+        <h2>Limitations</h2>
+        <p>Currently the index on strings cannot be used for advanced comparisons like contains, starts with etc. </p>
+    </body>
+</html>

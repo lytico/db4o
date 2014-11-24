@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">var</span> eva = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Eva&quot;</span>, <span style="color:Blue;">null</span>);
+<span style="color:Blue;">var</span> julia = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Julia&quot;</span>, eva);
+<span style="color:Blue;">var</span> jennifer = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Jennifer&quot;</span>, julia);
+<span style="color:Blue;">var</span> jamie = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Jamie&quot;</span>, jennifer);
+<span style="color:Blue;">var</span> jill = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Jill&quot;</span>, jamie);
+<span style="color:Blue;">var</span> joanna = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Joanna&quot;</span>, jill);
+
+<span style="color:Blue;">var</span> joelle = <span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Joelle&quot;</span>, joanna);
+container.Store(joelle);</pre>
+		<div class="codesnippet-meta">
+			ActivationConcept.cs: Store a deep object hierarchy
+			<div class="codedownload">
+				<a href="Example-Code-activation-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

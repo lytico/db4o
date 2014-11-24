@@ -1,0 +1,39 @@
+package decaf;
+
+public class VarArgsGenericMethod {
+	public void testVarArgs(int value, Object[] args) {
+	}
+	
+	public void testVarArgs2(Object[] args) {
+	}
+	
+	public static class Item1 {
+		public Item1(Object[] args) {
+		}
+	}
+	
+	public static class Item2 {
+		public Item2(int value, Object[] args) {
+		} 
+	}
+	
+	public void testVarArgsMethodInvocation() {
+		testVarArgs(1, new String[] { "test", "Var", "Args", "Method", "Invocation" });
+		testVarArgs(1, new Comparable[] { new Integer(2), "test" });
+		testVarArgs(1, new Integer[] { new Integer(2), new Integer(3), new Integer(4) });
+		testVarArgs(1, new Object[] {});
+		testVarArgs(1, new Integer[] { new Integer(2) });
+		
+		int value = 5;
+		testVarArgs(1, new Integer[] { new Integer(5), new Integer(getValue(6)) });	
+		testVarArgs2(new Object[] {});	
+		new Item1(new Object[] {});
+		new Item1(new Object[] { new Integer(1) });
+		new Item2(1, new Object[] {});
+		new Item2(1, new Object[] { new Integer(2) });
+	}
+	
+	private int getValue(int value) {
+		return value % 3 + 2;
+	}
+}

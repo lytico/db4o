@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Using</span> container <span style="color:Blue;">As</span> IObjectContainer = OpenDatabase()
+    <span style="color:Green;">' first get the object from the database</span>
+    <span style="color:Blue;">Dim</span> carInDb <span style="color:Blue;">As</span> Car = GetCarById(container, disconnectedCar.ObjectId)
+
+    <span style="color:Green;">' copy the value-objects (int, long, double, string etc)</span>
+    carInDb.Name = disconnectedCar.Name
+
+    <span style="color:Green;">' traverse into the references</span>
+    <span style="color:Blue;">Dim</span> pilotInDB <span style="color:Blue;">As</span> Pilot = carInDb.Pilot
+    <span style="color:Blue;">Dim</span> disconnectedPilot <span style="color:Blue;">As</span> Pilot = disconnectedCar.Pilot
+
+    <span style="color:Green;">' check if the object is still the same</span>
+    <span style="color:Blue;">If</span> pilotInDB.ObjectId.<span style="color:Blue;">Equals</span>(disconnectedPilot.ObjectId) <span style="color:Blue;">Then</span>
+        <span style="color:Green;">' if it is, copy the value-objects</span>
+        pilotInDB.Name = disconnectedPilot.Name
+        pilotInDB.Points = disconnectedPilot.Points
+    <span style="color:Blue;">Else</span>
+        <span style="color:Green;">' otherwise replace the object</span>
+        carInDb.Pilot = disconnectedPilot
+    <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+
+    <span style="color:Green;">' finally store the changes</span>
+    container.Store(pilotInDB)</pre>
+		<div class="codesnippet-meta">
+			MergeExample.vb: merging
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-merging-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

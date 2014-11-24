@@ -1,0 +1,130 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A639AD3D-08FB-41D5-A770-B8BE540C369D}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4objects.Db4o.Silverlight.TestStart</RootNamespace>
+    <AssemblyName>Db4objects.Db4o.Silverlight.TestStart</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>Db4objects.Db4o.Silverlight.TestStart.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>Db4objects.Db4o.Silverlight.TestStart.App</SilverlightAppEntry>
+    <TestPageFileName>TestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows" />
+    <Reference Include="mscorlib" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Db4objects.Db4o.Silverlight.TestStart\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Db4objects.Db4o.Silverlight.TestStart\JScriptExtensions.cs" />
+    <Compile Include="Db4objects.Db4o.Silverlight.TestStart\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Db4objects.Db4o.Silverlight.TestStart\SilverlightTestListener.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Db4objects.Db4o.Silverlight.TestStart\App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </ApplicationDefinition>
+    <Page Include="Db4objects.Db4o.Silverlight.TestStart\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Db4objects.Db4o.Linq.Tests\Db4objects.Db4o.Linq.Tests-Silverlight-2008.csproj">
+      <Project>{66106A5C-4C38-4680-BDB0-38F39BE3D3A9}</Project>
+      <Name>Db4objects.Db4o.Linq.Tests-Silverlight-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4objects.Db4o.Tests\Db4objects.Db4o.Tests-Silverlight-2008.csproj">
+      <Project>{C388ABDD-CB2C-4438-8942-C3A935AC8E2D}</Project>
+      <Name>Db4objects.Db4o.Tests-Silverlight-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4objects.Db4o\Db4objects.Db4o-Silverlight-2008.csproj">
+      <Project>{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}</Project>
+      <Name>Db4objects.Db4o-Silverlight-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4oUnit.Extensions\Db4oUnit.Extensions-Silverlight-2008.csproj">
+      <Project>{13B5E015-9250-4E70-939D-56233D43D8C3}</Project>
+      <Name>Db4oUnit.Extensions-Silverlight-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4oUnit\Db4oUnit-Silverlight-2008.csproj">
+      <Project>{C74364D8-A04A-4CF9-801D-D1811D49E72A}</Project>
+      <Name>Db4oUnit-Silverlight-2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Db4objects.Db4o.Silverlight.TestStart\TestPage.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(ProjectDir)Db4objects.Db4o.Silverlight.TestStart\TestPage.html /Y</PostBuildEvent>
+  </PropertyGroup>
+</Project>

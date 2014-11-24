@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">// Obtain a client container. Either take one from the pool or allocate a new one</span>
+IObjectContainer client = ObtainClientContainer();
+<span style="color:Green;">// Make sure that the transaction is in clean state</span>
+client.Rollback();
+<span style="color:Green;">// Then create a session on that client container and use it for the database operations.</span>
+<span style="color:Green;">// The client-container is now in use. Ensure that it isn't leased twice.</span>
+IObjectContainer sessionContainer = client.Ext().OpenSession();</pre>
+		<div class="codesnippet-meta">
+			ConnectionPool.cs: Obtain a pooled container
+			<div class="codedownload">
+				<a href="Example-clientserver-pooling-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

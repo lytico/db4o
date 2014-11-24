@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">using</span> (IObjectContainer container = Db4oEmbedded.OpenFile(DatabaseFile))
+{
+    Person jodie = QueryForJodie(container);
+    jodie.Add(<span style="color:Blue;">new</span> Person(<span style="color:#A31515;">&quot;Jamie&quot;</span>));
+    <span style="color:Green;">// Remember that a collection is also a regular object</span>
+    <span style="color:Green;">// so with the default-update depth of one, only the changes</span>
+    <span style="color:Green;">// on the person-object are stored, but not the changes on</span>
+    <span style="color:Green;">// the friend-list.</span>
+    container.Store(jodie);
+}
+<span style="color:Blue;">using</span> (IObjectContainer container = Db4oEmbedded.OpenFile(DatabaseFile))
+{
+    Person jodie = QueryForJodie(container);
+    <span style="color:Blue;">foreach</span> (Person person <span style="color:Blue;">in</span> jodie.Friends)
+    {
+        <span style="color:Green;">// the added friend is gone, because the update-depth is to low</span>
+        Console.WriteLine(<span style="color:#A31515;">&quot;Friend=&quot;</span> + person.Name);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			UpdateDepthPitfall.cs: Update doesn't work on collection
+			<div class="codedownload">
+				<a href="Example-pitfalls-updatedepth-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

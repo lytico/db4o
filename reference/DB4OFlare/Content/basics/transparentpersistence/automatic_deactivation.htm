@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1010" MadCap:lastWidth="665">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Rollback:Strategy" />Automatic Rollback</h1>
+        <p>When you <a href="../acid_and_transactions.htm">rollback a transaction</a> only the state of database affected. The state of the objects in memory isn't touched by the rollback method. Wouldn't it be nice when the objects in memory are also rolled back on a transaction rollback? This can be done by
+providing a rollback strategy for the transparent persistence. For that you need to pass a
+<span MadCap:conditions="Primary..NET">I</span>RollbackStrategy-implementation to the transparent persistence support. The rollback method will be
+automatically called once per modified object after a rollback.
+On the rollback method you can deactivate the modified object. This ensures that the object state is cleared and read again from the database. This is a simple but effective strategy and therefore is implemented in the DeactivatingRollbackStrategy.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tp/rollback/RollbackExample-Configure-rollback-strategy.all.flsnp" />
+        <p>After adding the rollback strategy objects are rolled back aswell.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/tp/rollback/RollbackExample-Rollback-with-rollback-strategy.all.flsnp" />
+        <p>Note that rollback strategies only work for activatable objects.</p>
+    </body>
+</html>

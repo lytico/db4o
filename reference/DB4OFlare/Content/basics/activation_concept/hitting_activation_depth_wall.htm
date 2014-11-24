@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3141" MadCap:lastWidth="493">
+    <head>
+    </head>
+    <body>
+        <h1>Activation In Action</h1>
+        <p>Let's see db4o's activation in action. To see activation you need a deep object-graph. To keep this example simple we create a person class with a mother-field. This allows us to simply create a very deep object graph.</p>
+        <p>First the Person class:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/activation/Person-Person-with-a-reference-to-the-mother.all.flsnp" />
+        <p>After that store a deep hierarchy of persons, for example a hierarchy of seven people. Then query for it and traverse this object graph. When you hit the sixth person, that object won't be activated, because it's outside the activation depth. That object will have all fields set to null.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/activation/ActivationDepthPitfall-run-into-not-activated-objects.all.flsnp" />
+        <h2>Use Explicit Activation</h2>
+        <p>When you traverse deep object graphs, you might run into not activated objects. Therefore you can activate objects explicitly.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/activation/ActivationDepthPitfall-Fix-with-explicit-activation.all.flsnp" />
+        <h2>Configure Activation</h2>
+        <p>You can configure db4o to increase the activation depth. You can increase it <a href="../../configuration/common/activation_depth.htm">globally</a> or for <a href="../../configuration/objectclass/minimum_activation_depth.htm">certain classes</a>. Or you can <a href="../../configuration/objectclass/cascade_on-activate.htm">cascade activate</a> certain objects.</p>
+        <p>However remember that activation is there to improve the performance and save memory. If you set the activation depth to high it will hurt the performance.</p>
+        <h2>Transparent Activation</h2>
+        <p>If you have a very complex model or don't want to deal with all the activation hassle then transparent activation is the best option. Transparent activation will manage the activation for you. <MadCap:xref href="transparent_activation_framework.htm" target="" title="" alt="">See "Transparent Activation Framework"</MadCap:xref></p>
+        <h2>
+            <MadCap:keyword term="Activation::Deactivate" />Deactivation</h2>
+        <p>It's also possible to deactivate an object. When you deactivate an object db4o sets all its fields back to their default value and considers it as deactivated. Deactivation is useful in rare cases where you want to return to the inactivated state for some reason.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/activation/ActivationDepthPitfall-Deactivate-an-object.all.flsnp" />
+    </body>
+</html>

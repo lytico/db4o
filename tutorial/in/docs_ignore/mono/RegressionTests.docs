@@ -1,0 +1,28 @@
+.n
+.a RegressionTests ..
+.0 RegressionTests ..
+
+.1 The built-in db4o regression tests ..
+
+Db4o includes a fairly comprehensive suite of regression tests to help prevent ._
+errors from creeping into the code over time.  Since no regression test suite ._
+is perfect, we are documenting how to work with our tests in the hope that ._
+customers will benefit from seeing the test suite improve.
+
+.1 Running the regression tests ..
+
+The easiest way to run the regression tests for Mono is to download the .tar.gz ._
+distribution of db4o.  After untarring the tarball, simply change into the ._
+created directory and run "make".
+
+The Makefile will automatically compile db4o and run the test suite.
+
+
+.1 Switching individual tests on or off ..
+
+Individual tests may be turned on or off by commenting or uncommenting ._
+lines corresponding to each individual test in the suite.  The test suite ._
+is defined by classes beginning with com.db4o.test.AllTestsConf*.  Each ._
+test class is listed in an array returned by the tests() method in the ._
+*Conf* class.
+

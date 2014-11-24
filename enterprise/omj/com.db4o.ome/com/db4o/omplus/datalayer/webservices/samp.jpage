@@ -1,0 +1,4 @@
+Syntax error on token "import", assert expectedimport java.util.ArrayList;ArrayList<String> list = new ArrayList<String>();
+list.add("ss");
+String s = list.get(0);
+System.out.println(s);

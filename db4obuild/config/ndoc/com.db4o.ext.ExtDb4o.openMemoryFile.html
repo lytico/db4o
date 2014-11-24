@@ -1,0 +1,51 @@
+﻿<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </meta>
+    <meta name="generator" content="NDoc 1.3" />
+    <title>ExtDb4o.openMemoryFile Method</title>
+    <link rel="stylesheet" type="text/css" href="ndoc.css">
+    </link>
+    <script src="ndoc.js" type="text/javascript">
+    </script>
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <INPUT class="userDataStyle" id="userDataCache" type="hidden" />
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead" nowrap="true">db4o</td>
+            <td class="product" nowrap="true">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">ExtDb4o.openMemoryFile Method </h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p> opens an <a href="com.db4o.ObjectContainer.html">com.db4o.ObjectContainer</a> for in-memory use . <br /><br />In-memory ObjectContainers are useful for maximum performance on small databases, for swapping objects or for storing db4o format data to other media or other databases.<br /><br />Be aware of the danger of running into OutOfMemory problems or complete loss of all data, in case of hardware or JVM failures.<br /><br />
+            </p>
+<PRE class="syntax"><SPAN class="lang">[Visual Basic]
+</SPAN><b>Shared Public Function openMemoryFile( _ 
+   ByVal <i>memoryFile</i> As <a href="com.db4o.ext.MemoryFile.html">MemoryFile</a> _ 
+) As <a href="com.db4o.ObjectContainer.html">ObjectContainer</a>
+</b><SPAN class="lang">[C#]
+</SPAN><b>public static <a href="com.db4o.ObjectContainer.html">ObjectContainer</a> openMemoryFile(
+   <a href="com.db4o.ext.MemoryFile.html">MemoryFile</a> <i>memoryFile</i>
+);
+</b><SPAN class="lang">[C++]
+</SPAN><b>public: static <a href="com.db4o.ObjectContainer.html">ObjectContainer*</a> openMemoryFile(
+   <a href="com.db4o.ext.MemoryFile.html">MemoryFile*</a> <i>memoryFile</i>
+);
+</b><SPAN class="lang">[JScript]
+</SPAN><b>public static function openMemoryFile(
+   <a href="com.db4o.ext.MemoryFile.html">MemoryFile</a> <i>memoryFile</i>
+): <a href="com.db4o.ObjectContainer.html">ObjectContainer</a>;
+</b></PRE><h4 class="dtH4">Parameters</h4><dl><dt><i>memoryFile</i></dt><dd> a <a href="com.db4o.ext.MemoryFile.html">MemoryFile</a> to store the raw byte data. </dd></dl><h4 class="dtH4">Return Value</h4><p> an open <a href="com.db4o.ObjectContainer.html">ObjectContainer</a>
+            </p><h4 class="dtH4">See Also</h4><p><a href="com.db4o.ext.ExtDb4o.html">ExtDb4o Class</a> | <a href="com.db4o.ext.html">com.db4o.ext Namespace</a> | <a href="com.db4o.ext.MemoryFile.html">com.db4o.ext.MemoryFile</a></p><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" viewastext="true" style="display: none;"><param name="Keyword" value="openMemoryFile method"></param><param name="Keyword" value="openMemoryFile method, ExtDb4o class"></param><param name="Keyword" value="ExtDb4o.openMemoryFile method"></param></object><DIV CLASS="footer"><p><center><font color="red"><i>
+								Syntax based on .NET Framework version 1.1.<br /></i></font></center></p></DIV><hr /><div id="footer"><p><a href="http://www.db4o.com/">Copyright (C) 2004 - 2005  Versant Inc.</a></p><p>Generated from assembly db4o [4.3.1.0]</p></div></div>
+  </body>
+</html>

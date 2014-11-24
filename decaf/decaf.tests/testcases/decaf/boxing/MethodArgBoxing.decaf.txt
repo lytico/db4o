@@ -1,0 +1,34 @@
+package decaf.boxing;
+
+class MethodArgBoxing {
+
+	public int primitiveIdentity(int i) {
+		return i;
+	}
+	
+	public void boxIdentity() {
+		Integer i = new Integer(primitiveIdentity(6));
+	}
+
+	public Integer wrapperIdentity(Integer i) {
+		return i;
+	}
+	
+	public void unboxIdentity() {
+		int i = (wrapperIdentity(new Integer(42))).intValue();
+	}
+
+	public Integer convertToWrapper(int i) {
+		return new Integer(i);
+	}
+
+	public int convertToPrimitive(Integer i) {
+		return i.intValue();
+	}
+
+	public void convertArgs() {
+		int intValue = (convertToWrapper((new Integer(42)).intValue())).intValue();
+		Integer intRef = new Integer(convertToPrimitive(new Integer(42)));
+	}
+
+}

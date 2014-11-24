@@ -1,0 +1,63 @@
+package decaf.annotations;
+
+import java.io.*;
+
+abstract class ChainedRuntimeException extends RuntimeException {
+
+    public ChainedRuntimeException() {
+    }
+
+    public ChainedRuntimeException(String msg) {
+        super(msg, null);
+    }
+
+    public ChainedRuntimeException(String msg, Throwable cause) {
+        super(msg, cause);
+    }
+    
+    @decaf.Mixin
+    public static class ChainedRuntimeExceptionMixin {
+
+	    private final Throwable _mixee;
+	    private final Throwable _cause;
+	
+	    public ChainedRuntimeExceptionMixin(Throwable mixee) {
+	        _mixee = mixee;
+	        _cause = null;
+	    }
+	    
+	    public ChainedRuntimeExceptionMixin(Throwable mixee, String msg) {
+	        _mixee = mixee;
+	        _cause = null;
+	    }
+	    
+	    public ChainedRuntimeExceptionMixin(Throwable mixee, String msg, Throwable cause) {
+	        _mixee = mixee;
+	        _cause = cause;
+	    }
+	
+	    /**
+	    * @return The originating exception, if any
+	    */
+	    public final Throwable getCause() {
+	        return _cause;
+	    }
+	
+	    public void printStackTrace() {
+	        printStackTrace(System.err, true);
+	    }
+	
+	    public void printStackTrace(PrintStream ps, boolean flag) {
+	        printStackTrace(new PrintWriter(ps, flag));
+	    }
+	
+	    public void printStackTrace(PrintWriter pw) {
+	        _mixee.printStackTrace(pw);
+	        if (_cause != null) {
+	            pw.println("Nested cause:");
+	            _cause.printStackTrace(pw);
+	        }
+	    }
+	}
+    
+}

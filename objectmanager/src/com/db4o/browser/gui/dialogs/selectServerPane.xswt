@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+    </import>
+    <x:children>
+        <composite>
+            <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            <layout x:class="gridLayout" marginHeight="0" marginWidth="0" numColumns="2"/>
+            <x:children>
+            	<label text="Host name:"/>
+            	<text x:id="HostName" x:style="BORDER">
+            		<layoutData x:class="gridData" minimumWidth="200" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+            	</text>
+            	<label text="Port number:"/>
+            	<text x:id="HostPort" x:style="BORDER">
+            		<layoutData x:class="gridData" minimumWidth="200" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+            	</text>
+            	
+            	<label x:style="SEPARATOR|HORIZONTAL">
+            		<layoutData x:class="gridData" minimumWidth="200" horizontalSpan="2" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+            	</label>
+
+            	<label text="Username:"/>
+            	<text x:id="Username" x:style="BORDER">
+            		<layoutData x:class="gridData" minimumWidth="200" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+            	</text>
+            	<label text="Password:"/>
+            	<text x:id="Password" x:style="BORDER|PASSWORD">
+            		<layoutData x:class="gridData" minimumWidth="200" grabExcessHorizontalSpace="true" horizontalAlignment="GridData.FILL"/>
+            	</text>
+            	<label text="Read only:"/>
+            	<button x:id="ReadOnly" x:style="CHECK" />
+            </x:children>
+        </composite>
+    </x:children>
+</xswt>

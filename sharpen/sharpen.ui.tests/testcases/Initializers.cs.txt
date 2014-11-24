@@ -1,0 +1,70 @@
+public class Initializers
+{
+	public Initializers() : this(null)
+	{
+		bar(null);
+	}
+
+	public Initializers(int value) : base()
+	{
+		{
+			foo("instance 1");
+		}
+		{
+			foo("instance 2");
+		}
+		bar(null);
+	}
+
+	public Initializers(string value)
+	{
+		{
+			foo("instance 1");
+		}
+		{
+			foo("instance 2");
+		}
+		bar(null);
+	}
+
+	static Initializers()
+	{
+		foo("static");
+	}
+
+	internal static void foo(string m)
+	{
+		new _Initializers_24(m);
+	}
+
+	private sealed class _Initializers_24 : Initializers
+	{
+		public _Initializers_24(string m)
+		{
+			this.m = m;
+			{
+				Initializers.bar(m);
+			}
+		}
+
+		private readonly string m;
+	}
+
+	internal static void bar(string m)
+	{
+	}
+}
+
+internal class InitializerWithoutConstructor
+{
+	internal class Nested
+	{
+	}
+
+	public InitializerWithoutConstructor()
+	{
+		{
+			Initializers.foo(null);
+		}
+	}
+}

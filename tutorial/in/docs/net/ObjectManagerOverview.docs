@@ -1,0 +1,84 @@
+.n
+.a ObjectManagerOverview ..
+.0 Object Manager Enterprise Overview ..
+
+If you did not install the Object Manager Enterprise yet, please, return to  .l FirstGlance ..  chapter and follow the installation instructions there.
+Once the Object Manager Enterprise (OME) is installed you can see it in ._
+Visual Studio Tools menu:
+.g omn1.png .. 
+ 
+You should also be able to see OME toolbar icons:
+.g omn_tool.png ..
+
+.1 Browsing the database .. 
+In the  .l First previous chapter ..  we've learned how to create a new database ._
+and store objects in it. Let's create a new database and store some objects in it now:
+.s com.db4odoc.f1.chapter3.OMEExample#storePilots ..
+Now we can see the resultant database in the Object Manager. Please select ._
+Tools->Object Manager Enterprise->Connect (or use a shortcut button from ._
+the toolbar menu) and browse to ome.db4o file in your Local Application ._
+Data folder. (normally it is C:\Documents and Settings\[user name]\Local Settings\Application Data on Windows XP/2000, c:/Users/[user name]/AppData/Local on Windows Vista).
+.n
+Once you've connected you will see a screen similar to this:
+.g omn_Pilot.png ..
+ 
+In this view you can see:
+-	Db4o Browser:  window displaying the contents of the open db4o database
+-	Database Properties: window displaying the properties of the open database ._
+or the properties of the selected database class
+-	Build Query: windows allowing to build a query using drag&drop functionality
+-	Query Results: window to browse the results of the query execution
+ 
+The Db4o Browser window shows that there is 1 class in the database (Pilot), ._
+which contains 2 fields: _name and _points. In the Property Viewer you can see more ._
+information about the class fields. You can also change "Indexed" field and add the ._
+index to the database by pressing "Save Index" button.
+.n
+The filter panel on the top of the view allows easier navigation through the ._
+database with lots of different classes. You can use wildcard searches and benefit ._
+from the search history to make the selection faster. To further improve the navigation ._
+experience, you can create favourite folders and drag&drop frequently used ._
+classes into these folders.
+.g omn_fav.png .. 
+.n 
+.1 Querying .. 
+It is easy to retrieve all of the Pilot instances from the database: just right-click ._
+the Pilot class in Db4o Browser and select "Show All Objects". The list of the Pilot ._
+objects will be shown in the Query Result view:
+.g omn_result.png .. 
+ 
+You can see object details in the detailed view below. Try to change any values and use ._
+Save button to persist the changes to the database. You can also use Delete button to ._
+delete objects from the database. For the objects containing field objects you will be ._
+prompted to use cascade on delete.
+.n
+More complex queries can be done by using Query Builder view:
+.g omn_query.png .. 
+ 
+Drag "name" field from the Db4o Browser view into the Query Builder view, set ._
+condition "Contains", put a value "a" and run the query. You can return to the ._
+Built Query tab and modify the query later on again. For example: add "AND" operator, ._
+drag "name" field, set Condition to "Starts With" and the value to "M". Re-run the query. 
+.n
+If you want only selected fields to be displayed in the query result, drag and drop ._
+fields to be displayed from Db4o Browser into "Attribute List" window.
+.g omn_attr.png .. 
+ 
+When the new query is created, the previous query is stored and can be selected ._
+from the history drop-down:
+.g omn_qhistory.png .. 
+ 
+More sophisticated queries can be build by joining grouped constraints using "Add Group" ._
+button.
+When you are done working with the database in OME, you can close the connection ._
+by using Tools->Object Manager Enterprise-> Disconnect menu command or by using ._
+the equivalent button on the toolbar. 
+
+In the  .l Query next chapter ..l  we will explore more about db4o ._
+querying capabilities. You can continue using OME while going ._
+through the rest of this tutorial. If you are using the interactive ._
+version you will find the database in formula1.db4o file in your ._
+Local Application Data folder (normally it is C:\Documents and Settings\[user name]\Local ._
+Settings\Application Data on Windows XP/2000, c:/Users/[user name]/AppData/Local on Windows Vista) ._
+Please, remember to disconnect OME before running any of the tutorial ._
+examples, as only one active connection is allowed to the database file.  

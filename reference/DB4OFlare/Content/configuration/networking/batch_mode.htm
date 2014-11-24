@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="606" MadCap:lastWidth="595">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Batch Mode" />Batch Mode</h1>
+    <p>Batch mode allows to increase the performance by reducing
+client/server communication. It's activated by default.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/network/NetworkConfigurationExample-enable-or-disable-batch-mode.all.flsnp" />
+    <p>db4o communicates with the server by
+means of messaging. Without batch mode db4o sends a message for each operation and waits for the response. This might be quite inefficient when there are many small messages to
+be sent (like bulk inserts, updates, deletes). The network communication becomes a
+bottleneck. Batch messaging mode solves this problem by caching the messages and sending them only when required.     <![CDATA[ ]]></p>
+    <h2>Advantages</h2>
+    <ul>
+      <li>Reduced network load.</li>
+      <li>Increased performance for bulk operations.</li>
+    </ul>
+    <h2>Disadvantages</h2>
+    <ul>
+      <li>Increased memory consumption on both the client and the server. <MadCap:xref href="max_batch_queue_size.htm" target="" title="" alt="">See "Max Batch Queue Size"</MadCap:xref></li>
+    </ul>
+  </body>
+</html>

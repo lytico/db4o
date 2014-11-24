@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="4949" MadCap:lastWidth="623">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Concurrency:Share Container" />Sharing an Object Container Across Threads</h1>
+        <p>You want to share an object container across different threads? Then you automatically also share the stored objects across threads, due to the <a href="../../basics/indentity_concept/reference_cache.htm">reference-cache</a>. Therefore you need to synchronize the access to your object-model. </p>
+        <p>The basic access-pattern should be like this:</p>
+        <ol>
+            <li>Access the lock which protects the data model.</li>
+            <li>Do manipulations on the data model, which may involve operations on the object container.</li>
+            <li>Release the lock.</li>
+        </ol>
+        <h2><a name="Example"></a>A Small Example</h2>
+        <p>For example we want to do some back-ground updates, while the rest of the application carries on. As soon as we have this kind pattern we need to protect the access to the data model.</p>
+        <p>For example  this operation starts a background task and carries on doing other things:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/locking/LockingOperations-Schedule-back-ground-tasks.all.flsnp" />
+        <p>Unfortunately these two tasks do work on the same data model, which can lead to race conditions. Therefore access to the data model has to be protected.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/locking/LockingOperations-Grab-the-lock-protecting-the-data.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/locking/LockingOperations-Grab-the-lock-to-show-the-data.all.flsnp" />
+        <h2><a name="Improving"></a>Improving the Locking</h2>
+        <p>Of course the locking showed above is very course grained. A simple improvement would be to use <a href="read_write_lock_example.htm">read-write locks</a>. In the end you need to adapt the locking strategy to your application. </p>
+        <h2><a name="TransactionModel"></a>Creating a Transaction Model</h2>
+        <p>One model which works good for this scenario is to create a transaction abstraction to do your operations on the data model. Then you do all operations in such a transaction. The transaction manages the lock and the db4o transaction. Such an implementation could look like this:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/DatabaseSupport-A-transaction-method.all.flsnp" />
+        <p>And then we can use this transaction method when accessing our data model.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/TransactionOperations-Use-transaction-for-reading-objects.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/TransactionOperations-Use-transaction-to-update-objects.all.flsnp" />
+        <p>Remember that this is only an example. You can use other techniques like annotations or aspects to implement the right behavior. And you also can use more sophisticated locks, like <a href="read_write_lock_example.htm#Read">read write locks</a>. The only thing which is important is that you synchronize the access your shared data objects. </p>
+        <h2>Alternatives</h2>
+        <p>Alternatively you can avoid sharing data objects and rather use multiple object container to manage concurrent data access. </p>
+    </body>
+</html>

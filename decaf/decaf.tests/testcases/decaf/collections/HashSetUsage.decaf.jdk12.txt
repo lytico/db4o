@@ -1,0 +1,12 @@
+package decaf.collections;
+
+import java.util.*;
+
+class HashSetUsage {
+
+	Set _set = new HashSet();
+	
+	public void add(int i) {
+		_set.add(new Integer(i));
+	}
+}

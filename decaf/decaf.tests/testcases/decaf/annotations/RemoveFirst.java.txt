@@ -1,0 +1,15 @@
+package decaf.annotations;
+
+class RemoveFirst {
+
+	@decaf.RemoveFirst
+	public void foo() {
+		System.out.println("foo");
+		System.out.println("bar");
+	}
+	
+	@decaf.RemoveFirst(decaf.Platform.JDK11)
+	public void bar() {
+		System.out.println("foo");
+	}
+}

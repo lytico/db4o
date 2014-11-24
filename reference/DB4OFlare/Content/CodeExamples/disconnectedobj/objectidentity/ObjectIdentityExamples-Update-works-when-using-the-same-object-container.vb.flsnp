@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Using</span> container <span style="color:Blue;">As</span> IObjectContainer = OpenDatabase()
+    <span style="color:Blue;">Dim</span> joe <span style="color:Blue;">As</span> Pilot = QueryByName(container, <span style="color:#A31515;">&quot;Joe&quot;</span>)
+    joe.Name = <span style="color:#A31515;">&quot;Joe New&quot;</span>
+    container.Store(joe)
+<span style="color:Blue;">End</span> <span style="color:Blue;">Using</span>
+<span style="color:Blue;">Using</span> container <span style="color:Blue;">As</span> IObjectContainer = OpenDatabase()
+    <span style="color:Blue;">Dim</span> pilots <span style="color:Blue;">As</span> IList(Of Pilot) = container.Query(Of Pilot)()
+    Console.WriteLine(<span style="color:#A31515;">&quot;Amount of pilots: &quot;</span> &amp; pilots.<span style="color:Blue;">Count</span>)
+    <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> pilot <span style="color:Blue;">As</span> Pilot <span style="color:Blue;">In</span> pilots
+        Console.WriteLine(pilot)
+    <span style="color:Blue;">Next</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Using</span></pre>
+		<div class="codesnippet-meta">
+			ObjectIdentityExamples.vb: Update works when using the same object container
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-objectidentity-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

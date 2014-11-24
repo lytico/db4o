@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{89BB3D10-B9D5-4172-A0D9-3BB856AC5B85}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4objects.Db4o.CS</RootNamespace>
+    <AssemblyName>Db4objects.Db4o.CS</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>3C41C503-53EF-4c2a-8DD4-A8217CAD115E</PlatformID>
+    <OSVersion>4.20</OSVersion>
+    <DeployDirSuffix>Db4objects.Db4o.CS_CF_2008</DeployDirSuffix>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <NativePlatformName>Pocket PC 2003</NativePlatformName>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SignAssembly>true</SignAssembly>
+<AssemblyOriginatorKeyFile>../db4objects.snk</AssemblyOriginatorKeyFile>
+</PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CF_3_5;CF;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>bin\Debug\Db4objects.Db4o.CS.xml</DocumentationFile>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;CF_3_5;CF;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <DocumentationFile>bin\Release\Db4objects.Db4o.CS.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib"/>
+    <Reference Include="System"/>
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files (x86)\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml"/>
+  </ItemGroup>
+  <ItemGroup>
+<Compile Include="Db4objects.Db4o.CS\CS\Caching\IClientSlotCache.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Config\IClientConfiguration.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Config\IClientConfigurationItem.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Config\IClientServerFactory.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Config\INetworkingConfiguration.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Config\INetworkingConfigurationProvider.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Config\IServerConfiguration.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Config\IServerConfigurationItem.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Db4oClientServer.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\IServerSocket4.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\ISocket4.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\ISocket4Factory.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\NetworkServerSocket.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\NetworkServerSocketBase.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\NetworkSocket.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\NetworkSocketBase.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\ServerSocket4Decorator.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\Socket4Decorator.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Foundation\StandardSocket4Factory.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\BlobProcessor.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Caching\ClientSlotCacheImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Caching\NullClientSlotCache.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClassInfo.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClassInfoHelper.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientAsynchronousMessageProcessor.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientConnectionEventArgs.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientHeartbeat.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientMessageDispatcherImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientObjectContainer.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientQueryResult.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientQueryResultIterator.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientServerPlatform.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientTransaction.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientTransactionHandle.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ClientTransactionPool.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\CommittedCallbacksDispatcher.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Config\ClientConfigurationImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Config\Db4oClientServerLegacyConfigurationBridge.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Config\LegacyClientServerFactoryImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Config\NetworkingConfigurationImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Config\NetworkingConfigurationProviderImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Config\ServerConfigurationImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Config\StandardClientServerFactory.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\DebugCS.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Events\ClientEventRegistryImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\FatalServerShutdown.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\FieldInfo.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\IBroadcastFilter.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\IClientConnection.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\IClientMessageDispatcher.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\IObjectServerEvents.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\IPrefetchingStrategy.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\IServerMessageDispatcher.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\InternalServerError.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\LazyClientIdIterator.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\LazyClientObjectSetStub.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\LazyClientQueryResult.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\MessageEventArgs.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\IClientSideMessage.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\IMessage.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\IMessageDispatcher.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\IMessageWithResponse.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\IServerSideMessage.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MClassID.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MClassMeta.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MClassMetadataIdForName.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MClassNameForID.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MClose.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MCloseSocket.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MCommit.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MCommitReplication.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MCommitSystemTransaction.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MCommittedCallBackRegistry.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MCommittedInfo.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MCreateClass.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MDelete.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MDeleteBlobFile.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MError.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MFailed.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MGenerateTransactionTimestamp.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MGetAll.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MGetClasses.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MGetInternalIDs.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MGetThreadID.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MIDList.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MIdentity.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MInstanceCount.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MIsAlive.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MLength.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MLogin.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MLoginOK.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MNull.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MOK.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MObjectByUuid.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MObjectSet.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MObjectSetFetch.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MObjectSetFinalized.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MObjectSetGetId.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MObjectSetIndexOf.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MObjectSetReset.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MObjectSetSize.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MPing.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MPong.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MPrefetchIDs.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MProcessDeletes.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MQueryExecute.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MQueryResult.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MRaiseCommitTimestamp.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MReadBlob.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MReadBytes.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MReadMultipleObjects.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MReadObject.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MReadReaderById.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MReadSlot.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MReleaseSemaphore.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MRequestExceptionWithResponse.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MRequestExceptionWithoutResponse.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MRollback.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MRuntimeException.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MSetSemaphore.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MSuccess.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MSwitchToFile.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MSwitchToMainFile.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MTaDelete.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MTaIsDeleted.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MUseDefaultTransactionTimestamp.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MUseTransaction.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MUserMessage.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MVersion.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MVersionForId.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MWriteBatchedMessages.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MWriteBlob.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MWriteNew.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MWriteUpdate.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\Msg.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MsgBlob.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MsgD.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MsgObject.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Messages\MsgQuery.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ObjectServerImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\CacheContributingObjectReader.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\DeferredObjectExchangeStrategy.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\EagerObjectExchangeStrategy.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\EagerObjectWriter.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\FixedSizeIntIterator4Base.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\IObjectExchangeStrategy.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\IReferenceCollector.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\ISlotAccessor.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\ObjectExchangeConfiguration.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\ObjectExchangeStrategyFactory.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\SlotCollector.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\StandardReferenceCollector.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Objectexchange\StandardSlotAccessor.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ServerClosedEventArgs.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ServerMessageDispatcherImpl.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\ShutdownMode.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\SingleMessagePrefetchingStrategy.cs"/>
+<Compile Include="Db4objects.Db4o.CS\CS\Internal\Socket4Adapter.cs"/>
+<Compile Include="Properties\AssemblyInfo.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\CS\Internal\Events\ClientEventRegistryImpl.cs"/>
+</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Db4objects.Db4o\Db4objects.Db4o-CF-2008.csproj">
+      <Project>{95FD1C64-F1A3-4C8A-B170-D518E899B2FE}</Project>
+      <Name>Db4objects.Db4o-CF-2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1"/>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets"/>
+</Project>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultConditionTagSet>
+  <ConditionTag
+    Name="Pdf"
+    BackgroundColor="#dadada" />
+  <ConditionTag
+    Name="Online"
+    BackgroundColor="#ff0000" />
+  <ConditionTag
+    BackgroundColor="#0404ca"
+    Name="Java"
+    Comment="java related" />
+  <ConditionTag
+    BackgroundColor="#80d966"
+    Name="c#"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#7ecf81"
+    Name="VB.NET"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#3ffb00"
+    Name=".NET"
+    Comment="" />
+  <ConditionTag
+    BackgroundColor="#c0c0c0"
+    Name="All languages"
+    Comment="java + .NET" />
+  <ConditionTag
+    BackgroundColor="#800080"
+    Name="TobeReviewed"
+    Comment="topics that are removed from the current generation, but should be updated and added back" />
+</CatapultConditionTagSet>

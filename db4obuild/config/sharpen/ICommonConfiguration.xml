@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+
+
+
+  <type name="Db4objects.Db4o.Config.ICommonConfiguration">
+    <member name="AddAlias">
+        <doc>
+            <summary>adds a new Alias for a class, namespace or package.</summary>
+            <remarks>
+                adds a new Alias for a class, namespace or package.
+                <br/>
+                <br/>Aliases can be used to persist classes in the running
+                application to different persistent classes in a database file
+                or on a db4o server.
+                <br/>
+                <br/>Two simple Alias implementations are supplied along with
+                db4o:
+                <br/>
+                -
+                <see cref="TypeAlias">TypeAlias</see>
+                provides an #Equals() resolver to match
+                names directly.
+                <br/>
+                -
+                <see cref="WildcardAlias">WildcardAlias</see>
+                allows simple pattern matching
+                with one single '*' wildcard character.
+                <br/>
+                <br/>
+                It is possible to create
+                own complex
+                <see cref="IAlias">IAlias</see>
+                constructs by creating own resolvers
+                that implement the
+                <see cref="IAlias">IAlias</see>
+                interface.
+                <br/>
+                <br/>
+                Examples of concrete usecases:
+                <br/>
+                <br/>
+                <code>
+                    IEmbeddedConfiguration config = Db4oEmbedded.NewConfiguration();<br/>
+                    <b>// Creating an Alias for a single class</b>
+                    <br/>
+                    config.Common.AddAlias(
+                    <br/>
+                    &#160;&#160;new TypeAlias("MyApp.Model.Pilot", "MyApp.Model.Driver"));
+                    <br/>
+                    <br/>
+                    <b>// Mapping a namespace onto another</b>
+                    <br/>
+                    config.Common.AddAlias(
+                    <br/>
+                    &#160;&#160;new WildcardAlias(
+                    <br/>
+                    &#160;&#160;&#160;&#160;"MyApp.Model",
+                    <br/>
+                    &#160;&#160;&#160;&#160;"MyApp.Shared.Model"));
+                    <br/>
+                </code>
+                <br/>
+                <br/>Aliases that translate the persistent name of a class to
+                a name that already exists as a persistent name in the database
+                (or on the server) are not permitted and will throw an exception
+                when the database file is opened.
+                <br/>
+                <br/>Aliases should be configured before opening a database file
+                or connecting to a server.
+                <br/>
+                <br/>
+                In client/server environment it is good practice to configure the
+                client and the server in exactly the same way.
+            </remarks>
+        </doc>
+    </member>
+	<member name="InternStrings">
+	    <doc>
+		 <summary>configures db4o to call Intern() on strings upon retrieval.</summary>
+		 <remarks>
+		 configures db4o to call Intern on strings upon retrieval if set to true.
+		 In client/server environment the setting should be used on both
+		 client and server.
+		 </remarks>
+	    </doc>
+	</member>
+	<member name = "ActivationDepth">
+	    <doc>
+		 <summary>sets the activation depth to the specified value.</summary>
+		 <remarks>
+		 sets the activation depth to the specified value.
+		 <br /><br /><b>Why activation?</b><br />
+		 When objects are instantiated from the database, the instantiation of member
+		 objects needs to be limited to a certain depth. Otherwise a single object
+		 could lead to loading the complete database into memory, if all objects where
+		 reachable from a single root object.<br /><br />
+		 db4o uses the concept "depth", the number of field-to-field hops an object
+		 is away from another object. <b>The preconfigured "activation depth" db4o uses
+		 in the default setting is 5.</b>
+		 <br /><br />Whenever an application iterates through the
+		 <see cref="Db4objects.Db4o.IObjectSet">IObjectSet</see>
+		 of a query result, the result objects
+		 will be activated to the configured activation depth.<br /><br />
+		 A concrete example with the preconfigured activation depth of 5:<br />
+		 <pre>
+		 // Object foo is the result of a query, it is delivered by the ObjectSet
+		 object foo = objectSet.Next();</pre>
+		 foo.member1.member2.member3.member4.member5 will be a valid object<br />
+		 foo, member1, member2, member3 and member4 will be activated<br />
+		 member5 will be deactivated, all of it's members will be null<br />
+		 member5 can be activated at any time by calling
+		 <see cref="Db4objects.Db4o.IObjectContainer.Activate">IObjectContainer.Activate(member5, depth)
+		 	</see>
+		 .
+		 <br /><br />
+		 Note that raising the global activation depth will consume more memory and
+		 have negative effects on the performance of first-time retrievals. Lowering
+		 the global activation depth needs more individual activation work but can
+		 increase performance of queries.<br /><br />
+		 <see cref="Db4objects.Db4o.IObjectContainer.Deactivate">IObjectContainer.Deactivate(object, depth)
+		 	</see>
+		 can be used to manually free memory by deactivating objects.<br /><br />
+		 In client/server environment it is good practice to configure the
+		 client and the server in exactly the same way. <br /><br />.
+		 </remarks>
+		 <seealso cref="Db4objects.Db4o.Config.IObjectClass.MaximumActivationDepth">configuring classes individually
+		 	</seealso>
+		 <summary>gets the configured activation depth.</summary>
+	    </doc>
+	</member>
+	<member name="AutomaticShutDown">
+	   <doc>
+		<summary>turns automatic shutdown of the engine on and off.</summary>
+		<remarks>
+		turns automatic shutdown of the engine on and off.
+		The default and recommended setting is <code>true</code>.<br /><br />
+		</remarks>
+
+	   </doc>
+	</member>
+	<member name="CallConstructors">
+           <doc>
+       		 <summary>
+		 advises db4o to try instantiating objects with/without calling
+		 constructors.
+		 </summary>
+		 <remarks>
+		 advises db4o to try instantiating objects with/without calling
+		 constructors.
+		 <br /><br />
+		 Not all .NET-environments support this feature. db4o will
+		 attempt, to follow the setting as good as the enviroment supports.
+		 This setting may also be overridden for individual classes in
+		 <see cref="Db4objects.Db4o.Config.IObjectClass.CallConstructor">Db4objects.Db4o.Config.IObjectClass.CallConstructor
+		 	</see>
+		 .
+		 <br /><br />The default setting depends on the features supported by your current environment.<br /><br />
+		 In a client/server environment it is good practice to configure the
+		 client and the server in exactly the same way.
+		 <br /><br />
+		 </remarks>
+		 <seealso cref="Db4objects.Db4o.Config.IObjectClass.CallConstructor">Db4objects.Db4o.Config.IObjectClass.CallConstructor
+		 	</seealso>
+
+	   </doc>
+ 	</member>
+	<member name="OptimizeNativeQueries">
+	   <doc>
+		<summary>
+		If set to true, db4o will try to optimize native queries
+		dynamically at query execution time, otherwise it will
+		run native queries in unoptimized mode as SODA evaluations.
+		</summary>
+		<remarks>
+		If set to true, db4o will try to optimize native queries
+		dynamically at query execution time, otherwise it will
+		run native queries in unoptimized mode as SODA evaluations.
+		The following assemblies should be available for native query switch to take effect:
+		Db4objects.Db4o.NativeQueries.dll, Db4objects.Db4o.Instrumentation.dll.
+		<br /><br />The default setting is <code>true</code>.<br /><br />
+		In a client/server environment it is good practice to configure the
+		client and the server in exactly the same way. <br /><br />
+		</remarks>
+		<seealso cref="Db4objects.Db4o.Config.ICommonConfiguration.OptimizeNativeQueries"
+			>Db4objects.Db4o.Config.ICommonConfiguration.OptimizeNativeQueries</seealso>
+
+	   </doc>
+	</member>
+	<member name="StringEncoding">
+	   <doc>
+		 <summary>configures the string encoding to be used.</summary>
+		 <remarks>
+		 configures the string encoding to be used.
+		 <br /><br />The string encoding can not be changed in the lifetime of a
+		 database file. To set up the database with the correct string encoding,
+		 this configuration needs to be set correctly <b>before</b> a database
+		 file is created with the first call to
+		 <see cref="Db4objects.Db4o.Db4oFactory.OpenFile">Db4objects.Db4o.Db4oFactory.OpenFile
+		 	</see>
+		 or
+		 <see cref="Db4objects.Db4o.Db4oFactory.OpenServer">Db4objects.Db4o.Db4oFactory.OpenServer
+		 	</see>
+		 .
+		 <br /><br />For subsequent open calls, db4o remembers built-in
+		 string encodings. If a custom encoding is used (an encoding that is
+		 not supplied from within the db4o library), the correct encoding
+		 needs to be configured correctly again for all subsequent calls
+		 that open database files.
+		 <br /><br />
+		 In client-server mode, the server and all clients need to have the same string encoding.<br /><br />
+		 Example:<br />
+		 <code>config.StringEncoding = StringEncodings.Utf8();</code>
+		 </remarks>
+		 <seealso cref="Db4objects.Db4o.Config.Encoding.StringEncodings">Db4objects.Db4o.Config.Encoding.StringEncodings
+		 	</seealso>
+
+	   </doc>
+	</member>
+
+  </type>
+

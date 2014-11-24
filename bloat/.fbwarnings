@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="1.0.0" sequence="0" timestamp="-1" analysisTimestamp="1154004551868" release="">
+  <Project filename="&lt;&lt;unnamed project&gt;&gt;">
+    <AuxClasspathEntry>/home/patrick/workspaces/db4o/bloat/bin</AuxClasspathEntry>
+  </Project>
+  <Errors></Errors>
+  <FindBugsSummary timestamp="Thu, 27 Jul 2006 14:49:11 +0200" total_classes="0" total_bugs="0" total_size="0" num_packages="0" cpu_seconds="0.03" clock_seconds="0.03" peak_mbytes="147.04" gc_seconds="0.00"></FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

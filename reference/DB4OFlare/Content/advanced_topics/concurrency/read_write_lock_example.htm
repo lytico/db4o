@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="5325" MadCap:lastWidth="658">
+    <head>
+    </head>
+    <body>
+        <h1>Read Write&#160;Lock Example</h1>
+        <p>This example is the same as used in the <a href="share_object_container_threads.htm">shared container topic</a>. Except that it is using read and write locks.</p>
+        <p>We replace the lock object with a read write lock:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/locking/ReadWriteLockingOperations-Read-write-lock.all.flsnp" />
+        <p>And then on reading operations you use the read lock:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/locking/ReadWriteLockingOperations-Grab-the-read-lock-to-show-the-data.all.flsnp" />
+        <p>On insert and update operations you grab the write lock. Note that you need the write lock every time you change some data.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/locking/ReadWriteLockingOperations-Grab-the-write-lock-to-change-the-data.all.flsnp" />
+        <h2><a name="Read"></a>Read Write Lock Transactions</h2>
+        <p>You can use read write locks also in a transaction abstraction. This example is an extension of <a href="share_object_container_threads.htm#TransactionModel">transaction abstraction example</a> but with read write locks.</p>
+        <p>First we introduce the read write lock.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/DatabaseSupportWithReadWriteLock-Read-write-lock.all.flsnp" />
+        <p>Then we implement read and write transaction methods:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/DatabaseSupportWithReadWriteLock-The-read-transaction-method.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/DatabaseSupportWithReadWriteLock-The-write-transaction-method.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/DatabaseSupportWithReadWriteLock-The-transaction-implementation.all.flsnp" />
+        <p>After that we can use these operations in our code:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/ReadWriteTransactionOperations-Use-a-read-transaction-for-reading-objects.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/concurrency/transactions/ReadWriteTransactionOperations-Use-a-write-transaction-to-update-objects.all.flsnp" />
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">// Grab the lock. Specify the name and a timeout in milliseconds</span>
+<span style="color:Blue;">boolean</span> hasLock = container.ext().setSemaphore(<span style="color:#A31515;">&quot;LockName&quot;</span>, 1000);
+<span style="color:Blue;">try</span> {
+    <span style="color:Green;">// you need to check the lock</span>
+    <span style="color:Blue;">if</span> (hasLock) {
+        System.out.println(<span style="color:#A31515;">&quot;Could get lock&quot;</span>);
+    } <span style="color:Blue;">else</span>{
+        System.out.println(<span style="color:#A31515;">&quot;Couldn't get lock&quot;</span>);
+    }
+} <span style="color:Blue;">finally</span> {
+    <span style="color:Green;">// release the lock</span>
+    container.ext().releaseSemaphore(<span style="color:#A31515;">&quot;LockName&quot;</span>);
+}</pre>
+		<div class="codesnippet-meta">
+			SemaphoreExamples.java: Grab a semaphore
+			<div class="codedownload">
+				<a href="Example-db4odoc-semaphores-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

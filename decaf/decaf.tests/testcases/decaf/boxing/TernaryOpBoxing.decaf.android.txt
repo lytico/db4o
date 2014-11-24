@@ -1,0 +1,21 @@
+package decaf.boxing;
+
+class TernaryOpBoxing {
+
+	public static void wrapperType1(boolean flag) {
+		Integer i = flag ? new Integer(10) : 42;
+	}
+
+	public static void primitiveType1(boolean flag) {
+		int i = flag ? new Integer(10) : 42;
+	}
+
+	public static void wrapperType2(boolean flag) {
+		Integer i = flag ? 42 : new Integer(10);
+	}
+
+	public static void primitiveType2(boolean flag) {
+		int i = flag ? 42 : new Integer(10);
+	}
+
+}

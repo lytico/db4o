@@ -1,0 +1,23 @@
+package decaf.annotations;
+
+class Base {
+}
+
+interface Interface {
+}
+
+@decaf.IgnoreExtends
+class IgnoreExtends1 extends Base {
+}
+
+@decaf.IgnoreExtends
+class IgnoreExtends2 extends Base implements Interface {
+}
+
+@decaf.IgnoreImplements
+interface Interface2 extends Interface {
+}
+
+@decaf.IgnoreImplements(interfaces={Interface2.class})
+interface Interface3 extends Interface, Interface2 {
+}

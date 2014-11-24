@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1498" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>db4o <MadCap:keyword term="Reflection" />Reflection API</h1>
+        <P>Reflection gives your code access to internal information for classes loaded into the <MadCap:variable name="Primary.JVM" />. It allows you to explore the structure of objects at runtime. In the case of reflection metadata is the description of classes and objects within the <MadCap:variable name="Primary.JVM" />, including their fields, methods and constructors. It allows the programmer to select target classes at runtime, create new objects, call their methods and operate with the fields.</P>
+        <P>In order to persist object db4o uses the reflection to read object and store their values. You can exchange this reflector layer in the <a href="../configuration/common/reflector.htm">configuration</a>. </P>
+        <P MadCap:conditions="Primary.Java">By default the JdkReflector is used. This reflector also allows you to specify the right class-loader.</P>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/common/CommonConfigurationExamples-Change-the-reflector.all.flsnp" />
+        <p MadCap:conditions="Primary.Java"> It's also possible to use very special class resolving strategy by implementing the JdkLoader-interface. For example when you want to look up classes in multiple class loaders.</p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/common/CommonConfigurationExamples-Complex-class-loader-scenario.all.flsnp" />
+        <MadCap:snippetBlock src="../CodeExamples/configuration/common/ClassLoaderLookup-Complex-class-loader-scenario.all.flsnp" />
+        <MadCap:snippetBlock src="../Snippets/dotNetReflectorChoise.flsnp" MadCap:conditions="Primary..NET" />
+        <p>If you need some special treatment you can create you're own reflector implementation. <MadCap:xref href="db4o_reflection_api/creating_your_own_reflector.htm" target="" title="" alt="">See "Creating your own reflector"</MadCap:xref></p>
+        <p>db4o has also a generic reflector which can deal with stored objects without using the original class. <MadCap:xref href="db4o_reflection_api/genericreflector.htm" target="" title="" alt="">See "GenericReflector"</MadCap:xref></p>
+    </body>
+</html>

@@ -1,0 +1,525 @@
+<?xml version="1.0"?>
+<doc xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<xi:include href="DiagnosticToConsole.xml" />
+	<xi:include href="EventException.xml" />
+	<xi:include href="IActivatable.xml" />
+	<xi:include href="IAlias.xml" />
+	<xi:include href="ICommonConfiguration.xml" />
+	<xi:include href="IConfiguration.xml" />
+	<xi:include href="IConstraint.xml" />
+	<xi:include href="IDiagnosticListener.xml" />
+	<xi:include href="IFileConfiguration.xml" />
+	<xi:include href="IObjectClass.xml" />
+	<xi:include href="MapTypeHandler.xml" />
+	<xi:include href="TransparentActivationSupport.xml" />
+	<xi:include href="TransparentPersistenceSupport.xml" />
+	
+	<type name="Db4objects.Db4o.Db4oEmbedded">
+		<doc>
+			<summary>Factory class to open db4o instances in embedded
+				mode.</summary>
+			<remarks> Factory class to open db4o instances in embedded mode.
+                <br/>
+                <br/>
+                Use Db4objects.Db4o.CS.Db4oClientServer in
+				Db4objects.Db4o.CS.dll for opening db4o servers and db4o
+				clients.
+
+			</remarks>
+			<seealso cref="Db4objects.Db4o.CS.Db4oClientServer">Db4objects.Db4o.CS.Db4oClientServer</seealso>
+			<since>7.5</since>
+		</doc>
+		<member name="OpenFile(IEmbeddedConfiguration, string)">
+			<doc>
+				<summary>
+					opens an
+					<see cref="Db4objects.Db4o.IObjectContainer">IObjectContainer</see>
+					on the specified database file for local use.
+					<br />
+					<br />
+					A database file can only be opened once, subsequent attempts to
+					open another
+					<see cref="Db4objects.Db4o.IObjectContainer">IObjectContainer</see>
+					against the same file will result in a
+					<see cref="Db4objects.Db4o.Ext.DatabaseFileLockedException"> DatabaseFileLockedException</see>
+					.
+					<br />
+					<br />
+				</summary>
+				<param name="config">
+					a custom
+					<see cref="Db4objects.Db4o.Config.IConfiguration">IConfiguration</see>
+					instance to be obtained via
+					<see cref="newConfiguration">newConfiguration</see>
+				</param>
+				<param name="databaseFileName">an absolute or relative path to the database
+					file</param>
+				<returns>
+					an open
+					<see cref="Db4objects.Db4o.IObjectContainer">IObjectContainer</see>
+				</returns>
+				<seealso cref="Db4objects.Db4o.Config.IConfiguration.ReadOnly">
+					Db4objects.Db4o.Config.IConfiguration.ReadOnly</seealso>
+				<seealso cref="Db4objects.Db4o.Config.IConfiguration.Encrypt"> Db4objects.Db4o.Config.IConfiguration.Encrypt
+				</seealso>
+				<seealso cref="Db4objects.Db4o.Config.IConfiguration.Password">
+					Db4objects.Db4o.Config.IConfiguration.Password</seealso>
+				<exception cref="Db4objects.Db4o.Ext.Db4oIOException"> I/O operation failed or was unexpectedly
+					interrupted.</exception>
+				<exception cref="Db4objects.Db4o.Ext.DatabaseFileLockedException"> the required database file is locked by
+					another process.</exception>
+				<exception cref="Db4objects.Db4o.Ext.IncompatibleFileFormatException">
+					runtime
+					<see cref="Db4objects.Db4o.Config.IConfiguration">configuration</see>
+					is not compatible with the configuration of the database file.
+				</exception>
+				<exception cref="Db4objects.Db4o.Ext.OldFormatException">
+					open operation failed because the database file is in old format
+					and
+					<see cref="Db4objects.Db4o.Config.IConfiguration.AllowVersionUpdates">
+						Db4objects.Db4o.Config.IConfiguration.AllowVersionUpdates</see>
+					is set to false.
+				</exception>
+				<exception cref="Db4objects.Db4o.Ext.DatabaseReadOnlyException"> database was configured as read-only.
+				</exception>
+			</doc>
+		</member>
+	</type>
+
+	<type name="Db4objects.Db4o.Collections.ArrayDictionary4">
+		<doc>
+			<summary>Transparent activatable IDictionary implementation.
+			</summary>
+			<remarks>
+				Transparent activatable IDictionary implementation. Implements IDictionary interface
+				using two arrays to store keys and values.
+				<br />
+				<br />
+				When instantiated as a result of a query, all the internal members
+				are NOT activated at all. When internal members are required to
+				perform an operation, the instance transparently activates all the
+				members.
+			</remarks>
+			<seealso cref="System.Collections.Generic.IDictionary">System.Collections.IDictionary
+			</seealso>
+			<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+			</seealso>
+		</doc>
+		<member name="ctor()">
+			<doc>
+				<summary>
+					Initializes a new collection with the initial capacity = 16.
+				</summary>
+			</doc>
+		</member>
+		<member name="ctor(int)">
+			<doc>
+				<summary>
+					Initializes a collection of the specified initial capacity.
+				</summary>
+			</doc>
+		</member>
+		<member name="Clear()">
+			<doc>
+				<summary> System.Collections.Generic.IDictionary implementation but transparently activates
+					the members as required.</summary>
+				<remarks> System.Collections.Generic.IDictionary implementation but transparently activates
+					the members as required.</remarks>
+				<seealso cref="System.Collections.Generic.IDictionary"></seealso>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="Count">
+			<doc>
+				<summary> Returns the number of elements in the collection.</summary>
+				<remarks> Returns the number of elements in the collection. The collection gets activated. </remarks>
+				<seealso cref="System.Collections.Generic.IDictionary"></seealso>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="Values">
+			<doc>
+				<summary> Returns the values of the collection.</summary>
+				<remarks> Returns the values of the collection. The collection gets activated.</remarks>
+				<seealso cref="System.Collections.Generic.IDictionary"></seealso>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="GetHashCode()">
+			<doc>
+				<summary> Returns the hash code of the collection.</summary>
+				<remarks> Returns the hash code of the collection. Collection members
+				get activated as required.</remarks>
+				<seealso cref="System.Collections.Generic.IDictionary"></seealso>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+	</type>
+	<type name="Db4objects.Db4o.Collections.ArrayList4">
+		<doc>
+			<summary>Transparent activatable ArrayList implementation.
+			</summary>
+			<remarks>
+				Transparent activatable ArrayList implementation. Implements IList
+				interface using an array to store elements. Each ArrayList4 instance
+				has a capacity, which indicates the size of the internal array.
+				<br />
+				<br />
+				When instantiated as a result of a query, all the internal members
+				are NOT activated at all. When internal members are required to
+				perform an operation, the instance transparently activates all the
+				members.
+			</remarks>
+			<seealso cref="System.Collections.ArrayList">System.Collections.ArrayList
+			</seealso>
+			<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+			</seealso>
+		</doc>
+		<member name="ctor()">
+			<doc>
+				<summary>
+				Initializes a new collection with the initial capacity = 10.
+				</summary>
+			</doc>
+		</member>
+		<member name="ctor(ICollection)">
+				<doc>
+					<summary>
+					Initializes a collection with the members of the parameter collection.
+					</summary>
+				</doc>
+		</member>
+		<member name="ctor(int)">
+			<doc>
+				<summary>
+				Initializes a collection of the specified initial capacity.
+				</summary>
+			</doc>
+		</member>
+		<member name="Add(int, E)">
+			<doc>
+				<summary> Inserts an element into the collection 
+				at the specified index. </summary>
+				<remarks> Inserts an element into the collection 
+				at the specified index.</remarks>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="Clear()">
+			<doc>
+				<summary> Removes all elements from the collection.</summary>
+				<remarks> Removes all elements from the collection.</remarks>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="EnsureCapacity(int)">
+			<doc>
+				<summary> Resizes the collection capacity to the specified size if the 
+				current capacity is less than the parameter value.</summary>
+				<remarks> Resizes the collection capacity to the specified size if the 
+				current capacity is less than the parameter value.</remarks>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="Get(int)">
+			<doc>
+				<summary> Returns the collection element at the specified index.</summary>
+				<remarks> Returns the collection element at the specified index.</remarks>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="RemoveImpl(int)">
+			<doc>
+				<summary> Removes the collection element at the specified index.</summary>
+				<remarks> Removes the collection element at the specified index.</remarks>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="Set(int, E)">
+			<doc>
+				<summary> Replaces the collection element with the specified object at the specified index.</summary>
+				<remarks> Replaces the collection element with the specified object at the specified index.</remarks>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="Count">
+			<doc>
+				<summary> Returns the size of the collection.</summary>
+				<remarks> Returns the size of the collection.</remarks>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+		<member name="TrimExcess()">
+			<doc>
+				<summary> Resizes the collection to its actual size.</summary>
+				<remarks> Resizes the collection to its actual size.</remarks>
+				<seealso cref="Db4objects.Db4o.TA.IActivatable">Db4objects.Db4o.TA.IActivatable
+				</seealso>
+			</doc>
+		</member>
+	</type>
+	<type name="Db4objects.Db4o.Diagnostic.IDiagnosticConfiguration">
+		<doc>
+			<summary>provides methods to configure the behaviour of db4o
+				diagnostics.</summary>
+			<remarks>
+				provides methods to configure the behaviour of db4o diagnostics.
+				<br />
+				<br />
+				Diagnostic system can be enabled on a running db4o database to
+				notify a user about possible problems or misconfigurations.
+				Diagnostic listeners can be be added and removed with calls to this
+				interface. To install the most basic listener call:
+				<br />
+				<code>commonConfig.Diagnostic.AddListener(new DiagnosticToConsole());</code>
+			</remarks>
+			<seealso cref="IConfiguration.Diagnostic">IConfiguration.Diagnostic
+			</seealso>
+			<seealso cref="IDiagnosticListener">IDiagnosticListener
+			</seealso>
+		</doc>
+	</type>
+
+	<type name="Db4objects.Db4o.Defragment.Defragment">
+		<doc>
+			<summary>defragments database files.</summary>
+			<remarks>
+				defragments database files.
+				<br />
+				<br />
+				db4o structures storage inside database files as free and occupied
+				slots, very much like a file system - and just like a file system it
+				can be fragmented.
+				<br />
+				<br />
+				The simplest way to defragment a database file:
+				<br />
+				<br />
+				<code>Defragment.Defrag("sample.yap");
+				</code>
+				<br />
+				<br />
+				This will move the file to "sample.yap.backup", then create a
+				defragmented version of this file in the original position, using a
+				temporary file "sample.yap.mapping". If the backup file already
+				exists, this will throw an exception and no action will be taken.
+				<br />
+				<br />
+				For more detailed configuration of the defragmentation process,
+				provide a DefragmentConfig instance:
+				<br />
+				<br />
+				<code>
+					DefragmentConfig config=new DefragmentConfig("sample.yap","sample.bap",new BTreeIDMapping("sample.map"));
+					<br />
+					config.ForceBackupDelete(true);
+					<br />
+					config.StoredClassFilter(new AvailableClassFilter());
+					<br />
+					config.Db4oConfig(db4oConfig);
+					<br />
+					Defragment.Defrag(config);
+				</code>
+				<br />
+				<br />
+				This will move the file to "sample.bap", then create a defragmented
+				version of this file in the original position, using a temporary
+				file "sample.map" for BTree mapping. If the backup file already
+				exists, it will be deleted. The defragmentation process will skip
+				all classes that have instances stored within the yap file, but that
+				are not available on the class path (through the current
+				classloader). Custom db4o configuration options are read from the
+				<see cref="IConfiguration">IConfiguration</see>
+				passed as db4oConfig.
+				<strong>Note:</strong>
+				For some specific, non-default configuration settings like UUID
+				generation, etc., you
+				<strong>must</strong>
+				pass an appropriate db4o configuration, just like you'd use it
+				within your application for normal database operation.
+			</remarks>
+		</doc>
+	</type>
+
+  <type name="Db4objects.Db4o.Config.IObjectConstructor">
+    <doc>
+      <summary>
+        interface to allow instantiating objects by calling specific constructors.
+
+      </summary>
+      <remarks>
+        interface to allow instantiating objects by calling specific constructors.
+        <br /><br />
+        By writing classes that implement this interface, it is possible to
+        define which constructor is to be used during the instantiation of a stored object.
+        <br /><br />
+        Before starting a db4o session, translator classes that implement the ObjectConstructor or
+        <see cref="IObjectTranslator">IObjectTranslator</see>
+        need to be registered.<br /><br />
+        Example:<br />
+        <code>
+          IConfiguration config = Db4oFactory.Configure();<br />
+          IObjectClass oc = config.ObjectClass("Namespace.ClassName");<br />
+          oc.Translate(new FooTranslator());
+        </code><br /><br />
+      </remarks>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Config.IObjectTranslator">
+    <doc>
+      <summary>translator interface to translate objects on storage and activation.</summary>
+      <remarks>
+        translator interface to translate objects on storage and activation.
+        <br /><br />
+        By writing classes that implement this interface, it is possible to
+        define how application classes are to be converted to be stored more efficiently.
+        <br /><br />
+        Before starting a db4o session, translator classes need to be registered. An example:<br />
+        <code>
+          IObjectClass oc = config.ObjectClass("Namespace.ClassName");<br />
+          oc.Translate(new FooTranslator());
+        </code><br /><br />
+      </remarks>
+
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Events.IEventRegistry">
+
+    <doc>
+      <summary>
+        Provides a way to register event handlers for specific <see cref="IObjectContainer">IObjectContainer</see> events.<br />
+        EventRegistry methods represent events available for registering callbacks.
+        EventRegistry instance can be obtained from <see cref="EventRegistryFactory">EventRegistryFactory</see>.
+        <code>EventRegistry registry =  EventRegistryFactory.ForObjectContainer(container);</code>
+        A new callback can be registered for an event with the following code:
+        <code>
+          private static void OnCreated(object sender, ObjectInfoEventArgs args)
+          {
+          &#160;&#160; Object obj = args.Object;
+          &#160;&#160; if (obj is Pilot)
+          &#160;&#160; {
+          &#160;&#160; &#160;&#160; Console.WriteLine(obj.ToString());
+          &#160;&#160; }
+          }
+          registry.Created+=OnCreated;
+        </code>
+        <seealso cref="EventRegistryFactory">EventRegistryFactory</seealso>
+      </summary>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Query.IQueryComparator">
+    <doc>
+      <summary>
+        This interface is not used in .NET.
+      </summary>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Reflect.IReflectArray">
+    <doc>
+      <summary>Reflection Array representation.</summary>
+      <remarks>
+        Reflection Array representation
+        <br /><br />See documentation for System.Reflection API.
+      </remarks>
+      <seealso cref="IReflector">IReflector</seealso>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Reflect.IReflectClass">
+    <doc>
+      <summary>Reflection Class representation.</summary>
+      <remarks>
+        Reflection Class representation
+        <br /><br />See documentation for System.Reflection API.
+      </remarks>
+      <seealso cref="IReflector">IReflector</seealso>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Reflect.IReflectConstructor">
+    <doc>
+      <summary>Reflection Constructor representation.</summary>
+      <remarks>
+        Reflection Constructor representation
+        <br /><br />See documentation for System.Reflection API.
+      </remarks>
+      <seealso cref="IReflector">IReflector</seealso>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Reflect.Core.IReflectConstructor">
+    <doc>
+      <summary>Reflection Constructor representation.</summary>
+      <remarks>
+        Reflection Constructor representation
+        <br /><br />See documentation for System.Reflection API.
+      </remarks>
+      <seealso cref="IReflector">IReflector</seealso>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Reflect.IReflectField">
+    <doc>
+      <summary>Reflection Field representation.</summary>
+      <remarks>
+        Reflection Field representation
+        <br /><br />See documentation for System.Reflection API.
+      </remarks>
+      <seealso cref="IReflector">IReflector</seealso>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Reflect.IReflectMethod">
+    <doc>
+      <summary>Reflection Method representation.</summary>
+      <remarks>
+        Reflection Method representation
+        <br /><br />See documentation for System.Reflection API.
+      </remarks>
+      <seealso cref="IReflector">IReflector</seealso>
+    </doc>
+  </type>
+
+  <type name="Db4objects.Db4o.Reflect.IReflector">
+    <doc>
+      <summary>root of the reflection implementation API.</summary>
+      <remarks>
+        root of the reflection implementation API.
+        <br /><br />The open reflection interface is supplied to allow to implement
+        custom reflection functionality.<br /><br />
+        Use
+        <see cref="IConfiguration.ReflectWith">
+          Db4o.Configure().ReflectWith(IReflect reflector)
+        </see>
+        to register the use of your implementation before opening database
+        files.
+      </remarks>
+    </doc>
+    <member name="Array()">
+      <doc>
+        <summary>
+          returns an ReflectArray object.
+        </summary>
+        <remarks>
+          returns an ReflectArray object.
+        </remarks>
+      </doc>
+    </member>
+  </type>
+</doc>

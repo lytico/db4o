@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{D43524B6-D913-3458-AC26-272192854D9D}") = "SnippetGenerator", "SnippetGenerator\SnippetGenerator.booproj", "{A8A885AB-BC6A-42BC-A977-A79E4DBFE418}"
+EndProject
+Project("{D43524B6-D913-3458-AC26-272192854D9D}") = "SnippetGeneratorTests", "SnippetGeneratorTests\SnippetGeneratorTests.booproj", "{E41E8494-9C87-4ADC-9E2B-F00E5A71D037}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8A885AB-BC6A-42BC-A977-A79E4DBFE418}.Debug|x86.ActiveCfg = Debug|x86
+		{A8A885AB-BC6A-42BC-A977-A79E4DBFE418}.Debug|x86.Build.0 = Debug|x86
+		{A8A885AB-BC6A-42BC-A977-A79E4DBFE418}.Release|x86.ActiveCfg = Release|x86
+		{A8A885AB-BC6A-42BC-A977-A79E4DBFE418}.Release|x86.Build.0 = Release|x86
+		{E41E8494-9C87-4ADC-9E2B-F00E5A71D037}.Debug|x86.ActiveCfg = Debug|x86
+		{E41E8494-9C87-4ADC-9E2B-F00E5A71D037}.Debug|x86.Build.0 = Debug|x86
+		{E41E8494-9C87-4ADC-9E2B-F00E5A71D037}.Release|x86.ActiveCfg = Release|x86
+		{E41E8494-9C87-4ADC-9E2B-F00E5A71D037}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

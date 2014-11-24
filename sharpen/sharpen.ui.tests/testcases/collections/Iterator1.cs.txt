@@ -1,0 +1,28 @@
+namespace collections
+{
+	public class Iterator1
+	{
+		public static void printAll(object collection)
+		{
+			System.Collections.ICollection subject = (System.Collections.ICollection)collection;
+			System.Collections.IEnumerator it = subject.GetEnumerator();
+			while (it.MoveNext())
+			{
+				print(it.Current);
+			}
+		}
+
+		public static void printAll(System.Collections.Generic.IEnumerable<string> lines)
+		{
+			System.Collections.Collection.IEnumerator<string> it = lines.GetEnumerator();
+			while (it.MoveNext())
+			{
+				print(it.Current);
+			}
+		}
+
+		public static void print(object o)
+		{
+		}
+	}
+}

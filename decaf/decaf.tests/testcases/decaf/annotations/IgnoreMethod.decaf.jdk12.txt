@@ -1,0 +1,11 @@
+package decaf.annotations;
+
+class Foo {
+
+	public void bar() {
+	}
+	
+	public void ignoredOnJdk11Only() {
+	}
+
+}

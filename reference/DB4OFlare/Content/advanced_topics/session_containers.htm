@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3060" MadCap:lastWidth="588">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Sessions;Transactions:Multiple Transactions;Unit Of Work" />Session Containers</h1>
+        <p>In an application there are often multiple operations running at the same time. A typical example is a web application which processes multiple requests at the same time. These operations should be isolated from each other. This means that for the database we want to have multiple transactions at the same time. Each transaction does some work and other transactions shouldn't interfere .</p>
+        <p>db4o supports this scenario with session containers. A session container is a lightweight object-container with its own transaction and reference cache, but shares the resources with its parent container. That means you can commit and rollback changes on such a session container without disturbing the work of other session containers. If you want to implement units of work, you might considers using a session container for each unit. You can create such a container with the open session call.</p>
+        <MadCap:snippetBlock src="../CodeExamples/container/sessions/Db4oSessions-Session-object-container.all.flsnp" />
+        <h2>Transactions And Isolation</h2>
+        <p>As previously mentioned session-containers are isolated from each other. Each session container has its own transaction and its own reference system. This isolation ensures that the different session container don't interfere witch each other. </p>
+        <p>They don't share the objects loaded and stored with each other. That means you need to load and store the a object with the same session container. When you try to load a object form one session-container and store it with another, you well end up with two separate copies of that object.</p>
+        <p>Since the transactions are isolated, changes are only visible for other session containers when you've committed. Before the commit call the changes are not visible to other session containers.</p>
+        <MadCap:snippetBlock src="../CodeExamples/container/sessions/Db4oSessions-Session-are-isolated-from-each-other.all.flsnp" />
+        <p>Note also that sessions also have their own reference cache. So when a object is already loaded, it wont be refreshed if another transaction updates the object. You explicitly need to refresh it.</p>
+        <MadCap:snippetBlock src="../CodeExamples/container/sessions/Db4oSessions-Each-session-does-cache-the-objects.all.flsnp" />
+    </body>
+</html>

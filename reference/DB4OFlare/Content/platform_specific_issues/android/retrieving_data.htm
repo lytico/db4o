@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="745" MadCap:lastWidth="518" MadCap:conditions="Primary.Java">
+  <head />
+  <body>
+    <h1>Retrieving Data</h1>
+    <p>In order to test the retrieval abilities of both databases
+we will try to select a car with a pilot having15 points:</p>
+    <h2>SQLite</h2>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/SqlExample-select-a-car-from-SQLite.all.flsnp" />
+    <h2>db4o</h2>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/Db4oExample-select-a-car-from-db4o.all.flsnp" />
+    <h2>Conclusion </h2>
+    <p>The db4o native queries are typesafe. This is a huge benefit, since the compiler can detect errors and the IDE help you with the refactoring. In the example above you can see that SQLite needs a lot of additional code to transfer the retrieved data into application's objects, whereas db4o does not need this code at all, as the result is already a collection of objects. </p>
+  </body>
+</html>

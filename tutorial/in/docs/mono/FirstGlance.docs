@@ -1,0 +1,18 @@
+.0 First Glance ..
+Before diving straight into the first source code samples ._
+let's get you familiar with some basics.
+
+.1 The db4o engine ..
+The db4o object database engine consists of one single DLL. ._
+This is all that you need to program against. The version ._
+supplied with the distribution can be found in /usr/lib/db4o/.	
+
+.b /usr/lib/db4o/db4o.dll ..
+The standard db4o engine for the Mono environment.
+
+.1 Installation ..
+To use db4o in a development project, you only need to add ._
+the above db4o.dll file to your project references.
+
+.< ObjectManagerIntro ..
+.< APIOverview ..

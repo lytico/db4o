@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="775" MadCap:lastWidth="560">
+  <head />
+  <body>
+    <h1>Calling Constructors</h1>
+    <p>By default db4o by passes the constructor to instantiate the objects. Therefore it uses the reflection capabilities of the current platform. On some embedded platform this is not possible because of security and platform constrains. On other platforms bypassing the constructor is significantly slower than calling it. Therefore you change the behavior so that db4o calls the constructor. Note that when you enable this setting, you classes need a constructor which can be called with default-arguments without throwing an exception.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Call-constructors.all.flsnp" />
+    <h2>Class Specific Configuration</h2>
+    <p>You can enable this setting only for certain classes. For example when the constructor needs to initialize transient fields.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/objectconfig/ObjectConfigurationExamples-Call-constructor.all.flsnp" />
+  </body>
+</html>

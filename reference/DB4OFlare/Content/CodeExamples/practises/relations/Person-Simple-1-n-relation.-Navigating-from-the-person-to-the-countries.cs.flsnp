@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">// Optionally we can index this field, when we want to find all people for a certain country</span>
+<span style="color:Blue;">private</span> Country bornIn;
+
+<span style="color:Blue;">public</span> Country BornIn
+{
+    <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> bornIn; }
+}</pre>
+		<div class="codesnippet-meta">
+			Person.cs: Simple 1-n relation. Navigating from the person to the countries
+			<div class="codedownload">
+				<a href="Example-practises-relations-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

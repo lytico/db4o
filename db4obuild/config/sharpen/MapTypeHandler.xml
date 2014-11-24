@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+
+
+  <type name="Db4objects.Db4o.Typehandlers.MapTypeHandler">
+    <doc>
+	 <summary>Typehandler for classes that implement IDictionary.</summary>
+	 <remarks>Typehandler for classes that implement IDictionary.</remarks>
+
+    </doc>
+  </type>
+

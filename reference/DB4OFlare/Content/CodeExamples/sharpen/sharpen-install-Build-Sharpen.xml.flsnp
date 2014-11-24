@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">&lt;</span><span style="color:#A31515;">target</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">build-sharpen</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">property</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">sharpen.core.dir</span><span style="color:Black;">&quot;</span> <span style="color:Red;">location</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${dir.workspace}/sharpen.core</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">reset-dir</span> <span style="color:Red;">dir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${dir.dist.classes.sharp}</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">javac</span> <span style="color:Red;">fork</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">true</span><span style="color:Black;">&quot;</span>
+           <span style="color:Red;">debug</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">true</span><span style="color:Black;">&quot;</span>
+           <span style="color:Red;">target</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">1.5</span><span style="color:Black;">&quot;</span>
+           <span style="color:Red;">source</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">1.5</span><span style="color:Black;">&quot;</span>
+           <span style="color:Red;">destdir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${dir.dist.classes.sharp}</span><span style="color:Black;">&quot;</span>
+           <span style="color:Red;">srcdir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${sharpen.core.dir}/src</span><span style="color:Black;">&quot;</span>
+           <span style="color:Red;">encoding</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">UTF-8</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">classpath</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">fileset</span> <span style="color:Red;">dir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${eclipse.home}/plugins</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">org.eclipse.osgi_*.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">org.eclipse.core.resources_*.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">org.eclipse.core.runtime_*.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">org.eclipse.jdt.core_*.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">org.eclipse.jdt.launching_*.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">org.eclipse.equinox.*.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+                <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">org.eclipse.core.jobs_*.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+            <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">fileset</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">classpath</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">javac</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">jar</span> <span style="color:Red;">destfile</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${dir.dist.classes.sharp}/sharpen.core_1.0.0.jar</span><span style="color:Black;">&quot;</span> <span style="color:Red;">basedir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${dir.dist.classes.sharp}</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">fileset</span> <span style="color:Red;">dir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${sharpen.core.dir}</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+            <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">plugin.xml</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">fileset</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">jar</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">target</span><span style="color:Blue;">&gt;</span></pre>
+		<div class="codesnippet-meta">
+			sharpen-install.xml: Build Sharpen
+			<div class="codedownload">
+				<a href="Example-db4odoc-sharpen-.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

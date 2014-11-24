@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Downloads xmlns="Db4objects.Downloads.xsd">
+<!-- 
+	All possible parameters, showing default values.
+	
+	When updating existing records, DownloadCenterSync will use the 'id' or 'file' (relative to 
+	the storage path) attributes to attempt to locate a matching record.
+	-->
+	<!--
+	<Download                       required, multiple ok
+		id="generated"                int, optional
+		file="from xml file name"     string, optional
+		title=""                      string, required, product name without platform or package
+		downloadUrl=""                string, optional
+		version=""                    string, optional (#[.#][.#][.#])
+		isArchived="false"            bool, optional (0,1,true,false)
+		platform=""                   string, optional
+		package=""                    string, optional (for simultaneous releases: ZIP, MSI, RPM)
+		releaseDate="file date"       dateTime (UTC), optional (yyyy-MM-ddT00:00:00 or yyyy-MM-ddThh:mm:ss)
+		size="bytes"                  Int64, optional (no punctuation)
+		mimeType="from system"        optional (will try to generate from file name)
+		iconFile="from file"          optional (filename.[jpg|png|gif]), will be copied to the new location
+		enabled="">                   bool, optional (0,1,true,false), hide this download even from the archive
+		<Releases                     required
+			<clear />                   optional (removes download from all folders)
+			<add name=""                required, multiple ok
+			  archivePrevious="false"/> bool, optional (auto-archive based on title, platform, release and version)
+			<remove name=""/>           optional, multiple ok
+		</Releases>
+		<Description>                 optional, description of the download.
+			<![CDATA[ ... ]]>                     (HTML ok, but must be within CDATA)
+		</Description>
+		<ReleaseNotes                 optional, new changes in this version
+			announcementUrl="">         optional, URL to announcement page or blog entry
+			<![CDATA[ ... ]]>                     (HTML ok, but must be within CDATA)
+		</ReleaseNotes>
+		<Tags>                        optional
+			<clear />                   optional (removes all tags from download)
+			<add tag=""/>               optional, multiple ok
+			<remove tag=""/>            optional, multiple ok
+		</Tags>
+	</Download>
+	-->
+
+	<!-- -=-=-=-=-=-=  SPECIFIC EXAMPLES =-=-=-=-=-=-=- -->
+	
+	<!-- Specifying a new file to add to the download center where
+			 the filename is taken from this filename, minus the ".xml"
+			 extension. (e.g. if this xml is named 'db4o-7.12-java.zip.xml' then
+			 DownloadCenterSync assumes the filename is 'db4o-7.12-java.zip')
+			 An error will be generated and this XML file skipped if the file 
+			 does not exist. When the filename is used in this manner, only ONE
+			 <Dowload> element should exist in this XML file.
+			 The file size and release date can also be read from the 
+			 target file's size and last modified timestamp. -->
+	<Download
+		title="db4o Database"
+		version="1.2.1.1234"
+		platform="Java">
+		<Releases>
+			<add name="Development"/>
+		</Releases>
+	</Download>
+	
+	<!-- Specifying a new file to add to the download center,
+	     archiving the previous version of this download with the 
+	     same title and platform. The file will also be marked as
+	     archived. -->
+	<Download
+		file="filename.ext"
+		title="Title"
+		version="1.2.1.1234"
+		size="12456974"
+		platform="Java">
+		<Releases>
+			<add name="Development" archivePrevious="true"/>
+		</Releases>
+		<Description>
+			<![CDATA[A long and nifty description. <b> html works too!</b>]]>
+		</Description>
+		<ReleaseNotes
+			announcementUrl="http://link.to/release/announcement/blog">
+			<![CDATA[woot! release notes!]]>
+		</ReleaseNotes>
+	</Download>
+	
+	<!-- Replace an existing entry in the download center by ID and
+	     moving the download to the "Release" folder. -->
+	<Download
+		id="1231"
+		file="filename.ext"
+		title="Title"
+		version="1.0.0.1234"
+		releaseDate="2010-12-02T14:52:00"
+		platform=".NET">
+		<!-- add this download to multiple folders -->
+		<Releases>
+			<remove name="Development" />
+			<add name="Release" />
+		</Releases>
+	</Download>
+</Downloads>

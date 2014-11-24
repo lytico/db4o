@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="7209" MadCap:lastWidth="595">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="SODA:Performance;Performance:Soda" />SODA Performance Characteristics</h1>
+        <p>This overview shows which query operations perform well or badly on large datasets. It should give you an idea which operations can be used on large datasets and which operations can only be applied for small datasets.</p>
+        <h2><a name="GoodPerf"></a>Good Performance Characteristics</h2>
+        <p>For a good query performance fields which are used in a query have to be <a href="../../indexing.htm">indexed</a>. Otherwise db4o needs to scan through all objects. With an index these operations should scale logarithmically with the amount of data. The following queries all assume that the fields are indexed.</p>
+        <h3>Equals Operation on Indexed Field</h3>
+        <p>Simple equals operations on indexed fields’ perform very well.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/GoodPerformance-Equals-on-indexed-field.all.flsnp" />
+        <p>Not equals operations also do perform well. However a 'not equals' operation tends to return a large result which will slow down the query.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/GoodPerformance-Not-equals-on-indexed-field.all.flsnp" />
+        <h3><a name="FastNavigationQueries"></a>Navigation Queries on Index Fields</h3>
+        <p>Queries which navigate along references are executed also efficiently, as long every field and reference is indexed.</p>
+        <p>However there's a catch to this: The reference field type has to be a concrete type. If a field type is <span MadCap:conditions="Primary.Java">a generic type, </span>an interface or an object-type, <a href="#SlowNavigationQueries">then the query runs slow</a>.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/GoodPerformance-Equals-across-indexed-fields.all.flsnp" />
+        <h3>Reference-Queries</h3>
+        <p>Like regular equals operation, comparisons against references also have a good performance.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/GoodPerformance-Query-by-reference.all.flsnp" />
+        <h3>Comparison and Range Queries</h3>
+        <p>Comparison and range queries  also perform well.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/GoodPerformance-Bigger-than.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/GoodPerformance-In-between.all.flsnp" />
+        <h3><a name="Date"></a>Date Queries</h3>
+        <p>Comparisons on dates also run fast:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/GoodPerformance-Date-comparisons-are-also-fast.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/GoodPerformance-Find-a-newer-date.all.flsnp" />
+        <h2><a name="BadPerf"></a>Bad Performance Characteristics</h2>
+        <p>Here's an overview of the query operations with bad performances characteristics. The reason is that db4o cannot utilize indexes to perform these queries.That means the  query time grows linearly with the amount of data.</p>
+        <p>Since SODA is the low level query API all other query API will also perform badly for these operations.</p>
+        <h3><a name="SlowNavigationQueries"></a>Navigation across <span MadCap:conditions="Primary.Java">Generic/</span>Object/Interface Fields</h3>
+        <p>When your query navigates across a field which type is <span MadCap:conditions="Primary.Java">a generic parameter, </span>an object or interface then the performance is bad. The reason is that the query engine cannot be sure which objects potentially can be referenced by that field and therefore cannot use the index.</p>
+        <p>This is not true when the <a href="#FastNavigationQueries">field has a concrete type</a>.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/BadPerformance-Navigation-across-non-concrete-typed-fields.all.flsnp" />
+        <h3>String Operations: Like, Contains, StartsWith, Ends With</h3>
+        <p>All string operations beside the simple equals operation cannot use indexes at the moment. Therefore all string operations like contains, like, starts with etc. run slowly.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/BadPerformance-Contains-is-slow.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/BadPerformance-Like-is-slow.all.flsnp" />
+        <h3><a name="CollectionContains"></a>Queries on Collections / Arrays</h3>
+        <p>Any query which does contains operations on collections/arrays or navigates across a collection/array field will run slowly. The reason is that db4o cannot index collections.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/BadPerformance-Contains-on-collection.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/BadPerformance-Navigate-into-collection.all.flsnp" />
+        <h3>Sorting</h3>
+        <p>db4o does not use indexes for sorting operations. Therefore sorting is not a fast operation. However in most cases a query result is small enough so that the sorting time doesn't consume too much time.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/BadPerformance-Sorting-a-huge-result-set.all.flsnp" />
+        <h3>Evaluations</h3>
+        <p>Evaluations cannot use indexes and will run slowly. </p>
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/BadPerformance-Evaluations.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/performance/query/soda/BadPerformance-Evaluation-class.all.flsnp" />
+        <h2><a name="DetectSlowQueries"></a>Detect Slow Queries</h2>
+        <p>The best indication that a query is slow is when it cannot use any field index. Install a <a href="../../../advanced_topics/diagnostics.htm">diagnostic listener and look for the LoadedFromClassIndex</a> message. That message indicates that a query couldn't use any field index for its execution. </p>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+package decaf;
+
+class ForEachArray {
+	public static void main(String[] args) {
+		{
+			final String[] argArray = fancy(args);
+			for (int argIndex = 0; argIndex < argArray.length; ++argIndex) {
+				final String arg = argArray[argIndex];
+				System.out.println(arg);
+			}
+		}
+	}
+	
+	static String[] fancy(String[] args) {
+		return args;
+	}
+}

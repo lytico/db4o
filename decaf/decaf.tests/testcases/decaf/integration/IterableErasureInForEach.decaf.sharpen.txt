@@ -1,0 +1,23 @@
+package decaf.integration;
+
+interface Appendable<E> {
+	boolean append(E c);
+}
+
+class AppendableImpl<E> implements Appendable<Iterable<E>> {
+
+	public boolean append(final Iterable<E> c) {
+		new Runnable() {
+			public void run() {
+				for (E element : c) {
+					add(element);
+				}
+			}
+		}.run();
+		return false;
+	}
+
+	public boolean add(E o) {
+		return false;
+	}
+}

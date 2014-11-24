@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="776" MadCap:lastWidth="572">
+    <head>
+    </head>
+    <body>
+        <h1>Activation Depth</h1>
+        <p>db4o uses the concept of <a href="../../basics/activation.htm">activation</a> to avoid loading to much data into memory. You can change the global activation depth with this setting.</p>
+        <p>
+            <MadCap:snippetText src="../../Snippets/not_needed_with_ta.flsnp" />
+        </p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Change-activation-depth.all.flsnp" />
+        <p>A higher activation depth is usually more convenient to work with, because you don't face inactivated objects. However, a higher activation depth costs performance, because more data has to read from the database. Therefore a good balance need to be found. Take also a look a <a href="../../basics/activation_concept/transparent_activation_framework.htm">transparent activation</a>, since it solves the activation issue completely. </p>
+        <h2>Class Specific Configuration</h2>
+        <p>You can also configure a class specific activation depth. <MadCap:xref href="../objectclass_configuration.htm" target="" title="" alt="">See "ObjectClass Configuration"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/objectconfig/ObjectConfigurationExamples-Set-minimum-activation-depth.all.flsnp" />
+    </body>
+</html>

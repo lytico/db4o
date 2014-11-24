@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>Db4oUnit.Extensions</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Db4oUnit.Extensions</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectGuid>{9446B00C-E8A6-4CEB-83DE-2CAC5168DFE3}</ProjectGuid>
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SignAssembly>true</SignAssembly>
+<AssemblyOriginatorKeyFile>../db4objects.snk</AssemblyOriginatorKeyFile>
+</PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>TRACE;DEBUG;NET_3_5</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DebugSymbols>false</DebugSymbols>
+    <DefineConstants>TRACE;NET_3_5</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Xml"/>
+  </ItemGroup>
+  <ItemGroup>
+<Compile Include="Db4oUnit.Extensions\AbstractDb4oTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\AbstractInMemoryDb4oTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\BTreeAssert.cs"/>
+<Compile Include="Db4oUnit.Extensions\ComposibleReflectionTestSuite.cs"/>
+<Compile Include="Db4oUnit.Extensions\ComposibleTestSuite.cs"/>
+<Compile Include="Db4oUnit.Extensions\Concurrency\ConcurrencyConventions.cs"/>
+<Compile Include="Db4oUnit.Extensions\Concurrency\ConcurrencyTestMethod.cs"/>
+<Compile Include="Db4oUnit.Extensions\Concurrency\Db4oConcurrencyTestSuiteBuilder.cs"/>
+<Compile Include="Db4oUnit.Extensions\ContainerServices.cs"/>
+<Compile Include="Db4oUnit.Extensions\Db4oAssert.cs"/>
+<Compile Include="Db4oUnit.Extensions\Db4oClientServerTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Db4oConcurrencyTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Db4oConcurrencyTestSuite.cs"/>
+<Compile Include="Db4oUnit.Extensions\Db4oFixtureVariable.cs"/>
+<Compile Include="Db4oUnit.Extensions\Db4oTestSuite.cs"/>
+<Compile Include="Db4oUnit.Extensions\Db4oTestSuiteBuilder.cs"/>
+<Compile Include="Db4oUnit.Extensions\Dbmock\MockClient.cs"/>
+<Compile Include="Db4oUnit.Extensions\Dbmock\MockEmbedded.cs"/>
+<Compile Include="Db4oUnit.Extensions\Dbmock\MockServer.cs"/>
+<Compile Include="Db4oUnit.Extensions\ExcludingReflector.cs"/>
+<Compile Include="Db4oUnit.Extensions\ExpectingVisitor.cs"/>
+<Compile Include="Db4oUnit.Extensions\FieldIndexAssert.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\AbstractDb4oFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\AbstractFileBasedDb4oFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\AbstractSoloDb4oFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\BTreeFreespaceManagerFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\Db4oConsistencyCheckSolo.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\Db4oDefragSolo.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\Db4oEmbeddedSessionFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\Db4oFixtureProvider.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\Db4oFixtures.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\Db4oInMemory.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\Db4oNetworking.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\Db4oSolo.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\ICustomClientServerConfiguration.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IDb4oClientServerFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IMultiSessionFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutAllButNetworkingCS.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutBTreeFreespaceManager.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutCustomContainerInstantiation.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutDefragSolo.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutFromTestFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutIdSystem.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutInMemory.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutMultiSession.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutNetworkingCS.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutNoFileSystemData.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutNoInheritedClassPath.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutNonStandardBlockSize.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutSilverlight.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IOptOutSolo.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\IdSystemFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\Fixtures\NonStandardBlockSizeFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\FreespaceManagerForDebug.cs"/>
+<Compile Include="Db4oUnit.Extensions\IContainerBlock.cs"/>
+<Compile Include="Db4oUnit.Extensions\IDb4oFixture.cs"/>
+<Compile Include="Db4oUnit.Extensions\IDb4oTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\IFixtureConfiguration.cs"/>
+<Compile Include="Db4oUnit.Extensions\IOptOutAndroid.cs"/>
+<Compile Include="Db4oUnit.Extensions\IOptOutBigMathIssue.cs"/>
+<Compile Include="Db4oUnit.Extensions\IOptOutExcludingClassLoaderIssue.cs"/>
+<Compile Include="Db4oUnit.Extensions\IOptOutNotSupportedJavaxManagement.cs"/>
+<Compile Include="Db4oUnit.Extensions\IOptOutStackOverflowIssue.cs"/>
+<Compile Include="Db4oUnit.Extensions\IOptOutTA.cs"/>
+<Compile Include="Db4oUnit.Extensions\IOptOutVerySlow.cs"/>
+<Compile Include="Db4oUnit.Extensions\IOptOutWorkspaceIssue.cs"/>
+<Compile Include="Db4oUnit.Extensions\IRuntimeConfigureAction.cs"/>
+<Compile Include="Db4oUnit.Extensions\ISlotListener.cs"/>
+<Compile Include="Db4oUnit.Extensions\IntArrays4.cs"/>
+<Compile Include="Db4oUnit.Extensions\ObjectSetAssert.cs"/>
+<Compile Include="Db4oUnit.Extensions\TAFixtureConfiguration.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\AcceptedTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\AllTests.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\Db4oEmbeddedSessionFixtureTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\DynamicFixtureTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\ExcludingReflectorTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\FixtureConfigurationTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\FixtureTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\MultipleDb4oTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\NotAcceptedTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\SimpleDb4oTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Tests\UnhandledExceptionInThreadTestCase.cs"/>
+<Compile Include="Db4oUnit.Extensions\Util\Binary.cs"/>
+<Compile Include="Db4oUnit.Extensions\Util\CrossPlatformServices.cs"/>
+<Compile Include="Db4oUnit.Extensions\Util\IOUtil.cs"/>
+<Compile Include="Properties\AssemblyInfo.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\AbstractDb4oTestCase.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\Db4oUnitPlatform.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\Dbmock\MockClient.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\Dbmock\MockEmbedded.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\Dbmock\MockServer.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\Fixtures\Db4oNetworking.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\Fixtures\SilverlightFixture.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\Util\DiagnosticCollector.cs"/>
+<Compile Include="native\Db4oUnit.Extensions\Util\IOServices.cs"/>
+</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Db4objects.Db4o.CS\Db4objects.Db4o.CS-2008.csproj">
+      <Project>{9FA8178A-3E77-42C5-A252-6690EA9BA257}</Project>
+      <Name>Db4objects.Db4o.CS-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4objects.Db4o.Optional\Db4objects.Db4o.Optional-2008.csproj">
+      <Project>{E9588FE7-C19D-445E-BB53-AE539EA4F0E6}</Project>
+      <Name>Db4objects.Db4o.Optional-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4objects.Db4o\Db4objects.Db4o-2008.csproj">
+      <Project>{600CD3BF-2ED2-4183-87F7-ADD78A968AE0}</Project>
+      <Name>Db4objects.Db4o-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4oUnit\Db4oUnit-2008.csproj">
+      <Project>{8F82F8B0-95B6-4553-BDA8-BD9A954E682F}</Project>
+      <Name>Db4oUnit-2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets"/>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

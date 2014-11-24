@@ -1,0 +1,47 @@
+package decaf.collections;
+
+import java.lang.*;
+import java.util.*;
+
+class MyIterable implements Iterable<Integer> {
+	public Iterator<Integer> iterator() {
+		return new ArrayList<Integer>().iterator();
+	}
+}
+
+class IterableMapping {
+	public void test() {
+		justIterate(new ArrayList<Integer>());		
+		justIterateGeneric(new ArrayList<String>());
+		justIterate(new MyIterable());
+		doCast(new ArrayList<String>());
+	}
+	
+	private void justIterate(Iterable<Integer> iterable) {
+		for (int v : iterable) {
+			System.out.println(v);
+		}
+	}
+	
+	private <T> void justIterateGeneric(Iterable<T> iterable) {
+		for (T v : iterable) {
+			System.out.println("First Pass: " + v);
+		}
+	
+		for (T v2 : iterable) {
+			System.out.println("Second Pass: " + v2);
+		}
+	}
+
+	private <T> Iterable<T> doCast(Iterable<T> iterable) {
+		List<T> list = (List<T>)iterable;
+		Iterable<T> iterable2 = list;
+		Iterable<T> iterable3 = null;
+		iterable3 = list;
+		
+		return list;
+	}
+	
+	private static final Iterable<Integer> fieldTest = new ArrayList<Integer>();
+	
+}

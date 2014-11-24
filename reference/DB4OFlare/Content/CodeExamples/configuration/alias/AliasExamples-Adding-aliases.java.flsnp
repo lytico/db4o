@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">// add an alias for a specific type</span>
+configuration.common().addAlias(
+        <span style="color:Blue;">new</span> TypeAlias(<span style="color:#A31515;">&quot;com.db4odoc.configuration.alias.OldTypeInDatabase&quot;</span>,
+                <span style="color:#A31515;">&quot;com.db4odoc.configuration.alias.NewType&quot;</span>));
+<span style="color:Green;">// or add an alias for a whole namespace</span>
+configuration.common().addAlias(
+        <span style="color:Blue;">new</span> WildcardAlias(<span style="color:#A31515;">&quot;com.db4odoc.configuration.alias.old.location.*&quot;</span>,
+                <span style="color:#A31515;">&quot;com.db4odoc.configuration.alias.current.location.*&quot;</span>));</pre>
+		<div class="codesnippet-meta">
+			AliasExamples.java: Adding aliases
+			<div class="codedownload">
+				<a href="Example-configuration-alias-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

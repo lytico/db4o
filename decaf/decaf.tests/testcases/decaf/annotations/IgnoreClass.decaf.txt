@@ -1,0 +1,4 @@
+package decaf.annotations;
+
+class Bar {
+}

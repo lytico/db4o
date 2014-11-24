@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="3.5">
+	<ItemGroup>
+		<Compile Include="SomeFile.cs"/>
+		<Compile Include="native.cs"/>
+		<Compile Include="native\1.cs"/>
+		<Compile Include="native\s1\2.cs"/>
+		<Compile Include="not-native\SomeFile.cs"/>
+		<Compile Include="native\s1\s2\3.cs"/>
+		<Compile Include="native.cs\not.cs"/>
+	</ItemGroup>
+</Project>

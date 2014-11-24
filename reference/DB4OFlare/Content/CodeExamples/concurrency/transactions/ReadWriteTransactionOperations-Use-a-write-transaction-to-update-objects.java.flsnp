@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">void</span> updateAllJoes(DatabaseSupportWithReadWriteLock dbSupport) {
+    dbSupport.inWriteTransaction(<span style="color:Blue;">new</span> TransactionAction() {
+        @Override
+        <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> inTransaction(ObjectContainer container) {
+            <span style="color:Blue;">final</span> ObjectSet&lt;Person&gt; allJoes = container.query(<span style="color:Blue;">new</span> Predicate&lt;Person&gt;() {
+                @Override
+                <span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> match(Person person) {
+                    <span style="color:Blue;">return</span> person.getName().equals(<span style="color:#A31515;">&quot;Joe&quot;</span>);
+                }
+            });
+            <span style="color:Blue;">for</span> (Person joe : allJoes) {
+                joe.setName(<span style="color:#A31515;">&quot;New Joe&quot;</span>);
+                container.store(joe);
+            }
+        }
+    });
+}</pre>
+		<div class="codesnippet-meta">
+			ReadWriteTransactionOperations.java: Use a write transaction to update objects
+			<div class="codedownload">
+				<a href="Example-concurrency-transactions-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

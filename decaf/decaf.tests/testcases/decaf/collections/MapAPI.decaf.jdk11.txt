@@ -1,0 +1,15 @@
+package decaf.collections;
+
+import java.util.*;
+
+class MapAPI {
+
+	void forEachWithMapList(com.db4o.foundation.Map4 map) {
+		for (com.db4o.foundation.Iterator4 iIter = map.keySet().iterator(); iIter
+				.moveNext();) {
+					final int i = ((Integer) iIter.current()).intValue();
+					System.out.println(i);
+				}
+	}
+
+}

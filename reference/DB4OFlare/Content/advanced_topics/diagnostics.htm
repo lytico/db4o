@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1152" MadCap:lastWidth="560">
+    <head></head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Debug" />Diagnostics</h1>
+        <p>The db4o engine provides user with a special mechanism showing runtime diagnostics information.
+Diagnostics can be switched on in the configuration before opening the database file:</p>
+        <p>The DiagnosticListener is a callback interface tracking diagnostic messages from different parts of the system.</p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/common/CommonConfigurationExamples-Add-a-diagnostic-listener.all.flsnp" />
+        <h2>Built-in Listeners</h2>
+        <p>There are two build in listeners, which print the output to the console</p>
+        <ul>
+            <li>DiagnosticToConsole:Prints diagnostic messages to the console.</li>
+            <li>DiagnosticToTrace: Only on .NET, prints diagnostic messages to the debug output window.</li>
+        </ul>
+        <h2>Messages-Types</h2>
+        <p>Every diagnostic message is represented by it's own type. You can filter the messages by checking for certain instances. Take a look how you can filter for <a href="diagnostics/diagnostic_messages_filter.htm">certain messages.</a></p>
+        <ul>
+            <li><strong>MissingClass</strong>: Notifies you that a class couldn't be found. You should add that class in order to avoid problems. If you've renamed the class, you <a href="../advanced_topics/refactoring_and_schema_evolution.htm">should rename</a> it in the database or add <a href="../configuration/common/alias.htm">an alias</a>.</li>
+            <li><strong>DefragmentRecommendation</strong>: Notifies you that you should consider to <a href="../advanced_topics/defragment.htm">defragment</a> the database.</li>
+            <li><strong>LoadedFromClassIndex</strong>: Notifies you that db4o couldn't use a field-index to perform a query. This means that the query runs extremely slow on larger data sets. Consider adding a <a href="../basics/indexing.htm">field-index</a>.</li>
+            <li><strong>DescendIntoTranslator</strong>: Means that you a query couldn't be optimized, because the query touches a class <a href="../advanced_topics/type_handling/translators.htm">with a translator</a>. Therefore the query runs slow. You should consider working without a translator or changing the query.</li>
+            <li><strong>ClassHasNoFields</strong>: You stored a class which has no fields. Even when the class has no fields it need to maintain its class index and needs to be stored. So it adds overhead for storing 'empty' objects. You should consider removing the empty class.</li>
+            <li><strong>DeletionFailed</strong>: db4o failed to delete a object from the database.</li>
+            <li><strong>UpdateDepthGreaterOne</strong>: You have configured a update depth greater one. A large update depth slows down updates significantly. Consider reducing the update-depth and use another strategies to update objects correctly, like <a href="../basics/update_concept/transparent_persistence.htm">transparent persistence</a>.</li>
+            <li><strong>NativeQueryNotOptimized</strong>: A native query couldn't be optimized. An unoptimized query runs significantly slower than a optimized query. Consider to simplify you're query.</li>
+            <li><strong>NativeQueryOptimizerNotLoaded</strong>: Couldn't load the native query optimizer. Ensure that all required <MadCap:variable name="Primary.Artefact" /> are added to your application.</li>
+            <li><strong>NotTransparentActivationEnabled</strong>: Notifies you when a class doesn't support transparent activation. Such object need to be fully activated and slow down the activation process.</li>
+            <li><strong>ObjectFieldDoesNotExist</strong>: A query uses a object-field which doesn't exist. Check you're queries to use only exising fields.</li>
+        </ul>
+    </body>
+</html>

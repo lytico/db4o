@@ -1,0 +1,13 @@
+package decaf.generics;
+
+class Cat {
+	public String name;
+}
+
+public class NQPredicate extends com.db4o.query.Predicate<Cat> {
+	
+	public boolean match(Cat cat) {
+		return "Krazy".equals(cat.name);
+	}
+	
+}

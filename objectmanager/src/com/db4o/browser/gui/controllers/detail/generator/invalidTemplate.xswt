@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+    </import>
+    <getParent>
+    	<layout x:class="gridLayout"/>
+    </getParent>
+    <x:children>
+        <composite>
+		    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            <layout x:class="gridLayout" marginHeight="0" marginWidth="0" numColumns="2"/>
+            <x:children>
+            	<label x:id="TheErrorPart" text="Malformed layout template" background="red" foreground="255 255 255">
+				    <layoutData x:class="gridData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true" horizontalAlignment="GridData.FILL" verticalAlignment="GridData.FILL"/>
+            	</label>
+            </x:children>
+        </composite>
+    </x:children>
+</xswt>

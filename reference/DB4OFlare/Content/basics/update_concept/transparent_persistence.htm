@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="240" MadCap:lastWidth="586">
+    <head />
+    <body>
+        <h1>
+            <MadCap:keyword term="Persistence" />Transparent Persistence</h1>
+        <p>One of db4o's goals is to make the database transparent to the
+application logic. Wouldn't it be nice to initially register an
+object  with a single store()-call and then let the database manage all future object modifications? Transparent Persistence does exactly that.It keeps track of changes and stores all modified objects automatically when committing. </p>
+        <p>This has several benefits:</p>
+        <ul>
+            <li>Clean an refactorable code. The code doesn't depend on the right activation-depth. </li>
+            <li>Performance-benefits. Only the objects which are needed are loaded into memory. And only modified objects are stored.</li>
+            <li>No changes can be lost due to miss configured update-depth.</li>
+        </ul>
+        <p>To get started go to the <a href="../transparent_persistence.htm">transparent activation/persistence topics</a>.</p>
+    </body>
+</html>

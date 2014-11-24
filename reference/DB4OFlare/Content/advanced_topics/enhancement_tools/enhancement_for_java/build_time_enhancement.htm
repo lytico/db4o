@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2017" MadCap:lastWidth="665">
+    <head>
+        <link href="../../../Resources/TableStyles/Basic.css" rel="stylesheet" MadCap:stylesheetType="table" />
+    </head>
+    <body>
+        <h1>Build Time Enhancement</h1>
+        <p>You can enhance your classes at build time. The main use for the enhancement process is to add the activate interface implementation to the persisted classes. A load time <a href="../../../basics/transparentpersistence/ta_enhanced_example.htm">enhancement example is available here</a>.</p>
+        <p>This topic explains the individual elements of the ant task. </p>
+        <h2>Dependencies.</h2>
+        <p>For transparent activation/persistence you need following dependencies at compile time. (see also the <a href="../../../dependency_overview.htm">dependency overview</a>)</p>
+        <ul MadCap:conditions="Primary.Java">
+            <li>bloat-1.0.jar</li>
+            <li>db4o-X.XX-instrumentation.jar</li>
+            <li>db4o-X.XX-taj.jar</li>
+            <li>db4o-X.XX-tools.jar</li>
+        </ul>
+        <h2>The Example Script</h2>
+        <p>This is an example script. Below it each part of it is campaigned and the alternatives to it.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/enhance-with-annotation-Ant-target-for-enhancing-your-classes-after-building-them.all.flsnp" />
+        <h2>The Tags</h2>
+        <table style="width: 100%;caption-side: top;mc-table-style: url('../../../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 201px;" />
+            <col />
+            <tbody>
+                <tr>
+                    <th style="text-align: left;">Tag/Property</th>
+                    <th style="text-align: left;">Explanation</th>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">property target</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Specifies to which classes the enhancement is applied.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">property libraries</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Specifies where the libraries are. This is used for setting up the classpath of the enhancement step. The enhancement should have access to all classes, otherwise class not found exceptions might occur.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">path project.classpath</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">This represents the whole project classpath:&#160;Your code and all libraries. This classpath is passed to the enhancer step.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">typedef instrumentation-def.properties</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Loads the predefined tasks from the db4o jars. Make sure that all required db4o dependencies are on the classpath. </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">typedef annotation-filter</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">
+                        <p>This defines a regular Java class as part of the Ant script. This way you can implement your own filter. </p>
+                        <p>The name attribute specifies how the task is named within the Ant script.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">db4o-instrument</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">The db4o-instrument task, which can do all available instrumentations. In the attribute 'classTargetDir' you specify where to put the enhanced result.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">db4o-instrument-&gt;classpath</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Here we need to specify the classpath for the enhancer-step. Refer to classpath which includes the application code and the libraries.</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">db4o-instrument-&gt;sources</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Specifies which class-files are enhanced</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColSep">transparent-activation-step</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">
+                        <p>This tag specifies that the transparent activation/persistence enhancement is applied. This tag expects that you specify one more filters to filter out the classes which need to be enhance.</p>
+                        <p>For the example filter take a look at <a href="../../../basics/transparentpersistence/ta_enhanced_example.htm">the example</a>.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">native-query-step</td>
+                    <td style="text-align: left;" class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">You also can specify the native query enhancing step. Usually this is done at runtime, but can be done a compile time. Just add it the the db4o-instrument tag.</td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Simple Enhancer Alternative</h2>
+        <p>As alternative quick way you can use the 'db4o-enhance'-task. There you just can specify the location of the class files which you want to enhance. It works best when you put all your persistent classes in a separate package or project.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/enhance-with-annotation-Simple-enhancing-step.all.flsnp" />
+        <h2>Enhancing Classes Using Maven</h2>
+        <p>As demonstrated <a href="../../../basics/transparentpersistence/ta_enhanced_example.htm">in the example</a> you can include a enhancing Ant script in your Maven build. All descriptions above applies. However you can use the built in Maven classpath. Just use the 'maven.compile.classpath' in the Ant script.</p>
+    </body>
+</html>

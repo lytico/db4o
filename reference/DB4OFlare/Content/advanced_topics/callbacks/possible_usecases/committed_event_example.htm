@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="986" MadCap:lastWidth="665">
+    <head />
+    <body>
+        <h1>Committed Event Example</h1>
+        <p>Committed callbacks can be used in various scenarios:</p>
+        <ul>
+            <li>Backup on commit.</li>
+            <li>Client database synchronization.</li>
+        </ul>
+        <p>This example shows you how to refresh objects on a client on commits.</p>
+        <p>When several clients are working
+on the same objects it is possible that the data will be outdated on a client. You can use the committed-event refresh object on each commit. </p>
+        <p>When a client commit will trigger a committed event on all clients. In order to refresh the object, register for the committed event. In the commit-event-handler, refresh the object which have been modified.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/clientserver/refresh/RefreshingObjects-On-the-updated-event-we-refresh-the-objects.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/clientserver/refresh/RefreshingObjects-The-refresh-handler.all.flsnp" />
+        <p>You can register such a event-handler for each client. The committed event is transferred to each client. Note that this requires a lot of network-traffic to notify all clients and transfer the changes.</p>
+        <p>When working with committed events you should remember that
+the listener is called on a separate thread, which needs to be synchronized
+with the rest of the application.</p>
+    </body>
+</html>

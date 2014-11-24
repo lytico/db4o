@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1349" MadCap:lastWidth="763">
+    <head>
+    </head>
+    <body>
+        <h1>Big Set</h1>
+        <p>When you need to store large sets, you can use db4o's big set. This big-set operates directly on top of B-trees, which are also used for indexes. The big-set doesn't need to activate all items to perform its operations. For example when you check if the set already contains a member, the big-set can do that without activating all its items. Especially lookup-operation like contains perform much faster with a big set.</p>
+        <p>Not that currently the big set implementation only works in embedded-mode, but not in client-server mode.</p>
+        <p>You can create a new big-set with the CollectionFactory:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/collections/bigset/BigSetExample-Crate-a-big-set-instance.all.flsnp" />
+        <p>After that, the big-set behaves just like an ordinary set. Except that the big-set used the object-identity instead of the object-equality to compare the items. So when you add a equal object with a different identity, it will be added to the set. You can add, remove and iterate over the items or check if an item is already in the set. The items will be loaded and activated on demand, for example when you iterate over the set.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/collections/bigset/BigSetExample-Note-that-the-big-set-compares-by-identity,-not-by-equality.all.flsnp" />
+    </body>
+</html>

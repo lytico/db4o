@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1166" MadCap:lastWidth="572">
+    <head>
+    </head>
+    <body>
+        <h1>Native Query Optimization At Build Time</h1>
+        <MadCap:snippetBlock src="../../../../Snippets/linq_instead_of_nq.flsnp" />
+        <p>If the platform you're running doesn't support optimization at runtime you can use the compile-time optimization. <MadCap:xref href="../../../../advanced_topics/enhancement_tools.htm" target="" title="" alt="">See "Enhancement Tools"</MadCap:xref></p>
+        <h2>Create the Enhancement Task</h2>
+        <p>First we define the enhancement-task. This task will process the <MadCap:variable name="Primary.Artefact"></MadCap:variable> and enhance it. </p>
+        <p MadCap:conditions="Primary.Java">If you haven't used Ant yet, read more on the <a href="http://ant.apache.org/">official Ant website</a>. </p>
+        <p MadCap:conditions="Primary..NET">You can add this to the existing project-files. The .csproj or .vbproj are actually MSBuild-files. Open them with a XML-Editor and add the needed parts.</p>
+        <MadCap:snippetBlock src="../../../../CodeExamples/enhancement/buildtime/simple-enhance-example-Define-a-target-which-runs-the-task-.all.flsnp" />
+        <p>And the execute the task after the compilation.</p>
+        <MadCap:snippetBlock src="../../../../CodeExamples/enhancement/buildtime/simple-enhance-example-Only-enhance-native-queries-.all.flsnp" />
+        <p MadCap:conditions="Primary..NET">Now Visual Studio will automatically run the tasks for each build. You don't need to change anything else.</p>
+        <p MadCap:conditions="Primary.Java">You can configure Eclipse to run the Ant build with each compile step. Right click on your project and choose 'Properties'. Then switch to 'Builders' and add a new one. Choose the 'Ant Builder'. On the new window choose the build-file which contains the example-code. Switch to the 'Targets'-Tab. There choose the enhance-target for the 'Auto-Build'. Now the enhancer-task will be run by Eclipse automatically. The example project above is configured this way.</p>
+        <p>Often it's practical to have all persistent classes in a separate project or compile unit. Then the enhancement script runs only for this project. This makes it easy to enhance only the classes for the persistent objects.</p>
+        <p>There are lot of possibilities to tweak and configure the build-time enhancement so that it fits your requirements.<MadCap:xref target="" title="" alt="" MadCap:conditions="Primary..NET" href="../../../../advanced_topics/enhancement_tools.htm">See "Enhancement Tools"</MadCap:xref></p>
+    </body>
+</html>

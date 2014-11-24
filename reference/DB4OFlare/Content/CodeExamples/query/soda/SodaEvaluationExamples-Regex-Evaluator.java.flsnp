@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">class</span> RegexConstrain <span style="color:Blue;">implements</span> Evaluation {
+    <span style="color:Blue;">private</span> <span style="color:Blue;">final</span> Pattern pattern;
+
+    <span style="color:Blue;">public</span> RegexConstrain(String pattern) {
+        <span style="color:Blue;">this</span>.pattern = Pattern.compile(pattern);
+    }
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> evaluate(Candidate candidate) {
+        String stringValue = (String) candidate.getObject();
+        candidate.include(pattern.matcher(stringValue).matches());
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			SodaEvaluationExamples.java: Regex Evaluator
+			<div class="codedownload">
+				<a href="Example-query-soda-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

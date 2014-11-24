@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Library.Model", "Library.Model\Library.Model.vbproj", "{EFE1291B-487A-4327-B4BE-56C739FD61E3}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Spike1", "Spike\Spike1.vbproj", "{E5F606E2-56CD-469A-8426-D23F12CD2008}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Spike2", "Spike2\Spike2.vbproj", "{9324EC93-289B-4094-BB5E-64FBB5DB063E}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "JSON", "JSON\JSON.vbproj", "{35636364-3562-4CDA-91FE-8091190DABDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFE1291B-487A-4327-B4BE-56C739FD61E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFE1291B-487A-4327-B4BE-56C739FD61E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFE1291B-487A-4327-B4BE-56C739FD61E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFE1291B-487A-4327-B4BE-56C739FD61E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5F606E2-56CD-469A-8426-D23F12CD2008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5F606E2-56CD-469A-8426-D23F12CD2008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5F606E2-56CD-469A-8426-D23F12CD2008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5F606E2-56CD-469A-8426-D23F12CD2008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9324EC93-289B-4094-BB5E-64FBB5DB063E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9324EC93-289B-4094-BB5E-64FBB5DB063E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9324EC93-289B-4094-BB5E-64FBB5DB063E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9324EC93-289B-4094-BB5E-64FBB5DB063E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35636364-3562-4CDA-91FE-8091190DABDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35636364-3562-4CDA-91FE-8091190DABDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35636364-3562-4CDA-91FE-8091190DABDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35636364-3562-4CDA-91FE-8091190DABDD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         id="decafBuilder"
+         name="Decaf Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            hasNature="true">
+         <run
+               class="decaf.builder.DecafProjectBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="decafNature"
+         name="Decaf Nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="decaf.core.DecafNature">
+         </run>
+      </runtime>
+      <builder
+            id="decaf.decafBuilder">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IProject"
+            nameFilter="*"
+            id="decaf.contribution1">
+         <action
+               label="I like it DECAF"
+               class="decaf.ui.ToggleNatureAction"
+               menubarPath="additions"
+               enablesFor="+"
+               id="decaf.addRemoveNatureAction">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="decaf.contribution1"
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IProject">
+         <menu
+               id="decaf.menu1"
+               label="Decaf Utilities"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="decaf.popup.actions.JavadocToAnnotationsAction"
+               enablesFor="+"
+               id="decaf.newAction"
+               label="Javadoc To Annotations"
+               menubarPath="decaf.menu1/group1">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         id="decafProblem"
+         name="Decaf Problem"
+         point="org.eclipse.core.resources.markers">
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+   <extension
+         id="application"
+         name="Decaf Application"
+         point="org.eclipse.core.runtime.applications">
+         <application>
+	         <run class="decaf.application.DecafApplication">
+	         </run>
+	     </application>
+   </extension>
+
+</plugin>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Db4oOnAndroidExample  <span style="color:Blue;">extends</span> Activity  {	
+    <span style="color:Green;">/** Called when the activity is first created. */</span>
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onCreate(Bundle savedInstanceState) {
+		String filePath = <span style="color:Blue;">this</span>.getFilesDir() + <span style="color:#A31515;">&quot;/android.db4o&quot;</span>;
+        <span style="color:Blue;">final</span> EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+        config.common().add(<span style="color:Blue;">new</span> AndroidSupport());
+        ObjectContainer db = Db4oEmbedded.openFile(config,filePath);
+		<span style="color:Green;">// do your stuff</span>
+		db.close();
+    	
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Db4oOnAndroidExample.java: open db4o on Android
+			<div class="codedownload">
+				<a href="Example-db4odoc-android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

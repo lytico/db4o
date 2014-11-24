@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1515" MadCap:lastWidth="1134" MadCap:conditions="Primary..NET">
+    <head>
+    </head>
+    <body>
+        <h1>ASP.NET Request Example</h1>
+        <p>This example demonstrates how you can provide an object container for each request, to ensure that the requests are isolated from each other. For this we use session object containers. <MadCap:xref href="web_isolation.htm" target="" title="" alt="">See "Isolation in Web-Applications"</MadCap:xref></p>
+        <p>First, create a new class which implements the IHttpModule-interface. Then register this interface in the Web.config configuration:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Web-Add-the-db4o-http-handler-.all.flsnp" />
+        <p>Additionally add a key where you specify the path to the database-file. Make sure that you have the data folder inside you web-site directory. The ASP.NET user should have enough rights to create and modify files inside this folder. You should also make sure that the data folder is not accessible to anonymous user; otherwise web-server visitors will be able to download your database:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Web-Database-path-in-the-configuration-.all.flsnp" />
+        <p>After that, implement the initializing sequence. When the server starts, it starts up db4o and adds the database to the application-context:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Infrastructure/Db4oProvider-open-database-when-the-application-starts.all.flsnp" />
+        <p>On the dispose-method add the shutdown code:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Infrastructure/Db4oProvider-close-the-database-when-the-application-shuts-down.all.flsnp" />
+        <p>Now it's time to ensure that each requests has its own object container. To archive that, use the <a href="web_isolation.htm">open-session-method</a>. Register for the request-begin and request-end events. In begin session event, open a new db4o session. In the end request event, close that session.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Infrastructure/Db4oProvider-A-object-container-per-request.all.flsnp" />
+        <p>Finally add a static property which gives access to the request-instance:</p>
+        <MadCap:snippetBlock src="../../CodeExamples/WebApp/Infrastructure/Db4oProvider-provide-access-to-the-database.all.flsnp" />
+        <p>That's it. Of course there are other ways to archive the same result. For example you can use dependency injection frameworks like <a href="http://unity.codeplex.com/">Microsoft's Unity</a> to enforce the request scope.</p>
+    </body>
+</html>

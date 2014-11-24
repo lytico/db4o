@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1454" MadCap:lastWidth="574">
+    <head>
+    </head>
+    <body>
+        <h1>Using Transparent Activatable Collections Directly</h1>
+        <p>You can use the transparent activation aware collections directly in your code. Their behavior is the same as the <MadCap:variable name="Primary.Plattform" />-collections. Here are a few tips:</p>
+        <ul>
+            <li>Prefer the collection-interfaces over the concrete classes in your field-, parameter- and return-type declarations. For example declare a field as a 
+			<span MadCap:conditions="Primary..NET">IList&lt;T&gt; instead of a List&lt;T&gt;</span><span MadCap:conditions="Primary.Java">List&lt;T&gt; instead of an ArrayList&lt;T&gt;</span></li>
+            <li>Maybe it is useful to create a collection factory in your code. Then you have only one place in your code which decides which implementation is used. That makes it easy to replace the implementations.</li>
+        </ul>
+        <p>An example:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/ta/collections/Team-Using-the-activation-aware-collections.all.flsnp" />
+        <p>Currently these collections are available:</p>
+        <MadCap:snippetBlock src="../../../Snippets/TA_TP_collection_list.flsnp" />
+    </body>
+</html>

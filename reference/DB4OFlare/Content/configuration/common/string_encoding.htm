@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="574" MadCap:lastWidth="560">
+  <head></head>
+  <body>
+    <h1>String Encoding</h1>
+    <p>When db4o
+stores and loads strings it has to convert them to and from byte arrays. By
+default db4o provides three types of string encoding, which do this job: Unicode, UTF-8
+and ISO 8859-1, Unicode being the default one. In general Unicode can represent
+any character set. However, it also imposes a certain overhead, as character values
+are stored in 4 bytes (less generic encoding usually use 2 or even 1 byte per
+character). In order to save on the database file size, it is recommended to
+use UTF-8, which only required one byte per character. </p>
+    <p>Note that the string encoding need to be the same on the server and clients. Also you cannot change the string encoding for an existing database. If you want to change the encoding, you need to <a href="../../advanced_topics/defragment.htm">defragment</a> the database.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Use-the-utf8-encoding.all.flsnp" />
+    <p>Of course you can also implement your own string encoding. You just need to implement the string encoding interface and pass it to this configuration.</p>
+  </body>
+</html>

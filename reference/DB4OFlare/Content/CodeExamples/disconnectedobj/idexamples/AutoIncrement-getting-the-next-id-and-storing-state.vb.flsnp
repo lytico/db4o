@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Function</span> GetNextID(<span style="color:Blue;">ByVal</span> forClass <span style="color:Blue;">As</span> Type) <span style="color:Blue;">As</span> <span style="color:Blue;">Integer</span>
+    <span style="color:Blue;">SyncLock</span> dataLock
+        <span style="color:Blue;">Dim</span> incrementState <span style="color:Blue;">As</span> PersistedAutoIncrements = EnsureLoadedIncrements()
+        <span style="color:Blue;">Return</span> incrementState.NextNumber(forClass)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">SyncLock</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Function</span>
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> StoreState()
+    <span style="color:Blue;">SyncLock</span> dataLock
+        <span style="color:Blue;">If</span> state <span style="color:Blue;">IsNot</span> <span style="color:Blue;">Nothing</span> <span style="color:Blue;">Then</span>
+            container.Ext().Store(state, 2)
+        <span style="color:Blue;">End</span> <span style="color:Blue;">If</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">SyncLock</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			AutoIncrement.vb: getting the next id and storing state
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

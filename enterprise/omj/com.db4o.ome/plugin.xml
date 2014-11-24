@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Connect Set"
+            visible="false"
+            id="OMPlus.actionSet">
+         <menu
+               label="OME "
+               id="sampleMenu"
+               path="additions">
+            <separator
+                  name="sampleGroup">
+            </separator>
+            <separator
+                  name="loginSep">
+            </separator>
+            <separator
+                  name="browserSep">
+            </separator>
+            <separator
+                  name="db4oSep">                  
+            </separator>
+           	<separator
+                  name="aboutSep">
+            </separator>
+            
+         </menu>
+         
+            
+         
+          <!-- ************************* ABout Dialog *************************-->    
+          <action
+               label="About ObjectManager Enterprise"
+               class="com.db4o.omplus.ui.actions.AboutAction"
+               tooltip="About ObjectManager Enterprise"
+               menubarPath="sampleMenu/aboutSep"
+               id="com.db4o.omplus.ui.actions.AboutId">
+         </action>     
+         
+         
+         
+         <!-- ************************* db4o Browsers only in menu bar*************************-->
+        <!-- <menu
+	         id="db4oSubMenuId"
+	         label="db4o"
+	         path="sampleMenu/db4oSep">
+	         <separator  
+	         	name="db4oSubMenuSep">
+	         </separator>
+      	</menu> -->
+                  
+         <!-- db40 downloads browser-->    
+         <action
+               label="db4objects Downloads"
+               class="com.db4o.omplus.ui.actions.browsers.db4oDownloadsBrowserAction"
+               tooltip="db4objects Downloads"
+               menubarPath="sampleMenu/db4oSep"
+               id="com.db4o.omplus.ui.actions.browsers.db4oDownloadsId">
+         </action> 
+         
+         <!-- db40 Devloper community browser-->
+         <action
+               label="db4objects Developer Community"
+               class="com.db4o.omplus.ui.actions.browsers.db4oDeveloperCommunityBrowserAction"
+               tooltip="db4objects Developer Community"
+               menubarPath="sampleMenu/db4oSep"
+               id="com.db4o.omplus.ui.actions.browsers.db4oDeveloperCommunityId">
+         </action> 
+             
+         
+         <!-- db40 Homepage browser--> 
+        <action
+               label="db4objects Homepage"
+               class="com.db4o.omplus.ui.actions.browsers.db4oHomepageBrowserAction"
+               tooltip="db4objects Homepage"
+               menubarPath="sampleMenu/db4oSep"
+               id="com.db4o.omplus.ui.actions.browsers.db4oHomepageId">
+         </action>
+         
+         <!-- ************************* Mainteneace sub menu *************************-->   
+      <menu
+         id="MaintenanceMenuId"
+         label="Maintenance"
+         path="sampleMenu/browserSep">
+         <separator  
+         	name="MaintenanceSep">
+         </separator>
+      </menu>
+          
+          <!-- Back up-->
+           <action
+               label="Backup"
+               class="com.db4o.omplus.ui.actions.BackupDBAction"
+               tooltip="BackUp"
+               menubarPath="sampleMenu/MaintenanceMenuId/MaintenanceSep"
+             	id="com.db4o.omplus.ui.actions.BackupDBAction">
+         </action>
+         
+         <!--************************* Browser related menus and tool bars *************************-->
+         
+         <!-- HELP browser 
+          <action
+               label="&amp;Help"
+               icon="icons/support1.gif"
+               class="com.db4o.omplus.ui.actions.browsers.HelpBrowserAction"
+               tooltip="Help"
+               menubarPath="sampleMenu/aboutSep"
+               toolbarPath="sampleGroup"
+               id="com.db4o.omplus.ui.actions.browsers.HelpId">
+         </action> -->
+         <!-- Currently handled using actionSets. Updating labels suported in eclipse 3.3M5 version
+         
+         -->
+         <!-- Support Cases browser -->
+         <action
+               label="&amp;Support Cases"
+               icon="icons/SupportCases.gif"
+               class="com.db4o.omplus.ui.actions.browsers.SupportCasesBrowserAction"
+               tooltip="Support Cases"
+               menubarPath="sampleMenu/browserSep"
+               toolbarPath="sampleGroup"
+               id="com.db4o.omplus.ui.actions.browsers.SupportCasesId">
+         </action>
+         
+         <!-- Xtreme Connect browser -->
+         <action
+               label="&amp;Xtreme Connect"
+               icon="icons/XtremeConnct_2.gif"
+               class="com.db4o.omplus.ui.actions.browsers.ExtremeConnectBrowserAction"
+               tooltip="Xtreme Connect"
+               menubarPath="sampleMenu/browserSep"
+               toolbarPath="sampleGroup"
+               id="com.db4o.omplus.ui.actions.browsers.ExtremeConnectId">
+         </action>
+                 
+        
+         <!--*********************** Normal DB connect/discoonect menus and icons************************* -->
+         
+         <!-- Connect -->
+         <action
+               label="&amp;Connect/Disconnect DB"
+               icon="icons/DBConnect.gif" 
+               class="com.db4o.omplus.ui.actions.ConnectToDBAction"
+               tooltip="Connect"
+               menubarPath="sampleMenu/loginSep"
+               toolbarPath="sampleGroup"
+               definitionId="com.db4o.omplus.ui.commands.connectCommand"
+               id="com.db4o.omplus.ui.actions.connectAction">
+         </action>
+         
+         <!-- ************************* Web Services login/logout ************************* -->
+         
+                        
+     </actionSet>
+   </extension>
+   
+   <!-- TODO:
+   Note that you shouldnâ€™t generally make your view appear by default in perspectives provided by 
+   other plug-ins. If many plug-ins did this, the host perspective would quickly become cluttered and 
+   difficult to use. To ensure that your view does not appear by default, specify the attribute visible="false" 
+   in your extension declaration.
+   -->
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.db4o.omplus.ui.OMPlusPerspective"
+            id="com.db4o.omplus.ui.OMPlusPerspective"
+            name="OME"
+            icon="icons/db4oicon.bmp">
+       </perspective>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="com.db4o.omplus.ui.ClassViewer"
+            id="com.db4o.omplus.ui.ClassViewer"
+            name="db4o Browser"
+            icon="icons/db4oicon.bmp">
+      </view>
+       <view
+            class="com.db4o.omplus.ui.QueryBuilder"
+            id="com.db4o.omplus.ui.QueryBuilder"
+            name="Build Query "
+            icon="icons/db4oicon.bmp">
+      </view>
+      <view
+            class="com.db4o.omplus.ui.QueryResults"
+            id="com.db4o.omplus.ui.QueryResults"
+            name="Query Results"
+            icon="icons/db4oicon.bmp">
+      </view>
+      
+      <view
+            class="com.db4o.omplus.ui.PropertyViewer"
+            id="com.db4o.omplus.ui.PropertyViewer"
+            name="Property Viewer"
+            icon="icons/db4oicon.bmp">
+      </view>      
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.db4o.omplus.prefs.PreferenceInitializer">
+      </initializer>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus">
+   		<objectContribution 
+   				adaptable="true"
+   				id="com.db4o.eclipse.contributions.openDb4o" 
+   				nameFilter="*.db4o" 
+   				objectClass="org.eclipse.core.resources.IFile">
+   				
+   			<menu id="com.db4o.eclipse.menu.db4o" 
+   				label="Db4o" 
+   				path="additions">
+   				<separator name="com.db4o.eclipse.menu.db4o.group" />
+   		 	</menu> 
+   		 	
+   			<action class="com.db4o.omplus.ui.actions.OpenDb4oReadWriteAction" 
+				 enablesFor="1"
+   				 icon="icons/DBConnect.png"
+   				 id="com.db4o.omplus.ui.actions.OpenDb4oReadWriteAction" 
+   				 label="Open db4o file (r/w)" 
+   				 menubarPath="com.db4o.eclipse.menu.db4o/com.db4o.eclipse.menu.db4o.group" 
+   				 tooltip="Open db4o file (read/write mode)" /> 
+   				 
+   			<action class="com.db4o.omplus.ui.actions.OpenDb4oReadOnlyAction" 
+				 enablesFor="1"
+   				 icon="icons/DBConnect.png"
+   				 id="com.db4o.omplus.ui.actions.OpenDb4oReadOnlyAction" 
+   				 label="Open db4o file (r/o)" 
+   				 menubarPath="com.db4o.eclipse.menu.db4o/com.db4o.eclipse.menu.db4o.group" 
+   				 tooltip="Open db4o file (readonly mode)" /> 
+   				 
+ 		 </objectContribution>
+ 		 
+		<objectContribution 
+					adaptable="true" 
+					id="com.db4o.eclipse.contributions.openYap" 
+					nameFilter="*.yap" 
+					objectClass="org.eclipse.core.resources.IFile">
+					
+			<menu id="com.db4o.eclipse.menu.yap" 
+					label="Db4o" 
+					path="additions">
+  				<separator name="com.db4o.eclipse.menu.yap.group" /> 
+ 			 </menu>
+ 			 
+  			<action class="com.db4o.omplus.ui.actions.OpenDb4oReadWriteAction" 
+  				enablesFor="1"
+  				icon="icons/DBConnect.png" 
+  				id="com.db4o.omplus.ui.actions.OpenYapReadWriteAction" 
+  				label="Open db4o file (r/w)"
+  				menubarPath="com.db4o.eclipse.menu.yap/com.db4o.eclipse.menu.yap.group"
+  				tooltip="Open db4o file (read/write mode)" />
+
+  			<action class="com.db4o.omplus.ui.actions.OpenDb4oReadOnlyAction" 
+  				enablesFor="1"
+  				icon="icons/DBConnect.png" 
+  				id="com.db4o.omplus.ui.actions.OpenYapReadOnlyAction" 
+  				label="Open db4o file (r/o)"
+  				menubarPath="com.db4o.eclipse.menu.yap/com.db4o.eclipse.menu.yap.group"
+  				tooltip="Open db4o file (read only mode)" />
+  		 </objectContribution>
+  </extension>
+     
+  <extension point="org.eclipse.ui.commands">
+	<category
+		name="OME commands"
+	    description="OME commands"
+    	id="com.db4o.omplus.ui.commands">
+    </category>
+	<command
+		name="Connect/Disconnect DB"
+		description="Connect/Disconnect DB"
+		categoryId="com.db4o.omplus.ui.commands"
+		id="com.db4o.omplus.ui.commands.connectCommand">
+	</command>
+  </extension>
+
+</plugin>

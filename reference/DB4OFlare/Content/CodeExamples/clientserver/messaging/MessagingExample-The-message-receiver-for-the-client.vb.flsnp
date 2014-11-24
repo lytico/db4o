@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Class</span> ClientMessageReceiver
+    <span style="color:Blue;">Implements</span> IMessageRecipient
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> ProcessMessage(<span style="color:Blue;">ByVal</span> context <span style="color:Blue;">As</span> IMessageContext, <span style="color:Blue;">ByVal</span> message <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>) _
+        <span style="color:Blue;">Implements</span> IMessageRecipient.ProcessMessage
+        Console.WriteLine(<span style="color:#A31515;">&quot;The client received a '{0}' message&quot;</span>, message)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			MessagingExample.vb: The message receiver for the client
+			<div class="codedownload">
+				<a href="Example-clientserver-messaging-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

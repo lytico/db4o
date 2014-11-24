@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">Driver driver = queryForDriver(container);
+driver.getMostLovedCar().setCarName(<span style="color:#A31515;">&quot;New name&quot;</span>);
+driver.setName(<span style="color:#A31515;">&quot;John Turbo&quot;</span>);
+driver.addOwnedCar(<span style="color:Blue;">new</span> Car(<span style="color:#A31515;">&quot;Volvo Combi&quot;</span>));
+<span style="color:Green;">// Just commit the transaction. All modified objects are stored</span>
+container.commit();</pre>
+		<div class="codesnippet-meta">
+			TransparentPersistence.java: Just update and commit. Transparent persistence manages all updates
+			<div class="codedownload">
+				<a href="Example-tutorial-transparentpersistence-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="8" MadCap:lastHeight="1617" MadCap:lastWidth="700" MadCap:conditions="Primary..NET" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+  <head></head>
+  <body>
+    <h1>
+      <MadCap:keyword term="Auto Properties" />Automatic Properties</h1>
+    <p>Automatic
+properties simply allow a user to skip the step of introducing private field
+variables when the property simply sets and gets the field value:</p>
+    <MadCap:snippetBlock src="../CodeExamples/platform/autoproperties/AutoProperties-Auto-property.all.flsnp" />
+    <p class="">Behind the scenes the compiler creates a field and the regular property code. The field-name depends on the compiler. For C# the field-name of auto-property is <span class="method">&lt;PropertyName&gt;k__BackingField</span>. For example the property FirstName will be stored in the field <span class="method">&lt;FirstName&gt;k__BackingField</span>. For <a href="http://msdn.microsoft.com/en-us/library/dd293589.aspx" target="_parent">VB.Net the field-name of auto-property</a> is <span class="method">_PropertyName</span>.  For example the property FirstName will be stored in the field <span class="method">_FirstName</span>.</p>
+    <MadCap:snippetBlock src="../CodeExamples/platform/autoproperties/AutoProperties-Auto-property-behind-the-scenes.all.flsnp" />
+    <h2>Issues With Auto Properties</h2>
+    <p>Note that db4o always uses the field name for its configuration. This also applies to auto-properties. You need to use the field-name to specify index etc. </p>
+    <p>For C# the name of the backing field is not specified and a compiler implementation detail. Therefore it's possible that it actually changes in the future.</p>
+    <p>For example to index the auto property Name:</p>
+    <MadCap:snippetBlock src="../CodeExamples/platform/autoproperties/AutoProperties-Configure-auto-properties.all.flsnp" />
+    <p class=""> </p>
+  </body>
+</html>

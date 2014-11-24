@@ -1,0 +1,11 @@
+package decaf;
+
+abstract class CovarianceBase {
+	public abstract Object foo();
+}
+
+class Covariance extends CovarianceBase {
+	public Object foo() {
+		return "foo";
+	}
+}

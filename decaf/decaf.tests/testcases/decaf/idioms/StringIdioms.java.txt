@@ -1,0 +1,7 @@
+package decaf.idioms;
+
+public class StringIdioms {
+	public boolean checkContains(String str) {
+		return str.contains("x");
+	}
+}

@@ -1,0 +1,22 @@
+<project name="dRS-testcases" default="run">
+
+	<taskdef name="resolveClasspath" classname="com.db4o.util.ant.EclipseClasspathTask">
+		<classpath>
+			<pathelement location="bin"/>
+		</classpath>
+	</taskdef>
+
+	<target name="run">
+		
+		<resolveClasspath workspaceroot="../" outputproperty="drsClasspath" projectname="drs" />
+		
+		<java fork="true" classname="com.db4o.drs.test.all.AllDrsTests">
+			<jvmarg line="-DrunVodTests=true" />
+			<jvmarg line="-javaagent:lib/datanucleus/datanucleus-enhancer-2.1.1.jar=com.db4o.drs.test.data,com.db4o.drs.versant.metadata,com.db4o.drs.test.versant.data" />
+			<classpath path="${drsClasspath}" />
+			<classpath path="lib/datanucleus/datanucleus-core-2.1.2.jar" />
+		</java>
+	
+	</target>
+	
+</project>

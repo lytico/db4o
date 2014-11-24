@@ -1,0 +1,43 @@
+.n
+.a License ..
+.0 License ..
+
+.l http://www.versant.com/ Versant Inc. ..  supplies the object database ._
+engine db4o under a triple licensing regime:
+
+.1 General Public License (GPL) ..
+db4o is free to be used:
+- for development,
+- in-house as long as no deployment to third parties takes place,
+- together with works that are placed under the GPL themselves.
+
+You should have received a copy of the GPL in the file db4o.license.html together ._
+with the db4o distribution.
+
+If you have questions about when a commercial license is required, please
+read our GPL Interpretation policy for further detail, available at:
+
+http://www.db4o.com/about/company/legalpolicies/gplinterpretation.aspx
+
+.1 Opensource Compatibility license (dOCL) ..
+The db4o Opensource Compatibility License (dOCL) is designed for free/open ._
+source projects that want to embed db4o but do not want to (or are not able to) ._
+license their derivative work under the GPL in its entirety. This initiative aims to ._
+proliferate db4o into many more open source projects by providing compatibility ._
+for projects licensed under Apache, LGPL, BSD, EPL, and others, as required by our users.
+The terms of this license are available here:  .l http://www.db4o.com/about/company/legalpolicies/docl.aspx  "dOCL" agreement.  .. 
+
+
+.1 Commercial License ..
+For incorporation into own commercial products and for use together with ._
+redistributed software that is not placed under the GPL, db4o is also ._
+available under a commercial license.
+
+Visit the ._
+.l http://www.db4o.com purchasing area on the db4o website ..  or ._
+.l mailto:sales@db4o.com contact db4o sales ..  for licensing terms ._
+and pricing.
+
+.1 Bundled 3rd Party Licenses ..
+
+.< ThirdParty ..

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Public</span> <span style="color:Blue;">Class</span> ExampleTestCase
+    <span style="color:Blue;">Inherits</span> AbstractDb4oTestCase
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">Sub</span> Main(<span style="color:Blue;">ByVal</span> args <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>())
+        <span style="color:Blue;">Dim</span> testCase = <span style="color:Blue;">New</span> ExampleTestCase()
+        testCase.RunSolo()
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> TestStoresElement()
+        Db().Store(<span style="color:Blue;">New</span> TestItem())
+        <span style="color:Blue;">Dim</span> result <span style="color:Blue;">As</span> IList(Of TestItem) = Db().Query(Of TestItem)()
+        Assert.AreEqual(1, result.<span style="color:Blue;">Count</span>)
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+
+    <span style="color:Blue;">Private</span> <span style="color:Blue;">Class</span> TestItem
+
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Class</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			ExampleTestCase.vb: Basic test case
+			<div class="codedownload">
+				<a href="Example-Code-db4otests-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

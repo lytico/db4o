@@ -1,0 +1,63 @@
+.a LINQ ..
+.1 LINQ ..
+
+db4o querying syntax has got even easier with the introduction of .NET LINQ queries. ._
+LINQ allows you to write compile checked db4o queries, which can be refactored ._
+automatically when a field name changes and which are supported by code ._
+auto-completion tools.
+In order to use LINQ you will need to add reference to ._
+ Db4objects.Db4o.Linq.dll and usage to your program class:
+.c using System.Linq;
+using Db4objects.Db4o.Linq; ..  
+
+If you are already familiar with LINQ syntax, you can just start writing ._
+LINQ to query db4o.  Otherwise you may want to familiarise yourself with ._
+LINQ resources on  .l http://msdn2.microsoft.com/en-us/library/bb397926.aspx MSDN.
+
+Note that LINQ requires at least .NET 3.5.
+
+.2 Linq Examples ..
+Let's prepare some objects in our database to query against:
+.s com.db4odoc.f1.chapter10.LinqExample#storeObjects -run ..
+
+The simplest LINQ query will look like this:
+.s com.db4odoc.f1.chapter10.LinqExample#retrievePilot -run ..
+You can see that we are using db4o object container as a datasource, ._
+the rest of the syntax is generic to all LINQ queries.
+
+Now let's try a bit more complex selection:
+.s com.db4odoc.f1.chapter10.LinqExample#retrievePilotByCar -run ..
+So we can constrain on one object and retrieve a list of others. You can ._
+even create completely new objects based on the retrieved information ._
+using  .i select new MyObject(field1, field2...) .. . Try to experiment with ._
+different LINQ queries against db4o database.
+
+.2 Performance ..
+db4o query processor is based on SODA queries, therefore LINQ query is analysed ._
+and converted to SODA syntax in the runtime. However, in some cases this ._
+conversion is not possible. This can happen when query is constrained ._
+against aggregates or projections of a field value and in other cases ._
+when SODA equivalent does not exists. For example:
+.s com.db4odoc.f1.chapter10.LinqExample#retrievePilotUnoptimized -run ..
+The query still works, but it requires instantiation of all candidate ._
+objects, which is much less performant than SODA query. 
+
+.2 LINQ for Compact Framework .. 
+Compact Framework version 3.5 contains LINQ implementation for querying ._
+objects, however it does not contain the namespace System.Linq.Expressions, ._
+which is used by all optimized LINQ providers. Luckily there is a solution ._
+to this problem. Mono implementation of System.Core can be used to ._
+support optimized LINQ providers and expression interpreter contributed ._
+by  .l http://www.mainsoft.com/ Mainsoft ..l  to Mono's System.Core can be used to support full LINQ expression trees.
+
+These assemblies were used by db4o team to compile a new assembly, ._
+System.Linq.Expressions.dll, which provides LINQ support ._
+to .NET Compact Framework 3.5. In order to use the full LINQ ._
+functionality including optimisation, add a reference to ._
+System.Linq.Expressions.dll in your project and enjoy.
+
+System.Linq.Expressions.dll can be found in bin\compact-3.5 folder ._
+of your distribution. You can also examine the code ._
+in src\Libs\compact-3.5\System.Linq.Expressions or db4o  .l https://source.db4o.com/db4o/trunk/db4o.net/Libs/compact-3.5/System.Linq.Expressions/ SVN ..l  .
+
+

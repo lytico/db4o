@@ -1,0 +1,435 @@
+<?xml version="1.0"?>
+<project name="common build definitions">
+	<property environment="env" />
+	<property name="path.machine.properties" value="machine.properties" />
+	<property file="${path.machine.properties}" />
+	<property file="ant.properties" />
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+	<taskdef name="for" classname="net.sf.antcontrib.logic.ForTask">
+		<classpath>
+			<pathelement location="ant-contrib.jar" />
+		</classpath>
+	</taskdef>
+	
+	<taskdef name="cnProperty" classname="com.db4o.devtools.ant.CompositeNamePropertyTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+
+	<taskdef name="svnRevision" classname="com.db4o.devtools.ant.SvnRevision">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<pathelement location="${dir.build.lib}/svnkit/svnkit.jar" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+
+	<taskdef name="db4oIteration" classname="com.db4o.devtools.ant.Db4oIterationTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+
+	<taskdef name="listPackages" classname="com.db4o.devtools.ant.ListPackagesTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+
+	<taskdef name="filehead" classname="com.db4o.devtools.ant.FileHeadAntTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+	
+	<taskdef name="updatecsharpproject" classname="com.db4o.devtools.ant.UpdateCSharpProjectAntTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+	
+	<taskdef name="updateAssemblyHintPath" classname="com.db4o.devtools.ant.UpdateAssemblyHintPath">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+	
+	<taskdef name="updateAssemblyInfo" classname="com.db4o.devtools.ant.UpdateAssemblyInfoTask">
+		<classpath>
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+
+	
+	<taskdef name="versioninfo" classname="com.db4o.devtools.ant.VersionInfoAntTask" classpath="${dir.build.lib}/exttools.jar">
+		<classpath>
+			<pathelement location="${dir.build.lib}/exttools.jar" />
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+	
+	<taskdef name="updateAssemblyKey" classname="com.db4o.devtools.ant.UpdateAssemblyKeyTask" classpath="${dir.build.lib}/exttools.jar">
+		<classpath>
+			<pathelement location="${dir.build.lib}/exttools.jar" />
+			<pathelement location="${dir.build.bin}" />
+			<path path="${path.classpath.full}" />
+		</classpath>
+	</taskdef>
+
+	<taskdef resource="aQute/bnd/ant/taskdef.properties" classpath="${dir.build.lib}/bnd-0.0.337.jar"/>
+	
+	<property name="eclipse.startup.jar" location="${eclipse.home}/startup.jar" />
+	
+
+	<macrodef name="flare">
+		<attribute name="output"/>
+		<attribute name="target" />
+		<attribute name="projectDirectory"/>
+		<sequential>
+			
+			<echo>Producing Flare output</echo>
+			<echo>  Output: @{output}</echo>
+			<echo>  Target: @{target}</echo>
+			<echo>  Flare Source Directory: @{projectDirectory}</echo>
+			
+			<delete quiet="true">
+				<fileset dir="@{projectDirectory}/Output">
+					<include name="**/*" />
+				</fileset>
+			</delete>
+			
+			<mkdir dir="@{output}"/>
+			
+			<delete >
+				<fileset dir="@{output}">
+					<include name="**/*" />
+				</fileset>
+			</delete>
+			
+			<xslt in="@{projectDirectory}/Project/Targets/@{target}.fltar" out="${dir.dist.flare.temp}/@{target}.fltar.tmp"
+			      style="${dir.config}/flare/flare_output_folder.xslt">
+				<param name="flareOutputPath" expression="@{output}"/>
+			</xslt>
+			
+			<copy file="${dir.dist.flare.temp}/@{target}.fltar.tmp" tofile="@{projectDirectory}/Project/Targets/@{target}.fltar" />
+
+			<delete file="${dir.dist.flare.temp}/@{target}.fltar.tmp" />
+			
+			<exec executable="${flare.executable}" failonerror="true">
+				<arg line="-project @{projectDirectory}/Reference.flprj -target @{target}"/>
+			</exec>
+
+			<echo>  Delete: @{projectDirectory}/Output</echo>
+			<delete quiet="true">
+				<fileset dir="@{projectDirectory}/Output">
+					<include name="**/*" />
+				</fileset>
+			</delete>
+			
+			<copy file="${dir.config}/flare/index_fix.html" tofile="@{output}/Output/@{target}/index.html" overwrite="true"/>
+			
+		</sequential>
+	</macrodef>
+	
+	
+	<macrodef name="sharpen">
+		<attribute name="workspace" />
+		<attribute name="resource" />
+		
+		<element name="args" optional="yes" />
+		
+		<sequential>
+			<echo>org.eclipse.core.launcher.Main -data @{workspace} -application sharpen.core.application @{resource}</echo>
+			<java taskname="sharpen"
+				fork="true"
+				classname="org.eclipse.core.launcher.Main" failonerror="true" timeout="1800000" jvmargs="${sharpen.vmargs}">
+				
+				<classpath>
+					<fileset dir="${eclipse.home}/plugins">
+						<include name="org.eclipse.equinox.launcher_*.jar"  />
+					</fileset>
+				</classpath>
+				
+				<arg value="-clean" />
+				<arg value="-data" />
+				<arg file="@{workspace}" />
+				<arg value="-application" />
+				<arg value="sharpen.core.application" />
+				<arg value="-header" />
+				<arg file="${dir.config}/copyright_comment.txt" />
+				<arg value="@{resource}" />
+				<args />
+			</java>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="prepare-workspace">
+		<attribute name="project" />
+		<attribute name="dir" />
+		<element name="sources" optional="no" />
+		
+		<sequential>
+			<mkdir dir="@{dir}/@{project}"  />
+			
+			<copy todir="@{dir}/@{project}">
+				<sources />
+			</copy>
+		</sequential>
+	</macrodef>
+			
+	<macrodef name="decaf">
+		<attribute name="workspace" />
+		<attribute name="resource" />
+		
+		<element name="args" optional="yes" />
+		
+		<sequential>
+			<echo>org.eclipse.core.launcher.Main -data @{workspace} -application decaf.application @{resource}</echo>
+		
+			<java
+				taskname="decaf"
+				fork="true"
+				logerror="true"
+				classname="org.eclipse.core.launcher.Main" failonerror="true" timeout="1800000" jvmargs="${decaf.vmargs}">
+				<classpath>
+					<fileset dir="${eclipse.home}/plugins">
+						<include name="org.eclipse.equinox.launcher_*.jar"  />
+					</fileset>
+				</classpath>
+				<!-- uncomment for debugging purposes
+				<jvmarg value="-Declipse.consoleLog=true"/>
+				<arg value="-debug" />
+				-->
+				<arg line="-clean ${decaf.arg.optional}" />
+				<arg value="-data" />
+				<arg file="@{workspace}" />
+				<arg value="-application" />
+				<arg value="decaf.application" />
+				<arg value="@{resource}" />
+				<args />
+			</java>
+		</sequential>
+	</macrodef>
+	
+	<target name="install-decaf-plugin" depends="install-sharpen-plugin" >
+				
+		<property name="dir.decaf.core" location="${dir.base}/decaf" />
+		<property name="dir.decaf.src"  location="${dir.decaf.core}/src"  />
+		<reset-dir dir="${dir.dist.decaf.classes}" />
+		
+		<echo>${eclipse.home}/plugins</echo>
+		<javac fork="true"
+			debug="true"
+			target="1.5"
+			source="1.5"
+			destdir="${dir.dist.decaf.classes}"
+			srcdir="${dir.decaf.src}"
+			encoding="UTF-8">
+			<classpath>
+				<fileset dir="${dir.decaf.core}/lib">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="${eclipse.home}/plugins">
+					<include name="org.eclipse.osgi_*/osgi.jar" />
+					<include name="org.eclipse.core.resources_*/resources.jar" />
+					<include name="org.eclipse.core.runtime_*/runtime.jar" />
+					<include name="org.eclipse.jdt.core_*/jdtcore.jar" />
+					<!-- redundant entries: in newer eclipse installs those reside in jars -->
+					<include name="org.eclipse.osgi_*.jar" />
+					<include name="org.eclipse.core.resources_*.jar" />
+					<include name="org.eclipse.core.runtime_*.jar" />
+					<include name="org.eclipse.jdt.core_*.jar" />
+					<include name="org.eclipse.jdt.launching_*.jar" />
+					<include name="org.eclipse.equinox.*.jar" />
+					<include name="org.eclipse.core.jobs_*.jar" />
+					
+					<include name="org.eclipse.core.filebuffers_*.jar" />
+										
+					<include name="org.eclipse.jdt.ui_*.jar" />
+										
+					<include name="org.eclipse.jface_*.jar"  />
+					<include name="org.eclipse.jface.text_*.jar"  />
+					<include name="org.eclipse.text_*jar" />
+										
+					<include name="org.eclipse.ui_*.jar"  />
+					<include name="org.eclipse.ui.workbench_*.jar"  />
+										
+					<include name="sharpen*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		
+		<jar manifest="${dir.decaf.core}/META-INF/MANIFEST.MF"
+			destfile="${plugins.home}/decaf_1.0.0.jar"
+			basedir="${dir.dist.decaf.classes}">
+			<fileset dir="${dir.decaf.core}">
+				<include name="plugin.xml" />
+			</fileset>
+			<fileset dir="${dir.decaf.core}">
+				<include name="lib/*" />
+			</fileset>
+		</jar>
+	</target>
+	
+	<target name="install-sharpen-plugin">
+			
+		<property name="sharpen.core.dir" location="${dir.base}/sharpen.core" />
+		<reset-dir dir="${dir.dist.classes.sharp}" />
+		
+		<echo>${eclipse.home}/plugins</echo>
+		<javac fork="true"
+			debug="true"
+			target="1.5"
+			source="1.5"
+			destdir="${dir.dist.classes.sharp}"
+			srcdir="${sharpen.core.dir}/src"
+			encoding="UTF-8">
+			<classpath>
+				<fileset dir="${eclipse.home}/plugins">
+					<include name="org.eclipse.osgi_*/osgi.jar" />
+					<include name="org.eclipse.core.resources_*/resources.jar" />
+					<include name="org.eclipse.core.runtime_*/runtime.jar" />
+					<include name="org.eclipse.jdt.core_*/jdtcore.jar" />
+					<!-- redundant entries: in newer eclipse installs those reside in jars -->
+					<include name="org.eclipse.osgi_*.jar" />
+					<include name="org.eclipse.core.resources_*.jar" />
+					<include name="org.eclipse.core.runtime_*.jar" />
+					<include name="org.eclipse.jdt.core_*.jar" />
+					<include name="org.eclipse.jdt.launching_*.jar" />
+					<include name="org.eclipse.equinox.*.jar" />
+					<include name="org.eclipse.core.jobs_*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		
+		<jar destfile="${plugins.home}/sharpen.core_1.0.0.jar" basedir="${dir.dist.classes.sharp}">
+			<fileset dir="${sharpen.core.dir}">
+				<include name="plugin.xml" />
+			</fileset>
+		</jar>
+		
+	</target>
+	
+	<target name="get-svn-revision" unless="svn.revision">
+		<svnRevision property="svn.revision" />
+		<!-- <property name="svn.revision" value="1337"/> -->
+		<echo>Revision: ${svn.revision}</echo>
+	</target>
+
+	
+	<if>
+		<equals arg1="${compiledll.debug}" arg2="true" />
+		<then>
+			<property name="compiledll.debug.symbol" value="+" />
+		</then>
+		<else>
+			<property name="compiledll.debug.symbol" value="-" />
+		</else>
+	</if>
+	
+	<macrodef name="reset-dir">
+		<attribute name="dir" />
+		<sequential>
+			<delete dir="@{dir}" />
+			<mkdir dir="@{dir}" />
+		</sequential>
+	</macrodef>
+
+	<target name="properties" depends="get-svn-revision">
+		<db4oIteration property="db4o.iteration" />
+		<property name="db4o.version.iteration.revision" value="${db4o.version.dotted}.${db4o.iteration}.${svn.revision}" />
+		<property name="db4o.file" value="db4o-${db4o.version.iteration.revision}" />
+		
+		<property name="filename.jdk1.2.jar" value="${db4o.file}-core-java1.2.jar" />
+		<property name="filename.jdk1.5.jar" value="${db4o.file}-core-java5.jar" />
+		<property name="filename.jdk1.2.optional.jar" value="${db4o.file}-optional-java1.2.jar" />
+		<property name="filename.jdk1.5.optional.jar" value="${db4o.file}-optional-java5.jar" />		
+		<property name="filename.jdk1.2.cs.optional.jar" value="${db4o.file}-cs.optional-java1.2.jar" />
+		<property name="filename.jdk1.5.cs.optional.jar" value="${db4o.file}-cs.optional-java5.jar" />		
+		<property name="filename.jdk1.2.cs.jar" value="${db4o.file}-cs-java1.2.jar" />
+		<property name="filename.jdk1.5.cs.jar" value="${db4o.file}-cs-java5.jar" />
+		<property name="filename.jdk1.2.nqopt.jar" value="${db4o.file}-nqopt-java1.2.jar" />
+		<property name="filename.jdk1.5.nqopt.jar" value="${db4o.file}-nqopt-java5.jar" />
+		<property name="filename.jdk1.2.instrumentation.jar" value="${db4o.file}-instrumentation-java1.2.jar" />
+		<property name="filename.jdk1.5.instrumentation.jar" value="${db4o.file}-instrumentation-java5.jar" />
+		<property name="filename.jdk1.2.db4otools.jar" value="${db4o.file}-tools-java1.2.jar" />
+		<property name="filename.jdk1.5.db4otools.jar" value="${db4o.file}-tools-java5.jar" />
+		<property name="filename.db4obench.jar" value="${db4o.file}-bench.jar" />
+		
+		<property name="filename.jdk1.2.db4ounit.jar" value="${db4o.file}-db4ounit-java1.2.jar" />
+		<property name="filename.jdk1.5.db4ounit.jar" value="${db4o.file}-db4ounit-java5.jar" />
+				
+		<property name="filename.jdk1.2.taj.jar" value="${db4o.file}-taj-java1.2.jar" />
+		<property name="filename.jdk1.5.taj.jar" value="${db4o.file}-taj-java5.jar" />
+		<property name="filename.osgi1.2.jar" value="${db4o.file}-osgi-java1.2.jar" />
+		<property name="filename.osgi1.2.test.jar" value="${db4o.file}-osgi-test-java1.2.jar" />
+		<property name="filename.osgi1.5.jar" value="${db4o.file}-osgi-java5.jar" />
+		<property name="filename.osgi1.5.test.jar" value="${db4o.file}-osgi-test-java5.jar" />
+		<property name="filename.jdk1.2.nodep.jar" value="${db4o.file}-all-java1.2.jar" />
+		<property name="filename.jdk1.5.nodep.jar" value="${db4o.file}-all-java5.jar" />
+		
+		<property name="file.jdk1.2.jar" value="${dir.dist.jars}/${filename.jdk1.2.jar}" />
+		<property name="file.jdk1.5.jar" value="${dir.dist.jars}/${filename.jdk1.5.jar}" />
+		<property name="file.decaf.annotations" value="${dir.j}/lib/decaf-annotations.jar" />
+		<property name="file.jdk1.2.optional.jar" value="${dir.dist.jars}/${filename.jdk1.2.optional.jar}" />
+		<property name="file.jdk1.5.optional.jar" value="${dir.dist.jars}/${filename.jdk1.5.optional.jar}" />
+		<property name="file.jdk1.2.cs.optional.jar" value="${dir.dist.jars}/${filename.jdk1.2.cs.optional.jar}" />
+		<property name="file.jdk1.5.cs.optional.jar" value="${dir.dist.jars}/${filename.jdk1.5.cs.optional.jar}" />		
+		<property name="file.jdk1.2.cs.jar" value="${dir.dist.jars}/${filename.jdk1.2.cs.jar}" />
+		<property name="file.jdk1.5.cs.jar" value="${dir.dist.jars}/${filename.jdk1.5.cs.jar}" />		
+		<property name="file.jdk1.2.nqopt.jar" value="${dir.dist.jars}/${filename.jdk1.2.nqopt.jar}" />
+		<property name="file.jdk1.5.nqopt.jar" value="${dir.dist.jars}/${filename.jdk1.5.nqopt.jar}" />
+		<property name="file.jdk1.2.instrumentation.jar" value="${dir.dist.jars}/${filename.jdk1.2.instrumentation.jar}" />
+		<property name="file.jdk1.5.instrumentation.jar" value="${dir.dist.jars}/${filename.jdk1.5.instrumentation.jar}" />
+		<property name="file.jdk1.2.db4otools.jar" value="${dir.dist.jars}/${filename.jdk1.2.db4otools.jar}" />
+		<property name="file.jdk1.5.db4otools.jar" value="${dir.dist.jars}/${filename.jdk1.5.db4otools.jar}" />
+		<property name="file.db4obench.jar" value="${dir.dist.jars}/${filename.db4obench.jar}" />
+		<property name="file.jdk1.2.db4ounit.jar" value="${dir.dist.jars}/${filename.jdk1.2.db4ounit.jar}" />
+		<property name="file.jdk1.5.db4ounit.jar" value="${dir.dist.jars}/${filename.jdk1.5.db4ounit.jar}" />
+				
+		<property name="file.jdk1.2.taj.jar" value="${dir.dist.jars}/${filename.jdk1.2.taj.jar}" />
+		<property name="file.jdk1.5.taj.jar" value="${dir.dist.jars}/${filename.jdk1.5.taj.jar}" />
+		<property name="file.osgi1.2.jar" value="${dir.dist.jars}/${filename.osgi1.2.jar}" />
+		<property name="file.osgi1.2.test.jar" value="${dir.dist.jars}/${filename.osgi1.2.test.jar}" />
+		<property name="file.osgi1.5.jar" value="${dir.dist.jars}/${filename.osgi1.5.jar}" />
+		<property name="file.osgi1.5.test.jar" value="${dir.dist.jars}/${filename.osgi1.5.test.jar}" />
+		<property name="file.java.test.src.zip" value="${dir.dist.java}/${db4o.file}-test.zip" />
+		<property name="file.dist.java" value="${dir.dist}/${db4o.file}-java.zip" />
+		<property name="file.bench.jar" value="${dir.dist.jars}/${filename.db4obench.jar}" />
+		<property name="file.jdk1.2.nodep.jar" value="${dir.dist.jars}/${filename.jdk1.2.nodep.jar}" />
+		<property name="file.jdk1.5.nodep.jar" value="${dir.dist.jars}/${filename.jdk1.5.nodep.jar}" />
+		
+		<property name="file.compiler.jdk1.3.args.line" value="${file.compiler.jdk1.3.args} ${file.compiler.jdk1.3.args.optional}" />
+
+		<for list="core,core.optional,core.cs,core.cs.optional,test,db4ounit,db4ounit.extensions,instrumentation,instrumentation.test,taj,taj.test,nqopt,nqopt.test,tools,tools.test" param="project-id">
+			<sequential>
+				<for list="jdk1.2,sharpen,jdk1.5" param="platform-id">
+					<sequential>
+						<property name="dir.dist.decaf.@{platform-id}.@{project-id}.src" value="${dir.dist.decaf.@{platform-id}.project.target}/${path.decaf.@{project-id}.src}" />
+					</sequential>
+				</for>
+			</sequential>
+		</for>
+
+		<if>
+			<isset property="dir.tests.temp" />
+			<then>
+				<property name="Tests.Temp.Path" value="${dir.tests.temp}" />
+			</then>
+			<else>
+				<property name="Tests.Temp.Path" value="${env.TEMP}" />
+			</else>
+		</if>
+	</target>
+		
+</project>

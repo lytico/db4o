@@ -1,0 +1,21 @@
+package decaf.collections;
+
+import java.util.*;
+
+interface Appendable<E> {
+	boolean addAll(Collection<? extends E> c);
+}
+
+class AppendableImpl<E> implements Appendable<E> {
+
+	public boolean addAll(Collection<? extends E> c) {
+		for (E element : c) {
+			add(element);
+		}
+		return false;
+	}
+	
+	public boolean add(E o) {
+		return false;
+	}
+}

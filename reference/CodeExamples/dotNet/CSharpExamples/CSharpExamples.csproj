@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2F121B0F-4E79-4DB7-92A0-7A7BB36BF6BF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4oDoc</RootNamespace>
+    <AssemblyName>Db4oDoc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>Db4oDoc.Boot</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cecil.FlowAnalysis, Version=0.1.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\Cecil.FlowAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o, Version=8.1.249.16099, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.CS, Version=8.1.249.16099, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.CS.dll</HintPath>
+    </Reference>
+    <Reference Include="DB4objects.Db4o.CS.Optional, Version=8.1.249.16099, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\DB4objects.Db4o.CS.Optional.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Data.Services, Version=8.1.249.16099, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Linq, Version=8.1.249.16099, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.NativeQueries">
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.NativeQueries.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Optional, Version=8.1.249.16099, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\Db4objects.Db4o.Optional.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mono.Cecil, Version=0.9.4.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>..\..\..\libs\net\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.GetOptions">
+      <HintPath>..\..\..\libs\net\Mono.GetOptions.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\libs\net\Mono.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="OMCustomConfigurationforUser">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\db4o\db4o-8.1\Object Manager Enterprise\OMCustomConfigurationforUser.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Services">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Boot.cs" />
+    <Compile Include="Code\acidproperties\DangerousPractises.cs" />
+    <Compile Include="Code\backup\BackupExample.cs" />
+    <Compile Include="Code\basics\Db4oBasics.cs" />
+    <Compile Include="Code\callbacks\eventregistry\EventRegistryExamples.cs" />
+    <Compile Include="Code\callbacks\examples\CallbackExamples.cs" />
+    <Compile Include="Code\clientserver\basics\Db4oClientExample.cs" />
+    <Compile Include="Code\clientserver\basics\ServerExample.cs" />
+    <Compile Include="Code\clientserver\messaging\MessagingExample.cs" />
+    <Compile Include="Code\clientserver\pooling\ConnectionPool.cs" />
+    <Compile Include="Code\clientserver\pooling\ConnectionPoolExamples.cs" />
+    <Compile Include="Code\clientserver\pooling\TestConnectionPool.cs" />
+    <Compile Include="Code\clientserver\referencecache\ReferenceCacheExamples.cs" />
+    <Compile Include="Code\clientserver\refresh\RefreshingObjects.cs" />
+    <Compile Include="Code\clientserver\ssl\SSLExample.cs" />
+    <Compile Include="Code\collections\bigset\BigSetExample.cs" />
+    <Compile Include="Code\concurrency\locking\ReadWriteLockingOperations.cs" />
+    <Compile Include="Code\concurrency\locking\LockingOperations.cs" />
+    <Compile Include="Code\concurrency\locking\Person.cs" />
+    <Compile Include="Code\concurrency\transactions\ReadWriteTransactionOperations.cs" />
+    <Compile Include="Code\concurrency\transactions\DatabaseSupportWithReadWriteLock.cs" />
+    <Compile Include="Code\concurrency\transactions\DatabaseSupport.cs" />
+    <Compile Include="Code\concurrency\transactions\TransactionOperations.cs" />
+    <Compile Include="Code\concurrency\transactions\Person.cs" />
+    <Compile Include="Code\concurrency\units\UnitsOfWork.cs" />
+    <Compile Include="Code\configuration\alias\AliasExamples.cs" />
+    <Compile Include="Code\configuration\basics\ConfigurationBasics.cs" />
+    <Compile Include="Code\configuration\client\ClientConfigurationExamples.cs" />
+    <Compile Include="Code\configuration\common\CommonConfigurationExamples.cs" />
+    <Compile Include="Code\configuration\file\FileConfiguration.cs" />
+    <Compile Include="Code\configuration\freespace\FreeSpaceConfiguration.cs" />
+    <Compile Include="Code\configuration\idsystem\IdSystemConfigurationExamples.cs" />
+    <Compile Include="Code\configuration\io\IOConfigurationExamples.cs" />
+    <Compile Include="Code\configuration\io\LoggingBin.cs" />
+    <Compile Include="Code\configuration\io\LoggingStorage.cs" />
+    <Compile Include="Code\configuration\io\LRUCachingStorage.cs" />
+    <Compile Include="Code\configuration\network\NetworkConfigurationExample.cs" />
+    <Compile Include="Code\configuration\objectconfig\ObjectConfigurationExamples.cs" />
+    <Compile Include="Code\configuration\objectfield\City.cs" />
+    <Compile Include="Code\configuration\objectfield\ObjectFieldConfigurations.cs" />
+    <Compile Include="Code\configuration\server\ServerConfigurationExamples.cs" />
+    <Compile Include="Code\container\sessions\Db4oSessions.cs" />
+    <Compile Include="Code\db4otests\ExampleTestCase.cs" />
+    <Compile Include="Code\deframentation\DefragmentationConfigurationExamples.cs" />
+    <Compile Include="Code\deframentation\DefragmentationExample.cs" />
+    <Compile Include="Code\deletion\DeletionExamples.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\AutoIncrementExample.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\AutoIncrement.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\Db4oInternalIdExample.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\Db4oUuidExample.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\IdExamples.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\IIdExample.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\IDHolder.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\Pilot.cs" />
+    <Compile Include="Code\disconnectedobj\idexamples\UuidOnObject.cs" />
+    <Compile Include="Code\disconnectedobj\merging\Car.cs" />
+    <Compile Include="Code\disconnectedobj\merging\IDHolder.cs" />
+    <Compile Include="Code\disconnectedobj\merging\MergeExample.cs" />
+    <Compile Include="Code\disconnectedobj\merging\Pilot.cs" />
+    <Compile Include="Code\disconnectedobj\objectidentity\ObjectIdentityExamples.cs" />
+    <Compile Include="Code\disconnectedobj\objectidentity\Pilot.cs" />
+    <Compile Include="Code\indexing\traverse\TraverseIndexExample.cs" />
+    <Compile Include="Code\omn\ConfigForOMN.cs" />
+    <Compile Include="Code\performance\GenericHolder.cs" />
+    <Compile Include="Code\performance\Item.cs" />
+    <Compile Include="Code\performance\ItemHolder.cs" />
+    <Compile Include="Code\performance\ObjectHolder.cs" />
+    <Compile Include="Code\performance\query\linq\BadPerformance.cs" />
+    <Compile Include="Code\performance\query\linq\GoodPerformance.cs" />
+    <Compile Include="Code\performance\query\soda\BadPerformance.cs" />
+    <Compile Include="Code\performance\CollectionHolder.cs" />
+    <Compile Include="Code\performance\query\soda\GoodPerformance.cs" />
+    <Compile Include="Code\performance\StopWatchUtil.cs" />
+    <Compile Include="Code\PersistanceAwareAttribute.cs" />
+    <Compile Include="Code\features\uniqueconstrain\UniqueConstrainExample.cs" />
+    <Compile Include="Code\identiy\DataModel.cs" />
+    <Compile Include="Code\identiy\IdentityConcepts.cs" />
+    <Compile Include="Code\indexing\check\CheckForAndIndex.cs" />
+    <Compile Include="Code\indexing\where\WhereToIndexExample.cs" />
+    <Compile Include="Code\metainfo\MetaInfoExample.cs" />
+    <Compile Include="Code\pitfalls\activation\ActivationDepthPitfall.cs" />
+    <Compile Include="Code\pitfalls\activation\Person.cs" />
+    <Compile Include="Code\pitfalls\updatedepth\UpdateDepthPitfall.cs" />
+    <Compile Include="Code\platform\asp\DynamicAssembliesIssue.cs" />
+    <Compile Include="Code\platform\autoproperties\AutoProperties.cs" />
+    <Compile Include="Code\practises\deletion\DeletionStrategies.cs" />
+    <Compile Include="Code\practises\relations\Club.cs" />
+    <Compile Include="Code\practises\relations\Country.cs" />
+    <Compile Include="Code\practises\relations\Dog.cs" />
+    <Compile Include="Code\practises\relations\Item.cs" />
+    <Compile Include="Code\practises\relations\Person.cs" />
+    <Compile Include="Code\practises\relations\RelationManagementExamples.cs" />
+    <Compile Include="Code\practises\relations\ShoppingCard.cs" />
+    <Compile Include="Code\practises\relations\TestClubPersonRelationship.cs" />
+    <Compile Include="Code\practises\relations\TestDogPersonRelation.cs" />
+    <Compile Include="Code\query\linq\LinqExamples.cs" />
+    <Compile Include="Code\query\nq\DataModel.cs" />
+    <Compile Include="Code\query\nq\NativeQueriesSorting.cs" />
+    <Compile Include="Code\query\nq\NativeQueryDiagnostics.cs" />
+    <Compile Include="Code\query\nq\NativeQueryExamples.cs" />
+    <Compile Include="Code\query\qbe\DataModel.cs" />
+    <Compile Include="Code\query\qbe\QueryByExamples.cs" />
+    <Compile Include="Code\query\soda\DataModel.cs" />
+    <Compile Include="Code\query\soda\SodaEvaluationExamples.cs" />
+    <Compile Include="Code\query\soda\SodaQueryExamples.cs" />
+    <Compile Include="Code\query\soda\SodaSorting.cs" />
+    <Compile Include="Code\reflection\ReflectorExamples.cs" />
+    <Compile Include="Code\Reporting\Address.cs" />
+    <Compile Include="Code\Reporting\Person.cs" />
+    <Compile Include="Code\Reporting\ReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Code\Reporting\ReportForm.Designer.cs">
+      <DependentUpon>ReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Code\semaphores\SemaphoreExamples.cs" />
+    <Compile Include="Code\strategies\exceptions\ImportantExceptionCases.cs" />
+    <Compile Include="Code\strategies\paging\PagingUtility.cs" />
+    <Compile Include="Code\strategies\paging\TestPagingUtility.cs" />
+    <Compile Include="Code\strategies\refactoring\arraychange\ChangeArrayType.cs" />
+    <Compile Include="Code\strategies\refactoring\extendhierarchy\AddClassToHierarchy.cs" />
+    <Compile Include="Code\strategies\refactoring\RefactoringExamples.cs" />
+    <Compile Include="Code\strategies\refactoring\removehierarchy\RemoveClassFromHierarchy.cs" />
+    <Compile Include="Code\strategies\storingstatic\Color.cs" />
+    <Compile Include="Code\strategies\storingstatic\StoringStaticFields.cs" />
+    <Compile Include="Code\systeminfo\SystemInfoExamples.cs" />
+    <Compile Include="Code\ta\collectionEnhanceIssues\EnhancementLimitations.cs" />
+    <Compile Include="Code\ta\collections\CollectionsExample.cs" />
+    <Compile Include="Code\ta\collections\Team.cs" />
+    <Compile Include="Code\ta\example\Person.cs" />
+    <Compile Include="Code\ta\example\TransparentActivationExamples.cs" />
+    <Compile Include="Code\tp\enhancement\Person.cs" />
+    <Compile Include="Code\tp\enhancement\TransparentPersistedAttribute.cs" />
+    <Compile Include="Code\tp\enhancement\TransparentPersistence.cs" />
+    <Compile Include="Code\tp\rollback\RollbackExample.cs" />
+    <Compile Include="Code\tp\TransparentActivationExample.cs" />
+    <Compile Include="Code\transactions\InconsistentStateRead.cs" />
+    <Compile Include="Code\transactions\Transactions.cs" />
+    <Compile Include="Code\troubleshooting\restore\TryToReadSingleObjects.cs" />
+    <Compile Include="Code\tuning\diagnostics\DiagnosticsExamples.cs" />
+    <Compile Include="Code\tuning\monitoring\IOMonitoring.cs" />
+    <Compile Include="Code\tuning\monitoring\CSMonitoring.cs" />
+    <Compile Include="Code\tuning\monitoring\DataObject.cs" />
+    <Compile Include="Code\tuning\monitoring\FreespaceMonitoring.cs" />
+    <Compile Include="Code\tuning\monitoring\InstallPerformanceCounters.cs" />
+    <Compile Include="Code\tuning\monitoring\ObjectLifecycleMonitoring.cs" />
+    <Compile Include="Code\tuning\monitoring\QueryMonitoring.cs" />
+    <Compile Include="Code\tuning\monitoring\ReferenceSystemMonitoring.cs" />
+    <Compile Include="Code\typehandling\blob\BlobStorage.cs" />
+    <Compile Include="Code\typehandling\notstored\StoredEntity.cs" />
+    <Compile Include="Code\typehandling\translator\ExampleTranslator.cs" />
+    <Compile Include="Code\typehandling\typehandler\StringBuilderHandler.cs" />
+    <Compile Include="Code\typehandling\typehandler\TypeHandlerExample.cs" />
+    <Compile Include="Code\validation\DataValidation.cs" />
+    <Compile Include="Code\xml\XMLSerialisationExamples.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScratchPad.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code\platform\dataservices\" />
+    <Folder Include="Code\typehandling\NewFolder1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Db4oDoc.Code.Reporting.Address.datasource" />
+    <None Include="Properties\DataSources\Db4oDoc.Code.Reporting.Person.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Code\Reporting\ExampleReport.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\db4o-binaries\db4o-8.1\src\Db4oUnit.Extensions\Db4oUnit.Extensions-2010.csproj">
+      <Project>{9446B00C-E8A6-4CEB-83DE-2CAC5168DFE3}</Project>
+      <Name>Db4oUnit.Extensions-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\..\db4o-binaries\db4o-8.1\src\Db4oUnit\Db4oUnit-2010.csproj">
+      <Project>{8F82F8B0-95B6-4553-BDA8-BD9A954E682F}</Project>
+      <Name>Db4oUnit-2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)\..\..\libs\net\Db4oTool.exe -tp -collections -debug -by-attribute:Db4oDoc.Code.PersistanceAwareAttribute $(TargetPath)
+$(SolutionDir)\..\..\libs\net\Db4oTool.exe -tp -collections -debug -by-attribute:Db4oDoc.Code.Tp.Enhancement.TransparentPersistedAttribute $(TargetPath)</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

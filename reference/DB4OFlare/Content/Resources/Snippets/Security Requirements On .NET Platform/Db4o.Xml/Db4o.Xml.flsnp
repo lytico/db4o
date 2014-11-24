@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="498" MadCap:lastWidth="830">
+    <head>
+    </head>
+    <body>
+        <pre class="prettyprint" xml:space="preserve">Db4o.Xml
+&lt;?xml version="1.0"?&gt;
+&lt;Sandbox&gt;
+  &lt;PermissionSet version="1" class="System.Security.PermissionSet"&gt;
+    &lt;IPermission version="1" 
+class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.0.0, 
+Culture=neutral, PublicKeyToken=b77a5c561934e089" 
+Read="*AllFiles*" PathDiscovery="*AllFiles*" /&gt;
+    &lt;IPermission version="1" 
+class="System.Security.Permissions.ReflectionPermission, mscorlib, Version=2.0.0.0, 
+Culture=neutral, PublicKeyToken=b77a5c561934e089" Flags="MemberAccess" /&gt;
+    &lt;IPermission version="1" class="System.Security.Permissions.SecurityPermission, 
+mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" 
+Flags="UnmanagedCode, Execution, ControlEvidence, SerializationFormatter, 
+ControlAppDomain" /&gt;
+    &lt;IPermission Window="SafeSubWindows" Clipboard="OwnClipboard" version="1" 
+class="System.Security.Permissions.UIPermission, mscorlib, Version=2.0.0.0, 
+Culture=neutral, PublicKeyToken=b77a5c561934e089" /&gt;
+    &lt;IPermission version="1" 
+class="System.Security.Permissions.KeyContainerPermission, mscorlib, 
+Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" 
+Unrestricted="true" /&gt;
+  &lt;/PermissionSet&gt;
+&lt;/Sandbox&gt;</pre>
+    </body>
+</html>

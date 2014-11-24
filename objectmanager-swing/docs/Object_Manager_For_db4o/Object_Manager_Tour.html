@@ -1,0 +1,87 @@
+﻿<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Object Manager Tour</title>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+  </head>
+  <body>
+    <div class="CommonContent">
+      <div class="CommonContentArea">
+        <h1>Object Manager Tour</h1><div id="TOC"><div id="TOCinner"><span class="TOCtitle">Contents</span><div class="TOCcontents"><ul><li><a href ="#Stored Classes Tree">Stored Classes Tree</a></li><li><a href ="#Querying for objects">Querying for objects</a><ul><li><a href ="#Query Language">Query Language</a></li><li><a href ="#Query Results">Query Results</a></li></ul></li><li><a href ="#Database Management">Database Management</a></li><li><a href ="#Known bugs and limitations">Known bugs and limitations</a></li></ul></li></ul></div></div></div>
+<p>Upon starting Object Manager, you will see the Connection Manager:</p>
+<p><img src="OM.jpg"/></p>
+<p>At this point, you can either:</p>
+<ul>
+<li>Open a db4o database file </li>
+<li>Open a connection to a db4o database server</li>
+</ul>
+<p>In order to open a db4o database file, simply click Browse and choose the db4o database file to open, then click Connect.</p>
+<p>If you just want to try ObjectManager, you can create a demo database by clicking File - Create Demo Db. This will create and open a database for you to use.</p>
+<a name="Stored Classes Tree"></a><h2>Stored Classes Tree</h2>
+<p>Once you click connect, the main ObjectManager window will open. All of the classes that have been stored will be displayed on the left in a tree:</p>
+<p><img src="StoredClasses.jpg"/></p>
+<a name="Querying for objects"></a><h2>Querying for objects</h2>
+<p>To view the objects stored in your db4o database, you must query for it. The query editor is at the top of the main window and looks like this:</p>
+<p><img src="query.jpg"/></p>
+<p>To quickly see all of the objects of a certain class, just double click the class name in the stored classes tree. This will automatically build your query for you, and you just have to click the Submit button to the right of the query text area.</p>
+<a name="Query Language"></a><h3>Query Language</h3>
+<p>The Object Manager query language, Sql4o, is based on the SQL query language, so if you know SQL, you should have no problems with Sql4o.</p>
+<p>Syntax:</p>
+<p>[SELECT <i class="replaceable">select_expr</i>, ...]</p>
+<p>FROM <i class="replaceable">object_type</i></p>    
+<p>[WHERE <i class="replaceable">where_condition</i>]</p>
+<p>For example, to query all Contacts in the Demo Db:</p>
+<p>
+FROM demo.objectmanager.model.Contact</p>
+<p>To query all contacts with age 50.</p>
+<p>FROM demo.objectmanager.model.Contact where age 50</p>
+<a name="Query Results"></a><h3>Query Results</h3>
+<p>After executing a query, you will see the query results in table:</p>
+<p><img src="table.jpg"/></p>
+<p>From this table, you can edit all primitive fields, Dates, and Strings by double clicking on a cell.</p>
+<p>You can also open an object up in a tree view so that you can descend further into the object:</p>
+<p><img src="tree.jpg"/></p>
+<p>You can also edit fields from this view.</p>
+<a name="Database Management"></a><h2>Database Management</h2>
+
+<p>The following management
+features are currently available:</p>
+
+<ul><li>Backup </li><li>Defragment </li><li>Refactoring (Schema
+     Evolution)</li></ul>
+
+<p>Back-up
+is available from "Manage-Backup..." menu. It will ask you for a location to
+store the back-up, once that is chosen, the back-up copy of your database will
+be created. The backed-up copy is a fully functional database and can be used
+by replacing your current database.</p>
+
+<p>Defragment
+is available from "Manage-Defragment" menu or through "Ctrl-Shift-D" shortcut.
+This will execute the db4o defragmentation process on your database. For more
+information about the defragment see
+<a href="http://developer.db4o.com/resources/view.aspx/Reference/Implementation_Strategies/Maintenance/Defragment" class="wikiLink">Defragment</a>.</p>
+
+
+
+<p><a href="http://developer.db4o.com/Resources/view.aspx/Reference/Implementation_Strategies/Refactoring_and_Schema_Evolution" class="wikiLink">Refactoring</a>
+allows you to change the structure of persistent classes in a db4o database.
+Object Manager helps you to automate the simplest refactoring: renaming of
+class fields. </p>
+
+<p>In order to rename a class field double-click the class in a
+"Stored Classes" tree - class view will open on the right panel. Click "Edit"
+button at the bottom and change field names as necessary. </p><p><img src="refactor.jpg"/></p><p>When the renaming is
+done, click "Stop Editing" button at the bottom. Remember to change your
+application classes accordingly.</p>
+
+
+
+<a name="Known bugs and limitations"></a><h2>Known bugs and limitations</h2>
+<p>Please see the <a href="http://developer.db4o.com/ProjectSpaces/view.aspx/Db4o_Product_Design/ObjectManager" title="ObjectManager wiki">ObjectManager wiki</a> page for the latest information on ObjectManager.</p></div>
+    </div>
+    <div id="footer">
+					This revision (9) was last Modified 2007-04-06T07:05:36 by Tetyana.
+				</div>
+  </body>
+</html>

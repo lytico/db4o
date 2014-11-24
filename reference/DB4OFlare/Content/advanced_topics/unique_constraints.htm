@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1140" MadCap:lastWidth="588">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Constraint" />
+            <MadCap:keyword term="Unique Constraints" />Unique Constraints</h1>
+        <p>Unique constraints allow a user to define a field
+to be unique across all the objects of a particular class stored to db4o. This
+means that you cannot save an object where a previously committed object
+has the same field value for fields marked as unique. 
+   
+A Unique Constraint is checked at commit-time and a constraint violation will
+cause a UniqueFieldValueConstraintViolationException to be thrown. This
+functionality is based on <a href="callbacks/commit-time_callbacks.htm">Commit-Time Callbacks</a> feature. </p>
+        <h2>How To Use Unique Constraints</h2>
+        <p>First you need to add an index on the field which should be unique. After that you add the UniqueFieldValueConstraint to the configuration for the unique field.</p>
+        <MadCap:snippetBlock src="../CodeExamples/features/uniqueconstrain/UniqueConstrainExample-Add-the-index-the-field-and-then-the-unique-constrain.all.flsnp" />
+        <p>After that, the unique constrain is applied. When you commit a transaction the uniqueness of the field is checked. If there's any violation, the UniqueFieldValueConstraintViolationException will be thrown.</p>
+        <MadCap:snippetBlock src="../CodeExamples/features/uniqueconstrain/UniqueConstrainExample-Violating-the-constrain-throws-an-exception.all.flsnp" />
+        <h2>Client-Server</h2>
+        <p>In client server mode you need to configure the unique constrains on the server side.</p>
+    </body>
+</html>

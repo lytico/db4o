@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project name="db4o-tutorial" default="update-doc">
+	
+	<import file="common-dotnet.xml" />
+
+	<property name="dir.n.v6.tutorial" location="../db4o.net/Db4oTutorial" />	
+	
+	<target name="update-doc" depends="update-doc-net">
+	</target>
+	
+	<target name="standalone-build" depends="init, configure, update-doc">
+	</target>
+
+	<target name="update-doc-net" depends="build">
+		<copy todir="${dir.n.v6.tutorial.bin}">
+			<fileset dir="${dir.j.tutorial.out.net}">
+				<include name="**/**" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="build" depends="init">
+		
+		<msb
+			solution="${dir.n.v6.tutorial}/Db4objects.Db4o.Tutorial"
+			outputPath="${dir.n.v6.tutorial.bin}/bin" />
+		
+		<move todir="${dir.n.v6.tutorial.bin}">
+			<fileset dir="${dir.n.v6.tutorial.bin}/bin">
+				<include name="Db4oTutorial.*" />
+			</fileset>
+		</move>
+		
+	</target>
+		
+	<target name="run" depends="standalone-build">
+		<exec dir="${dir.n.v6.tutorial.bin}" executable="${dir.n.v6.tutorial.bin}/Db4oTutorial.exe">
+		</exec>
+	</target>
+
+	<target name="init">
+		<mkdir dir="${dir.n.v6.tutorial.bin}" />
+		<mkdir dir="${dir.n.v6.tutorial.bin}/bin" />
+	</target>
+	
+	<target name="clean">
+		<delete dir="${dir.n.v6.tutorial.bin}" />
+	</target>
+</project>

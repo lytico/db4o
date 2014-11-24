@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">db.execSQL(<span style="color:#A31515;">&quot;CREATE TABLE IF NOT EXISTS REG_RECORDS (&quot;</span>
+		+ <span style="color:#A31515;">&quot;id TEXT PRIMARY KEY, year DATE);&quot;</span>);
+db.execSQL(<span style="color:#A31515;">&quot;CREATE INDEX  IF NOT EXISTS  IDX_REG_RECORDS ON REG_RECORDS (id);&quot;</span>);
+db.execSQL(<span style="color:#A31515;">&quot;ALTER TABLE &quot;</span> + DB_TABLE_CAR + <span style="color:#A31515;">&quot; ADD reg_record TEXT;&quot;</span>);</pre>
+		<div class="codesnippet-meta">
+			SqlExample.java: upgrade schema in SQLite
+			<div class="codedownload">
+				<a href="Example-db4odoc-android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

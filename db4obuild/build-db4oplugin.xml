@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<project name="db4o Eclipse plugin" default="build">	
+
+	<import file="common.xml" />
+
+	<target name="init" depends="properties">
+		<path id="eclipse.classpath">
+			<fileset dir="${eclipse.home}/plugins">
+				<include name="org.eclipse.osgi_*.jar" />
+				<include name="org.eclipse.ui_*.jar" />
+				<include name="org.eclipse.ui.workbench_*.jar" />
+				<include name="org.eclipse.core.resources_*.jar" />
+				<include name="org.eclipse.core.runtime_*.jar" />
+				<include name="org.eclipse.core.jobs_*.jar" />
+				<include name="org.eclipse.core.contenttype_*.jar" />
+				<include name="org.eclipse.jdt.core_*.jar" />
+				<include name="org.eclipse.jface_*.jar" />
+				<include name="org.eclipse.swt_*.jar" />
+				<include name="org.eclipse.swt.widgets_*.jar" />
+				<include name="org.eclipse.swt.gtk*.jar" />
+				<include name="org.eclipse.equinox.common_*.jar" />
+				<include name="org.eclipse.equinox.registry_*.jar" />
+				<include name="org.eclipse.equinox.preferences_*.jar" />
+				<include name="org.eclipse.jdt.core_*.jar" />
+				<include name="org.eclipse.jdt.ui_*.jar" />
+				<include name="org.eclipse.text_*.jar" />
+				<include name="org.eclipse.core.commands_*.jar" />
+				<include name="org.eclipse.help_*.jar" />
+				<include name="org.eclipse.ui.workbench.texteditor_*.jar" />
+			</fileset>
+		</path>
+	    <property name="scala-library.jar" value="${dir.scala.lib}/scala-library.jar" />
+	    <path id="build.classpath">
+			<pathelement location="${scala-library.jar}"   />
+	      	<pathelement location="${file.jdk1.5.nodep.jar}" />
+	      	<path refid="eclipse.classpath" />
+	    </path>
+		<property name="dir.classes.db4oplugin" value="${dir.dist.classes}/db4oplugin" />
+		<property name="dir.project.db4oplugin" value="${dir.base}/db4oplugin" />
+		<property name="dir.src.db4oplugin" value="${dir.project.db4oplugin}/src" />
+		<property name="dir.update.db4oplugin" value="${dir.project.db4oplugin}/update-site" />
+		<property name="file.db4oplugin.jar" value="${dir.dist.jars}/db4oplugin_1.0.0.jar" />
+	    <taskdef resource="scala/tools/ant/antlib.xml">
+	      <classpath>
+	        <pathelement location="${dir.scala.lib}/scala-compiler.jar"   />
+	        <pathelement location="${scala-library.jar}"   />
+	      </classpath>
+	    </taskdef>
+	</target>
+	
+	<target name="compile" depends="init">
+		<reset-dir dir="${dir.classes.db4oplugin}" />
+		<scalac srcdir="${dir.src.db4oplugin}" destdir="${dir.classes.db4oplugin}">
+			<classpath refid="build.classpath" />
+		</scalac>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<copy tofile="${dir.classes.db4oplugin}/META-INF/MANIFEST.MF" file="${dir.project.db4oplugin}/META-INF/MANIFEST.MF.TM" overwrite="true">
+			<filterset>
+				<filter token="db4o.version.iteration.revision" value="${db4o.version.iteration.revision}"/>
+			</filterset>
+		</copy>
+		<copy todir="${dir.classes.db4oplugin}/lib" file="${file.jdk1.5.nodep.jar}" />
+		
+		<jar manifest="${dir.classes.db4oplugin}/META-INF/MANIFEST.MF"
+			destfile="${file.db4oplugin.jar}">
+			<fileset dir="${dir.project.db4oplugin}">
+				<include name="plugin.xml" />
+				<include name="lib/scala*.jar" />
+				<include name="doc/**/*" />
+				<include name="res/**/*" />
+			</fileset>
+			<fileset dir="${dir.classes.db4oplugin}">
+				<include name="**/*.class" />
+				<include name="lib/*.jar" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="updatesite" depends="jar">
+		<reset-dir dir="${dir.update.db4oplugin}" />
+		<mkdir dir="${dir.update.db4oplugin}/plugins" />
+		<mkdir dir="${dir.update.db4oplugin}/features" />
+		<copy file="${file.db4oplugin.jar}" todir="${dir.update.db4oplugin}/plugins" />
+		<jar destfile="${dir.update.db4oplugin}/features/db4oplugin.feature_1.0.0.jar">
+			<fileset dir="${dir.project.db4oplugin}/META-INF">
+				<include name="feature.xml" />
+			</fileset>
+		</jar>
+		<copy file="${dir.project.db4oplugin}/META-INF/site.xml" todir="${dir.update.db4oplugin}" />
+	</target>
+	
+	<target name="build" depends="updatesite">
+	</target>
+
+</project>

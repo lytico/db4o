@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="810" MadCap:lastWidth="555">
+    <head>
+        <link href="../Resources/TableStyles/Basic.css" rel="stylesheet" MadCap:stylesheetType="table" />
+    </head>
+    <body>
+        <h1>Refreshing Objects</h1>
+        <p>When working with multiple client object-containers each container has its own reference cache. When you query for objects, you get always the cached objects. This means, that objects probably have been updated in the mean-time but the client still sees the old state.</p>
+        <p>For some scenarios you might need to refresh to objects to bring it up to date. There are two strategies for this. You can explicit refresh a object at any time. Or you can use callbacks to refresh object on each commit. Both methods have their advantage.</p>
+        <table style="width: 100%;mc-table-style: url('../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 10%;" />
+            <col style="width: 40%;" />
+            <col style="width: 40%;" />
+            <tbody>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Explicit Refreshing</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Using Callbacks</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Advantage</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">
+                        <ul>
+                            <li>Selective refreshing possible, which reduces network traffic.</li>
+                            <li>Can decide when a refresh is required. If no refresh is required, you can save the network traffic.</li>
+                        </ul>
+                    </td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">
+                        <ul>
+                            <li>The objects are always up to date. </li>
+                            <li>There's no need to explicitly refresh-calls in your data-access layer.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">Disadvantage</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">
+                        <ul>
+                            <li>Partial refreshed objects may lead to a inconsistent object-graph.</li>
+                            <li>Probably a lot of refresh-calls spread over the code-base.</li>
+                        </ul>
+                    </td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">
+                        <ul>
+                            <li>A lot of network traffic is required to send the committing-events and object to the clients.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Explicitly Refreshing Objects </h2>
+        <p>You can refresh objects with the refresh-method on the object-container. The pass the object to refresh and the refresh-depth to the method:</p>
+        <MadCap:snippetBlock src="../CodeExamples/clientserver/refresh/RefreshingObjects-refresh-a-object.all.flsnp" />
+        <h2>Using Callbacks For Refreshing Objects</h2>
+        <p>You can use the committed-event to refresh objects as soon as another client commits. Take a look at the example: <MadCap:xref href="../advanced_topics/callbacks/possible_usecases/committed_event_example.htm" target="" title="" alt="">See "Committed Event Example"</MadCap:xref></p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="5" MadCap:lastHeight="345" MadCap:lastWidth="611">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Web" />
+            <MadCap:keyword term="Web:ASP.NET;ASP.NET" MadCap:conditions="Primary..NET" />Web Environment</h1>
+        <p>db4o runs perfectly well in a web environment. It can be used to build your web-application. </p>
+        <p>In most web-application multiple concurrent requests are processes. Normally you want to isolate each request from another. You can use db4o transactions to archive this isolation. <MadCap:xref href="web/web_isolation.htm" target="" title="" alt="">See "Isolation in Web-Applications".</MadCap:xref> <![CDATA[ ]]></p>
+        <p>In most web-applications a object is only alive during a request. So you have to identify objects across requests. Therefore you need to add an additional id to your object. There are different possibilities for this. <MadCap:xref href="disconnected_objects.htm" target="" title="" alt="">See "Disconnected Objects" </MadCap:xref></p>
+        <p>When you run in a web-environment, you often have stricter security limitations. Take a look at the security requirements. <MadCap:xref href="security_requirements_on_java_platform.htm" target="" title="" alt="" MadCap:conditions="Primary.Java">See "Security Requirements"</MadCap:xref><MadCap:xref href="web/asp.net_security.htm" target="" title="" alt="" MadCap:conditions="Primary..NET">See "ASP.NET Security"</MadCap:xref></p>
+        <p>Take a look how you create a object-container for each request. <MadCap:xref href="web/servlets.htm" target="" title="" alt="" MadCap:conditions="Primary.Java">See "Servlets"</MadCap:xref><MadCap:xref href="web/asp.net_request_example.htm" target="" title="" alt="" MadCap:conditions="Primary..NET">See "ASP.NET Request Example"</MadCap:xref></p>
+        <div MadCap:conditions="Primary.Java">
+            <p>Take a look at a small example Spring MVC application.<MadCap:xref href="web/spring_mvc_example.htm" target="" title="" alt="">See "Spring MVC Example"</MadCap:xref></p>
+        </div>
+        <div MadCap:conditions="Primary..NET">
+            <p>You might run into trouble because of ASP.NET assembly naming policy. <MadCap:xref href="web/asp.net_assembly_naming.htm" target="" title="" alt="">See "ASP.NET Assembly Naming"</MadCap:xref></p>
+            <p>Take a look a small example ASP.NET MVC application, which includes all these concerns. <MadCap:xref href="web/asp.net_mvc_example.htm" target="" title="" alt="">See "ASP.NET MVC Example"</MadCap:xref></p>
+        </div>
+    </body>
+</html>

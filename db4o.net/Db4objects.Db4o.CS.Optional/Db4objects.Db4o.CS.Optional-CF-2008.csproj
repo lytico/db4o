@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16C8C5B5-2755-4F64-A901-FC62D0F1D9D6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DB4objects.Db4o.CS.Optional</RootNamespace>
+    <AssemblyName>DB4objects.Db4o.CS.Optional</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>3C41C503-53EF-4c2a-8DD4-A8217CAD115E</PlatformID>
+    <OSVersion>4.20</OSVersion>
+    <DeployDirSuffix>DB4objects.Db4o.CS.Optional_CF_2008</DeployDirSuffix>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FormFactorID>
+    </FormFactorID>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <NativePlatformName>Pocket PC 2003</NativePlatformName>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SignAssembly>true</SignAssembly>
+<AssemblyOriginatorKeyFile>../db4objects.snk</AssemblyOriginatorKeyFile>
+</PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CF_3_5;CF;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>bin\Debug/DB4objects.Db4o.CS.Optional.xml</DocumentationFile>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;CF_3_5;CF;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <NoWarn>1591;1572;1573;1574;0419;</NoWarn>
+    <DocumentationFile>bin\Release/DB4objects.Db4o.CS.Optional.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib"/>
+    <Reference Include="System"/>
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=969db8053d3322ac, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Program Files (x86)\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml"/>
+  </ItemGroup>
+  <ItemGroup>
+<Compile Include="Properties\AssemblyInfo.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Config\ClientSslSupport.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Config\ServerSslSupport.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Foundation\ServerSslSocket.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Foundation\Socket4Stream.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Foundation\SslSocket.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Foundation\SslSocketFactory.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\ClientConnectionsMonitoringSupport.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\Db4oClientServerPerformanceCounters.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\MonitoredClientSocket4.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\MonitoredServerSideClientSocket4.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\MonitoredServerSocket4.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\MonitoredSocket4Base.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\MonitoredSocket4Factory.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\NetworkingCounters.cs"/>
+<Compile Include="native\Db4objects.Db4o.CS\Monitoring\NetworkingMonitoringSupport.cs"/>
+</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Db4objects.Db4o.CS\Db4objects.Db4o.CS-CF-2008.csproj">
+      <Project>{89BB3D10-B9D5-4172-A0D9-3BB856AC5B85}</Project>
+      <Name>Db4objects.Db4o.CS-CF-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4objects.Db4o.Optional\Db4objects.Db4o.Optional-CF-2008.csproj">
+      <Project>{667C616E-FEA2-4D5E-93F0-9D18D17275FA}</Project>
+      <Name>Db4objects.Db4o.Optional-CF-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Db4objects.Db4o\Db4objects.Db4o-CF-2008.csproj">
+      <Project>{95FD1C64-F1A3-4C8A-B170-D518E899B2FE}</Project>
+      <Name>Db4objects.Db4o-CF-2008</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1"/>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets"/>
+</Project>

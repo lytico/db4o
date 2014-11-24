@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">void</span> setName(String name) {
+    activate(ActivationPurpose.WRITE);
+    <span style="color:Blue;">this</span>.name = name;
+}
+
+<span style="color:Blue;">public</span> String getName()  {
+    activate(ActivationPurpose.READ);
+    <span style="color:Blue;">return</span> name;
+}
+
+<span style="color:Blue;">public</span> String toString()  {
+    <span style="color:Green;">// use the getter/setter withing the class,</span>
+    <span style="color:Green;">// to ensure the activate-method is called</span>
+    <span style="color:Blue;">return</span> getName();
+}</pre>
+		<div class="codesnippet-meta">
+			Person.java: Call the activate method on every field access
+			<div class="codedownload">
+				<a href="Example-ta-example-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

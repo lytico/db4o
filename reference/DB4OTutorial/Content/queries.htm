@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="7622" MadCap:lastWidth="686">
+    <head>
+    </head>
+    <body>
+        <h1>Queries</h1>
+        <p>Let's take a look at a few examples queries.<MadCap:snippetText src="Snippets/See-domain-model.flsnp" /></p>
+        <div MadCap:targetName="domainModel">
+            <MadCap:snippetBlock src="CodeExamples/queries/Car-Domain-model-for-cars.all.flsnp" />
+            <MadCap:snippetBlock src="CodeExamples/queries/Driver-Domain-model-for-drivers.all.flsnp" />
+        </div>
+        <div MadCap:conditions="Primary.Java">
+            <h2><a name="NativeQueries"></a>Native Queries</h2>
+            <p>Native queries are the preferred way to query a db4o database. To query the database, we pass in a predicate which filters objects by their properties. Here are two example queries:</p>
+            <h3>Query for a Certain Person</h3>
+            <p>This query finds all drivers named Joe:</p>
+            <MadCap:snippetBlock src="CodeExamples/queries/Queries-Query-for-drivers-named-Joe.all.flsnp" />
+            <h3>More Complex Query</h3>
+            <p>We can combine many criteria in a query by using logical operators. For example we query for all adult drivers with powerful cars by combining multiple criteria.</p>
+            <MadCap:snippetBlock src="CodeExamples/queries/Queries-Query-for-people-with-powerful-cars.all.flsnp" />
+            <h3>Native Query Optimization</h3>
+            <p>db4o tries to optimize native queries by translating them to the <a href="#SODA">db4o low level query API</a>. In cases which that doesn't work db4o actually instantiates all objects and runs them through the predicate. Unfortunately that’s an order of magnitude slower than an optimized query.</p>
+            <p>How do we find out that a query couldn't be optimized? The simplest way is to use the debugger. We add a break-point in query method. When the debugger stops there, then query couldn't be optimized. In that case try to simplify our query or use the <a href="#SODA">low level query API</a> directly. </p>
+            <MadCap:snippetBlock src="CodeExamples/queries/Queries-Unoptimized-query.all.flsnp" />
+        </div>
+        <div MadCap:conditions="Primary..NET">
+            <h2><a name="LINQ"></a>LINQ Queries</h2>
+            <p>The best way to query db4o is by using LINQ. We first need to make sure that we reference the Db4objects.Db4o.LINQ.dll assembly. Then we include the db4o LINQ namespace.</p>
+            <MadCap:snippetBlock src="CodeExamples/queries/Queries-Include-LINQ-namespaces.all.flsnp" />
+            <p>After that we are ready for querying the database:</p>
+            <h3>Query for a Certain Person</h3>
+            <p>Here we query for a driver named Joe:</p>
+            <MadCap:snippetBlock src="CodeExamples/queries/Queries-Query-for-drivers-named-Joe.all.flsnp" />
+            <h3>More Complex Query</h3>
+            <p>We can write complex queries, for example to get all adult drivers with powerful cars:</p>
+            <MadCap:snippetBlock src="CodeExamples/queries/Queries-Query-for-people-with-powerful-cars.all.flsnp" />
+            <h2>IQueryable Interface</h2>
+            <p>The .NET framework gives also a standard interface for queryable data sources, the IQueryable interface. db4o does support this interface. We can get this interface from the object container. This is especially useful for abstraction layers on top of db4o or interacting with other libraries.</p>
+            <MadCap:snippetBlock src="CodeExamples/queries/Queries-Get-the-IQueryable-interface.all.flsnp" />
+            <h3>LINQ Query Optimisation</h3>
+            <p>The db4o LINQ provider tries to translate the LINQ query to the <a href="#SODA">db4o low level query API</a>. For complex queries this doesn't always work. In such cases db4o falls back to LINQ to objects which is an order of magnitude slower. </p>
+            <p>How do we find out that a query couldn't be optimized? The easiest way to find slow queries is by watching the Debug output in Visual Studio. If it prints a 'QueryOptimizationException' for a query that query couldn't be optimized and runs slowly. In that case try to simplify our query or use the <a href="#SODA">low level query API</a> directly.</p>
+            <MadCap:snippetBlock src="CodeExamples/queries/Queries-Unoptimizable-query.all.flsnp" />
+        </div>
+        <h2><a name="SODA"></a>SODA-Queries</h2>
+        <p>SODA is db4o's low level query API. Prefer <a href="#NativeQueries"><MadCap:variable name="Primary.native queries" /></a> over this API. We create SODA queries by creating a query object. Then we add different criteria to that query object. Finally we execute the query and get the result. Let's take a look at two example queries:</p>
+        <h3>Query for a Certain Person</h3>
+        <p>Here we query for a driver named Joe with SODA:</p>
+        <MadCap:snippetBlock src="CodeExamples/queries/Queries-Query-for-drivers-named-Joe-with-SODA.all.flsnp" />
+        <h3>More Complex Query</h3>
+        <p>Here's a more complex query in SODA. We query for all adult drivers with powerful cars:</p>
+        <MadCap:snippetBlock src="CodeExamples/queries/Queries-Query-for-people-with-powerful-cars-with-SODA.all.flsnp" />
+    </body>
+</html>

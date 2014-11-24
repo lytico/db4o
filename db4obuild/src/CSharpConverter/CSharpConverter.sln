@@ -1,0 +1,26 @@
+﻿Microsoft Visual Studio Solution File, Format Version 9.00
+# SharpDevelop 2.0.0.1119
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpConverter", "CSharpConverter.csproj", "{4C5619D2-CEFC-4B6F-BB5A-7C3CC5F1040D}"
+EndProject
+Project("{A33008B1-5DAC-44D5-9060-242E3B6E38F2}") = "CSharpConverter.Tests", "..\CSharpConverter.Tests\CSharpConverter.Tests.booproj", "{547A3B74-829D-4648-8C91-587A57DE3ED4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C5619D2-CEFC-4B6F-BB5A-7C3CC5F1040D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C5619D2-CEFC-4B6F-BB5A-7C3CC5F1040D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C5619D2-CEFC-4B6F-BB5A-7C3CC5F1040D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C5619D2-CEFC-4B6F-BB5A-7C3CC5F1040D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10F67754-1B9C-45BD-A52A-16BA01A5ECAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10F67754-1B9C-45BD-A52A-16BA01A5ECAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10F67754-1B9C-45BD-A52A-16BA01A5ECAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10F67754-1B9C-45BD-A52A-16BA01A5ECAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547A3B74-829D-4648-8C91-587A57DE3ED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547A3B74-829D-4648-8C91-587A57DE3ED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547A3B74-829D-4648-8C91-587A57DE3ED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547A3B74-829D-4648-8C91-587A57DE3ED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal

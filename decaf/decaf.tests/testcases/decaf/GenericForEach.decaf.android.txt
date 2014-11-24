@@ -1,0 +1,11 @@
+package decaf;
+
+import java.lang.*;
+
+class TestDriver {
+	public <T> void GenericForEachArray(T []items) {
+		for(T item : items) {
+			System.out.println(item);
+		}
+	}
+}

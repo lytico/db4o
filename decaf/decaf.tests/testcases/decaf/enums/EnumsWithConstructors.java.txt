@@ -1,0 +1,18 @@
+package decaf.enums;
+
+enum Hero {
+	SuperMan(2006),	
+	Batman(1939),
+	BatGirl(1961),	
+	BobParr(2004);
+
+	Hero(int year) {
+		_year = year; 
+	}
+
+	public int year() {
+		return _year; 
+	}
+
+	private final int _year;
+}

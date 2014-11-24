@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">var</span> serviceURL = <span style="color:Blue;">new</span> Uri(<span style="color:#A31515;">&quot;http://localhost:8080/TeamDataService.svc&quot;</span>);    
+<span style="color:Blue;">var</span> serviceContext = <span style="color:Blue;">new</span> TeamDataContext(serviceURL);
+
+<span style="color:Blue;">var</span> teams = serviceContext.Teams;
+<span style="color:Blue;">foreach</span> (<span style="color:Blue;">var</span> team <span style="color:Blue;">in</span> teams)
+{
+    Console.Out.WriteLine(team.TeamName);
+}</pre>
+		<div class="codesnippet-meta">
+			SimpleConsoleClient.cs: Now the service can be used
+			<div class="codedownload">
+				<a href="Example-WCFDataServices-ConsoleClient-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

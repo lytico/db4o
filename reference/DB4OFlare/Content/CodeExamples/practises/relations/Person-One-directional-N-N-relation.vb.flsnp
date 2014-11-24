@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">ReadOnly</span> citizenIn <span style="color:Blue;">As</span> ICollection(Of Country) = <span style="color:Blue;">New</span> HashSet(Of Country)()
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> RemoveCitizenship(o <span style="color:Blue;">As</span> Country)
+    citizenIn.Remove(o)
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> AddCitizenship(country <span style="color:Blue;">As</span> Country)
+    citizenIn.Add(country)
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			Person.vb: One directional N-N relation
+			<div class="codedownload">
+				<a href="Example-practises-relations-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

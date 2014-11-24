@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="432" MadCap:lastWidth="428" MadCap:conditions="Primary..NET,Primary.All languages">
+  <head />
+  <body>
+    <h1>db4o on .NET Platforms</h1>
+    <a name="All .NET"></a>
+    <h2>All .NET</h2>
+    <ul>
+      <li>.NET version of db4o uses Pascal case for method names</li>
+      <li>Root namespace is Db4objects.Db4o</li>
+      <li>All namespaces start with upper case letter</li>
+      <li>Interface names have an <b>I</b> prefix</li>
+      <li>.NET Reflection mechanism adds assembly name to class definition. If you use db4o database with two applications (client and server) you'll have to move all persistent class definitions into a shared .dll. Identical classes compiled into different executables/libraries will be treated as different.</li>
+      <li>Enumerations are treated as integer types</li>
+    </ul>
+    <p>Please, refer to <a href="security_requirements_on_.net_platform.htm">Security Requirements On .NET Platform</a> for further information.</p>
+    <h2>.NET Compact Framwork</h2>
+    <p>Due to some platform limitations nativ queries cannot be optimized at runtime. Use <a href="../basics/querying/linq.htm">LINQ</a> as a better alternative. Or you can use the Db4oTool.exe command line utility on their assemblies prior to deploying them.</p>
+  </body>
+</html>

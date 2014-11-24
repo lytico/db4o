@@ -1,0 +1,7 @@
+package decaf.collections;
+
+interface ExtendsList extends java.util.List {
+}
+
+interface ExtendsSimpleList extends java.util.List {
+}

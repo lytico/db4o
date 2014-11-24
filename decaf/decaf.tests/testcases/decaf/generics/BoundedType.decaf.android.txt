@@ -1,0 +1,27 @@
+package decaf.generics;
+
+interface Foo<T> {
+	T get();
+}
+
+class BoundedType<S, T extends Foo<S>> { 
+    public T field; 
+
+    public BoundedType(T arg) {
+    	field = arg;
+    } 
+
+    public S method() {
+    	return field.get(); 
+    } 
+}
+
+class Main {
+	static void main() {
+		System.out.println(new BoundedType<String, Foo<String>>(new Foo<String>() {
+			public String get() {
+				return "42";
+			}
+		}).method());
+	}
+}

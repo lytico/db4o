@@ -1,0 +1,14 @@
+<settings>
+  <language>cs</language>
+  <outputType>library</outputType>
+  <references>
+    <monolipse.core.internal.AssemblySourceReference-Remembrance>
+      <path>/db4o.net/Db4oUnit</path>
+    </monolipse.core.internal.AssemblySourceReference-Remembrance>
+    <monolipse.core.internal.AssemblySourceReference-Remembrance>
+      <path>/db4o.net/Db4objects.Db4o</path>
+    </monolipse.core.internal.AssemblySourceReference-Remembrance>
+  </references>
+  <outputFolder>/db4o.net/bin</outputFolder>
+  <additionalOptions></additionalOptions>
+</settings>

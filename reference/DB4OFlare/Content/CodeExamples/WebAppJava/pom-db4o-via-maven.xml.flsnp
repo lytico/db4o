@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">&lt;</span><span style="color:#A31515;">dependency</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">groupId</span><span style="color:Blue;">&gt;</span>com.db4o<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">groupId</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">artifactId</span><span style="color:Blue;">&gt;</span>db4o-full-java5<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">artifactId</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">version</span><span style="color:Blue;">&gt;</span>8.0-SNAPSHOT<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">version</span><span style="color:Blue;">&gt;</span>
+ <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">dependency</span><span style="color:Blue;">&gt;</span></pre>
+		<div class="codesnippet-meta">
+			pom.xml: db4o via maven
+			<div class="codedownload">
+				<a href="Example-javaAppExamples-WebAppJava-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

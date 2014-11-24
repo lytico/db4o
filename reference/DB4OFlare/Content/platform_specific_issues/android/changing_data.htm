@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1410" MadCap:lastWidth="896" MadCap:conditions="Primary.Java">
+  <head />
+  <body>
+    <h1>Changing Data</h1>
+    <p>For this test we will select and update a car with a new
+pilot, where existing pilot has 15 points:</p>
+    <h2>SQLite</h2>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/SqlExample-update-a-car-with-SQLite.all.flsnp" />
+    <h2>db4o</h2>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/Db4oExample-update-a-car-with-db4o.all.flsnp" />
+    <h2>Conclusion</h2>
+    <p> In this example db4o and SQLite actually behave quite differently. For SQLite in order to update a pilot in an existing car in the database the following actions are needed:</p>
+    <ol>
+      <li>A new pilot should be created and saved to the database.</li>
+      <li>New pilot's primary key (101) should be retrieved (not shown in this example, but is necessary for a real database application).</li>
+      <li>An update statement should be issued to replace pilot field in the car table.</li>
+    </ol>
+    <p>For db4o database the sequence will be the following:</p>
+    <ol>
+      <li>Retrieve the car from the database</li>
+      <li>Update the car with a new pilot object</li>
+    </ol>
+    <p>As you can see the only benefit of SQLite API is that the car can be selected and updated in one statement. But in the same time there are serious disadvantages:</p>
+    <ul>
+      <li>A new pilot record should be created absolutely separately (in a real database will also include ORM)</li>
+      <li>The pilot's ID needs to be retrieved separately (we must  sure that it is a correct id)  </li>
+    </ul>In db4o we avoid these disadvantages as creating new pilot and updating the car value are actually combined in one atomic operation.  
+     
+
+
+
+        </body>
+</html>

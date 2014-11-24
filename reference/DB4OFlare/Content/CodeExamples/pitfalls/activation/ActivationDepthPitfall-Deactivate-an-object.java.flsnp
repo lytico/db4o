@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">System.out.println(jodie.getName());
+container.deactivate(jodie,5);
+<span style="color:Green;">// Now all fields will be null or 0</span>
+<span style="color:Green;">// The same applies for all references objects up to a depth of 5</span>
+System.out.println(jodie.getName());</pre>
+		<div class="codesnippet-meta">
+			ActivationDepthPitfall.java: Deactivate an object
+			<div class="codedownload">
+				<a href="Example-pitfalls-activation-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

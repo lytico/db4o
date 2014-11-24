@@ -1,0 +1,115 @@
+<project name="db4obuildcore" basedir="." default="test">
+	
+	<property name="exe.javac" value="javac" />
+	<property name="exe.java" value="java" />
+	<property name="file.jdkclasses" value="" />
+	
+	<property name="dir.build" value="../db4obuild/dist/java" />
+	<property name="dir.build.src" value="${dir.build}/src" />
+	<property name="dir.build.src.core" value="${dir.build.src}/core" />
+	<property name="dir.build.src.tools" value="${dir.build.src}/tools" />
+	<property name="dir.build.src.test" value="${dir.build.src}/test" />
+	<property name="dir.build.classes" value="${dir.build}/classes" />
+	<property name="dir.build.classes.core" value="${dir.build.classes}/core" />
+	<property name="dir.build.classes.tools" value="${dir.build.classes}/tools" />
+	<property name="dir.build.classes.test" value="${dir.build.classes}/test" />
+	<property name="dir.build.jar" value="${dir.build}/lib" />
+	<property name="dir.j.test" value="../db4oj.tests" />
+	
+	<property name="dir.j.src.core" value="core/src" />
+	<property name="dir.src.tools" value="tools/src" />
+	<property name="dir.j.src.test" value="${dir.j.test}/src" />
+		
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${dir.build.src.core}" />
+		<mkdir dir="${dir.build.src.test}" />
+		<mkdir dir="${dir.build.src.tools}" />
+		<mkdir dir="${dir.build.classes.core}" />
+		<mkdir dir="${dir.build.classes.test}" />
+		<mkdir dir="${dir.build.classes.tools}" />
+		<mkdir dir="${dir.build.jar}" />
+		<delete>
+			<fileset dir="${dir.build.src.core}">
+				<include name="**/*"/>
+			</fileset>
+			<fileset dir="${dir.build.src.test}">
+				<include name="**/*"/>
+			</fileset>
+			<fileset dir="${dir.build.src.tools}">
+				<include name="**/*"/>
+			</fileset>
+			<fileset dir="${dir.build.classes.core}">
+				<include name="**/*"/>
+			</fileset>
+			<fileset dir="${dir.build.classes.test}">
+				<include name="**/*"/>
+			</fileset>
+			<fileset dir="${dir.build.classes.tools}">
+				<include name="**/*"/>
+			</fileset>
+			<fileset dir="${dir.build.jar}">
+				<include name="**/*"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="prepare" depends="init">
+		<copy todir="${dir.build.src.core}">
+			<fileset dir="${dir.j.src.core}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${dir.build.src.tools}">
+			<fileset dir="${dir.src.tools}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${dir.build.src.test}">
+			<fileset dir="${dir.j.src.test}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>	
+	
+	<target name="compile" depends="prepare">
+		<javac executable="${exe.javac}" fork="true" compiler="javac1.1" srcdir="${dir.build.src.core}" destdir="${dir.build.classes.core}" debug="off" target="1.1" source="1.2" />
+		<jar destfile="${dir.build.jar}/db4o-jdk1.1.jar">
+			<fileset dir="${dir.build.classes.core}" />
+		</jar>
+	</target>
+
+	<target name="compiletools" depends="compile">
+		<javac executable="${exe.javac}" fork="true" compiler="javac1.1" srcdir="${dir.build.src.tools}" destdir="${dir.build.classes.tools}" debug="off" target="1.1" source="1.2">
+			<classpath>
+				<path location="${dir.build.classes.core}" />
+			</classpath>
+		</javac>
+		<jar destfile="${dir.build.jar}/db4o-tools.jar">
+			<fileset dir="${dir.build.classes.tools}" />
+		</jar>
+	</target>
+
+	<target name="compiletests" depends="compiletools">
+		<javac executable="${exe.javac}" fork="true" compiler="javac1.1" srcdir="${dir.build.src.test}" destdir="${dir.build.classes.test}" debug="off" target="1.1" source="1.2">
+			<classpath>
+				<pathelement location="${dir.build.jar}/db4o-jdk1.1.jar"/>
+				<pathelement location="${dir.build.jar}/db4o-tools.jar"/>
+			</classpath>
+		</javac>
+		<jar destfile="${dir.build.jar}/db4o-tests.jar">
+			<fileset dir="${dir.build.classes.test}" />
+		</jar>
+	</target>
+	
+	<target name="test" depends="compiletests">
+		<java jvm="${exe.java}" fork="true" classname="com.db4o.test.AllTests" failonerror="true">
+			<classpath>
+				<pathelement location="${dir.build.jar}/db4o-jdk1.1.jar"/>
+				<pathelement location="${dir.build.jar}/db4o-tools.jar"/>
+				<pathelement location="${dir.build.jar}/db4o-tests.jar"/>
+				<pathelement location="${file.jdkclasses}"/>
+			</classpath>
+		</java>
+	</target>
+</project>

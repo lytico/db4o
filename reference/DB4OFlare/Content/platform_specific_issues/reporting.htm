@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="458" MadCap:lastWidth="650">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Reporting" />Reporting</h1>
+        <p>You want to generate reports with from a db4o database? What capabilities does db4o have to support reporting? How can you implement reporting? This topic tries to answer these questions.</p>
+        <h2>Understand db4o's Limitations</h2>
+        <p>db4o has serious limitations when it comes to reporting. It doesn't support any aggregation operations like average, min, max or sum. Nor does it support any projection (SELECT statement in SQL) or grouping operations. You only can query for objects and not do any statistics or selection on them.</p>
+        <h2>Reporting with db4o</h2>
+        <p>Despite the missing features for reporting it's possible to do simple reports with db4o as long as your reporting framework can work with simple Java Beans instead of a relational database. Take a look at this small example with <span MadCap:conditions="Primary.Java">Jasper Reports</span><span MadCap:conditions="Primary..NET">MS Report Viewer</span>.<MadCap:xref href="reporting/reporting_with_ms_report_viewer.htm" target="" title="" alt="">See "Reporting Example With MS Report Viewer"</MadCap:xref> <![CDATA[ ]]><MadCap:xref href="reporting/db4o_with_jasper.htm" target="" title="" alt="">See "db4o with Jasper Reports Example" </MadCap:xref></p>
+        <h2>Separate Application Data from Reporting Data</h2>
+        <p>In some applications it can make sense to separate application data from the reporting data, for e example in a web application. The visits log data goes into a relational database which then is used for reporting, while the content of the site is stored in db4o. In this case you the can use the full power of the relational database for the reporting of the visitor data.</p>
+        <h2>Export to a Relation Database</h2>
+        <p>Another possibility would be to export the data to a relational database for reporting purposes. In that process you also can denormalize and restructure the data for the reporting task. That way you also can use a regular relational database for the reporting tasks.</p>
+    </body>
+</html>

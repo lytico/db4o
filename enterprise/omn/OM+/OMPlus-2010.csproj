@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E4ED4CBB-BD2F-4DC8-8C01-5413216DCB9A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OManager</RootNamespace>
+    <AssemblyName>OMPlus</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Db4objects.Db4o, Version=8.1.236.16058, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Dependencies\Db4objects.Db4o.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.CS, Version=8.1.236.16058, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Dependencies\Db4objects.Db4o.CS.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Linq, Version=8.1.236.16058, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Dependencies\Db4objects.Db4o.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Optional, Version=8.1.236.16058, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Dependencies\Db4objects.Db4o.Optional.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Dependencies\Microsoft.VisualStudio.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLayer\Common\Common.cs" />
+    <Compile Include="BusinessLayer\Common\Constants.cs" />
+    <Compile Include="BusinessLayer\Config\ISearchPath.cs" />
+    <Compile Include="BusinessLayer\Config\PathContainer.cs" />
+    <Compile Include="BusinessLayer\Config\SearchPathImpl.cs" />
+    <Compile Include="BusinessLayer\Login\ConnParams.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessLayer\FavFolder\FavouriteFolder.cs" />
+    <Compile Include="BusinessLayer\Login\ProxyAuthentication.cs" />
+    <Compile Include="BusinessLayer\Login\ConnectionDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessLayer\QueryBuilder\DBBrowsing.cs" />
+    <Compile Include="BusinessLayer\QueryManager\OMQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessLayer\QueryManager\OMQueryClause.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessLayer\QueryManager\OMQueryGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessLayer\QueryRenderer\TreeGridViewRenderer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessLayer\SearchString\SearchString.cs" />
+    <Compile Include="BusinessLayer\SearchString\SearchStringList.cs" />
+    <Compile Include="BusinessLayer\UIHelper\OMEInteraction.cs" />
+    <Compile Include="BusinessLayer\UIHelper\dbInteraction.cs" />
+    <Compile Include="BusinessLayer\UIHelper\PagingData.cs" />
+    <Compile Include="BusinessLayer\FavFolder\FavouriteFolderList.cs" />
+    <Compile Include="DataLayer\Common\DataLayerCommon.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Connection\Config.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Connection\db4oClient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Connection\DBConnect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Connection\ManageConnectionDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Connection\ManageCustomConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Connection\ProxyAuthenticator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\DataProcessing\ModifyCollections.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\DataProcessing\ModifyObjects.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\DBInfo\DbInformation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\DemoDBCreation\Car.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\DemoDBCreation\Children.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\DemoDBCreation\DemoDatabaseCreation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\DemoDBCreation\Pilot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\FavFolderProcessing\ManageFavouriteFolder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Maintanence\db4oBackup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\PropertyDetails\ClassDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\PropertyDetails\FieldDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\PropertyDetails\ObjectDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\PropertyTable\FieldProperties.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\QueryParser\IObjectsetConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\QueryParser\ObjectCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\QueryParser\QueryParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\QueryParser\RenderHierarcyDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\QueryParser\RunQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BusinessLayer\Config\IType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Reflection\Reflection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\Reflection\TypeImpl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataLayer\SearchStringProcessing\ManageSearchStrings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treeview_primitive.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treeview_class.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treeview_collection.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoggingBlock\LoggingBlock-2010.csproj">
+      <Project>{F8B76B1A-3675-4EA5-95FD-8A6EB1B484C6}</Project>
+      <Name>LoggingBlock-2010</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OMCustomConfig\OMCustomConfigurationforUser.csproj">
+      <Project>{EFFB9209-203B-492E-9DE2-83E0C5026226}</Project>
+      <Name>OMCustomConfigurationforUser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

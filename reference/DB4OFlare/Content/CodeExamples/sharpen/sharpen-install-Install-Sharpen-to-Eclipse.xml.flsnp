@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">&lt;</span><span style="color:#A31515;">target</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">install-sharpen-plugin</span><span style="color:Black;">&quot;</span> <span style="color:Red;">depends</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">build-sharpen</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">copyfile</span> <span style="color:Red;">src</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${dir.dist.classes.sharp}/sharpen.core_1.0.0.jar</span><span style="color:Black;">&quot;</span> <span style="color:Red;">dest</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${plugins.home}/sharpen.core_1.0.0.jar</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">target</span><span style="color:Blue;">&gt;</span></pre>
+		<div class="codesnippet-meta">
+			sharpen-install.xml: Install Sharpen to Eclipse
+			<div class="codedownload">
+				<a href="Example-db4odoc-sharpen-.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

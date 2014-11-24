@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <body>
+        <p>Note that this example doesn't change existing references from the old instances to the new ones. You need to do this manually as well.</p>
+    </body>
+</html>

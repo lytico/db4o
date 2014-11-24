@@ -1,0 +1,5 @@
+<namespaces>
+	<namespace name="Db4objects.Drs">The db4o replication system api</namespace>
+	<namespace name="Db4objects.Drs.Db4o">The db4o replication provider</namespace>
+</namespaces>
+

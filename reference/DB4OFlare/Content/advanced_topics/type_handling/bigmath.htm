@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="512" MadCap:lastWidth="560" MadCap:conditions="Primary.Java">
+  <head />
+  <body>
+    <h1>BigMath</h1>
+    <p>If you are dealing
+with very big numbers, you might be using the BigDecimal or BigInteger classes.
+These classes are specially designed to allow computations with of arbitrary
+precision. Internally the values are stored in byte arrays for both types. Now,
+thinking about it - it should not be a problem for db4o to store such values,
+as it is just a matter of storing a class with the actual value in a byte array
+field. However, a deeper consideration uncovers the following problems:</p>
+    <ul>
+      <li>BigInteger/BigDecimal
+     representation is different in different Java versions, which can cause
+     problems re-instantiating the objects from a database created with a
+     different Java version. </li>
+      <li>BigDecimal relies on
+     transient field setup in the constructor, which means that constructor use
+     is compulsory</li>
+      <li>db4o would store instances
+     of these classes as full object graphs: A BigDecimal contains a BigInteger
+     which contains a byte array, plus some other fields. This graph would
+     faithfully be persisted into the database file and it would have to be
+     read and reconstructed on access - activation depth applies.</li>
+      <li>Querying and indexing will essentially
+     be broken due to the above limitations.</li>
+    </ul>
+    <p>In order to solve the above mentioned problems db4o
+implements special type handlers for BigInteger and BigDecimal, which allow to
+treat them as normal value types.So that BigDecimal and BigInteger behave the same way as long and double. These typehandlers are implemented in db4o
+optional jar  and should be added to the
+configuration before opening the file with the following method:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/configitems/ConfigurationItemsExamples-Add-support-for-BigDecimal-and-BigInteger.all.flsnp" />
+    <p> </p>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+.n
+.a FirstSteps ..
+.0 First Steps ..
+This section helps you to get started with dRS quickly. The complete source is available at ._
+/dRS/src/tutorial/f1/firststeps .
+
+To get started as simply as possible, we are going to reuse the Pilot class from the db4o tutorial.
+.c public class Pilot {
+	String name;
+	int points;
+
+	public Pilot() {}
+	
+	public Pilot(String name, int points) {
+		this.name = name;
+		this.points = points;
+	}
+} ..
+.1 Simple Replication ..
+First, we will also use db4o to db4o replication, as it is the simplest and requires the least initial setup.
+
+When replicating objects to and from a db4o database, we need to enable UUIDs and commit timestamps. The ._
+chapter on  .l db4oReplication db4o replication ..  explains more about these settings. We need to call these settings ._
+before opening our database.
+.c //Replication requires UUIDs and commit timestamps
+ EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+ config.file().generateUUIDs(ConfigScope.GLOBALLY);
+ config.file().generateCommitTimestamps(true);
+Open the source db4o database
+.c ObjectContainer handheld = Db4oEmbedded.openFile(config, "handheld.yap"); ..
+And let's store an object or two:
+.c handheld.store(new Pilot("Scott Felton", 200));
+handheld.store(new Pilot("Frank Green", 120)); ..
+Great. Now we need our destination database:
+.c //Open the destination db4o database
+ EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+ config.file().generateUUIDs(ConfigScope.GLOBALLY);
+ config.file().generateCommitTimestamps(true);
+ObjectContainer desktop = Db4oEmbedded.openFile(config, "desktop.yap"); ..
+Now, it's about time we start replicating some data. Let's set up our replication process to replicate some data from ._
+our handheld, to our desktop:
+.c ReplicationSession replication = Replication.begin(handheld, desktop); ..
+The ReplicationSession object contains all the functionality that the replication system  ._
+requires to be able to comprehensively replicate modified data from one database to another.
+
+Now that we've got the ReplicationSession set up and ready, let's get to the meat of this process:
+.c //Query for objects changed from db4o
+ObjectSet changed = replication.providerA().objectsChangedSinceLastReplication();
+
+//Iterate changed objects, replicate them
+while (changed.hasNext())
+	replication.replicate(changed.next());
+..
+This code will get a list of all of the updated objects, and then replicate them to the destination ._
+database.
+
+But wait, there's one important last step:
+.c //commit all of our changes to both databases.
+replication.commit(); ..
+Ok. NOW we're done. Now the data has been copied, and the transaction is commited. All of our changes ._
+are safely commited in case of any failures. 
+
+.1 Bi-Directional Replication ..
+Our previous example copied all new or modified objects from our handheld device to our desktop ._
+database. What if we want to go the other way? Well, we only have to add one more loop:
+.c ObjectSet changed = replication.providerB().objectsChangedSinceLastReplication();
+
+while(changed.hasNext())
+	replication.replicate(changed.next()); ..
+Now our handheld contains all of the new and modified records from our desktop.
+
+Congratulations, you've now synchronized 2 db4o databases! Now, if there had been any modifications ._
+made to the destination database, ._
+the two are now both in sync with each other. 
+
+.1 Selective Replication ..
+What if our handheld dosn't have enough memory to store a complete set of all of our data objects? ._
+Well, then we should check our objects before replicating them by modifing the while loop:
+.c ObjectSet changed = replication.providerB().objectsChangedSinceLastReplication();
+
+while (changed.hasNext()){
+	Pilot p = (Pilot)changed.next();
+	if(p.name.startsWith("S"))
+		replication.replicate(p);
+} ..
+Now, only Pilots whose name starts with "S" will be replicated to our handheld database.
+
+.1 db4o-Hibernate Replication ..
+Now let's take it one step further. Let's synchronize our desktop db4o database with a Hibernate-enhanced ._
+RDBMS (SQL) database. The first thing we're going to need is a working Hibernate system, so let's start ._
+with the Hibernate config xml file:
+.c <?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>
+
+        <property name="hibernate.connection.url">jdbc:hsqldb:mem:replication</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="hibernate.connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="hibernate.show_sql">false</property>
+
+        <!-- Update the database schema if out of date -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Specify all your data entity classes here -->
+        <mapping resource="simple/Pilot.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration> ..
+
+To replicate a Pilot using Hibernate, we need to define a mapping file for it.
+.c <?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="simple.Pilot">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<property name="points"/>
+	</class>
+</hibernate-mapping> ..
+Now it's just a simple case of reading our configuration files, and starting our replication session.
+.c //Read the Hibernate Config file (in the classpath)
+org.hibernate.cfg.Configuration cfg = new Configuration().configure("hibernate.cfg.xml");
+HibernateReplicationProvider hibernate = new HibernateReplicationProvider(cfg); 
+ReplicationSession replication = Replication.begin(desktop, hibernate);
+..
+That's the only change necessary to replicate your objects into your SQL database! Depending ._
+on which RDBMS you are running, you may need to select different configuration settings in the ._
+Hibernate.config.xml file. The two most common settings that you may need to change are:
+
+- hibernate.connection.url: Set this to the appropriate JDBC driver. For this example, we are ._
+using a temporary HsqlDb in-memory database.
+
+- hibernate.dialect: Make sure that you're talking to your database in the correct version of ._
+SQL. Query formats and DDL language varies widely among different database vendors. See the ._
+Hibernate documentation for a list of values.

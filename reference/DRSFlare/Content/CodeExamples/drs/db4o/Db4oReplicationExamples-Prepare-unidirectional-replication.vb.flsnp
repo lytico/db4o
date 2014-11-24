@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> desktopDatabase <span style="color:Blue;">As</span> IObjectContainer = OpenDatabase(DesktopDatabaseName)
+<span style="color:Blue;">Dim</span> mobileDatabase <span style="color:Blue;">As</span> IObjectContainer = OpenDatabase(MobileDatabaseName)
+
+<span style="color:Blue;">Dim</span> dektopReplicationProvider <span style="color:Blue;">As</span> IReplicationProvider _
+    = <span style="color:Blue;">New</span> Db4oEmbeddedReplicationProvider(desktopDatabase)
+<span style="color:Blue;">Dim</span> mobileReplicationProvider <span style="color:Blue;">As</span> IReplicationProvider _
+    = <span style="color:Blue;">New</span> Db4oEmbeddedReplicationProvider(mobileDatabase)
+
+<span style="color:Blue;">Dim</span> replicationSession <span style="color:Blue;">As</span> IReplicationSession _
+    = Replication.Begin(dektopReplicationProvider, mobileReplicationProvider)
+<span style="color:Green;">' set the replication-direction from the desktop database to the mobile database. </span>
+replicationSession.SetDirection(replicationSession.ProviderA(), replicationSession.ProviderB())</pre>
+		<div class="codesnippet-meta">
+			Db4oReplicationExamples.vb: Prepare unidirectional replication
+			<div class="codedownload">
+				<a href="Example-drs-db4o-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

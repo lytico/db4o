@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">IClientConfiguration configuration = Db4oClientServer.NewClientConfiguration();
+configuration.Networking.MessageRecipient = <span style="color:Blue;">new</span> ClientMessageReceiver();</pre>
+		<div class="codesnippet-meta">
+			MessagingExample.cs: configure a message receiver for a client
+			<div class="codedownload">
+				<a href="Example-clientserver-messaging-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

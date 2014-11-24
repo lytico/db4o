@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">using</span> (IObjectContainer container = Db4oEmbedded.OpenFile(<span style="color:#A31515;">&quot;database.db4o&quot;</span>))
+{
+    XmlSerializer pilotSerializer = <span style="color:Blue;">new</span> XmlSerializer(<span style="color:Blue;">typeof</span>(Pilot[]));
+    <span style="color:Blue;">using</span> (FileStream file = <span style="color:Blue;">new</span> FileStream(<span style="color:#A31515;">&quot;pilots.xml&quot;</span>, FileMode.Open))
+    {
+        Pilot[] pilots = (Pilot[])pilotSerializer.Deserialize(file);
+        <span style="color:Blue;">foreach</span> (<span style="color:Blue;">var</span> pilot <span style="color:Blue;">in</span> pilots)
+        {
+            container.Store(pilot);
+        }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			XMLSerialisationExamples.cs: Read objects from XML
+			<div class="codedownload">
+				<a href="Example-Code-xml-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

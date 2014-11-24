@@ -1,0 +1,161 @@
+.n
+.a ClientServer ..
+.0 Client/Server ..
+
+Now that we have seen how transactions work in db4o conceptually, we ._
+are prepared to tackle concurrently executing transactions.
+
+We start by preparing our database in the familiar way.
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#setFirstCar -out ..
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#setSecondCar -out ..
+
+.1 Embedded server ..
+
+From the API side, there's no real difference between transactions ._
+executing concurrently within the same  .? java  VM ..?  .? net runtime ..?  and transactions executed ._
+against a remote server. To use concurrent transactions within ._
+a single  .? java  VM ..?  .? net runtime ..? , we just open a db4o server on our database file, ._
+directing it to run on port 0, thereby declaring that no networking ._
+will take place.
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#accessLocalServer -run ..
+
+Again, we will delegate opening and closing the server to our ._
+environment to focus on client interactions.
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#queryLocalServer ..
+
+The transaction level in db4o is  .i read committed ..  . However, each ._
+client container maintains its own weak reference cache of already known ._
+objects. To make all changes committed by other clients immediately, we ._
+have to explicitly refresh known objects from the server. We will delegate ._
+this task to a specialized version of our .x #listResult() .. method.
+
+.s com.db4odoc.f1.Util#listRefreshedResult +{} -run ..
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#demonstrateLocalReadCommitted ..
+
+Simple rollbacks just work as you might expect now.
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#demonstrateLocalRollback ..
+
+.1 Networking ..
+
+From here it's only a small step towards operating db4o over a TCP/IP network. ._
+We just specify a port number greater than zero ._
+and set up one or more accounts for our client(s).
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#accessRemoteServer -run ..
+
+The client connects providing host, port, user name and password.
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#queryRemoteServer ..
+
+Everything else is absolutely identical to the local server examples above.
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#demonstrateRemoteReadCommitted ..
+
+.s com.db4odoc.f1.chapter6.ClientServerExample#demonstrateRemoteRollback ..
+
+.? java
+.1 Native Queries in Client/Server mode ..1
+
+A quite subtle problem may occur if you're using Native Queries as anonymous (or just non-static) inner ._
+classes in Client/Server mode. Anonymous/non-static inner class instances carry a synthetic field ._
+referencing their outer class instance - this is just Java's way of implementing inner class access ._
+to fields or final method locals of the outer class without introducing any notion of inner classes ._
+at all at the bytecode level. If such a non-static inner class predicate cannot be converted to ._
+S.O.D.A. form on the client, it will be wrapped into an evaluation and passed to the server, ._
+introducing the same problem already mentioned in the  .l Evaluations evaluation chapter ..l : ._
+db4o will try to transfer the evaluation, using the standard platform serialization mechanism. ._
+If this fails, it will just try to pass it to the server via db4o marshalling. However, this ._
+may fail, too, for example if the outer class references any local db4o objects like ._
+ObjectContainer, etc., resulting in an ObjectNotStorableException.
+
+So to be on the safe side with NQs in C/S mode, you should declare Predicates as top-level ._
+or static inner classes only. Alternatively, you could either make sure that the outer ._
+classes containing Predicate definitions could principally be persisted to db4o, too, ._
+and don't add significant overhead to the predicate (the appropriate value for 'significant'
+being your choice) or ensure during development that all predicates used actually can ._
+be optimized to S.O.D.A. form.
+..?
+
+.1 Out-of-band signalling ..
+
+Sometimes a client needs to send a special message to a server in order ._
+to tell the server to do something.  The server may need to be signalled ._
+to perform a defragment or it may need to be signalled to shut itself ._
+down gracefully.
+
+This is configured by .? java calling #messageRecipient() , passing the object ._
+that will process client-initiated messages. ..?  .? net setting MessageRecipient parameter to the object that will process client-initiated messages. .. 
+
+.s com.db4odoc.f1.chapter6.StartServer#run -run +{} ..s
+
+The message is received and processed by a .x #processMessage() .. method:
+
+.s com.db4odoc.f1.chapter6.StartServer#processMessage -run +{} ..s
+
+Db4o allows a client to send an arbitrary signal or message to a server ._
+by sending a plain object to the server.  The server will receive ._
+a callback message, including the object that came from the client. ._
+The server can interpret this message however it wants.
+
+.s com.db4odoc.f1.chapter6.StopServer#main -run +{} ..s
+
+.1 Putting it all together: a simple but complete db4o server ..
+
+Let's put all of this information together now to implement a simple ._
+standalone db4o server with a special client that can tell the server ._
+to shut itself down gracefully on demand.
+
+First, both the client and the server need some shared configuration ._
+information.  We will provide this using an interface:
+
+.s com.db4odoc.f1.chapter6.ServerInfo ..s
+
+Now we'll create the server:
+
+.s com.db4odoc.f1.chapter6.StartServer ..s
+
+And last but not least, the client that stops the server.
+
+.s com.db4odoc.f1.chapter6.StopServer ..s
+
+.1 Conclusion ..
+
+That's it, folks. No, of course it isn't. There's much more to db4o ._
+we haven't covered yet: schema evolution, custom persistence for your classes, ._
+writing your own query objects, etc. A much more thorough documentation is ._
+provided in the reference that you should have also received with the ._
+download or  .l http://developer.db4o.com/Documentation.aspx online .. .
+
+We hope that this tutorial has helped to get you started with db4o. How ._
+should you continue now?
+
+- Register on db4o developer  .l http://www.db4o.com/Users/register.aspx website .. . 
+
+- You could browse the remaining chapters. They are a selection of themes ._
+from the reference that very frequently come up as questions in ._
+our  .l http://developer.db4o.com/Forums.aspx .. .
+
+- .i (Interactive version only) .. While this tutorial is basically sequential in ._
+nature, try to switch back and forth between the chapters and execute the ._
+sample snippets in arbitrary order. You will be working with the same ._
+database throughout; sometimes you may just get stuck or even induce ._
+exceptions, but you can always reset the database via the console window.
+
+- The examples we've worked through are included in your db4o distribution ._
+in full source code. Feel free to experiment with it.
+
+- If you're stuck, browse the information ._
+on our  .l http://www.db4o.com/ web site .. , check if your problem is submitted ._
+to  .l http://tracker.db4o.com/ Jira ..  or visit our ._
+forums at  .l http://developer.db4o.com/Forums.aspx .. .
+
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter6.ClientServerExample ..

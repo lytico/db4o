@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">// Schedule back-ground tasks</span>
+Action&lt;IObjectContainer&gt; toRun = UpdateSomePeople;
+<span style="color:Blue;">var</span> waitHandle = toRun.BeginInvoke(container, <span style="color:Blue;">null</span>, <span style="color:Blue;">null</span>);
+
+<span style="color:Green;">// While doing other work</span>
+ListAllPeople(container);</pre>
+		<div class="codesnippet-meta">
+			UnitsOfWork.cs: Schedule back-ground tasks
+			<div class="codedownload">
+				<a href="Example-concurrency-units-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

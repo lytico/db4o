@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> configuration <span style="color:Blue;">As</span> IEmbeddedConfiguration = Db4oEmbedded.NewConfiguration()
+configuration.File.Storage = <span style="color:Blue;">New</span> IsolatedStorageStorage()
+
+<span style="color:Blue;">Dim</span> container <span style="color:Blue;">As</span> IObjectContainer = Db4oEmbedded.OpenFile(configuration, <span style="color:#A31515;">&quot;database.db4o&quot;</span>)</pre>
+		<div class="codesnippet-meta">
+			IOExamples.vb: use the isolated storage on silverlight
+			<div class="codedownload">
+				<a href="Example-configuration-io-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

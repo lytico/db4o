@@ -1,0 +1,207 @@
+.n
+.a Structured ..
+.0 Structured objects ..
+
+It's time to extend our business domain with another class and ._
+see how db4o handles object interrelations. Let's give our pilot ._
+a vehicle.
+
+.s com.db4odoc.f1.chapter2.Car ..
+
+.1 Storing structured objects ..
+
+To store a car with its pilot, we just call .x #store() .. on our top level object, ._
+the car. The pilot will be stored implicitly.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#storeFirstCar -out ..
+
+Of course, we need some competition here. This time we explicitly store ._
+the pilot before entering the car - this makes no difference.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#storeSecondCar -out ..
+
+.1 Retrieving structured objects ..
+
+.2 QBE ..
+
+To retrieve all cars, we simply provide a 'blank' prototype.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveAllCarsQBE ..
+
+We can also query for all pilots, of course.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveAllPilotsQBE ..
+
+Now let's initialize our prototype to specify all cars driven by ._
+Rubens Barrichello.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveCarByPilotQBE ..
+
+What about retrieving a pilot by car? We simply don't need that - ._
+if we already know the car, we can simply access the pilot field ._
+directly.
+
+.2 Native Queries ..
+
+Using native queries with constraints on deep structured objects ._
+is straightforward, you can do it just like you would in plain ._
+other code. 
+
+Let's constrain our query to only those cars driven by a Pilot ._
+with a specific name:
+
+.? net  .s com.db4odoc.f1.chapter2.StructuredExample#retrieveCarsByPilotNamePredicate +{} -run ..s  ..?
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveCarsByPilotNameNative ..
+
+.? net Using generics syntax this is a lot simpler:
+
+.b C# Generics ..
+.c // retrieveCarsByPilotNameNative
+string pilotName = "Rubens Barrichello";
+List<Car> results = db.Query<Car>(delegate(Car car) {
+    return car.Pilot.Name == pilotName; });
+listResults(results); ..c  ..?
+
+
+.2 SODA Query API ..
+
+In order to use SODA for querying for a car given its pilot's name we have ._
+to descend two levels into our query.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveCarByPilotNameQuery ..
+
+We can also constrain the pilot field with a prototype to achieve ._
+the same result.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveCarByPilotProtoQuery ..
+
+We have seen that descending into a query provides us with another ._
+query. Starting out from a query root we can descend in multiple directions. ._
+In practice this is the same as ascending from one child to a parent ._
+and descending to another child. We can conclude that queries turn ._
+one-directional references in our objects into true relations. ._
+Here is an example that queries for "a Pilot that is being referenced ._
+by a Car, where the Car model is 'Ferrari'":
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrievePilotByCarModelQuery ..
+
+.? net .g querygraph/3net.gif .. ..?
+.? java .g querygraph/3.gif .. ..?
+
+.1 Updating structured objects ..
+
+To update structured objects in db4o, we simply call .x #store() .. on them again.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#updateCar ..
+
+Let's modify the pilot, too.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#updatePilotSingleSession ..
+
+Nice and easy, isn't it? But wait, there's something evil lurking ._
+right behind the corner. Let's see what happens if we split this ._
+task in two separate db4o sessions: In the first we modify our ._
+pilot and update his car:
+
+.s com.db4odoc.f1.chapter2.StructuredExample#updatePilotSeparateSessionsPart1 -out ..
+
+And in the second, we'll double-check our modification:
+
+.s com.db4odoc.f1.chapter2.StructuredExample#updatePilotSeparateSessionsPart2 ..
+
+Looks like we're in trouble: Why did the Pilot's points not change? ._
+What's happening here and what can we do to fix it?
+
+.2 Update depth ..
+
+Imagine a complex object with many members that have many members themselves. ._
+When updating this object, db4o would have to update all its children, ._
+grandchildren, etc. This poses a severe performance penalty and will ._
+not be necessary in most cases - sometimes, however, it will.
+
+So, in our previous update example, we were modifying the Pilot child of a Car ._
+object. When we saved the change, we told db4o to save our Car object and assumed ._
+that the modified Pilot would be updated. But we were modifying and saving in the ._
+same manner as we were in the first update sample, so why did it work before? The ._
+first time we made the modification, db4o never actually had to retrieve the modified ._
+Pilot ... it returned the same one that was still in memory that we modified, but ._
+it never actually updated the database. The fact that we saw the modified value was, ._
+in fact, a bug. Restarting the application would show that the value was unchanged.
+
+To be able to handle this dilemma as flexible as possible, db4o introduces ._
+the concept of update depth to control how deep an object's member tree will ._
+be traversed on update. The default update depth for all objects is 1, meaning ._
+that only primitive and String members will be updated, but changes in object ._
+members will not be reflected.
+
+db4o provides means to control update depth with very fine granularity. ._
+For our current problem we'll advise db4o to update the full graph for ._
+Car objects by setting  .x #cascadeOnUpdate() ..  for this class accordingly.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#updatePilotSeparateSessionsImprovedPart1 -out ..
+
+.s com.db4odoc.f1.chapter2.StructuredExample#updatePilotSeparateSessionsImprovedPart2 ..
+
+This looks much better.
+
+Note that container configuration must be passed when the container is opened.
+
+We'll cover update depth as well as other issues with complex object graphs ._
+and the respective db4o configuration options in more detail in a later ._
+chapter.
+
+.1 Deleting structured objects ..
+
+As we have already seen, we call .x #delete() .. on objects to get rid of them.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#deleteFlat ..
+
+Fine, the car is gone. What about the pilots?
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveAllPilotsQBE ..
+
+Ok, this is no real surprise - we don't expect a pilot to vanish when his ._
+car is disposed of in real life, too. But what if we want an object's children ._
+to be thrown away on deletion, too?
+
+.2 Recursive deletion ..
+
+You may already suspect that the problem of recursive deletion (and ._
+perhaps its solution, too) is quite similar to our little update problem, and you're ._
+right. Let's configure db4o to delete a car's pilot, too, when the car is deleted.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#deleteDeep ..
+
+Again: Note that configuration should be passed to the call opening ObjectContainer.
+
+Let's have a look at our pilots again.
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveAllPilots ..
+
+.2 Recursive deletion revisited ..
+
+But wait - what happens if the children of a removed object are still referenced by ._
+other objects?
+
+.s com.db4odoc.f1.chapter2.StructuredExample#deleteDeepRevisited ..
+
+.s com.db4odoc.f1.chapter2.StructuredExample#retrieveAllPilots ..
+
+Houston, we have a problem - and there's no simple solution at hand. Currently ._
+db4o does  .b not ..  check whether objects to be deleted are referenced anywhere ._
+else, so please be very careful when using this feature.
+
+Let's clear our database for the next chapter.
+
+.s com.db4odoc.f1.Util#deleteAll -out ..
+
+.1 Conclusion ..
+
+So much for object associations: We can hook into a root object and ._
+climb down its reference graph to specify queries. But what about ._
+multi-valued objects like arrays and collections? We will cover this in ._
+the  .l Collections next chapter ..l .
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter2.StructuredExample ..

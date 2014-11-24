@@ -1,0 +1,155 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+        <BuildBaseDirectory>g:\temp\cecil</BuildBaseDirectory>
+		<BuildBaseOutputDirectory>$(BuildBaseDirectory)\Out</BuildBaseOutputDirectory>
+
+		<GitExecutable>"$(ProgramFiles)\Git\bin\git.exe"</GitExecutable>		
+
+		<ReferenceAssembliesHome>$(ProgramFiles)\Reference Assemblies\Microsoft\Framework</ReferenceAssembliesHome>
+		<CFHome>$(ProgramFiles)\Microsoft.NET\SDK\CompactFramework\v3.5\WindowsCE</CFHome>				
+		<SilverlightHome>$(ReferenceAssembliesHome)\Silverlight\v3.0</SilverlightHome>
+		<FullCLRHome>$(SystemRoot)\Microsoft.NET\Framework\v2.0.50727</FullCLRHome>		
+		
+		<CecilSourcesDirectory>$(BuildBaseDirectory)\Cecil</CecilSourcesDirectory>
+		<CecilPdbSourcesDirectory>$(BuildBaseDirectory)\Cecil\symbols\pdb</CecilPdbSourcesDirectory>
+		<MonoKey>$(CecilSourcesDirectory)\Mono.snk</MonoKey>
+    </PropertyGroup>
+	
+	<PropertyGroup>
+		<FlowAnalysisBuildDirectory>$(BuildBaseDirectory)\FlowAnalysis</FlowAnalysisBuildDirectory>
+	</PropertyGroup>
+	
+	<ItemGroup Condition="'$(TargetProject)' == 'Cecil.FlowAnalysis'" >
+		<Sources Include="$(FlowAnalysisBuildDirectory)\flowanalysis\Cecil.FlowAnalysis\**\*.cs" />
+		<References Include="$(BuildBaseOutputDirectory)\$(TargetPlatform)\Mono.Cecil.dll"/>
+	</ItemGroup>
+	
+	<ItemGroup Condition="'$(TargetProject)' == 'Mono.Cecil.Pdb'" >
+		<Sources Include="$(CecilPdbSourcesDirectory)\Microsoft.Cci.Pdb\**\*.cs" />
+		<Sources Include="$(CecilPdbSourcesDirectory)\Mono.Cecil.Pdb\**\*.cs" />
+		
+		<References Include="$(BuildBaseOutputDirectory)\$(TargetPlatform)\Mono.Cecil.dll"/>
+	</ItemGroup>			
+	
+	<ItemGroup Condition="'$(TargetProject)' == 'Mono.Cecil'" >
+		<Sources Include="$(CecilSourcesDirectory)\Mono\**\*.cs" />		
+		<Sources Include="$(CecilSourcesDirectory)\Mono.Cecil.Metadata\**\*.cs" />		
+		<Sources Include="$(CecilSourcesDirectory)\Mono.Cecil.PE\**\*.cs" />		
+		<Sources Include="$(CecilSourcesDirectory)\Mono.Security.Cryptography\**\*.cs" />		
+		<Sources Include="$(CecilSourcesDirectory)\Mono.Cecil\**\*.cs" />		
+		<Sources Include="$(CecilSourcesDirectory)\Mono.Cecil.Cil\**\*.cs" />		
+		<Sources Include="$(CecilSourcesDirectory)\Mono.Collections.Generic\**\*.cs" />
+	</ItemGroup>	
+	
+	<!-- MS ASSEMBLY REFERENCES -->
+	<ItemGroup Condition = "'$(TargetPlatform)' == 'CF'">
+		<References Include="$(CFHome)\mscorlib.dll"/>
+		<References Include="$(CFHome)\System.Core.dll" />
+	</ItemGroup>
+
+	<ItemGroup Condition = "'$(TargetPlatform)' == 'NET_3_5'">
+		<References Include="$(FullCLRHome)\mscorlib.dll"/>
+		<References Include="$(ReferenceAssembliesHome)\v3.5\System.Core.dll"/>
+	</ItemGroup>
+	
+	<ItemGroup Condition = "'$(TargetPlatform)' == 'SILVERLIGHT'">
+		<References Include="$(SilverlightHome)\mscorlib.dll"/>
+		<References Include="$(SilverlightHome)\System.Core.dll"/>
+	</ItemGroup>	
+	<!-- MS ASSEMBLY REFERENCES -->
+	
+	
+	
+	<!-- TARGETS -->
+	
+	<Target Name="build" DependsOnTargets="build-cecil;build-flowanalysis" />	
+	
+    <Target Name="build-cecil">
+		<Message Text="Cecil folder: $(CecilSourcesDirectory)" />
+		
+		<RemoveDir Directories="$(CecilSourcesDirectory)" />
+		<MakeDir Directories="$(BuildBaseDirectory)" />
+		
+		<Exec Command="$(GitExecutable) init $(CecilSourcesDirectory)" />
+		<Exec Command="$(GitExecutable) pull https://github.com/jbevain/cecil.git" WorkingDirectory="$(CecilSourcesDirectory)" />		
+
+		<Message Text="Building Mono.Cecil on Silverlight" />
+		<MSBuild 
+			Projects="$(MSBuildProjectFile)" 
+			Targets="Csc" 
+			Properties="OutputAssemblyFile=Mono.Cecil.dll;TargetProject=Mono.Cecil;TargetPlatform=SILVERLIGHT" />
+			
+		<Message Text="Building Mono.Cecil on CF" />
+		<MSBuild 
+			Projects="$(MSBuildProjectFile)" 
+			Targets="Csc" 
+			Properties="OutputAssemblyFile=Mono.Cecil.dll;TargetProject=Mono.Cecil;TargetPlatform=CF" />
+			
+		<Message Text="Building Mono.Cecil on Net3.5" />
+		<MSBuild 
+			Projects="$(MSBuildProjectFile)" 
+			Targets="Csc" 
+			Properties="OutputAssemblyFile=Mono.Cecil.dll;TargetProject=Mono.Cecil;TargetPlatform=NET_3_5" />
+		
+		<Message Text="Building Mono.Cecil.Pdb on Net3.5" />
+		<MSBuild 
+			Projects="$(MSBuildProjectFile)" 
+			Targets="Csc" 
+			Properties="OutputAssemblyFile=Mono.Cecil.Pdb.dll;TargetProject=Mono.Cecil.Pdb;TargetPlatform=NET_3_5" />			
+    </Target>
+
+	<Target Name="build-flowanalysis">
+		<RemoveDir Directories="$(FlowAnalysisBuildDirectory)" />
+		<MakeDir Directories="$(FlowAnalysisBuildDirectory)" />
+		
+		<Exec Command="$(GitExecutable) init $(FlowAnalysisBuildDirectory)" />
+		<Exec Command="$(GitExecutable) pull https://github.com/mono/cecil.git" WorkingDirectory="$(FlowAnalysisBuildDirectory)" />	
+		
+		<!--			
+		<MSBuild 
+			Projects="$(MSBuildProjectFile)" 
+			Targets="Csc" 
+			Properties="OutputAssemblyFile=SL\Cecil.FlowAnalysis.dll;TargetProject=Cecil.FlowAnalysis;TargetPlatformHome=$(SilverLightHome)" 
+			/>
+		-->	
+		<MSBuild 
+			Projects="$(MSBuildProjectFile)" 
+			Targets="Csc" 
+			Properties="OutputAssemblyFile=Cecil.FlowAnalysis.dll;TargetProject=Cecil.FlowAnalysis;TargetPlatform=NET_3_5" />
+			
+		<MSBuild 
+			Projects="$(MSBuildProjectFile)" 
+			Targets="Csc" 
+			Properties="OutputAssemblyFile=Cecil.FlowAnalysis.dll;TargetProject=Cecil.FlowAnalysis;TargetPlatform=CF" 
+			/>			
+			
+	</Target>
+
+	<Target Name="Csc">
+	
+		<PropertyGroup>
+			<OutputDirectory>$(BuildBaseOutputDirectory)\$(TargetPlatform)</OutputDirectory>
+		</PropertyGroup>
+	
+		<Message Text="Target Platform = $(TargetPlatform)" />
+		<Message Text="References = @(References)" />	
+		<Message Text="Output Assembly: $(OutputAssemblyFile)" />
+
+		<MakeDir Directories="$(OutputDirectory)" />
+	   
+		<Csc 
+			OutputAssembly = "$(OutputDirectory)\$(OutputAssemblyFile)"
+			Sources = "@(Sources)"
+			TargetType ="library" 
+			AllowUnsafeBlocks ="false" 
+			Optimize = "true"
+			NoStandardLib ="true"
+			NoConfig = "true" 
+			DebugType ="pdbonly"
+			References = "@(References)"
+			KeyFile = "$(MonoKey)" 
+			DefineConstants = "$(TargetPlatform)" />		
+		
+	</Target>
+	
+</Project>

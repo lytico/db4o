@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">ObjectContainer container = database();
+<span style="color:Blue;">if</span> (container != <span style="color:Blue;">null</span>){
+	ObjectSet&lt;Car&gt;  result = container.query(<span style="color:Blue;">new</span> Predicate&lt;Car&gt;(){
+		@Override
+		<span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> match(Car car) {
+			<span style="color:Blue;">return</span> car.getPilot().getPoints()==15;
+		}
+		
+	});
+	<span style="color:Blue;">if</span> (!result.hasNext()){
+		logToConsole(0, <span style="color:#A31515;">&quot;Car not found, refill the database to continue.&quot;</span>, <span style="color:Blue;">false</span>);
+	} <span style="color:Blue;">else</span> {
+		Car car = result.next();
+		logToConsole(startTime, <span style="color:#A31515;">&quot;Selected Car (&quot;</span> + car + <span style="color:#A31515;">&quot;): &quot;</span>, <span style="color:Blue;">false</span>);
+		startTime = System.currentTimeMillis();
+		car.setRegistration(<span style="color:Blue;">new</span> RegistrationRecord(<span style="color:#A31515;">&quot;A1&quot;</span>, <span style="color:Blue;">new</span> Date()));
+		logToConsole(startTime, <span style="color:#A31515;">&quot;Updated Car (&quot;</span> + car + <span style="color:#A31515;">&quot;): &quot;</span>, <span style="color:Blue;">true</span>);
+	}			
+}</pre>
+		<div class="codesnippet-meta">
+			Db4oExample.java: update a car with db4o
+			<div class="codedownload">
+				<a href="Example-db4odoc-android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

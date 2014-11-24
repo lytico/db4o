@@ -1,0 +1,13 @@
+package decaf.generics;
+
+class NoBounds { 
+    public Object field; 
+
+    public NoBounds(Object arg) {
+    	field = arg;
+    } 
+
+    public Object method() {
+    	return field; 
+    } 
+}

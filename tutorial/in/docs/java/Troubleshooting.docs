@@ -1,0 +1,26 @@
+.n
+.a Troubleshooting ..
+.0 Interactive Tutorial Troubleshooting ..
+
+db4o interactive tutorial uses Java applets to execute code examples ._
+directly in your browser enabling you to see the results immediately ._
+during reading.
+In order to use the interactive functionality a Java JRE 1.5 or ._
+above needs to be installed and enabled in the browser. 
+Normally this and db4o for java installation is all that is needed ._
+to start with the interactive examples. However some system ._
+configurations can prevent the examples from running properly.
+Use the following check-list to locate and fix the problem:
+- JRE1.5 or above should be installed.
+- JAVA_HOME environment variable should point to the correct JRE (or JDK).
+- The Java control panel should be configured to use the web browser.
+- Java security settings have to allow a user to grant permissions to signed content and to grant permission to content from an untrusted authority.
+- You should also check that your system firewalls do not block interactive content.
+
+.1 Configuring JRE on Windows ..
+To see whether your browser is configured to use the Java Runtime ._
+Environment or not, open the Windows Control Panel and check if ._
+the Java icon is present.
+In the Java Control Panel: 
+- check that your browser is enabled 
+- check that the user is granted permissions to signed content (untrusted authority as well).

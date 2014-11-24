@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">void</span> Dispose()
+{
+    IDisposable toDispose = HttpContext.Current.Application[DataBaseInstance] <span style="color:Blue;">as</span> IDisposable;
+    <span style="color:Blue;">if</span> (<span style="color:Blue;">null</span> != toDispose)
+    {
+        toDispose.Dispose();
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Db4oProvider.cs: close the database when the application shuts down
+			<div class="codedownload">
+				<a href="Example-WebApp-Infrastructure-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

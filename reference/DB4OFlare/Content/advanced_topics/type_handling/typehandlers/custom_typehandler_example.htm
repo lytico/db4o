@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="3625" MadCap:lastWidth="644">
+    <head>
+    </head>
+    <body>
+        <h1>Custom Typehandler Example</h1>
+        <p>For a custom typehandler example we will try to write a very
+simple typehandler for  the StringBuilder class. We want to handle a StringBuilder as a value type, therefore we implement the ValueTypeHandler interface. Not that there's a whole collection of interfaces for typehandlers. Take a look at the TypeHandler4 type hierarchy. </p>
+        <p>To keep it simple we will skip information required for
+indexing - please look at IndexableTypeHandler in db4o sources to get more
+information on how to handle indexes.</p>
+        <p>The first thing should be the write method, which determines
+how the object is persisted:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/typehandling/typehandler/StringBuilderHandler-Write-the-StringBuilder.all.flsnp" />
+        <p>As you can see from the code above, there are 3 steps:</p>
+        <ol>
+            <li>Get
+     the buffer from WriteContext/I WriteContext</li>
+            <li>Convert the string-content to a byte-array using the UTF8 encoding.</li>
+            <li>Write
+     the length of the resulted byte-array.</li>
+            <li>Write the byte array of the string.</li>
+        </ol>
+        <p>Next step is to read the stored object. It is just
+opposite to the write method:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/typehandling/typehandler/StringBuilderHandler-Read-the-StringBuilder.all.flsnp" />
+        <p>Delete is simple - we just reposition the buffer offset to the end of the
+slot:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/typehandling/typehandler/StringBuilderHandler-Delete-the-content.all.flsnp" />
+        <p>The last method left: #defragment. This one only moves the offset to the beginning
+of the object data, i.e. skips Id and size information (to be compatible to
+older versions):</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/typehandling/typehandler/StringBuilderHandler-Defragment-the-content.all.flsnp" />
+        <p>Now to use this type handler we need to configure db4o. To register a typehandler you have to provide a predicate which decides if a type is handled by the typehandler and the typehandler itself.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/typehandling/typehandler/TypeHandlerExample-Register-type-handler.all.flsnp" />
+        <p>After that all string builders are handled by you're type handler.</p>
+    </body>
+</html>

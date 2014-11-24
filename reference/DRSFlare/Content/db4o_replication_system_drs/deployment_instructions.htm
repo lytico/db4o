@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="615" MadCap:lastWidth="560" >
+    <head></head>
+    <body>
+        <h1>Deployment Instructions</h1>
+        <p>The dRS version corresponds to the db4o version. Ensure that the db4o and the dRS version are the same.</p>
+        <p MadCap:conditions="Primary..NET">To deploy dRS you need to add the Db4objects.Drs.dll-assembly to your project. This assembly can simply be installed and distributed together with your application.</p>
+        <h2 MadCap:conditions="Primary.Java">db4o to db4o Replication Only</h2>
+        <p MadCap:conditions="Primary.Java">For a simple db4o to db4o replication scenario you will only need the add the <b>dRS-<MadCap:variable name="Primary.CurrentVersion" />-core.jar.</b> to the classpath.</p>
+        <h2 MadCap:conditions="Primary.Java">RDBMS Replication</h2>
+        <p MadCap:conditions="Primary.Java">The RDBMS Replication needs dRS, Hibernate and its dependencies. You need to add the following jars to the classpath:</p>
+        <ul MadCap:conditions="Primary.Java">
+            <li><b>dRS-<MadCap:variable name="Primary.CurrentVersion" /></b>-core.jar.<b></b></li>
+            <li>hibernate3.jar</li>
+            <li>antlr-2.7.6.jar</li>
+            <li>asm.jar</li>
+            <li>asm-attrs.jar</li>
+            <li>cglib-2.1.3.jar</li>
+            <li>commons-collections-2.1.1.jar</li>
+            <li>commons-logging-1.0.4.jar</li>
+            <li>dom4j-1.6.1.jar</li>
+            <li>ehcache-1.2.jar</li>
+            <li>jta.jar</li>
+            <li>log4j-1.2.13.jar</li>
+            <li>xerces-2.6.2.jar</li>
+        </ul>
+        <p MadCap:conditions="Primary.Java">Please, refer to the <a href="http://www.hibernate.org/" target="_blank">Hibernate</a> documentation for an explanation of these dependencies.</p>
+        <p MadCap:conditions="Primary.Java">If you are going to use dRS with HSQLDB you will need hsqldb-1.8.0.7.jar in addition to Hibernate.</p>
+    </body>
+</html>

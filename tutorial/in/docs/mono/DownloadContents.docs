@@ -1,0 +1,33 @@
+.0 Download Contents ..
+
+The db4o Mono distribution is available from the  .l http://www.db4o.com/community/ontheroad/downloadcenter/ db4o download center ..  in 3 versions: ._
+ .i db4o- .p version .. -mono.tar.gz ..  (binary and source tarball),  .i db4o- .p version .. -mono.noarch.rpm ..  (binary RPRM),   .i db4o- .p version .. -mono.src.rpm ..  (source RPM). The noarch RPM ._
+ can be built from the source RPM. After installing/unzipping ._
+you will find the following directory structure on your machine:
+
+.b db4o- .p version .. -mono.noarch.rpm ..
+
+.g mono-rpm-dir.gif ..
+
+Please take a look at all the supplied documentation formats to choose ._
+the one that works best for you:
+.a APIDocumentation ..
+.b /usr/share/doc/package/db4o/api/index.html ..
+The API documentation for db4o is supplied as a set of HTML pages. While ._
+you read through this tutorial, it may be helpful to look into the API ._
+documentation occasionally.
+
+.b /usr/share/doc/package/db4o/reference/index.html ..
+The reference documentation is a complete compilation for ._
+experienced db4o users. It is maintained ._
+.l http://developer.db4o.com/Resources/view.aspx/Reference online .. .
+
+.b /usr/share/doc/packages/db4o/tutorial/index.html ..
+The tutorial in HTML format. The Java and .NET db4o ._
+distributions also provide the HTML documentation with live ._
+execution capabilities. 
+
+.b /usr/share/doc/packages/db4o/tutorial/db4o- .p version .. -tutorial.pdf .. 
+The PDF version of the tutorial allows best fulltext ._
+search capabilities.
+

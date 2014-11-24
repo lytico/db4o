@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">static</span> &lt;T&gt; List&lt;T&gt; paging(List&lt;T&gt; listToPage, <span style="color:Blue;">int</span> limit){
+    <span style="color:Blue;">return</span> paging(listToPage,0,limit);
+}
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">static</span> &lt;T&gt; List&lt;T&gt; paging(List&lt;T&gt; listToPage, <span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> limit){
+    <span style="color:Blue;">if</span>(start&gt;listToPage.size()){
+        <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> IllegalArgumentException(<span style="color:#A31515;">&quot;You cannot start the paging outside the list.&quot;</span> +
+                <span style="color:#A31515;">&quot; List-size: &quot;</span>+listToPage.size()+<span style="color:#A31515;">&quot; start: &quot;</span>+start);
+    }
+    <span style="color:Blue;">int</span> end = calculateEnd(listToPage, start, limit);
+    <span style="color:Blue;">return</span> listToPage.subList(start, end);
+
+}
+
+<span style="color:Blue;">private</span> <span style="color:Blue;">static</span> &lt;T&gt; <span style="color:Blue;">int</span> calculateEnd(List&lt;T&gt; resultList, <span style="color:Blue;">int</span> start, <span style="color:Blue;">int</span> limit) {
+    <span style="color:Blue;">int</span> end = start + limit;
+    <span style="color:Blue;">if</span>(end&gt;=resultList.size()){
+        <span style="color:Blue;">return</span> resultList.size();
+    }
+    <span style="color:Blue;">return</span> end;
+}</pre>
+		<div class="codesnippet-meta">
+			PagingUtility.java: Paging utility methods
+			<div class="codedownload">
+				<a href="Example-strategies-paging-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

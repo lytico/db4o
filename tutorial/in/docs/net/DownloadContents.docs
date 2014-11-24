@@ -1,0 +1,28 @@
+.0 Download Contents ..
+
+The db4o .NET distribution comes as one MSI installer file, ._
+db4o- .p version .. -net.msi. After you run the installer, you get the following directory ._
+structure:
+
+.g directorynet.gif ..
+
+Please take a look at all the supplied documentation formats to choose ._
+the one that works best for you:
+.a APIDocumentation ..
+.b db4o- .p version .. /doc/api/db4o.chm ..
+The API documentation for db4o is supplied as a compiled Help file. While you ._
+read through the rest of this tutorial, it may be helpful to look into the API ._
+documentation occasionally. 
+
+.b db4o- .p version .. /doc/reference/index.html ..
+The reference documentation is a complete compilation for ._
+experienced db4o users. 
+
+.b db4o- .p version .. /doc/tutorial/Db4objects.Db4o.Tutorial.exe .. 
+This is the interactive tutorial application for .NET. Examples can ._
+be run "live" against a db4o database from within the application. 
+
+.b db4o- .p version .. /doc/tutorial/db4o- .p version .. -tutorial.pdf .. 
+The PDF version of the tutorial allows best fulltext ._
+search capabilities.
+

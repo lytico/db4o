@@ -1,0 +1,246 @@
+Sync4o Cookbook
+---------------
+This file contains steps that should enable you to see Sync4o "in action"
+within the Funambol framework - working with a sample class and both the client
+and server SyncSources to synchronize data between a client and server database
+(though both will be contained on the same machine).
+
+We will use the com.example.Customer class included with sync4o
+
+
+1. Building Sync4o
+------------------
+To build the connector, please use the Apache Ant script (build.xml) provided.
+
+The "pack" target will build all relevant source files and create a Funambol 
+server module (sync4o-3.0.1.s4j) and a .zip file (sync4o-client-3.0.1.zip) 
+containing the .jar files necessary to build a Funambol client program that 
+uses sync4o.
+
+The generated files will be found in the /sync4o/dist/ folder.
+
+
+2. Server Installation
+----------------------
+Please refer to the Funambol documentation for comprehensive details on installing
+the Funambol Server and a server module. For this example we used the bundle
+funambol-3.0a.exe available in the download section of Funambol's website.
+
+The Funambol Server we have been using required the following:
+
+(a) First of all start the server (make sure the Funambol sever icon in the tray 
+turns green).
+Then copy sync4o-3.0.1.s4j from 
+/sync4o/dist/
+to 
+/FunambolServer/ds-server/modules
+
+
+(b) Edit the file
+/FunambolServer/ds-server/install.properties
+
+Add 'sync4o-3.0.1' to the comma-separated list of the property 
+'modules-to-install' at the end of the file (don't forget to add the comma).
+
+
+(c)From the 
+/FunambolServer/ds-server/ directory 
+call
+/FunambolServer/ds-server/bin/install-modules.cmd 
+to reinstall the modules:
+
+On a windows machine with the default installation issuing the following two
+commands will work:
+> cd C:\Program Files\Funambol\ds-server
+> .\bin\install-modules tomcat50
+
+When prompted whether to recreate the database for module sync4o-3.0.1 answer
+yes (y) (you should get a "BUILD SUCESSFUL" message).
+
+
+3. Create a sample server database
+----------------------------------
+Use the DataGenerator tool supplied in /sync4o/dist/cookbook/cookbook.jar to
+create a sample database that will be managed by the Sync4o Server SyncSource
+for synchronization.
+
+At a command prompt, change to the directory:
+/sync4o/dist/cookbook
+and run the rundbtool script , passing it arguments that tell it to create a 
+db4o database containing a single Customer record with the id 1.
+On a Windows system, this command looks like:
+
+> rundbtool -create 1 1 server.db
+
+This should create a file named 'server.db' in the /sync4o/dist/cookbook directory.
+
+To inspect the contents of the command, issue the command:
+
+>  rundbtool -list server.db
+
+and you should see output like the following, showing the single record
+contained in the database:
+
+> Listing records...
+> Customer: 1, Name 1, Location 1, Fri Jun 09 22:07:17 CST 2006 lastMod: Fri Jun 09 22:07:17 CST 2006
+> 1 records
+
+
+4. Server Configuration
+----------------------------
+The Funambol Server (and Sync4o server SyncSource that runs within it) must
+have access to the class that will be stored in a db4o database. In our
+cookbook example this is the com.example.Customer class, stored in the
+customer.jar JAR file.
+
+(a) Copy the file
+/sync4o/dist/cookbook/customer.jar
+
+to the Tomcat common/lib directory. On our installation this was located at:
+/FunambolServer/tools/tomcat/common/lib
+
+(b) Restart the Funambol Server (you should get a green tray icon again). 
+Launch the Funambol administration tool and log in.
+
+(c) Create a new SyncSource.
+Within the Funambal Admin Tool, navigate the management tree for the server
+running on 'localhost' to the 'Modules' node. From there navigate down to the
+'sync4o' node, which contains another 'sync4o' node and finally a
+'Db4oSyncSource' node. Right-click on this 'Db4o SyncSource' node and select
+the 'Add SyncSource' context menu item, this will display the UI for
+configuring a new instance of the Sync4o server SyncSource in the Funambol
+Server.
+
+(d) Enter the parameters for the SyncSource. In this example we will
+use the following:
+
+Source URI: Cookbook
+Name: Cookbook
+db4o File: (Select the 'server.db' created in step (3), by pressing the button
+marked '...' and navigating to it (/sync4o/dist/cookbook/server.db).
+
+Once the db4o File has been selected, double-click the icon labelled
+'root' in the bottom half of the UI. This will expand to display all the
+classes available for synchronization in the selected db4o file. In our
+example, there should only be one entry, for the com.example.Customer class.
+It will be marked as '-not configured for synchronization-'.
+
+To configure the class, expand its tree node and TRIPLE-click the leaf that
+is labelled '-unconfigured-' to select a primary key field to be used when
+synchronizing the class from the fields available in the class. In our
+example, please select the '_customerId' field. Once you have selected the 
+primary key field, the class should then be labelled as
+'-configured for synchronization-'.
+
+(e) Press the 'Add' button at the very bottom of the UI (you may need to
+scroll down) to store the newly configured SyncSource instance. It should
+now be displayed in the treeview of the AdminTool as a leaf called 'Cookbook'
+underneath the 'Db4o SyncSource' node.
+
+The Funambol Server is now ready to synchronize the test database.
+
+
+5. Client Installation
+----------------------
+The Sync4o installation includes a sample Funambol client application that
+makes use of the Sync4o client SyncSource. Funambol clients must be
+developed using the Funambol client API.
+
+The "pack" Ant target has created a sync4o-client-3.0.1.zip file in
+/sync4o/dist and it has also installed all required files in 
+/sync4o/dist/cookbook.
+
+
+6. Client Configuration
+-----------------------
+Configuration of the Sync4o client SyncSource is performed following the
+method prescribed by the Funambol framework: a properties file named after
+the client sync source instance within a configuration directory hierarchy
+used by the client.
+
+To set the client's configuration parameters you would edit the file:
+/sync4o/dist/cookbook/config/spds/sources/TestClientSource.properties
+
+All properties are already set correctly for a first test.
+
+Note that the 'sourceURI' property is the same ('Cookbook') as what you 
+have just entered in the server configuration. 
+The 'classConfigsList' property needs to contain the names of all classes
+to be synchronized and the fields you want to be used as "primary key".
+
+The 'dbFilename' property should contain the path to your client database
+file. Note that this database does not have to exist. It will be created
+by the client SyncSource when necessary.
+
+
+7. Synchronizing
+----------------
+Now you should have everything installed, configured and ready to go to see the
+cookbook sample in action. Make sure you close the Funambolm Administration
+Tool before this since it may lock the database file.
+
+To see Sync4o in action, use the following steps:
+
+(a) Initial synchronization
+
+At a command prompt change to the directory:
+
+/sync4o/dist/cookbook 
+
+and execute the 'runclient.cmd' script. The client SyncSource will synchronize
+with the server.
+
+> runclient
+
+As the client database does not exist yet, this will
+result in the creation of the client database and its population with the
+contents of the server database (in this case a single Customer record with
+id 1).
+
+You should get a 'Synchronization Done' message in the end. If you just get a
+'Modification Done' message make sure your firewall is not blocking alerts 
+sent to the server. If this was the case you can safely run 'runclient' again 
+once the firewall is fixed or turned off.
+
+To verify that the client and server have synchronized successfully, use the
+rundbtool script to view the contents of each database, using commands like:
+
+> rundbtool -list client.db
+> rundbtool -list server.db
+
+The output should be nearly identical (the timestamps for the two records will
+be different).
+
+(b) Modify client data and synchronize
+
+From the command prompt, use the rundbtool script to modify the customer record
+that has now been synchronized to the client database:
+
+> rundbtool -update 1 1 Changed client.db
+
+This will update the name of the customer record in the client database. You
+can verify the change using:
+
+> rundbtool -list client.db
+
+Now run the sample client again to synchronize client and server:
+
+> runclient
+
+This time, the server will be updated with the changes made on the client.
+Again, verify the changes:
+
+> rundbtool -list client.db
+> rundbtool -list server.db
+
+
+You have now synchronized both from server to client and from client to server
+using Sync4o and Funambol.
+
+This brings us to the end of the cookbook. Feel free to browse the source and
+play with the cookbook sample to better understand Sync4o.
+
+The db4o team.
+Feel free 
+
+

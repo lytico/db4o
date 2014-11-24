@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="3" MadCap:lastHeight="628" MadCap:lastWidth="625">
+    <head>
+        <link href="../Resources/TableStyles/Basic.css" rel="stylesheet" MadCap:stylesheetType="table" />
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Configuration:File Configuration" />File Configuration</h1>
+        <p>The file-configuration contains all the configuration-settings which are related to file access. It can be set in the db4o-embedded-container or on the db4o-server. All the file configuration is accessible via the file-<MadCap:variable name="Primary.getter" /> on the configuration-object.</p>
+        <h2>Overview</h2>
+        <p>Here's a overview over all file configuration-settings which you can change:</p>
+        <table style="width: 100%;mc-table-style: url('../Resources/TableStyles/Basic.css');" class="TableStyle_Basic" cellspacing="0">
+            <col style="width: 80%;" />
+            <col style="width: 50pt;" />
+            <col style="width: 50pt;" />
+            <tbody>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Can not change <MadCap:footnote style="mc-footnote-position: page;">This setting has to be set the first time when the database is created. You cannot change is for an existing database.</MadCap:footnote></td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Only useful for recovery         <![CDATA[ ]]><MadCap:footnote style="mc-footnote-position: page;">This setting is only useful when you try to recover a corrupted database file.</MadCap:footnote></td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/async_sync.htm">AsynchronousSync</a></strong>: Enables asynchronous commits.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/blob_path.htm">BlobPath</a></strong>: Specify where blobs are stored.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/block_size.htm">BlockSize</a></strong>: Set the block-size of the database. Larger Blocks allow larger databases.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">Yes</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/database_growth_size.htm">DatabaseGrowthSize</a></strong>: Set the grow step size when the database-file is to small.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/disable_commit_recovery.htm">DisableCommitRecovery</a></strong>: Disable the commit-recovery.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Yes</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/freespace_configuration.htm">Freespace</a></strong>: Configure the free-space system.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/generate_uuids.htm">GenerateUUIDs</a></strong>: Configure to generate UUIDs for objects.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><strike>GenerateVersionNumbers</strike></strong>: Deprecated. Generate <a href="file/generate_timestamps.htm">commit timestamps</a> instead. </td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/lock_database.htm">LockDatabaseFile</a></strong>: Enable/disable the database file lock.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/read_only.htm">ReadOnly</a></strong>: Set the database to read only mode.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/recover_mode.htm">RecoveryMode</a></strong>: Set the database to a recovery mode.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">Yes</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep"><strong><a href="file/reserve_storage_space.htm">ReserveStorageSpace</a></strong>: Reserve storage-space up front.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowSep_ColEnd">&#160;</td>
+                </tr>
+                <tr>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep"><strong><a href="file/storage.htm">Storage</a></strong>: Configure the storage system.</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColSep">&#160;</td>
+                    <td class="TableStyle_Basic_Body_0_0_RowEnd_ColEnd">&#160;</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

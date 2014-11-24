@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2816" MadCap:lastWidth="588">
+    <head>
+    </head>
+    <body>
+        <h1>Update Depth In Action</h1>
+        <p>Let's see db4o's update depth in action. We store a few cars with their pilots in the database. Then we update a car and its driver and store the car. The we reopen the database and check if everything was updated. To our surprise the car-name was updated, but the driver isn't. This is the direct result of db4o's update depth policy. It only updates object to a certain update-depth. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/updatedepth/UpdateDepthPitfall-Update-depth-limits-what-is-store-when-updating-objects.all.flsnp" />
+        <h2>Explicitly Store The Driver</h2>
+        <p>One solution to this issue is to store updated object explicitly, except value objects. So in our case we would store the car and the pilot. This works fine for simple models. However as the model gets more complex this is probably not a feasible solution.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/updatedepth/UpdateDepthPitfall-Explicitly-store-changes-on-the-driver.all.flsnp" />
+        <p>There also a variation of this. You can use the store method of the extended container and explicitly state the update depth for the store operation.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/pitfalls/updatedepth/UpdateDepthPitfall-Explicitly-use-the-update-depth.all.flsnp" />
+        <h2>Configure Update Depth</h2>
+        <p>As alternative you can configure the update depth. You can increase it <a href="../../configuration/common/update_depth.htm">globally</a> or for <a href="../../configuration/objectclass/update_depth.htm">certain classes</a>. It's also possible to enable cascading updates for certain <a href="../../configuration/objectclass/cascade_on_update.htm">classes</a> or <a href="../../configuration/objectfield_configuration.htm">fields</a>.</p>
+        <h2>Transparent Persistence</h2>
+        <p>You can get rid of all the update depth troubles by using transparent persistence. In this mode db4o tracks all changes and stores them. <MadCap:xref href="transparent_persistence.htm" target="" title="" alt="">See "Transparent Persistence"</MadCap:xref></p>
+    </body>
+</html>

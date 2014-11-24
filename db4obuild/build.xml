@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+<project name="db4obuild" default="build-before-checkin" basedir=".">
+<!--
+	Depends on a custom local file 'machine.properties' with
+	the following entries:
+
+	dir.workspace=<the workspace folder where all projects reside>
+	file.compiler.jdk1.3=<path to jdk 1.3 java compiler>
+	file.jvm.jdk1.3=<path to jdk 1.3 java vm executable>
+	file.jvm.jdk1.5=<path to jdk 1.5 java vm executable>
+	file.jvm.jdk1.6=<path to jdk 1.6 java vm executable>
+	file.jvm.jdk1.7=<path to jdk 1.7 java vm executable>
+	font.pdf.base=<true type font>
+	dir.compactframework=<path to the 2.0 version of the compact framework, leave empty if not available>
+	eclipse.home=<eclipse home dir>
+	csc.executable.path.net35=<OPTIONAL: path to csc.exe dir for .NET 3.5 if different than default>
+	csc.executable.net35=<OPTIONAL: path to csc executable file for .NET 3.5 if different than default>
+	msbuild.executable.net35=<OPTIONAL: path to msbuild executable file for .NET 3.5 if different than default>
+	msbuild.executable.net35=<OPTIONAL: path to msbuild executable file for .NET 3.5 if different than default>
+	file.compiler.jdk1.3.args.optional=<OPTIONAL: any parameters for javac, e.g. '-source 1.3' if a JDK >= 5 is used>
+	file.keystore=<OPTIONAL: keystore location for signjar tasks. if not present, ${user.home}/.keystore is assumed>	
+	mono.mcs.executable=<OPTIONAL: path to mcs executable, overrides ant.properties entry>
+	mono.gmcs.executable=<OPTIONAL: path to gmcs executable, overrides ant.properties entry>
+	javac.debug.mode=<OPTIONAL: debug switch for javac, default: false>
+	eclipse.startup.jar=<OPTIONAL: use a different jar for eclipse startup if you're using eclipse 3.3+>
+	java.vmargs=<OPTIONAL: java VM args for test suites>
+	sharpen.core.dir=<OPTIONAL: if you keep sharpen in a different location>
+	
+ 	##################################
+ 	#          Flare Support         # 
+    ##################################
+    
+	flare.executable=<OPTIONAL: path to the flare executable, usually its installation folder/Flare.app/madbuild.exe
+								if this property is missing, flare wont be executed. so the reference documentation
+								will not be generated>
+
+ 	##################################
+ 	#          Maven Support         # 
+    ##################################
+    
+	maven.repository.releases.url=<repository url>
+
+	#the following protocols are supported:
+	#http, scp, dav:http, ftp and there are several extentions for other protocols
+	#e.g. dav:http://10.10.3.108:8080/archiva/repository/third-party
+	maven.repository.releases.username=<username for the url>
+	maven.repository.releases.password=<password for the url>
+	maven.repository.snapshots.url=<repository url for snapshots>
+	maven.repository.snapshots.username=<username for the url>
+	maven.repository.snapshots.password=<password for the url>	
+	
+	The path to this file can be specified via property "path.machine.properties", as in
+	ant -Dpath.machine.properties=machine.properties.win build-before-checkin
+	
+ 	##################################
+ 	#         Android Support        # 
+    ##################################
+	
+	#The following line enables the Android build. You are going to need Android platform sdk tools in your path.
+	#android.enabled=true
+	
+	dir.android.home=<android sdk home>
+	android.apilevel=<android api level>
+	
+	# for further customizations check build-android-tests.xml properties
+
+    ##################################
+ 	#         Building on a x64 bit Windows box          # 
+    ##################################
+
+	dir.programfiles= ${env.ProgramFiles(x86)}
+	
+	##################################
+ 	#           VOD Support          # 
+    ##################################
+    
+	run.vod.drs.tests = true | false, default: false
+    dir.vod.lib = <vod lib folder ~ $VERSANT_ROOT/lib>, required for drs build
+    path.vod.bin = OPTIONAL <vod bin folder ~ $VERSANT_ROOT/bin>, required for drs regression tests if run.vod.drs.tests == true
+	path.vod.lib = OPTIONAL <vod library path ~ $VERSANT_ROOT/lib and $VERSANT_ROOT/sdk/lib>, required for drs regression tests if run.vod.drs.tests == true
+	
+	##################################
+ 	#              DRS BBC           # 
+    ##################################
+    
+	skip.drs.net.tests = true # if you do not have a .NET build environment set this to true 
+	                          # and build-drs-beforen-checkin target will build and run drs 
+	                          # and tests for java and also run sharpen. 
+
+	
+		An example:
+	dir.workspace=C:/_db4o/production
+	file.compiler.jdk1.3=C:/jdk1.3.1_12/bin/javac.exe
+	file.jvm.jdk1.3=/usr/java/jdk1.3/bin/java
+	file.jvm.jdk1.5=/usr/java/jdk1.5.0_03.32bit/bin/java
+	font.pdf.base=C:/WINDOWS/Fonts/VERDANA.TTF
+	dir.compactframework=C:/Arquivos de programas/Microsoft Visual Studio 8/SmartDevices/SDK/CompactFramework/2.0/
+	eclipse.home=c:/Program Files/Eclipse	
+	csc.executable.path.net35=C:/WINDOWS/Microsoft.NET/Framework/v3.5/
+	eclipse.startup.jar=${eclipse.home}/plugins/org.eclipse.equinox.launcher_1.0.0.v20070606.jar
+	java.vmargs=-Ddb4ounit.file.path=/mnt/rd0/db4ounit -Djava.io.tmpdir=/mnt/rd0/tmp
+	
+	flare.executable=C:/Program Files/MadCap Software/MadCap Flare V5/Flare.app/madbuild.exe
+	
+	android.apilevel=android-7
+	emulator.device=android-2.1
+	 
+    dir.vod.lib=C:/Versant/8/lib
+    path.vod.bin=C:/Versant/8/bin
+	path.vod.lib=C:/Versant/8/lib;C:/Versant/8/sdk/lib
+-->
+	<import file="common.xml" />
+	
+	<target name="buildjava-old-school" depends="clean.java">
+		<ant antfile="build-java.xml" target="package.java" />
+	</target>
+	
+	<target name="init" depends="properties" description="Basic initialization">
+		<tstamp />
+		<mkdir dir="${dir.dist}" />
+		<mkdir dir="${dir.sharpen}" />
+		<mkdir dir="${dir.dist.net.build.src}" />
+		<mkdir dir="${dir.dist.net.instrumentation}" />
+		<mkdir dir="${dir.dist.mono.build.src}" />
+		<mkdir dir="${dir.dist.doc.api}" />
+		<mkdir dir="${dir.dist.java.build.tutorial}" />
+		<mkdir dir="${dir.dist.java.build.tutorial.src}" />
+		<mkdir dir="${dir.dist.dll.net}" />
+		<mkdir dir="${dir.dist.dll.compact}" />
+		<mkdir dir="${dir.dist.dll.mono}" />
+		<loadfile property="content.gplheader" srcfile="${file.gplheader}" encoding="iso-8859-1" />
+		<loadfile property="content.copyrightheader" srcfile="${file.copyrightheader}" encoding="iso-8859-1" />
+		<versioninfo path="${dir.j.core.src}/com/db4o"  
+			major="${db4o.version.major}" 
+			minor="${db4o.version.minor}"
+			iteration="${db4o.iteration}"
+			revision="${svn.revision}"
+		/>
+	</target>
+
+	<target name="clean" description="Delete all generated files">
+        <delete dir="${dir.dist}" />
+        <delete dir="${dir.j.tutorial.out}" />
+		<delete>
+			<fileset dir="${dir.build}">
+				<include name="*.yap" />
+				<include name="*.db4o" />
+			</fileset>
+		</delete>
+	</target>
+
+    <target name="clean.java">
+        <delete dir="${dir.dist.java}" />
+    	<delete dir="${dir.dist.decaf}" />
+    </target>
+    
+	<target name="clean.drs">
+        <delete dir="${dir.dist.java}" />
+    </target>
+
+	<target name="cleanomscripttempdir">
+		<mkdir dir="${dir.objectmanager.scripts.temp}" />
+		<delete>
+			<fileset dir="${dir.objectmanager.scripts.temp}">
+				<include name="*" />
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="compilebuild" depends="init" description="Compile Db4o build sources">
+		<mkdir dir="${dir.build.bin}" />
+		<depend srcdir="${dir.build.src}" destdir="${dir.build.bin}" closure="yes" />
+		<javac srcdir="${dir.build.src}" destdir="${dir.build.bin}" debug="${javac.debug.mode}" fork="true" target="1.3" source="1.3" encoding="UTF-8">
+			<classpath path="${path.classpath.full}" />
+		</javac>
+		<copy todir="${dir.build.bin}">
+			<fileset dir="${dir.build.src}" includes="**/*.properties"/>
+		</copy>
+	</target>
+
+	<target name="runtestsnet-35" depends="init">
+		<ant antfile="build-dotnet.xml" target="run-tests" />
+	</target>
+
+	<target name="runtestsmono">
+		<ant antfile="build-dotnet.xml" target="run-tests" />
+	</target>
+
+	<target name="preparendoc">
+		<property name="db4o-namespace-summaries.xml" location="config/db4o-namespace-summaries.xml" />		
+		<property name="ndoc.home" location="lib/ndoc" />
+				
+		<delete dir="${dir.dist.ndoc}" />
+		<mkdir dir="${dir.dist.ndoc}" />
+	</target>
+	
+	<target name="ndocmono" depends="preparendoc" description="Builds public .net docs for the mono platform">
+		<exec executable="mono" failonerror="true">
+			<arg file="${ndoc.home}/bin/${mono.ndoc.executable}" />
+			<arg value="${file.dll.mono}" />
+			<arg value="-namespacesummaries=${db4o-namespace-summaries.xml}" />
+			<arg value="-documenter=MSDN" />
+			<arg value="-OutputTarget=Web" />
+			<arg value="-OutputDirectory=${dir.dist.ndoc}" />
+			<arg value="-Title=db4o" />
+			<arg value="-SkipNamespacesWithoutSummaries=True" />
+			<arg value="-SdkLinksOnWeb=False" />
+            <arg value="-AssemblyVersionInfo=AssemblyVersion" />
+			<arg value="-CopyrightText=Copyright (C) 2004 - 2008  Versant Corporation" />
+            <arg value="-CopyrightHref=http://www.db4o.com/" />
+			<arg value="-CleanIntermediates=True" />
+		</exec>
+	</target>
+	
+    <target name="compile.java.all" depends="clean.java">
+    	<ant antfile="build-java.xml" target="build.db4ojava" />
+    </target>
+	
+	<target name="runtestsjava1.2">
+		<ant antfile="build-java.xml" target="run.tests.jdk1.2" />
+	</target>   
+
+	<target name="runtestsjava5">
+    	<ant antfile="build-java.xml" target="run.tests.jdk1.5" />
+    </target>
+    
+    <target name="runconcurrencytests">
+    	<ant antfile="build-java.xml" target="run.tests.concurrency" />
+    </target>
+
+	<target name="runosgitests">
+		<ant antfile="build-java.xml" target="run.tests.osgi1.5" />
+	</target>
+
+	<target name="runtestsjava">
+		<ant antfile="build-java.xml" target="run.tests.db4ojava" />
+	</target>
+	
+	<target name="buildjava" depends="clean.java" description="Full java build">
+		<ant antfile="build-java.xml" target="package.java" />
+	</target>
+
+	<target name="deploy-maven-release" description="Deploys the current version in the release repository">
+		<ant antfile="build-maven.xml" target="deploy-maven-release" />
+	</target>
+	
+	<target name="deploy-maven-snapshot" description="Deploys the current version in the snapshot repository" depends="init">
+		<ant antfile="build-maven.xml" target="deploy-maven-snapshot" />
+	</target>		
+	
+	<target name="buildnet35" depends="init" description=".NET 3.5 (LINQ) full build">
+		<ant antfile="build-dotnet.xml" target="build-prepare-package-net35" >
+		    <property name="force.skip.sharpen" value="${force.skip.sharpen}" />
+		</ant>
+	</target>
+	
+	<target name="buildnet40" depends="init" description=".NET 4.0 full build">
+		<ant antfile="build-dotnet.xml" target="build-prepare-package-net40" >
+		    <property name="force.skip.sharpen" value="${force.skip.sharpen}" />
+		</ant>
+	</target>
+	
+	<target name="cc-net35" depends="init">
+		<ant antfile="build-dotnet.xml" target="run-tests-net35" >
+		    <property name="force.skip.sharpen" value="${force.skip.sharpen}" />
+		</ant>
+		<ant target="buildnet35" />
+	</target>
+
+	<target name="cc-net40" depends="init">
+		<ant antfile="build-dotnet.xml" target="run-tests-net40" >
+		    <property name="force.skip.sharpen" value="${force.skip.sharpen}" />
+		</ant>
+		<ant target="buildnet40" />
+	</target>
+	
+	<target name="buildmono2" depends="compile.java.all">
+		<ant antfile="build-dotnet.xml" target="package" />
+	</target>
+
+    <target name="build-java-before-checkin" depends="clean, runtestsjava5" />
+
+    <target name="build-net-before-checkin">
+        <ant antfile="build-dotnet.xml" target="run-tests">
+        	<property name="skip.java.compilation" value="true" />
+        </ant>
+    </target>
+	
+	<target name="run-instrumented-net-tests" depends="prepare-test-environment" description="runs the .net test suite after being instrumented for TA">
+		<ant antfile="build-dotnet.xml" target="run-core-tests-instrumented">
+        	<property name="skip.java.compilation" value="true" />
+        </ant>
+	</target>
+	
+	<target name="prepare-test-environment" depends="clean.java">
+		<ant antfile="build-java.xml" target="build.db4ojava.tests" />
+	</target>
+
+	<target name="prepare-drs-test-environment" depends="clean.drs">
+		<ant antfile="build-java.xml" target="build.db4ounitjdk1.5" />
+		<ant antfile="build-drs.xml" target="build-all" />
+	</target>
+	
+	<target name="run-drs-tests" depends="prepare-drs-test-environment">
+		<ant antfile="build-drs.xml" target="run-regression" />
+	</target>
+		
+    <target name="run-drs-net-tests" unless="skip.drs.net.tests">
+    	<ant antfile="build-drs-net.xml" target="clean" />
+    	<ant antfile="build-drs-net.xml" target="run-tests"/>
+    </target>
+	
+	<target name="sharpen-drs-net" if="skip.drs.net.tests">
+    	<ant antfile="build-drs-net.xml" target="clean" />
+    	<ant antfile="build-drs-net.xml" target="prepare-dotnet-solution"/>    	
+	</target>
+	
+	<target name="build-drs-before-checkin" depends="run-drs-tests, sharpen-drs-net, run-drs-net-tests" />
+	
+	<target name="build-drs-before-checkin.net" depends="buildjava15, sharpen-drs-net, run-drs-net-tests" />
+	
+	<target name="buildjava15" depends="clean.java" description="java 1.5 build">
+			<ant antfile="build-java.xml" target="build.db4ojdk1.5.tests" />
+	</target>
+
+	
+    <target name="build-before-checkin" depends="prepare-test-environment,build-net-before-checkin" />
+	
+	<target name="build-cf35" depends="init">
+	    <ant antfile="build-dotnet.xml" target="build-cf35" />
+	</target>
+</project>

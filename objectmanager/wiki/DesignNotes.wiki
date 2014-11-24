@@ -1,0 +1,11 @@
+YapReader / YapWriter -- Byte array encoder/decoder
+
+Like taking a void* and typecasting it to some struct.
+
+Or like taking a memory buffer and reading it into a data division
+
+YapBit -- Like a sequential file that reads a bit at a time
+
+----
+
+Back to HomePage

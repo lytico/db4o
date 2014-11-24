@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2418" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Internal IDs;UUIDs" />IDs and UUIDs</h1>
+        <P>The db4o team recommends not to use object IDs where it is not necessary. db4o keeps track of object identities in a transparent way, by identifying "known" objects on updates.  <MadCap:xref href="../basics/identity_concept.htm" target="" title="" alt="">See "Identity Concept".</MadCap:xref></P>
+        <P>If you really need to have ids for you're object, take a look at this comparison. <MadCap:xref href="../platform_specific_issues/disconnected_objects/comparison_of_ids.htm" target="" title="" alt="">See "Comparison Of Different IDs"</MadCap:xref></P>
+        <h2>Internal IDs</h2>
+        <p>Each object, except value objects like ints, floats or string, do have an internal id. This id is unique within on db4o database and db4o uses it internally for managing the objects. However you also can access this id or retrieve objects by the internal id.</p>
+        <p>You can get the internal id of an object from the extended object container.</p>
+        <MadCap:snippetBlock src="../CodeExamples/disconnectedobj/idexamples/Db4oInternalIdExample-get-the-db4o-internal-ids.all.flsnp" />
+        <p>And you can retrieve an object by the internal id. Note that when you get an object by its internal id that it won't be activated. Therefore you have to explicitly activate the object.</p>
+        <MadCap:snippetBlock src="../CodeExamples/disconnectedobj/idexamples/Db4oInternalIdExample-get-an-object-by-db4o-internal-id.all.flsnp" />
+        <h2>db4o UUIDs</h2>
+        <p>db4o can also generate a UUIDs for each object. The UUIDs main purpose is to enable <a href="../drs_stub.htm">replication</a>. By default db4o doesn't assign a UUID to each object. You have to enable this <a href="../configuration/file/generate_uuids.htm">globally</a> or for <a href="../configuration/objectclass/generate_uuid.htm">certain types</a>.&#160;For example:</p>
+        <MadCap:snippetBlock src="../CodeExamples/configuration/file/FileConfiguration-Enable-db4o-uuids-globally.all.flsnp" />
+        <p>A db4o UUID consists of two parts. The first part is the database signature which is unique to the database.</p>
+        <p>The second part a unique id within the object-container for the object. Both parts together represent a unique id. </p>
+        <p>You can get the db4o uuid from the extended object container.</p>
+        <MadCap:snippetBlock src="../CodeExamples/disconnectedobj/idexamples/Db4oUuidExample-get-the-db4o-uuid.all.flsnp" />
+        <p>And you can get an object by its UUID.  Note that when you get an object by its UUIDthat it won't be activated. Therefore you have to explicitly activate the object.</p>
+        <MadCap:snippetBlock src="../CodeExamples/disconnectedobj/idexamples/Db4oUuidExample-get-an-object-by-a-db4o-uuid.all.flsnp" />
+    </body>
+</html>

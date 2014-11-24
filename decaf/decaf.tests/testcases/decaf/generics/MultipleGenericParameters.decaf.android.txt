@@ -1,0 +1,38 @@
+package decaf.generics;
+
+class Function<TIn, TOut> {
+	public TOut apply(TIn value) {
+		return (TOut)value;
+	}
+}
+
+class Hash<K, V> {
+
+	public final V defaultValue = null;
+	K[] keys;
+	V[] values;
+	
+	void put(K key, V value) {
+	}
+	
+	V get(K key) {
+		return this.defaultValue;
+	}
+	
+	<K2, V2> Hash<K2, V2> convert(Function<K, K2> converter, Function<V, V2> valueConverter) {
+		K k1 = keys[0];
+		K2 k2 = converter.apply(k1);
+		V v1 = values[0];
+		V2 v2 = valueConverter.apply(v1);
+		return null;
+	}
+}
+
+class Main {
+	static void main() {
+		final Hash<String, Integer> hash = new Hash<String, Integer>();
+		hash.put("ltuae", new Integer(42));
+		final Integer value = hash.get("ltuae");
+		final Hash<Integer, String> hash2 = hash.convert(new Function<String, Integer>(), new Function<Integer, String>());
+	}
+}

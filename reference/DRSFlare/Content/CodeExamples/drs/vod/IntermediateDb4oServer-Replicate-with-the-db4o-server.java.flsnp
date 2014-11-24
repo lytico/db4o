@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">void</span> runReplication() {
+    ClientConfiguration config = Db4oClientServer.newClientConfiguration();
+    config.common().reflectWith(<span style="color:Blue;">new</span> JdoReflector(Thread.currentThread().getContextClassLoader()));
+    ObjectContainer intermediate = Db4oClientServer.openClient(config,<span style="color:#A31515;">&quot;localhost&quot;</span>,8080,<span style="color:#A31515;">&quot;sa&quot;</span>,<span style="color:#A31515;">&quot;sa&quot;</span>);
+        ReplicationProvider mobileDatabase
+            = <span style="color:Blue;">new</span> Db4oClientServerReplicationProvider(intermediate);
+    <span style="color:Green;">// The rest is just the regular replication stuff</span></pre>
+		<div class="codesnippet-meta">
+			IntermediateDb4oServer.java: Replicate with the db4o server
+			<div class="codedownload">
+				<a href="Example-drs-vod-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

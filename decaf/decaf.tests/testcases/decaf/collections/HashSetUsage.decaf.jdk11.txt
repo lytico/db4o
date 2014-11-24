@@ -1,0 +1,12 @@
+package decaf.collections;
+
+import java.util.*;
+
+class HashSetUsage {
+
+	com.db4o.foundation.Set4 _set = new com.db4o.foundation.HashSet4();
+	
+	public void add(int i) {
+		_set.add(new Integer(i));
+	}
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">Sub</span> HandlingCommitEvent(<span style="color:Blue;">ByVal</span> sender <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>, <span style="color:Blue;">ByVal</span> args <span style="color:Blue;">As</span> CommitEventArgs)
+    <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> reference <span style="color:Blue;">As</span> LazyObjectReference <span style="color:Blue;">In</span> args.Added
+        Console.WriteLine(<span style="color:#A31515;">&quot;Added &quot;</span> &amp; reference.GetObject())
+    <span style="color:Blue;">Next</span>
+    <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> reference <span style="color:Blue;">As</span> LazyObjectReference <span style="color:Blue;">In</span> args.Updated
+        Console.WriteLine(<span style="color:#A31515;">&quot;Updated &quot;</span> &amp; reference.GetObject())
+    <span style="color:Blue;">Next</span>
+    <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> reference <span style="color:Blue;">As</span> FrozenObjectInfo <span style="color:Blue;">In</span> args.Deleted
+        <span style="color:Green;">'the deleted info might doesn't contain the object anymore and</span>
+        <span style="color:Green;">'return the null.</span>
+        Console.WriteLine(<span style="color:#A31515;">&quot;Deleted &quot;</span> &amp; reference.GetObject())
+    <span style="color:Blue;">Next</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			EventRegistryExamples.vb: Commit-info Handler
+			<div class="codedownload">
+				<a href="Example-callbacks-eventregistry-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

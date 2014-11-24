@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1026" MadCap:lastWidth="588">
+  <head></head>
+  <body>
+    <h1>
+      <MadCap:keyword term="Embedded" />Embedded Client Server</h1>
+    <p>db4o supports embedded containers or session container. It's a separate object-container with its own transaction and own reference cache. <MadCap:xref href="../advanced_topics/session_containers.htm" target="" title="" alt="">See "Session Containers"</MadCap:xref></p>
+    <p>Now if you're using the client-server mode for db4o, you also can create such sessions directly from the server. When you pass a 0 to the open server method, the server only supports embedded clients. With any other port you can connect with <a href="../client-server.htm">regular clients</a> and also create embedded clients.</p>
+    <MadCap:snippetBlock src="../CodeExamples/container/sessions/Db4oSessions-Embedded-client.all.flsnp" />
+    <h2>OpenSession On A Client</h2>
+    <p>You might noted that the open-session is available on any object-container. Normally this creates a <a href="../advanced_topics/session_containers.htm">session-container</a> with its own transaction and reference cache. However on a db4o-client this is not true. There it only creates a container with new cache, but shares the transaction with the client. The only use case for this is to implement connection pooling.<MadCap:xref href="pooling.htm" target="" title="" alt="">See "Client-Container Pooling"</MadCap:xref></p>
+    <p> </p>
+  </body>
+</html>

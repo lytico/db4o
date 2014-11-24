@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">PilotGroup <span style="color:Blue;">group</span> = FindGroup(container);
+Pilot pilot = <span style="color:Blue;">group</span>.Pilots[0];
+<span style="color:Blue;">group</span>.Pilots.Remove(pilot);
+container.Store(<span style="color:Blue;">group</span>.Pilots);
+
+AssertEquals(3, AllPilots(container).Count);
+AssertEquals(2, <span style="color:Blue;">group</span>.Pilots.Count);</pre>
+		<div class="codesnippet-meta">
+			DeletionExamples.cs: Removing from a collection doesn't delete the collection-members
+			<div class="codedownload">
+				<a href="Example-Code-deletion-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="615" MadCap:lastWidth="586">
+  <head />
+  <body>
+    <h1>Db4ounit Methods</h1>
+    <p>Let's
+look through the basic API , which will help you to build your own test. This
+document is not a complete API reference and its intention is to give you a
+general idea of the methods usage and availability.</p>
+    <h2>AbstractDb4oTestCase</h2>
+    <p>AbstractDb4oTestCase is a base class for creating test
+cases. It will setup a db4o instance for you which you can use in your tests. Additionally it provides different utility methods for configuring, querying and modifying the database.</p>
+    <p>Additionally it contains methods to run the test. You can create new instance of a class which extends AbstractDb4oTestCase and run the test in different environments. For example the method 'runSolo' will run the test with an embedded local container.</p>
+    <h2 MadCap:conditions="Primary.Java">TestCase </h2>
+    <h2 MadCap:conditions="Primary..NET">ITestCase</h2>
+    <p>This interface provides the basic for a unit test in the db4ounit framework. When you implement this interface the class is a valid unit test. All methods starting with 'test' will be executed as test.</p>
+    <p>For most tests it is more continent to use the AbstractDb4oTestCase.</p>
+    <h2 MadCap:conditions="Primary.Java">TestLifeCycle</h2>
+    <h2 MadCap:conditions="Primary..NET">ITestLifeCycle</h2>
+    <p>This interface provides a test case with additional setup and tear down methods. Those will be called before and after each test method</p>
+    <h2>ConsoleTestRunner</h2>
+    <p>A test-runner which runs the tests as console application. </p>
+    <p>Usually it's more convenient to extend the AbstractDb4oTestCase class and use the provided run methods instead of the console test runner.</p>
+    <h2>Db4ounit.Assert</h2>
+    <p>This class provides a variety of methods for asserting certain conditions</p>
+  </body>
+</html>

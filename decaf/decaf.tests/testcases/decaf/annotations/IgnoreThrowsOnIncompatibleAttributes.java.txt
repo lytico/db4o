@@ -1,0 +1,10 @@
+package decaf.annotations;
+
+class Foo {
+
+
+	@decaf.Ignore(platforms = decaf.Platform.JDK15, unlessCompatible = decaf.Platform.JMX)
+	public void ignoredUnlessCompatibleJmx() {
+	}
+
+}

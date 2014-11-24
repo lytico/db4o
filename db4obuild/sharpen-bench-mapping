@@ -1,0 +1,7 @@
+-typeMapping java.io.BufferedReader System.IO.StreamReader
+-typeMapping java.io.FileReader System.IO.StreamReader
+-typeMapping java.io.Stream System.IO.StreamReader
+-typeMapping java.io.TextWriter System.IO.StreamWriter
+-typeMapping com.db4o.bench.timing.NanoTiming Db4objects.Db4o.Bench.Timing.TicksTiming
+-methodMapping java.lang.Integer.parseInt int.Parse
+-methodMapping com.db4o.bench.timing.NanoTiming.waitNano WaitTicks

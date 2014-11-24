@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">void</span> ListAllPeople(IObjectContainer rootContainer)
+{
+    <span style="color:Blue;">using</span> (IObjectContainer container = rootContainer.Ext().OpenSession())
+    {
+        <span style="color:Blue;">foreach</span> (Person person <span style="color:Blue;">in</span> <span style="color:Blue;">from</span> Person p <span style="color:Blue;">in</span> container <span style="color:Blue;">select</span> p)
+        {
+            Console.WriteLine(person.Name);
+        }
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			UnitsOfWork.cs: An object container for this unit of work
+			<div class="codedownload">
+				<a href="Example-concurrency-units-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

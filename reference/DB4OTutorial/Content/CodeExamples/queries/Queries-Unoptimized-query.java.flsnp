@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">List&lt;Driver&gt; drivers = container.query(<span style="color:Blue;">new</span> Predicate&lt;Driver&gt;() {
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> match(Driver driver) {
+        <span style="color:Green;">// Add a break point here. If the debugger stops, the query couldn't be optimized</span>
+        <span style="color:Green;">// That means it runs very slowly and we should find an alternative.</span>
+        <span style="color:Green;">// This example query cannot be optimized because the hash code isn't a stored in database</span>
+        <span style="color:Blue;">return</span> driver.hashCode() == 42;
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			Queries.java: Unoptimized query
+			<div class="codedownload">
+				<a href="Example-tutorial-queries-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

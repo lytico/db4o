@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="6490" MadCap:lastWidth="638">
+    <head>
+    </head>
+    <body>
+        <h1>Update Concept</h1>
+        <p>How does updating objects work with db4o? Similar to the activation depth, db4o uses an update depth. When we store an object again, db4o only updates the objects up to the given update-depth. This prevents db4o from traversing the whole object graph in order to store the changes.</p>
+        <p>
+            <img src="update-depth.png" style="width: 638px;height: 254px;" />
+        </p>
+        <h2><a name="UpdateDepthInAction"></a>Update Depth in Action</h2>
+        <p>Let's see db4o's update strategy in action. We store a driver with his cars and his most loved car.<MadCap:snippetText src="Snippets/See-domain-model.flsnp" /></p>
+        <div MadCap:targetName="domainModel">
+            <MadCap:snippetBlock src="CodeExamples/updating/Car-Domain-model-for-cars.all.flsnp" />
+            <MadCap:snippetBlock src="CodeExamples/updating/Driver-Domain-model-for-drivers.all.flsnp" />
+        </div>
+        <MadCap:snippetBlock src="CodeExamples/updating/UpdateConcept-Store-a-driver-and-his-cars.all.flsnp" />
+        <p>After that we update the driver, change the name of his most loved car and add another car to his collection. Then we update the car in the database.</p>
+        <MadCap:snippetBlock src="CodeExamples/updating/UpdateConcept-Update-the-driver-and-his-cars.all.flsnp" />
+        <p>Then we close the database, reopen it and check if the objects have been updated. Unfortunately only the car itself has been updated. That's because db4o by default uses an update-depth of one. That means only the object we pass to the store-method is updated. All referenced objects are not updated. In our case that means that the referenced car and the referenced list of cars isn't updated. </p>
+        <MadCap:snippetBlock src="CodeExamples/updating/UpdateConcept-Check-the-updated-objects.all.flsnp" />
+        <h2><a name="DealWithIt"></a>Deal with Updates</h2>
+        <p>We've seen that by default only the object passed to the store method is updated. That means we need a strategy to deal with this.</p>
+        <h3>Explicitly Storing Every Changed Object</h3>
+        <p>One way to deal with this is to store every changed object. In our case that would be the driver, the most loved car and the list of owed cars. However in practice this strategy needs too much effort.</p>
+        <MadCap:snippetBlock src="CodeExamples/updating/UpdateConcept-Update-everything-explicitly.all.flsnp" />
+        <h3>Change the Activation Depth</h3>
+        <p>A simple strategy is to increase the update depth, for example increase the depth to two. This is quite a reasonable update-depth, especially since it will update collections of an object.</p>
+        <MadCap:snippetBlock src="CodeExamples/updating/UpdateConcept-Increase-the-update-depth-to-2.all.flsnp" />
+        <p>We can control the update-depth also per class:</p>
+        <MadCap:snippetBlock src="CodeExamples/updating/UpdateConcept-More-update-options.all.flsnp" />
+        <h3>Transparent Persistence</h3>
+        <p>The last and most elaborate option is to use transparent persistence. In that case db4o manages all updates for us. We just can change objects and db4o will track all changes for us.  To get transparent persistence we need to enhance our classes at compile time. Read <a href="transparentpersistence.htm">this section of the tutorial</a> where we use transparent persistence.</p>
+    </body>
+</html>

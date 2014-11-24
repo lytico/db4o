@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="779" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Dangerous Practices</h1>
+        <p>db4o lets you <a href="../../configuration.htm">configure</a> a lot of low level details. It even lets you configure things which endanger the safety of the database integrity and transaction integrity. You should avoid these settings and only use them in very special cases.</p>
+        <p>One dangerous setting is disabling file-flushes. When you add the non-flushing decorator  you get better performance. However due to the missing file-flushes, the ACID-properties cannot be guaranteed. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/acidproperties/DangerousPractises-Using-the-non-flushing-storage-weakens-the-ACID-properties.all.flsnp" />
+        <p>Another setting which endangers the ACID properties is disabling the commit-recovery. This setting should only be
+used in emergency situations after consulting db4o support. The ACID flow of
+the commit can be re-enabled after restoring the original configuration.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/acidproperties/DangerousPractises-Disabling-commit-recovery-weakens-the-ACID-properties.all.flsnp" />
+    </body>
+</html>

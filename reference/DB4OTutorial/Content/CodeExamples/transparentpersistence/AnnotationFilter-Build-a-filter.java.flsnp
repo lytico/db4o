@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">final</span> <span style="color:Blue;">class</span> AnnotationFilter <span style="color:Blue;">implements</span> ClassFilter{
+
+    <span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> accept(Class&lt;?&gt; aClass) {
+        <span style="color:Blue;">if</span>(<span style="color:Blue;">null</span>==aClass || aClass.equals(Object.<span style="color:Blue;">class</span>)){
+            <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
+        }
+        <span style="color:Blue;">return</span> hasAnnotation(aClass)
+                || accept(aClass.getSuperclass());
+    }
+
+    <span style="color:Blue;">private</span> <span style="color:Blue;">boolean</span> hasAnnotation(Class&lt;?&gt; aClass) {
+        <span style="color:Green;">// We compare by name, to be class-loader independent</span>
+        Annotation[] annotations = aClass.getAnnotations();
+        <span style="color:Blue;">for</span> (Annotation annotation : annotations) {
+            <span style="color:Blue;">if</span>(annotation.annotationType().getName()
+                    .equals(TransparentPersisted.<span style="color:Blue;">class</span>.getName())){
+                <span style="color:Blue;">return</span> <span style="color:Blue;">true</span>;
+            }
+        }
+        <span style="color:Blue;">return</span> <span style="color:Blue;">false</span>;
+    }
+
+}</pre>
+		<div class="codesnippet-meta">
+			AnnotationFilter.java: Build a filter
+			<div class="codedownload">
+				<a href="Example-tutorial-transparentpersistence-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

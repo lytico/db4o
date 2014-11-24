@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="754" MadCap:lastWidth="380" MadCap:conditions="Primary.Java">
+  <head />
+  <body>
+    <h1>Storing Data</h1>
+    <p>Storing a car-object in is very-different in SQLite and db4o.</p>
+    <h2>SQLite</h2>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/SqlExample-store-a-car-in-SQLite.all.flsnp" />
+    <h2>db4o</h2>
+    <MadCap:snippetBlock src="../../CodeExamples/Android/src/com/db4odoc/android/Db4oExample-store-a-car-in-db4o.all.flsnp" />
+    <h2>Conclusion</h2>
+    <p>You can see that db4o handles adding objects to the database in a much more elegant way - #store(object) method is enough. In SQLite case it is much more difficult as you mush store different objects into different tables. Some of the additional work that SQLite developer will have to do is not visible in this example, i.e:</p>
+    <ul>
+      <li>the developer will have to ensure that the sequence of insert commands starts from children objects and goes up to the parent (this can be a really difficult task for relational models including lots of foreign key dependencies);</li>
+      <li>in most cases the data for insertion will come from business objects, which will mean that the object model will have to be transferred to relational model. </li>
+    </ul>
+  </body>
+</html>

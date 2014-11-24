@@ -1,0 +1,23 @@
+package decaf.collections;
+
+import java.util.*;
+
+interface Appendable {
+	boolean addAll(Collection c);
+}
+
+class AppendableImpl implements Appendable {
+
+	public boolean addAll(Collection c) {
+		for (java.util.Iterator elementIter = c.iterator(); elementIter
+				.hasNext();) {
+					final Object element = elementIter.next();
+					add(element);
+				}
+		return false;
+	}
+	
+	public boolean add(Object o) {
+		return false;
+	}
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">Driver driver = queryForDriver(container);
+driver.setName(<span style="color:#A31515;">&quot;New Name&quot;</span>);
+System.out.println(<span style="color:#A31515;">&quot;Name before rollback &quot;</span> + driver.getName());
+container.rollback();
+<span style="color:Green;">// Thanks to transparent persistence with the rollback strategy</span>
+<span style="color:Green;">// the object state is rolled back</span>
+System.out.println(<span style="color:#A31515;">&quot;Name after rollback &quot;</span> + driver.getName());</pre>
+		<div class="codesnippet-meta">
+			Transactions.java: Transparent persistence rolls back objects in memory
+			<div class="codedownload">
+				<a href="Example-tutorial-transactions-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+config.file().generateUUIDs(ConfigScope.GLOBALLY);
+config.file().generateCommitTimestamps(<span style="color:Blue;">true</span>);
+ObjectContainer theMobileDatabase = Db4oEmbedded.openFile(config, <span style="color:#A31515;">&quot;mobileDatabase.db4o&quot;</span>);
+ObjectContainer db4oServer = Db4oClientServer.openClient(<span style="color:#A31515;">&quot;localhost&quot;</span>, 8080, <span style="color:#A31515;">&quot;sa&quot;</span>, <span style="color:#A31515;">&quot;sa&quot;</span>);
+<span style="color:Blue;">try</span> {
+    ReplicationProvider localProvider = <span style="color:Blue;">new</span> Db4oEmbeddedReplicationProvider(theMobileDatabase);
+    ReplicationProvider remoteProvider = <span style="color:Blue;">new</span> Db4oClientServerReplicationProvider(db4oServer);
+
+    <span style="color:Blue;">final</span> ReplicationSession replicationSession = Replication.begin(localProvider, remoteProvider);
+
+    replicateAll(replicationSession,localProvider.objectsChangedSinceLastReplication());
+    replicateAll(replicationSession,remoteProvider.objectsChangedSinceLastReplication());
+
+    replicationSession.commit();
+
+} <span style="color:Blue;">catch</span> (Exception e){
+    <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> RuntimeException(e);
+} <span style="color:Blue;">finally</span>{
+    db4oServer.close();
+    theMobileDatabase.close();
+}</pre>
+		<div class="codesnippet-meta">
+			ClientReplicator.java: Replicate against the db4o intermediate server
+			<div class="codedownload">
+				<a href="Example-drs-vod-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

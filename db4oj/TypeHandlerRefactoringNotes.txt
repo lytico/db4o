@@ -1,0 +1,59 @@
+	
+	     \   	Leaf                  |    Cascading
+     	  \
+ reference | plain object             | anything handled by StandardReferenceTypeHandler
+	value  | primitives, big numbers  | ByRef<T>, .net value types
+	                                array
+							    .net generics
+	
+.Net generics pose an interesting challenge, a generic type might belong to either the
+Activatable compartment or to the Leaf compartment depending on its type arguments.
+	
+ TypeHandler4 <=> leaf/value semantics
+ 	#instantiate
+	#writeInstantiation
+ 
+ ReferenceTypeHandler <=> reference semantics
+ 	#activate
+	#writeActivation
+ 
+ CascadingTypeHandler4 <=> cascades into other type handlers (usually for members)
+    #cascadeActivation
+ 
+ ReferenceTypeHandler, CascadingTypeHandler4 <=> reference type semantics with members
+ 
+ QueryableTypeHandler <=> query integration
+ 
+ 
+Definitions
+	* Value types:
+		* always embedded
+	
+	* Reference types
+		* never embedded
+	
+	* Leaf type: no members/doesnt trigger any delegate type handlers
+		* primitive type handlers, for instance
+		#instantiate - reads immutable state and instantiate
+		
+		#isLeaf(): bool
+		ArrayHandler#isLeaf = 
+			return elementHandler().isLeaf
+	
+	* Cascading type: not (Leaf type)
+		#cascadeActivation
+	
+	* Primitive type: fixed set of types db4o considers builtin types
+	
+	
+	
+TODO
+====
+
+* remove the need to initialize StandardReferenceTypeHandler with its ClassMetadata for correctHandlerVersion
+
+* multiple InstantiatingTypeHandlers in the hierarchy
+
+* test case for two types implementing the same interface, one with value type semantics and the other
+with reference type semantics
+

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2105" MadCap:lastWidth="539">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Configuration:Freespace" />Freespace Configuration</h1>
+        <p>When objects are updated or deleted, the space previously occupied in the database file
+is marked as "free". The freespace management system takes care of this space by maintaining which places in the file are free.</p>
+        <h2><a name="Discard"></a>Discarding Threshold</h2>
+        <p>By default the free space system keeps and maintains every bit of free space even the smallest ones. Very small blocks of storage are hard to reuse, because larger objects don't fit in. Therefore overtime more and more small blocks of free space are maintained. Maintaining these small free spaces can cost performance. Therefore you can configure the free-space system to discard small blocks. Then small blocks are not maintained as free space. On the downside these space is lost until the next <a href="../../advanced_topics/defragment.htm">defragmentation</a>. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/freespace/FreeSpaceConfiguration-Discard-settings.all.flsnp" />
+        <h2><a name="MemorySystem"></a>Memory Freespace System</h2>
+        <p>When you use the memory free-space system the information of the free space locations is hold in memory. This is the fastest way to manage free space. However when the database is shut down abnormally, for example by a crash or power off, the free space information is lost. The space only can be reclaimed by  <a href="../../advanced_topics/defragment.htm">defragmentation</a>. This is the default-setting used by db4o.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/freespace/FreeSpaceConfiguration-Use-the-in-memory-system.all.flsnp" />
+        <h2><a name="BTreeSystem"></a>BTree Freespace System</h2>
+        <p>The B-tree free space system hold the information a B-tree which is stored on commits. Since the free space information is stored on disk, it is usually a slower then the memory free space system. However it doesn't lose the information on abnormal termination. Additionally the B-tree free space system uses less memory resources than the memory free space system.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/freespace/FreeSpaceConfiguration-Use-BTree-system.all.flsnp" />
+        <h2><a name="Filler"></a>Freespace Filler</h2>
+        <p>When you delete a object in db4o the storage it consumed isn't deleted. Instead only the storage space is marked as free and can be reused. Therefore it's possible to read also the content of deleted objects. If you want to avoid that, you can specify a free-space filler. This filler is responsible to overwrite the free-space.</p>
+        <p>Note that this costs performance, since additional IO operations are performed.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/freespace/MyFreeSpaceFiller-The-freespace-filler.all.flsnp" />
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/freespace/FreeSpaceConfiguration-Using-a-freespace-filler.all.flsnp" />
+    </body>
+</html>

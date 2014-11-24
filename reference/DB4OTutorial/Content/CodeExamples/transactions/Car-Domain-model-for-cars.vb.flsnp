@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve">&lt;TransparentPersisted()&gt; _
+<span style="color:Blue;">Public</span> <span style="color:Blue;">Class</span> Car
+    <span style="color:Blue;">Private</span> m_carName <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">Sub</span> <span style="color:Blue;">New</span>(carName <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>)
+        <span style="color:Blue;">Me</span>.m_carName = carName
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span>
+
+    <span style="color:Blue;">Public</span> <span style="color:Blue;">ReadOnly</span> <span style="color:Blue;">Property</span> CarName() <span style="color:Blue;">As</span> <span style="color:Blue;">String</span>
+        <span style="color:Blue;">Get</span>
+            <span style="color:Blue;">Return</span> m_carName
+        <span style="color:Blue;">End</span> <span style="color:Blue;">Get</span>
+    <span style="color:Blue;">End</span> <span style="color:Blue;">Property</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Class</span></pre>
+		<div class="codesnippet-meta">
+			Car.vb: Domain model for cars
+			<div class="codedownload">
+				<a href="Example-Code-transactions-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

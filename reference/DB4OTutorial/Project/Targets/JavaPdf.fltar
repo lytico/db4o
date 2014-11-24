@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CatapultTarget
+  Version="1"
+  Comment=""
+  Type="PDF"
+  Destinations=""
+  GlossaryTermConversion="first"
+  conditions=""
+  GetLatestBeforeCompile="true"
+  ConditionTagExpression="include[Primary.Java or Primary.Pdf] "
+  PatchHeadingLevels="true"
+  TargetLanguage="en"
+  MasterStylesheet="/Content/Resources/Stylesheets/PrintStyle.css"
+  OutputFile="db4o-tutorial-java.pdf"
+  OutputFolder=""
+  MasterToc="/Project/TOCs/Primary TOC.fltoc">
+  <DocumentProperties
+    Subject="db4o"
+    Title="db4o Reference Documentation"
+    Author="Versant Corp." />
+  <PDF
+    ShowUsedBookmarks="false" />
+  <Destinations>
+    <Destination
+      Link="/Project/Destinations/db4oref-publish.fldes" />
+  </Destinations>
+  <Glossaries>
+    <Glossary
+      Link="/Project/Glossaries/PrintGlossary.flglo" />
+    <Glossary
+      Link="/Project/Glossaries/SharedGlossar.flglo" />
+  </Glossaries>
+  <Variables>
+    <Variable
+      Name="BaseVariables/Plattform">Java</Variable>
+  </Variables>
+</CatapultTarget>

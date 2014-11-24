@@ -1,0 +1,157 @@
+<project name="objectmanager" default="zip" basedir=".">
+    <description>
+        ObjectManager build file
+    </description>
+
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+    <property name="lib" location="lib"/>
+	<property name="build.root" location="classes"/>
+	<property name="build" location="${build.root}/production"/>
+	<property name="docs" location="docs"/>
+	<property name="launch" location="launch"/>
+	<property name="dist.root" location="dist"/>
+	<property name="dist.version" value="7.0"/>
+	<property name="version.info" value="${dist.version}"/>
+    <property name="webstart" value="webstart"/>
+    <property name="dist-webstart" value="dist-webstart"/>
+
+
+	<path id="class.path">
+        <fileset dir="${lib}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+    	<property name="om.jar" value="objectmanager.jar" />
+    	<property name="dist" location="${dist.root}/${dist.version}"/>
+    	<property name="om-api.jar" value="objectmanager-api.jar" />
+    	
+        <!-- Create the build directory structure used by compile -->
+    	<delete dir="${build.root}" />
+        <delete dir="${dist.root}" />
+    	<delete dir=".">
+    		<include name="objectmanager-*.zip" />
+    	</delete>
+    </target>
+	
+    <target name="compile" depends="init"
+            description="compile the source ">
+		<!-- build dependencies -->
+		<ant antfile="../objectmanager-api/build.xml"
+             dir="../objectmanager-api"
+             target="dist"
+             inheritAll="false">
+			<property name="om-api.jar" value="${om-api.jar}" />
+		</ant>
+		<!-- copy dependencies -->
+		<copy  todir="./lib/">
+			<fileset dir="../objectmanager-api/lib/"/>
+		</copy>
+		<copy todir="${lib}" >
+			<fileset dir="../objectmanager-api/dist/lib/">
+				<include name="objectmanager-api*.jar" />
+    		</fileset>
+    	</copy>
+        <!-- Compile from ${src} into ${build} -->
+    	<mkdir dir="${build}" />
+        <javac srcdir="${src}" destdir="${build}"
+				debug="true" 
+				source="1.5" target="1.5">
+            <classpath refid="class.path"/>
+        </javac>
+		<!-- copy resources -->
+		<copy todir="${build}" filtering="false">
+            <fileset dir="${src}">
+                <include name="**/*.gif"/>
+                <include name="**/*.jpg"/>
+                <include name="**/*.png"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="dist" depends="compile"
+            description="generate the distribution">
+
+        <mkdir dir="${dist}/lib"/>
+
+		<echo file="${build}/com/db4o/objectManager/v2/Version"
+    		message="version=${version.info}" />
+
+		<copy todir="${dist}/lib">
+            <fileset dir="${lib}"/>
+        </copy>
+        <jar jarfile="${dist}/${om.jar}" basedir="${build}">
+            <manifest>
+                <attribute name="Class-Path"
+                           value="lib/${db4o.version} lib/db4o-sql.jar lib/looks-2.0.4.jar lib/forms-1.0.7.jar lib/${om-api.jar} lib/db4o-java1.2.jar lib/db4o-taj.jar lib/db4o-instrumentation.jar lib/bloat-1.0.jar"/>
+                <attribute name="Main-Class" value="com.db4o.objectManager.v2.Dashboard"/>
+            </manifest>
+        </jar>
+
+		<copy todir="${dist}/docs">
+            <fileset dir="${docs}"/>
+        </copy>
+
+		<copy todir="${dist}">
+            <fileset dir="${launch}"/>
+        </copy>
+		
+		<echo file="${dist}/objectmanager.sh" message="java -jar ${om.jar}"/>
+    	<echo file="${dist}/objectmanager.bat" message="java -jar ${om.jar}"/>
+    	
+	</target>
+    <target name="dist-webstart" depends="dist">
+
+        <property name="wslib" value="${dist-webstart}/lib"/>
+        <mkdir dir="${wslib}"/>
+        <copy todir="${wslib}">
+            <fileset dir="${dist}/lib"/>
+        </copy>
+        <copy todir="${wslib}" file="${dist}/objectmanager.jar"/>
+        <copy todir="${dist-webstart}">
+            <fileset dir="${webstart}"/>
+            <filterset>
+                <filter token="DB4O_VERSION" value="${db4o.version}"/>
+            </filterset>
+        </copy>
+
+        <!-- now sign all jars -->
+        <property name="alias" value="db4objects"/>
+        <property name="keystore" value=".keystore-db4o"/>
+        <!-- todo: make it so it doesn't have to delete the whole keystore -->
+        <delete file="${keystore}"/>
+        <genkey alias="${alias}" storepass="secret" keystore="${keystore}">
+            <dname>
+                <param name="CN" value="db4objects Inc."/>
+                <param name="OU" value="ObjectManager"/>
+                <param name="O" value="db4objects"/>
+                <param name="C" value="US"/>
+            </dname>
+        </genkey>
+
+        <!-- There's gotta be a better way than this -->
+        <signjar jar="${wslib}/${db4o.version}" alias="${alias}" storepass="secret" keystore="${keystore}"/>
+        <signjar jar="${wslib}/db4o-sql.jar" alias="${alias}" storepass="secret" keystore="${keystore}"/>
+        <signjar jar="${wslib}/forms-1.0.7.jar" alias="${alias}" storepass="secret" keystore="${keystore}"/>
+        <signjar jar="${wslib}/looks-2.0.4.jar" alias="${alias}" storepass="secret" keystore="${keystore}"/>
+        <signjar jar="${wslib}/${om-api.jar}" 
+        	alias="${alias}" storepass="secret" keystore="${keystore}"/>
+        <signjar jar="${wslib}/objectmanager.jar" alias="${alias}" storepass="secret" keystore="${keystore}"/>
+
+    </target>
+
+    <target name="zip" depends="dist" description="Create the distribution zip file.">
+		<zip destfile="$objectmanager-{dist.version}-java.zip" basedir="${dist.root}" />
+    </target>
+
+    <target name="clean"
+            description="clean up">
+        <!-- Delete the ${build} and ${dist} directory trees -->
+        <delete dir="${build.root}"/>
+        <delete dir="${dist.root}"/>
+        <delete dir="${dist-webstart}"/>
+        <delete dir="bin"/>
+	</target>
+</project>

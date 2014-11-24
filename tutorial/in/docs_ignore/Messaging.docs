@@ -1,0 +1,75 @@
+.n
+.a Messaging ..
+.0 Messaging ..
+
+In client/server mode the TCP connection between the client ._
+and the server can also be used to send messages from the ._
+client to the server.
+
+Possible usecases could be:
+- shutting down and restarting the server
+- triggering server backup
+- using a customized login strategy to restrict the number ._
+of allowed client connections
+
+Here is some example code how this can be done.
+
+First we need to decide on a class that we want to use as the ._
+message. Any object that is storable in db4o can be used as ._
+a message, but strings and other simple types will not be ._
+carried (as they are not storable in db4o on their own). Let's ._
+create a dedicated class:
+
+.c class MyClientServerMessage {
+
+    private String info;
+
+    public MyClientServerMessage(String info){
+        this.info = info;
+    }
+    
+    public Strint toString(){
+        return "MyClientServerMessage: " + info;
+    }
+
+}
+..
+
+Now we have to add some code to the server to react to arriving ._
+messages. This can be done by configuring a MessageRecipient ._
+object on the server. Let's simply print out all objects ._
+that arrive as messages. For the following we assume that we already ._
+have an ObjectServer object, opened with  .l ClientServer Db4o.openServer() ..  .
+
+.c objectServer.ext().configure().setMessageRecipient(
+
+    new MessageRecipient() {
+    
+        public void processMessage(
+            ObjectContainer objectContainer, 
+            Object message) {
+            
+            // message objects will arrive in this code block
+            
+            System.out.println(message);
+            
+        }
+    
+    });
+..
+
+Here is what we would do on the client to send the message:
+
+.c MessageSender sender = 
+  clientObjectContainer.ext().configure().getMessageSender();
+  
+sender.send(new MyClientServerMessage("Hello from client.");
+..
+
+The MessageSender object on the client can be reused to send ._
+multiple messages.
+  
+  
+
+
+

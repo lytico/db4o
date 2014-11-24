@@ -1,0 +1,561 @@
+.n
+.a Hibernate Replication ..
+.0 Hibernate Replication ..
+
+In this chapter, we will look into several examples that showcase the Hibernate Replication feature.
+.1 Basics
+Let's take a look at what you have to do in order to use the Hibernate Replication feature. ._
+
+.2 hibernate.cfg.xml ..
+Hibernate requires a xml configuration file (hibernate.cfg.xml) to run. In order to run dRS with Hibernate, ._
+the user has to set some parameters in the configuration file. 
+.c
+<hibernate-configuration>
+	<session-factory>
+		<!-- Database connection settings -->
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@ws-peterv:1521:websys</property>
+
+		<property name="hibernate.connection.username">db4o</property>
+		<property name="hibernate.connection.password">db4o</property>
+
+		<!-- JDBC connection pool (use the built-in) -->
+		<property name="hibernate.connection.pool_size">1</property>
+
+		<!-- SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="hibernate.show_sql">false</property>
+
+		<!-- Update the database schema if out of date -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<property name="hibernate.jdbc.batch_size">0</property>
+	</session-factory>
+</hibernate-configuration>
+..
+
+For the property "hibernate.connection.pool_size", dRS requires only 1 connection to the RDBMS, ._
+increasing it will not have any effect. "hibernate.jdbc.batch_size" is set to 0 is for easier debugging. ._
+You may increase it to batch SQL statements to potentially increase performance.
+
+It is a MUST that "hibernate.hbm2ddl.auto" be set to "update" because the system will create some extra tables ._
+to store the metadata for replication to work properly.
+.c
+<property name="hibernate.hbm2ddl.auto">update</property>
+..
+
+.2 Turning off the automatic creation of dRS tables and columns ..
+In some situations, you may not have the privilege to create or alter tables. You may need to ask your DBA ._
+to create the tables for you before using dRS.
+
+You can turn off the automatic creation of dRS tables and columns by changing the "hibernate.hbm2ddl.auto" ._
+property to "validate" in hibernate.cfg.xml. By doing so, dRS will not create or alter any tables. Rather, ._
+it will check the existence of the dRS tables before starting replication.
+
+If the required dRS tables do not exist, dRS will throw a RuntimeException notifying the user ._
+and the replication will halt.
+
+.2 Hibernate mapping files ..
+Persisted Objects are objects that the user wants to store to the database, e.g. cars, pilots, purchase orders.
+
+For dRS to operate properly, for each persisted object, the user MUST declare the primary key column of the database table in the hbm.xml mapping file as follow:
+.c
+<id column="typed_id" type="long">
+    <generator class="native"/>
+</id> ..
+    - column - The name of the primary key column. The value can be well-formed string . "typed_id" is recommended.
+    - type - MUST be "long"
+    - class - MUST be "native"
+
+The "typed_id" column stores the id used by Hibernate. It allows dRS to identify a persisted object by invoking org.hibernate.Session#getIdentifier(Object object).
+
+If you do not define getter/setter for property, make default-access="field". default-lazy="false" default-cascade="save-update" ._
+is required for replication to work properly. Note, you should not set the cascade style to "delete", otherwise deletion replication ._
+will not work.
+
+.1 Detecting object changes ..
+This section describes how do you configure dRS to detect object changes.
+
+When using Hibernate normally outside dRS, It is crucial to follow these procedures ._
+so that dRS can detect new/changed objects and replicate them during replication sessions.
+
+.c 
+// Read or create the Configuration as usual
+Configuration cfg = new Configuration().configure("your-hibernate.cfg.xml");
+
+// Let the ReplicationConfigurator adjust the configuration
+ReplicationConfigurator.configure(cfg);
+
+// Create the SessionFactory as usual
+SessionFactory sessionFactory = cfg.buildSessionFactory();
+
+// Create the Session as usual
+Session session = sessionFactory.openSession();
+
+// Let the ReplicationConfigurator install the listeners to the Session
+ReplicationConfigurator.install(session, cfg);
+
+//Update objects as usual
+Transaction tx = session.beginTransaction();
+Pilot john = (Pilot) session.createCriteria(Pilot.class) .add(Restrictions.eq("name", "John")).list().get(0);
+john.name = "Anna";
+// Remember to call flush() before commit()
+session.flush();
+tx.commit();
+..
+
+.1 Running dRS
+So much preparation. Now it's the time to run dRS to do some replications! ._
+Before that, here are some precautions:
+
+1 - Do not open more than one dRS replication session against the same RDBMS concurrently. ._
+Otherwise data corruption will occur.
+2 - When dRS is in progress, do not modify the data in the RDBMS by using SQL or Hibernate. ._
+Otherwise data corruption will occur.
+
+Ready to go? Let's go to the next section for some real examples!
+
+.1 Examples ..
+.2 A simple example ..
+A one-to-one association example:
+.c
+public class Pilot {
+	String name;
+	Helmet helmet;
+}
+..
+.c
+public class Helmet {
+	String model;
+}
+..
+A one-to-one association to another persistent class is declared using a one-to-one element.
+.c
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="f1.one_to_one.Pilot">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+		<property name="name"/>
+		<one-to-one name="helmet" lazy="false"/>
+	</class>
+</hibernate-mapping>
+..
+Remember to add mappings in hibernate.cfg.xml
+.c
+<mapping resource="f1/one_to_one/Pilot.hbm.xml"/>
+<mapping resource="f1/one_to_one/Helmet.hbm.xml"/>
+..
+Now, create and save the pilot. Helmet is saved automatically.
+.c
+ExtDb4o.configure().generateUUIDs(Integer.MAX_VALUE);
+ExtDb4o.configure().generateVersionNumbers(Integer.MAX_VALUE);
+
+ObjectContainer objectContainer = Db4o.openFile("OneToOne.yap");
+
+Helmet helmet = new Helmet();
+helmet.model = "Robuster";
+
+Pilot pilot = new Pilot();
+pilot.name = "John";
+pilot.helmet = helmet;
+
+objectContainer.set(pilot);
+objectContainer.commit();
+..
+.a Perform the replication..
+Perform the replication.
+.c
+Configuration config = new Configuration().configure("f1/one_to_one/hibernate.cfg.xml");
+
+ReplicationSession replication = HibernateReplication.begin(objectContainer, config);
+
+ObjectSet changed = replication.providerA().objectsChangedSinceLastReplication();
+
+while (changed.hasNext())
+	replication.replicate(changed.next());
+
+replication.commit();
+replication.close();
+objectContainer.close();
+..
+Here helmet is cascaded from pilot and is replicated automatically.
+.2 Collection ..
+This section covers examples on Collection, including array, Set, List and Map. 
+
+As an experienced db4o user, you may know that db4o treats Collection as first class object, ._
+which means it assigns unique UUID to each Collection. Hence a Collection can be shared among ._
+many owners. This is different to Hibernate's approach, which Collection does not have a unique ID ._
+and they cannot be shared among objects.
+
+To bridge this gap, dRS treats Collections as second class objects and does not assign UUIDs to them. ._
+When a shared Collection is replicated from db4o to Hibernate using dRS, it is automatically cloned. ._
+Each owner of the Collection receives a copy of the Collection. Further modifications to the db4o copy ._
+will not be replicated to cloned copies. Therefore, you cannot share Collections if you want to ._
+perform RDBMS replications with dRS.
+
+In the following examples, we will use Car as the element in the following examples.
+.c
+public class Car {
+	public String brand;
+	public String model;
+}
+..
+.c
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="f1.collection.Car">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+		<property name="brand"/>
+		<property name="model"/>
+	</class>
+</hibernate-mapping>
+..
+
+.3 Array ..
+Hibernate supports one dimensional arrays but does not support multidimensional arrays. ._
+
+.c
+public class Pilot {
+	String name;
+	Car[] cars;
+}
+..
+.c
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="f1.collection.array.Pilot">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+
+		<property name="name"/>
+
+		<array name="cars" table="cars">
+			<key column="pilotId"/>
+			<list-index column="sortOrder"/>
+			<one-to-many class="f1.collection.Car"/>
+		</array>
+	</class>
+</hibernate-mapping>
+..
+Add Pilot and Car to hibernate.cfg.xml
+.c
+<mapping resource="f1/collection/array/Pilot.hbm.xml"/>
+<mapping resource="f1/collection/Car.hbm.xml"/>
+..
+Save the pilot as usual and start replication. You are done!
+.c
+ExtDb4o.configure().generateUUIDs(Integer.MAX_VALUE);
+ExtDb4o.configure().generateVersionNumbers(Integer.MAX_VALUE);
+
+ObjectContainer objectContainer = Db4o.openFile("ArrayExample.yap");
+
+Pilot pilot = new Pilot();
+pilot.name = "John";
+
+Car car1 = new Car();
+car1.brand = "BMW";
+car1.model = "M3";
+
+Car car2 = new Car();
+car2.brand = "Mercedes Benz";
+car2.model = "S600SL";
+
+pilot.cars = new Car[]{car1, car2};
+
+objectContainer.set(pilot);
+objectContainer.commit();
+
+Configuration config = new Configuration().configure("f1/collection/array/hibernate.cfg.xml");
+
+ReplicationSession replication = HibernateReplication.begin(objectContainer, config);
+
+ObjectSet changed = replication.providerA().objectsChangedSinceLastReplication();
+
+while (changed.hasNext())
+	replication.replicate(changed.next());
+
+replication.commit();
+replication.close();
+objectContainer.close();
+..
+.3 List ..
+Similar to array, you can repliate a List of Cars.
+.c
+public class Pilot {
+	String name;
+	List cars;
+}
+..
+Map the List using the list tag in Pilot.hbm.xml
+.c
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="f1.collection.list.Pilot">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+
+		<property name="name"/>
+
+		<list name="cars" table="cars">
+			<key column="pilotId"/>
+			<list-index column="sortOrder"/>
+			<one-to-many class="f1.collection.Car"/>
+		</list>
+	</class>
+</hibernate-mapping>
+..
+Replicate the pilot
+.c
+ExtDb4o.configure().generateUUIDs(Integer.MAX_VALUE);
+ExtDb4o.configure().generateVersionNumbers(Integer.MAX_VALUE);
+
+ObjectContainer objectContainer = Db4o.openFile("ListExample.yap");
+
+Pilot pilot = new Pilot();
+pilot.name = "John";
+
+Car car1 = new Car();
+car1.brand = "BMW";
+car1.model = "M3";
+
+Car car2 = new Car();
+car2.brand = "Mercedes Benz";
+car2.model = "S600SL";
+
+pilot.cars = new ArrayList();
+pilot.cars.add(car1);
+pilot.cars.add(car2);
+
+objectContainer.set(pilot);
+objectContainer.commit();
+
+Configuration config = new Configuration().configure("f1/collection/list/hibernate.cfg.xml");
+
+ReplicationSession replication = HibernateReplication.begin(objectContainer, config);
+
+ObjectSet changed = replication.providerA().objectsChangedSinceLastReplication();
+
+while (changed.hasNext())
+	replication.replicate(changed.next());
+
+replication.commit();
+replication.close();
+objectContainer.close();
+..
+
+.3 Set ..
+Replicating a Set of objects is simple and is similar to the List example.
+.c
+public class Pilot {
+	String name;
+	Set cars;
+}
+..
+Use the set tag.
+.c
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="f1.collection.set.Pilot">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+
+		<property name="name"/>
+
+		<set name="cars" table="cars">
+			<key column="pilotId"/>
+			<one-to-many class="f1.collection.Car"/>
+		</set>
+	</class>
+</hibernate-mapping>
+..
+Begins the replication.
+.c
+ExtDb4o.configure().generateUUIDs(Integer.MAX_VALUE);
+ExtDb4o.configure().generateVersionNumbers(Integer.MAX_VALUE);
+
+ObjectContainer objectContainer = Db4o.openFile("SetExample.yap");
+
+Pilot pilot = new Pilot();
+pilot.name = "John";
+
+Car car1 = new Car();
+car1.brand = "BMW";
+car1.model = "M3";
+
+Car car2 = new Car();
+car2.brand = "Mercedes Benz";
+car2.model = "S600SL";
+
+pilot.cars = new HashSet();
+pilot.cars.add(car1);
+pilot.cars.add(car2);
+
+objectContainer.set(pilot);
+objectContainer.commit();
+
+Configuration config = new Configuration().configure("f1/collection/set/hibernate.cfg.xml");
+
+ReplicationSession replication = HibernateReplication.begin(objectContainer, config);
+ObjectSet changed = replication.providerA().objectsChangedSinceLastReplication();
+
+while (changed.hasNext())
+	replication.replicate(changed.next());
+
+replication.commit();
+replication.close();
+objectContainer.close();
+..
+As you can see, these examples are very similar to each other.
+.3 Map ..
+Replication supports replicating a Map of objects.
+.c
+public class Pilot {
+	String name;
+	Map cars;
+}
+..
+Use the map element to define the Map in the hbm file.
+.c
+<hibernate-mapping default-access="field" default-lazy="false" default-cascade="save-update">
+	<class name="f1.collection.map.Pilot">
+		<id column="typed_id" type="long">
+			<generator class="native"/>
+		</id>
+
+		<property name="name"/>
+
+		<map name="cars" table="cars">
+			<key column="pilotId"/>
+			<map-key type="string"/>
+			<one-to-many class="f1.collection.Car"/>
+		</map>
+	</class>
+</hibernate-mapping>
+..
+Begins the replication.
+.c
+ExtDb4o.configure().generateUUIDs(Integer.MAX_VALUE);
+ExtDb4o.configure().generateVersionNumbers(Integer.MAX_VALUE);
+
+ObjectContainer objectContainer = Db4o.openFile("MapExample.yap");
+
+Pilot pilot = new Pilot();
+pilot.name = "John";
+
+Car car1 = new Car();
+car1.brand = "BMW";
+car1.model = "M3";
+
+Car car2 = new Car();
+car2.brand = "Mercedes Benz";
+car2.model = "S600SL";
+
+pilot.cars = new HashMap();
+pilot.cars.put("car1", car1);
+pilot.cars.put("car2", car2);
+
+objectContainer.set(pilot);
+objectContainer.commit();
+
+Configuration config = new Configuration().configure("f1/collection/map/hibernate.cfg.xml");
+
+ReplicationSession replication = HibernateReplication.begin(objectContainer, config);
+ObjectSet changed = replication.providerA().objectsChangedSinceLastReplication();
+
+while (changed.hasNext())
+	replication.replicate(changed.next());
+
+replication.commit();
+replication.close();
+objectContainer.close();
+..
+
+.1 Hibernate Replication internals  ..
+So far we have seen that dRS allows you to replicate objects between db4o and relational database. ._
+You maybe curious that how dRS keeps track of the identity of objects in relational database and how ._
+dRS knows which objects are changed since last round of replication. Read on and you will see how ._
+dRS does that.
+
+dRS internal objects keep information used by dRS. Each internal object is associated with a ._
+Hibernate mapping file (.hbm.xml). Hibernate reads these files and understands  ._
+how to store / retrieve these internal objects to / from the RDBMS. Each type of internal object maps to one table in  ._
+RDBMS. If such table does not exist, Hibernate creates it automatically.
+
+.2 ProviderSignature, MySignature and PeerSignature ..
+
+ProviderSignature uniquely identifies a ReplicationProvider. MySignature and PeerSignature are the subclasses of ProviderSignature. A HibernateReplicationProvider has a MySignature to serve as its own identity. PeerSignature identifies the peer ReplicationProvider during a ReplicationSession.
+
+.2 Record ..
+
+Record contains the version of the RDBMS during a ReplicationSession. Near the end of a ReplicationSession, two ReplicationProviders synchronize their versions.
+
+Record allows dRS to detect changed objects. dRS detects changed objects by comparing the version of an object (v) with the maximum version of all Records (m). An object is updated if v > m.
+
+.2 UUID ..
+
+UUID uniquely identifies a persisted object.
+
+As seen in the Persisted Objects section, each persisted object is identified by an "typed_id". This "typed_id" is unique only with its type of that object (i.e. A car has an "typed_id" of 1534, a Pilot can also has an "typed_id" of 1534) and within the current RDBMS.
+
+How do we identify "a Pilot that is originated from Oracle instance pi2763" ? To do so, we need two parameters:
+
+   1. an id that is unique across types
+   2. associates this id with the ProviderSignature of the RDBMS (The RDBMS that owns this object)
+.c
+class UUID {
+    long longPart;
+    ProviderSignature provider;
+}
+..
+Collectively, 1 and 2 forms the "UUID".
+ 
+.2 ObjectReference ..
+
+ObjectReference contains the UUID and the version of a persisted object. It also contains the className and the typed_id of that persisted object.
+
+UUID forms an 1 to 1 relationship with {className, typedId}.
+
+.c
+class ObjectReference {
+    String className;
+    long typedId;
+    Uuid uuid;
+    long version;
+}
+..
+
+.2 List of dRS tables ..
+
+.3 Table: drs_providers ..
+
+Column			Type			Function
+id 					long 			synthetic, auto-increment primary key
+is_my_sig 		char(1) 	't' if MySignature, 'f' if PeerSignature
+signature 		binary 		holds the unique identifier - byte array
+created 		long 			legacy field used by pre-dRS db4o replication code
+
+.3 Table: drs_history ..
+
+Column			Type			Function
+provider_id 	long			primary key, same as the PK of a PeerSignature
+time 				long			the version of the RDBMS during a ReplicationSession
+
+.3 Table: drs_objects ..
+Column			Type			Function
+id					long			synthetic, auto-increment primary key
+created			long			the UUID long part of this ObjectReference
+provider_id	long			specifies the originating ReplicationProvider of this ObjectReference
+class_name	varchar		the type of the referenced object
+typed_id		long			the id used by Hibernate, which is only unique within its type
+modified		long			the version of the referenced object

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2087" MadCap:lastWidth="693">
+    <head>
+    </head>
+    <body>
+        <h1>Replicating to a Mobile Device</h1>
+        <p>To replicate against VOD you need all the dependencies for VOD which also includes some native libraries. How can you avoid these extra dependencies? </p>
+        <h2><a name="Workaround"></a>The Workaround</h2>
+        <p>Currently there is one work-around. You can start up a db4o server, which acts an intermediate replication server. The clients replicate against that db4o server and the server then replicates to the VOD server. These are the steps which you need to do:</p>
+        <ol>
+            <li>Setup a db4o server.</li>
+            <li>Setup a periodic replication between the db4o server and VOD.</li>
+            <li>Create the clients, which replicate against the db4o server.</li>
+        </ol>
+        <p>
+            <img src="mobile_replication.png" />
+        </p>
+        <h2><a name="Intermediate"></a>Setup the Intermediate db4o Server</h2>
+        <p>The intermediate db4o server will act as replication server. It needs following dependencies:</p>
+        <MadCap:snippetBlock src="../../Snippets/VODDrsClasspath.flsnp" />
+        <ul>
+            <li>db4o-X.XX-cs-java5.jar (not needed when you use the db4o-X.XX-all-java5.jar)</li>
+        </ul>
+        <p>After that you can start a db4o server. Note that it is a pure in memory server, since it does not act a persistent store. For more details take a look at the db4o reference documentation.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/vod/IntermediateDb4oServer-Setup-server.all.flsnp" />
+        <h2><a name="Periodic"></a>Setup Periodic Replication</h2>
+        <p>The next step is to setup periodic replication between the VOD server and the db4o server. Take a look at how to replicate <a href="vod_replication.htm">against VOD here</a>. The only difference is that it is executed periodically against the intermediate db4o server.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/vod/IntermediateDb4oServer-Schedule-every-10-seconds.all.flsnp" />
+        <p>The replication against VOD is the same <a href="vod_replication.htm">like here</a>, but with a db4o client.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/vod/IntermediateDb4oServer-Replicate-with-the-db4o-server.all.flsnp" />
+        <h2><a name="Client"></a>The Client</h2>
+        <p>Now the client doesn't need any VOD dependencies, since we replicate via a db4o server. It needs these dependencies:</p>
+        <ul>
+            <li>db4o-X.XX-core-java5.jar (or db4o-X.XX-all-java5.jar)</li>
+            <li>dRS-X.XX-core.jar</li>
+            <li>db4o-X.XX-cs-java5.jar (not needed when you use the db4o-X.XX-all-java5.jar)</li>
+        </ul>
+        <p>Additionally the client needs the classes of the stored objects, but the not enhanced version of the classes. So you have to make sure that you've  the original classes on the client and the enhanced classes on the server.</p>
+        <p>After that the replication is very easy. You just connect to the db4o server and replicate the objects. <MadCap:xref href="../db4o_databases_replication/bi-directional_replication.htm" target="" title="" alt="">See "Bidirectional Replication"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/vod/ClientReplicator-Replicate-against-the-db4o-intermediate-server.all.flsnp" />
+    </body>
+</html>

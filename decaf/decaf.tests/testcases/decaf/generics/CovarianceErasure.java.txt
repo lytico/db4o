@@ -1,0 +1,25 @@
+package decaf.generics;
+
+interface IBase<T> {
+	public T get(T value);
+}
+
+class Base<T> implements IBase<T> {
+	public T get(T value) {
+		return value;
+	}
+}
+
+class C extends Base<String> {
+	public String get(String value) {
+		return value.toUpperCase();
+	}
+}
+
+class Main {
+
+	static void main() {
+		Base<String> b = new C();
+		System.out.println(b.get("42"));
+	}
+}

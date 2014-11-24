@@ -1,0 +1,57 @@
+.n
+.a Configuration ..
+.0 Configuration ..
+
+db4o provides a wide range of configuration methods to request ._
+special behaviour. For a complete list of all available methods ._
+see the API documentation for the com.db4o.config package.
+
+Some hints around using configuration calls:
+
+.1 Scope ..
+Configuration calls can be issued to a global VM-wide configuration ._
+context with
+.c Db4oFactory.Configure() ..
+and to an open IObjectContainer/IObjectServer with 
+.c objectContainer.Ext().Configure()
+objectServer.Ext().Configure() ..
+
+When an IObjectContainer/IObjectServer is opened, the global ._
+configuration context is cloned and copied into the newly opened ._
+IObjectContainer/IObjectServer. Subsequent calls against the global ._
+context with Db4oFactory.Configure() have no effect on open ._
+IObjectContainers/IObjectServers.
+
+.1 Calling Methods ..
+Many configuration methods have to be called before an ._
+IObjectContainer/IObjectServer is opened and will be ignored ._
+if they are called against open IObjectContainers/IObjectServers. ._
+Some examples:
+.c Configuration conf = Db4oFactory.Configure();
+conf.ObjectClass(typeof(Foo)).ObjectField("bar").Indexed(true);
+conf.ObjectClass(typeof(Foo)).CascadeOnUpdate();
+conf.ObjectClass(typeof(Foo)).CascadeOnDelete();
+conf.ObjectClass(typeof(System.Drawing.Image))
+  .translate(new TSerializable());
+conf.GenerateUUIDs(int.MAX_VALUE);
+conf.GenerateVersionNumbers(int.MAX_VALUE);
+conf.AutomaticShutDown(false);
+conf.LockDatabaseFile(false);
+conf.SingleThreadedClient(true);
+conf.WeakReferences(false); ..
+
+Configurations that influence the database file format will ._
+have to take place, before a database is created, before the ._
+first #OpenXXX() call. Some examples:
+.c Configuration conf = Db4oFactory.Configure();
+conf.BlockSize(8);
+conf.Unicode(false); ..
+
+Configuration settings are  .b not ..  stored in db4o database files. ._
+Accordingly all configuration methods have to be called ._
+ .b every time ..  before an IObjectContainer/IObjectServer is opened. ._
+For using db4o in client/server mode it is recommended to use the ._
+same global configuration on the server and on the client. To ._
+set this up nicely it makes sense to create one application class ._
+with one method that does all the db4o configuration and to deploy ._
+this class both to the server and to all clients.

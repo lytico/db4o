@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1208" MadCap:lastWidth="553">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Query:Native Queries;Native Queries" />Native Queries</h1>
+        <MadCap:snippetBlock src="../../Snippets/linq_instead_of_nq.flsnp" />
+        <p>Wouldn't it be nice to write queries in the programming language that you are using? Wouldn't it be nice if all your query code was 100% typesafe, 100% compile-time checked and 100% refactorable? Wouldn't it be nice if the full power of object-orientation could be used by calling methods from within queries?</p>
+        <p MadCap:conditions="Primary.Java">Native queries allow you do to this. They bring you a nice query interface which doesn't rely on string literals. Because native queries simply use the semantics of your programming language, they are perfectly standardized and a safe choice for the future.</p>
+        <p>Native Queries are available for all platforms supported by db4o.</p>
+        <H2>Principle</H2>
+        <p>Native Queries provide the ability to run one or more lines of code against all instances of a class. Native query expressions should return true to mark specific instances as part of the result set. db4o will attempt to <a href="native_queries/native_query_optimization.htm">optimize native query</a> expressions where possible and use <a href="soda_query.htm">internal query processor</a> to run them against indexes and without instantiating actual objects. </p>
+        <h2>Dependencies</h2>
+        <p MadCap:conditions="Primary..NET">For a good native query performance you need to add these assemblies to your project: Db4objects.Db4o.NativeQueries.dll, Db4object.Db4o.Instrumentation.dll, Cecil.FlowAnalysis.dll and Mono.Cecil.dll. <MadCap:xref href="../../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref></p>
+        <p MadCap:conditions="Primary.Java">For a good native query performance you need to add these jars to your project:db4o-X.XX-nqopt-javax.jar, db4o-X.XX-instrumentation-javax.jar, bloat-1.0.jar. <MadCap:xref href="../../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref></p>
+        <H2>Simple Example</H2>
+        <p>Let's look at how a simple native query will look like. See also a collection of example queries. </p>
+        <MadCap:snippetBlock src="../../CodeExamples/query/nq/NativeQueryExamples-Check-for-equality-of-the-name.all.flsnp" />
+        <H2>Native Query Performance</H2>
+        <p>There's one drawback of native queries: Under the hood db4o tries to analyze native queries to convert them to <a href="soda_query.htm">SODA</a>. This is not possible for all queries. For some queries it is very difficult to analyze the flowgraph. In this case db4o will have to instantiate some of the persistent objects to actually run the native query code. db4o will try to analyze parts of native query expressions to keep object instantiation to the minimum.</p>
+        <p>The current state of the query optimization process is detailed in the chapter on <a href="native_queries/native_query_optimization.htm">Native Query Optimization</a></p>
+        <MadCap:snippetBlock src="../../Snippets/lazy-query-result.flsnp" />
+    </body>
+</html>

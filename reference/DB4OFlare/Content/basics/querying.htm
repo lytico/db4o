@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="301" MadCap:lastWidth="470">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Query" />Querying</h1>
+    <p>db4o supports different query mechanisms.</p>
+    <p MadCap:conditions="Primary..NET">The most convenient query mechanism is <a href="querying/linq.htm">LINQ</a>. You can use .NET's query API to query the objects in your database. </p>
+    <p MadCap:conditions="Primary.Java">
+      <a href="querying/native_queries.htm">Native Queries</a>  is the main db4o query interface, recommended for general use.</p>
+    <p>
+      <a href="querying/query_by_example.htm">Queries-By-Example</a><![CDATA[ ]]>are appropriate as a quick start for users who are still acclimating to storing and retrieving objects with db4o, but they are quite restrictive in functionality.</p>
+    <p>The <a href="querying/soda_query.htm">SODA Query</a> is the underlying internal API. It is provided for backward compatibility and it can be useful for dynamic generation of queries, where Native Queries are too strongly typed. There may be queries that will execute faster in SODA style, so it can be used to tune applications. You can also run snippets of custom query code as part of the SODA query, </p>
+    <p>Of course, you can mix these strategies as needed.</p>
+  </body>
+</html>

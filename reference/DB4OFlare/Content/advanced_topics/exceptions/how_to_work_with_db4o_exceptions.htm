@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="10" MadCap:lastHeight="2456" MadCap:lastWidth="686">
+  <head></head>
+  <body>
+    <h1>How To Work With db4o Exceptions</h1>
+    <p>Appropriate
+exception handling will help you to create easy to support systems, saving your
+time and efforts in the future. The following hints identify important
+places for exception handling. Take also a look at the list of <a href="exception_types.htm">common db4o exceptions</a>.</p>
+    <ol>
+      <li>
+        <p>Opening a database file can throw a DatabaseFileLockedException.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/strategies/exceptions/ImportantExceptionCases-If-the-database-is-already-open.all.flsnp" />
+      </li>
+      <li>
+        <p>Opening a client connection can throw IOException.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/strategies/exceptions/ImportantExceptionCases-Cannot-connect-to-the-server.all.flsnp" />
+      </li>
+      <li>
+        <p>Working with <a href="../unique_constraints.htm">db4o-unique constraints</a> the commit may throw exceptions when the constraints are violated.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/strategies/exceptions/ImportantExceptionCases-Violation-of-the-unique-constraint.all.flsnp" />
+      </li>
+    </ol>
+  </body>
+</html>

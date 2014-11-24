@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="568" MadCap:lastWidth="586">
+    <head>
+    </head>
+    <body>
+        <h1>Identity Vs Equality</h1>
+        <p>One of the most common questions is why db4o  doesn't allow to use equals and hash code to identify objects in the
+database. From the first glance it seems like a very attractive idea to let
+the developer decide what should be the base for comparing objects and making
+them unique in the database. For example if the database identity is based on
+the object's field values it will prevent duplicate objects from being stored
+to the database, as they will automatically be considered one object.</p>
+        <p>Yes, it looks attractive, but there is a huge pitfall: When
+we deal with objects, we deal with their references to each other comprising a
+unique object graph, which can be very complex. Preserving these references
+becomes a task of storing many-to-many relationships. This task can only be
+solved by providing unique identification to each object in memory and not only in the database, which means that it can't
+depend on the information stored in the object (like an aggregate of field values).</p>
+        <p>To see it clearly, let's look at an example. Suppose we have
+a Pilot and a Car class and their equals-method is based on comparing field values:</p>
+        <ol>
+            <li>Store
+     a pilot with the name 'Joe' and a car with that pilot in the database</li>
+            <li>Retrieve
+     the pilot.</li>
+            <li>Change the
+     pilot-name from 'Joe' to 'John'. Note that though it is the
+     same object from the runtime point of view, these are two different objects for
+     the database based on equals comparison.</li>
+            <li>Now what happens when we load the pilot. Should it return a pilot with the original name 'Joe'. Or the update pilot with the 'John'? What happens if there are hundreds of pilots witch had a pilot with the name 'Joe'. Do all those cars return the new Pilot name? Or the old one? How do you update only the name of a Pilot for only one car?</li>
+        </ol>
+        <p>This questions shows that the update-issue is not solvable when the database manages objects by equality. Objects without identity also make Transparent Persistence
+and Activation impossible, as there will be no way to decide which instance is
+the right one for update or activation.</p>
+        <p>So unique identification of database objects in memory is
+unavoidable and identity based on an object reference is the most
+straightforward way to get this identification.</p>
+    </body>
+</html>

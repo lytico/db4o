@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="5785" MadCap:lastWidth="644">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Relations" />Managing Relations</h1>
+        <p>In db4o you manage relations by storing references to other objects. In db4o navigational access is usually a lot faster than queries. Therefore think about how you navigate to the right information. This topic gives an overview how to manage different relations.</p>
+        <h2><a name="1toN-nav"/>1-N Relation: Navigating from 1 to N.</h2>
+        <p>As example we use shopping cards which hold items. In most use cases you need to know which items are on a card. For that you navigate from the card (the 1-part) to the items (the N-part). In this case you simply can use a collection on the shopping card which references all items.</p>
+        <p>Keep in mind that a <a href="../basics/querying/soda/soda_performance_characteristics.htm#CollectionContains">contains-query on collections is very slow</a>. Finding out which items are on a certain shopping cards is very slow. If you want to know that, take a look at the suggestions below.</p>
+        <MadCap:snippetBlock src="../CodeExamples/practises/relations/ShoppingCard-Simple-1-n-relation.all.flsnp" />
+        <h2><a name="Nto1-nav"/>1-N Relation: Navigating from N to 1</h2>
+        <p>Imagine that you store people and in which country a person is born. Here you usually navigate from the person (the N-part) to the country (the 1-part). Therefore you can have a field which refers to the country.</p>
+        <p>In the rare case where you want to know all people born in a certain country you can do a query. When the country reference is <a href="../basics/indexing.htm">indexed</a>, then that query is fast.</p>
+        <MadCap:snippetBlock src="../CodeExamples/practises/relations/Person-Simple-1-n-relation.all.flsnp" />
+        <p>Getting all people of a country is not that hard and fast when the ‘bornIn’ field is indexed.</p>
+        <MadCap:snippetBlock src="../CodeExamples/practises/relations/RelationManagementExamples-Query-for-people-burn-in-a-country.all.flsnp" />
+        <h2><a name="1toN-bidirect"/>1-N Relation: Bidirectional</h2>
+        <p>When you want to navigate a 1-N relationship bidirectional you can use the method above, because the query if fast enough. Just ensure that you index the field holding the reference.</p>
+        <p>Alternatively you also can add an additional collection which holds the items. However in that case you need to manually manage the consistency of the relation.</p>
+        <p>For example the relationship between dogs and their owners. The dog has a field with its owner, while the person has a collection of his dogs. The setters then manage the relationship and ensure that it is always consistent.</p>
+        <MadCap:snippetBlock src="../CodeExamples/practises/relations/Dog-Bidirectional-1-N-relations.-The-dog-has-a-owner.java.flsnp" />
+        <MadCap:snippetBlock src="../CodeExamples/practises/relations/Person-Bidirectional-1-N-relations.-The-person-has-dogs.java.flsnp" />
+        <h2><a name="NtoN-nav"/>N-N Relations: One Way Navigation</h2>
+        <p>Like 1-N relations N-N relations also can be one directional. For example a person can have multiple citizenships in different countries. Let's suppose that you only want to know the citizenship of a person and not the citizens of a country. Then you navigate from people to countries. You can store that in a simple collection.</p>
+        <p>Keep in mind that a <a href="../basics/querying/soda/soda_performance_characteristics.htm#CollectionContains">contains-query on a collection is very slow</a>. Finding the people of a certain country will be very slow.</p>
+        <MadCap:snippetBlock src="../CodeExamples/practises/relations/Person-One-directional-N-N-relation.all.flsnp" />
+        <h2><a name="NtoN-bidirect"/>N-N Relations: Bidirectional Navigation</h2>
+        <p>For managing bidirectional N-N relations you can use collections, but maintain a collection on both sides. For example a club has a member-list and each member has a list of clubs where he is a member.</p>
+        <p>Keep in mind that a <a href="../basics/querying/soda/soda_performance_characteristics.htm#CollectionContains">contains-query on a collection is very slow</a>. That's why you maintain two collections, so that you can navigate to the club-members or club-membership. </p>
+        <MadCap:snippetBlock src="../CodeExamples/practises/relations/Club-Bidirectional-N-N-relation.all.flsnp" />
+        <MadCap:snippetBlock src="../CodeExamples/practises/relations/Person-Bidirectional-N-N-relation.all.flsnp" />
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Dim</span> theCar <span style="color:Blue;">As</span> Car = container.Query(Of Car)()(0)
+<span style="color:Blue;">Dim</span> thePilot <span style="color:Blue;">As</span> Pilot = container.Query(Of Pilot)()(0)
+<span style="color:Blue;">Dim</span> pilotViaCar <span style="color:Blue;">As</span> Pilot = theCar.Pilot
+AssertTrue(ReferenceEquals(thePilot, pilotViaCar))</pre>
+		<div class="codesnippet-meta">
+			IdentityConcepts.vb: db4o ensures reference equality
+			<div class="codedownload">
+				<a href="Example-Code-identiy-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

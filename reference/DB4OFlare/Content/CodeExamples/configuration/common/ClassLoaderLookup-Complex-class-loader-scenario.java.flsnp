@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> ClassLoaderLookup <span style="color:Blue;">implements</span> JdkLoader {
+    <span style="color:Blue;">private</span> <span style="color:Blue;">final</span> List&lt;ClassLoader&gt; classLoaders;
+
+
+    ClassLoaderLookup(ClassLoader...classLoaders) {
+        <span style="color:Blue;">this</span>.classLoaders = Arrays.asList(classLoaders);
+    }
+
+    ClassLoaderLookup(Collection&lt;ClassLoader&gt; classLoaders) {
+        <span style="color:Blue;">this</span>.classLoaders = <span style="color:Blue;">new</span> ArrayList&lt;ClassLoader&gt;(classLoaders);
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> Class loadClass(String className) {
+        <span style="color:Blue;">for</span> (ClassLoader loader : classLoaders) {
+            Class&lt;?&gt; theClass = <span style="color:Blue;">null</span>;
+            <span style="color:Blue;">try</span> {
+                theClass = loader.loadClass(className);
+                <span style="color:Blue;">return</span> theClass;
+            } <span style="color:Blue;">catch</span> (ClassNotFoundException e) {
+                <span style="color:Green;">// first check the other loaders</span>
+            }
+        }
+        <span style="color:Blue;">throw</span> <span style="color:Blue;">new</span> RuntimeException(<span style="color:Blue;">new</span> ClassNotFoundException(className));
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> Object deepClone(Object o) {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> ClassLoaderLookup(classLoaders);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			ClassLoaderLookup.java: Complex class loader scenario
+			<div class="codedownload">
+				<a href="Example-configuration-common-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

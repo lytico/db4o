@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">Query query = container.query();
+query.constrain(Pilot.<span style="color:Blue;">class</span>);
+query.sortBy(<span style="color:Blue;">new</span> QueryComparator&lt;Pilot&gt;() {
+    <span style="color:Blue;">public</span> <span style="color:Blue;">int</span> compare(Pilot o, Pilot o1) {
+        <span style="color:Green;">// sort by string-length</span>
+        <span style="color:Blue;">return</span> (<span style="color:Blue;">int</span>)Math.signum(o.getName().length() - o1.getName().length());
+    }
+});
+
+<span style="color:Blue;">final</span> ObjectSet&lt;Object&gt; result = query.execute();</pre>
+		<div class="codesnippet-meta">
+			SodaSorting.java: Order by your comparator
+			<div class="codedownload">
+				<a href="Example-query-soda-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

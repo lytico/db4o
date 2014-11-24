@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> LRUCachingStorage <span style="color:Blue;">extends</span> CachingStorage {
+    <span style="color:Blue;">private</span> <span style="color:Blue;">final</span> <span style="color:Blue;">int</span> pageCount;
+
+    <span style="color:Blue;">public</span> LRUCachingStorage(Storage storage) {
+        <span style="color:Blue;">super</span>(storage);
+        <span style="color:Blue;">this</span>.pageCount = 128;
+    }
+
+    <span style="color:Blue;">public</span> LRUCachingStorage(Storage storage, <span style="color:Blue;">int</span> pageCount, <span style="color:Blue;">int</span> pageSize) {
+        <span style="color:Blue;">super</span>(storage, pageCount, pageSize);
+        <span style="color:Blue;">this</span>.pageCount = pageCount;
+    }
+
+    @Override
+    <span style="color:Blue;">protected</span> Cache4&lt;Long, Object&gt; newCache() {
+        <span style="color:Blue;">return</span> CacheFactory.newLRUCache(pageCount);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			LRUCachingStorage.java: Exchange the cache-implementation
+			<div class="codedownload">
+				<a href="Example-configuration-io-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,24 @@
+body{font-family:Verdana, Arial, Helvetica; font-size:10pt; color:black; background-color:white; font-weight:normal}
+p{font-family:Verdana, Arial, Helvetica; font-size:10pt; color:black; background-color:white; font-weight:normal}
+h1{font-family:Verdana, Arial, Helvetica; font-size:12pt; color:black; background-color:white; font-weight:bold}
+h2{font-family:Verdana, Arial, Helvetica; font-size:10pt; color:black; background-color:white; font-weight:bold}
+small{font-family:Verdana, Arial, Helvetica; font-size:5pt; color:black; background-color:white; font-weight:normal}
+code{font-family:Courier; font-size:10pt; color:black; background-color:#efefef; font-weight:normal}
+b{font-weight: bold}
+td{font-family:Verdana, Arial, Helvetica; font-size:10pt; color:black; background-color:white; font-weight:normal}
+.lg{background-color:#efefef} 
+.co{background-color:#a0a0a0} 
+.console {
+	z-index:1;
+	float:none;
+	width:100%;
+	position:fixed;
+	height:150px;
+	bottom:0px;
+	left:0px;
+	overflow: hidden;
+}
+.button {
+	background-color: #ADD65C;
+	color: #666177;
+}

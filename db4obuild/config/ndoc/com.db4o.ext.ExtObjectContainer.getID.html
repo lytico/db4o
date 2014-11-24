@@ -1,0 +1,50 @@
+﻿<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </meta>
+    <meta name="generator" content="NDoc 1.3" />
+    <title>ExtObjectContainer.getID Method</title>
+    <link rel="stylesheet" type="text/css" href="ndoc.css">
+    </link>
+    <script src="ndoc.js" type="text/javascript">
+    </script>
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <INPUT class="userDataStyle" id="userDataCache" type="hidden" />
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead" nowrap="true">db4o</td>
+            <td class="product" nowrap="true">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">ExtObjectContainer.getID Method </h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>returns the internal unique object ID.</p>
+<PRE class="syntax"><SPAN class="lang">[Visual Basic]
+</SPAN><b>Function getID( _ 
+   ByVal <i>obj</i> As <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemObjectClassTopic.htm">Object</a> _ 
+) As <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemInt64ClassTopic.htm">Long</a>
+</b><SPAN class="lang">[C#]
+</SPAN><b><a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemInt64ClassTopic.htm">long</a> getID(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemObjectClassTopic.htm">object</a> <i>obj</i>
+);
+</b><SPAN class="lang">[C++]
+</SPAN><b><a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemInt64ClassTopic.htm">__int64</a> getID(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemObjectClassTopic.htm">Object*</a> <i>obj</i>
+);
+</b><SPAN class="lang">[JScript]
+</SPAN><b>function getID(
+   <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemObjectClassTopic.htm">Object</a> <i>obj</i>
+): <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemInt64ClassTopic.htm">long</a>;
+</b></PRE><h4 class="dtH4">Parameters</h4><dl><dt><i>obj</i></dt><dd>any object</dd></dl><h4 class="dtH4">Return Value</h4><p> the associated internal ID or <pre class="code">0</pre>, if the passed object is not stored in this <pre class="code">ObjectContainer</pre>. </p><h4 class="dtH4">Remarks</h4><p> returns the internal unique object ID. <br /><br />db4o assigns an internal ID to every object that is stored. IDs are guaranteed to be unique within one <pre class="code">ObjectContainer</pre>. An object carries the same ID in every db4o session. Internal IDs can be used to look up objects with the very fast <a href="com.db4o.ext.ExtObjectContainer.getByID.html">getByID</a> method.<br /><br /> Internal IDs will change when a database is defragmented. Use <a href="com.db4o.ext.ExtObjectContainer.getObjectInfo.html">com.db4o.ext.ExtObjectContainer.getObjectInfo </a> , <a href="com.db4o.ext.ObjectInfo.getUUID.html">com.db4o.ext.ObjectInfo.getUUID</a> and <a href="com.db4o.ext.ExtObjectContainer.getByUUID.html">com.db4o.ext.ExtObjectContainer.getByUUID </a> for long-term external references to objects.<br /><br />
+            </p><h4 class="dtH4">See Also</h4><p><a href="com.db4o.ext.ExtObjectContainer.html">ExtObjectContainer Interface</a> | <a href="com.db4o.ext.html">com.db4o.ext Namespace</a></p><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" viewastext="true" style="display: none;"><param name="Keyword" value="getID method"></param><param name="Keyword" value="getID method, ExtObjectContainer interface"></param><param name="Keyword" value="ExtObjectContainer.getID method"></param></object><DIV CLASS="footer"><p><center><font color="red"><i>
+								Syntax based on .NET Framework version 1.1.<br /></i></font></center></p></DIV><hr /><div id="footer"><p><a href="http://www.db4o.com/">Copyright (C) 2004 - 2005  Versant Inc.</a></p><p>Generated from assembly db4o [4.3.1.0]</p></div></div>
+  </body>
+</html>

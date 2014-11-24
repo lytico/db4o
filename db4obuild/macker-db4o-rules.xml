@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<!-- experimental macker sample rule set -->
+<macker>    
+    <ruleset name="db4o core rules">
+        <access-rule>
+            <message>foundation should have no dependencies</message>
+            <deny>
+                <from>
+                	<include class="com.db4o.foundation.**" />
+                </from>
+                <to>
+                    <include class="com.db4o.**">
+	                	<exclude class="com.db4o.foundation.**" />
+	                	<exclude class="com.db4o.types.**" />
+                    </include>
+                </to>
+            </deny>
+        </access-rule>
+    </ruleset>
+</macker>

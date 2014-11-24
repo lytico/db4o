@@ -1,0 +1,54 @@
+﻿<navigation:Page x:Class="LinqEverywhere.Views.Query" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Query Page" BorderThickness="1">
+
+        <StackPanel Orientation="Vertical" Name="LayoutRoot">
+        <TextBlock Name="textBlock1" Text="Queries use equality, case sensitive operators." HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Verdana" FontSize="12" />
+        <ListBox Name="listResults" Grid.Column="1" Grid.Row="4" MinWidth="300" MinHeight="100" Margin="0,10,0,0" SelectionChanged="listResults_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name, Mode=OneWay}" Margin="2" MinWidth="100" />
+                            <TextBlock Text="{Binding Age, Mode=OneWay}" Margin="2" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        
+        <Grid x:Name="InnerGrid" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="55"/>
+                <ColumnDefinition Width="345"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Name="labelName" Text="Name" Grid.Row="0" />
+            <TextBox Name="txtName" Grid.Column="1" Grid.Row="0" Text="{Binding Name, Mode=OneTime, ValidatesOnExceptions=True}" />
+            <ComboBox Name="comboOperator" Grid.Row="1" Grid.Column="1">
+                <ComboBoxItem Content="And" />
+                <ComboBoxItem Content="Or" IsSelected="True" />
+            </ComboBox>
+            <TextBlock Name="labelAge" Text="Age" Grid.Row="2" />
+            <TextBox Name="txtAge" Grid.Column="1" Grid.Row="2" Text="{Binding Age, Mode=OneTime, ValidatesOnExceptions=True}" />
+
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" Name="QueryButtons" HorizontalAlignment="Center" Margin="2,0,0,0">
+                <Button Name="buttonCombinedQuery" Content="Query" Click="buttonCombinedQuery_Click" Margin="3,0" ToolTipService.ToolTip="Runs a composite query with Name and Age fields." />
+                <Button Name="buttonQueryForName" Content="Query Name" Click="buttonQueryName_Click" Margin="3,0" ToolTipService.ToolTip="Queries the database for the specific name." />
+                <Button Name="buttonQueryForAge" Content="Query Age" Click="buttonQueryAge_Click" Margin="3,0" ToolTipService.ToolTip="Queries the database for the specific age." />
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+
+</navigation:Page>

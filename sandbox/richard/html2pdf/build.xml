@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="project" default="generate.pdf.all">
+	
+	<target name="init">
+		<property file="ant.properties" />
+		<property name="reference.type.java" value="java" />
+		<property name="reference.type.net" value="net" />
+		<property name="dir.reference.java" value="${dir.docWiki}/java" />
+		<property name="dir.reference.net" value="${dir.docWiki}/net" />
+		<property name="file.content.xml" value="content.xml" />
+
+		<property name="lib" value="lib" />
+		<property name="bin" value="bin" />
+		<property name="src" value="src" />
+	</target>
+
+	<target name="generate.pdf.all" depends="generate.pdf.java, generate.pdf.net" />
+	
+    <target name="generate.pdf.java" depends="init, build.HtmlFileListing">
+    	<convert working.dir="${dir.build.dist}/${reference.type.java}/reference-pdf"
+    			 dir.reference="${dir.reference.java}"
+    			 pdf.filename="${pdf.filename.java}"
+    	/>
+    </target>
+
+    <target name="generate.pdf.net" depends="init, build.HtmlFileListing">
+    	<convert working.dir="${dir.build.dist}/${reference.type.net}/reference-pdf"
+    			 dir.reference="${dir.reference.net}"
+    			 pdf.filename="${pdf.filename.net}"
+    	/>
+    </target>
+	
+ 
+    <macrodef name="convert">
+        <attribute name="working.dir" />
+    	<attribute name="dir.reference" />
+    	<attribute name="pdf.filename" />
+        <sequential>
+ 	
+			<delete dir="@{working.dir}" />
+			<mkdir dir="@{working.dir}" />
+        	
+        	<java fork="true" 
+					jar="${lib}/tidy.jar"
+					output="@{working.dir}/${file.content.xml}"
+					error="fake.error">
+				<arg line="-config ${lib}/tidy.config"/>
+				<arg line="-asxml" />
+				<arg line="@{dir.reference}/html/_contents.html" />
+			</java>
+	       	
+	    	<java classname="tools.HtmlFileListing" failonerror="true" fork="true">
+	    		<classpath>
+	    			<pathelement location="bin" />
+	    		</classpath>
+	    		<arg line="-ref @{dir.reference}/html/" />
+	    		<arg line="-conv @{working.dir}" />
+	    		<arg line="-content @{working.dir}/${file.content.xml}" />
+	    		<arg line="-output-name ${file.list}" />
+	    	</java>
+	   	
+	    	<exec executable="cscript.exe" failonerror="true" >
+	    		<arg line="AcrobatAutomation.vbs" />
+	    		<arg line='"${pdf.title.page}"' />
+	    		<arg line='"@{pdf.filename}"' />
+	    		<arg line='"@{working.dir}/${file.list}"' />
+	    	</exec>
+	    	
+	    	<move file="@{pdf.filename}" todir="@{working.dir}" />   	
+	        	 	
+        </sequential>
+    </macrodef>
+	
+	<target name="build.HtmlFileListing">
+    	<delete dir="${bin}"/>
+		<mkdir dir="${bin}" />
+		<javac srcdir="${src}" destdir="${bin}" />	
+	</target>
+
+
+</project>

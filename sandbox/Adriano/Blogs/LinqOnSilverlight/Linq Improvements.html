@@ -1,0 +1,61 @@
+<p>Hi</p>
+
+<p>Since the announcement of Silverlight support by db4o (read more <a href="http://developer.db4o.com/Blogs/Product/tabid/167/entryid/146/Default.aspx">here</a>, <a href="http://developer.db4o.com/Blogs/Product/tabid/167/entryid/142/Default.aspx">here</a> and <a href="http://developer.db4o.com/Blogs/Product/tabid/167/entryid/157/More-LINQ-improvements.aspx">here</a>) we have been asked about whether LINQ was supported also or not. Unfortunately, until a couple of weeks ago, the answer was a disappointing <b>no</b>;this happened mainly because db4o LINQ implementation relies on some third party libraries that did not support Silverlight.</p>
+<p>Today we are proud to announce that the developer behind these libraries released compatible versions for Silverlight so we took the time and now<b><i> you can run LINQ queries against db4o on Silverlight</b></i> (note that
+even though we've decided to postpone this announcement, to make sure we'd be able to test it properly, actual support was in place since 8.0 release so, the good news is that you already have production quality LINQ support)!</p>
+<p>As you know such announcement cannot come without some sort of sample, so the following (really simple) application shows LINQ being used on SL:</p>
+
+<p> ----- PUT SAMPLE SCREENSHOOT/LINQ TO SOURCES HERE! ---- </p>
+
+<p>Another improvement introduced recently was the support for <a href="http://msdn.microsoft.com/en-us/library/bb357513.aspx">Skip</a>() operator. 
+<b>On db4o versions &lt; 8.1.15588</b>, contrary to what one would expect, the following code</p>
+
+<pre code="c#">
+var result = (from Person p in db
+			  where p.Age > 15
+              select p).Skip(100);			  
+			  
+foreach(var p in result)
+{
+	Console.WriteLine(p);
+}			  
+</pre>
+<p>will not avoid touching the first 100 objects. This happens because the previous Linq expression is translated (by the C# compiler) to something like:</p>
+<pre code="c#">
+var result = Enumerable.Skip(
+                          Where(
+                             db.Cast<Person>(),
+                             p => p.Age > 15
+                          ),
+
+                          100);
+					100);
+
+foreach(var p in result)
+{
+	Console.WriteLine(p);
+}			  
+</pre>
+<p>
+Enumerable.Skip() is not aware of db4o activation so it will just consume (and ignore) the first 100 objects returned from db4o before it start producing results.
+</p>
+<p>
+This poses an, unnecessary, performance penalty in scenarios where the result is paged (a common pattern in todays software) we decided to implement the Skip() operator so it will not activate the <b>skipped</b> objects. If you run the same query on db4o &gt;= 8.1.15588 the compiled code will looks something like:</p>
+<pre code="c#">
+var result = Db4oLinqQueryExtensions.Skip(
+					Where(
+							db.Cast<Person>(),
+							p => p.Age > 15
+					),
+					
+					100);
+					
+foreach(var p in result)
+{
+	Console.WriteLine(p);
+}			  
+</pre>
+<p>Noticed the difference? Now Skip() method is taken from <i>Db4oLinqQueryExtensions</i> (instead of <i>Enumerable</i>) which is aware of db4o activation mechanics so it will avoid activating any skipped objects. The best part is that no configuration is required so if you have code that uses the skip operator all you need to do is recompile using the newer db4o version.</p>
+<p>What do you think?</p>
+<p>Best</p>
+<p>Your db4o team!</p>

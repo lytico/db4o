@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="5671" MadCap:lastWidth="616">
+    <head>
+    </head>
+    <body>
+        <h1>Activation-Concept</h1>
+        <p>Activation is a mechanism which controls object instantiation. Why is this necessary? Let's look at an example. We store person-objects with its parents. Each person object has a reference to his parents, the parents again have references to their parents and so on and so forth. Now we load a person object from the database, what does db4o do? Does it load the person object, its parents and the parents of the parents? Then it probably loads all objects from the database and will use up all memory.</p>
+        <p>
+            <img src="without-activation.png" />
+        </p>
+        <p>Luckily db4o does not behave like this. When a query retrieves objects, their fields are loaded into memory (activated in db4o terms) only to a certain activation depth. In this case depth means "number of member references away from the original object". All the fields beyond the activation depth are set to null or to default values.So db4o does not load the whole object graph at once. Instead, db4o loads only the parts which we are interested in.</p>
+        <p>
+            <img src="with-activation.png" style="width: 614px;height: 464px;" />
+        </p>
+        <h2><a name="ActivationInAction"></a>Activation in Action</h2>
+        <p>Let's see db4o's activation in action. To do so we need a deep object-graph. We create a person class with a mother-field and then create a deep hierarchy of people, for example a hierarchy of seven people.<MadCap:snippetText src="Snippets/See-domain-model.flsnp" /></p>
+        <MadCap:snippetBlock src="CodeExamples/activation/Person-Domain-model-for-people.all.flsnp" MadCap:targetName="domainModel" />
+        <MadCap:snippetBlock src="CodeExamples/activation/ActivationConcept-Store-a-deep-object-hierarchy.all.flsnp" />
+        <p>After that we close the database, reopen it and query for a person. Then we start to traverse the object graph. At a certain point we will reach objects which aren't activated anymore. In those objects all fields are null or have the default value:</p>
+        <MadCap:snippetBlock src="CodeExamples/activation/ActivationConcept-Activation-depth-in-action.all.flsnp" />
+        <p>Since not activate objects have set all their fields to null, they can cause null pointer exceptions:</p>
+        <MadCap:snippetBlock src="CodeExamples/activation/ActivationConcept-NullPointer-exception-due-to-not-activated-objects.all.flsnp" />
+        <h2><a name="DealWithActivation"></a>Deal with Activation</h2>
+        <p>We've seen that activation can cause issues and we have to deal with it. There are different strategies for that.</p>
+        <h3>Directly Activating Objects</h3>
+        <p>We can explicitly activate objects or ask about their activation state. This way we can activate objects when needed. However as soon as we need to activate objects explicitly all over the place in our code we should look for alternatives.</p>
+        <MadCap:snippetBlock src="CodeExamples/activation/ActivationConcept-Check-if-an-instance-is-activated.all.flsnp" />
+        <MadCap:snippetBlock src="CodeExamples/activation/ActivationConcept-Activate-instance-to-a-depth-of-five.all.flsnp" />
+        <h3>Changing Activation Depth</h3>
+        <p>Alternatively we can increase the activation depth globally or for certain types. However we need to be aware that a high activation depth decreases performance. That's why we should be very careful with increasing the activation depth.</p>
+        <MadCap:snippetBlock src="CodeExamples/activation/ActivationConcept-Increase-the-activation-depth-to-10.all.flsnp" />
+        <p>We can even more fine tune the activation depth. However the fundamental issue is the same. When we increase the activation depth it will hurt performance.</p>
+        <MadCap:snippetBlock src="CodeExamples/activation/ActivationConcept-More-activation-options.all.flsnp" />
+        <h3>Transparent Activation / Persistence</h3>
+        <p>The last option we have is transparent activation. Transparent activation takes care of all activation issues. It activates objects as soon as they are needed. To get transparent activation we need to enhance our classes at compile time. Read <a href="transparentpersistence.htm">this section of the tutorial</a> where we use transparent activation.</p>
+    </body>
+</html>

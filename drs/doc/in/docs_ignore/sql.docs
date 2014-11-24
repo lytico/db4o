@@ -1,0 +1,17 @@
+.n
+.a Enterprise Integration ..
+.0 Enterprise Integration ..
+
+.1 Monitoring object updates ..
+This chapter describes how do we monitor object changes in daily usages of Hibernate. ._
+As described in the previous chapter, dRS is able to keep track of object changes. ._
+This is done by listening to the object update events created by the Hibernate ._
+even system.
+
+.1 How to enable the Monitor ..
+
+
+.1 How does the Monitor works ..
+
+ 
+

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1549" MadCap:lastWidth="560">
+    <head>
+    </head>
+    <body>
+        <h1>Creating A Sample Test</h1>
+        <p>Let's create the a extremely simple test case. The first step is to setup db4ounit. The best way is to use db4ounit directly from the source. db4ounit is in the db4o source code folder of the distribution. </p>
+        <p MadCap:conditions="Primary.Java">Open the db4o source-code of the db4o test-projects in Eclipse (or another IDE). The db4ounit projects are called 'db4ounit' and 'db4ounit.extensions'. Then create a new project which references the db4ounit projects. </p>
+        <p MadCap:conditions="Primary..NET">Open the db4o source-code of the db4o test-projects in Visual Studio. The db4ounit projects are called 'Db4oUnit' and 'Db4oUnit.Extensions'. Then create a new project which references the db4ounit projects.</p>
+        <p>After that we're ready to write our first db4ounit test. Create a new class which inherits from AbstractDb4oTestCase. Then add a test-method. Any method which starts with the prefix 'test' is a test method. Then add a main method which starts the test.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/db4otests/ExampleTestCase-Basic-test-case.all.flsnp" />
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

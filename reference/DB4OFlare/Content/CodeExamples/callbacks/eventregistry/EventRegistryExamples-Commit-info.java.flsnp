@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">EventRegistry events = EventRegistryFactory.forObjectContainer(container);
+events.committed().addListener(<span style="color:Blue;">new</span> EventListener4&lt;CommitEventArgs&gt;() {
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> onEvent(Event4&lt;CommitEventArgs&gt; events,
+                        CommitEventArgs eventArgs) {
+        <span style="color:Blue;">for</span>(Iterator4 it=eventArgs.added().iterator();it.moveNext();){
+            LazyObjectReference reference = (LazyObjectReference) it.current();
+            System.out.println(<span style="color:#A31515;">&quot;Added &quot;</span>+reference.getObject());
+        }
+        <span style="color:Blue;">for</span>(Iterator4 it=eventArgs.updated().iterator();it.moveNext();){
+            LazyObjectReference reference = (LazyObjectReference) it.current();
+            System.out.println(<span style="color:#A31515;">&quot;Updated &quot;</span>+reference.getObject());
+        }
+        <span style="color:Blue;">for</span>(Iterator4 it=eventArgs.deleted().iterator();it.moveNext();){
+            FrozenObjectInfo deletedInfo = (FrozenObjectInfo) it.current();
+            <span style="color:Green;">// the deleted info might doesn't contain the object anymore and</span>
+            <span style="color:Green;">// return the null.</span>
+            System.out.println(<span style="color:#A31515;">&quot;Deleted &quot;</span>+deletedInfo.getObject());
+        }
+    }
+});</pre>
+		<div class="codesnippet-meta">
+			EventRegistryExamples.java: Commit-info
+			<div class="codedownload">
+				<a href="Example-callbacks-eventregistry-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

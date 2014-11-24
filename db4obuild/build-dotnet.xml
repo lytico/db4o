@@ -1,0 +1,1225 @@
+<?xml version="1.0"?>
+<project name="Db4objects.Db4o" default="build-net35">
+	<!--
+	The following properties should be specified in machine.properties:
+	
+		dir.lib.sandcastle=<path to sandcastle installation>
+		
+	Notice however that the build will overwrite a few files in the sandcastle installation,
+	if you don't want this, copy your sandcastle installation to a different folder.
+	-->
+	<import file="common-dotnet.xml" />
+
+	<fileset id="db4o.instrumentation.srcfiles" dir="../db4o.instrumentation">
+		<include name="src/com/db4o/instrumentation/api/*.java" />
+		<include name="src/com/db4o/instrumentation/core/DefaultNativeClassFactory.java" />
+	</fileset>
+	
+	<macrodef name="copy-bin">
+		<attribute name="srcdir" />
+		<attribute name="name" />		
+		<element name="additional-files" optional="true" />
+		
+		<sequential>
+			<copy todir="${dir.dist.net.build}/bin/@{name}">
+				<fileset dir="@{srcdir}">
+					<include name="*.dll" />
+					<include name="*.exe" />
+					<include name="*.xml" />
+					
+					<exclude name="*Tests*" />
+					<exclude name="*Db4oUnit*" />
+					<exclude name="*Moq*" />
+	
+					<additional-files />
+				</fileset>
+			</copy>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="copy-bin-set">
+		<attribute name="suffix" default="" />
+		<attribute name="srcdir" />
+		<sequential>
+			<copy-bin srcdir="@{srcdir}" name="net-${target.framework.version}@{suffix}" />
+			<copy-bin srcdir="@{srcdir}/compact" name="compact-${target.framework.version}@{suffix}" />
+			
+			<antcall target="copy-bin-set-silverlight" >
+				<param name="silverlight.source.dir" value="@{srcdir}/silverlight" />
+			</antcall>
+		</sequential>
+	</macrodef>
+	
+	<target name="copy-bin-set-silverlight" if = "silverlight.version">
+			<copy-bin srcdir="${silverlight.source.dir}" name="silverlight-${silverlight.version}">
+					<additional-files>
+						<exclude name="*Test*.*" />
+					</additional-files>
+			</copy-bin>
+		
+			<copy todir="${dir.dist.net.build}/bin/silverlight-${silverlight.version}">			
+				<fileset dir="${dir.config}/net">
+					<include name="readme.silverlight.txt" />
+				</fileset>
+			</copy>		
+	</target>
+	        
+	<target name="check-dependencies">
+	    <condition property="skip.sharpen" >
+	        <equals arg1="true" arg2="${force.skip.sharpen}" />
+	    </condition>
+
+		<uptodate
+			property="skip.sharpen"
+			targetfile="${dir.n.v6.core.src}/LocalTransaction.cs">
+			<srcfiles dir="${dir.j.core.src}" >
+				<include name="**/*.java" />
+				<exclude name="**/**/Db4oVersion.java" />
+			</srcfiles>
+		</uptodate>
+	    
+	    <echo message="force.skip.sharpen = ${force.skip.sharpen}, skip.sharpen = ${skip.sharpen}" />
+	</target>
+	
+	<target name="run-tests-net40"
+			depends="configure-debug, configure-net40, run-additional-linq-tests, run-tests-net"
+			description="Builds and runs all the .net 4.0 relevant test cases">
+	</target>
+		
+	<target name="run-tests-net35"
+			depends="configure-debug, configure-net35, run-additional-linq-tests, run-tests-net"
+			description="Builds and runs all the .net 3.5 relevant test cases (including Visual Basic LINQ and ASTORIA tests)">
+	</target>
+	
+	<target name="run-tests" depends="clean, configure, run-tests-mono, run-tests-net">
+	</target>
+
+	<target name="run-core-tests-instrumented" depends="configure, build-core, build-admin">
+		<mkdir dir="${dir.dist.dll.net}/Instrumented" />
+					
+		<copy todir="${dir.dist.dll.net}/Instrumented" overwrite="true">
+			<fileset dir="${dir.dist.dll.net}">
+				<include name="*.dll" />
+				<include name="*.exe" />
+				<include name="*.pdb" />
+			</fileset>
+		</copy>
+		<exec executable="${dir.dist.dll.net}/Instrumented/Db4oTool.exe" dir="${dir.dist.dll.net}/Instrumented" failonerror="true" timeout="3600000" description="Instrumenting Db4objects.Db4o.Tests.exe">
+			
+			<arg value="-by-name:(Db4objects\.Db4o\.Tests\.(Common|CLI1|CLI2)\.(TA|Activation|Migration|Handlers|(Inside\.Query))\.|NativeQueries|ActivationTestCase)" />
+			<arg value="-not" />
+			
+			<arg value="-debug" />
+			
+			<arg value="-ta"/>
+			<arg value="Db4objects.Db4o.Tests.exe" />
+		</exec>
+		
+		<exec
+			executable="peverify.exe"
+			dir = "${dir.dist.dll.net}/Instrumented"
+			failonerror="true" timeout="3600000"
+			description="Check the instrumented test application">
+			
+			<arg value="Db4objects.Db4o.Tests.exe" />			
+		</exec>
+		
+		<exec 
+			taskname="core.net+instr"
+			executable="${dir.dist.dll.net}/Instrumented/Db4objects.Db4o.Tests.exe"
+			dir = "${dir.dist.dll.net}/Instrumented"
+			failonerror="true" timeout="3600000"
+			description="Running Instrumented Tests">
+		</exec>
+		
+		<delete dir="${dir.dist.dll.net}/Instrumented" />
+	</target>
+		
+	<target name="standalone-run-core-tests-instrumented">
+		<property name="skip.sharpen" value="true" />
+		<antcall target="run-core-tests-instrumented" />
+	</target>
+	
+	<target name="run-tests-core" depends="build-core" unless="skip.tests">
+		<exec taskname="core.net" executable="${dir.dist.dll.net}/Db4objects.Db4o.Tests.exe" failonerror="true" timeout="7200000">
+			<env key="TEMP" value="${Tests.Temp.Path}"/>
+		</exec>
+	</target>
+	
+	<target name="run-tests-admin" depends="build-admin" unless="skip.tests">
+		<exec taskname="tool.net" executable="${dir.dist.dll.net}/Db4oTool.Tests.exe" dir="${dir.dist.dll.net}" failonerror="true" timeout="1800000">
+			<env key="TEMP" value="${Tests.Temp.Path}"/>
+		</exec>
+	</target>
+	
+	<target name="run-tests-net" depends="run-tests-core, run-tests-admin, run-tests-integration-ta, run-msbuild-tests" unless="mono">
+	</target>
+	
+	<target name="run-tests-integration-ta" unless="mono">
+		<ant antfile="build-db4otool-tests-integration.xml" taskname=".Net TA Integration Tests" />
+	</target>
+	
+	<target name="run-tests-mono" depends="build-core-mono" if="mono">
+		<exec taskname="core.mono" executable="${mono.vm.executable}" failonerror="true">
+			<arg value="--debug" />
+			<arg file="${dir.n.v6}/bin/Db4objects.Db4o.Tests.exe" />
+		</exec>
+	</target>
+	
+	<target name="build-core-mono" depends="sharpen-all, prepare-csproject-all" if="mono">
+	    <reset-dir dir="${dir.dist.dll.net}" />
+	    <reset-dir dir="${dir.dist.dll.compact}" />
+	    
+		<exec executable="make" dir="${dir.n.v6}">
+		</exec>
+	</target>
+	
+	<target name="build-prepare-package-net35" depends="build-net35, ndoc, prepare-package-structure, prepare-final-package" description="Build and prepares the complete set of .net 3.5 distros for packaging" />
+	<target name="build-prepare-package-net40" depends="build-net40, ndoc, prepare-package-structure, prepare-final-package" description="Build and prepares the complete set of .net 4.0 distros for packaging" />
+	
+	<target name="meta-package" depends="configure-net35, build-zip, build-net-installer" />
+	
+	<target name="prepare-final-package" depends="properties">
+		<mkdir dir="${dir.dist.net.package}" />
+		<copy todir="${dir.dist.net.package}" overwrite="true">			
+			<fileset dir="${dir.dist.net.build}">
+				<include name="*/**/*" />
+				<include name="*.*" />
+			</fileset>
+		</copy>		
+	</target>	
+	
+	<target name="prepare-package-structure" depends="package-sources, package-binaries, package-docs">
+		
+		<if>
+			<equals arg1="${mono}" arg2="true" />
+			<then>
+				<copy todir="${dir.dist.net.build}">			
+					<fileset dir="${dir.config}/mono">
+						<include name="copying.html" />
+						<include name="readme.html" />
+					</fileset>
+				</copy>
+			</then>
+			<else>
+				<copy todir="${dir.dist.net.build}">			
+					<fileset dir="${dir.config}/net">
+						<include name="db4o.license.html" />
+					</fileset>
+				</copy>
+				
+				<copy todir="${dir.dist.net.build}/bin">			
+					<fileset dir="${dir.config}/net">
+						<include name="Cecil.FlowAnalysis.license.html" />
+						<include name="Mono.Cecil.license.html" />
+						<include name="Mono.GetOptions.license.html" />
+						<include name="System.Linq.Expressions.license.html" />
+					</fileset>
+				</copy>
+				
+				<!-- readme's in distribution folders-->
+				<copy file="${dir.config}/net/readme.html" tofile="${dir.dist.net.build}/readme.html" >
+			        <filterchain>	
+			           <striplinecomments>
+			              <comment value="!"/>
+			           </striplinecomments>
+			           <replacetokens>
+			                <token key="db4o.version.dotted" value="${db4o.version.dotted}"/>
+			            </replacetokens>
+			        </filterchain>
+			    </copy>
+				<copy file="${dir.config}/net/net_doc_readme.html" tofile="${dir.dist.net.build}/doc/readme.html" />
+				<copy file="${dir.config}/net/net_src_readme.html" tofile="${dir.dist.net.build}/src/readme.html" />
+				<copy file="${dir.config}/net/net_bin_readme.html" tofile="${dir.dist.net.build}/bin/readme.html" />
+			
+			</else>
+		</if>
+		
+		<loadfile property="content.gplheader" srcfile="${file.gplheader}" encoding="iso-8859-1" />		
+		<filehead beforePattern="using|namespace|#if" header="${content.gplheader}" >
+			<sources dir="${dir.dist.net.build.src}">
+				<include name="**/*.cs" />
+				<exclude name="**/Libs/**" />
+			</sources>
+		</filehead>
+		
+	</target>
+	
+	<target name="package-sources">
+
+		<mkdir dir="${dir.dist.net.build}" />
+		<mkdir dir="${dir.dist.net.build}/src" />
+	
+		<copy todir="${dir.dist.net.build}/src">
+			<fileset dir="../db4o.net">
+				<include name="**/*.cs" />
+				<include name="**/*.vb" />
+				<include name="**/*.csproj" />
+				<include name="**/*.csdproj" />
+				<include name="**/*.vbproj" />
+				<include name="**/*.sln" />
+				<include name="**/*.html" />
+				<include name="**/*.config" />
+				
+				<include name="Libs/**/*" />
+
+				<include name="**/*.resources" />
+				<include name="**/*.resx" />
+				<include name="**/*.ico" />
+				<include name="**/*.PNG" />
+				
+				<include name="db4objects.snk" />
+				
+				<include name="include.mk" />
+				<include name="**/Makefile" />				
+				
+				<!-- Mono.Cecil and family files -->
+				<include name="**/configure" />
+				<include name="**/*.in" />
+				<include name="**/*.sources" />				
+				<include name="**/AUTHORS" />
+				<include name="**/README" />
+				<include name="**/ChangeLog" />
+				<include name="**/*.build" />
+				<include name="**/*.inc" />
+			
+				<!-- Make sure application configuration files are copied -->
+				<include name="**/AppManifest.xml" />
+	
+				<!-- Silverlight / WPF files -->
+				<include name="**/*.xaml" />
+				
+				<exclude name="**/obj/**" />	
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="package-binaries">
+		<property name="dir.bin" location="${dir.dist.net.build}/bin" />
+	    <reset-dir dir="${dir.bin}" />
+		<copy-bin-set suffix="" srcdir="${dir.dist.dll}"  />
+	</target>
+	
+	<target name="package-api" depends="package-api-net, package-api-mono">
+	</target>
+	
+	<target name="package-api-net" unless="mono">
+		<mkdir dir="${dir.dist.net.build}/doc/api" />
+		<copy todir="${dir.dist.net.build}/doc/api">
+			<fileset dir="${dir.dist.ndoc}">
+				<include name="db4o.chm" />
+				<include name="db4o.HxS" />
+				<include name="db4oCollection.*" />
+			</fileset>
+		</copy>		
+	</target>
+	
+	<target name="package-api-mono" if="mono">
+		<mkdir dir="${dir.dist.net.build}/doc/api" />		
+		<copy todir="${dir.dist.net.build}/doc/api">
+			<fileset dir="${dir.dist.ndoc}" includes="**/**" />
+		</copy>
+	</target>
+	
+	
+	<target name="package-docs" depends="package-api,flare-tutorial-net, flare-net">
+	</target>
+
+	<target name="flare-net" depends="init" if="flare.executable">
+
+		<flare output="${dir.dist.flare.temp}" target="NetPdf" projectDirectory="${flare.project.db4o.folder}"  />
+		<copy file="${dir.dist.flare.temp}/Output/NetPdf/db4o-reference-net.pdf" todir="${dir.dist.net.build.reference}" />
+		
+		<flare output="${dir.dist.flare.temp}" target="NetWeb" projectDirectory="${flare.project.db4o.folder}"  />
+		<copy todir="${dir.dist.net.build.reference}">
+			<fileset dir="${dir.dist.flare.temp}/Output/NetWeb">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="flare-tutorial-net" depends="init" if="flare.executable">
+
+		<flare output="${dir.dist.flare.temp}" target="NetPdf" projectDirectory="${flare.project.db4otutorial.folder}" />
+		<copy file="${dir.dist.flare.temp}/Output/NetPdf/db4o-tutorial-net.pdf" todir="${dir.dist.net.build.tutorial}" />
+		
+		<flare output="${dir.dist.flare.temp}" target="NetWeb" projectDirectory="${flare.project.db4otutorial.folder}"  />
+		<copy todir="${dir.dist.net.build.tutorial}">
+			<fileset dir="${dir.dist.flare.temp}/Output/NetWeb">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+	</target>
+	
+	<!-- this assumes all the .net artifacts were correctly generated on -->
+	<target name="build-zip" depends="properties" >
+	
+		<zip destfile="${dir.dist}/${db4o.file}-net.zip">
+			<fileset dir="${dir.dist.net.package.root}" includes="${folder.build}/**" />
+		</zip>
+		
+	</target>
+	
+	<target name="build-net-installer"  depends="properties" unless="mono">
+		<ant antfile="build-net-installer.xml" inheritall="false">
+			<property name="installer.msi" location="${dir.dist}/${db4o.file}-net.msi" />
+			<property name="installer.product.guid" value="${installer.product.guid}" />
+			<property name="installer.upgrade.guid" value="${installer.upgrade.guid}" />
+			<property name="target.framework.version" value="${target.framework.version}" />
+			<property name="target.vs.version" value="${msbuild.target.platform}" />
+		</ant>
+	</target>
+		
+	<target name="build-net-installer-standalone" depends="init, configure, build-net-installer" />
+	
+	<target name="build-net35" depends="init, configure-net35, build-all" description="Builds Db4o for the .net 3.5 framework including LINQ">
+	</target>
+
+	<target name="build-net40" depends="init, configure-net40, build-all" description="Builds Db4o for the .net 4.0 framework including LINQ">
+	</target>	
+	
+	<target name="check-api" depends="init, configure-net35, build-core, api-diff" description="Compares the api of the current .net version against the last released one">
+	
+		<exec executable="${dir.dist.dll}/ApiDiff.exe">
+			<arg file="${dir.base}/db4o.archives/net-2.0/7.2/Db4objects.Db4o.dll" />
+			<arg file="${file.dll.net}" />
+		</exec>
+	
+	</target>
+
+	<target name="build-all" depends="check-dependencies, build-core, build-admin, build-omn">
+	</target>
+	
+	<target name="api-diff">
+		<msb solution="${dir.build.src}/ApiDiff/ApiDiff" />
+	</target>
+
+	<target name="build-db4ounit-extensions" depends="build-core, build-db4ounit, prepare-csproject-db4ounit-extensions"> 
+		<csc
+			destfile="${dir.dist.dll.net}/Db4oUnit.Extensions.dll"
+			targettype="library"
+			srcdir="${dir.n.v6}/Db4oUnit.Extensions"
+			debug="true"
+			executable="${csc.executable}">
+			<reference dir="${dir.dist.dll.net}">
+				<include name="Db4oUnit.dll" />
+				<include name="Db4objects.Db4o.dll" />
+				<include name="Db4objects.Db4o.Optional.dll" />
+			</reference>
+		</csc>
+	</target>
+	
+	<target name="build-db4ounit" depends="prepare-csproject-db4ounit">
+		<csc outputfile="${dir.dist.dll.net}/Db4oUnit.dll"
+			targettype="library"
+			srcdir="${dir.n.db4ounit}"
+			executable="${csc.executable}"
+			debug="true">
+		</csc>
+	</target>
+
+	<target name="build-core" depends="sharpen-all, prepare-csproject-all" unless="mono">
+	    <reset-dir dir="${dir.dist.dll.net}" />
+	    <reset-dir dir="${dir.dist.dll.compact}" />
+	    
+		<msb solution="${dir.n.v6}/Db4o" />
+		<antcall target="build-cf" />
+		<antcall target="build-silverlight" />
+	</target>
+	
+	<target name="build-silverlight" if = "silverlight.version">
+		<reset-dir dir="${dir.dist.dll.silverlight}" />
+		<msb solution="${dir.n.v6}/Db4o-Silverlight" outputPath="${dir.dist.dll.silverlight}" />
+	</target>
+	
+	<target name="build-cf" unless="cf.not.supported">
+		<msb solution="${dir.n.v6}/Db4o-CF" outputPath="${dir.dist.dll.compact}" />
+	</target>	
+		
+	<target name="run-tests-silverlight" depends="configure-net35, build-core">
+		<exec executable="${dir.dist.dll.silverlight}/Db4objects.Db4o.SilverlightTestHost.exe" failonerror="true" taskname="Run Silverlight Tests">
+			<arg line="${dir.dist.dll.silverlight}"/>
+		</exec>
+	</target>
+	
+	<target name="run-additional-linq-tests" depends="build-core" unless="skip.tests">
+		<exec taskname="linq/vb" dir="${dir.dist.dll}" executable="${dir.dist.dll}/Db4objects.Db4o.Linq.VB.Tests.exe" failonerror="true"/>
+		<exec taskname="linq/astoria" dir="${dir.dist.dll}" executable="${dir.dist.dll}/Db4objects.Db4o.Data.Services.Tests.exe" failonerror="true"/>
+	</target>
+	
+	<target name="run-msbuild-tests" depends="build-admin" unless="skip.tests">
+		<exec executable="${dir.dist.dll}/Db4oTool.MSBuild.Tests.exe" failonerror="true"/>
+	</target>	
+	
+	<target name="build-admin" depends="build-core" unless="skip.admin">
+		<msb solution="${dir.n.v6}/Db4oTool/Db4oTool" />		
+	</target>
+	
+	<target name="build-omn" unless="mono">
+		<ant antfile="build-omn.xml" target="build-omn" dir="${dir.build}">
+			<property name="svn.revision" value="${db4oj.svn.revision}" />
+			<property name="dir.base" value="${dir.working}" />
+		</ant>
+	</target>
+	
+	<target name="build-omn35-standalone" depends="properties, configure-net35" unless="mono">
+			<ant antfile="build-omn.xml" target="build-omn" dir="${dir.build}">
+				<property name="svn.revision" value="${db4oj.svn.revision}" />
+				<property name="dir.base" value="${dir.working}" />
+			</ant>
+	</target>			
+	
+	<target name="prepare-csproject-optional" unless="skip.sharpen" >
+        <copy-sharpened-sources dir="${dir.n.v6.optional}/Db4objects.Db4o/">
+            <files>
+                <fileset dir="${dir.sharpened}/optional/src/Db4objects/Db4o">
+                	<include name="**/*.cs" />
+                </fileset>
+            </files>
+        </copy-sharpened-sources>
+
+		<fileset id="optional.net.files" dir="${dir.n.v6.optional}">
+			<include name="**/*.cs" />
+		</fileset>
+		
+	    <updateProjectFiles project="${dir.n.v6.optional}/Db4objects.Db4o.Optional" sources="optional.net.files"  />
+	</target>
+	
+	<target name="prepare-csproject-cs" unless="skip.sharpen" >
+        <copy-sharpened-sources dir="${dir.n.v6.cs}/Db4objects.Db4o.CS/">
+            <files>
+                <fileset dir="${dir.sharpened}/cs/src/Db4objects/Db4o/">
+                    <include name="**/*.cs" />
+                </fileset>
+            </files>
+        </copy-sharpened-sources>
+		
+
+		<fileset id="cs.net.files" dir="${dir.n.v6.cs}">
+			<include name="**/*.cs" />
+		</fileset>
+		
+	    <updateProjectFiles project="${dir.n.v6.cs}/Db4objects.Db4o.CS" sources="cs.net.files"  />
+	</target>
+	
+	<target name="prepare-csproject-csoptional" unless="skip.sharpen" >
+        <!--
+        
+        NO FILES SHARPENED FOR NOW
+        
+        <copy-sharpened-sources dir="${dir.n.v6.cs.optional}/Db4objects.Db4o.CS.Optional/">
+            <files>
+                <fileset dir="${dir.sharpened}/cs-optional/src/Db4objects/Db4o">
+                	<include name="**/*.cs" />
+                </fileset>
+            </files>
+        </copy-sharpened-sources>
+		-->
+		
+		<fileset id="cs-optional.net.files" dir="${dir.n.v6.cs.optional}">
+			<include name="**/*.cs" />		
+		</fileset>
+	    <updateProjectFiles project="${dir.n.v6.cs.optional}/DB4objects.Db4o.CS.Optional" sources="cs-optional.net.files"  />
+	</target>
+	
+	<target name="prepare-csproject-instrumentation" unless="skip.sharpen">
+        <copy-sharpened-sources dir="${dir.n.v6.instrumentation}/Db4objects.Db4o.Instrumentation/">
+            <files>
+                <fileset dir="${dir.sharpened}/instrumentation/src/Db4objects/Db4o/Instrumentation">
+                    <include name="**/*.cs" />
+                </fileset>
+            </files>
+        </copy-sharpened-sources>
+
+		<fileset id="instrumentation.net.files" dir="${dir.n.v6.instrumentation}">
+			<include name="**/*.cs" />
+		</fileset>
+		
+	    <updateProjectFiles project="${dir.n.v6.instrumentation}/Db4objects.Db4o.Instrumentation" sources="instrumentation.net.files"  />
+	</target>
+	
+	<target name="prepare-csproject-nq" unless="skip.sharpen">
+        <copy-sharpened-sources dir="${dir.n.v6.nq}/Db4objects.Db4o.NativeQueries/">
+            <files>
+                <fileset dir="${dir.sharpened}/nq/src/Db4objects/Db4o/NativeQueries">
+                    <include name="**/*.cs" />
+                </fileset>
+            </files>
+        </copy-sharpened-sources>
+
+		<fileset id="nativequeries.net.files" dir="${dir.n.v6.nq}">
+			<include name="**/*.cs" />
+		</fileset>
+		
+	    <updateProjectFiles project="${dir.n.v6.nq}/Db4objects.Db4o.NativeQueries" sources="nativequeries.net.files" />		
+	</target>
+	
+	<target name="prepare-csproject-all"
+		depends="sharpen-all,
+	    prepare-csproject-core, 
+		prepare-csproject-cs,
+		prepare-csproject-csoptional,
+		prepare-csproject-optional,
+	    prepare-csproject-instrumentation, 
+	    prepare-csproject-nq, 
+	    prepare-csproject-db4ounit, 
+	    prepare-csproject-db4ounit-extensions,
+		prepare-csproject-db4obench,
+	    prepare-csproject-tests,
+		prepare-csproject-tools,
+		prepare-csproject-linq"
+		description="Updates all c# projects (sharpening included)"
+		unless="skip.sharpen">
+		
+		<updateAssemblyInfo version="${assembly.version}">
+			<fileset dir="${dir.n.v6}">
+				<include name="**/AssemblyInfo.cs" />
+			</fileset>
+		</updateAssemblyInfo>
+		
+		<updateAssemblyKey keyfile="${dir.n.v6}/db4objects.snk">
+			<projectFiles dir="${dir.n.v6}">
+				<include name="**/*-2008.csproj" />				
+				<include name="**/*-2010.csproj" />				
+				<exclude name="Db4oTutorial/**" />
+				<exclude name="**/*Tests*.csproj" />
+			</projectFiles>
+		</updateAssemblyKey>
+	</target>
+	
+	<target name="prepare-conversion-workspace" depends="init" unless="skip.sharpen">
+        <reset-dir dir="${dir.sharpen}" />
+	    
+	    <!-- copy db4o core src -->
+		<copy todir="${dir.sharpen}/db4oj/core/src">
+			<fileset dir="${dir.dist.decaf.jdk1.2.core.src}">
+				<include name="**/*.java" />
+				<exclude name="**/*Jdk1_2*" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${dir.sharpen}/db4oj/core/src" overwrite="true">
+			<fileset dir="${dir.dist.decaf.jdk1.5.core.src}">
+				<include name="com/db4o/collections/*.java" />
+				<include name="com/db4o/internal/collections/BigSet.java" />
+				<include name="com/db4o/config/annotations/Indexed.java" />
+				
+				<!-- event mappings need generic types -->
+				<include name="com/db4o/events/*.java" />
+				<include name="com/db4o/internal/events/*.java" />
+				
+				<include name="com/db4o/internal/threading/*.java" />
+			</fileset>
+		</copy>		
+		
+		<copy todir="${dir.sharpen}/db4oj/core/src" overwrite="true">
+			<fileset dir="${dir.dist.decaf.jdk1.2.core.src}">
+				<include name="com/db4o/events/EventRegistryLogging*.java" />
+			</fileset>
+		</copy>
+
+		
+		<copy todir="${dir.sharpen}/db4oj/core/src" overwrite="true">
+			<fileset dir="${dir.n.v6}/sharpen/">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>	
+
+		<copy todir="${dir.sharpen}/db4oj/nq/src">
+			<fileset dir="${dir.dist.decaf.jdk1.2.nqopt.src}">
+				<include name="com/db4o/nativequery/expr/**/*.java" />
+				<include name="com/db4o/nativequery/optimization/NativeQueriesPlatform.java" />
+				<include name="com/db4o/nativequery/optimization/SODAQueryBuilder.java" />
+				<include name="com/db4o/nativequery/optimization/ComparisonQueryGeneratingVisitor.java" />
+				<include name="com/db4o/nativequery/optimization/ReflectUtil.java" />
+				<include name="com/db4o/nativequery/instrumentation/*.java" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${dir.sharpen}/db4oj/optional/src">
+			<fileset dir="${dir.dist.decaf.jdk1.2.core.optional.src}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${dir.sharpen}/db4oj/cs/src">
+			<fileset dir="${dir.dist.decaf.jdk1.2.core.cs.src}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+		
+		<copy todir="${dir.sharpen}/db4oj/cs-optional/src">
+			<fileset dir="${dir.dist.decaf.jdk1.2.core.cs.optional.src}">
+				<include name="**/*.java" />
+			</fileset>
+		</copy>
+				
+		<copy todir="${dir.sharpen}/db4oj/cs/src" overwrite="true">
+			<fileset dir="${dir.j.cs.src}">
+				<include name="com/db4o/cs/internal/ServerMessageDispatcherImpl.java" />
+				<include name="com/db4o/cs/internal/ObjectServerImpl.java" />
+			</fileset>
+		</copy>		
+
+		<copy todir="${dir.sharpen}/db4oj/instrumentation">
+			<fileset refid="db4o.instrumentation.srcfiles" />
+		</copy>
+
+		
+	    <!--copy db4ounit src-->
+        <copy todir="${dir.sharpen}/db4oj/db4ounit/src">
+            <fileset dir="${dir.dist.decaf.jdk1.2.db4ounit.src}">
+                <include name="**/*.java" />
+            </fileset>
+        </copy>
+		
+		<!--copy db4ounit.extension src-->
+        <copy todir="${dir.sharpen}/db4oj/extensions/src">
+            <fileset dir="${dir.dist.decaf.jdk1.2.db4ounit.extensions.src}">
+                <include name="**/*.java" />
+            </fileset>
+        </copy>
+
+		<!--copy db4obench src-->
+        <copy todir="${dir.sharpen}/db4oj/db4obench/src">
+            <fileset dir="${dir.j.db4otools.src}">
+                <include name="**/bench/**/*.java" />
+            </fileset>
+        </copy>
+
+		<!-- copy db4o tests src-->
+        <copy todir="${dir.sharpen}/db4oj/tests/src" overwrite="true">
+            <fileset dir="${dir.dist.decaf.jdk1.2.test.src}">
+                <include name="**/db4ounit/common/**/*.java" />
+                <include name="**/db4ounit/optional/**/*.java" />
+                <include name="**/db4ounit/util/**/*.java" />
+                <include name="**/db4ounit/common/ta/**/*.java" />
+                <include name="**/db4ounit/util/*.java" />
+            </fileset>
+        </copy>
+		
+		<copy todir="${dir.sharpen}/db4oj/tests/src" overwrite="true">
+    	    <fileset dir="${dir.j.tests.src}">
+    	    	<include name="**/jre12/collections/BigSetTestCase.java" />
+    	    	<include name="**/jre12/collections/IteratorAssert.java" />
+            </fileset>
+        </copy>
+            	
+    	<copy todir="${dir.sharpen}/db4oj/tests/src" overwrite="true">
+    	    <fileset dir="${dir.j.tests.src}">
+    	    	<include name="**/jre5/collections/typehandler/*.java" />
+        		<include name="**/jre5/collections/ArrayList4TATestCaseBase.java" />
+                <include name="**/jre5/collections/ArrayList4SODATestCase.java" />
+                <include name="**/jre5/collections/ArrayList4Asserter.java" />               
+                <include name="**/jre5/collections/CollectionsUtil.java" />
+                <include name="**/jre5/collections/Order.java" />
+                <include name="**/jre5/collections/OrderItem.java" />
+                <include name="**/jre5/collections/Product.java" />
+                <include name="**/jre5/concurrency/query/*.java" />
+    	    	<include name="**/jre5/annotation/*.java" />
+            </fileset>
+        </copy>
+                	
+	    <copy todir="${dir.sharpen}/db4oj/tests/src">
+            <fileset dir="${dir.dist.decaf.jdk1.2.nqopt.test.src}">
+                <include name="**/mocks/*.java" />
+                <include name="**/diagnostics/*.java" />
+            </fileset>
+        </copy>	    
+	</target>
+	
+	<macrodef name="updateProjectFiles">
+		<attribute name="project" />
+		<attribute name="sources" />
+			
+		<sequential>
+			<updatecsharpproject projectFile="@{project}-2008.csproj">
+				<sources refid="@{sources}" />
+			</updatecsharpproject>
+			
+			<updatecsharpproject projectFile="@{project}-2010.csproj">
+				<sources refid="@{sources}" />
+			</updatecsharpproject>
+			
+			<updatecsharpproject projectFile="@{project}-CF-2008.csproj">
+				<sources refid="@{sources}" />
+			</updatecsharpproject>
+			
+			<updatecsharpproject projectFile="@{project}-Silverlight-2008.csproj" ignoreNonExisting="true">
+				<sources refid="@{sources}" />
+			</updatecsharpproject>
+			
+			<updatecsharpproject projectFile="@{project}-Silverlight-2010.csproj" ignoreNonExisting="true">
+				<sources refid="@{sources}" />
+			</updatecsharpproject>
+		</sequential>
+	</macrodef>
+	
+    <macrodef name="copy-sharpened-sources">
+        <attribute name="dir" />
+        <element name="files" />
+        <sequential>
+            <delete failonerror="false">
+                <fileset dir="@{dir}">
+                    <include name="**/*.cs" />
+                    <exclude name="**/.svn/**" />
+                </fileset>
+            </delete>
+            
+            <copy todir="@{dir}">
+                <files />
+            </copy>
+        </sequential>
+    </macrodef>
+
+	<target name="prepare-csproject-core" unless="skip.sharpen">
+		<copy-sharpened-sources dir="${dir.n.v6.core.src}">
+			<files>
+				<fileset dir="${dir.sharpened}/core/src/Db4objects/Db4o">
+					<include name="**/*.cs" />
+				</fileset>
+				<fileset dir="${dir.sharpened}/core/src/Db4objects/Drs">
+					<include name="**/*.cs" />
+				</fileset>
+			</files>
+		</copy-sharpened-sources>
+	    
+		<fileset id="core.net.files" dir="${dir.n.v6.core}">
+			<include name="**/*.cs" />
+		</fileset>
+		
+		<updateProjectFiles project="${dir.n.v6.core}/Db4objects.Db4o" sources="core.net.files"  />
+	</target>
+	
+	<target name="prepare-csproject-db4ounit"
+			unless="skip.sharpen">
+		<delete dir="${dir.n.db4ounit}/Db4oUnit">
+			<include name="**/*.cs" />
+			<exclude name="**/.svn/**" />
+		</delete>
+		
+		<mkdir dir="${dir.n.db4ounit}/Db4oUnit" />
+		<copy todir="${dir.n.db4ounit}/Db4oUnit">
+			<fileset dir="${dir.sharpened}/db4ounit/src">
+				<include name="Db4oUnit/**/*.cs" />
+			    <exclude name="Db4oUnit/Extensions/" />
+			</fileset>
+		</copy>
+		
+		<fileset id="db4ounit.files" dir="${dir.n.db4ounit}">
+			<include name="**/*.cs" />
+		</fileset>
+
+		<updateProjectFiles project="${dir.n.db4ounit}/Db4oUnit" sources="db4ounit.files" />
+	</target>
+	
+	<property name="dependencies.jar" location="${dir.sharpen}/lib/dependencies.jar" />
+	
+	<target name="create-dependencies-jar" depends="compiletestsjava" unless="skip.sharpen">
+		<mkdir dir="${dir.sharpen}/lib" />
+		<jar destfile="${dependencies.jar}">			
+			<fileset dir="${dir.dist.classes.java1.2}" />
+			<fileset dir="${dir.dist.classes.db4ounit.jdk1.2}" />
+			<fileset dir="${dir.dist.classes.test.jdk1.2}" />
+		</jar>
+	</target>
+	
+	<target name="prepare-csproject-db4obench"
+			unless="skip.sharpen">
+		<delete dir="${dir.n.db4obench}/Bench">
+			<include name="**/*.cs" />
+			<exclude name="**/.svn/**" />
+			<exclude name="**/TicksTiming.cs" />
+			<exclude name="**/TicksStopWatch.cs" />
+			<!-- To be removed when sharpening can work for all cases -->
+			<exclude name="**/LoggingIoAdapter.cs" />
+			<exclude name="**/DelayCalculation.cs" />
+			<exclude name="**/Delays.cs" />
+			<exclude name="**/LogReplayer.cs" />
+			<exclude name="**/LogStatistics.cs" />
+			<exclude name="**/IoBenchmark.cs" />
+			<exclude name="**/IoBenchmarkArgumentParser.cs" />
+		</delete>
+		
+		<mkdir dir="${dir.n.db4obench}/Bench" />
+		<copy todir="${dir.n.db4obench}/Bench">
+			<fileset dir="${dir.sharpened}/db4obench/src/Db4objects/Db4o/Bench">
+				<include name="**/*.cs" />
+            	<exclude name="**/NanoTiming.cs" />
+            	<exclude name="**/NanoStopWatch.cs" />
+			</fileset>
+		</copy>
+		
+		<fileset id="db4obench.files" dir="${dir.n.db4obench}">
+			<include name="**/*.cs" />
+		</fileset>
+
+		<updateProjectFiles project="${dir.n.db4obench}/Db4oBench" sources="db4obench.files" />
+	</target>
+	
+	<target name="prepare-csproject-linq">
+		<property name="dir.n.linq" value="${dir.n.v6}/Db4objects.Db4o.Linq" />
+		<property name="dir.n.linq.tests" value="${dir.n.v6}/Db4objects.Db4o.Linq.Tests" />
+			
+		<updatecsharpproject projectfile="${dir.n.linq}/Db4objects.Db4o.Linq-2008.csproj">
+			<sources dir="${dir.n.linq}">
+				<include name="**/*.cs" />
+			</sources>
+		</updatecsharpproject>
+		
+		<updatecsharpproject projectfile="${dir.n.linq}/Db4objects.Db4o.Linq-CF-2008.csproj">
+			<sources dir="${dir.n.linq}">
+				<include name="**/*.cs" />
+			</sources>
+		</updatecsharpproject>			
+		
+		<updatecsharpproject projectfile="${dir.n.linq.tests}/Db4objects.Db4o.Linq.Tests-2008.csproj">
+			<sources dir="${dir.n.linq.tests}">
+				<include name="**/*.cs" />
+			</sources>
+		</updatecsharpproject>
+		
+		<updatecsharpproject projectfile="${dir.n.linq.tests}/Db4objects.Db4o.Linq.Tests-CF-2008.csproj">
+			<sources dir="${dir.n.linq.tests}">
+				<include name="**/*.cs" />
+			</sources>
+		</updatecsharpproject>
+	</target>
+	
+	<target name="prepare-csproject-tools">
+		<property name="dir.n.tools" location="${dir.n.v6}/Db4oTool" />
+		
+		<fileset id="db4otool.files" dir="${dir.n.tools}/Db4oTool">
+			<include name="**/*.cs" />
+		</fileset>
+
+		<updatecsharpproject projectfile="${dir.n.tools}/Db4oTool/Db4oTool-2008.csproj">
+			<sources refid="db4otool.files" />
+		</updatecsharpproject>
+				
+		<fileset id="db4otool-tests.files" dir="${dir.n.tools}/Db4oTool.Tests">
+			<include name="**/*.cs" />
+			<exclude name="**/Resources/*.*" />
+			<exclude name="**/obj/**" />
+			<exclude name="**/bin/**" />		
+		</fileset>
+		
+		<fileset id="db4otool-tests.resources" dir="${dir.n.tools}/Db4oTool.Tests">
+			<include name="**/Resources/*.*" />
+		</fileset>
+			
+		<updatecsharpproject projectfile="${dir.n.tools}/Db4oTool.Tests/Db4oTool.Tests-2008.csproj">
+			<sources refid="db4otool-tests.files" />
+			<resources refid="db4otool-tests.resources" />
+		</updatecsharpproject>
+	</target>
+			
+	<target name="prepare-csproject-db4ounit-extensions"
+			unless="skip.sharpen">		
+		<property name="dir.n.v6.extensions" location="${dir.n.v6}/Db4oUnit.Extensions" />
+		
+		<delete failonerror="false">
+			<fileset dir="${dir.n.v6.extensions}/Db4oUnit.Extensions">
+				<include name="**/*.cs" />
+				<exclude name="**/.svn/**" />
+			</fileset>
+		</delete>
+		
+		<copy todir="${dir.n.v6.extensions}/Db4oUnit.Extensions">
+			<fileset dir="${dir.sharpened}/extensions/src/Db4oUnit/Extensions">
+				<include name="**/*.cs" />
+			</fileset>
+		</copy>
+
+		<fileset id="db4ounit.extensions.files" dir="${dir.n.v6.extensions}">
+			<include name="**/*.cs" />			
+		</fileset>
+				
+		<updateProjectFiles project="${dir.n.v6.extensions}/Db4oUnit.Extensions" sources="db4ounit.extensions.files" />
+	</target>
+	
+	
+	<target name="prepare-csproject-tests"
+			unless="skip.sharpen">
+		<property name="dir.n.v6.tests" location="${dir.n.v6}/Db4objects.Db4o.Tests" />
+		<property name="dir.n.v6.tests.src" location="${dir.n.v6.tests}/Db4objects.Db4o.Tests" />
+		
+		<delete failonerror="false">
+			<fileset dir="${dir.n.v6.tests.src}">
+				<include name="**/*.cs" />
+				<exclude name="**/.svn/**" />
+			</fileset>
+		</delete>
+		
+		<copy todir="${dir.n.v6.tests.src}">
+			<fileset dir="${dir.sharpened}/tests/src/Db4objects/Db4o/Tests">
+				<include name="**/*.cs" />
+			</fileset>
+		</copy>
+		
+		<fileset id="db4objects.test.net.files" dir="${dir.n.v6.tests}">
+			<include name="**/*.cs" />
+		</fileset>
+		
+	    <updateProjectFiles project="${dir.n.v6.tests}/Db4objects.Db4o.Tests" sources="db4objects.test.net.files" />		
+	</target>
+	
+	<target name="preparendoc">
+		<property name="db4o-namespace-summaries.xml" location="config/db4o-namespace-summaries.xml" />		
+		<property name="ndoc.home" location="lib/ndoc" />
+				
+		<delete dir="${dir.dist.ndoc}" failonerror="false" />
+		<mkdir dir="${dir.dist.ndoc}" />
+	</target>
+	
+	<target name="ndoc" depends="preparendoc, ndoc-mono, ndoc-net" description="Build public .net docs">
+	</target>
+	
+	<target name="ndoc-mono" if="mono">
+		<exec executable="mono" failonerror="true">
+			<arg file="${ndoc.home}/bin/mono/2.0/NDocConsole.exe" />
+			<arg file="${dir.dist.dll.net}/Db4objects.Db4o.dll" />
+			<arg value="-namespacesummaries=${db4o-namespace-summaries.xml}" />
+			<arg value="-documenter=MSDN" />
+			<arg value="-OutputTarget=Web" />
+			<arg value="-OutputDirectory=${dir.dist.ndoc}" />
+			<arg value="-Title=db4o" />
+			<arg value="-SkipNamespacesWithoutSummaries=True" />
+			<arg value="-SdkLinksOnWeb=False" />
+            <arg value="-AssemblyVersionInfo=AssemblyVersion" />
+			<arg value="-CopyrightText=Copyright (C) 2004 - 2008  Versant Corporation" />
+            <arg value="-CopyrightHref=http://www.db4o.com/" />
+			<arg value="-CleanIntermediates=True" />
+		</exec>
+	</target>
+	
+	<property name="sandcastle.tools" location="${dir.lib.sandcastle}/ProductionTools" />
+	<property name="XslTransform" location="${sandcastle.tools}/XslTransform" />	
+	<available file="${sandcastle.tools}/MRefBuilder.exe" property="sandcastle.available" />
+	
+	<target name="sandcastle" depends="run-sandcastle, warn-about-sandcastle">
+	</target>
+	
+	<target name="sandcastle-standalone" depends="configure-net35, sandcastle">
+	</target>
+	
+	<target name="warn-about-sandcastle" unless="sandcastle.available">
+		<echo>
+	The build could not find sandcastle in your system, sandcastle is required if you want
+	to generate the .net documentation.
+	
+	Download and install it from:
+	http://www.microsoft.com/downloads/details.aspx?FamilyID=E82EA71D-DA89-42EE-A715-696E3A4873B2&amp;displaylang=en
+	
+	Then set the dir.lib.sandcastle property pointing to the root of the installation.
+		</echo>
+	</target>
+	
+	<target name="run-sandcastle" if="sandcastle.available">
+	
+		<antcall target="prepare-sandcastle-output" />
+
+		<exec executable="${dir.build}/lib/boo/booi" taskname="MRefConfigGenerator">
+			<arg file="src/sandcastle/MRefConfigGenerator.boo" />
+			<arg path="${dir.build}/config" />
+			<arg path="${dir.dist}" />
+			<arg path="${dir.build}/config/db4o-namespace-summaries.xml" />
+		</exec>
+		
+		<exec executable="${sandcastle.tools}/MRefBuilder" dir="${dir.dist.ndoc}" failonerror="true" taskname="MRefBuilder">
+			<env key="DXROOT" file="${dir.lib.sandcastle}" />
+			<arg value="/config:${dir.dist.ndoc}/Output/MRefBuilder.config" />
+			<arg file="${dir.dist.dll}/Db4objects.Db4o.dll" />
+			<arg file="${dir.dist.dll}/Db4objects.Db4o.Optional.dll" />
+			<arg file="${dir.dist.dll}/Db4objects.Db4o.Linq.dll" />
+			<arg file="${dir.dist.dll}/Db4objects.Db4o.CS.Optional.dll" />
+			<arg file="${dir.dist.dll}/Db4objects.Db4o.CS.dll" />
+			<arg value="/out:${dir.dist.ndoc}/sandcastle" />
+			<arg value="/internal-" />
+		</exec>
+	
+		<exec executable="${XslTransform}" failonerror="true" dir="${dir.dist.ndoc}">
+			<arg value="/xsl:${dir.lib.sandcastle}/ProductionTransforms/ApplyVSDocModel.xsl" />
+			<arg value="${dir.dist.ndoc}/sandcastle" />
+			<arg value="/xsl:${dir.lib.sandcastle}/ProductionTransforms/AddFriendlyFilenames.xsl" />
+			<arg value="/out:${dir.dist.ndoc}/reflection.xml" />
+		</exec>
+	
+		<exec executable="${XslTransform}" failonerror="true" dir="${dir.dist.ndoc}">
+			<arg value="/xsl:${dir.lib.sandcastle}/ProductionTransforms/ReflectionToManifest.xsl" />
+			<arg value="${dir.dist.ndoc}/reflection.xml" />
+			<arg value="/out:${dir.dist.ndoc}/manifest.xml" />
+		</exec>
+		
+		<exec executable="${sandcastle.tools}/BuildAssembler" dir="${dir.dist.ndoc}">
+			<arg value="/config:${dir.build}/config/sandcastle/sandcastle.config" />
+			<arg file="${dir.dist.ndoc}/manifest.xml" />
+	
+			<env key="XMLDOC" value="${dir.dist.dll}/Db4objects.Db4o.*xml" />
+			<env key="DXROOT" value="${dir.lib.sandcastle}" />			
+		</exec>
+	
+		<antcall target="generate-sandcastle-chm" />
+
+	</target>
+	
+	<target name="prepare-sandcastle-output">
+		<mkdir dir="${dir.dist.ndoc}/Output" />
+		<mkdir dir="${dir.dist.ndoc}/Output/html" />
+		<mkdir dir="${dir.dist.ndoc}/Output/icons" />
+		<mkdir dir="${dir.dist.ndoc}/Output/scripts" />
+		<mkdir dir="${dir.dist.ndoc}/Output/styles" />
+		<mkdir dir="${dir.dist.ndoc}/Output/media" />
+		<copy todir="${dir.dist.ndoc}/Output">
+			<fileset dir="${dir.lib.sandcastle}/Presentation/vs2005">
+				<include name="Icons/**" />
+				<include name="icons/**" />
+				<include name="Scripts/**" />
+				<include name="Styles/**" />
+				<include name="transforms/**" />
+			</fileset>
+		</copy>
+		<copy todir="${dir.dist.ndoc}/Output">
+			<fileset dir="${dir.lib.sandcastle}/Presentation/Shared">
+				<include name="**/**" />
+			</fileset>
+		</copy>
+		<copy file="${dir.build}/config/sandcastle/Presentation/vs2005/transforms/main_sandcastle.xsl"
+			tofile="${dir.dist.ndoc}/Output/transforms/main_sandcastle.xsl"/>
+		<mkdir dir="${dir.dist.ndoc}/Intellisense" />
+
+	</target>
+	
+	<target name="generate-sandcastle-chm">
+	
+		<property name="dir.transforms" location="${dir.lib.sandcastle}/ProductionTransforms" />
+	
+		<!-- Generate HTML help project -->
+		<exec executable="${XslTransform}" dir="${dir.dist.ndoc}" failonerror="true">
+			<arg value="/xsl:${dir.transforms}/ReflectionToChmProject.xsl" />
+			<arg value="${dir.dist.ndoc}/reflection.xml" />
+			<arg value="/out:${dir.dist.ndoc}/Output/test.hhp" />
+			<arg value="/arg:project=Db4o" />
+		</exec>	 
+	
+		<!--  Generate table of contents for HTML help project -->
+		<exec executable="${XslTransform}" dir="${dir.dist.ndoc}" failonerror="true">
+			<arg value="/xsl:${dir.transforms}/createvstoc.xsl" />
+			<arg value="${dir.dist.ndoc}/reflection.xml" />
+			<arg value="/out:${dir.dist.ndoc}/toc.xml" />
+		</exec>
+
+		<exec executable="${XslTransform}" dir="${dir.dist.ndoc}" failonerror="true">
+			<arg value="/xsl:${dir.transforms}/TocToChmContents.xsl" />
+			<arg value="${dir.dist.ndoc}/toc.xml" />
+			<arg value="/out:${dir.dist.ndoc}/Output/Db4o.hhc" />
+		</exec>
+	
+		<!-- Generate Index information -->
+		<exec executable="${XslTransform}" dir="${dir.dist.ndoc}">
+			<arg value="/xsl:${dir.transforms}/ReflectionToChmIndex.xsl" />
+			<arg value="${dir.dist.ndoc}/reflection.xml" />
+			<arg value="/out:${dir.dist.ndoc}/Output/Db4o.hhk" />
+		</exec>
+	
+		<property name="hhc.home" location="${env.ProgramFiles}/HTML Help Workshop" />
+		<exec executable="${hhc.home}/hhc.exe" dir="${dir.dist.ndoc}/Output">
+			<arg value="test.hhp" />
+		</exec>
+	
+		<copy file="${dir.dist.ndoc}/Output/Db4o.chm" tofile="${dir.dist.ndoc}/db4o.chm" />
+	</target>	
+		
+	<target name="ndoc-net" unless="mono">	
+		<antcall target="sandcastle" />
+	</target>
+	
+	<target name="init" depends="properties">
+		<reset-dir dir="${dir.dist.dll.net}" />
+		<reset-dir dir="${dir.dist.dll.compact}" />
+		
+		<property name="assembly.version" value="${db4o.version.iteration.revision}" />
+	</target>
+	
+	<target name="clean" description="Delete all generated files">
+		<delete failonerror="false" includeemptydirs="true" description="Removing all generated files">
+			<fileset dir="${dir.dist}">
+				<exclude name="java/" />
+			</fileset>
+		</delete>
+	</target>
+
+	<macrodef name="build-cf">
+		<sequential>
+			<var name="targetFolder" value="${dir.dist.dll}/cf${target.framework.version}" />			
+			<var name="db4o.tests.cf.app" value="Db4objects.Db4o.Tests" />
+		    
+			<msbuild solutionFile="src\CompactFrameworkTestHelper\CompactFrameworkTestHelper.csproj" outputPath="${targetFolder}" /> 
+			
+			<msb solution="${dir.n.v6}/Db4o-CF" outputPath="${targetFolder}" />		    
+		    <echo message="Run db4o tests on .NET CompactFramework ${target.framework.version}" />
+	        
+	        <exec executable="${targetFolder}/CompactFrameworkTestHelper.exe" failonerror="true">
+	            <arg line="-version=${target.framework.version}" />
+	            <arg value="-dir.dll.compact=${targetFolder}" />
+	        	<arg value="-app.name=${db4o.tests.cf.app}" />
+				<arg value="-app.args=run" />
+	        </exec>
+	        			
+			<run-cf-compatibility-tests targetfolder="${targetFolder}"/>
+		</sequential>
+	</macrodef>
+	
+	<macrodef name="run-cf-compatibility-tests">
+		<attribute name="targetFolder" />
+		<sequential>
+		    <echo message="Run db4o CF compatibility tests on .NET CompactFramework ${target.framework.version}" />
+			
+			<var name="cfc-basedir" value="${dir.n.v6}/Db4objects.Db4o.CFCompatibilityTests/" />
+			<var name="project-base" value="${dir.n.v6}/Db4objects.Db4o.CFCompatibilityTests" />
+			<var name="database.file" value="CFCompatibilityTest.odb" />
+			
+			<reset-dir dir="@{targetFolder}/Desktop" />
+			<reset-dir dir="@{targetFolder}/Device" />
+		
+			<!-- Compile Desktop application that generates the database -->
+			<msb solution="${project-base}/Desktop/Db4objects.Db4o.CFCompatibilityTests.Desktop" outputPath="${targetFolder}/Desktop" />
+			<msb solution="${project-base}/Device/Db4objects.Db4o.CFCompatibilityTests.Device" outputPath="${targetFolder}/Device" />
+			
+			<exec executable="@{targetFolder}/Desktop/CFCompatibilityTests.Desktop.exe">
+				<arg value="-generateDatabase" />
+				<arg path="${env.TEMP}/${database.file}" />
+			</exec>
+			
+			<exec executable="@{targetFolder}/CompactFrameworkTestHelper.exe" failonerror="true">
+	            <arg line="-version=${target.framework.version}" />
+				<arg value="-app.name=Db4objects.Db4o.CFCompatibilityTests.Device.exe" />
+				<arg value="-app.args='/Storage Card/${database.file}'" />
+	            <arg value="-dir.dll.compact=${targetFolder}/Device" />
+	        	<arg value="-dir.storagecard=${env.TEMP}" />
+	        </exec>
+			
+			<exec executable="@{targetFolder}/Desktop/CFCompatibilityTests.Desktop.exe">
+				<arg value="-validateDatabase" />
+				<arg path="${env.TEMP}/${database.file}" />
+			</exec>		
+		</sequential>
+	</macrodef>
+	
+    <target name="build-cf35" depends="init, configure-debug, configure-net35, prepare-csproject-all">
+    	<build-cf />
+    </target>
+    
+    <target name="sharpen-all" depends="check-dependencies, install-sharpen-plugin, prepare-conversion-workspace" unless="skip.sharpen">
+        <sharpen workspace="${dir.sharpen}" resource="db4oj">
+            <args>
+                <arg value="-xmldoc" />
+                <arg file="config/sharpen/ApiOverlay.xml" />
+                <arg value="@sharpen-all-options" />
+            	<arg value="-cp" />
+            	<arg path="${file.decaf.annotations}" />
+            </args>
+        </sharpen>
+        <property name="dir.sharpened" location="${dir.sharpen}/db4oj.net" />
+    </target>
+</project>

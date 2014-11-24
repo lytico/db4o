@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">long</span> internalId = idForObject;
+<span style="color:Blue;">object</span> objectForID = container.Ext().GetByID(internalId);
+<span style="color:Green;">// getting by id doesn't activate the object</span>
+<span style="color:Green;">// so you need to do it manually</span>
+container.Ext().Activate(objectForID);</pre>
+		<div class="codesnippet-meta">
+			Db4oInternalIdExample.cs: get an object by db4o internal id
+			<div class="codedownload">
+				<a href="Example-disconnectedobj-idexamples-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="4" MadCap:lastHeight="380" MadCap:lastWidth="549">
+    <head />
+    <body>
+        <h1>Commit Strategies</h1>
+        <p>Objects stored or updated within one db4o transaction are written to a temporary transaction area in the database file and are only durable after the transaction is committed.</p>
+        <p>Commit is a costly operation as it includes disk writes and flushes caches. Too many commits can decrease your application's performance. On the other hand long transaction increases the risk of losing your data in case of a system or a hardware failure.</p>
+        <h2>Best Strategies</h2>
+        <ul>
+            <li>You should call commit() at the end of every logical operation, at a point where you want to make sure that all the changes are permanently stored to the database.</li>
+            <li>When you are doing a bulk insert of many (say &gt;100 000) objects, it is a good idea to commit after every few thousand inserts, depending on the complexity of your objects. If you don't do that, there is not only a risk of losing the objects in a case of a failure, but also a good chance of running out of memory. The exact amount of inserts that can be done safely and effectively within one transaction should be tested for the concrete system and will depend on available system resources, size and complexity of objects.</li>
+            <li>Don't forget to close db4o object container before the application exits to make sure that all the changes will be saved to disk during implicit commit.</li>
+        </ul>
+    </body>
+</html>

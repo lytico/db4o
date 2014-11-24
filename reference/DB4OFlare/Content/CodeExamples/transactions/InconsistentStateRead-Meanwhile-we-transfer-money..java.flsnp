@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">List&lt;BankAccount&gt; bankAccounts = container.query(BankAccount.<span style="color:Blue;">class</span>);
+<span style="color:Blue;">final</span> BankAccount debitAccount = bankAccounts.get(0);
+<span style="color:Blue;">final</span> BankAccount creditAccount = bankAccounts.get(1);
+
+<span style="color:Blue;">int</span> moneyToTransfer = 200;
+creditAccount.withdraw(moneyToTransfer);
+debitAccount.deposit(moneyToTransfer);
+
+container.store(debitAccount);
+container.store(creditAccount);
+container.commit();</pre>
+		<div class="codesnippet-meta">
+			InconsistentStateRead.java: Meanwhile we transfer money.
+			<div class="codedownload">
+				<a href="Example-db4odoc-transactions-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jdo PUBLIC '-//Sun Microsystems, Inc.//DTD Java Data Objects Metadata 2.2//EN' 'http://java.sun.com/dtd/jdo_2_2.dtd'>
+<jdo>
+    <package name="com.db4o.drs.test.versant.data">
+    	<class name="com.db4o.drs.test.versant.data.Item"/>
+    	<class name="com.db4o.drs.test.versant.data.Holder"/>
+    	<class name="com.db4o.drs.test.versant.data.Chain"/>
+    </package>    
+</jdo>    
+

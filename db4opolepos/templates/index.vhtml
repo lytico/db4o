@@ -1,0 +1,16 @@
+<h3>Circuits</h3>
+<dl>
+#foreach($circuit in $circuits)
+<dt><strong><a href="${circuit.internalName()}.html">$circuit.name()</a></strong></dt>
+<dd>$!circuit.description()</dd>
+#end
+</dl>
+
+<h3>Teams</h3>
+<dl>
+#foreach($teamcar in $teamcars)
+<dt><strong>#if($teamcar.website())<a href="$teamcar.website()" target="_blank">#end $teamcar.name()#if($teamcar.website())</a>#end</strong></dt>
+<dd>$!teamcar.description()</dd>
+#end
+</dl>
+<h3><a href="overview.html">Overview</a></h3>

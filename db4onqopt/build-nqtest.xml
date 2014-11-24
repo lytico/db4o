@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<project name="nqtest" default="optimize" basedir=".">
+	<property name="srcpath" value="bin" />
+	<property name="targetpath" value="java/testclasspath" />
+
+	<taskdef name="db4oenhance" classname="com.db4o.nativequery.patrick.main.Db4oFileEnhancerAntTask">
+		<classpath>
+			<path path="bin" />
+			<path path="java/lib/bloat-1.0.jar" />
+			<path path="../db4ojdk5/bin" />
+			<path path="../db4ojdk1.2/bin" />
+			<path location="../db4oj/bin" />
+		</classpath>
+	</taskdef>
+
+	<target name="optimize">
+		<mkdir dir="${targetpath}" />
+		<delete includeemptydirs="true">
+			<fileset dir="${targetpath}">
+				<include name="**/*" />
+			</fileset>
+		</delete>
+		<db4oenhance srcdir="${srcpath}" targetdir="${targetpath}">
+			<classpath>
+				<path path="bin" />
+				<path path="java/lib/junit.jar" />
+				<path location="../db4oj/bin" />
+			</classpath>
+		</db4oenhance>
+	</target>
+</project>

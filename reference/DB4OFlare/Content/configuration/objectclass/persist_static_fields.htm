@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="458" MadCap:lastWidth="539">
+    <head>
+    </head>
+    <body>
+        <h1>Persist Static Fields</h1>
+        <p style="font-weight: normal;">By default db4o doesn't store static fields. With this setting you force db4o to also store the value of the static fields. Note that only reference types are stored. Value-types like ints, longs etc are not persisted. </p>
+        <p style="font-weight: normal;">In general you shouldn't store static fields, because this can lead to unexpected behaviors. It's mostly useful for enumeration classes. <MadCap:xref href="../../advanced_topics/type_handling/static_fields_and_enums/static_fields_api.htm" target="" title="" alt="">See "Storing Static Fields"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../CodeExamples/configuration/objectconfig/ObjectConfigurationExamples-Persist-also-the-static-fields.all.flsnp" />
+    </body>
+</html>

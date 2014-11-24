@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="9" MadCap:lastHeight="586" MadCap:lastWidth="547" MadCap:conditions="Primary..NET" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+    </head>
+    <body>
+        <h1>Storing MarshalByRef Objects</h1>
+        <h2>Problem </h2>
+        <p>MarshalByRef objects from .NET Remoting can not be stored by
+db4o. </p>
+        <h2>Reason</h2>
+        <p>MarshalByRef objects are not really objects. They are proxy
+objects to instances, which live on another machine. There are 2 cases to
+distinguish:</p>
+        <ol>
+            <li>If the
+     object instance is local, then the object is storable without an exception
+     unless a remote client has a lifetime lease on the object instance.</li>
+            <li>If the
+     object instance is remote, then you're actually dealing with a DCOM proxy,
+     which cannot be safely stored in db4o, since the remote object lifetime
+     would expire as soon as the object was garbage collected. </li>
+        </ol>
+        <h2>Solution </h2>
+        <p>1. Use marshal by value technology for the persistent object. In this case the
+object implements ISerializable interface and can be stored by db4o without any
+problems. The object is created on the client and is passed to the server using
+MarshalByRef proxy. </p>
+        <p>2. If using MarshalByRef object is mandatory for you, use
+the following configuration:</p>
+        <pre class="monospace">configuration.Common()
+    .ObjectClass("System.Runtime.Remoting.ServerIdentity, mscorlib")
+    .Translate(new TTransient());
+configuration.Common()
+     .ObjectClass("System.Threading.TimerCallback,mscorlib")
+     .Translate(new TTransient());</pre>
+        <p>The TTransient translator will prevent instances of ServerIdentity and
+TimerCallback from being stored within a db4o database. These classes are
+protected internal classes within the .NET Framework. When retrieving your
+MarshalByRef objects from db4o, you will need to re-marshal them.</p>Note: in many cases using <a href="../client-server.htm">db4o
+client-server</a> version can be a better option for a remote persistence. 
+         
+    </body>
+</html>

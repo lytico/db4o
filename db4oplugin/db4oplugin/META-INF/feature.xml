@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="db4oplugin.feature"
+      label="db4oplugin Feature"
+      version="1.0.0"
+      provider-name="Versant">
+
+   <description url="http://www.db4o.com/about/productinformation/dom/">
+   db4o plugin for Transparent Activation bytecode enhancement
+   </description>
+
+   <copyright url="http://www.db4o.com/about/company/legalpolicies/copyright.aspx">
+      &quot;Copyright © 2009 Versant, Inc. All rights Reserved&quot;
+   </copyright>
+
+   <license url="http://www.db4o.com/about/company/legalpolicies/gpl.aspx">
+      GNU GENERAL PUBLIC LICENSE
+Version 2, June 1991
+
+Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+   </license>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.jdt.core"/>
+   </requires>
+
+   <plugin
+         id="db4oplugin"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+</feature>

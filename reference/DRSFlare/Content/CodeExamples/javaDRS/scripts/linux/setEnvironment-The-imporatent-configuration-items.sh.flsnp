@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"># Specify the directory where the DRS and db4o jars are
+# This directory should contain the dRS distribution.
+# Or more specific it needs the dRS-X.XX-core.jar, 
+# db4o-X.XX-core-java5.jar or db4o-X.XX-core-java5.jar, commons-cli-1.2.jar
+LIB_DIR=./lib
+
+# Specify the VOD database name
+DATABASE_NAME=dRSVodExample
+
+# Set the directory where VOD is installed. For example &quot;C:\Program Files\Versant\8&quot;
+VERSANT_ROOT=$VERSANT_ROOT
+
+# This should work if the JAVA_HOME variable is set. 
+# Otherwise change the command to point to the java executatble or set the JAVA_HOME variable
+JAVA=java.exe
+JAVA_HOME=$JAVA_HOME</pre>
+		<div class="codesnippet-meta">
+			setEnvironment.sh: The imporatent configuration items
+			<div class="codedownload">
+				<a href="Example-scripts-linux-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,32 @@
+package decaf;
+
+public class VarArgsMethod {
+	public void testVarArgs(int value, String... args) {
+	}
+	
+	public void testVarArgsMethodInvocation() {
+		testVarArgs(1, "test", "Var", "Args", "Method", "Invocation");
+		testVarArgs(1, "test" + "Var" + "Args", "Method" + "Invocation");
+		testVarArgs(1, new String[0]);
+		testVarArgs(1, new String[] { "foo", "bar" });
+		testVarArgs(42);
+		String[] var = null;
+		testVarArgs(1, var);
+		
+		String value = "test";
+		testVarArgs(1, value, "Var", "Args", getDescription("Method"), getDescription(getDescription("Invocation")));
+		testVarArgsMethodWithObjects("Test", new Integer(42), new VarArgsMethod());
+		testVarArgsMethodWithObjects(new String[2]);
+		testVarArgsMethodWithObjects(new int[2]);
+	}
+	
+	public void testVarArgsMethodWithObjects(Object... args) {
+		for(Object item : args) {
+			System.out.print(item);
+		}
+	}
+	
+	private String getDescription(String str) {
+		return str;
+	}
+}

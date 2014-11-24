@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="391" MadCap:lastWidth="586">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Lazy Queries" />Snapshot Queries</h1>
+    <P>Snapshot mode allows you to get the advantages of the Lazy queries avoiding their side effects. When query is executed, the query processor chooses the best indexes, does all index processing and creates a snapshot of the index at this point in time. Non-indexed constraints are evaluated lazily when the application iterates through the <CODE>ObjectSet</CODE> result set of the query.</P>
+    <P>Snapshot queries ensure better performance than Immediate queries, but the performance will depend on the size of the result set.</P>
+    <P>As the snapshot of the results is kept in memory the result set is not affected by the changes from the caller or from another transaction.</P>
+    <h2>Advantages</h2>
+    <UL>
+      <LI>Index processing will happen without possible side effects from changes made by the caller or by other transaction.</LI>
+      <LI>Since index processing is fast, a server will not be blocked for a long time.</LI>
+    </UL>
+    <h2>Disadvantages</h2>
+    <UL>
+      <LI>The entire candidate index will be loaded into memory. It will stay there until the query ObjectSet is garbage collected. In a C/S setup, the memory will be used on the server side</LI>
+    </UL>
+    <P>Client/Server applications with the risk of concurrent modifications should prefer Snapshot over Lazy mode to avoid side effects from other transactions.</P>
+  </body>
+</html>

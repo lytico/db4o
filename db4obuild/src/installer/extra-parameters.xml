@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<WixBuilderParameters InstallationFolder="PFiles[ProgramFilesFolder]\db4o[PFiles.Db4objects]\db4o-@db4o.version.dotted@[INSTALLDIR]">
+	<KnownIds>
+		<KnownId>
+			<Id>doc.tutorial.Db4oTutorial</Id>
+			<Path>doc/tutorial/db4o-tutorial-net.pdf</Path>
+		</KnownId>
+		
+		<KnownId>
+			<Id>omn.ObjectManagerEnterprise_2008</Id>
+			<Path>omn/ObjectManagerEnterprise-@db4o.version.dotted@-vs2008.msi</Path>
+		</KnownId>			
+		
+		<KnownId>
+			<Id>omn.ObjectManagerEnterprise_2010</Id>
+			<Path>omn/ObjectManagerEnterprise-@db4o.version.dotted@-vs2010.msi</Path>
+		</KnownId>		
+	</KnownIds>
+
+	<Features>
+	  <Feature
+	  	Id="ApplicationFiles"
+		Title="Db4o Runtime"
+	  	Description="Db4o core libraries and documentation">
+		<Content Include="**/*.*" Exclude="omn*/*.*"/>
+		
+		<Shortcuts>		
+			<Shortcut>
+				<Path>doc/tutorial/db4o-tutorial-net.pdf</Path>
+				<Name>Db4o Tutorial</Name>
+			</Shortcut>
+			
+			<Shortcut>
+				<Path>doc/api/db4o.chm</Path>
+				<Name>Db4o API</Name>
+			</Shortcut>
+		</Shortcuts>
+		
+	  </Feature>
+    
+	<Feature 
+		Id="OMN"
+		Title="ObjectManager Enterprise"
+		Description ="Visual Studio plugin with support for db4o databse object browsing">
+		<Content Include="omn/ObjectManagerEnterprise-*.*" />
+		
+		<Shortcuts>
+			<Shortcut>
+				<Path>omn/ObjectManagerEnterprise-@db4o.version.dotted@-vs2008.msi</Path>
+				<Name>Install ObjectManager VS 2008 plugin</Name>
+			</Shortcut>
+			
+			<Shortcut>
+				<Path>omn/ObjectManagerEnterprise-@db4o.version.dotted@-vs2010.msi</Path>
+				<Name>Install ObjectManager VS 2010 plugin</Name>
+			</Shortcut>
+		</Shortcuts>		
+	  </Feature>
+	 </Features>	
+
+</WixBuilderParameters>
+		

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Driver driver = QueryForDriver(container);
+driver.Name = <span style="color:#A31515;">&quot;New Name&quot;</span>;
+Console.WriteLine(<span style="color:#A31515;">&quot;Name before rollback {0}&quot;</span>, driver.Name);
+container.Rollback();
+<span style="color:Green;">// Without transparent persistence objects keep the state in memory</span>
+Console.WriteLine(<span style="color:#A31515;">&quot;Name after rollback {0}&quot;</span>, driver.Name);
+<span style="color:Green;">// After refreshing the object is has the state like in the database</span>
+container.Ext().Refresh(driver, <span style="color:Blue;">int</span>.MaxValue);
+Console.WriteLine(<span style="color:#A31515;">&quot;Name after rollback {0}&quot;</span>, driver.Name);</pre>
+		<div class="codesnippet-meta">
+			Transactions.cs: Without transparent persistence objects in memory aren't rolled back
+			<div class="codedownload">
+				<a href="Example-Code-transactions-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

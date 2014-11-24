@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">&lt;</span><span style="color:#A31515;">target</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">enhance</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;</span><span style="color:#A31515;">db4o-enhance</span> <span style="color:Red;">classtargetdir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${basedir}/bin/classes</span><span style="color:Black;">&quot;</span>
+                  <span style="color:Red;">jartargetdir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${basedir}/lib</span><span style="color:Black;">&quot;</span>
+                  <span style="color:Red;">nq</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">true</span><span style="color:Black;">&quot;</span> <span style="color:Red;">ta</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">false</span><span style="color:Black;">&quot;</span>
+                  <span style="color:Red;">collections</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">false</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>        	
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">classpath</span> <span style="color:Red;">refid</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">project.classpath</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+        <span style="color:Blue;">&lt;</span><span style="color:#A31515;">sources</span> <span style="color:Red;">dir</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">${basedir}/bin/classes</span><span style="color:Black;">&quot;</span><span style="color:Blue;">&gt;</span>
+                  <span style="color:Blue;">&lt;</span><span style="color:#A31515;">include</span> <span style="color:Red;">name</span><span style="color:Blue;">=</span><span style="color:Black;">&quot;</span><span style="color:Blue;">**/*.class</span><span style="color:Black;">&quot;</span><span style="color:Blue;">/&gt;</span>
+        <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">sources</span><span style="color:Blue;">&gt;</span>
+    <span style="color:Blue;">&lt;/</span><span style="color:#A31515;">db4o-enhance</span><span style="color:Blue;">&gt;</span>
+<span style="color:Blue;">&lt;/</span><span style="color:#A31515;">target</span><span style="color:Blue;">&gt;</span></pre>
+		<div class="codesnippet-meta">
+			android-db4o-optimisation.xml: Define a target which runs the task 
+			<div class="codedownload">
+				<a href="Example-javaAppExamples-Android-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

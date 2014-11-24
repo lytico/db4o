@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1862" MadCap:lastWidth="539">
+    <head>
+    </head>
+    <body>
+        <h1>Db4o Blob Implementation</h1>
+        <p>Built-in db4o blob type helps you to get rid of the problems of byte[] array, though it has its own drawbacks. </p>
+        <ol>
+            <li>Every Blob gets it's own file:</li>
+            <p>+ Main database file stays a lot smaller. </p>
+            <p>+ Backups are possible over individual files.</p>
+            <p>+The BLOBs are accessible without db4o.</p>
+            <p>- Multiple files need to be managed .</p>
+        </ol>
+        <ol>
+            <li>Special code is necessary to store and load.</li>
+            <p>- It is more difficult to move objects between db4o database files.</p>
+            <li>No concerns about activation depth</li>
+            <p>+ Big objects won't be loaded into memory as part of the activation process.</p>
+        </ol>
+        <h2>Configuration</h2>
+        <p>First, the <a href="../../../configuration/file/blob_path.htm">blob storage location</a> should be defined. If that value is not defined, db4o will use the default folder "blobs" in user directory.</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/configuration/file/FileConfiguration-Configure-the-blob-path.all.flsnp" />
+        <h2>Using The db4o-Blob</h2>
+        <p>There are two important operations on the blob type. The first one write a file into the db4o blob:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/typehandling/blob/BlobStorage-Store-the-file-as-a-db4o-blob.all.flsnp" />
+        <p>And then there's the operation which .loads the db4o blob into a new file. </p>
+        <MadCap:snippetBlock src="../../../CodeExamples/typehandling/blob/BlobStorage-Load-a-blob-from-a-db4o-blob.all.flsnp" />
+        <p>The db4o blob-type has a status attached to it. This status tells you if the blob-file all ready has been transferred:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/typehandling/blob/BlobStorage-wait-until-the-operation-is-done.all.flsnp" />
+        <p MadCap:conditions="Primary..NET,Primary.Online">Take a look a the complete example code (<span MadCap:conditions="Primary.Java"><a href="../../../CodeExamples/typehandling/blob/Example-typehandling-blob-java.zip">Java</a></span><span MadCap:conditions="Primary..NET"><a href="../../../CodeExamples/typehandling/blob/Example-typehandling-blob-csharp.zip">C#</a>, <a href="../../../CodeExamples/typehandling/blob/Example-typehandling-blob-vb.zip">VB.NET</a></span>).</p>
+    </body>
+</html>

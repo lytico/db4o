@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="9" MadCap:lastHeight="5004" MadCap:lastWidth="686">
+    <head>
+    </head>
+    <body>
+        <h1>Transactions</h1>
+        <p>db4o has ACID properties and supports transactions. Now we take a look at db4o's transaction support.<MadCap:snippetText src="Snippets/See-domain-model.flsnp" /> <![CDATA[ ]]></p>
+        <div MadCap:targetName="domainModel">
+            <MadCap:snippetBlock src="CodeExamples/transactions/Car-Domain-model-for-cars.all.flsnp" />
+            <MadCap:snippetBlock src="CodeExamples/transactions/Driver-Domain-model-for-drivers.all.flsnp" />
+        </div>
+        <h2><a name="CommitRollback"></a>Commit and Rollback</h2>
+        <p>db4o starts a transaction as soon as you open an object container and implicitly commits it when you close the object container. In between we can control the transaction explicitly by calling the commit or rollback method.  After the commit everything is persisted and another transaction is started.</p>
+        <MadCap:snippetBlock src="CodeExamples/transactions/Transactions-Committing-changes.all.flsnp" />
+        <p>The same applies to rollbacks. We can rollback the transaction any time. After a rollback the next transaction is started.</p>
+        <MadCap:snippetBlock src="CodeExamples/transactions/Transactions-Rollback-changes.all.flsnp" />
+        <h2><a name="ObjectState"></a>Object State after Rollback</h2>
+        <p>What happens to objects in memory when we rollback a transaction? By default the objects in memory keep their state. If you want to rollback the objects in memory you need to reload them.</p>
+        <MadCap:snippetBlock src="CodeExamples/transactions/Transactions-Without-transparent-persistence-objects-in-memory-aren't-rolled-back.all.flsnp" />
+        <h3>With Transparent Persistence</h3>
+        <p>With transparent activation we can use a rollback strategy. That way we can rollback the state of the objects in memory.</p>
+        <MadCap:snippetBlock src="CodeExamples/transactions/Transactions-Rollback-strategy-for-the-transaction.all.flsnp" />
+        <MadCap:snippetBlock src="CodeExamples/transactions/Transactions-Transparent-persistence-rolls-back-objects-in-memory.all.flsnp" />
+        <h2><a name="MultipleTx"></a>Multiple Transactions</h2>
+        <p>For more complex applications we can use multiple transactions. For that we need to create multiple object containers, each having its own transaction. </p>
+        <p>When we have multiple object containers, an object always needs to be loaded and stored in the same object container.</p>
+        <MadCap:snippetBlock src="CodeExamples/transactions/Transactions-Opening-a-new-transaction.all.flsnp" />
+    </body>
+</html>

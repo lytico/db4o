@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            id="db4otesteclipse.runtestmenu.unit.type"
+            objectClass="org.eclipse.jdt.core.IType">
+         <action
+               class="db4otesteclipse.unit.RunUnitTestAction"
+               icon="d.gif"
+               id="db4otesteclipse.runtestmenu.unit.type.action"
+               label="Run db4o unit test"
+               menubarPath="db4otesteclipse.menu.type/db4otesteclipse.menu.type.addition"/>
+         <menu
+               id="db4otesteclipse.menu.type"
+               label="Run db4o test...">
+            <separator name="db4otesteclipse.menu.type.addition"/>
+         </menu>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="db4otesteclipse.runtestmenu.unit.cu"
+            objectClass="org.eclipse.jdt.core.ICompilationUnit">
+         <action
+               class="db4otesteclipse.unit.RunUnitTestAction"
+               icon="d.gif"
+               id="db4otesteclipse.runtestmenu.unit.cu.action"
+               label="Run db4o unit test"
+               menubarPath="db4otesteclipse.menu.cu/db4otesteclipse.menu.cu.additions"/>
+         <menu
+               id="db4otesteclipse.menu.cu"
+               label="Run db4o test...">
+            <separator name="db4otesteclipse.menu.cu.additions"/>
+         </menu>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="db4otesteclipse.runtestmenu.unit.pf"
+            objectClass="org.eclipse.jdt.core.IPackageFragment">
+         <action
+               class="db4otesteclipse.unit.RunUnitTestAction"
+               icon="d.gif"
+               id="db4otesteclipse.runtestmenu.unit.pf.action"
+               label="Run db4o unit tests"
+               menubarPath="db4otesteclipse.menu.pf/db4otesteclipse.menu.pf.addition"/>
+         <menu
+               id="db4otesteclipse.menu.pf"
+               label="Run db4o tests...">
+            <separator name="db4otesteclipse.menu.pf.addition"/>
+         </menu>
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            id="db4otesteclipse.runtestmenu.unit.method"
+            objectClass="org.eclipse.jdt.core.IMethod">
+         <action
+               class="db4otesteclipse.unit.RunUnitTestAction"
+               icon="d.gif"
+               id="db4otesteclipse.runtestmenu.unit.method.action"
+               label="Run db4o unit test method"
+               menubarPath="db4otesteclipse.menu.type/db4otesteclipse.menu.type.addition"/>
+         <menu
+               id="db4otesteclipse.menu.type"
+               label="Run db4o test...">
+            <separator name="db4otesteclipse.menu.type.addition"/>
+         </menu>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="db4otesteclipse.Db4oTestLaunchConfiguration"
+            id="db4otesteclipse.launchconfig.type"
+            modes="run,debug"
+            name="db4o Regression Test"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="db4otesteclipse.launchconfig.type"
+            icon="d.gif"
+            id="db4otesteclipse.launchconfig.type.image"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.eclipse.jdt.internal.debug.ui.launcher.LocalJavaApplicationTabGroup"
+            id="db4otesteclipse.launchconfig.tabgroup"
+            type="db4otesteclipse.launchconfig.type"/>
+   </extension>
+
+</plugin>

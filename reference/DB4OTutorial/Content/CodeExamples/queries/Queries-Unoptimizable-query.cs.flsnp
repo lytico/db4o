@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Green;">// This query will print a 'QueryOptimizationException' in the debugger console.</span>
+<span style="color:Green;">// That means it runs very slowly and you should find an alternative.</span>
+<span style="color:Green;">// This example query cannot be optimized because the hash code isn't a stored in database</span>
+<span style="color:Blue;">var</span> drivers = <span style="color:Blue;">from</span> Driver d <span style="color:Blue;">in</span> container
+              <span style="color:Blue;">where</span> d.GetHashCode()==42
+              <span style="color:Blue;">select</span> d;</pre>
+		<div class="codesnippet-meta">
+			Queries.cs: Unoptimizable query
+			<div class="codedownload">
+				<a href="Example-Code-queries-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

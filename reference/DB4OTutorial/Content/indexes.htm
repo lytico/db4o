@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1499" MadCap:lastWidth="572">
+    <head>
+    </head>
+    <body>
+        <h1>Indexes</h1>
+        <p>With indexes we can speed up queries. As soon as we have lots of objects and query them we need indexes.</p>
+        <p>Indexes are a tradeoff: An index makes queries orders of magnitudes faster, but it slows down updates and inserts of those objects. </p>
+        <h2>Index Annotation</h2>
+        <p>We can add an <MadCap:variable name="Primary.Annotation" /> on a field in order to index that field. 
+		<span MadCap:conditions="Primary..NET">Currently we cannot annotate auto proprieties.
+			We should use regular properties with a backing field when storing objects in db4o.</span></p>
+        <MadCap:snippetBlock src="CodeExamples/indexes/Car-Indexing-the-car-name.all.flsnp" />
+    </body>
+</html>

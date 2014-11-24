@@ -1,0 +1,40 @@
+.n
+.a RefactoringAndSchemaEvolution ..
+.0 Refactoring and "Schema Evolution" ..
+
+.1 Introduction
+
+By Refactoring, we mean anything that will change the shape of the class as it ._
+is stored on the disk.  In the context of other databases (where the database ._
+structure is said to be a "Schema"), refactoring is also called Schema Evolution.
+
+.1 What db4objects does today automatically or easily ..
+
+Db4o automaticaly handles the most common refactoring or schema evolution ._
+changes for you.
+
+- Changing the interface or API to a class
+- Adding a field
+- Removing a field
+
+In addition, Db4o can rename classes and fields simply:
+
+- Db4o.configure().objectClass("package.class").rename("newPackage.newClass");
+- Db4o.configure().objectClass("package.class").objectField("oldField").rename("newField");
+
+If you modify a field's type, db4o will internally create a new field of the ._
+same name, but with the new type.  The values of the old typed field will ._
+still be present, but be hidden.  If you change the type back to the old type ._
+the old values will still be there.
+
+.1 What is not yet automated ..
+
+If you want to move a class to a new place in the inheritence hierarchy, you ._
+will need to follow the following procedure:
+
+- Create the new class in the proper location using a temporary name
+- Write manual code to create objects of the new class from the old ones
+- Delete the old objects
+- Run Defragment
+- Rename the temporary class name back to the correct name
+

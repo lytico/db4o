@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2E56236C-E595-4DFF-9B9E-0E0509D29A4E}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Db4objects.Db4o.Linq</RootNamespace>
+    <AssemblyName>Db4objects.Db4o.Linq</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<SignAssembly>true</SignAssembly>
+<AssemblyOriginatorKeyFile>../db4objects.snk</AssemblyOriginatorKeyFile>
+</PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Db4objects.Db4o.Linq.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT NET_4_0</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Db4objects.Db4o.Linq.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Cecil.FlowAnalysis">
+      <HintPath>..\Libs\silverlight\Cecil.FlowAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\Libs\silverlight\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib"/>
+    <Reference Include="system"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Windows"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Db4objects.Db4o.Linq\Caching\CacheFactory.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Caching\ICache4.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Caching\SynchronizedCache.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Caching\TracingCacheDecorator.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\CodeAnalysis\CecilMethodAnalyser.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\CodeAnalysis\CodeQueryBuilder.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\CodeAnalysis\IMethodAnalyser.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\CodeAnalysis\MetadataResolver.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\CodeAnalysis\MethodAnalyser.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\CodeAnalysis\QueryExpressionFinder.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\CodeAnalysis\ReflectionMethodAnalyser.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Db4oLinqQueryExtensions.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\ExpressionCacheFactory.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\ExpressionComparison.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\ExpressionEnumeration.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\ExpressionEqualityComparer.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\ExpressionQueryBuilder.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\ExpressionTransformer.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\ExpressionTreeNormalizer.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\ExpressionVisitor.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\HashCodeCalculation.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\OrderByAscendingClauseVisitor.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\OrderByClauseVisitorBase.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\OrderByDescendingClauseVisitor.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\QueryableTransformer.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\SubtreeEvaluator.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Expressions\WhereClauseVisitor.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\IDb4oLinqQuery.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\IDb4oLinqQueryable.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\ILinqQueryMonitor.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\Db4oLinqQueryable.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\Db4oQuery.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\DelayedSelect.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\Extensions.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\IDb4oLinqQueryInternal.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\IDelayedSelectOperation.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\LinqQueryMonitorImpl.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\ObjectSequence.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\ObjectSetWrapper.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\OptimizeableMethodConstrains.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\PlaceholderQuery.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\QueryBuilderContext.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\QueryBuilderRecorder.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\Internals\UnoptimizedQuery.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\ObjectContainerExtensions.cs"/>
+    <Compile Include="Db4objects.Db4o.Linq\QueryOptimizationException.cs"/>
+    <Compile Include="Properties\AssemblyInfo.cs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Db4objects.Db4o\Db4objects.Db4o-Silverlight-2010.csproj">
+      <Project>{76FFA4C5-6CC6-4C8C-BACF-B1C76AE0CA65}</Project>
+      <Name>Db4objects.Db4o-Silverlight-2010</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets"/>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties/>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

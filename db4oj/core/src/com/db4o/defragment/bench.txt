@@ -1,0 +1,28 @@
+todo2006/FastDefragment timings
+
+                    NETBEANS  ECLIPSE  WINDOWS
+OLD DEFRAGMENT       33174ms  59060ms  42360ms
+INITIAL               9152ms  12532ms
+CLASS ID CACHING      9663ms  11588ms           (ObjectHeader#defrag(): 13,2% -> 1,5%)
+BTREE#LAST                    11467ms
+SINGLE KEY                     8401ms
+FIELD-INDEXED ONLY    7517ms   6905ms           (First pass now up from 24% to 30%)
+BATCH POINTER ALLOC            7130ms
+REMOVE FP DOUBLE CHECK         7078ms
+MERGE ID/SEEN TREE    8146ms   8587ms           (seen was in-memory so far)
+CARL'S CHANGES                 7017ms  11141ms
+'TOPLEVEL' OBJ SLOTS ONLY      6935ms
+DROP SEEN             6603ms   6105ms   9594ms
+IN-MEMORY (OPT.)               4746ms   7265ms
+BATCH OFFSET INC               4500ms
+
+Tuning suggestions:
+- cache class ids separately -done- (+)
+- optimize BTreeRange#lastPointer() -done- (+)
+- use single key plus handler instead of values -done- (+++)
+- only map addresses for objects whose class is covered by a string index -done- (++)
+- batch pointer allocation in first pass -done- (o)
+- merge id and seen trees - but seen has to be updated per pass... -done- (o)
+- increase node size?
+- pre-sort classes and use object header class id entry to decide 'seen'?
+  alternatively: remove 'seen' by sorting out subclasses like the 'old' defragment? -done- (+)

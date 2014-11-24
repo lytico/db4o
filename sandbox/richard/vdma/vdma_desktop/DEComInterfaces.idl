@@ -1,0 +1,392 @@
+/*==================================================================
+	Copyright (c) Microsoft Corporation
+
+	File:		DEComInterfaces.idl
+
+	Contains:	Definition of DeviceEmulator's COM interfaces.
+
+==================================================================*/
+
+import "oaidl.idl";		// Standard types
+import "ocidl.idl";
+
+cpp_quote( "const ULONG kDETypeLibrary_MajorVersion = 1;" )
+cpp_quote( "const ULONG kDETypeLibrary_MinorVersion = 0;" )
+
+
+interface IDeviceEmulatorDebugger;
+
+/*------------------------------------------------------------------
+	IDeviceEmulatorVirtualMachineManager interface.
+	
+	This interface allows the caller to manipulate virtual machines
+	within the DeviceEmulator.
+------------------------------------------------------------------*/
+[
+	object,
+	uuid(4bd3464d-8f1a-48a0-8dc9-d49db861f6c4),
+	helpstring("IDeviceEmulatorVirtualMachineManager Interface"),
+	pointer_default(unique)
+]
+
+interface IDeviceEmulatorVirtualMachineManager : IUnknown
+{
+	[ helpstring("Gets count of all virtual machines available (running or not)") ]
+	HRESULT GetVirtualMachineCount(
+		[out, retval] ULONG* numberOfVMs );
+	
+	[ helpstring("Gets array of GUIDs of all virtual machines available (running or not)") ]
+	HRESULT EnumerateVirtualMachines(
+		[in, out] ULONG* numberOfVMs,
+		[out, size_is(*numberOfVMs)] GUID virtualMachineID[] );
+	
+	[ helpstring("Tests if a virtual machine is running or not, returns error if unknown machine ID") ]
+	HRESULT IsVirtualMachineRunning(
+		[in]  		  GUID*		virtualMachineID,
+		[out, retval] boolean*	isRunning );
+
+	[ helpstring("Resets a virtual machine, either a hard or soft reset") ]
+	HRESULT ResetVirtualMachine(
+		[in] GUID*		virtualMachineID,
+		[in] boolean	hardReset );
+
+	[ helpstring("Starts a new virtual machine using command line parameters") ]
+	HRESULT CreateVirtualMachine(
+		[in] LPOLESTR						commandLine);
+
+	[ helpstring("Shuts down a virtual machine, optionally saving the state") ]
+	HRESULT ShutdownVirtualMachine(
+		[in] GUID*		virtualMachineID,
+		[in] boolean	saveMachine );
+
+	[ helpstring("Restores a previously saved virtual machine") ]
+	HRESULT RestoreVirtualMachine(
+		[in] GUID*							virtualMachineID);
+
+	[ helpstring("Deletes a previously saved virtual machine") ]
+	HRESULT DeleteVirtualMachine(
+		[in] GUID*		virtualMachineID );
+
+	[ helpstring("Returns the name of a virtual machine") ]
+	HRESULT GetVirtualMachineName(
+		[in]  GUID*		virtualMachineID,
+		[out] LPOLESTR*	virtualMachineName );
+
+	[ helpstring("Sets the name of a virtual machine") ]
+	HRESULT SetVirtualMachineName(
+		[in] GUID*		virtualMachineID,
+		[in] LPOLESTR	virtualMachineName );
+
+	[ helpstring("Bring a VM Window to be frontmost") ]
+	HRESULT BringVirtualMachineToFront(
+		[in] GUID*		virtualMachineID );
+
+    [helpstring("Displays Configuration Dialog") ]
+    HRESULT ConfigureDevice([in] HWND hwndParent,
+                            [in] LCID lcidParent,
+                            [in] BSTR bstrConfig,
+                            [out] BSTR* pbstrConfig);
+
+	[ helpstring("Gets count of all MAC addresses available for a particular VMID") ]
+	HRESULT GetMACAddressCount(
+		[in]  GUID*		virtualMachineID,
+		[out, retval] ULONG* numberOfMACs );
+
+	[ helpstring("Get array of MACs of all network adapters available for a particular VMID") ]
+	HRESULT EnumerateMACAddresses(
+		[in]  GUID*		virtualMachineID,
+		[in, out] ULONG* numberOfMacs,
+		[out, size_is(*numberOfMacs*6)] BYTE arrayOfMACAddresses[]);
+
+	HRESULT VirtualMachineManagerVersion(
+	[out]DWORD* version );
+
+    [helpstring("Returns a debugger interface") ]
+    HRESULT GetDebuggerInterface(
+        [in] GUID*		virtualMachineID,
+        [out, retval] IDeviceEmulatorDebugger **ppDebugger);
+
+};
+
+
+/*------------------------------------------------------------------
+	IDeviceEmulatorVirtualTransport interface.
+
+------------------------------------------------------------------*/
+[
+	object,
+	uuid(39583a47-3f35-4469-a534-cb784e163305),
+	helpstring("IDeviceEmulatorVirtualTransport Interface"),
+	pointer_default(unique)
+]
+
+interface IDeviceEmulatorVirtualTransport : IUnknown
+{
+	[ helpstring("Creates a new transport channel") ]
+	HRESULT Create(
+		[in]  GUID*			virtualMachineID,
+		[in]  ULONG			dmaChannel,
+		[out] ULONG*		transportID );
+
+	[ helpstring("Deletes a transport channel") ]
+	HRESULT Delete(
+		[in] ULONG transportID );
+
+	[ helpstring("Sends data across the transport") ]
+	HRESULT Send(
+		[in]					 ULONG	transportID,
+		[in, size_is(byteCount)] const BYTE* dataBuffer,
+		[in]					 USHORT	byteCount);
+
+	[ helpstring("Polls for data received from the transport") ]
+	HRESULT Receive(
+		[in]					   ULONG    transportID,
+		[out, size_is(*byteCount), length_is(*byteCount)] BYTE*   dataBuffer,
+		[in, out]				   USHORT* byteCount,
+        [in]                       ULONG Timeout);
+
+	[ helpstring("Indicates which virtual machine a transport should be talking to") ]
+	HRESULT SetVirtualMachineIDForTransport(
+		[in] ULONG		transportID,
+		[in] GUID*		virtualMachineID );
+};
+
+/*------------------------------------------------------------------
+	IDeviceEmulatorDMAChannel interface.
+
+	Represents a DMA channel into a VMID.
+
+    This interface is private to the DeviceEmulator for its own
+    internal communication and should not be called from external
+    code.
+------------------------------------------------------------------*/
+[
+	object,
+	uuid(1679a8ae-e814-4b04-881b-98df9afba4df),
+	helpstring("IDeviceEmulatorDMAChannel Interface"),
+	pointer_default(unique),
+    hidden
+]
+
+interface IDeviceEmulatorDMAChannel : IUnknown
+{
+	[ helpstring("Sends data across the transport") ]
+	HRESULT Send(
+		[in, size_is(byteCount)] const BYTE* dataBuffer,
+		[in] USHORT byteCount);
+		
+	[ helpstring("Polls for data received from the transport") ]
+	HRESULT Receive(
+		[out, size_is(*byteCount), length_is(*byteCount)] BYTE* dataBuffer,
+		[in, out] USHORT* byteCount,
+        [in] ULONG Timeout);
+}
+
+/*------------------------------------------------------------------
+    IDeviceEmulatorDebuggerHaltNotificationSink interface.
+
+    Callback invoked whenever the debuggee emulator halts
+------------------------------------------------------------------*/
+typedef
+    enum _PDEVICEEMULATOR_HALT_REASON_TYPE
+    {
+        haltreasonNone,         // Status type is not rsHalted
+        haltreasonUser,         // "Manual" asynchronous halt
+        haltreasonException,    // An exception just occured
+        haltreasonBp,           // Breakpoint (code or data)
+        haltreasonStep,         // We just excuted a single / multiple / range step
+        haltreasonUnknown
+    }
+    DEVICEEMULATOR_HALT_REASON_TYPE;
+
+[
+    object,
+    uuid(4de85c9d-818c-40d8-bca1-bf23045acb6e),
+    helpstring("IDeviceEmulatorDebuggerHaltNotificationSink Interface"),
+    pointer_default(unique)
+]
+
+interface IDeviceEmulatorDebuggerHaltNotificationSink : IUnknown
+{
+    HRESULT HaltCallback( 
+        [in] DEVICEEMULATOR_HALT_REASON_TYPE HaltReason,
+        [in] DWORD Code,		// exception code
+        [in] DWORD64 Address,	// instruction pointer where the exception ocurred
+        [in] DWORD dwCpuNum     // cpu number
+        );
+};
+
+/*------------------------------------------------------------------
+    IDeviceEmulatorDebugger interface.
+
+    ICE-like debugger interface to the emulator
+------------------------------------------------------------------*/
+[
+    object,
+    uuid(1b48cad4-d013-4b98-b505-76162f09e8e9),
+    helpstring("IDeviceEmulatorDebugger Interface"),
+    pointer_default(unique),
+    hidden
+]
+
+interface IDeviceEmulatorDebugger : IUnknown
+{
+    HRESULT GetProcessorFamily([out] DWORD *pdwProcessorFamily); // 4 = ARM
+
+    HRESULT ContinueExecution(void); // this is async - it returns when exection begins
+
+    HRESULT ContinueWithSingleStep(DWORD dwNumberOfSteps, [in] DWORD dwCpuNum); // this is async - it returns when execution begins
+
+    HRESULT Halt(void);  // this is async - it may return before excution actually halts
+
+    HRESULT RegisterHaltNotification([in] IDeviceEmulatorDebuggerHaltNotificationSink *pSink, [out] DWORD *pdwNotificationCookie);
+
+    HRESULT UnregisterHaltNotification([in] DWORD dwNotificationCookie);
+
+    HRESULT ReadVirtualMemory([in] DWORD64 Address, 
+                              [in] DWORD NumBytesToRead, 
+                              [in] DWORD dwCpuNum,
+                              [out, size_is(NumBytesToRead)] BYTE *pbReadBuffer, 
+                              [out] DWORD *pNumBytesActuallyRead);
+
+    HRESULT WriteVirtualMemory([in] DWORD64 Address, 
+                               [in] DWORD NumBytesToWrite, 
+                               [in] DWORD dwCpuNum,
+                               [in, size_is(NumBytesToWrite)] const BYTE *pbWriteBuffer, 
+                               [out] DWORD *pNumBytesActuallyWritten);
+
+    HRESULT ReadPhysicalMemory([in] DWORD64 Address, 
+                               [in] boolean fUseIOSpace,
+                               [in] DWORD NumBytesToRead, 
+                               [in] DWORD dwCpuNum,
+                               [out, size_is(NumBytesToRead)] BYTE *pbReadBuffer, 
+                               [out] DWORD *pNumBytesActuallyRead);
+
+    HRESULT WritePhysicalMemory([in] DWORD64 Address, 
+                                [in] boolean fUseIOSpace,
+                                [in] DWORD NumBytesToWrite, 
+                                [in] DWORD dwCpuNum,
+                                [in, size_is(NumBytesToWrite)] const BYTE *pbWriteBuffer, 
+                                [out] DWORD *pNumBytesActuallyWritten);
+
+    HRESULT AddCodeBreakpoint([in] DWORD64 Address,
+                  [in] boolean fIsVirtual, // true = IsVirtual, false = IsPhysical
+                  [in] DWORD dwBypassCount,
+                  [out] DWORD *pdwBreakpointCookie);
+
+    HRESULT SetBreakpointState([in] DWORD dwBreakpointCookie,
+                   [in] boolean fResetBypassCount);
+
+    HRESULT GetBreakpointState([in] DWORD dwBreakpointCookie,
+                               [out] DWORD *pdwBypassedOccurrences);
+
+    HRESULT DeleteBreakpoint([in] DWORD dwBreakpointCookie);
+
+    HRESULT GetContext([in, out, size_is(dwContextSize)] BYTE *pbContext,
+               [in] DWORD dwContextSize, [in] DWORD dwCpuNum);
+
+    HRESULT SetContext([in, out, size_is(dwContextSize)] BYTE *pbContext,
+               [in] DWORD dwContextSize, [in] DWORD dwCpuNum);
+};
+
+
+/*------------------------------------------------------------------
+	IDeviceEmulatorItem interface.
+
+	An instance of this interface is registered in the ROT for each
+    running VMID.
+
+    This interface is private to the DeviceEmulator for its own
+    internal communication and should not be called from external
+    code.
+------------------------------------------------------------------*/
+[
+	object,
+	uuid(9c06bd4c-12b3-4991-a512-8c4884ec8bb5),
+	helpstring("IDeviceEmulatorItem Interface"),
+	pointer_default(unique),
+    hidden
+]
+
+interface IDeviceEmulatorItem : IOleItemContainer
+{
+	[ helpstring("Bring a VM Window to be frontmost") ]
+	HRESULT BringVirtualMachineToFront(
+                void);
+
+	[ helpstring("Resets a virtual machine, either a hard or soft reset") ]
+	HRESULT ResetVirtualMachine(
+		[in] boolean	hardReset );
+
+	[ helpstring("Shuts down a virtual machine, optionally saving the state") ]
+	HRESULT ShutdownVirtualMachine(
+		[in] boolean	saveMachine );
+
+    [ helpstring("Binds to a specific DMA channel") ]
+    HRESULT BindToDMAChannel(
+            [in] ULONG dmaChannel,
+            [out, retval] IDeviceEmulatorDMAChannel** ppDMAChannel);
+
+	[ helpstring("Returns the name of a virtual machine") ]
+	HRESULT GetVirtualMachineName(
+		[out] LPOLESTR*	virtualMachineName );
+
+	[ helpstring("Sets the name of a virtual machine") ]
+	HRESULT SetVirtualMachineName(
+		[in] LPOLESTR	virtualMachineName );
+
+	[ helpstring("Gets count of all MAC addresses available for a particular VMID") ]
+	HRESULT GetMACAddressCount(
+		[out, retval] ULONG* numberOfMACs );
+
+	[ helpstring("Get array of MACs of all network adapters available for a particular VMID") ]
+	HRESULT EnumerateMACAddresses(
+		[in, out] ULONG* numberOfMacs,
+		[out, size_is(*numberOfMacs*6)] BYTE arrayOfMACAddresses[]);
+
+	[helpstring("Displays Configuration Dialog") ]
+	HRESULT ConfigureDevice(
+		[in] HWND hwndParent,
+		[in] LCID lcidParent,
+		[in] BSTR bstrConfig,
+		[out] BSTR* pbstrConfig);
+
+    [helpstring("Returns a debugger interface") ]
+    HRESULT GetDebuggerInterface(
+        [out, retval] IDeviceEmulatorDebugger **ppDebugger);
+
+};
+
+
+/*------------------------------------------------------------------
+	Declaration of the classes within the DEEComInterfaces
+	library. This is used to create the COM '.tlb' type library.
+------------------------------------------------------------------*/
+[
+    uuid(fd932356-c9b8-495c-9803-69d0d4a29ca9),
+	version(1.0),
+	helpstring("DeviceEmulatorComInterfaces 1.0 Type Library")
+]
+library DeviceEmulator
+{
+	importlib("stdole2.tlb");
+
+	[
+		uuid(063e2de8-aa5b-46e8-8239-b8f7ca43f4c7),
+		helpstring("DeviceEmulatorVirtualMachineManager Class")
+	]
+	coclass DeviceEmulatorVirtualMachineManager
+	{
+		[default] interface IDeviceEmulatorVirtualMachineManager;
+	};
+
+	[
+		uuid(8703b814-b436-4d99-b126-ce5df302730f),
+		helpstring("DeviceEmulatorVirtualTransport Class")
+	]
+	coclass DeviceEmulatorVirtualTransport
+	{
+		[default] interface IDeviceEmulatorVirtualTransport;
+	};
+
+};

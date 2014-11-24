@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> Person owner;
+
+<span style="color:Blue;">public</span> Person Owner
+{
+    <span style="color:Blue;">get</span> { <span style="color:Blue;">return</span> owner; }
+    <span style="color:Blue;">set</span>
+    {
+        <span style="color:Green;">// This setter ensures that the model is always consistent</span>
+        <span style="color:Blue;">if</span> (<span style="color:Blue;">null</span> != <span style="color:Blue;">this</span>.owner)
+        {
+            Person oldOwner = <span style="color:Blue;">this</span>.owner;
+            <span style="color:Blue;">this</span>.owner = <span style="color:Blue;">null</span>;
+            oldOwner.RemoveOwnerShipOf(<span style="color:Blue;">this</span>);
+        }
+        <span style="color:Blue;">if</span> (<span style="color:Blue;">null</span> != value &amp;&amp; !value.OwnedDogs.Contains(<span style="color:Blue;">this</span>))
+        {
+            value.AddOwnerShipOf(<span style="color:Blue;">this</span>);
+        }
+        <span style="color:Blue;">this</span>.owner = value;
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			Dog.cs: Bidirectional 1-N relations. The dog has a owner
+			<div class="codedownload">
+				<a href="Example-practises-relations-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

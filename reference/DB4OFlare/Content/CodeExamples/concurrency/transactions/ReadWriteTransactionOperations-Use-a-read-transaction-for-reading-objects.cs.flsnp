@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">private</span> <span style="color:Blue;">void</span> ListAllPeople(DatabaseSupportWithReadWriteLock dbSupport)
+{
+    dbSupport.InReadTransaction(
+        container =&gt;
+            {
+                <span style="color:Blue;">var</span> result = <span style="color:Blue;">from</span> Person p <span style="color:Blue;">in</span> container <span style="color:Blue;">select</span> p;
+                <span style="color:Blue;">foreach</span> (Person person <span style="color:Blue;">in</span> result)
+                {
+                    Console.WriteLine(person.Name);
+                }
+            });
+}</pre>
+		<div class="codesnippet-meta">
+			ReadWriteTransactionOperations.cs: Use a read transaction for reading objects
+			<div class="codedownload">
+				<a href="Example-concurrency-transactions-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

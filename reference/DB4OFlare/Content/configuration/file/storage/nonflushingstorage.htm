@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="903" MadCap:lastWidth="560">
+  <head />
+  <body>
+    <h1>NonFlushingStorage</h1>
+    <p>NonFlushingStorage is a special IO Storage, which can be used to
+improve commit performance. Committing is a complex operation and requires
+flushing
+to the hard drive after each stage of commit. This is necessary as
+most operating system try to avoid the overhead of disk access by
+caching disk write data and only flushing the resulting changes to the
+disk. In the case of db4o commit it would mean that the physical write
+of some commit stages will be partially skipped and the data will be
+irreversibly lost.  </p>
+    <p>However,
+physical access to the hard drive is a time-consuming operation and may
+considerably affect the performance.  That is where
+NonFlushingStorage comes in: it allows the operating system to keep
+commit data in cache and do the physical writes in a most performant
+order. This may sound very nice, but in fact a system shutdown while
+the commit data is still in cache will lead to the database corruption.</p>
+    <p>The following example shows how to use the NonFlushingStorage. You
+can run it and see the performance improvement on commit stage.</p>
+    <MadCap:snippetBlock src="../../../CodeExamples/configuration/io/IOConfigurationExamples-Using-the-non-flushing-storage.all.flsnp" />
+    <p>Please, remember, that NonFlushingStorage is potentially dangerous
+and any unexpected system shutdown may corrupt your database. Use with
+caution and avoid using in production environments. </p>
+  </body>
+</html>

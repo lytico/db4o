@@ -1,0 +1,170 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B762EAE2-AADD-4419-AFE4-E2344769525C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>OMAddin</AssemblyName>
+    <RootNamespace>OMAddin</RootNamespace>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Extensibility, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft.NET\Primary Interop Assemblies\stdole.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Connect.cs">
+    </Compile>
+    <Compile Include="OutputWindow.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CommandBar.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="EnvDTE">
+      <Guid>{80CC9F66-E7D8-4DDD-85B6-D9E6CD0E93E2}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="EnvDTE80">
+      <Guid>{1A31287A-4D7D-413E-8E32-3B374931BD89}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <Private>True</Private>
+    </COMReference>
+    <COMReference Include="Microsoft.VisualStudio.CommandBars">
+      <Guid>{1CBA492E-7263-47BB-87FE-639000619B15}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <Private>True</Private>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\support1.gif" />
+    <Content Include="ContactSales\ContactSales.htm" />
+    <Content Include="ContactSales\ContactSales_files\filelist.xml" />
+    <Content Include="ContactSales\ContactSales_files\image001.jpg" />
+    <Content Include="ContactSales\ContactSales_files\image002.jpg" />
+    <Content Include="FAQ\FAQ.htm" />
+    <EmbeddedResource Include="FAQ\FAQ_files\filelist.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LoggingBlock\LoggingBlock.csproj">
+      <Project>{F8B76B1A-3675-4EA5-95FD-8A6EB1B484C6}</Project>
+      <Name>LoggingBlock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OM+\OMPlus.csproj">
+      <Project>{E4ED4CBB-BD2F-4DC8-8C01-5413216DCB9A}</Project>
+      <Name>OMPlus</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OMAddinDataTransferLayer\OMAddinDataTransferLayer-2008.csproj">
+      <Project>{FAD4092B-6902-48D4-ADC5-673D4C799AEA}</Project>
+      <Name>OMAddinDataTransferLayer-2008</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OmControlLibrary\OMControlLibrary.csproj">
+      <Project>{73E41A2F-EDD6-4547-BB46-0D33965994EC}</Project>
+      <Name>OMControlLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Include="Images\DBconnect.gif" />
+    <EmbeddedResource Include="Images\DB_DISCONNECT2_a.GIF" />
+    <EmbeddedResource Include="Images\SupportCases.gif" />
+    <EmbeddedResource Include="Images\XtremeConnct_2.gif" />
+    <Content Include="FAQ\FAQ_files\image001.gif" />
+    <Content Include="FAQ\FAQ_files\image002.gif" />
+    <Content Include="OMAddin.AddIn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ReadMe_vs2008\ReadMe_vs2008.htm" />
+    <Content Include="ReadMe_vs2008\ReadMe_vs2008_files\filelist.xml" />
+    <Content Include="ReadMe_vs2008\ReadMe_vs2008_files\image001.jpg" />
+    <Content Include="ReadMe_vs2008\ReadMe_vs2008_files\image002.jpg" />
+    <EmbeddedResource Include="Images\DBconnect_Masked.bmp" />
+    <EmbeddedResource Include="Images\SupportCases_Masked.bmp" />
+    <EmbeddedResource Include="Images\support1_Masked.bmp" />
+    <EmbeddedResource Include="Images\XtremeConnct_2_Masked.bmp" />
+    <EmbeddedResource Include="Images\DB_DISCONNECT2_b.BMP" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

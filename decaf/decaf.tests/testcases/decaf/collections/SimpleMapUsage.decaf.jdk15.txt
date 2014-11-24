@@ -1,0 +1,11 @@
+package decaf.collections;
+
+import java.util.*;
+
+public class SimpleMapUsage {	
+	public static void main(String[] args) {
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		map.put(42, "forty-two");
+		String value = map.get(42);
+	}
+}

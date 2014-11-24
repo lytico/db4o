@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="9" MadCap:lastHeight="431" MadCap:lastWidth="547" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+  <head />
+  <body>
+    <h1>Automatic Shutdown</h1>
+    <p>With this setting you can disable the shutdown monitoring for db4o. By default, db4o will close the database when the <MadCap:variable name="Primary.JVM" /> exits. However on some embedded devices this can lead to issues. So disable it when you experience problems when terminating the application. </p>
+    <p>Note that its recommended to <MadCap:variable name="Primary.close" /> the object-container / -server when you close the application anyway, even when this setting is enabled.</p>
+    <MadCap:snippetBlock src="../../CodeExamples/configuration/common/CommonConfigurationExamples-Disable-automatic-shutdown.all.flsnp" />
+  </body>
+</html>

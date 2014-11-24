@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.c#">
+        <pre class="prettyprint" xml:space="preserve">Person jodie = QueryForJodie(container);
+
+Person julia = jodie.Mother.Mother.Mother.Mother.Mother;
+
+<span style="color:Green;">// This will print null</span>
+<span style="color:Green;">// Because julia is not activated</span>
+<span style="color:Green;">// and therefore all fields are not set</span>
+Console.WriteLine(julia.Name);
+<span style="color:Green;">// This will throw a NullPointerException.</span>
+<span style="color:Green;">// Because julia is not activated</span>
+<span style="color:Green;">// and therefore all fields are not set</span>
+<span style="color:Blue;">string</span> joannaName = julia.Mother.Name;</pre>
+		<div class="codesnippet-meta">
+			ActivationDepthPitfall.cs: Run into not activated objects
+			<div class="codedownload">
+				<a href="Example-pitfalls-activation-csharp.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

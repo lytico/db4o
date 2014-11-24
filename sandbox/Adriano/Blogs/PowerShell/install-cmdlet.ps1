@@ -1,0 +1,1 @@
+get-pssnapin -registered | add-pssnapin -passthru

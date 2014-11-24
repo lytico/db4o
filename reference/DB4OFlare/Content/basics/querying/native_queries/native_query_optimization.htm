@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2472" MadCap:lastWidth="553">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Native Queries:Optimization" />Native Query Optimization</h1>
+        <MadCap:snippetBlock src="../../../Snippets/linq_instead_of_nq.flsnp" />
+        <p>Native queries will run out of the box in any environment. This optimization is turned on by default. Native queries will be converted to <a href="../soda_query.htm">SODA</a> where this is possible. This allows db4o to use indexes and optimized internal comparison algorithms. Otherwise native query may be executed by instantiating all objects, using <a href="../soda/soda_evaluations.htm">SODA evaluations</a>. Naturally performance will not be as good in this case.</p>
+        <H2>Optimization Theory </H2>
+        <p>For Native Query the <MadCap:variable name="Primary.ByteCode" /> is analyzed to create an AST-like expression tree. Then the flow graph of the expression tree is analyzed and converted to a SODA query graph.</p>
+        <p>For example:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/nq/NativeQueryExamples-Check-for-equality-of-the-name.all.flsnp" />
+        <MadCap:snippetBlock src="../../../CodeExamples/query/nq/NativeQueryExamples-Query-for-John.all.flsnp" />
+        <p>First the signature of the given <span MadCap:conditions="Primary.Java">class</span><span MadCap:conditions="Primary..NET">delegate</span> is analyzed to find out the types. This is used to constrain the type in the SODA-query. Then the <MadCap:variable name="Primary.ByteCode" /> of query is analyzed to find out was it does. When the operations a simple and easy to convert, it will be transformed to complete SODA query:</p>
+        <MadCap:snippetBlock src="../../../CodeExamples/query/soda/SodaQueryExamples-A-simple-constrain-on-a-field.all.flsnp" />
+        <p MadCap:conditions="Primary.Java,Primary.All languages">
+            <H2>Native Query Optimization</H2>
+            <p>Native query optimization on Java requires db4onqopt.jar and bloat.jar to be present in the classpath. <MadCap:xref href="../../../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref>. Current optimization supports the following constructs well:</p>
+            <UL>
+                <LI>Compile-time constants.</LI>
+                <LI>Simple member access.</LI>
+                <LI>Primitive comparisons.</LI>
+                <LI>The equals-method on primitive wrappers and strings.</LI>
+                <LI>The contains-,startsWith- and endsWith-method for strings.</LI>
+                <LI>Arithmetic expressions.</LI>
+                <LI>Boolean expressions.</LI>
+                <LI>Static field access.</LI>
+                <LI>Array access for static/predicate fields.</LI>
+                <LI>Arbitrary method calls on static/predicate fields (without candidate based parameters).</LI>
+                <LI>Candidate methods composed of the above.</LI>
+                <LI>Chained combinations of the above.</LI>
+            </UL>
+            <p>Note that the current implementation doesn't support polymorphism and multiline methods yet.</p>
+            <p>db4o for Java supplies three different possibilities to run optimized native queries. By default native queries are optimized at runtime when the query runs the first time. This is the most convenient way because it doesn't need any preparations.</p>
+            <p>On certain environments (embedded runtimes, older java releases) this runtime optimization doesn't work. In such cases there are two alternatives. The <a href="native_query_optimization/nq_build_time_optimisation.htm">compile time optimization</a> and the class load time optimization. <MadCap:xref href="../../../advanced_topics/enhancement_tools.htm" target="" title="" alt="">See "Enhancement Tools"</MadCap:xref></p>
+        </p>
+        <p MadCap:conditions="Primary..NET">
+            <H2>Native Query Optimization</H2>
+            <p>Native Query optimizer for .NET requires the following libraries to work: <MadCap:xref href="../../../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref></p>
+            <ul>
+                <LI>Db4objects.Db4o.Instrumentation.dll</LI>
+                <LI>Db4objects.Db4o.NativeQueries.dll                        </LI>
+                <LI>Mono.Cecil.dll                        </LI>
+                <LI>Cecil.FlowAnalysis.dll </LI>
+                <LI>
+                </LI>
+            </ul>
+            <p>These assemblies must be available in your project for successful native query optimization. </p>
+            <p>Current optimization supports the following constructs well:</p>
+            <UL>
+                <LI>Compile-time constants.</LI>
+                <LI>Simple member access.</LI>
+                <LI>Primitive comparisons.</LI>
+                <LI>Equality operator.</LI>
+                <LI>Contains, StartsWith- and EndsWith-methods for strings.</LI>
+                <LI>Boolean expressions.</LI>
+                <LI>Arbitrary method calls,including property accessors, on predicate fields (without any arguments).</LI>
+                <LI>Candidate methods composed of the above.</LI>
+                <LI>Chained combinations of the above.</LI>
+            </UL>
+            <p>Note that the current implementation doesn't support polymorphism yet.</p>
+        </p>
+        <p>For more information on native queries optimization see <a href="native_query_optimization/monitoring_optimization.htm">Monitoring Optimization</a>.</p>
+    </body>
+</html>

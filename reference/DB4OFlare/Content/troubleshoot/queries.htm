@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="776" MadCap:lastWidth="575">
+    <head>
+    </head>
+    <body>
+        <h1>Query Performance</h1>
+        <h2><a name="LINQ"></a><span MadCap:conditions="Primary..NET">LINQ or </span>Native Queries</h2>
+        <h3>Check the Required Dependencies</h3>
+        <p>When you are using <span MadCap:conditions="Primary..NET">LINQ or</span> native queries you should ensure that the query is optimized. First check that the required <MadCap:variable name="Primary.Artefacts" /> are referenced. </p>
+        <p MadCap:conditions="Primary..NET">For LINQ&#160;you need to add <i>Db4objects.Db4o.Linq.dll</i> and the <i>Mono.Reflection.dll</i> assemblies to your project.          <![CDATA[ ]]><MadCap:xref href="../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref></p>
+        <p MadCap:conditions="Primary..NET">For native queries you need to add these assemblies: Db4objects.Db4o.NativeQueries.dll, Db4object.Db4o.Instrumentation.dll, Cecil.FlowAnalysis.dll and Mono.Cecil.dll.          <![CDATA[ ]]><MadCap:xref href="../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref></p>
+        <p MadCap:conditions="Primary.Java">For native queries you need to add these jars: db4o-X.XX-nqopt-javax.jar, db4o-X.XX-instrumentation-javax.jar, bloat-1.0.jar. <MadCap:xref href="../dependency_overview.htm" target="" title="" alt="">See "Dependency Overview"</MadCap:xref></p>
+        <h3>Check that the Query is Optimized</h3>
+        <p><span MadCap:conditions="Primary..NET">Both, LINQ and native queries</span><span MadCap:conditions="Primary.Java">Native queries</span> <![CDATA[ ]]>try to translate the original query to a SODA query. If this optimization fails the query runs an order of magnitude slower, because it cannot use indexes and instantiates all objects.</p>
+        <p MadCap:conditions="Primary..NET">For the LINQ-optimization see: <MadCap:xref href="../basics/querying/linq/optimization.htm" target="" title="" alt="">See "LINQ Optimization"</MadCap:xref></p>
+        <p>For the native queries see: <MadCap:xref href="../basics/querying/native_queries/native_query_optimization.htm" target="" title="" alt="">See "Native Query Optimization"</MadCap:xref></p>
+        <h3>Avoid Calling Methods in Queries</h3>
+        <p>The optimizer only can optimize simple access patterns. When you call a complex method within a query the optimization almost certainly fails and the query runs slowly. For example when you call your equals method on your objects. Only calling the equals method of built in types will be recognized by the optimizer. However the optimizer almost certainly cannot find out what your equals method does.</p>
+        <h3>Overview of Fast/Slow Queries</h3>
+        <p>Also take a look at this overview to see which kind of queries run fast and which ones slowly <MadCap:xref href="../basics/querying/native_queries/nq_performance_characteristics.htm" target="" title="" alt="" MadCap:conditions="Primary.Java">See "Native Queries Performance Characteristics"</MadCap:xref>. <MadCap:xref href="../basics/querying/linq/linq_performance_characteristics.htm" target="" title="" alt="" MadCap:conditions="Primary..NET">See "LINQ Performance Characteristics".</MadCap:xref></p>
+        <h2><a name="Check"></a>Check That Fields Are Indexed</h2>
+        <p>Ensure that fields which you are using in queries are <a href="../basics/indexing.htm"> indexed</a>. Without an index db4o has to scan through all objects in order to find the right object.</p>
+        <p>Note also that currently you cannot index arrays and collections. That means that queries which do checks on array or collection members will be slow.</p>
+        <p>Also db4o currently cannot use the index for advanced operations on strings, like end-with, contains or start-with comparisons.</p>
+        <h2>SODA-Queries</h2>
+        <p>Take a look at this overview to see which kind of queries run fast and which ones slowly. <MadCap:xref href="../basics/querying/soda/soda_performance_characteristics.htm" target="" title="" alt="">See "SODA Performance Characteristics"</MadCap:xref></p>
+    </body>
+</html>

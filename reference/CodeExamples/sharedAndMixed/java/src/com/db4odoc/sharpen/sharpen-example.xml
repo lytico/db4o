@@ -1,0 +1,17 @@
+<project name="sharpen example build file">
+    <property environment="env"/>
+    <property file="sharpen.properties"/>
+    <import file="sharpen-install.xml" />
+
+    <!-- #example: Sharpen a example project# -->
+    <target name="sharpen">
+        <sharpen
+            workspace="C:\temp\sharpenExamples\"
+            resource="example/src">
+            <args>
+                <arg value="@sharpen-config"/>
+            </args>
+            </sharpen>
+    </target>
+    <!-- #end example-->
+</project>

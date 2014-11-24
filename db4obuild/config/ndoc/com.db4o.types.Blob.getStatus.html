@@ -1,0 +1,42 @@
+﻿<html dir="LTR">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    </meta>
+    <meta name="generator" content="NDoc 1.3" />
+    <title>Blob.getStatus Method</title>
+    <link rel="stylesheet" type="text/css" href="ndoc.css">
+    </link>
+    <script src="ndoc.js" type="text/javascript">
+    </script>
+  </head>
+  <body id="bodyID" class="dtBODY">
+    <INPUT class="userDataStyle" id="userDataCache" type="hidden" />
+    <div id="nsbanner">
+      <div id="bannerrow1">
+        <table class="bannerparthead" cellspacing="0">
+          <tr id="hdr">
+            <td class="runninghead" nowrap="true">db4o</td>
+            <td class="product" nowrap="true">
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="TitleRow">
+        <h1 class="dtH1">Blob.getStatus Method </h1>
+      </div>
+    </div>
+    <div id="nstext">
+      <p>returns the status after the last read- or write-operation.</p>
+<PRE class="syntax"><SPAN class="lang">[Visual Basic]
+</SPAN><b>Function getStatus() As <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemDoubleClassTopic.htm">Double</a>
+</b><SPAN class="lang">[C#]
+</SPAN><b><a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemDoubleClassTopic.htm">double</a> getStatus();
+</b><SPAN class="lang">[C++]
+</SPAN><b><a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemDoubleClassTopic.htm">double</a> getStatus();
+</b><SPAN class="lang">[JScript]
+</SPAN><b>function getStatus(): <a href="ms-help://MS.NETFrameworkSDKv1.1/cpref/html/frlrfSystemDoubleClassTopic.htm">double</a>;
+</b></PRE><h4 class="dtH4">Return Value</h4><p>status - the current status</p><h4 class="dtH4">Remarks</h4><p> returns the status after the last read- or write-operation. <br /><br />The status value returned may be any of the following:<br /> Status.UNUSED no data was ever stored to the Blob field.<br /> Status.AVAILABLE available data was previously stored to the Blob field.<br /> Status.QUEUED an operation was triggered and is waiting for it's turn in the Blob queue.<br /> Status.COMPLETED the last operation on this field was completed successfully.<br /> Status.PROCESSING for internal use only.<br /> Status.ERROR the last operation failed.<br /> or a double between 0 and 1 that signifies the current completion percentage of the currently running operation.<br /><br /> the five STATUS constants defined in this interface or a double between 0 and 1 that signifies the completion of the currently running operation.<br /><br />
+            </p><h4 class="dtH4">See Also</h4><p><a href="com.db4o.types.Blob.html">Blob Interface</a> | <a href="com.db4o.types.html">com.db4o.types Namespace</a> | <a href="com.db4o.ext.Status.html">STATUS constants</a></p><object type="application/x-oleobject" classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" viewastext="true" style="display: none;"><param name="Keyword" value="getStatus method"></param><param name="Keyword" value="getStatus method, Blob interface"></param><param name="Keyword" value="Blob.getStatus method"></param></object><DIV CLASS="footer"><p><center><font color="red"><i>
+								Syntax based on .NET Framework version 1.1.<br /></i></font></center></p></DIV><hr /><div id="footer"><p><a href="http://www.db4o.com/">Copyright (C) 2004 - 2005  Versant Inc.</a></p><p>Generated from assembly db4o [4.3.1.0]</p></div></div>
+  </body>
+</html>

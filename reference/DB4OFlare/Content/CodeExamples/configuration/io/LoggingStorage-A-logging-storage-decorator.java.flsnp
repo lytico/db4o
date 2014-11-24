@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">public</span> <span style="color:Blue;">class</span> LoggingStorage <span style="color:Blue;">extends</span> StorageDecorator <span style="color:Blue;">implements</span> Storage{
+    <span style="color:Blue;">public</span> LoggingStorage(Storage storage) {
+        <span style="color:Blue;">super</span>(storage);
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">boolean</span> exists(String uri) {
+        System.out.println(<span style="color:#A31515;">&quot;Called: LoggingStorage.exists(&quot;</span>+uri+<span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">super</span>.exists(uri);
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> Bin open(BinConfiguration config) <span style="color:Blue;">throws</span> Db4oIOException {
+        System.out.println(<span style="color:#A31515;">&quot;Called: LoggingStorage.open(&quot;</span>+config+<span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">return</span> <span style="color:Blue;">super</span>.open(config);
+    }
+
+    @Override
+    <span style="color:Blue;">protected</span> Bin decorate(BinConfiguration config, Bin bin) {
+        <span style="color:Blue;">return</span> <span style="color:Blue;">new</span> LoggingBin(<span style="color:Blue;">super</span>.decorate(config, bin));
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> delete(String uri) <span style="color:Blue;">throws</span> IOException {
+        System.out.println(<span style="color:#A31515;">&quot;Called: LoggingStorage.delete(&quot;</span>+uri+<span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">super</span>.delete(uri);
+    }
+
+    @Override
+    <span style="color:Blue;">public</span> <span style="color:Blue;">void</span> rename(String oldUri, String newUri) <span style="color:Blue;">throws</span> IOException {
+        System.out.println(<span style="color:#A31515;">&quot;Called: LoggingStorage.rename(&quot;</span>+oldUri+<span style="color:#A31515;">&quot;,&quot;</span>+newUri+<span style="color:#A31515;">&quot;)&quot;</span>);
+        <span style="color:Blue;">super</span>.rename(oldUri, newUri);
+    }
+}</pre>
+		<div class="codesnippet-meta">
+			LoggingStorage.java: A logging storage decorator
+			<div class="codedownload">
+				<a href="Example-configuration-io-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

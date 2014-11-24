@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc
+  Version="1">
+  <TocEntry
+    Title="Introduction"
+    Link="/Content/welcome.htm" />
+  <TocEntry
+    Title="Basics"
+    Link="/Content/basics.htm" />
+</CatapultToc>

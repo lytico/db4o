@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SnippetGenerator</RootNamespace>
+    <AssemblyName>SnippetGenerator</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <Name>SnippetGenerator</Name>
+    <ProjectGuid>{a8a885ab-bc6a-42bc-a977-a79e4dbfe418}</ProjectGuid>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <Ducky>False</Ducky>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ColorCode, Version=1.0.1.62759, Culture=neutral, PublicKeyToken=null">
+      <Name>ColorCode</Name>
+      <AssemblyName>ColorCode.dll</AssemblyName>
+      <HintPath>..\Libs\ColorCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c">
+      <Name>Ionic.Zip</Name>
+      <AssemblyName>Ionic.Zip.dll</AssemblyName>
+      <HintPath>..\Libs\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeZip.boo">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.boo" />
+    <Compile Include="SnippetGenerator.boo">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SyntaxHighLighter.boo">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(BooBinPath)\Boo.Microsoft.Build.targets" />
+  <Target Name="AfterBuild">
+    <Exec Command="xcopy /i/y $(TargetDir)*.* &quot;..\..\CodeExamples&quot;" />
+    <Exec Command="xcopy /i/y $(TargetDir)*.* &quot;..\..\TutorialCode&quot;" />
+  </Target>
+</Project>

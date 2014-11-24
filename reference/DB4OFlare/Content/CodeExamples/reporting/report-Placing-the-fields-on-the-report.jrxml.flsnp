@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.Java">
+        <pre class="prettyprint" xml:space="preserve">&lt;textField&gt;
+	&lt;reportElement x=&quot;0&quot; y=&quot;0&quot; width=&quot;100&quot; height=&quot;21&quot;/&gt;
+	&lt;textFieldExpression class=&quot;java.lang.String&quot;&gt;&lt;![CDATA[$F{sirname}]]&gt;&lt;/textFieldExpression&gt;
+&lt;/textField&gt;
+&lt;textField&gt;
+	&lt;reportElement x=&quot;100&quot; y=&quot;0&quot; width=&quot;100&quot; height=&quot;21&quot;/&gt;
+	&lt;textFieldExpression class=&quot;java.lang.String&quot;&gt;&lt;![CDATA[$F{firstname}]]&gt;&lt;/textFieldExpression&gt;
+&lt;/textField&gt;
+&lt;textField&gt;
+	&lt;reportElement x=&quot;200&quot; y=&quot;0&quot; width=&quot;100&quot; height=&quot;21&quot;/&gt;
+	&lt;textFieldExpression class=&quot;java.lang.String&quot;&gt;&lt;![CDATA[$F{address.city}]]&gt;&lt;/textFieldExpression&gt;
+&lt;/textField&gt;</pre>
+		<div class="codesnippet-meta">
+			report.jrxml: Placing the fields on the report
+			<div class="codedownload">
+				<a href="Example-db4odoc-reporting-java.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

@@ -1,0 +1,4 @@
+package decaf.imports.deeper
+
+public class FooBar {
+}

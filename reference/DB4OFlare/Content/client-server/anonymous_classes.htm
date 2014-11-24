@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="6" MadCap:lastHeight="306" MadCap:lastWidth="581" MadCap:conditions="Primary.Java">
+    <head>
+    </head>
+    <body>
+        <h1>Anonymous Classes In Client Server Mode</h1>
+        <p>Anonymous classes are used to implement Native Query
+predicates, Comparators and Evaluations. In this case it is important to
+remember that in client/server mode they will be marshaled and  sent together with the graph of
+referenced objects to the server. The catch here is that anonymous classes
+contain a reference to their parent class, meaning that the parent class will
+be marshalled as well!</p>
+        <p>This has two issues:</p>
+        <ul>
+            <li>All the stuff referenced by the parent class will be marshaled and sent too. This means additional traffic between the server and the client.</li>
+            <li>The parent class maybe contains stuff which cannot be serialized.</li>
+            <li>You can only use anonymous classes when the client and the server have all classes available refered by the anonymous class. This means in fact that the server should have the same classes available as the client. </li>
+        </ul>
+        <p>Note that when a native query can be optimized, the anonymous class isn't used, but rather <a href="../basics/querying/soda_query.htm">SODA</a>. In such cases this issues don't apply.</p>
+    </body>
+</html>

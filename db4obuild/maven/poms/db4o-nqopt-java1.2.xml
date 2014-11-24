@@ -1,0 +1,42 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.db4o</groupId>
+	<artifactId>db4o-nqopt-java1.2</artifactId>
+	<version>@VERSION@</version>
+	<packaging>jar</packaging>
+	<name>db4o Native Query optimization library java 1.2</name>
+	<description>
+		db4o Native Query optimization library for JDK 1.3 and 1.4. This library should be
+		available in the classpath for NQ optimization.
+	</description>
+	<url>http://www.db4o.com</url>
+	<licenses>
+		<license>
+			<name>GNU General Public License</name>
+			<url>
+				http://www.db4o.com/about/company/legalpolicies/gpl.aspx
+			</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<url>https://source.db4o.com/db4o/trunk</url>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>com.db4o</groupId>
+			<artifactId>db4o-core-java1.2</artifactId>
+			<version>@VERSION@</version>
+		</dependency>
+		<dependency>
+			<groupId>edu.purdue.cs</groupId>
+			<artifactId>bloat</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.db4o</groupId>
+			<artifactId>db4o-instrumentation-java1.2</artifactId>
+			<version>@VERSION@</version>
+		</dependency>
+	</dependencies>
+</project>

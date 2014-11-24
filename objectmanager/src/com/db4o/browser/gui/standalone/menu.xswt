@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswt xmlns:x="http://sweet_swt.sf.net/xswt">
+    <import xmlns="http://sweet_swt.sf.net/xswt">
+        <package name="java.lang"/>
+        <package name="org.eclipse.swt.widgets"/>
+        <package name="org.eclipse.swt.layout"/>
+    </import>
+    <getShell menuBar="menuBar">
+    	<x:children>
+			<menu x:style="BAR" x:id="menuBar">
+				<x:children>
+					<menuItem text="&amp;File" x:style="CASCADE" menu="fileMenu"/>
+					<menuItem text="&amp;Help" x:style="CASCADE" menu="helpMenu"/>
+				</x:children>
+			</menu>
+			
+			<menu x:style="DROP_DOWN" x:id="fileMenu">
+				<x:children>
+					<menuItem x:id="Open" text="&amp;Open File..."/>
+					<menuItem x:id="OpenServer" text="Connect to &amp;Server..."/>
+					<menuItem x:id="OpenRecent" text="Open recent"/>
+					<menuItem x:id="CloseAllDatabases" enabled="false" text="Close &amp;all Databases"/>
+					<menuItem x:style="SEPARATOR"/>
+					<menuItem x:id="XMLExport" enabled="false" text="Export to &amp;XML..."/>
+					<menuItem x:style="SEPARATOR"/>
+					<menuItem x:id="Query" enabled="false" text="&amp;Query..."/>
+					<menuItem x:id="Preferences" text="&amp;Preferences..."/>
+					<menuItem x:style="SEPARATOR"/>
+					<menuItem x:id="NewWindow" text="&amp;New Window"/>
+					<menuItem x:style="SEPARATOR"/>
+					<menuItem x:id="Close" text="&amp;Close"/>
+				</x:children>
+			</menu>
+			
+			<menu x:style="DROP_DOWN" x:id="helpMenu">
+				<x:children><!-- No online help yet... :-(
+					<menuItem x:id="HelpContents" text="Help &amp;Contents..."/>
+					<menuItem x:style="SEPARATOR"/>-->
+					<menuItem x:id="HelpAbout" text="&amp;About..."/>
+				</x:children>
+			</menu>
+			
+    	</x:children>
+    </getShell>
+</xswt>

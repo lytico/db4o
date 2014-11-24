@@ -1,0 +1,22 @@
+package decaf.integration;
+
+class Foo<T> {
+	public T[] array;
+	
+	public Foo(T... values) {
+		array = values;
+	}
+	
+	public void bar(T[] ts) {
+		for (T arg : ts)
+			System.out.println(arg);
+	}
+}
+
+class Main {
+	static void main() {
+		for (String s : new Foo<String>("foo", "bar").array) {
+			new Foo<String>(s);
+		}
+	}
+}

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2713" MadCap:lastWidth="826">
+    <head><title>Selective Replication</title>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="dRS:Selective Replication;Replication:Selective Replication" />Selective Replication</h1>
+        <p>What if the mobile device doesn't have enough memory to store all objects? Or if only a subset of the object need to be in both databases? In this case you can replicate only a subset of all objects.</p>
+        <h2>Filter by Class</h2>
+        <p>You can ask the dRS to replicate only the objects of a certain class. Instead of getting the change-set with all objects, it will return only the changed objects of that class.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Selective-replication-by-class.all.flsnp" />
+        <h2>Filter With a Condition</h2>
+        <p>For more complex cases a simple condition can be a solution. Add a simple condition within the replication loop to select which objects are replicated and which ones not.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Selective-replication-with-a-condition.all.flsnp" />
+        <h2>Filter With a Query</h2>
+        <p>It's also possible to query for the objects and the replicate those objects. However in this case, also unchanged objects are replicated again.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/drs/db4o/Db4oReplicationExamples-Selective-replication-with-a-query.all.flsnp" />
+        <h2>Combination</h2>
+        <p>Of course it possible to use a combination of these three possibilities. For example you can request the changes for a certain class and then filter with a condition.</p>
+        <p MadCap:conditions="Primary..NET"> The IObjectSet is also an IEnumerable, so you can use LINQ to filter the objects.</p>
+        <h2 MadCap:conditions="Primary..NET">Consistency with Selective Replication</h2>
+        <p MadCap:conditions="Primary..NET">Note that dRS tries to avoid inconsistent replications. When replicating a object all its referenced objects are replicated as well. This avoids a incomplete and inconsistent object graphs. So for example when you do a selective replication of the Car objects, dRS will also replicate all Pilots which are referenced by the Car objects.</p>
+        <p MadCap:conditions="Primary..NET">&#160;</p>
+    </body>
+</html>

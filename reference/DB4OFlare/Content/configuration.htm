@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="1733" MadCap:lastWidth="784">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Configuration" />Configuration</h1>
+        <p>db4o is configured by its configuration API. The configuration allows you to adjust db4o to your scenarios. </p>
+        <h2>Configure db4o</h2>
+        <p>In order to configure db4o, you need to create a new configuration-instance and set the desired settings on it. After that, you pass the configuration-instance to the object-container factory.</p>
+        <p> Note that you cannot share a configuration-instance. For each object-container you create, you need to pass in a new configuration-instance.  It's recommended to create a method which will return a new configuration instance on request:</p>
+        <h2>Embedded-Configuration</h2>
+        <p>For an embedded container you can configure the <a href="configuration/common_configuration.htm">common</a>-, <a href="configuration/file_configuration.htm">file</a>- and <a href="configuration/id_system.htm">id-system</a>-configuration.</p>
+        <MadCap:snippetBlock src="CodeExamples/configuration/basics/ConfigurationBasics-Configure-embedded-object-container.all.flsnp" />
+        <h2>Server-Configuration</h2>
+        <p>For an server you can configure the <a href="configuration/common_configuration.htm">common</a>-, <a href="configuration/file_configuration.htm">file</a>-, <a href="configuration/network_configuration.htm">networking</a>-, <a href="configuration/server_configuration.htm">server</a>- and <a href="configuration/id_system.htm">id-system</a>-configuration.</p>
+        <MadCap:snippetBlock src="CodeExamples/configuration/basics/ConfigurationBasics-Configure-the-db4o-server.all.flsnp" />
+        <h2>Client-Configuration</h2>
+        <p>For an client you can configure the <a href="configuration/common_configuration.htm">common</a>-,  <a href="configuration/network_configuration.htm">networking</a>-, <a href="configuration/client_configuration.htm">client</a>- and <a href="configuration/id_system.htm">id-system</a>-configuration.</p>
+        <MadCap:snippetBlock src="CodeExamples/configuration/basics/ConfigurationBasics-Configure-a-client-object-container.all.flsnp" />
+        <h2>Configuration Is Not Persistent</h2>
+        <p>The db4o configuration is not persistent with a few exception. This means that you need to configure db4o each time you create a object-container instance. </p>
+        <h2>Configuration in Client/Server-Mode</h2>
+        <p>  For using db4o in client/server mode it is recommended to use the same configuration on the server and on the client.  To set this up nicely it makes sense to create one application class with one method that returns the required configuration and to deploy this class both to the server and to all clients.</p>
+        <h2>Configuration-Settings Overview</h2>
+        <p>The configuration-settings which are common across -client, embedded and db4o-server are summed up here: <MadCap:xref href="configuration/common_configuration.htm" target="" title="" alt="">See "Common Configuration"</MadCap:xref></p>
+        <p>&#160;</p>
+        <p>&#160;</p>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="2143" MadCap:lastWidth="574">
+  <head />
+  <body>
+    <h1>
+      <MadCap:keyword term="Refactoring:Change Field Type;Schema Evolution:Change Field Type" />Field Type Change</h1>
+    <p>db4o's default policy is to never do any damage to stored data. When you change the type of a field, db4o will not update the data in this field. Instead db4o internally creates a new field of the same name, but with the new type. For existing object,  the values of the old typed field are still present, but hidden. Of course you can  access the old data. When you want to convert the content from the old field type to the new field type, you have to do it yourself.</p>
+    <p>You can use the stored-classes API to retrieve the data of the old typed field. An example: We decide that we want to refactor the id-field from a simple int to a special identity class. First we change the field-type:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/strategies/refactoring/Person-change-type-of-field.all.flsnp" />
+    <MadCap:snippetBlock src="../../CodeExamples/strategies/refactoring/RefactoringExamples-change-type-of-field.all.flsnp" />
+    <p>After than read the old value from the old field-type and convert it to the new type:</p>
+    <MadCap:snippetBlock src="../../CodeExamples/strategies/refactoring/RefactoringExamples-copying-the-data-from-the-old-field-type-to-the-new-one.all.flsnp" />
+    <p>db4o's approach gives you the maximum flexibility for refactoring field types. You can handle the convertion with regular code, which means it can be as complex as needed. Furthermore you can decide when you convert the values. You can update all objects in one operation, you can dynamically update and covert when you access a object or even decide not to convert the old values.</p>
+  </body>
+</html>

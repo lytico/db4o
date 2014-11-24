@@ -1,0 +1,41 @@
+package decaf.collections;
+
+import java.util.*;
+
+class ForEachListHolder {
+	public com.db4o.foundation.Sequence4 list;
+}
+
+class ForEachList {
+	void forEach(com.db4o.foundation.Sequence4 list) {
+		for (com.db4o.foundation.Iterator4 objIter = list.iterator(); objIter
+				.moveNext();) {
+					final Object obj = objIter.current();
+					System.out.println(obj);
+				}
+	} 
+
+	void forEachWithGenerics(com.db4o.foundation.Sequence4 list) {
+		for (com.db4o.foundation.Iterator4 strIter = list.iterator(); strIter
+				.moveNext();) {
+					final String str = ((String) strIter.current());
+					System.out.println(str);
+				}
+	}
+
+	void forEachWithExpression(ForEachListHolder holder) {
+		for (com.db4o.foundation.Iterator4 strIter = holder.list.iterator(); strIter
+				.moveNext();) {
+					final String str = ((String) strIter.current());
+					System.out.println(str);
+				}
+	}
+
+	void forEachWithNestedGenerics(com.db4o.foundation.Sequence4 list) {
+		for (com.db4o.foundation.Iterator4 strIter = ((com.db4o.foundation.Sequence4) list.get(0))
+				.iterator(); strIter.moveNext();) {
+					final String str = ((String) strIter.current());
+					System.out.println(str);
+				}
+	}
+}

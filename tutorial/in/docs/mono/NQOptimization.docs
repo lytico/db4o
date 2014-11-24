@@ -1,0 +1,83 @@
+.n
+.a NQOptimization ..
+.0 Native Query Optimization ..
+
+Native Queries will run out of the box in any environment. ._
+If optimization is turned on, Native Queries will be converted to SODA queries ._
+whenever possible, allowing db4o to use indexes and ._
+optimized internal comparison algorithms.
+
+If optimization is turned off or not possible for some reason, ._
+a Native Query will be executed by instantiating all objects, ._
+using  .l Evaluations SODA Evaluations .. . Naturally performance ._
+will not be as good in this case.
+
+The Native Query optimizer is still under development to eventually ._
+"understand" all valid C# constructs. Current optimization supports ._
+the following constructs well:
+
+- compile-time constants
+- simple member access
+- primitive comparisons
+- equality operator
+- #Contains()/#StartsWith()/#EndsWith() for Strings
+- boolean expressions
+- arbitrary method calls (including property accessors) on predicate fields (without any arguments)
+- candidate methods composed of the above
+- chained combinations of the above
+
+This list will constantly grow with the latest versions of db4o.
+
+Note that the current implementation doesn't support polymorphism yet.
+
+.1 Enabling Native Query optimization on the CompactFramework 2.0 ..
+
+Due to some platform limitations, CompactFramework 2.0 users using the ._
+more convenient delegate based Native Query syntax that want their queries ._
+to be optimized are required to run the Db4oAdmin.exe ._
+command line utility on their assemblies ._
+prior to deploying them. 
+
+The utility which can be found in the /bin folder of this distribution is required ._
+because the CompactFramework API does not expose any of the delegate metadata ._
+needed by the Native Query optimizer. The tool works by augmenting the bytecode ._
+with the necessary delegate metadata and replacing ObjectContainer#Query<Extent> ._
+invocations with invocations to a lower level ._
+method that makes use of the additional information.
+
+The tool can be easily integrated inside Visual Studio.NET 2005 as a Post Build tool ._
+by following the simple steps below:
+
+- Right click the project you want to enable Native Query optimization for
+- Select .b 'Properties' ..
+- In the Properties Page select the .b 'Build Events' .. tab
+- In the .b 'Post-build event command line' .. text box insert the following text ._
+.b "<path-to-your-db4o-installation>/bin/Db4oAdmin.exe -cf2-delegates $(TargetPath)" .. ._
+without the quotes and replacing <path-to-your-db4o-installation> to the correct ._
+value for your system.
+
+A complete example can be found in the /src/instrumentation/Db4oAdmin.Example ._
+directory of this distribution.
+
+.1 Build Time Optimization for Native Queries
+
+Db4oAdmin.exe can also be used to pre optimize the Native Queries in a ._
+given assembly. This makes it possible to deploy an application without ._
+Db4oTools.dll (the assembly where the Native Query runtime optimizer ._
+lives) while also possibly reducing Native Query execution time by ._
+dropping runtime analysis completely.
+
+Execute the Db4oAdmin.exe command line utility without any arguments and check ._
+out the help information.
+
+IMPORTANT: the tool is still in constant development and it currently ._
+does not support pre optimization of Native Queries expressed as delegates.
+  
+.1 Monitoring optimization ..
+
+This feature still is quite basic but it will soon be improved. ._
+Currently you can only attach event handlers to the ObjectContainer:
+
+.c NativeQueryHandler handler = ((ObjectContainerBase)container).GetNativeQueryHandler();
+handler.QueryExecution += OnQueryExecution;
+handler.QueryOptimizationFailure += OnQueryOptimizationFailure; ..c

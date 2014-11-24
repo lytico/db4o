@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="deployed/|verified/" kind="src" path=""/>
+	<classpathentry kind="lib" path="lib/cldcapi11.jar"/>
+	<classpathentry kind="lib" path="lib/jsr75.jar"/>
+	<classpathentry kind="lib" path="lib/midpapi20.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

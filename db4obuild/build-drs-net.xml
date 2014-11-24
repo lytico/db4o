@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<project name="drs.net" default="package">
+	<import file="common-dotnet.xml" />
+    
+    <property name="drs.dir" location="${dir.base}/drs" />
+    <property name="drs.src.dir" location="${drs.dir}/src" />
+	<property name="db4o.net.dir" location="${dir.base}/db4o.net" />
+    <property name="drs.net.dir" location="${db4o.net.dir}/drs" />
+    <property name="drs.net.bin.dir" location="${drs.net.dir}/bin" />
+	
+	<property name="drs.net.dir.bin.net35" location="${drs.net.bin.dir}/net35" />	
+	
+    <property name="drs.net.src.dir" location="${drs.net.dir}" />
+	<property name="drs.xml" location="${drs.net.bin.dir}/Db4objects.Drs.xml" />
+	<property name="dRS-namespace-summaries.xml" location="${dir.build}/config/drs-namespace-summaries.xml" />
+
+    <property name="drs.sharpen.workspace.dir" location="${dir.dist}/drs.net/workspace" />
+    
+    <target name="init" depends="properties, configure">
+		<mkdir dir="${drs.net.dir}" />
+		<mkdir dir="${drs.net.bin.dir}" />
+        <mkdir dir="${drs.net.src.dir}" />
+        <mkdir dir="${drs.sharpen.workspace.dir}" />
+    	
+    	<property name="drs.net.version" value="${db4o.version.iteration.revision}" />
+    </target>
+    
+    <target name="clean">
+        <delete dir="${drs.sharpen.workspace.dir}" />
+    	<delete dir="${drs.net.bin.dir}" />
+    	<delete dir="${drs.net.dir}/docs/api" />
+    	<delete file="${drs.net.dir}/compatibility.html" />
+    	<delete>
+    		<fileset dir="${dir.dist}">
+    			<include name="dRS-*-net.zip" />
+    		</fileset>
+    	</delete>
+    </target>
+      
+	
+	<target name="flare-drs-net" if="flare.executable">
+
+		<flare output="${dir.dist.flare.temp}" target="NetPdf" projectDirectory="${flare.project.drs.folder}" />
+		<copy file="${dir.dist.flare.temp}/Output/NetPdf/drs-reference-net.pdf" todir="${drs.net.dir}/docs/reference" />
+		
+		<flare output="${dir.dist.flare.temp}" target="NetWeb" projectDirectory="${flare.project.drs.folder}"  />
+		<copy todir="${drs.net.dir}/docs/reference">
+			<fileset dir="${dir.dist.flare.temp}/Output/NetWeb">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+	</target>
+	
+	<target name="package" depends="clean, init, build, ndoc, flare-drs-net, run-tests">
+    	<antcall target="package-api" />    	
+		<copy file="${dir.config}/db4o.license.html" todir="${drs.net.bin.dir}"/>		
+		<copy file="${drs.net.dir}/compatibility.net.html" tofile="${drs.net.dir}/compatibility.html" >
+	        <filterchain>
+	           <striplinecomments>
+	              <comment value="!"/>
+	           </striplinecomments>
+	           <replacetokens>
+	                <token key="db4o.version.dotted" value="${db4o.version.dotted}"/>
+	            </replacetokens>
+	        </filterchain>
+		</copy>
+        
+        <loadfile property="content.gplheader" srcfile="${file.gplheader}" encoding="iso-8859-1" />
+        <filehead beforePattern="using|namespace|#if" header="${content.gplheader}" >
+			<sources dir="${drs.net.src.dir}">
+				<include name="**/*.cs" />
+			</sources>
+		</filehead>
+        
+        <delete>
+            <fileset dir="${drs.net.bin.dir}">
+                <include name="*.pdb" />
+                <include name="*.yap" />
+            </fileset>
+        </delete>
+        
+        <zip destfile="${dir.dist}/dRS-${drs.net.version}-net.zip">
+            <zipfileset dir="${drs.net.dir}" excludes="sandcastle/, compatibility.net.html"	prefix="dRS-${drs.net.version}-net"/>
+        </zip>
+    </target>
+    
+    <target name="build" depends="init, prepare-dotnet-solution">
+    	<msbuild outputpath="${drs.net.bin.dir}/net35" solutionfile="${drs.net.src.dir}/Db4objects.Drs/Db4objects.Drs-2008.sln" />
+    	<msbuild outputpath="${drs.net.bin.dir}/cf35" solutionfile="${drs.net.src.dir}/Db4objects.Drs/Db4objects.Drs-CF-2008.sln" />
+    </target>
+    
+    <target name="prepare-dotnet-solution" depends="sharpen-drs, get-svn-revision">    	
+    	<reset-src-dir dir="${drs.net.src.dir}/Db4objects.Drs/Db4objects.Drs" />
+    		
+        <!-- .NET: drs -->
+		<copy todir="${drs.net.src.dir}/Db4objects.Drs/Db4objects.Drs">
+			<fileset dir="${drs.sharpen.workspace.dir}/drs.net/core/Db4objects/Drs">
+				<include name="**/*.cs" />
+				<exclude name="Inside/ReplicationPlatform.cs" />
+				<exclude name="**/Tests/**" />
+			</fileset>
+		</copy>
+        
+        <updateAssemblyInfo version="${drs.net.version}">
+			<fileset dir="${drs.net.src.dir}/Db4objects.Drs/Properties">
+				<include name="AssemblyInfo.cs" />
+			</fileset>
+        </updateAssemblyInfo>
+    	
+    	<fileset id="drs.sources" dir="${drs.net.src.dir}/Db4objects.Drs">
+    		<include name="**/*.cs" />
+    	</fileset>
+    	
+    	<updatecsharpproject projectFile="${drs.net.src.dir}/Db4objects.Drs/Db4objects.Drs-2008.csproj">
+    		<sources refid="drs.sources" />
+        </updatecsharpproject>
+    	
+       	<updatecsharpproject projectFile="${drs.net.src.dir}/Db4objects.Drs/Db4objects.Drs-CF-2008.csproj">
+       		<sources refid="drs.sources" />
+        </updatecsharpproject>    	
+    	
+        <!--.NET: drs.tests -->
+    	<reset-src-dir dir="${drs.net.src.dir}/Db4objects.Drs.Tests/Db4objects.Drs.Tests" />
+        <copy todir="${drs.net.src.dir}/Db4objects.Drs.Tests/Db4objects.Drs.Tests">
+			<fileset dir="${drs.sharpen.workspace.dir}/drs.net/test/Db4objects/Drs/Tests">
+				<include name="**/*.cs" />
+			</fileset>
+		</copy>
+		
+        <updateAssemblyInfo version="${drs.net.version}">
+			<fileset dir="${drs.net.src.dir}/Db4objects.Drs.Tests/Properties">
+				<include name="AssemblyInfo.cs" />
+			</fileset>
+        </updateAssemblyInfo>
+    	
+    	<fileset id="drs.tests.sources" dir="${drs.net.src.dir}/Db4objects.Drs.Tests">
+    		<include name="**/*.cs" />
+    	</fileset>
+    	
+    	<updatecsharpproject projectFile="${drs.net.src.dir}/Db4objects.Drs.Tests/Db4objects.Drs.Tests-2008.csproj">
+        	<sources refid="drs.tests.sources" />
+        </updatecsharpproject>
+    	
+       	<updatecsharpproject projectFile="${drs.net.src.dir}/Db4objects.Drs.Tests/Db4objects.Drs.Tests-CF-2008.csproj">
+           	<sources refid="drs.tests.sources" />
+        </updatecsharpproject>    	
+
+        <!--.NET: QuickStart -->
+        <updateAssemblyInfo	version="${drs.net.version}">
+			<fileset dir="${drs.net.src.dir}/QuickStart/Properties">
+				<include name="AssemblyInfo.cs" />
+			</fileset>
+        </updateAssemblyInfo>
+    </target>
+    
+    <target name="sharpen-drs" depends="prepare-sharpen-workspace, install-sharpen-plugin">
+		<sharpen resource="drs/core" workspace="${drs.sharpen.workspace.dir}">
+			<args>
+				<arg value="-cp" />
+				<arg value="${dependencies.jar}" />
+				<arg value="-cp" />
+				<arg value="${file.decaf.annotations}" />
+				<arg value="-srcFolder" />
+				<arg value="test" />
+				<arg value="-srcFolder" />
+				<arg value="db4o" />
+				<arg value="@sharpen-dRS-options" />
+			</args>
+		</sharpen>
+	</target>
+    
+    <target name="prepare-sharpen-workspace" depends="init">
+        <mkdir dir="${drs.sharpen.workspace.dir}/lib" />
+		<property name="dependencies.jar" location="${drs.sharpen.workspace.dir}/lib/dependencies.jar" />
+		
+		<jar destfile="${dependencies.jar}">
+			<!--
+            <fileset dir="${dir.dist.classes.jdk1.5}" />
+            -->
+            <fileset dir="${dir.dist.classes.jdk1.5.cs}" />
+            <fileset dir="${dir.dist.classes.jdk1.5.optional}" />
+			<fileset dir="${dir.dist.classes.db4ounit.jdk1.5}" />
+		</jar>
+    	
+    	<copy todir="${drs.sharpen.workspace.dir}/drs/db4o">
+			<fileset dir="${dir.dist.decaf.jdk1.5.core.src}">
+				<include name="**/*.java" />
+			</fileset>
+    	</copy>
+        
+		<copy todir="${drs.sharpen.workspace.dir}/drs">
+			<fileset dir="${drs.src.dir}">
+				<include name="core/**/*.java" />
+				<include name="test/**/*.java" />
+				
+				<exclude name="test/**/test/all/*.java" />				
+				<exclude name="**/hibernate/**" />
+				<exclude name="**/versant/**" />
+				
+			</fileset>
+		    <fileset dir="${drs.dir}">
+		        <include name=".settings/" />
+		    </fileset>
+		</copy>
+	</target>
+
+    <target name="run-tests" depends="build">
+        <exec executable="${drs.net.bin.dir}/net35/Db4objects.Drs.Tests.exe" failonerror="true" />
+    </target>
+    
+    <target name="package-api" unless="mono">
+		<mkdir dir="${drs.net.dir}/docs/api" />
+		<copy todir="${drs.net.dir}/docs/api">
+			<fileset dir="${drs.net.dir}/ndoc">
+				<include name="dRS.chm" />
+				<include name="dRS.HxS" />
+			</fileset>
+		</copy>		
+		<delete dir="${drs.net.dir}/ndoc" failonerror="true" /> 
+		<delete dir="${drs.net.dir}/config" failonerror="true" />		
+    	<delete dir="${drs.net.dir}/Output" failonerror="true" />
+	</target>
+
+	<target name="preparendoc">
+		<property name="ndoc.home" location="lib/ndoc" />
+
+		<delete dir="${dir.dist.ndoc}" failonerror="false" />
+		<mkdir dir="${dir.dist.ndoc}" />
+	</target>
+
+			
+	<target name="ndoc" depends="preparendoc, ndoc-net" description="Build public .net docs">
+	</target>
+		
+
+	<property name="sandcastle.tools" location="${dir.lib.sandcastle}/ProductionTools" />
+		<property name="XslTransform" location="${sandcastle.tools}/XslTransform" />	
+		<available file="${sandcastle.tools}/MRefBuilder.exe" property="sandcastle.available" />
+		
+		<target name="sandcastle" depends="run-sandcastle, warn-about-sandcastle">
+		</target>
+		
+		<target name="sandcastle-standalone" depends="sandcastle">
+		</target>
+		
+		<target name="warn-about-sandcastle" unless="sandcastle.available">
+			<echo>
+		The build could not find sandcastle in your system, sandcastle is required if you want
+		to generate the .net documentation.
+		
+		Download and install it from:
+		http://www.microsoft.com/downloads/details.aspx?FamilyID=E82EA71D-DA89-42EE-A715-696E3A4873B2&amp;displaylang=en
+		
+		Then set the dir.lib.sandcastle property pointing to the root of the installation.
+			</echo>
+		</target>
+
+    <target name="run-sandcastle" if="sandcastle.available">
+
+        <antcall target="prepare-sandcastle-output"/>
+
+        <exec executable="${dir.build}/lib/boo/booi" taskname="MRefConfigGenerator" failonerror="true">
+            <arg file="src/sandcastle/MRefConfigGenerator.boo"/>
+			<arg path="${dir.build}/config" />
+			<arg path="${dir.dist}" />
+			<arg path="${dRS-namespace-summaries.xml}" />
+            <arg path="${drs.net.dir.bin.net35}"/>
+        </exec>
+
+        <exec executable="${sandcastle.tools}/MRefBuilder" dir="${dir.dist.ndoc}" failonerror="true"
+              taskname="MRefBuilder">
+            <env key="DXROOT" file="${dir.lib.sandcastle}"/>
+            <arg value="/config:${dir.dist.ndoc}/Output/MRefBuilder.config"/>
+            <arg file="${drs.net.dir.bin.net35}/Db4objects.Drs.dll"/>
+            <arg value="/out:${dir.dist.ndoc}/sandcastle"/>
+            <arg value="/internal-"/>
+        </exec>
+
+        <exec executable="${XslTransform}" failonerror="true" dir="${dir.dist.ndoc}">
+            <arg value="/xsl:${dir.lib.sandcastle}/ProductionTransforms/ApplyVSDocModel.xsl"/>
+            <arg value="${dir.dist.ndoc}/sandcastle"/>
+            <arg value="/xsl:${dir.lib.sandcastle}/ProductionTransforms/AddFriendlyFilenames.xsl"/>
+            <arg value="/out:${dir.dist.ndoc}/reflection.xml"/>
+        </exec>
+
+        <exec executable="${XslTransform}" failonerror="true" dir="${dir.dist.ndoc}">
+            <arg value="/xsl:${dir.lib.sandcastle}/ProductionTransforms/ReflectionToManifest.xsl"/>
+            <arg value="${dir.dist.ndoc}/reflection.xml"/>
+            <arg value="/out:${dir.dist.ndoc}/manifest.xml"/>
+        </exec>
+
+        <exec executable="${sandcastle.tools}/BuildAssembler" dir="${dir.dist.ndoc}">
+            <arg value="/config:${dir.build}/config/sandcastle/sandcastle.config"/>
+            <arg file="${dir.dist.ndoc}/manifest.xml"/>
+
+            <env key="XMLDOC" value="${drs.net.dir.bin.net35}/Db4objects.Drs.xml"/>
+            <env key="DXROOT" value="${dir.lib.sandcastle}"/>
+        </exec>
+
+        <antcall target="generate-sandcastle-chm"/>
+
+    </target>
+
+
+    <target name="prepare-sandcastle-output">
+        <mkdir dir="${dir.dist.ndoc}/Output"/>
+        <mkdir dir="${dir.dist.ndoc}/Output/html"/>
+        <mkdir dir="${dir.dist.ndoc}/Output/icons"/>
+        <mkdir dir="${dir.dist.ndoc}/Output/scripts"/>
+        <mkdir dir="${dir.dist.ndoc}/Output/styles"/>
+        <mkdir dir="${dir.dist.ndoc}/Output/media"/>
+        <copy todir="${dir.dist.ndoc}/Output">
+            <fileset dir="${dir.lib.sandcastle}/Presentation/vs2005">
+                <include name="Icons/**"/>
+                <include name="icons/**"/>
+                <include name="Scripts/**"/>
+                <include name="Styles/**"/>
+                <include name="transforms/**"/>
+            </fileset>
+        </copy>
+        <copy todir="${dir.dist.ndoc}/Output">
+            <fileset dir="${dir.lib.sandcastle}/Presentation/Shared">
+                <include name="**/**"/>
+            </fileset>
+        </copy>
+        <copy file="${dir.build}/config/sandcastle/Presentation/vs2005/transforms/main_sandcastle.xsl"
+              tofile="${dir.dist.ndoc}/Output/transforms/main_sandcastle.xsl"/>
+        <mkdir dir="${dir.dist.ndoc}/Intellisense"/>
+
+    </target>
+
+    <target name="generate-sandcastle-chm">
+		
+			<property name="dir.transforms" location="${dir.lib.sandcastle}/ProductionTransforms" />
+		
+			<!-- Generate HTML help project -->
+			<exec executable="${XslTransform}" failonerror="true">
+				<arg value="/xsl:${dir.transforms}/ReflectionToChmProject.xsl" />
+				<arg value="${dir.dist.ndoc}/reflection.xml" />
+				<arg value="/out:${dir.dist.ndoc}/Output/dRS.hhp" />
+				<arg value="/arg:project=dRS" />
+			</exec>	 
+		
+			<!--  Generate table of contents for HTML help project -->
+			<exec executable="${XslTransform}" failonerror="true">
+				<arg value="/xsl:${dir.transforms}/createvstoc.xsl" />
+				<arg value="${dir.dist.ndoc}/reflection.xml" />
+				<arg value="/out:${dir.dist.ndoc}/toc.xml" />
+			</exec>
+
+			<exec executable="${XslTransform}" dir="${dir.dist.ndoc}" failonerror="true">
+				<arg value="/xsl:${dir.transforms}/TocToChmContents.xsl" />
+				<arg value="${dir.dist.ndoc}/toc.xml" />
+				<arg value="/out:${dir.dist.ndoc}/Output/dRS.hhc" />
+			</exec>
+		
+			<!-- Generate Index information -->
+			<exec executable="${XslTransform}" failonerror="true">
+				<arg value="/xsl:${dir.transforms}/ReflectionToChmIndex.xsl" />
+				<arg value="${dir.dist.ndoc}/reflection.xml" />
+				<arg value="/out:${dir.dist.ndoc}/Output/dRS.hhk" />
+			</exec>
+		
+			<property name="hhc.home" location="${env.ProgramFiles}/HTML Help Workshop" />
+			<exec executable="${hhc.home}/hhc.exe" dir="${dir.dist.ndoc}/Output">
+				<arg value="dRS.hhp" />
+			</exec>
+		
+			<copy file="${dir.dist.ndoc}/Output/dRS.chm" tofile="${drs.net.dir}/ndoc/dRS.chm" />
+		</target>	
+			
+		<target name="ndoc-net" unless="mono">
+			<antcall target="sandcastle" />
+		</target>
+
+    <target name="rebuild" depends="clean, init, build" />
+
+</project>

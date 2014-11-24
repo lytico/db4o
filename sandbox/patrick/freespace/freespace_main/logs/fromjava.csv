@@ -1,0 +1,5 @@
+,1,2,4,8,16,32
+SynchronizedFreespaceManagerWrapper,4773,4747,4931,6196,10995,20974
+QueueingFreespaceManager,4411,4452,4499,5268,10227,19829
+SyncActorFreespaceManagerWrapper,4423,4443,4476,6695,11334,20366
+ReactActorFreespaceManagerWrapper,4441,4436,4519,6772,11291,20590

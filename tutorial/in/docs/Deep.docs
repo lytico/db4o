@@ -1,0 +1,103 @@
+.n
+.a Deep ..
+.0 Deep graphs ..
+
+We have already seen how db4o handles object ._
+associations, but our running example is still quite flat and ._
+simple, compared to real-world domain models. In particular we ._
+haven't seen how db4o behaves in the presence of recursive ._
+structures. We will emulate such a structure by replacing our ._
+history list with a linked list implicitely provided by the ._
+SensorReadout class.
+
+.s com.db4odoc.f1.chapter6.SensorReadout ..
+
+Our car only maintains an association to a 'head' sensor readout ._
+now.
+
+.s com.db4odoc.f1.chapter6.Car ..
+
+.1 Storing and updating ..
+
+No surprises here.
+
+.s com.db4odoc.f1.chapter6.DeepExample#storeCar -out ..
+
+Now we would like to build a sensor readout chain. We already know ._
+about the update depth trap, so we configure this first.
+
+.s com.db4odoc.f1.chapter6.DeepExample#takeManySnapshots -out ..
+
+.1 Retrieving ..
+
+Now that we have a sufficiently deep structure, we'll retrieve it ._
+from the database and traverse it.
+
+First let's verify that we indeed have taken lots of snapshots.
+
+.s com.db4odoc.f1.chapter6.DeepExample#retrieveAllSnapshots ..
+
+All these readouts belong to one linked list, so we should be able to access ._
+them all by just traversing our list structure.
+
+.s com.db4odoc.f1.chapter6.DeepExample#retrieveSnapshotsSequentially ..
+
+Ouch! What's happening here?
+
+.a Activation ..
+.2 Activation depth ..
+
+Deja vu - this is just the other side of the update depth issue.
+
+db4o cannot track when you are traversing references from objects ._
+retrieved from the database. So it would always have to return ._
+'complete' object graphs on retrieval - in the worst case this would ._
+boil down to pulling the whole database content into memory for a single ._
+query.
+
+This is absolutely undesirable in most situations, so ._
+db4o provides a mechanism to give the client fine-grained control ._
+over how much he wants to pull out of the database when asking for ._
+an object. This mechanism is called  .i activation depth ..  and works ._
+quite similar to our familiar update depth.
+
+The default activation depth for any object is 5, so our example above ._
+runs into nulls after traversing 5 references.
+
+We can dynamically ask objects to activate their member references. This ._
+allows us to retrieve each single sensor readout in the list from ._
+the database just as needed.
+
+.s com.db4odoc.f1.chapter6.DeepExample#retrieveSnapshotsSequentiallyImproved ..
+
+Note that 'cut' references may also influence the behavior of your ._
+objects: in this case the length of the list is calculated dynamically, ._
+and therefor constrained by activation depth.
+
+Instead of dynamically activating subgraph elements, you can configure ._
+activation depth statically, too. We can tell our SensorReadout class ._
+objects to cascade activation automatically, for example.
+
+.s com.db4odoc.f1.chapter6.DeepExample#retrieveSnapshotsSequentiallyCascade ..
+
+You have to be very careful, though. Activation issues are tricky. Db4o ._
+provides a wide range of configuration features to control activation ._
+depth at a very fine-grained level. You'll find those triggers ._
+in .x com.db4o.config.Configuration .. and the ._
+associated .x ObjectClass .. and .x ObjectField .. classes.
+
+Don't forget to clean up the database.
+
+.s com.db4odoc.f1.Util#deleteAll -out ..
+
+.1 Conclusion ..
+
+Now we should have the tools at hand to work with arbitrarily complex ._
+object graphs. But so far we have only been working forward, hoping that ._
+the changes we apply to our precious data pool are correct. What if we ._
+have to roll back to a previous state due to some failure? In the ._
+.l Transactions next chapter ..l  we will introduce the db4o transaction concept.
+
+.1 Full source ..
+
+.s com.db4odoc.f1.chapter6.DeepExample ..

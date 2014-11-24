@@ -1,0 +1,21 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>edu.purdue.cs</groupId>
+  <artifactId>bloat</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+  <name>bloat</name>
+  <description>bytecode optimization library, used to optmize Native Queries and Transparent Activation</description>
+  <url>http://www.cs.purdue.edu/s3/projects/bloat</url>
+  <licenses>
+    <license>
+      <name>GNU Lesser General Public License</name>
+      <url>http://www.gnu.org/licenses/lgpl.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>https://source.db4o.com/db4o/trunk</url>
+  </scm>
+  
+</project>

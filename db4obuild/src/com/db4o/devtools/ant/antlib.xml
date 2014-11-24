@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<antlib xmlns:current="ant:current">
+	<taskdef name="filehead" 						classname="com.db4o.devtools.ant.FileHeadAntTask"/>
+	<taskdef name="updatecsharpproject" classname="com.db4o.devtools.ant.UpdateCSharpProjectAntTask"/>
+	<taskdef name="updateAssemblyHintPath" classname="com.db4o.devtools.ant.UpdateAssemblyHintPath"/>
+	<taskdef name="updateAssemblyInfo" classname="com.db4o.devtools.ant.UpdateAssemblyInfoTask"/>
+	<taskdef name="versioninfo" classname="com.db4o.devtools.ant.VersionInfoAntTask"/>
+	<taskdef name="assemblykey" classname="com.db4o.devtools.ant.UpdateAssemblyKeyTask"/>	
+</antlib>

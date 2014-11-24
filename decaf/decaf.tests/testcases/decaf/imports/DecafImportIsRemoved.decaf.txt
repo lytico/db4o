@@ -1,0 +1,14 @@
+package decaf.imports;
+
+import decaf.imports.deeper.*;
+import java.lang.*;
+
+class Bar {
+
+	static public class Nested {
+	
+		public void toBeRemoved() {
+			FooBar fooBar = new FooBar();
+		}
+	}
+}

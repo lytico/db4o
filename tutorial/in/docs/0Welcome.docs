@@ -1,0 +1,31 @@
+.0 Welcome
+
+.b db4o is the native Java, .NET and Mono open source object database. ..
+
+This tutorial was written to get you started with db4o as quickly ._
+as possible. Before you start, please make sure that you have ._
+downloaded the latest ._
+db4o distribution from the  .l http://www.db4o.com db4objects website .. .
+
+.b Join the db4o Community ..
+Join the  .l http://developer.db4o.com db4o community ..  for help, tips and tricks.  
+Ask for help in the  .l http://developer.db4o.com/Forums.aspx db4o forums ..  at any time. 
+And take a look at additional resources on  .l http://developer.db4o.com/Resources.aspx the community website. ..
+If you want to stay informed, subscribe to our  .l http://developer.db4o.com/Blogs.aspx db4o blogs .. 
+
+
+.b Links ..
+In order to access free developer resources you may want to register on  .l http://developer.db4o.com/ db4o developer website .. .  
+Feel free register to the forums  .l http://www.db4o.com/Users/register.aspx .. .
+And here are some further links on developer.db4o.com that ._
+you may find useful:
+.l http://download.db4o.com All Downloads ..
+.l https://source.db4o.com/db4o/trunk/ SVN Repository ..
+.l http://developer.db4o.com/ProjectSpaces/default.aspx Community Projects ..
+ 
+
+
+
+.n
+.< DownloadContents ..
+.n

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1148">
+    <body>
+	<div class="codesnippet" MadCap:conditions="Primary.VB.NET">
+        <pre class="prettyprint" xml:space="preserve"><span style="color:Blue;">Private</span> <span style="color:Blue;">Shared</span> <span style="color:Blue;">Sub</span> HandleUpdate(<span style="color:Blue;">ByVal</span> sender <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span>, <span style="color:Blue;">ByVal</span> args <span style="color:Blue;">As</span> CommitEventArgs)
+    <span style="color:Blue;">For</span> <span style="color:Blue;">Each</span> updated <span style="color:Blue;">As</span> LazyObjectReference <span style="color:Blue;">In</span> args.Updated
+        <span style="color:Blue;">Dim</span> obj <span style="color:Blue;">As</span> <span style="color:Blue;">Object</span> = updated.GetObject()
+        args.ObjectContainer().Ext().Refresh(obj, 1)
+    <span style="color:Blue;">Next</span>
+<span style="color:Blue;">End</span> <span style="color:Blue;">Sub</span></pre>
+		<div class="codesnippet-meta">
+			RefreshingObjects.vb: The refresh-handler
+			<div class="codedownload">
+				<a href="Example-clientserver-refresh-vb.zip" class="codedownload" MadCap:conditions="Primary.Online">Download Code</a>
+			</div>
+			<div class="codedownload copylink-marker" MadCap:conditions="Primary.Online"><a href="#copy">Copy Code</a></div>
+		</div>
+	</div>
+
+    </body>
+</html>

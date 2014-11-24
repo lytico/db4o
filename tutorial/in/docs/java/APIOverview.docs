@@ -1,0 +1,64 @@
+.n
+.1 API Overview ..
+Do not forget the API documentation while reading through this ._
+tutorial. It provides an organized view of the API, looking from a ._
+java package perspective and you may find related functionality to ._
+the theme you are currently reading up on.
+
+For starters, the java packages com.db4o and com.db4o.query are all ._
+that you need to worry about.
+
+.b com.db4o ..
+
+The com.db4o java package contains almost all of the functionality ._
+you will commonly need when using db4o. Two objects of note are ._
+com.db4o.Db4oEmbedded, and the com.db4o.ObjectContainer interface.
+
+The com.db4o.Db4o factory is your starting point. Static methods in ._
+this class ._
+allow you to open a database file and create an initial configuration. ._
+For client/server environment you will need ._
+to use com.db4o.cs.Db4oClientServer factory class to ._
+start a server, or connect to an existing server, but this will be discussed  .l ClientServer later ..l. ._
+, start a server, or connect to an existing server. ._
+
+The most important interface, and the one that you will be using 99% of the time is 
+com.db4o.ObjectContainer: This is your db4o database.
+- An ObjectContainer can either be a database in single-user mode or ._
+a client connection to a db4o server.
+- Every ObjectContainer owns one transaction. All work is transactional. ._
+When you open an ObjectContainer, you are in a transaction, when you ._
+commit() or rollback(), the next transaction is started immediately.
+- Every ObjectContainer maintains it's own references to stored and ._
+instantiated objects. In doing so, it manages object identities, and ._
+is able to achieve a high level of performance.
+- ObjectContainers are intended to be kept open as long as you work ._
+against them. When you close an ObjectContainer, all database references ._
+to objects in RAM will be discarded.
+
+.b com.db4o.ext ..
+
+In case you wonder why you only see very few methods in an ObjectContainer, ._
+here is why: The db4o interface is supplied in two steps in two java ._
+packages, com.db4o and com.db4o.ext ._
+for the following reasons:
+- It's easier to get started, because the important methods are emphasized.
+- It will be easier for other products to copy the basic db4o interface.
+- It is an example of how a lightweight version of db4o could look.
+
+Every com.db4o.ObjectContainer object is also an com.db4o.ext.ExtObjectContainer. ._
+You can cast it to ExtObjectContainer or you can use the .ext() method to get to ._
+the advanced features.
+
+.b com.db4o.config ..
+
+The com.db4o.config java package ._
+contains types and classes necessary to configure db4o. The objects and interfaces ._
+within are discussed in the  .l Configuration Configuration ..  section.
+
+.b com.db4o.query ..
+
+The com.db4o.query java package contains ._
+the Predicate class to construct  .l Query Native Queries .. . The Native Query ._
+interface is the primary db4o querying interface and should be preferred over ._
+the Soda Query API. 

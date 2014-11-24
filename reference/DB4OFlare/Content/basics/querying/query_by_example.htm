@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:lastBlockDepth="8" MadCap:lastHeight="676" MadCap:lastWidth="483">
+    <head>
+    </head>
+    <body>
+        <h1>
+            <MadCap:keyword term="Query:Query By Example" />Query By Example</h1>
+        <p>Query By Example is a very special query method. Basically you pass in a example object to db4o. Then db4o searches the database for all objects which look alike. </p>
+        <p>The basic principal is like this. It goes through all fields of the example object. If a field doesn't have the default value it is used as constraint. It takes that value and checks for all objects which have an equal value for this field. If more than one field has a value, each value is used as constraint and combined. Here's a simple example.</p>
+        <MadCap:snippetBlock src="../../CodeExamples/query/qbe/QueryByExamples-Query-for-John-by-example.all.flsnp" />
+        <p>Take a look a the various examples of query by example examples. <MadCap:xref href="query_by_example/qby_examples.htm" target="" title="" alt="">See "Query By Example Examples"</MadCap:xref></p>
+        <p>Query by Example has fundamental limitations, which limits its use cases. <MadCap:xref href="query_by_example/qbe_limitations.htm" target="" title="" alt="">See "Query By Example Limitations"</MadCap:xref></p>
+        <MadCap:snippetBlock src="../../Snippets/lazy-query-result.flsnp" />
+    </body>
+</html>
